@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Auditing a Data Dictionary
+		</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,auditing,audit,data dictionary,audit a data dictionary">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="au_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Auditing Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Auditing</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Auditing a Data Dictionary</H4> 
+	 <P>In addition to auditing changes to data values, you can audit changes to
+		data dictionaries. </P> 
+	 <UL> 
+		<LI><A HREF="#Setting" TITLE="Setting Up a Data Dictionary Audit"
+		  CLASS="bodylink">Setting Up a Data Dictionary Audit</A><BR><BR></LI> 
+		<LI><A HREF="#Reviewing"
+		  TITLE="Reviewing the Data Dictionary Audit Trail" CLASS="bodylink">Reviewing
+		  the Data Dictionary Audit Trail</A><BR><BR></LI> 
+		<LI><A HREF="#Tracking" TITLE="Tracking Audited Data Dictionaries"
+		  CLASS="bodylink">Tracking Audited Data Dictionaries</A><BR><BR></LI> 
+		<LI><A HREF="#Purging" TITLE="Purging a Data Dictionary Audit Trail"
+		  CLASS="bodylink">Purging a Data Dictionary Audit Trail</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="Setting">Setting Up a Data Dictionary Audit</A></H5> 
+	 <P>Start an audit on a data dictionary by using the Edit File option on the
+		Utility Functions submenu. You should answer YES to the "DD AUDIT?" prompt.
+		</P> 
+	 <P>When you start an audit, VA FileMan begins an audit trail of changes
+		made to the data dictionary. Changes to the definitions of fields in the file
+		are audited. Fields in Subfiles are audited, too. Changes made to the
+		definition of the file, using the Edit File option, are not audited. The
+		changes are recorded in the DD AUDIT file (#.6). </P> 
+	 <P>An example of starting a data dictionary audit follows: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS
+Select UTILITY OPTION: <B>EDIT</B> FILE
+
+MODIFY WHAT FILE: <B>PATIENT</B>
+NAME:  PATIENT// <B>&lt;RET&gt;</B>
+DESCRIPTION:
+   1&gt; <B>&lt;RET&gt;</B>
+Select APPLICATION GROUP: <B>&lt;RET&gt;</B>
+DEVELOPER: <B>&lt;RET&gt;</B>
+VERSION: <B>&lt;RET&gt;</B>
+DATA DICTIONARY ACCESS: <B>&lt;RET&gt;</B>
+READ ACCESS: <B>&lt;RET&gt;</B>
+WRITE ACCESS: <B>&lt;RET&gt;</B>
+DELETE ACCESS: <B>&lt;RET&gt;</B>
+LAYGO ACCESS: <B>&lt;RET&gt;</B>
+AUDIT ACCESS: <B>&lt;RET&gt;</B>
+DD AUDIT? NO// <B>YES</B>
+ASK 'OK' WHEN LOOKING UP AN ENTRY?  NO// <B>^</B>
+</PRE> <HR> 
+	 <H5><A NAME="Reviewing">Reviewing the Data Dictionary Audit Trail</A></H5> 
+	 <P>To see what changes were made to the data dictionary, use the Inquire to
+		File Entries or Print File Entries option and identify the DD AUDIT file (#.6)
+		as the file of choice. The Data Dictionaries Being Audited option is just used
+		to display a list of data dictionaries being audited; it doesn't include the
+		changes made to audited data dictionaries. The following dialogue is an example
+		of how to identify the changes made to a data dictionary: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select OPTION: <B>INQ</B>UIRE TO FILE ENTRIES
+
+OUTPUT FROM WHAT FILE: <B>.6 &lt;RET&gt;</B>  DD AUDIT
+AUDIT FROM WHAT FILE: <B>PATIENT</B>
+
+Select PATIENT SUB-FILE: <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P><B>NOTE:</B> You only see the "SUB-FILE" prompt if the file contains a
+		Subfile. To display audit information for the Subfile, specify it here. </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select PATIENT DD AUDIT: <B>?</B>
+
+ANSWER WITH ZZPT DD AUDIT NUMBER, OR FIELD NUMBER, OR DATE
+  UPDATED, OR USER
+ CHOOSE FROM:
+    1 2 02-20-90 PROGRAMMER,SYSTEMS
+    2 3 02-20-90 PROGRAMMER,SYSTEMS
+</PRE> <HR> 
+	 <P>The entries in the DD AUDIT file are identified by the field number (2
+		and 3 in this example), the date of the change (02/20/90 for both entries), and
+		the person making the change (PROGRAMMER, SYSTEMS for both).</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select PATIENT DD AUDIT: <B>1</B>
+ANOTHER ONE: <B>2</B>
+ANOTHER ONE: <B>&lt;RET&gt;</B>
+STANDARD CAPTIONED OUTPUT?  YES// <B>&lt;RET&gt;</B>
+DISPLAY COMPUTED FIELDS?  NO// <B>&lt;RET&gt;</B>
+ 
+NUMBER:  1                     FIELD NUMBER:  2
+  TYPE:  EDIT DATE             UPDATED:  FEB 20, 1990@17:54:36
+  USER:  PROGRAMMER,SYSTEMS    ATTRIBUTE NAME:  LABEL
+  ATTRIBUTE NUMBER:  .01       FILE NUMBER:  999000
+  OLD VALUE(S):  DATE OF BIRTH NEW VALUE(S):  DOB
+
+NUMBER:  2                     FIELD NUMBER:  3
+  TYPE:  EDIT DATE             UPDATED:  FEB 21, 1990@11:54:03
+  USER:  PROGRAMMER,SYSTEMS    ATTRIBUTE NAME:  LABEL
+  ATTRIBUTE NUMBER:  .01       FILE NUMBER:  999000
+  OLD VALUE(S):  CURRENT AGE   NEW VALUE(S):  AGE
+</PRE> <HR> 
+	 <P>This example indicates that a user named Systems Programmer modified the
+		PATIENT file (#999000) on 2/20 and 2/21/90. This person edited the LABEL (.01
+		attribute) of Fields #2 and #3. The LABEL of Field #2 was changed from DATE OF
+		BIRTH to DOB and the LABEL of Field #3 was changed from CURRENT AGE to AGE. The
+		number of the first change as it was recorded in the DD AUDIT file (#.6) is 1
+		and the second is 2. </P> <HR> 
+	 <H5><A NAME="Tracking">Tracking Audited Data Dictionaries</A></H5> 
+	 <P>For information on which data dictionaries are being audited, use the
+		Data Dictionaries Being Audited option from the Auditing submenu. Select a
+		range of data dictionaries. VA FileMan displays the file number and file name
+		of the data dictionaries currently being audited, as shown in the example
+		below: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select OTHER OPTION: <B>AUDITING</B>
+Select AUDIT OPTION: <B>DAT</B>A DICTIONARIES BEING AUDITED
+START WITH NUMBER:  FIRST// <B>2</B>
+GO TO NUMBER:  LAST// <B>34</B>
+DEVICE:   HOME// <B>&lt;RET&gt;</B>
+
+ 
+DATA DICTIONARIES BEING AUDITED AUG 30, 1989  18:08   PAGE 1
+
+FILE             NAME
+------------------------------------------------------------------
+
+3                USER
+9.4              PACKAGE
+30               LOCATION
+</PRE> <HR> 
+	 <H5><A NAME="Purging">Purging a Data Dictionary Audit Trail</A></H5> 
+	 <P>Use the Purge DD Audits option to erase all audit trails used in
+		auditing data dictionaries (including Subfiles, which have their own data
+		dictionaries) for a specified file. Purging is not an automatic feature, it
+		must be done manually. </P> 
+	 <P>You should either 1) turn auditing off on the files you're purging while
+		you're doing the purge, or 2) leave auditing on but purge the file when not
+		many users are on the system. If you purge when auditing is on and people are
+		using the file in question, it is possible that you might end up with
+		incomplete audit records on the audited file. </P> 
+	 <P>The following dialogue results in purging <I>selected</I> data
+		dictionary audit records for the user Ringleader: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select AUDIT OPTION: <B>PUR</B>GE DD AUDITS
+AUDIT FROM WHAT FILE: <B>PATIENT</B>
+Select PATIENT SUB-FILE: <B>&lt;RET&gt;</B>
+DO YOU WANT TO PURGE ALL DD AUDIT RECORDS?  NO// <B>NO</B> 
+
+PURGE DD AUDIT RECORDS BY:  FIELD NUMBER// <B>USER</B>
+START WITH USER:  FIRST// <B>RINGLEADER</B>
+GO TO USER:  LAST// <B>RINGLEADER</B>
+  WITHIN USER, PURGE AUDITS RECORDS BY: <B>&lt;RET&gt;</B>
+DEVICE: <B>&lt;RET&gt;</B>
+
+HOLD ON, PLEASE...
+
+
+PURGE OF DD AUDIT:  PATIENT FILE    FEB 21, 1990   14:45    PAGE 1
+------------------------------------------------------------------
+
+9 RECORDS PURGED.  
+</PRE> <HR> 
+	 <P>The following dialogue results in purging <I>all</I> data dictionary
+		audit records for the PATIENT file: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>AUDIT FROM WHAT FILE: <B>PATIENT</B>
+Select PATIENT SUB-FILE: <B>&lt;RET&gt;</B>
+DO YOU WANT TO PURGE ALL DD AUDIT RECORDS?  NO// <B>YES</B> 
+ARE YOU SURE?  NO// <B>YES</B> 
+
+DELETED
+	 </PRE> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- au_dd.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

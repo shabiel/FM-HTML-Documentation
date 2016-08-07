@@ -1,0 +1,1337 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: FIND^DIC( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,list^dic(),dic">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>FIND^DIC( ): Finder</H4> 
+	 <P>This procedure finds records in a file based on input value(s). The
+		caller must specify a file number and the input values to be used for the
+		lookup. The caller can also specify the index(s) to be used in the search, the
+		data to output, and a number of records to retrieve. The caller can also pass
+		screening logic. By default, the Finder returns the IEN and the .01 field of
+		the entries along with all identifiers. The developer can override the default
+		output and return other information for the entries. </P> 
+	 <P>This call was designed as a non-interactive lookup, to find entries that
+		are at least a partial match to the lookup values input to the call. This
+		procedure cannot file data or add new records. </P> 
+	 <P><B>NOTE:</B> The Finder does NOT honor the Special Lookup or Post-Lookup
+		Action nodes defined in the data dictionary for a file.</P> 
+	 <H5>Format</H5> 
+	 <PRE>FIND^DIC(FILE,IENS,FIELDS,FLAGS,[.]VALUE,NUMBER,[.]INDEXES,[.]SCREEN,
+IDENTIFIER,TARGET_ROOT,MSG_ROOT)
+</PRE> 
+	 <H5><A NAME="InputParameters">Input Parameters</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The number of the file or subfile to search. If this
+				parameter is a subfile, it must be accompanied by the IENS parameter.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>IENS</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The IENS that identifies the subfile, if FILE is a
+				subfile number. To identify a subfile, rather than a subfile entry, leave the
+				first comma-piece empty. For example, a value of ",67," indicates that the
+				subfile within entry #67 should be used. If FILE is a file number, this
+				parameter should be empty. Defaults to no subfile. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="fields">FIELDS</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The fields to return with each entry found. This
+				parameter can be set equal to any of the specifications listed below. The
+				individual specifications should be separated by semicolons (";"). </P> 
+			 <P><B>NOTE:</B> In most cases, a developer will want to include the
+				<A HREF="#@" TITLE='"@" specifier' CLASS="bodylink">"@" specifier</A>
+				(described below) to suppress the default output values normally returned by
+				the Finder and then specify the fields and other elements to return here in the
+				FIELDS parameters. This gives the developer full control over exactly what will
+				be returned in the output list and makes the call more self-documenting in the
+				developer's code.&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> 
+			 <UL> 
+				<LI><B>Field Number:</B> This specifier causes the Finder to return
+				  the value of the field for each record found. For example, specifying .01
+				  returns the value of the .01 field. You can specify computed fields. You cannot
+				  specify word processing or multiple fields. By default, fields will be returned
+				  in external format. The <A HREF="#ISuffix" TITLE='"I" suffix'
+				  CLASS="bodylink">"I" suffix</A> (described below) can be appended to the field
+				  number to get the internal format of the field<BR><BR></LI> 
+				<LI><B> IX:</B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> This returns
+				  for each record, the value(s) from the index on which the lookup match was
+				  made. The number of index values returned will depend on the number of data
+				  value subscripts in the starting lookup index. If a subscript in the index is
+				  derived from a field, the external format of that field will be returned by
+				  default. Otherwise, the value will be returned directly as it appears in the
+				  index. The <A HREF="#ISuffix" TITLE='"I" suffix' CLASS="bodylink">"I" suffix
+				  </A>(described below) can be appended to IX to get the internal index values.
+				  The index values are returned in the "ID" nodes as described in the "<A
+				  HREF="#Output" TITLE="Output" CLASS="bodylink">Output</A>" section below. 
+				  <P><B>NOTE:</B> For records located on a mnemonic index entry,
+					 the value from the index entry will always be returned, rather than its
+					 corresponding external field value.</P> </LI> 
+				<LI><B>FID:</B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> This returns
+				  the fields display identifiers (i.e., field identifiers). By default, the field
+				  values are returned in external format. The
+				  <A HREF="#ISuffix" TITLE='"I" suffix' CLASS="bodylink">"I" suffix</A>
+				  (described below) can be appended to FID to get the internal format of the
+				  field identifiers.<BR><BR></LI> 
+				<LI><B>WID:</B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> This returns
+				  the fields WRITE (display only) identifiers. The Finder executes each WRITE
+				  identifier's M code and copies contents of ^TMP("DIMSG",$J) to the output. You
+				  must ensure that the WRITE identifier code issues no direct I/O, but instead
+				  calls EN^DDIOL. <B>NOTE:</B> The
+				  <A HREF="#ISuffix" TITLE='"I" suffix' CLASS="bodylink">"I" suffix</A>,
+				  described below, cannot be used with "WID" and will generate an
+				  error.<BR><BR></LI> 
+				<LI><B>E suffix:</B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> You can
+				  append an "E" to a field number, the specifier "IX", or the specifier "FID" to
+				  force the fields to be returned in external format. You can use both the "E"
+				  and "I" suffix together (ex., .01EI) to return both the internal and external
+				  value of the field.<BR><BR></LI> 
+				<LI><B><A NAME="ISuffix">I suffix:</A></B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> You can
+				  append an "I" to a field number, the specifier "IX", or the specifier "FID" to
+				  force the fields to be returned in internal format. You can use both the "E"
+				  and "I" suffix together (ex., .01IE) to return both the internal and external
+				  value of the field.<BR><BR></LI> 
+				<LI><B>- prefix:</B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> A minus sign
+				  (-) prefixing one of the other field specifiers tells the Finder to exclude it
+				  from the returned list. This could be used, for example, in combination with
+				  the "FID" specifier to exclude one of the identifier fields. For example, if
+				  field 2 was one of the field identifiers for a file, "FID;-2" would output all
+				  of the field identifiers except for field 2.<BR><BR></LI> 
+				<LI><B><A NAME="@">@:</A></B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> This
+				  suppresses all the default values normally returned by the Finder, except for
+				  the IEN and any fields and values specified in the FIELDS parameter. It is
+				  recommended that developers ALWAYS use the "@" specifier in Finder calls. Use
+				  of the "@" specifier allows the developer to control exactly what will be
+				  returned in the output. See below for the default values normally returned by
+				  the Finder. </LI> 
+			 </UL> 
+			 <P><B>Default Values</B></P> 
+			 <P>If you do not pass anything in the FIELDS parameter, the Finder
+				returns:</P> 
+			 <OL> 
+				<LI>The IEN</LI> 
+				<LI>The .01 field in internal format</LI> 
+				<LI>Any field display identifiers</LI> 
+				<LI>Any WRITE (display-only) identifiers</LI> 
+				<LI>The results of executing the Finder's IDENTIFIER parameter
+				  </LI> 
+			 </OL> 
+			 <P>If you do pass a FIELDS parameter, the Finder returns (unless you
+				use the <B>@</B> field specifier):</P> 
+			 <OL> 
+				<LI>The IEN</LI> 
+				<LI>The .01 field in internal format</LI> 
+				<LI>The fields and values specified by the FIELDS parameter</LI> 
+				<LI>Any WRITE (display-only) identifiers</LI> 
+				<LI>The results of executing the Finder's IDENTIFIER parameter</LI>
+				
+			 </OL></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="flags">FLAGS</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. This parameter lets the
+				caller adjust the Finder's algorithm. The possible values are: </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>A</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>A</B>llow pure numeric input to always be tried as an IEN.
+				Normally, the Finder will only try pure numbers as IENs if: 1) the file has a
+				.001 field, or 2) its .01 field is not numeric and the file has no lookup
+				index.</P> 
+			 <P>When this flag is used, records that match other numeric
+				interpretations of the input will be found in addition to a record with a
+				matching IEN. For example, a lookup value of "2" would match a record with a
+				lookup field of "2JOHN" as well as a record with an IEN of 2. If more than one
+				match is found, all matching records are returned. </P> 
+			 <P><B>NOTE:</B> If the numeric lookup value is preceded by an accent
+				grave character ('), lookup interprets the input as an IEN, and only attempts
+				to match by IEN. The A flag is not required in this case. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="B">B</A></B>&nbsp;<IMG
+			 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>B</B> index used on lookups to pointed-to files. Without the B
+				flag, if there are cross-referenced pointer fields in the list of indexes to
+				use for lookup then: (1.) for each cross-referenced pointer field, FileMan
+				checks ALL lookup indexes in each pointed-to file for a match to X
+				(time-consuming), and (2.) if X matches any value in any lookup index (not just
+				on the .01 field) in a pointed-to file and the IEN of the matched entry is in
+				the home file's pointer field cross-reference, FileMan considers this a match
+				(perhaps not the lookup behavior desired). </P> 
+			 <P>The B flag prevents this behavior by looking for a match to X only
+				in the "B" index (.01 field) of files pointed to by cross-referenced pointer
+				fields. This makes lookups quicker and avoids the risk of FileMan matching an
+				entry in the pointed-to file based on something other than the .01 field.</P> 
+			 <P>See the "<A HREF="#DetailsandFeatures"
+				TITLE="Details and Features" CLASS="bodylink">Details and Features</A>" section
+				for an explanation of the "<A HREF="#lookup_index" TITLE="Lookup Index"
+				CLASS="bodylink">Lookup Index</A>" and the "<A HREF="#Examples"
+				TITLE="Examples" CLASS="bodylink">Examples</A>" section for more information on
+				use of the B flag.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="C">C</A></B>&nbsp;<IMG
+			 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Use the <B>C</B>lassic way of performing lookups on names, i.e.,
+				like the classic FileMan lookup routine ^DIC. If C is passed in the FLAGS
+				parameter and, for example, the user enters a lookup value of "Smi,J", the
+				Finder will find "Smith,John" but also "Smiley,Bob J." The Finder takes the
+				first comma piece of the lookup value "Smi", and looks for partial matches to
+				that. It then takes the second comma piece of the lookup value "J" and looks
+				for partial matches to "J" on the second or any other piece of the value on the
+				entry being examined. It uses any punctuation or space for a delimiter.</P> 
+			 <P>The default, without passing C in the FLAGS parameter, will look
+				for partial matches ONLY on the second piece, thus in our example, finding
+				"Smith,John" but not "Smiley,Bob J.". The old style of comma-piece processing
+				can be quite slow, especially with common names like "Smith".</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="K">K</A></B>&nbsp;<IMG
+			 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Primary <B>K</B>ey used for starting index. If no index is
+				specified in the INDEXES parameter, this flag causes the Finder to use the
+				Uniqueness index for the Primary <B>K</B>ey as the starting index for the
+				search. Without the K flag, or if there is no Primary Key for this file (in the
+				KEY file), the Finder defaults to the "B" index.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">&nbsp;</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="M">M</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>M</B>ultiple index lookup allowed. If more than one index is
+				passed in the INDEXES parameter, all indexes in the list are searched.
+				Otherwise, the M flag causes the Finder to search the starting index and all
+				indexes that alphabetically follow it. This includes both indexes from the
+				traditional location in the data dictionary, as well as lookup indexes defined
+				on the INDEX file that have an "L" (for LOOKUP) in the new "Use" field. </P> 
+			 <P>The starting index is taken from the INDEXES parameter. If that is
+				null, the search begins with the default starting Index (see
+				<A HREF="#K" TITLE="K flag" CLASS="bodylink">K flag</A> description above).
+				</P> 
+			 <P><B>NOTE:</B> If the first index passed in the INDEXES parameter is
+				a compound index, the M flag is removed and only that one index is searched.
+				See "<A HREF="#lookup_index" TITLE="Lookup Index" CLASS="bodylink">Lookup
+				Index</A>" in the "<A HREF="#DetailsandFeatures" TITLE="Details and Features"
+				CLASS="bodylink">Details and Features</A>" section for more
+				information.&nbsp;<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+				WIDTH="35" HEIGHT="11"> (This flag is revised.)</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="O">O</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>O</B>nly find exact matches if possible. The Finder first
+				searches for exact matches on the requested Index(es); if any are found, it
+				returns all exact matches to the lookup value. Only if it finds none in the
+				file does it search for partial matches, returning every partial match. For
+				example, if the lookup value is "EINSTEIN" and the file contains entries
+				"EINSTEIN" and "EINSTEIN,ALBERT", only the first record is returned. If the
+				first record did not exist, the Finder would return "EINSTEIN,ALBERT" as a
+				match. If FLAGS does not contain an O, the Finder returns all matches, partial
+				and exact.</P> 
+			 <P>If the lookup is done on a compound index, exact matches must be
+				made for every data value subscript in the index in order to consider the entry
+				to be an exact match.&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> (This flag is
+				revised.)</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="P">P</A></B>&nbsp;<IMG
+			 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>P</B>ack output. This flag changes the Finder's output format
+				to pack the information returned for each record onto a single node per record.
+				A MAP node is introduced to make it easier to locate different data elements in
+				the output. See the "<A HREF="#PackedOutput" TITLE="Output"
+				CLASS="bodylink">Output</A>," the "<A HREF="#DetailsandFeatures"
+				TITLE="Details and Features" CLASS="bodylink">Details and Features</A>," and
+				the "<A HREF="#Examples" TITLE="Examples" CLASS="bodylink">Examples</A>"
+				sections for more information.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Q</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Q</B>uick lookup. If this flag is passed, the Finder assumes
+				the passed value is in internal format. The Finder performs NO transforms of
+				the input value, but only tries to find the value in the specified lookup
+				indexes. Therefore, when the Q flag is passed, the lookup is much more
+				efficient. If the FLAGS parameter does not contain a Q, the Finder assumes the
+				lookup value is an external or user-entered value and performs all normal
+				transforms as documented below. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="U">U</A></B>&nbsp;<IMG
+			 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>U</B>nscreened lookup. This flag makes the Finder ignore any
+				whole file screen (stored at ^DD(file#,0,"SCR")) on the file specified in the
+				FILE parameter. </P> 
+			 <P><B>NOTE:</B> Passing this flag does <B>not</B> make the Finder
+				ignore the SCREEN parameter.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>X</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>E<B>X</B>act matches only. The Finder returns every exact match to
+				the lookup value on the requested Index(es). Any partial matches present in the
+				file are ignored, and transforms, such as changing the lookup value to
+				uppercase, are not performed. For example, in the scenarios described under the
+				O flag, the Finder behaves identically in the first situation, but under the
+				second it returns no matches, since "EINSTEIN,ALBERT" is not an exact match to
+				"EINSTEIN". If both the O and X flags are passed, the O flag is ignored. If the
+				lookup is done on a compound index, exact matches must be made for every data
+				value subscript in the index.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="VALUE">[.]VALUE</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The lookup value(s). These should be in external format
+				as they would be entered by an end-user, unless the Q flag is used. Except for
+				special lookup values listed below, the lookup value is matched to entries on
+				the lookup <A HREF="#INDEXES" TITLE="INDEXES" CLASS="bodylink">INDEXES</A>
+				specified in the call. If the lookup index is compound, then lookup values can
+				be provided for each of the data value subscripts in the index. In that case,
+				VALUE is passed by reference as an array where VALUE(n) represents the lookup
+				value to be matched to the nth subscript in the index. If only one lookup value
+				is passed in VALUE, it is assumed to apply to the first data value subscript in
+				the index.
+				<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+				 HEIGHT="11"></P> 
+			 <P>In addition, certain values generate special behavior by the
+				Finder as follows: </P> 
+			 <OL> 
+				<LI><B>Control characters.</B> This value always results in no
+				  matches. Control characters are not permitted in the database.<BR><BR></LI> 
+				<LI><B>^ (Up-arrow [shift-6]).</B> This value always results in no
+				  matches. This single character value signifies to VA FileMan that the current
+				  activity should be stopped.<BR><BR></LI> 
+				<LI><B>"" (The empty string).</B> On single field indexes, this
+				  value always results in no matches. The empty string, used by VA FileMan to
+				  designate fields that have no value, cannot be found in FileMan indexes.
+				  However, if the lookup uses a compound index, VALUE(n) can be null for any of
+				  the lookup values as long as at least one of them is non-null. If VALUE(1) is
+				  null, it may make the lookup slower. If VALUE(n) is null, all non-null values
+				  for that subscript position will be returned. <BR><BR></LI> 
+				<LI><B>" " (The space character).</B> This value indicates that the
+				  Finder should return the current user's previous selection from this file. This
+				  corresponds to the "space-bar-recall" feature of FileMan's user interface. If
+				  VA FileMan has no such previous selection for this user, or if this selection
+				  is now prohibited from selection somehow (see discussion of
+				  <A HREF="#SCREEN" TITLE="SCREEN" CLASS="bodylink">SCREEN</A>, below), then the
+				  Finder returns no matches. The Finder itself never preserves its found values
+				  for this recall; applications wishing to preserve found values should call
+				  RECALL^DILFD. The special lookup characters should appear either in VALUE or in
+				  VALUE(1).<BR><BR></LI> 
+				<LI><B>"`"-Number </B>(accent-grave followed by a number). This
+				  indicates that the Finder should select the entry whose internal entry number
+				  equals the number following the accent-grave character. This corresponds to an
+				  equivalent feature of FileMan's user interface. If this entry is prohibited
+				  from selection, the Finder returns no match. The use of '-number input does not
+				  require passing A in the FLAGS parameter. The special lookup characters should
+				  appear either in VALUE or in VALUE(1).<BR><BR></LI> 
+				<LI><B>Numbers.</B> The Finder tries strictly numeric input as an
+				  IEN under any of the following four conditions: 1) The caller passes A in the
+				  FLAGS parameter, 2) the file has a .001 field, 3) the file's .01 field is not
+				  numeric and the file has no lookup index, or 4) The INDEXES parameter contains
+				  "#" as one of its index names. In all cases, the numeric lookup value is
+				  expected to be in either VALUE or VALUE(1). In condition 4, if the "#" is the
+				  only INDEX, and if the lookup value does not match an IEN, the lookup fails,
+				  otherwise, the Finder continues the search using the other indexes. <BR><BR> In
+				  conditions 1, 2 and 3, strictly numeric input differs from `-numeric input in
+				  that whether or not a record corresponding to this IEN exists or is selectable,
+				  the Finder proceeds with a regular lookup, using the numeric value to find
+				  matches in the file's indexes. Even used this way, however, numeric input has
+				  the following special restriction: it is not used as a lookup value in any
+				  indexed pointer or variable pointer field (unless Q is passed in the FLAGS
+				  parameter). <BR><BR> For example, suppose an application performs a Finder call
+				  on the EMPLOYEE file, passing a lookup value of 12; that the EMPLOYEE file
+				  points to the State file, in which Washington is record number 12; and that the
+				  EMPLOYEE file's pointer to the State file is indexed. The application would not
+				  be able to use the input value of 12 to find every employee who lives in
+				  Washington state. </LI> 
+			 </OL>
+			 <IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"> (This parameter is revised.)</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>NUMBER</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The maximum number of entries to find. If the Finder
+				actually matches the input to this many entries, it breaks out of its search
+				and returns what it has found so far. In such a situation, there is no way for
+				the Finder to resume its search later where it left off. A value of "<B>*</B>"
+				designates all entries. </P> 
+			 <P>Defaults to "<B>*</B>". </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A
+			 NAME="INDEXES">[.]INDEXES</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The indexes the Finder should search for matches. This
+				parameter should be set to a list of index names separated by ^ characters.
+				This parameter specifies both which indexes to check and the order in which to
+				check them. The caller does not need to pass the M flag for the INDEXES
+				parameter to work properly. For example, a value of "B^C^ZZALBERT^D" specifies
+				four indexes to check in the order shown. </P> 
+			 <P>If the first index passed is a compound index, only that one index
+				can be in the list. Attempting to put more than one index in the list when the
+				first one is compound will generate an error. If the first index in the list is
+				a single subscript index, however, compound indexes can follow that one in the
+				list. In that case, the lookup expects only one lookup value and only the first
+				subscript of any compound index is checked for matches. </P> 
+			 <P>If no index name, or only one index name, is passed in the INDEXES
+				parameter, and if the FLAGS parameter contains an M, then the Finder will do
+				the search using the starting index, as well as all indexes that follow the
+				starting one alphabetically (unless the starting index is compound - see
+				paragraph above). See also the documentation on the
+				<A HREF="#M" TITLE="M flag" TARGET="M flag" CLASS="bodylink">M flag</A>. </P> 
+			 <P>If the index is not specified, the default starting index will be
+				"B" unless the FLAGS parameter contains a K, in which case the default will be
+				the Uniqueness Index defined for the Primary Key on the file.
+				<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+				HEIGHT="11"></P> 
+			 <P>Mnemonic cross-references folded into the specified index are
+				included in the output. </P> 
+			 <P>When the first subscript of one of the indexes on the file you are
+				searching indexes a pointer or variable pointer, then the Finder searches the
+				pointed-to file for matches to the lookup value. Array entries can be passed in
+				the INDEXES parameter to control this search on the pointed-to file. Suppose
+				the name of the array is NMSPIX. Then you can set
+				NMSPIX("PTRIX",from_file#,pointer_field#,to_file#)="^"_delimited_index_list.
+				This array entry allows the user to pass a list of indexes that will be used
+				when doing the search on the pointed-to file. </P> 
+			 <P>For example, if your file (662001) has a pointer field (5) to file
+				200 (NEW PERSON), and you wanted the lookup on field 5 to find entries in the
+				NEW PERSON file only by name ("B" index), or by the first letter of the last
+				name concatenated with the last 4 digits of the social security number ("BS5"
+				index), set NMSPIX("PTRIX",662001,5,200)="B^BS5".</P>
+			 <IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"> (This parameter is revised.)</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A
+			 NAME="SCREEN">[.]SCREEN</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) <B>Entry Screen.</B> The screen to apply to each
+				potential entry in the returned list to decide whether or not to include it.
+				This may be set to any valid M code that sets $TEST to 1 if the entry should be
+				included, to 0 if not. This is exactly equivalent to the DIC("S") input
+				variable for the Classic FileMan lookup
+				<A HREF="cl_dic.htm" TITLE="^DIC" TARGET="^DIC" CLASS="bodylink">^DIC</A>. The
+				Finder will execute this screen in addition to any SCR node (whole-file screen)
+				defined on the data dictionary for the file. Optionally, the screen can be
+				defined in an array entry subscripted by "S" (for example, SCR("S")), allowing
+				additional screen entries to be defined for variable pointer fields as
+				described below.</P> 
+			 <P>The entry screen code can rely upon the following: </P> 
+			 <TABLE WIDTH="100%" BORDER="1"
+			 SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="110"><B>Naked indicator</B></TD> 
+				  <TD WIDTH="265">Zero-node of entry's record. </TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="110"><B>D</B></TD> 
+				  <TD WIDTH="265">Index being traversed. </TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="110"><B>DIC</B></TD> 
+				  <TD WIDTH="265">Open global reference of file being
+					 traversed.</TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="110"><B>DIC(0)</B></TD> 
+				  <TD WIDTH="265">Flags passed to the Finder. </TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="110"><B>Y</B></TD> 
+				  <TD WIDTH="265">Record number of entry under consideration. </TD>
+				  
+				</TR> 
+				<TR> 
+				  <TD WIDTH="110"><B>Y() array</B></TD> 
+				  <TD WIDTH="265">For subfiles, descendents give record numbers for
+					 all upper levels. Structure resembles the DA array as used in a call to the
+					 classic FileMan edit routine
+					 <A HREF="cl_die.htm"
+					  TITLE="^DIE." TARGET="^DIE" CLASS="bodylink">^DIE</A>. </TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="110"><B>Y1</B></TD> 
+				  <TD WIDTH="265">IENS equivalent to Y array. </TD> 
+				</TR> 
+			 </TABLE> 
+			 <P>The code can also safely change any of these values.</P> 
+			 <P>For example, "I Y&lt;100" ensures that only records with an
+				internal entry number less than 100 are accepted as matches. See "<A
+				HREF="#DetailsandFeatures" TITLE="Details and Features"
+				TARGET="Details and Features" CLASS="bodylink">Details and Features</A>" in
+				this section for an explanation of the other conditions and screens involved in
+				finding an entry. Defaults to adding no extra conditions to those listed in
+				that section. </P> 
+			 <P><B>Variable Pointer Screen.</B> If one of the fields indexed by
+				the cross-reference passed in the INDEXES parameter is a variable pointer, then
+				additional screens equivalent to the DIC("V") input variable to Classic FileMan
+				lookup ^DIC can also be passed. Suppose the screens are being passed in the SCR
+				array. Then for a simple index with just one data value field, the code can be
+				passed in SCR("V"). For simple or compound indexes, screens can be passed for
+				any indexed fields that are variable pointers in the format SCR("V",n) where
+				"n" represents the subscript location of the variable pointer field on the
+				index. </P> 
+			 <P>The Variable Pointer screen restricts the users ability to see
+				entries on one or more of the files pointed-to by the variable pointer. The
+				screen logic is set equal to a line of M code that will return a truth value
+				when executed. If it evaluates TRUE, then entries that point to the file can be
+				included in the output; if FALSE, any entry pointing to the file is excluded.
+				At the time the code is executed, the variable Y(0) is set equal to the
+				information for that file from the data dictionary definition of the variable
+				pointer field. You can use Y(0) in the code set into the variable pointer
+				screen parameter. Y(0) contains:</P> 
+			 <TABLE WIDTH="100%" ALIGN="LEFT"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="15%"><B>^-Piece</B> </TD> 
+				  <TD WIDTH="85%"><B>Contents</B> </TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="15%">Piece 1</TD> 
+				  <TD WIDTH="85%">File number of the pointed-to file.</TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="15%">Piece 2</TD> 
+				  <TD WIDTH="85%">Message defined for the pointed-to file.</TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="15%">Piece 3</TD> 
+				  <TD WIDTH="85%">Order defined for the pointed-to file.</TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="15%">Piece 4</TD> 
+				  <TD WIDTH="85%">Prefix defined for the pointed-to file.</TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="15%" VALIGN="TOP">Piece 5</TD> 
+				  <TD WIDTH="85%" VALIGN="TOP">y/n indicating if a screen is set up
+					 for the pointed-to file.</TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="15%" VALIGN="TOP">Piece 6</TD> 
+				  <TD WIDTH="85%" VALIGN="TOP">y/n indicating if the user can add
+					 new entries to the pointed-to file.</TD> 
+				</TR> 
+			 </TABLE> 
+			 <P>All of this information was defined when that file was entered as
+				one of the possibilities for the variable pointer field.</P> 
+			 <P>For example, suppose your .01 field is a variable pointer pointing
+				to files 1000, 2000, and 3000. If you only want the user to be able to enter
+				values from files 1000 or 3000, you could set up SCR("V") like this:</P> 
+			 <PRE>S SCR("V")="I +Y(0)=1000!(+Y(0)=3000)"</PRE>
+			 <IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			  HEIGHT="11"> (This parameter is revised.)</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>IDENTIFIER</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The text to accompany each found entry to help identify
+				it to the end user. This should be set to M code that calls the
+				<A HREF="cl_ddiol.htm" TITLE="EN^DDIOL" TARGET="EN^DDIOL"
+				 CLASS="bodylink">EN^DDIOL</A> utility to load identification text. The
+				identification text generated by this parameter is listed AFTER that generated
+				by any WRITE identifiers on the file itself. The code should not issue WRITE
+				commands. </P> 
+			 <P>For example, a value of "D EN^DDIOL(""KILROY WAS HERE!"")" would
+				include that string with each entry returned, as a separate node under the
+				"ID","WRITE" nodes of the output array. </P> 
+			 <P>This code relies upon all of the same input as the
+				<A HREF="#SCREEN" TITLE="SCREEN" TARGET="SCREEN" CLASS="bodylink">SCREEN</A>
+				parameter described above and can safely change the same things. Defaults to no
+				code. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A
+			 NAME="TargetRoot">TARGET_ROOT</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The array that should receive the output list of found
+				entries. This must be a closed array reference and can be either local or
+				global. </P> 
+			 <P>If the TARGET_ROOT is not passed, the list is returned descendent
+				from ^TMP("DILIST",$J). </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The array that should receive any error messages. This
+				must be a closed array reference and can be either local or global. For
+				example, if MSG_ROOT equals "OROUT(42)", any errors generated appear in
+				OROUT(42,"DIERR"). </P> 
+			 <P>If the MSG_ROOT is not passed, errors are returned descendent from
+				^TMP("DIERR",$J). </P></TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> 
+	 <H5><A NAME="Output">Output</A></H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A
+			 NAME="target_root">TARGET_ROOT</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%"> 
+			 <P>The examples in this section assume that the output from the
+				Finder was returned in the default location descendent from ^TMP("DILIST",$J),
+				but it could just as well be in an array specified by the caller in the
+				<A HREF="#TargetRoot" TARGET="TARGET_ROOT">TARGET_ROOT</A> parameter described
+				above.</P> 
+			 <P>There are two different formats possible for the output, (1)
+				<A HREF="#StandardOutput" TITLE="Standard output" CLASS="bodylink">Standard
+				output</A> format, and (2)
+				<A HREF="#PackedOutput" TITLE="Packed output" CLASS="bodylink">Packed
+				output</A>&nbsp;<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+				WIDTH="35" HEIGHT="11"> (format returned when the
+				<A HREF="#P" TITLE="P flag" CLASS="bodylink">P flag</A> is included in the
+				FLAGS parameter).</P> 
+			 <H3>1. <A NAME="StandardOutput">Standard Output Format</A></H3> 
+			 <P>The format of the Output List is: </P> 
+			 <UL> 
+				<LI><B>Header Node</B> 
+				  <P>Unless the Finder has run into an error condition, it will
+					 always return a header node for its output list, even if the list is empty,
+					 because no matches were found. The header node, on the zero node of the output
+					 array, has this format:</P> 
+				  <PRE>^TMP("DILIST",$J,0) = # of entries found ^ maximum 
+requested ^any more? ^ results flags
+</PRE> 
+				  <OL> 
+					 <LI>The # of entries found will be equal to or less than the
+						maximum requested.<BR><BR></LI> 
+					 <LI>The maximum requested should equal the NUMBER parameter,
+						or, if NUMBER was not passed, "<B>*</B>".<BR><BR></LI> 
+					 <LI>The any more? value is 1 if there are more matching entries
+						in the file than were returned in this list, or 0 if not.<BR><BR></LI> 
+					 <LI>The results flag at present is usually empty. If the output
+						was packed and some of the data contained embedded "^" characters, the results
+						flag contains the H flag. In the future the Finder may return other flags as
+						well in this piece, so check whether it contains H, not whether it equals it.
+						For more information see "<A HREF="#DetailsandFeatures"
+						TITLE="Details and Features" CLASS="bodylink">Details and Features</A>." 
+						<P></P> </LI> 
+				  </OL> </LI> 
+			 </UL> 
+			 <UL> 
+				<LI><B>Record Data</B> 
+				  <P>Standard output for the Finder returns its output with each
+					 field of each matching record on a separate node. Records are subscripted in
+					 this array by arbitrary sequence number that reflects the order in which the
+					 record was found.</P> 
+				  <P></P> 
+				  <UL> 
+					 <LI>.01 Field 
+						<P>Unless suppressed with the "<B>@</B>" in the FIELDS
+						  parameter (the suggested practice), the .01 field of each record is returned
+						  under the 1 subtree of the array, in internal format.</P> 
+						<PRE>^TMP("DILIST",$J,1,seq#) = .01_field_value_in_
+internal_format</PRE> 
+						<P><B>NOTE:</B> This is different from the
+						  <A HREF="db_dic_l.htm" TITLE="Lister" CLASS="bodylink">Lister</A>, which
+						  returns the indexed field values in the 1 subtree.</P> </LI> 
+					 <LI>IEN 
+						<P>Each record's IEN is returned under the 2 subtree:</P> 
+						<PRE>^TMP("DILIST",$J,2,seq#) = IEN</PRE> </LI> 
+				  </UL> 
+				  <P>The other values returned for each record are grouped together
+					 under the "ID" subtree, then by record.</P> 
+				  <UL> 
+					 <LI>Field Values or Field Identifiers 
+						<P>The output format is the same whether the field value is
+						  one of the Field Identifiers from the data dictionary for the file or the field
+						  was requested in the FIELDS parameter. </P> 
+						<P>Field identifiers and field values are subscripted by
+						  their field numbers. Each node shows up as:</P> 
+						<PRE>^TMP("DILIST",$J,"ID",seq#,field #) = field_
+value</PRE> 
+						<P>If both the "I" and "E" suffix are specified, an
+						  additional subscript level with the values of "E" and "I" is used to
+						  distinguish the external and internal values of the field. If a field is only
+						  returned in one format, the extra subscript is never included. Values output
+						  with the extra format specifier look like: </P> 
+						<PRE>^TMP("DILIST",$J,"ID",seq#,field#,"E" or "I") 
+= field_value</PRE> </LI> 
+					 <LI>Output for field specifier "IX" in FIELDS 
+						<P>A field specifier of "IX" in the FIELDS parameter
+						  retrieves the value of the indexed field(s). In the output, the values of these
+						  fields are returned as follows, where the final subscript is a sequential
+						  number indicating the subscript location in the index.</P> 
+						<PRE>^TMP("DILIST",$J,"ID",seq#,0,1) = first_
+subscript_index_value
+
+^TMP("DILIST",$J,"ID",seq#,0,2) = second_
+subscript_index_value
+ </PRE> 
+						<P>If both the "I" and "E" suffix are specified, an
+						  additional subscript level with the values of "E" and "I" is used to
+						  distinguish the external and internal values from the index. If the subscript
+						  on the index is not derived from a field, i.e. if it's a computed subscript,
+						  then the internal and external value both will be the same, the value directly
+						  from the index.</P> </LI> 
+					 <LI>WRITE Identifiers 
+						<P>WRITE (display-only) identifiers are grouped under the
+						  "WRITE" subtree of the "ID" tree, then by record number. It is the caller's
+						  responsibility to ensure that none of the WRITE identifiers issue direct READ
+						  or WRITE commands and that they issue any output through EN^DDIOL so it can be
+						  collected by the Finder. The output from all the WRITE identifiers for a single
+						  record is listed as individual lines of text:</P> 
+						<PRE>^TMP("DILIST",$J,"ID","WRITE",seq#,line #) = 
+text generated by WRITE IDs
+</PRE> </LI> 
+					 <LI>IDENTIFIER parameter 
+						<P>Any text generated by the caller's IDENTIFIER parameter is
+						  returned in the last lines of the WRITE identifier text.</P> </LI> 
+				  </UL> </LI> 
+			 </UL> 
+			 <UL> 
+				<LI><B><A NAME="map_unpacked">Map Node for Unpacked
+				  Format</A></B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> 
+				  <P>In order to facilitate finding information in the output, a
+					 Map Node is built for unpacked format. This node is returned in
+					 ^TMP("DILIST",$J,0,"MAP"). </P> 
+				  <P>The Map node for unpacked format describes Field Identifier
+					 data in the "ID" output data nodes. It contains "^"delimited pieces described
+					 below. The position of the piece in the map node corresponds to the order in
+					 which it can be found in the "ID" output nodes. If the data is returned in
+					 internal format, the piece will be followed by "I" (ex., "2I" means that the
+					 internal value of field 2 was returned in the output). </P> 
+				  <UL> 
+					 <LI> <B>#</B>: Individually requested field number, where # is
+						the field number, for each field requested in the FIELDS parameter</LI> 
+				  </UL> 
+				  <UL> 
+					 <LI> <B>FID(#)</B>: Field Identifier, where # is the field
+						number. </LI> 
+				  </UL> </LI> 
+			 </UL> 
+			 <DIV> 
+				<H3>2. <A NAME="PackedOutput">Packed Output </A>Format&nbsp;<IMG
+				  SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+				  HEIGHT="11"></H3> </DIV> 
+			 <P> If the P flag is used to request packed output, the Finder packs
+				all the return values into one output node per record. You must ensure that all
+				requested data will fit onto a single node. Overflow causes
+				<A HREF="err_206.htm" TITLE="Error 206" CLASS="bodylink">error 206</A>. Return
+				values containing embedded "^" characters make the Finder encode the output
+				data using <A HREF="#html" TITLE="HTML encoding" CLASS="bodylink">HTML
+				encoding</A> (described in "<A HREF="#DetailsandFeatures"
+				TITLE="Details and Features" CLASS="bodylink">Details and Features</A>").</P> 
+			 <UL> 
+				<LI><B>Header Node </B> 
+				  <P>Identical to Standard Output Format</P> </LI> 
+			 </UL> 
+			 <UL> 
+				<LI><B>Record Data </B> 
+				  <P>Values in the output are delimited by "^" characters. Piece 1
+					 is always the IEN. The values of other pieces depend on the value of the FIELDS
+					 parameter. If the FIELDS parameter is not passed, each record's packed node
+					 will follow this format:</P> 
+				  <PRE>^TMP("DILIST",$J,seq#,0)=IEN^Internal_.01_field_value^
+field_Identifiers^Write_Identifiers^Output_from_
+Identifier_parameter
+</PRE> 
+				  <P>Field Identifiers are sequenced by field number. Output values
+					 specified by the FIELDS parameter are packed in the order in which they occur
+					 in the FIELDS parameter. WRITE identifiers are packed in the same order as
+					 their subscripts occur in the ID subtree of the file's data dictionary. </P> 
+				  <P>To parse the output of the packed nodes, use the MAP node
+					 described below. </P> </LI> 
+			 </UL> 
+			 <UL> 
+				<LI><B><A NAME="map_packed">Map Node for Packed
+				  Format</A></B>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> 
+				  <P>Because the packed format is not self-documenting and because
+					 individual field specifiers such as FID can correspond to a variable number of
+					 field values, the Finder always includes a map node when returning output in
+					 Packed format. This node is returned in ^TMP("DILIST",$J,0,"MAP").</P> 
+				  <P>Its value resembles a data node's value in that it has the
+					 same number of ^-pieces, but the value of each piece identifies the field or
+					 value used to populate the equivalent location in the data nodes. The possible
+					 values for each piece in the map node are:</P> 
+				  <UL> 
+					 <LI><B>IEN</B>: the IEN</LI> 
+				  </UL> 
+				  <UL> 
+					 <LI><B>01</B>: the .01 field</LI> 
+				  </UL> 
+				  <UL> 
+					 <LI><B>FID(#)</B>: Field identifier, where # is the field
+						number of the identifier</LI> 
+				  </UL> 
+				  <UL> 
+					 <LI><B>WID(string)</B>: WRITE identifier, where string is the
+						value of the subscript in the ^DD where the identifier is stored (such as
+						"WRITE") </LI> 
+				  </UL> 
+				  <UL> 
+					 <LI><B>IDP</B>: Identifier parameter</LI> 
+				  </UL> 
+				  <UL> 
+					 <LI><B>IX(n)</B>: Indexed field values, where "n" refers to the
+						subscript position in the index. </LI> 
+				  </UL> 
+				  <UL> 
+					 <LI><B>#</B>: Individually requested field, by field
+						number</LI> 
+				  </UL> 
+				  <P><B>NOTE:</B> For any piece except IEN, WID or IDP, if the
+					 internal value is to be returned, the piece will be followed by "I". Thus
+					 instead of IX(1), you would see IX(1)I, indicating that the internal index
+					 value was being returned. </P> 
+				  <P>For example, the map node for a Finder call on the Option
+					 file, if FIELDS=&gt; "3.6I;3.6;4", might look like this:</P> 
+				  <PRE>^TMP("DILIST",$J,0,"MAP") = "IEN^.01^3.6I^3.6^4"</PRE> </LI> 
+			 </UL> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> 
+	 <H5><A NAME="Examples">Examples</A></H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>First we do a lookup on the Option file, using the "C" index (Upper Case
+		Menu Text). We'll let the Finder return default output, so we get the .01
+		field, the IEN, and the Identifier field (#1, Menu Text).</P> 
+	 <PRE><B>&gt;D FIND^DIC(19,"","","","STAT","","C","","","OUT")</B>
+
+OUT("DILIST",0)=2^*^0^
+OUT("DILIST",0,"MAP")=FID(1)
+OUT("DILIST",1,1)=DISTATISTICS
+OUT("DILIST",1,2)=ZISL STATISTICS MENU
+OUT("DILIST",2,1)=15
+OUT("DILIST",2,2)=187
+OUT("DILIST","ID",1,1)=Statistics
+OUT("DILIST","ID",2,1)=Statistics Menu
+
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>Here we look on the OPTION file for entries that are at least partial
+		matches to "DIS". We use the "B" index and, since we don't include the M flag
+		to search multiple indexes, we look ONLY on the "B" index. We use the "@" in
+		the FIELDS parameter to suppress the default values and specify that we want
+		the .01 field NAME, field 1 DESCRIPTION, and the index values in the
+		output.</P> 
+	 <PRE><B>&gt;D FIND^DIC(19,"","@;.01;1;IX","","DIS",5,"B","","","OUT")</B>
+
+OUT("DILIST",0)=2^5^0^
+OUT("DILIST",0,"MAP")=IX(1)^.01^1
+OUT("DILIST",2,1)=11
+OUT("DILIST",2,2)=15
+OUT("DILIST","ID",1,0,1)=DISEARCH
+OUT("DILIST","ID",1,.01)=DISEARCH
+OUT("DILIST","ID",1,1)=Search File Entries
+OUT("DILIST","ID",2,0,1)=DISTATISTICS
+OUT("DILIST","ID",2,.01)=DISTATISTICS
+OUT("DILIST","ID",2,1)=Statistics
+</PRE> 
+	 <P><B>Example 3</B></P> 
+	 <P>Next, we do a call almost identical to Example 2, but this time we use
+		the M flag to indicate that we want to search all the lookup indexes starting
+		from "B". This time we get more records back and looking at the index values in
+		the entries OUT("DILIST","ID",seq#,0,subscript_location), we see that the new
+		entries were found on an index other than the "B" index (since the values don't
+		match the .01 field). In fact, they were found on the index for the field UPPER
+		CASE MENU TEXT (index "C" on the file).</P> 
+	 <PRE>
+<B>&gt;D FIND^DIC(19,"","@;.01;1;IX","M","DIS",5,"B","","","OUT")</B>
+
+OUT("DILIST",0)=5^5^1^
+OUT("DILIST",0,"MAP")=IX(1)^.01^1
+OUT("DILIST",2,1)=11
+OUT("DILIST",2,2)=15
+OUT("DILIST",2,3)=468
+OUT("DILIST",2,4)=470
+OUT("DILIST",2,5)=469
+OUT("DILIST","ID",1,0,1)=DISEARCH
+OUT("DILIST","ID",1,.01)=DISEARCH
+OUT("DILIST","ID",1,1)=Search File Entries
+OUT("DILIST","ID",2,0,1)=DISTATISTICS
+OUT("DILIST","ID",2,.01)=DISTATISTICS
+OUT("DILIST","ID",2,1)=Statistics
+OUT("DILIST","ID",3,0,1)=DISK DRIVE RAW DATA STATISTICS
+OUT("DILIST","ID",3,.01)=XUCM DISK
+OUT("DILIST","ID",3,1)=Disk Drive Raw Data Statistics
+OUT("DILIST","ID",4,0,1)=DISK DRIVE REQUEST QUEUE LENGT
+OUT("DILIST","ID",4,.01)=XUCM DSK QUE
+OUT("DILIST","ID",4,1)=Disk Drive Request Queue Length
+OUT("DILIST","ID",5,0,1)=DISK I/O OPERATION RATE
+OUT("DILIST","ID",5,.01)=XUCM DSK IO
+OUT("DILIST","ID",5,1)=Disk I/O Operation Rate
+</PRE> 
+	 <P><B>Example 4</B></P> 
+	 <P>In this example, we'll use the K flag to do a lookup on a file with a
+		Primary Key made up of the .01 field (NAME) and field 1 (DATE OF BIRTH). We'll
+		suppress all of the output with "@" and then ask only for both the internal and
+		external index values. Notice that the P flag causes the output to be returned
+		in Packed format. The MAP node tells us what is in each "^" piece of the
+		output.</P> 
+	 <PRE>
+<B>&gt;K VAL S VAL(1)="ADD",VAL(2)="01/01/69"  
+&gt;D FIND^DIC(662001,"","@;IXIE","PK",.VAL,"","","","","OUT")</B>
+
+OUT("DILIST",0)=1^*^0^
+OUT("DILIST",0,"MAP")=IEN^IX(1)I^IX(2)I^IX(1)^IX(2)
+OUT("DILIST",1,0)=15^ADDFIFTEEN^2690101^ADDFIFTEEN^JAN 01, 1969
+</PRE> 
+	 <P><B>Example 5</B></P> 
+	 <P>Here we'll demonstrate how the B flag works. We have a file whose .01
+		field points to the NEW PERSON file. When we do a lookup without the B flag, we
+		find several entries, but if you look at the .01 field, you see that not all of
+		them begin with our lookup value "M". The entry "CALIFORNIA,MR" was found
+		because his initials "MC" begin with "M" and "WYNNETTE,TAMMY" was found because
+		her nickname "MILLY" begins with "M".</P> 
+	 <PRE><B>&gt;D FIND^DIC(662002,"","@;.01","P","M","","B","","","OUT")</B>
+
+OUT("DILIST",0)=5^*^0^
+OUT("DILIST",0,"MAP")=IEN^.01
+OUT("DILIST",1,0)=7^CALIFORNIA,MR
+OUT("DILIST",2,0)=3^MANN,MANFRED
+OUT("DILIST",3,0)=4^MITTY,WALTER
+OUT("DILIST",5,0)=1^WYNETTE,TAMMY
+OUT("DILIST",6,0)=13^WYNETTE,TAMMY
+</PRE> 
+	 <P>When we use the B flag, the FINDER looks ONLY at the "B" index of the
+		NEW PERSON file.</P> 
+	 <PRE><B>&gt;D FIND^DIC(662002,"","@;.01","PB","M","","B","","","OUT")</B>
+
+&gt;ZW OUT
+OUT("DILIST",0)=2^*^0^
+OUT("DILIST",0,"MAP")=IEN^.01
+OUT("DILIST",1,0)=3^MANN,MANFRED
+OUT("DILIST",2,0)=4^MITTY,WALTER
+</PRE> 
+	 <P><B>Example 6</B></P> 
+	 <P> This example shows use of the new INDEX parameter array that can
+		control lookup on a pointed-to file. In this example, the .01 field of our file
+		662002 points to the New Person file 200. Here is a demonstration of the
+		different results you get when you control the list of indexes used when the
+		Finder goes off to file 200 to look for matches to your lookup value. We show
+		the same call, with and without the new INDEX parameter array.</P> 
+	 <P>First we make a call without the new parameter, using a lookup value of
+		"T", and looking at the "B" and "E" indexes on our starting file 662002. There
+		are many lookup indexes on the pointed-to file 200 (the NEW PERSON file),
+		including indexes on both the NICKNAME and the INITIALS field. Because we
+		didn't specify which indexes to use, FileMan uses all lookup indexes during the
+		lookup on the pointed-to file. In this call, we pick up several entries. The
+		NICKNAME for Roger Marsh happens to be "TOAD", and the INITIALS field for Tammy
+		Wynette is "TW". </P> 
+	 <PRE><B>&gt;S INDEX="B^E"
+
+&gt;D FIND^DIC(662002,,".01;IXIE;@","PM","T",,INDEX,,,"TKW")
+
+&gt;ZW TKW
+</B>TKW("DILIST",0)=4^*^0^
+TKW("DILIST",0,"MAP")=IEN^.01^IX(1)I^IX(1)
+TKW("DILIST",1,0)=4^MARSH,ROGER^9^MARSH,ROGER
+TKW("DILIST",2,0)=12^TIMOTHY,GREG^12^TIMOTHY,GREG
+TKW("DILIST",3,0)=1^WYNETTE,TAMMY^4^WYNETTE,TAMMY
+TKW("DILIST",4,0)=13^WYNETTE,TAMMY^4^WYNETTE,TAMMY</PRE> 
+	 <P>This time, INDEX still contains "B" and "E", so we still look at those
+		indexes on our starting file 662002, but we set the new parameter so that we
+		only look at the "B" and "BS5" indexes on the pointed-to file 200. This time we
+		do not find any entries whose INITIALS or NICKNAME field start with "T". We
+		just pick up the person whose last name starts with "T".</P> 
+	 <PRE>
+
+<B>&gt;S INDEX("PTRIX",662002,.01,200)="B^BS5"
+
+&gt;D FIND^DIC(662002,,".01;IXIE;@","PM","T",,.INDEX,,,"TKW")
+
+&gt;ZW TKW
+</B>TKW("DILIST",0)=1^*^0^
+TKW("DILIST",0,"MAP")=IEN^.01^IX(1)I^IX(1)
+TKW("DILIST",1,0)=12^TIMOTHY, GREG ^12^TIMOTHY,GREG
+
+</PRE> 
+	 <H5><A NAME="ErrorCodesReturned">Error Codes Returned</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_120.htm" TITLE="Error 120"
+			 CLASS="bodylink">120</A></B></TD> 
+		  <TD VALIGN="TOP">Error occurred during execution of a FileMan hook.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">An input parameter is missing or not valid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_204.htm" TITLE="Error 204"
+			 CLASS="bodylink">204</A></B></TD> 
+		  <TD VALIGN="TOP">The input value contains control characters. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_205.htm" TITLE="Error 205"
+			 CLASS="bodylink">205</A></B></TD> 
+		  <TD VALIGN="TOP">The File and IENS represent different subfile levels.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_206.htm" NAME="Error206"
+			 TITLE="Error 206" CLASS="bodylink">206</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP">The data requested for the record is too long to pack
+			 together.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_207.htm" TITLE="Error 207"
+			 CLASS="bodylink">207</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP">The value is too long to encode into HTML.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_301.htm" TITLE="Error 301"
+			 CLASS="bodylink">301</A></B></TD> 
+		  <TD VALIGN="TOP">The passed flags are unknown or inconsistent. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_304.htm" TITLE="Error 304"
+			 CLASS="bodylink">304</A></B></TD> 
+		  <TD VALIGN="TOP">The IENS lacks a final comma. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_306.htm" TITLE="Error 306"
+			 CLASS="bodylink">306</A></B></TD> 
+		  <TD VALIGN="TOP">The first comma-piece of the IENS should be empty.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
+			 CLASS="bodylink">401</A></B></TD> 
+		  <TD VALIGN="TOP">The file does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_402.htm" TITLE="Error 402"
+			 CLASS="bodylink">402</A></B></TD> 
+		  <TD VALIGN="TOP">The global root is missing or not valid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_406.htm" TITLE="Error 406"
+			 CLASS="bodylink">406</A></B></TD> 
+		  <TD VALIGN="TOP">The file has no .01 field definition. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_407.htm" TITLE="Error 407"
+			 CLASS="bodylink">407</A></B></TD> 
+		  <TD VALIGN="TOP">A word-processing field is not a file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_420.htm" TITLE="Error 420"
+			 CLASS="bodylink">420</A></B></TD> 
+		  <TD VALIGN="TOP">The index is missing. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_501.htm" TITLE="Error 501"
+			 CLASS="bodylink">501</A></B></TD> 
+		  <TD VALIGN="TOP">The file does not contain that field. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_520.htm" TITLE="Error 520"
+			 CLASS="bodylink">520</A></B></TD> 
+		  <TD VALIGN="TOP">That kind of field cannot be processed by this
+			 utility. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_8090.htm" TITLE="Error 8090"
+			 CLASS="bodylink">8090</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP">Pre-lookup transform (7.5 node).</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_8095.htm" TITLE="Error 8095"
+			 CLASS="bodylink">8095</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP">First lookup index is compound, so "M"ultiple index
+			 lookups not allowed.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> 
+	 <P>The Finder may also return any error returned by $$EXTERNAL^DILFD. </P> 
+	 <H5><A NAME="DetailsandFeatures">Details and Features</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="lookup_index">Lookup
+			 Index</A></B>&nbsp;<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+			 WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If the "Use" flag for an index entry in the new INDEX file is set
+				to "L" for Lookup, the index name must be "B" or must alphabetically follow
+				"B". Also, traditional indexes whose names follow "B" are considered to be
+				Lookup type indexes.</P> 
+			 <P>What does this mean? For a Finder call (FIND^DIC or $$FIND1^DIC),
+				it means that if M is passed in the FLAGS parameter and a list of indexes is
+				not specified in the INDEXES parameter, then FileMan will automatically use any
+				lookup type index it finds by ordering through the index name alphabetically,
+				starting with the beginning index ("B", unless a different one is specified in
+				the input parameters). Any index, however, can be used for lookup if it is
+				specified in the INDEXES parameter. The developer should be careful to make
+				sure the MUMPS-type indexes are formatted similar to VA FileMan regular
+				indexes, with the data subscripts followed by the IEN at the level of the
+				file/subfile passed in the FILE input parameter. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="ScreensApplied">Screens
+			 Applied</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Valid Entry Conditions. To be considered for selection, an entry
+				must have a properly formatted index to get the Finder's attention and a
+				defined zero-node with a non-null first piece. </P> 
+			 <P>File Pre-Lookup Action (7.5 Node). Prior to performing any search
+				of the database whatsoever, the Finder executes the 7.5 Node for the file. This
+				code may alter the variable X, the lookup value, to alter the value used by the
+				Finder in its search. </P> 
+			 <P><B>NOTE:</B> The 7.5 node only works on a simple index, not a
+				compound one. It assumes just one lookup value X.&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> (Revised)</P>
+			 
+			 <P>Call Pre-Selection Action. The SCREEN parameter is executed once a
+				potential match has been identified (as described under the "<A
+				HREF="#InputParameters" TITLE="Input Parameters" CLASS="bodylink">Input
+				Parameters</A>" section). </P> 
+			 <P>File Pre-Selection Action. If the file has a pre-selection action
+				defined (the SCR node), then after passing the pre-selection action for the
+				call, the entry must also pass the action for the whole file. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="PartialMatches">Partial
+			 Matches</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>For most values on most indexes, an input value partially matches
+				an entry if the index value begins with the input value (e.g., index value of
+				"EINSTEIN,ALBERT" partially matches input value of "EINSTEIN"). The exception
+				is numeric input. On a numeric field's index, a numeric input must match
+				exactly. </P> 
+			 <P>If the lookup value is numeric but the cross-referenced field is
+				free-text, the Finder will find all partial matches to the numeric lookup
+				value. For example, lookup value 1 matches to 1, 199, 1000.23 and
+				1ABC.&nbsp;<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+				WIDTH="35" HEIGHT="11"> (Revised)</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Space Bar Recall</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Although the Finder honors the space bar recall feature whenever
+				passed the input value " ", selections made through the Finder are not stored
+				for later use by space bar recall because the Finder has no way of knowing
+				whether the selection results from interaction with the user. Only deliberate
+				user selections should affect the space bar recall value. As a result, to
+				support this feature, applications should call RECALL^DILFD when managing the
+				user interface whenever the user makes a selection. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="lookup_transform">Lookup Value Transforms
+			 List</A>&nbsp;<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+			 WIDTH="35" HEIGHT="11"></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The original lookup value(s) passed to the Finder are not the only
+				values used during the lookup. Certain transforms are done on the original
+				lookup value and matches are made for these transformed values along with the
+				original ones. The Q flag suppresses all of these transforms and looks on the
+				index(s) only for the original lookup value. See "Upper Case", "Long Input",
+				"Comma-Piecing" and "Data Type Transforms" immediately below.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Upper Case</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The first basic transform ensures that lookups succeed when users
+				leave their Caps Lock keys off. If the VALUE parameter contains any lower case
+				characters, the Finder will also look for an all-upper-case version of the
+				value. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Long Input</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The second basic transform ensures that lookups work properly when
+				lookup and field values are longer than the maximum length of a data-values
+				subscript in the index. (This is 30 characters for traditional indexes, but is
+				set by the developer for indexes defined in the new INDEX file).&nbsp;<IMG
+				SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11">
+				(Revised)</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="Comma-piecing">Comma-piecing</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The third and final basic transform provides a special feature of
+				VA FileMan's lookup. This feature, known as comma-piecing, helps the user enter
+				fewer characters to distinguish between similar entries. FileMan uses lookup
+				values that contain embedded commas to build a pattern match based on all the
+				comma-pieces. For example, distinguishing between "KENNEDY,ROBERT FRANCIS" and
+				"KENNEDY,JOHN FITZGERALD" would normally take nine keystrokes-"KENNEDY,J"-but
+				comma-piecing lets the user do it in three: "K,J". </P> 
+			 <P>Although commas are used to trigger the comma-piecing feature, the
+				characters used to break up the entry in the file can be any kind of
+				punctuation, not only commas. For example, "T,R" matches "THE ROAD LESS
+				TRAVELED". </P> 
+			 <P>If the new C flag is used in the FLAGS parameter, then the second
+				comma piece of the lookup value can be a match to any of the pieces in the file
+				entry following the first one.&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> (Revised) So,
+				for example, "B,S" distinguishes "BACH,JOHANN SEBASTIAN" from his sons
+				"BACH,JOHANN CHRISTIAN" and "BACH,JOHANN CHRISTOPH FRIEDRICH". </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DataTypeTransforms">Data Type
+			 Transforms</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Indexes store the internal format of fields values, but users
+				typically enter the external format as lookup values. Therefore, the Finder
+				attempts to do conversions of the lookup values when it searches an index on a
+				Date, Set of Codes, Pointer or Variable Pointer field. </P> 
+			 <P>For example, a lookup value of "t" would also be evaluated as
+				today's date in internal FileMan format, if the Finder is searching the index
+				on a date type field, since VA FileMan normally recognizes a user entry of "T"
+				at a date prompt as meaning "TODAY". </P> 
+			 <P>If a Q flag is passed in the FLAGS parameter, no data type
+				transforms are attempted. </P> 
+			 <P><B>NOTE:</B> The data type transform for indexes on pointer and
+				variable pointer fields involves a complete lookup on the pointed-to file. For
+				example, if an application calls the Finder with the input value "W" on a file
+				with an indexed pointer to the State file, the Finder locates every state
+				starting with W (Washington, West Virginia, Wisconsin and Wyoming). It will
+				return every record in the pointing file that points to one of those states.
+				</P> 
+			 <P>Also, if the pointed-to file has indexed pointers or variable
+				pointers, the search continues to these pointed-to files.</P> 
+			 <P> Therefore, to make more efficient searches, and to find just the
+				entries desired, applications should make use of all available features of the
+				Finder to narrow down the search. For example, use the INDEXES parameter when
+				appropriate to limit the list of indexes searched, and the B flag when
+				appropriate to make sure that only the "B" index is searched on any pointed-to
+				file.&nbsp;<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+				WIDTH="35" HEIGHT="11"> (Revised)</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="html">HTML Encoding</A></B>&nbsp;<IMG
+			 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Since the Finder uses the "^" character as its delimiter for
+				Packed output, it cannot let any of the data contain that character. If any
+				does, it will encode all of the data using an HTML encoding scheme.</P> 
+			 <P>In this scheme, all "&amp;" characters are replaced with the
+				substring "&amp;amp;" and all "^" characters with the string "&amp;#94". This
+				keeps the data properly parsable and decodable. The data for all records found,
+				not just the ones with embedded "^"s, will be encoded if embedded "^"s are
+				found in the data of any of the records. </P> 
+			 <P>If the Finder has encoded the output, it will include an H flag in
+				^-piece four of the output header node. </P> 
+			 <P>Data can be decoded using the VA FileMan library function call
+				$$HTML^DILF(encoded string,-1). It can properly decode individual fields or
+				complete packed data nodes.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="write">WRITE ID Nodes</A></B>&nbsp;<IMG
+			 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The Finder executes each individual WRITE ID node from the data
+				dictionary. If an individual node results in creating multiple lines in the
+				output from the EN^DDIOL call(s) it contains, then in Standard Output Format
+				the results will appear on multiple lines in the output array. Thus, there is
+				not a direct correlation between the number of WRITE ID nodes and the number of
+				nodes that will be returned in the output array of a Finder call for each
+				record. In Packed output format, each WRITE ID node appears in a separate "^"
+				piece, and line feeds are designated with a tilde "~" character.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="repeating">Repeating a Field in FIELDS
+			 parameter</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If a field is listed multiple times in the FIELDS parameter, it is
+				returned multiple times in Packed output, but only once in unpacked output.
+				This is because the field number is one of the subscripts of unpacked output.
+				The exception is when the occurrences are for different formats, internal and
+				external.</P> </TD> 
+		</TR> 
+	 </TABLE>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dicf.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

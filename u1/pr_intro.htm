@@ -1,0 +1,929 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+	 
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Getting Started HTML Manual: Printing</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,printing">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0"> 
+	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	 <P>&nbsp;</P> 
+	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="pr_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u2/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			 CLASS="menubarlink">Advanced User Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Displaying Information</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Print: How to Print Reports from Files</H4> 
+	 <H5><A NAME="Introduction">Introduction</A></H5> 
+	 <P>With the
+		<A HREF="in_intro.htm#Option" TITLE="Inquire to File Entries"
+		 CLASS="bodylink">Inquire to File Entries</A> option, you can select entries
+		from a file, one by one, choose a format for displaying the selected entries,
+		and then output the selected entries. </P> 
+	 <P>VA FileMan's print capabilities, on the other hand, allow you to select
+		entries, not one by one, but instead by choosing a range of entries based on
+		the sorting order. You can choose all entries in a file, for example, and sort
+		them in alphabetical order for the printout. Alternatively, you can choose all
+		entries sorting between "E" and "F" and sort them in alphabetical order for the
+		printout. </P> <HR> 
+	 <H5><A NAME="print_capabilities">VA FileMan's Print Capabilities</A></H5> 
+	 <P>There are two ways in which you'll have an opportunity to use VA
+		FileMan's print capabilities: </P> 
+	 <UL> 
+		<LI>An option that has been set up already to allow you to print from a
+		  particular file.<BR><BR></LI> 
+		<LI>VA FileMan's Print File Entries option, which lets you print from any
+		  file to which you have access. </LI> 
+	 </UL> 
+	 <P>In either case, use of VA FileMan's print features is very similar. In
+		most cases, the only difference is that with the Print File Entries option, you
+		have to choose from which file to print. </P> 
+	 <P>Unlike the
+		<A HREF="in_intro.htm#Option" TITLE="Inquire to File Entries"
+		 CLASS="bodylink">Inquire to File Entries</A> option, which displays individual
+		records, VA FileMan's print can list all records in a file. Thus, the focus of
+		the Inquire to File Entries option is a single or small group of entries while
+		VA FileMan's prints are concerned with the entire file. </P> 
+	 <P>VA FileMan's print features allow considerable flexibility in selecting
+		entries, ordering (or sorting) the entries selected, choosing which fields to
+		display, and formatting the output. </P> 
+	 <P>The following two basic components can be used to create a report: </P> 
+	 <OL> 
+		<LI>"<B><A HREF="#specifying_sort" TITLE="Specifying SORT BY Fields"
+		  CLASS="bodylink">SORT BY:</A></B>" dialogue. Used to sort (and sometimes narrow
+		  down) the entries that you want displayed.<BR><BR></LI> 
+		<LI>"<B><A HREF="#specifying_print"
+		  TITLE="Specifying PRINT Fields" CLASS="bodylink">PRINT FIELD:</A></B>"
+		  dialogue. Used to choose the fields you want and the format of their display.
+		  </LI> 
+	 </OL> 
+	 <P>The choices you can make at these two prompts are discussed in detail
+		later in the chapter. </P> <HR> 
+	 <H5><A NAME="standard">Standard Column Format for VA FileMan
+		Prints</A></H5> 
+	 <P>VA FileMan has a standard, columnar format for print output. The file
+		name, current date/time, and page number appear at the top of each report page,
+		followed by column headings that correspond to the labels of selected fields.
+		There are many ways to customize the format, as shown below:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>PATIENT LIST                          NOV 28, 1996     11:32   PAGE 1
+    NAME                    SEX
+    ---------------------------------------------------------------------
+    ADAMS,JOHN              MALE 
+    BROWN,JOE               MALE 
+    CAPLAN,IRVING           MALE 
+    DOE,JANE                FEMALE</PRE> <HR> 
+	 <P>This simple example of a report is generated by the dialogue that
+		follows. It prints information from all the entries in the PATIENT file,
+		ordered by NAME (the .01 field in the file). Only data from the NAME and SEX
+		fields are printed, as requested at the "PRINT FIELD:" prompts: </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="pr_1.gif" WIDTH="598" HEIGHT="180"
+		ALT="Example of Entering Print Fields."> </P> 
+	 <P></P> 
+	 <P><B>NOTE:</B> You would have received information about every patient in
+		the file, not just these four. You could have asked for several more fields to
+		be printed. They would appear as columns of output, left to right, in the order
+		specified. </P> <HR> 
+	 <H4><A NAME="specifying_sort">Sorting</A></H4> 
+	 <H5>Specifying SORT BY Fields</H5> 
+	 <P>Sorting determines the <I>order</I> that records are printed in your
+		reports. You can accept the default order (by the .01 field), or you can
+		specify your own sorting order. The sort can be a simple sort, based on only
+		one field, or you can sort based on the values of several fields. </P> 
+	 <P>For example, if you want to print the entries in order from oldest to
+		youngest patient, you could sort the report by date of birth (the DATE OF BIRTH
+		field in the PATIENT file): </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="pr_2.gif" WIDTH="557" HEIGHT="200"
+		ALT="Example of Entering Sort Fields."> </P> 
+	 <P></P> 
+	 <P>The output then prints in the following order (by DATE OF BIRTH): </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="pr_3.gif" WIDTH="601" HEIGHT="148"
+		ALT="Example of a Printed Report."> </P> 
+	 <P></P> 
+	 <P>In the previous example, the sort criterion (DATE OF BIRTH) is printed
+		with every change in sort value. VA FileMan does this when a sort field is not
+		specified as a print field. </P> 
+	 <P>To suppress the printing of sort values (subheaders) in the body of your
+		report, you can either: </P> 
+	 <UL> 
+		<LI>Add the field you are sorting by to the print field
+		  list.<BR><BR></LI> 
+		<LI>Place an at-sign ("<B>@</B>") in front of the field label at the
+		  "SORT BY:" prompt. In the previous example, you would sort by <B>@DATE OF
+		  BIRTH</B> instead of <B>DATE OF BIRTH</B>. </LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="order">Sorting Order</A></H5> 
+	 <P>The ordering of entries within a sort is generally from low value to
+		high value. Some special cases: </P> 
+	 <UL> 
+		<LI><A HREF="he_intro.htm#set" TITLE="SET OF CODES" CLASS="bodylink">SET
+		  OF CODES</A> DATA TYPEs are sorted by the internally stored code, not the value
+		  which is output.<BR><BR></LI> 
+		<LI><A HREF="he_intro.htm#free" TITLE="FREE TEXT" CLASS="bodylink">FREE
+		  TEXT</A> fields usually sort from lowest value to highest value following the
+		  ASCII sorting sequence: Digits sort before uppercase letters, which sort before
+		  lowercase letters (e.g., <B>M1</B> sorts before <B>MC</B> which sorts before
+		  <B>Mc</B>). </LI> 
+	 </UL> 
+	 <P><B>Sorting Canonic Numbers and Non-Canonic Strings, and the ;TXT Sort
+		Qualifier</B></P> 
+	 <P>Canonic numbers are pure numbers that do not have leading zeros, or
+		trailing zeros after a decimal point. Thus, <B>1.1</B> is a canonic number but
+		<B>01.1</B> and <B>1.10</B> are not. A non-canonic string is everything else.
+		For example, <B>"8C"</B> is a non-canonic string. </P> 
+	 <P>This distinction is important when sorting, because in all VA FileMan
+		sorting, canonic numbers sort first, and everything else sorts second. Usually
+		this works very well. But in a few cases where sort fields contain a mix of
+		canonic numbers and non-canonic strings, unexpected sort orders result. Classic
+		cases include sorting on Social Security Numbers and on ward locations. </P> 
+	 <P>Consider Social Security Numbers (SSNs). The SSNs <B>333333333</B> and
+		<B>999999900</B> are canonic numbers. But the SSN <B>098769000</B> is
+		<I>not</I> a canonic number, because of its leading zero. When you use the
+		default sort based on Social Security Number, you get output that looks like
+		the following: </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="pr_4.gif" WIDTH="558" HEIGHT="143"
+		ALT="Example Showing Canonic Vs. Non-Canonic Numbers."> </P> 
+	 <P></P> 
+	 <P>A similar situation occurs when you sort on ward locations. Suppose you
+		have wards <B>8</B>, <B>8C</B>, and <B>9</B>. <B>8</B> and <B>9</B> are canonic
+		numbers, while <B>8C</B> is a non-canonic string. Thus, if you sort on ward
+		location, your output comes out in this order: <B>8</B>, <B>9</B>, <B>8C</B>.
+		</P> 
+	 <P>To avoid this problem, use the sort qualifier "<B>;TXT</B>" on your sort
+		field. This forces all field values to be <I>non</I>-canonic, with the result
+		that a group of strings like <B>8</B>, <B>8C</B>, and <B>9</B> sort in the
+		expected order.</P> 
+	 <P><B>NOTE:</B> For more information on the "<B>;TXT</B>" sort qualifier,
+		please refer to the list of
+		<A HREF="#sort_reference" TITLE="Sort Qualifiers" CLASS="bodylink">Sort
+		Qualifiers</A> below. </P> <HR> 
+	 <H5><A NAME="select">Sorting to Select Entries for Printing</A></H5> 
+	 <P>Besides using sorting to determine the <I>order</I> of entries printed,
+		you can also use the "START WITH ...:" prompt to restrict what entries are
+		printed to a range. For example, if you accept the default sort range (from
+		first to last), you may get a report with every item in the file listed. You
+		can cut this list down to a subset of the entries in the file by how you sort
+		(e.g., entries that sort from JONES,A to SMITH,Z only). </P> 
+	 <P>To specify a sort range, enter the range starting point at the "START
+		WITH...:" prompt, and the range end point at the "GO TO...:" prompt. For
+		example: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>SORT BY: NAME// <B>&lt;RET&gt;</B>
+      START WITH NAME: FIRST// <B>JONES,A</B>
+      GO TO NAME:  LAST// <B>SMITH,Z</B></PRE> <HR> 
+	 <P><B>Selecting All Entries with the Same Value for One Field</B></P> 
+	 <P>A simple kind of selecting can be done to choose only those entries that
+		have a particular value for a field. For example, to list only those patients
+		who have a DIAGNOSIS equal to CANCER, you can sort as in the example below:
+		</P> 
+	 <PRE>    START WITH DIAGNOSIS: FIRST// <B>CANCER</B>
+    GO TO DIAGNOSIS: LAST// <B>CANCER</B> </PRE> 
+	 <P><B>Other Ways of Selecting Entries</B></P> 
+	 <P>The "START WITH ... GO TO .." dialogue can be used to do sophisticated
+		selecting from a file. Computed expressions can be entered at the prompts to
+		filter the entries to be printed. </P> 
+	 <P><B>NOTE:</B> These powerful techniques are discussed in the "<A
+		HREF="../u2/ce_frm.htm" TARGET="_top" TITLE="Computed Expressions"
+		CLASS="bodylink">Computed Expressions</A>" chapter of the "VA FileMan Advanced
+		User Manual." </P> 
+	 <P>You can also use VA FileMan's search functions to select entries for
+		printing. </P> 
+	 <P><B>NOTE:</B> For more information on the VA FileMan's search functions,
+		please refer to the "<A HREF="sr_frm.htm" TARGET="_top" TITLE="Search"
+		CLASS="bodylink">Search</A>" chapter in this manual.</P> <HR> 
+	 <H5><A NAME="null">Including Entries with Null Fields in Your Sort (Start
+		With @)</A></H5> 
+	 <P>When you sort a report on a particular field, if any record in the file
+		has <I>no value</I> in that field, that record will be <I>skipped</I> and
+		<I>not printed</I>, if you accept the default sort start value (FIRST). In
+		other words, in a print from the PATIENT file, if you sort on the PROVIDER
+		field, start sorting from the default of FIRST, and there are some patients
+		with nothing in their PROVIDER field, those patients will be <I>left off of the
+		report entirely</I>.</P> 
+	 <P>If you want to include records in your report, even if they have no
+		value in the field you are sorting on, sort from "<B>@</B>" instead of
+		accepting the default of FIRST. As in the example below, enter an at-sign
+		("<B>@</B>") at the "START WITH:" prompt: </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="pr_5.gif" WIDTH="570" HEIGHT="244"
+		ALT="Example of Creating a Report that Displays All Entries (with or without data).">
+		</P> 
+	 <P></P> 
+	 <P>The output of this sort would then include all records, even those with
+		no value in their PROVIDER fields: </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="pr_6.gif" WIDTH="577" HEIGHT="223"
+		ALT="Example of a Report Showing All Fields (with or without data)."> </P> 
+	 <P></P> <HR> 
+	 <H5><A NAME="sort_reference">Sort Qualifier Reference</A></H5> 
+	 <P>As well as entering fields to sort by, you can also enter formatting
+		controls in the "SORT BY:" dialogue. Add these qualifiers to the field label or
+		to the computed expression you're entering at the "SORT BY:" prompt. </P> 
+	 <P><B>Sort Qualifiers to use at "SORT BY:" Prompts</B></P> 
+	 <P>The following table illustrates the sort qualifiers you can use at the
+		"SORT BY:" prompts:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY='Sort Qualifiers to use at "SORT BY:" Prompts Table'
+	  TITLE='Sort Qualifiers to use at "SORT BY:" Prompts Table'> 
+		<TR> 
+		  <TD WIDTH="96"><B>Qualifier</B></TD> 
+		  <TD WIDTH="106"><B>Action</B> </TD> 
+		  <TD WIDTH="422"><B>Discussion</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>!</B>field</TD> 
+		  <TD VALIGN="TOP">Number entries by sort value </TD> 
+		  <TD VALIGN="TOP">Entries having the same value for the SORT BY field
+			 are numbered sequentially starting at one. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>#</B>field</TD> 
+		  <TD VALIGN="TOP">Page break when sort value changes </TD> 
+		  <TD VALIGN="TOP">Starts a new page every time the value of the sorted
+			 field changes. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>'</B>field</TD> 
+		  <TD VALIGN="TOP">Specify a range for output without sorting </TD> 
+		  <TD VALIGN="TOP">Lets you <I>select</I> entries based on this field in
+			 the "START WITH . . . GO TO . . ." dialogue, but <I>not sort</I> based on the
+			 field. 
+			 <P><B>NOTE:</B> Since sorting requires substantial system resources,
+				do not sort entries unnecessarily. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>+</B>field</TD> 
+		  <TD VALIGN="TOP">Subtotal within a SORT BY field </TD> 
+		  <TD VALIGN="TOP">When subtotaling, you indicate in the "PRINT FIELD"
+			 dialogue the fields to be enumerated. All requested numeric operations (sum,
+			 count, etc.) will be done as a subtotal when the SORT BY field changes in
+			 addition to the grand totals at the end. 
+			 <P>You can sub-subtotal by adding a prefix of <B>+</B> to two fields
+				in the "SORT BY:" dialogue. For example:</P> 
+			 <PRE>
+ SORT BY: <B>+REGION</B>
+ WITHIN REGION, SORT BY: <B>+STORE</B></PRE> 
+			 <P>This produces subtotals for each STORE within the subtotals for
+				each REGION. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>-</B>field</TD> 
+		  <TD VALIGN="TOP">Reverse sort order </TD> 
+		  <TD VALIGN="TOP">Only effective for NUMERIC and DATE/TIME valued
+			 fields. For DATE/TIME values, prints from most recent to earliest; for NUMERIC
+			 values, from largest to smallest. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>@</B>field</TD> 
+		  <TD VALIGN="TOP">Suppress the printing of subheader </TD> 
+		  <TD VALIGN="TOP">Normally, a subheader with the value of the SORT BY
+			 field name is printed for SORT BY fields, if the field is not also specified as
+			 a print field. Using an at-sign ("<B>@</B>") suppresses those subheaders. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Cn</B></TD> 
+		  <TD VALIGN="TOP">Set column of subheader </TD> 
+		  <TD VALIGN="TOP">The number ("<B>n</B>") indicates the column to begin
+			 the subheader. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Ln</B></TD> 
+		  <TD VALIGN="TOP">Use less than the entire sort field for sorting </TD> 
+		  <TD VALIGN="TOP">The <B>;L</B> suffix lets you specify that only the
+			 first "<B>n</B>" characters of the field be used to sort. Thus, if you specify:
+			 
+			 <PRE> SORT BY: <B>NAME;L2</B></PRE> 
+			 <P>Only the first two letters of the name field will be used for
+				sorting: the order of "Maris,Roger" and "Mantle,Mickey", for example, will be
+				unpredictable in your output. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field;<B><A NAME="pa-b">Pa-b</A></B></TD> 
+		  <TD VALIGN="TOP">Store sort range for display </TD> 
+		  <TD VALIGN="TOP">The <B>;P</B> suffix saves the "START WITH" and "GO
+			 TO" sort range for <I>one</I> level of sort fields, for later reference at a
+			 "PRINT FIELD" prompt. You can substitute any string (up to 60 characters in
+			 length) for "<B>a</B>" and "<B>b</B>" in "<B>;Pa-b</B>". Whatever strings you
+			 use as "<B>a</B>" and "<B>b</B>" (e.g., FROM and TO) become subscripts of the
+			 PARAM() array: 
+			 <PRE> SORT BY: <B>NAME;PFROM-TO</B>
+ START WITH NAME: FIRST// <B>C</B>
+ GO TO NAME: LAST// <B>Dzzzzz</B></PRE> 
+			 <P>Then at a "PRINT FIELD" prompt, you can reference the saved values
+				by using PARAM("a-string") and PARAM("b-string"). Thus, in this case: </P> 
+			 <PRE> THEN PRINT FIELD: <B>PARAM(&quot;FROM&quot;)</B>
+ THEN PRINT FIELD: <B>PARAM(&quot;TO&quot;)</B></PRE> 
+			 <P>The sort-from and sort-to values of "C" and "Dzzzzz" in the report
+				would then print in the appropriate location. The typical reason to save sort
+				values, and then retrieve them from the PARAM array in a print field, is for
+				custom report headers (which are created as PRINT templates). It is one method
+				to print sort criteria in the report header. </P> 
+			 <P>If you need to sort on <I>two or more</I> fields, you need to use
+				a different string for "<B>a</B>" and "<B>b</B>" at each level, or else the
+				values will overwrite each other. </P> 
+			 <P><B>NOTE:</B> No value is saved in the PARAM array if the user
+				accepts "FIRST" or "LAST" as the "START WITH" or "GO TO" sort values; the PARAM
+				array will be null. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Sn</B></TD> 
+		  <TD VALIGN="TOP">Skip lines when sort value changes </TD> 
+		  <TD VALIGN="TOP">The <B>;S</B> suffix skips one line between sort field
+			 values, if no number is added. If you specify a number ("<B>n</B>"),
+			 <B>n</B>-lines are skipped. You can use this qualifier to skip lines after
+			 subtotals are printed by inserting the following after the last subtotaled
+			 field: 
+			 <PRE> WITHIN X, SORT BY: <B>@&quot;&quot;;S</B>
+ START WITH &quot;&quot;: FIRST// <B>@</B>
+ GO TO &quot;&quot;: LAST// <B>@</B>
+</PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;TXT</B></TD> 
+		  <TD VALIGN="TOP">Sort numbers as text </TD> 
+		  <TD VALIGN="TOP">The <B>;TXT</B> sort qualifier forces digits to be
+			 sorted as alphanumeric strings, not as numbers ("22" sorts before "3"). Use
+			 this to correctly sort mixed canonic and non-canonic numbers. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;"xxx"</B></TD> 
+		  <TD VALIGN="TOP">Replace caption in subheader and sort dialogue </TD> 
+		  <TD VALIGN="TOP">The default subheader is the field label or expression
+			 entered at the "SORT BY:" prompt. The same string is used within the sort
+			 dialogue. You can substitute a string of your choosing by adding a semicolon
+			 ("<B>;</B>") and text enclosed in quotation marks. For example: 
+			 <PRE> SORT BY: <B>DATE OF BIRTH;&quot;Birthdate: &quot;</B>
+</PRE> 
+			 <P>To suppress the caption in the subheader, enter two double quotes
+				after the semicolon: </P> 
+			 <PRE> SORT BY: <B>DATE OF BIRTH;&quot;&quot;</B></PRE> 
+			 <P>The specified caption is also used in the subsequent sort
+				dialogue. This is useful in simplifying the sort dialogue when a field label is
+				confusing, is concatenated, or is an extended pointer. For example: </P> 
+			 <PRE> SORT BY: <B>STORE:REGION;&quot;Location:&quot;</B>
+ START WITH Location: FIRST// <B>&lt;RET&gt;</B>
+  WITHIN Location, SORT BY: <B>&lt;RET&gt;</B>
+ PRINT FIELD: <B>STORE</B>
+ THEN PRINT FIELD:</PRE> 
+			 <P>"<B>Location:</B>" is substituted for "<B>STORE:REGION</B>". </P>
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> <HR> 
+	 <H5><A NAME="sort_templates">Saving Sort Criteria (SORT Templates)</A></H5>
+	 
+	 <P>You can save your sort criteria in a SORT template. This lets you reuse
+		the same sorting instructions in future prints from the current file. SORT
+		templates are stored in the SORT TEMPLATE file (#.401). If you sort by more
+		than three fields, you are asked whether you want to store your sort criteria
+		in a SORT template: </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="pr_7.gif" WIDTH="558" HEIGHT="259"
+		ALT="Example of Saving Sort Criteria."> </P> 
+	 <P></P> 
+	 <P><B>Forcing Creation of a SORT Template</B></P> 
+	 <P>Ordinarily, you are only asked whether to save your sort criteria in a
+		SORT template if you enter three or more fields at the "SORT BY:" prompts.
+		However, to force this question to be asked, enter a right bracket ("<B>]</B>")
+		by itself at one "SORT BY:" prompt. No matter how few fields you sort by,
+		you'll still be prompted to save your sort criteria in a SORT template.</P> 
+	 <PRE>    SORT BY: NAME// <B>]</B>
+    SORT BY: NAME//    </PRE> 
+	 <P><B>Reusing Sort Criteria in New Reports</B></P> 
+	 <P>The reason to save sort criteria in a SORT template is so that you can
+		<I>reuse</I> your sort criteria in a new report from the same file. </P> 
+	 <P>To reuse a SORT template as the sort criteria in a new report, at the
+		"SORT BY:" prompt in the new report, enter a left bracket ("<B>[</B>") plus the
+		template name: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>OUTPUT FROM WHAT FILE: NEW PERSON// <B>&lt;RET&gt;</B> 
+    SORT BY: NAME// <B>[ADDRESS LIST &lt;RET&gt;</B>  
+                                    (Dec 08, 1995@07:53) User #34 File #200  
+    WANT TO EDIT 'ADDRESS LIST' TEMPLATE? NO// <B>&lt;RET&gt;</B> 
+    FIRST PRINT FIELD: </PRE> <HR> 
+	 <P></P><HR> 
+	 <H4><A NAME="specifying_print">Choosing Print Fields</A></H4> 
+	 <H5>Specifying Fields to Print</H5> 
+	 <P>After you have specified the order in which the output should occur, you
+		are asked to list the fields you want displayed for each file entry. In the
+		simplest case, fields are identified by their label. If you enter a single
+		question mark ("<B>?</B>") at the prompt, a list of all the fields in the file
+		is displayed. If you enter the name of a multiple, you are asked for the
+		subfields you want printed. A subfield must be specified even if the multiple
+		has only one subfield. </P> 
+	 <P>To print all fields in the file, enter <B>ALL</B> (uppercase) at the
+		"FIRST PRINT FIELD:" prompt. You are then prompted:</P> 
+	 <PRE>    Do you mean ALL the fields in the file? NO//</PRE> 
+	 <P>Enter YES to indicate all fields. Otherwise, the file is searched for
+		field labels beginning with the letters "ALL". </P> 
+	 <P><B>NOTE:</B> Fields from other files can also be printed using extended
+		pointers. This technique is described in the "<A HREF="../u2/ce_cf.htm"
+		TITLE="Using Computed Expressions in COMPUTED Fields" CLASS="bodylink">Using
+		Computed Expressions in COMPUTED Fields</A>" topic in the "<A
+		HREF="../u2/ce_frm.htm" TARGET="_top" TITLE="Computed Expressions"
+		CLASS="bodylink">Computed Expressions</A>" chapter of the <I>VA FileMan
+		Advanced User Manual</I>. You can also enter other computed expressions, which
+		are also described in that chapter.</P> <HR> 
+	 <H5><A NAME="print_qualifiers">Print Qualifier Reference</A></H5> 
+	 <P>VA FileMan's print capabilities provide many ways to format a report. If
+		you don't specify any formatting controls, a format is constructed
+		automatically. The width of each field's print area is computed using
+		information from the field's definition. The default width is the larger of the
+		maximum number of characters allowed for the field and the length of the
+		longest word of the field's label (or other specification) in the print
+		dialogue. Two inter-column spaces are added to separate fields. </P> 
+	 <P>However, by using print qualifiers at the "PRINT FIELD:" prompt, for
+		each field, you can indicate how long the field's print area should be, where
+		it should start, how many lines to skip before printing the field, and the
+		column title for the field. You can also insert literal strings within the
+		output. </P> 
+	 <P>For fields that have numeric values, you can call for several arithmetic
+		calculations and indicate the number of decimal digits of accuracy. If you have
+		requested subtotals in the sort dialogue (by preceding the field with a
+		"<B>+</B>"), calculations are done at the subtotal level as well. </P> 
+	 <P><B>Print Qualifiers to use at "PRINT FIELD:" Prompts</B></P> 
+	 <P>The following table illustrates the print qualifiers you can use at the
+		"PRINT FIELD:" prompts:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY='Print Qualifiers to use at "PRINT FIELD:" Prompts Table'
+	  TITLE='Print Qualifiers to use at "PRINT FIELD:" Prompts Table'> 
+		<TR> 
+		  <TD WIDTH="96"><B>Qualifier</B></TD> 
+		  <TD WIDTH="106"><B>Action</B> </TD> 
+		  <TD WIDTH="422"><B>Discussion</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>!</B>field</TD> 
+		  <TD VALIGN="TOP">Count</TD> 
+		  <TD VALIGN="TOP">The number of entries with non-null values in this
+			 field are counted. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>#</B>field</TD> 
+		  <TD VALIGN="TOP">All statistics </TD> 
+		  <TD VALIGN="TOP">Use with NUMERIC fields only. Six lines of statistical
+			 output are generated for the selected field: Total, count, mean, maximum,
+			 minimum, and standard deviation. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>&amp;</B>field</TD> 
+		  <TD VALIGN="TOP">Total </TD> 
+		  <TD VALIGN="TOP">Use for NUMERIC fields only. The values of all
+			 occurrences of this field are summed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>+</B>field</TD> 
+		  <TD VALIGN="TOP">Total, count and mean </TD> 
+		  <TD VALIGN="TOP">Use for NUMERIC fields only. The sum, count of
+			 non-null values, and the arithmetic mean of the non-null values are printed.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Cn</B></TD> 
+		  <TD VALIGN="TOP">Set start column position </TD> 
+		  <TD VALIGN="TOP">You can specify the starting column of a field's
+			 display. If the number ("<B>n</B>") is a positive number, the field prints in
+			 that column counting from the left margin. If it is negative, the field starts
+			 in that column as subtracted from the right margin. If there is not enough room
+			 on a line for the field to display properly, it is moved to the line below.
+			 Adding <B>;C1</B> always starts a field's display at the beginning of a line.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Dn</B></TD> 
+		  <TD VALIGN="TOP">Round decimal fractions </TD> 
+		  <TD VALIGN="TOP">Specify the number of decimal digits of accuracy with
+			 a number, "<B>n</B>". If <B>n=0</B>, the number is rounded to a whole number.
+			 The number ("<B>n</B>") <I>must be</I> <B>&gt; 0</B> <I>or</I> <B>= 0</B>.</TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Ln</B></TD> 
+		  <TD VALIGN="TOP">Left justify and truncate </TD> 
+		  <TD VALIGN="TOP">To left justify within a field width of "<B>n</B>"
+			 characters, follow the <B>;L</B> with the number of column positions you want
+			 the field to occupy. If necessary, the data is truncated to fit into this
+			 length. Since non-numeric fields are left justified by default, the only effect
+			 of <B>;L</B> on those fields is truncation. This qualifier does <I>not</I>
+			 affect DATE/TIME-valued fields. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;N</B></TD> 
+		  <TD VALIGN="TOP">Suppress consecutive duplicate values </TD> 
+		  <TD VALIGN="TOP">If you do <I>not</I> want the same value for a field
+			 printed on consecutive rows of a report, add <B>;N</B> to the field
+			 specification. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Rn</B></TD> 
+		  <TD VALIGN="TOP">Right justify text </TD> 
+		  <TD VALIGN="TOP">To right justify within a field of "<B>n</B>"
+			 characters, follow the <B>;R</B> with that number. Right-justified data is not
+			 truncated; if "<B>n</B>" is not large enough, data spills into the next field's
+			 area causing confusing output. NUMERIC DATA TYPE fields are right justified by
+			 default. However, computed expressions with numeric results are not right
+			 justified automatically. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Sn</B></TD> 
+		  <TD VALIGN="TOP">Skip lines between fields </TD> 
+		  <TD VALIGN="TOP">You can indicate a number of lines to skip before
+			 printing a field by using <B>;Sn</B>. Without a number, <B>;S</B> skips a
+			 single line. If your field has a null value, "<B>n</B>" lines are skipped
+			 anyway. You cannot use <B>;S</B> with a <BR> WORD-PROCESSING-type field. To
+			 skip one line before a WORD-PROCESSING field, precede the field with an
+			 additional print specification like this: 
+			 <PRE> THEN PRINT FIELD: <B>&quot;&quot;;S</B></PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;T</B></TD> 
+		  <TD VALIGN="TOP">Use field TITLE as header </TD> 
+		  <TD VALIGN="TOP">If you want to use the field's TITLE, as defined in
+			 the data dictionary, instead of its LABEL in the header, add <B>;T</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Wn</B></TD> 
+		  <TD VALIGN="TOP">Wrap text</TD> 
+		  <TD VALIGN="TOP">The <B>;W</B> suffix splits a field that is too long
+			 for its field column width at word boundaries (spaces) and prints it out fully
+			 on two or more rows. You can optionally follow the <B>;W</B> with the number of
+			 column positions to be occupied by each line of output. If the field's data
+			 dictionary definition says to always print in word-wrap mode, WORD-PROCESSING
+			 DATA TYPEs are automatically wrapped. The <B>;W</B> suffix overrides the
+			 <B>;R</B> or <B>;L</B> suffixes; <I>do not use them together</I>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;X</B></TD> 
+		  <TD VALIGN="TOP">Suppress header and inter-column spaces </TD> 
+		  <TD VALIGN="TOP">Follow the field specification with <B>;X</B> to
+			 suppress the two spaces normally inserted before a field and the column header
+			 for the field. The result is concatenation of the field with the field that
+			 came before it. The <B>;X</B> suffix is often used to add a literal caption to
+			 a field. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;"xxx"</B></TD> 
+		  <TD VALIGN="TOP">Customize header </TD> 
+		  <TD VALIGN="TOP">The default header for columns of a report is the
+			 field label (for fields) or a computed expression (for "on the fly" computed
+			 expressions). To change the header, follow the field label with a semicolon
+			 ("<B>;</B>") and the column header you want. Enclose the header in quotes. When
+			 possible, spaces wrap the substitute header within a print width obtained from
+			 the field's data definition. For example: 
+			 <PRE> THEN PRINT FIELD: <B>DOB;&quot;Date of Birth&quot;</B>
+ THEN PRINT FIELD: <B>DOB;&quot;Date_of_Birth&quot;</B></PRE> The first specification prints the header on two lines; the
+			 second prints it on one line (with underscores). To suppress the header, add
+			 <B>;""</B> to the field.<BR> <BR> <B>NOTE:</B> The tilde (~) character should
+			 never be used within a customized header because this character has a special
+			 meaning to FileMan. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field<B>;Yn</B></TD> 
+		  <TD VALIGN="TOP">Set start row position </TD> 
+		  <TD VALIGN="TOP">You can start printing a field on any line on the
+			 page. If "<B>n</B>" is positive, the field is printed on that line as counted
+			 from the top of the page. If it is negative, it is printed on that line as
+			 counted from the bottom. When specifying <B>;Yn</B>, you must account for any
+			 page header that is displayed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>"xxx"</B></TD> 
+		  <TD VALIGN="TOP">Insert a literal </TD> 
+		  <TD VALIGN="TOP">At the "PRINT FIELD:" prompt enclose a free text
+			 literal in quotes. The literal is inserted into the body of the report. For
+			 example, the following specifications begin each entry's display with a caption
+			 and NAME: 
+			 <PRE> FIRST PRINT FIELD: <B>&quot;Patient's name:&quot;</B>
+ THEN PRINT FIELD: <B>NAME;&quot;&quot;</B> </PRE> 
+			 <P ALIGN="CENTER"><B>OR </B></P> 
+			 <PRE> FIRST PRINT FIELD: <B>&quot;Patient's name:&quot;</B>
+ THEN PRINT FIELD: <B>NAME;X</B></PRE> <B>NOTE:</B> The header for the NAME field is suppressed in
+			 both examples. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> 
+	 <P>You can string together several of these print qualifiers at the "PRINT
+		FIELD:" prompt. For example: </P> 
+	 <PRE>    THEN PRINT FIELD: <B>+WEIGHT;S1;C3;L6;&quot;Patient Weight&quot;</B></PRE> 
+	 <P>These specifications translate to: total, count, and give the mean for
+		all values of the WEIGHT field, which must be a NUMERIC valued field. Skip one
+		line before printing the values. Start the output in column three, left justify
+		and truncate it to six character positions, and print the column heading
+		"Patient Weight" on two lines. </P> <HR> 
+	 <H5><A NAME="print_templates">Saving Print Criteria (PRINT
+		Templates)</A></H5> 
+	 <P>PRINT templates let you store your print field specifications for use at
+		a later time. You can retrieve the template at a later time by using the
+		template name surrounded by square brackets. Template names must be unique with
+		respect to any other PRINT template created for the same file. VA FileMan will
+		notify you, if you try to create a template with a template name that already
+		exists for a file. PRINT templates are stored in the PRINT TEMPLATE file
+		(#.4).</P> 
+	 <P>To see a list of all existing templates that pertain to the file you are
+		dealing with, enter a left bracket and a question mark ("<B>[?</B>") at the
+		prompt where you can retrieve templates. For example: </P> 
+	 <PRE>    FIRST PRINT FIELD: <B>[?</B></PRE> 
+	 <P>This gives you a list of the PRINT templates available for your use with
+		the file. </P> 
+	 <P>You are automatically prompted for a template name when it is determined
+		that a considerable amount of information has been specified. If you choose
+		five or more print fields, or if some of your print fields have special
+		formatting specifications, you are prompted to store your print field
+		specification in a PRINT template, as follows: </P> 
+	 <PRE>    STORE PRINT LOGIC IN TEMPLATE:  </PRE> 
+	 <P>If you do not want to store your specifications in a template, simply
+		press the Enter/Return key. If you do want to save these print specifications
+		for future reuse, however, respond to this prompt with the name of a template
+		(either new or existing). Do <I>not</I> enclose the name in brackets; use
+		brackets only to invoke a template, not to name one. </P> 
+	 <P><B>Forcing Creation of a PRINT Template</B></P> 
+	 <P>Ordinarily, you are only asked whether you want to save your PRINT
+		template if you enter five or more fields at the "PRINT FIELD:" prompt, or
+		enter complex print specifications. However, by entering a right bracket
+		("<B>]</B>") by itself at one of your field prompts, you can force the prompt
+		that asks you for a template name, no matter how few fields you specify. You
+		must designate at least one field to be printed to receive the template prompt,
+		though. </P> 
+	 <P>For example: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>PRINT FIELD: <B>] &lt;RET&gt;</B>
+    PRINT FIELD: <B>NAME</B>
+    THEN PRINT FIELD: <B>&lt;RET&gt;</B>
+    HEADING: <B>&lt;RET&gt;</B> 
+    STORE PRINT LOGIC IN TEMPLATE: <B>ID PRINT</B></PRE> <HR> 
+	 <P><B>Using and Editing PRINT Templates</B></P> 
+	 <P>If a PRINT template has already been defined for a file, you can answer
+		the "FIRST PRINT FIELD:" prompt with the template name, enclosed within
+		brackets. For example: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>FIRST PRINT FIELD: <B>[PATIENT DATA]</B>
+    WANT TO EDIT 'PATIENT DATA' TEMPLATE? NO// <B>Y &lt;RET&gt;</B>  (YES)
+    NAME: PATIENT DATA// <B>&lt;RET&gt;</B>
+    READ ACCESS: <B>&lt;RET&gt;</B>
+    WRITE ACCESS: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>After you retrieve a template, you are asked if you want to edit the
+		template. If you answer YES (as shown above), you are allowed to edit the
+		template name. To delete the template, enter an at-sign ("<B>@</B>"). After the
+		"NAME:" prompt, you can edit the template security codes for READ ACCESS and
+		WRITE ACCESS. </P> 
+	 <P>Next, you are prompted to edit each "PRINT FIELD:" value, containing
+		each print field stored in the template. You can leave each print field as is,
+		edit it, or delete it with the at-sign character ("<B>@</B>"). </P> 
+	 <P>To insert a new print field ahead of the print field being displayed in
+		your template, precede the print field you want to insert with an up-arrow
+		("<B>^</B>"). See the following example of adding to a PRINT template (INPUT
+		and SORT templates have this feature also): </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>FIRST PRINT FIELD: FIELD1// <B>&lt;RET&gt;</B>
+    THEN PRINT FIELD: FIELD2// <B>&lt;RET&gt;</B>
+    THEN PRINT FIELD: FIELD4// <B>^FIELD3</B>
+    THEN PRINT FIELD: FIELD4// <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>To insert a Multiple field and its subfields ahead of the field
+		currently displayed in the template, do the following:</P> 
+	 <OL> 
+		<LI>Enter an up-arrow ("<B>^</B>") followed by the name of the Multiple
+		  field.<BR><BR></LI> 
+		<LI>Ignore the default presented at the "THEN PRINT FIELD:" prompt and
+		  insert each subfield by entering an up-arrow ("<B>^</B>") followed by the name
+		  of that subfield.<BR><BR></LI> 
+		<LI>After all subfields have been added, enter an up-arrow and a right
+		  bracket ("<B>^]</B>").</LI> 
+	 </OL> 
+	 <P>For example: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>FIRST PRINT FIELD: FIELD1// <B>&lt;RET&gt;</B>
+    THEN PRINT FIELD: FIELD2// <B>&lt;RET&gt;</B>
+    THEN PRINT FIELD: FIELD3// <B>^MultField &lt;RET&gt;</B>  (multiple)
+    THEN PRINT MultField SUB-FIELD: FIELD3// <B>^SubField1</B>
+    THEN PRINT MultField SUB-FIELD: FIELD3// <B>^SubField2</B>
+    THEN PRINT MultField SUB-FIELD: FIELD3// <B>^]</B>
+    THEN PRINT FIELD: FIELD3//
+</PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="captioned">The CAPTIONED PRINT Template</A>: [CAPTIONED</H5> 
+	 <P>Every file has a pre-defined CAPTIONED PRINT template that you can
+		select at the "PRINT FIELD:" prompt. The CAPTIONED PRINT Template can be very
+		useful; it prints out all fields for each entry in your report. Use it is a
+		quick way to get all the fields for each entry in your report (much quicker
+		than entering each field individually)! </P> 
+	 <P>Use it as follows: </P> 
+	 <PRE>    FIRST PRINT FIELD: <B>[CAPTIONED</B> </PRE> 
+	 <P><B>COMPUTED Fields and Record Numbers in CAPTIONED OUTPUT</B></P> 
+	 <P>When you choose the CAPTIONED PRINT Template, you're prompted with
+		"Include COMPUTED fields". At this prompt, you can decide whether to include
+		COMPUTED-type fields in the output for each record, as well as record numbers.
+		</P> 
+	 <P><B>NOTE:</B> For more information on COMPUTED fields, please refer to
+		the "<A HREF="../u2/cr_flds.htm#Computed" TITLE="COMPUTED DATA TYPE"
+		CLASS="bodylink">COMPUTED DATA TYPE</A>" topic in the "VA FileMan Advanced User
+		Manual."</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>FIRST PRINT FIELD: <B>[CAPTIONED</B>        
+
+    Include COMPUTED fields: (N/Y/R/B): NO// <B>?</B>
+
+    Enter a code from the list.
+         Select one of the following:
+
+              N         NO - No record number (IEN), no Computed Fields
+              Y         Computed Fields
+              R         Record Number (IEN)
+              B         BOTH Computed Fields and Record Number (IEN)
+
+    
+    Include COMPUTED fields:  (N/Y/R/B): NO// <B>BOTH &lt;RET&gt;</B>  Computed Fields and Record Number (IEN)
+
+      *************************
+    Heading (S/C): NEW PERSON LIST//   
+    DEVICE:   </PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="statistics">Printing Statistics Only (Totals, Counts,
+		etc.)</A></H5> 
+	 <P>If you precede <I>all</I> of the fields that you choose for printing at
+		the "PRINT FIELD:" prompts with a <B>+</B>, <B>&amp;</B>, <B>!</B>, or
+		<B>#</B>, the individual field values are not printed in your report. Instead,
+		you only get the requested statistics, which (depending on the print qualifiers
+		and fields used) can be the total, count, mean, maximum, minimum, and/or
+		standard deviation. </P> 
+	 <P><B>NOTE:</B> For more information about print qualifiers, please refer
+		to the "<A HREF="#print_qualifiers" TITLE="Print Qualifier Reference"
+		CLASS="bodylink">Print Qualifier Reference</A>" topic.</P> <HR> 
+	 <H4><A NAME="other">Other Print Features</A></H4> 
+	 <UL> 
+		<LI><A HREF="#multiple" TITLE="Multiple Copies of a Print"
+		  CLASS="bodylink">Multiple Copies of a Print</A><BR><BR></LI> 
+		<LI><A HREF="#headings" TITLE="Report Headings" CLASS="bodylink">Report
+		  Headings</A><BR><BR></LI> 
+		<LI><A HREF="#suppressing"
+		  TITLE="Suppressing Report Headings (and Page Feeds)"
+		  CLASS="bodylink">Suppressing Report Headings (and Page Feeds)</A><BR><BR></LI> 
+		<LI><A HREF="#custom" TITLE="Custom Headings and Footers"
+		  CLASS="bodylink">Custom Headings and Footers</A><BR><BR></LI> 
+		<LI><A HREF="#criteria"
+		  TITLE="Printing Sort Criteria in Header or Footer" CLASS="bodylink">Printing
+		  Sort Criteria in Header or Footer</A></LI> 
+	 </UL> 
+	 <P></P><HR> 
+	 <H5><A NAME="multiple">Multiple Copies of a Print</A></H5> 
+	 <P>To generate more than one copy of a report, you must have an output
+		device on your system (such as a spool device or a sequential disk processor
+		[SDP]) which stores data in a linear format. If you choose to send the output
+		to such a device at the "DEVICE:" prompt, the system prompts you as follows:
+		</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>ENTER NUMBER OF COPIES: <B>4</B>
+OUTPUT COPIES TO DEVICE: <B>PRINTER</B></PRE> <HR> 
+	 <P>In this example, you are asking to print four copies to the device
+		called PRINTER. </P> 
+	 <P>You must be using VA FileMan with Kernel or with a device handler
+		similar to Kernel's to produce multiple copies. If you exceed the maximum spool
+		lines allowed you as defined in the KERNEL SYSTEM PARAMETERS file (#8989.3),
+		your report will be stopped. </P> <HR> 
+	 <H5><A NAME="headings">Report Headings</A></H5> 
+	 <P>The heading in a report is what is printed at the top of each report
+		page. Ordinarily, there is a heading (report title), date of report, time of
+		report, page number, and column headers (field titles for fields in the
+		output), as shown below: </P> 
+	 <PRE>    PATIENT LIST                       JUL 19,1996  14:49    PAGE 1
+    SSN        NAME
+    -------------------------------------------------------------------</PRE> 
+	 <P>You can customize the report heading when you print. If you ask for Help
+		at the "Heading (S/C):..." prompt, VA FileMan displays the following
+		instructions: </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="pr_8.gif" WIDTH="558" HEIGHT="378"
+		ALT="Example of Customizing Report Headings."> </P> 
+	 <P></P> 
+	 <P>Thus, at the "Heading (S/C):" prompt, you can: </P> 
+	 <UL> 
+		<LI>Enter "<B>S</B>" to not print the heading (i.e., not print anything),
+		  if no records are found to print. <BR><BR></LI> 
+		<LI>Enter "<B>C</B>" to print sort criteria in the report heading on the
+		  first page.<BR><BR></LI> 
+		<LI>Enter a new heading to replace the default heading or press the
+		  Enter/Return key to accept the default heading. </LI> 
+	 </UL> 
+	 <P></P><HR> 
+	 <H5><A NAME="suppressing">Suppressing Report Headings (and Page
+		Feeds)</A></H5> 
+	 <P>If you do not want headings to be printed in your output, enter an
+		at-sign ("<B>@</B>") at the "HEADING:" prompt: </P> 
+	 <PRE>    HEADING: PATIENT LIST// <B>@</B></PRE> 
+	 <P>If you want neither headings nor page feeds in your output, enter two
+		at-signs ("<B>@@</B>") at the "HEADING:" prompt. </P> 
+	 <P>If you suppress the headings in your output and also save your print
+		criteria in a PRINT template, you will be asked: </P> 
+	 <PRE>    DO YOU ALWAYS WANT TO SUPPRESS SUBHEADERS WHEN PRINTING TEMPLATE? </PRE> 
+	 <P>Subheaders are the names of SORT BY fields you see in the body of your
+		report, when you don't include those SORT BY fields as print fields. To
+		automatically suppress all subheaders, answer YES at this prompt. </P> 
+	 <P><B>NOTE:</B> When you are sorting, you can suppress subheaders
+		individually at each sort level by entering an at-sign ("<B>@</B>") in front of
+		the field on which you are sorting. For more information, please refer to the
+		"<A HREF="#specifying_sort" TITLE="Sorting" CLASS="bodylink">Sorting</A>"
+		topic.</P> <HR> 
+	 <H5><A NAME="custom">Custom Headings and Footers</A></H5> 
+	 <P>You can print complex, multi-line headings by using a PRINT template to
+		hold your heading format. Suppose, for example, that you want the patient's
+		name and date of birth to appear as the heading at every page break. You could
+		first create a PATIENT HEADER template as follows: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>SORT BY: <B>NAME</B>
+    START WITH NAME:  FIRST// <B>&lt;RET&gt;</B>
+    FIRST PRINT FIELD: <B>&quot;PATIENT NAME:  &quot;</B> 
+    THEN PRINT FIELD: <B>NAME</B>  
+    THEN PRINT FIELD: <B>&quot;DATE OF BIRTH:  &quot;;C50</B>
+    THEN PRINT FIELD: <B>DATE OF BIRTH</B>
+    THEN PRINT FIELD: <B>&lt;RET&gt;</B>
+      *************************
+    Heading (S/C): PATIENT LIST// <B>&lt;RET&gt;</B>
+    STORE PRINT LOGIC IN TEMPLATE: <B>PATIENT HEADER</B>
+      Are you adding 'PATIENT HEADER' as a new PRINT TEMPLATE?  No// <B>YES &lt;RET&gt;</B>  (Yes)  
+    DEVICE:</PRE> <HR> 
+	 <P>Then, at a later time, when you do another print, at the heading prompt,
+		enter the template name: </P> 
+	 <PRE>    Heading (S/C): PATIENT LIST// <B>[PATIENT HEADER]</B></PRE> 
+	 <P>When you enter a PRINT template name such as PATIENT HEADER at the
+		"Heading (S/C):..." prompt, the format of the template is used as a replacement
+		for the full normal report heading on each page of your report (it replaces the
+		full default heading, including title, time, date, page number, field names,
+		and separator line). Thus, the header, as defined above, would contain
+		<I>no</I> column headings and would <I>not</I> be separated from the body of
+		the report by a horizontal line or even a blank line. You can add these in
+		yourself as print fields in the template, if you so desire. </P> 
+	 <P><B>Custom Footers</B></P> 
+	 <P>You can also add footers to the bottom of each page of a report. First,
+		save the contents of the footer in a template as you do to create a custom
+		heading. Then, use the template at the "HEADING:" prompt with a dash
+		("<B>-</B>") before the first bracket: </P> 
+	 <PRE>Heading (S/C): PATIENT LIST// <B>-[PATIENT FOOTER]</B></PRE> 
+	 <P>You can specify both a heading and a footer like this: </P> 
+	 <PRE>    Heading (S/C): PATIENT LIST// <B>[PATIENT HEADER]-[PATIENT FOOTER]</B> </PRE> 
+	 <P><B>NOTE:</B> Specifying only a footer at the "Heading (S/C):" prompt
+		suppresses the default heading. If you need a header as well as footer, you
+		must use custom templates for both. </P><HR> 
+	 <H5><A NAME="criteria">Printing Sort Criteria in the Heading or the
+		Footer</A></H5> 
+	 <P>You can print the sort criteria (values used to sort the report) in the
+		header in two different ways:</P> 
+	 <UL> 
+		<LI>At the "Heading (S/C):" prompt, entering "<B>C</B>" prints the sort
+		  criteria in the automatically generated report heading.<BR><BR></LI> 
+		<LI>Use the
+		  <A HREF="#sort_reference" TITLE="Sort Qualifiers" CLASS="bodylink">sort
+		  qualifier</A> <B>;Pa-b</B> to save the FROM and TO values used to sort a
+		  report. Then, in a customized header or footer (stored in SORT templates), you
+		  can retrieve the sort values with PARAM("a-string"). <BR> <BR> <B>NOTE:</B> For
+		  more information, please refer to the description of the <A HREF="#pa-b"
+		  TITLE="Sort Qualifier ;Pa-b" CLASS="bodylink"><B>;Pa-b</B></A> sort
+		  qualifier.</LI> 
+	 </UL> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle"> 
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
