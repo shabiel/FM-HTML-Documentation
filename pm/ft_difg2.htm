@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^DIFG</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,filegrams,api,installer,^difg,difg">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fg_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Filegrams API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Filegrams API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>^DIFG: Installer</H4> 
+	 <P>The Filegram process consists of the following three components: </P> 
+	 <OL> 
+		<LI>Filegram generator (the DIFGG routines)<BR><BR></LI> 
+		<LI>Filegram installer (the DIFG routines)<BR><BR></LI> 
+		<LI>FILEGRAM template (stored in the PRINT template file) </LI> 
+	 </OL> 
+	 <P>You, as a programmer, will find that the only routines necessary to
+		process a Filegram are the installer and the generator routines. </P> 
+	 <P>The key variables DUZ, DUZ(0), and DT must be present in addition to the
+		required variables described below. </P> 
+	 <P>Use the ^DIFG entry point to install Filegrams. The installer part of
+		the Filegram requires the DIFGLO variable in addition to the VA FileMan key
+		variables mentioned just above. The other input variables are optional. </P> 
+	 <P>D ^DIFG will install the Filegram. </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFGLO</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) This variable must be the global root of the Filegram
+				to be installed. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIADD</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) If this variable is defined, a new entry will be
+				created in the base file. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DINUM</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) Entry number in base file at which new file entry, if
+				added, will be created. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFGER</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This output variable is defined if an error has occurred. </P> 
+			 <P><B>NOTE:</B> It will be defined even if the install fails after
+				the base file has been processed. Thus, it could exist even if DIFGY is not
+				equal -1. See below for a list of
+				<A HREF="#ErrCodesInDIFGER" TITLE="error codes" CLASS="bodylink">error
+				codes</A> that will be found in DIFGER. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4"><B>DIFGY</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>^DIFG always returns DIFGY. DIFGY can have one of the following
+				values: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFGY=-1</B></TD> 
+		  <TD VALIGN="TOP">Indicates that the lookup on the initial file
+			 processed (the base file) was unsuccessful. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFGY=N^F</B></TD> 
+		  <TD VALIGN="TOP">Where N is the internal number of the entry in the
+			 base file and F is the base file's number. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFGY=N^F^1</B></TD> 
+		  <TD VALIGN="TOP">Where N and F are defined as above and 1 indicates
+			 that a new entry has been added to the base file. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="ErrCodesInDIFGER">Error Codes Returned in DIFGER</A></H5> 
+	 <P>If a soft error occurs, the variable DIFGER is defined when the Filegram
+		routines are exited. This variable contains information about the problem
+		encountered. It consists of two ^-pieces. The first piece indicates the error
+		number. The second piece usually contains a line number in the Filegram that
+		indicates where the Filegram process failed.</P> 
+	 <P>Here is a list of the codes found in DIFGER along with their specific
+		meanings: </P> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>1^0</B></TD> 
+		  <TD VALIGN="TOP">The Filegram global root was not passed in DIFGLO.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>1.25^0</B></TD> 
+		  <TD VALIGN="TOP">The Filegram global root format is invalid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>1.5^0</B></TD> 
+		  <TD VALIGN="TOP">The Filegram global root is passed but the global does
+			 not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>2^1</B></TD> 
+		  <TD VALIGN="TOP">The first line of the Filegram does not contain a
+			 $DAT. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>3^#</B></TD> 
+		  <TD VALIGN="TOP">A line other than the first line has a $DAT as its
+			 first colon-piece. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>4^#</B></TD> 
+		  <TD VALIGN="TOP">The field does not exist within this file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>5^#</B></TD> 
+		  <TD VALIGN="TOP">^%DT was called and Y was returned equal to -1. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>6^#</B></TD> 
+		  <TD VALIGN="TOP">Line after a context switch, subfile; and any field
+			 that required a lookup was not a BEGIN condition. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>7^#</B></TD> 
+		  <TD VALIGN="TOP">DINUM variable exists, the mode is A or L, and the
+			 INPUT transform contains the word DINUM (files or subfiles only). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>8^#</B></TD> 
+		  <TD VALIGN="TOP">DINUM or DIADD variables exist and the mode is neither
+			 A nor L (files or subfiles only). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>9^#</B></TD> 
+		  <TD VALIGN="TOP">File or subfile lookup failed and mode type will not
+			 permit addition of an entry to this file. In other words, the mode type was
+			 either D or M. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>10^#</B></TD> 
+		  <TD VALIGN="TOP">Lookup failed during a context or subfile shift, the
+			 .01 field of the file or subfile is a pointer, and LAYGO to the pointed-to file
+			 is not allowed. This code is also generated if lookup failed and LAYGO is not
+			 allowed for a pointer that is an identifier or specifier. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>11^#</B></TD> 
+		  <TD VALIGN="TOP">A lookup for a single valued pointer field fails and
+			 LAYGO is not allowed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>12^#</B></TD> 
+		  <TD VALIGN="TOP">A lookup failed for a file or subfile and the mode is
+			 M. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>13^#</B></TD> 
+		  <TD VALIGN="TOP">There is a key for a given entry and the internal
+			 entry number was not found in the cross-reference or the cross-reference did
+			 not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>14^#</B></TD> 
+		  <TD VALIGN="TOP">^DIE called for a MODIFY or DELETE Filegram and Y was
+			 returned defined. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>15^#</B></TD> 
+		  <TD VALIGN="TOP">^DIE called for an entry which was an ADD and Y was
+			 returned as defined. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>16^#</B></TD> 
+		  <TD VALIGN="TOP">Call to ^DIC or FILE^DICN and Y was returned equal to
+			 -1. Error occurred during installation. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>17^#</B></TD> 
+		  <TD VALIGN="TOP">Entry of a word processing field failed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>18^#</B></TD> 
+		  <TD VALIGN="TOP">Lookup failed when a "B" index lookup was specified
+			 and the B cross-reference did not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>19^#</B></TD> 
+		  <TD VALIGN="TOP">DINUM was passed to DIFG, the mode of the base line
+			 file was M or D, and the entry did not exist in the base line file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>20^#</B></TD> 
+		  <TD VALIGN="TOP">File does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>21^#</B></TD> 
+		  <TD VALIGN="TOP">A field has an "@link" value which is unresolved and
+			 will not be LAYGOed to the pointed-to file during installation. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ft_difg2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

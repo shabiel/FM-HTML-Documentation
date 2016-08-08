@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Triggers for Different Files</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,trigger cross-references,cross-references,triggers,different files,files,different">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+	</HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="tr_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Trigger Cross-references Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Trigger Cross-references</A></H3> <HR
+	 CLASS="hrstyle"> 
+	 <H4>Triggers for Different Files</H4> 
+	 <P>A trigger can also update a field in a file different than the one in
+		which the edited field exists. To illustrate this, the previous example is
+		extended to show how a separate Monitor file could be updated whenever a
+		patient name is added or changed. </P> 
+	 <P>First of all, define this Monitor file using the Modify File Attributes
+		option. The Monitor file's NAME field will contain the same value as the NAME
+		field in the Patient file. A TIME field should be defined as a date/time data
+		type; this field will contain the time the NAME field in the Patient file was
+		added or changed. Use the Trigger option on the Utility Functions submenu to
+		set up the trigger: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select UTILITY OPTION:  <B>CRO</B>SS-REFERENCE A FIELD
+
+MODIFY WHAT FILE:  <B>PATIENT</B> 
+Select FIELD:  <B>NAME</B>
+
+CURRENT CROSS-REFERENCES:  
+       1    REGULAR 'B' INDEX OF FILE 
+       2    TRIGGER OF THE 'DATE NAME CHANGED' FIELD OF THE PATIENT 
+                   FILE
+Choose E (Edit)/D (Delete)/C (Create):  <B>CREATE</B>
+WANT TO CREATE A NEW CROSS-REFERENCE FOR THIS FIELD? NO//  <B>YES &lt;RET&gt;</B>  CROSS-REFERENCE NUMBER: 3// <B>&lt;RET&gt;</B>
+Select TYPE OF INDEXING: REGULAR//  <B>TRIGGER </B>
+
+WHEN THE 'NAME' field (#.01) OF THE 'PATIENT' File (#2) IS CHANGED, 
+WHAT FIELD SHOULD BE 'TRIGGERED:  <B>NAME:MONITOR:TIME</B>
+DO YOU WANT TO PERMIT ADDING A NEW 'MONITOR' ENTRY? NO//  <B>Y &lt;RET&gt;</B>  (YES)
+WELL THEN, DO YOU WANT TO **FORCE** ADDING A NEW ENTRY
+      EVERY TIME? NO//  <B>Y &lt;RET&gt;</B>  (YES)
+  ...OK
+
+--- SET LOGIC ---
+
+IN ANSWERING THE FOLLOWING QUESTION, 'TIME' 
+ CAN BE USED TO REFER TO THE EXISTING TRIGGERED FIELD VALUE.
+PLEASE ENTER AN EXPRESSION WHICH WILL BECOME THE
+ VALUE OF THE 'TIME' field (#1 ) OF THE 'MONITOR' File (#16001)
+ WHENEVER 'NAME' IS ENTERED OR CHANGED:  <B>NOW</B>
+
+DO YOU WANT TO MAKE THE SETTING OF 'TIME' CONDITIONAL? NO// <B>&lt;RET&gt;</B>  (NO)
+
+--- KILL LOGIC ---
+
+IN ANSWERING THE FOLLOWING QUESTION, 'TIME' 
+  CAN BE USED TO REFER TO THE EXISTING TRIGGERED FIELD VALUE.
+  NOTE: 'OLD NAME' CAN BE USED TO REFER TO THE VALUE OF 
+  THE NAME FIELD BEFORE ITS CHANGE OR DELETION. 
+PLEASE ENTER AN EXPRESSION WHICH WILL BECOME THE VALUE OF 
+  THE 'TIME' field (#1) OF THE 'MONITOR' File (#16001)
+  WHENEVER 'NAME' IS CHANGED OR DELETED:  <B>@</B>
+ARE YOU SURE YOU WANT TO 'ADD A NEW ENTRY' WHEN THIS
+  KILL LOGIC OCCURS? NO//  <B>Y &lt;RET&gt;</B>  (YES)
+
+DO YOU WANT TO MAKE THE DELETING OF 'TIME' CONDITIONAL? NO// <B>&lt;RET&gt;</B>  (NO)
+
+WANT TO PROTECT THE 'TIME' FIELD, SO THAT 
+IT CAN'T BE CHANGED BY THE 'ENTER &amp; EDIT' ROUTINE? NO// <B>&lt;RET&gt;</B>  (NO)
+NO-DELETION MESSAGE: <B>&lt;RET&gt;</B>
+DESCRIPTION: 
+
+1&gt;<B>The TIME field of the Monitor file will be triggered whenever</B>
+2&gt;<B>the NAME field of the Patient file is entered or changed.  The</B>
+3&gt;<B>new value=NOW.  A new entry in the Monitor file will be created</B>
+4&gt;<B>at the same time.  If the NAME field in the Patient file is </B>
+5&gt;<B>deleted, TIME will be deleted.</B>
+6&gt;<B>&lt;RET&gt;</B>
+
+...CROSS-REFERENCE IS SET
+DO YOU WANT TO RUN THE CROSS-REFERENCE FOR EXISTING ENTRIES NOW? 
+   NO// <B>&lt;RET&gt;</B>  (NO)</PRE> <HR> 
+	 <P>This example shows the <B>extended pointer syntax</B> used to specify a
+		field in another file. The patient's NAME is used as a lookup value in the
+		Monitor file. A new Monitor entry is created by the trigger. In a sense, this
+		trigger really updates two fields in Monitor file, NAME and TIME. </P> 
+	 <P>An alternative extended pointer syntax is NAME IN MONITOR FILE:TIME.
+		This syntax is exactly equivalent to NAME:MONITOR:TIME, and may better express
+		the meaning of the extended syntax if you are a new user. </P> 
+	 <P><B>NOTE:</B> The at-sign ("<B>@</B>") indicates that a field is to be
+		deleted by the trigger. </P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- tr_diff.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

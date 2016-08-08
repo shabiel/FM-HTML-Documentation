@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>	 
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Contents of DBS Return Arrays</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,contents of dbs return arrays,arrays">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>Contents of Arrays</H4> 
+	 <UL> 
+		<LI><A HREF="#DIHELP" TITLE="DIHELP"
+		  CLASS="bodylink">DIHELP</A><BR><BR></LI> 
+		<LI><A HREF="#DIMSG" TITLE="DIMSG"
+		  CLASS="bodylink">DIMSG</A><BR><BR></LI> 
+		<LI><A HREF="#DIERR" TITLE="DIERR" CLASS="bodylink">DIERR</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="DIHELP">DIHELP Array</A></H5> 
+	 <P>Text in the DIHELP array has several sources. Some help text is stored
+		in the new DIALOG file; an example of this sort of help is the text returned by
+		%DT when you enter a "?" at a prompt requiring a date. Other help comes
+		directly from text in the Data Dictionary. Xecutable Help relies on calls to
+		the Loader (see <A HREF="cl_ddiol.htm" TITLE="EN^DDIOL"
+		CLASS="bodylink">EN^DDIOL</A>) embedded in the executable code. The Loader call
+		takes the place of Writes. </P> 
+	 <P><B>NOTE:</B> In other contexts, the Loader puts text under the DIMSG
+		subscript. However, when executing Xecutable Help, the Loader puts the text
+		under the DIHELP subscript instead. </P> 
+	 <P>The following DBS call returns help for a particular field: </P> 
+	 <PRE>
+    D HELP^DIE(FILE,IENS,FIELD,TYPE_OF_HELP,MSG_ROOT)
+</PRE> 
+	 <P>TYPE_OF_HELP is a set of flags that allows the client application to
+		specify which help text (Help Prompt, Description, list of Set of Codes,
+		Xecutable Help, etc.) to return. Alternatively, a single or double question
+		mark returns the same information that is currently returned in scrolling mode.
+		(See the documentation for the
+		<A HREF="db_die_h.htm" TITLE="Helper call" CLASS="bodylink">Helper call</A> for
+		details.) </P> 
+	 <P>If MSG_ROOT is not specified as a target, the help is returned in
+		^TMP("DIHELP", $J) as described in the <A HREF="#DIHELP"
+		CLASS="bodylink">DIHELP Array</A> topic. The local variable DIHELP equals the
+		total number of nodes returned. </P> 
+	 <P>Text in the array that contains help is subscripted with integers. If
+		more than one kind of help is being returned, a null node is put between them.
+		</P> 
+	 <P>If a flag is set by the client application when the CHK^DIE or VAL^DIE
+		calls are made, help is returned when a value is found to be invalid. The help
+		is returned in the standard way described above. </P> <HR> 
+	 <H5><A NAME="DIMSG">DIMSG Array</A></H5> 
+	 <P>A main source of the DIMSG array is output from the Loader: EN^DDIOL.
+		Writes that are currently embedded in the database must be changed to calls to
+		EN^DDIOL if the DBS is to be used. When running applications in scrolling mode,
+		the Loader simply Writes the text to the screen. However, if the node
+		containing the EN^DDIOL call is executed from within one of the DBS calls, the
+		DBS returns text in an array, usually subscripted by DIMSG. (For more detailed
+		information about <A HREF="cl_ddiol.htm" TITLE="EN^DDIOL"
+		CLASS="bodylink">EN^DDIOL</A>, see its description in the Classic VA FileMan
+		API section of this manual.) </P> 
+	 <P TITLE="DIHELP Array">When the user is not in scrolling mode, the Loader
+		will most frequently place the text into the DIMSG array with the local
+		variable DIMSG set equal to the total number of lines in the array. There are
+		certain situations, however, where the output is put into another array. As
+		mentioned in the <A HREF="#DIHELP" CLASS="bodylink">DIHELP Array</A> topic,
+		when the DBS HELP^DIE call is used to get help, the output of an EN^DDIOL call
+		embedded in Xecutable Help is placed into the DIHELP array. </P> 
+	 <P>Like DIHELP, the DIMSG array is simply a list of lines of text. </P> 
+	 <P>Suppose an INPUT transform currently contains: </P> 
+	 <PRE>
+    N Y S Y=$L(X) K:Y&gt;30!(Y&lt;3) X I '$D(X) W !,&quot;Your input was &quot;_Y_
+    &quot; characters long.&quot;,!,&quot;This is the wrong length.&quot;
+</PRE> 
+	 <P>It can be changed to: </P> 
+	 <PRE>
+    N Y S Y=$L(X) K:Y&gt;30!(Y&lt;3) X I '$D(X) S Y(1)=&quot;Your input was &quot;_Y_
+    &quot; characters long.&quot;,Y(2)=&quot;This is the wrong length.&quot; D EN^DDIOL(.Y)
+</PRE> 
+	 <P>This change would have no effect if the user were in scrolling mode; the
+		same message is written to the screen. However, if the second INPUT transform
+		were executed from a silent call, nothing is Written and the "DIMSG" array
+		returned to the client application might look like this: </P> 
+	 <PRE>
+    ^TMP(&quot;DIMSG&quot;,$J,1)=&quot;Your input was 2 characters long.&quot;
+    ^TMP(&quot;DIMSG&quot;,$J,2)=&quot;This is the wrong length.&quot;
+</PRE> <HR> 
+	 <H5><A NAME="DIERR">DIERR Array</A></H5> 
+	 <P>When an error condition is encountered during a DBS call, an error
+		message and other information is placed in the DIERR array. In addition, the
+		DIERR variable is returned with the following two pieces of information: the
+		number of errors generated during the call in the first piece and the total
+		number of lines of the error messages in the second. Thus, a $D check on the
+		variable DIERR after the completion of the call allows the client application
+		to determine if an error occurred. Both syntactical (e.g., the root of an array
+		is not in the proper format for subscript indirection) and substantive (e.g., a
+		specified field does not exist in the specified file) errors are returned. </P>
+	 
+	 <P>The information contained in the DIERR array is designed to give the
+		client application specific information about the kind of error that occurred
+		to allow for intelligent error handling and to provide readable error messages.
+		Here is an example of error reporting following a Filer call: </P> 
+	 <PRE>
+    &gt;<B>W $G(DIERR)</B>
+    2^2
+    &gt;<B>D ^%G</B>
+
+    Global ^<B>TMP(&quot;DIERR&quot;,$J</B> 
+            TMP(&quot;DIERR&quot;,$J
+    ^TMP(&quot;DIERR&quot;,731990208,1) = 305
+    ^TMP(&quot;DIERR&quot;,731990208,1,&quot;PARAM&quot;,0) = 1
+    ^TMP(&quot;DIERR&quot;,731990208,1,&quot;PARAM&quot;,1) = ^TMP(&quot;MYWPDATA&quot;,$J)
+    ^TMP(&quot;DIERR&quot;,731990208,1,&quot;TEXT&quot;,1) = The array with a root of
+       '^TMP(&quot;MYWPDATA&quot;,$J)' has no data associated with it.
+    ^TMP(&quot;DIERR&quot;,731990208,2) = 501
+    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;PARAM&quot;,0) = 3
+    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;PARAM&quot;,1) = 89
+    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;PARAM&quot;,&quot;FIELD&quot;) = 89
+    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;PARAM&quot;,&quot;FILE&quot;) = 16200
+    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;TEXT&quot;,1) = File #16200 does not contain
+       a field 89.
+    ^TMP(&quot;DIERR&quot;,731990208,&quot;E&quot;,305,1) = 
+    ^TMP(&quot;DIERR&quot;,731990208,&quot;E&quot;,501,2) = 
+</PRE> 
+	 <P>The DIERR variable acts like a flag. In the example above, it reports
+		that two errors occurred and that they have a total of two lines of text. </P> 
+	 <P>The ^TMP("DIERR",$J) global contains information about the error(s).</P>
+	 
+	 <PRE>
+    ^TMP(&quot;DIERR&quot;,$J,sequence#) = error number
+
+</PRE> 
+	 <P>In this case, two errors were returned: errors #305 and #501. Each error
+		number corresponds to an entry in the DIALOG file. The actual text of each
+		error is stored in nodes descendent from "TEXT": </P> 
+	 <PRE>    ^TMP(&quot;DIERR&quot;,$J,sequence#,&quot;TEXT&quot;,line#) = line of text
+
+</PRE> 
+	 <P>The ^TMP("DIERR",$J,sequence#,"PARAM") subtree contains specific
+		parameters that may be returned with each error: </P> 
+	 <PRE>    ^TMP(&quot;DIERR&quot;,$J,sequence#,&quot;PARAM&quot;,0) = number of parameters returned with the error
+
+    ^TMP(&quot;DIERR&quot;,$J,sequence#,&quot;PARAM&quot;,&quot;param_name&quot;) = parameter value
+
+</PRE> 
+	 <P>The VA FileMan error messages and their associated parameters are
+		documented in Appendix A-VA FileMan Error Codes in this manual. For example,
+		Appendix A indicates that three parameters are returned with error #501: '1',
+		the field name or number; 'FILE', the File number; and 'FIELD', the Field
+		number. So, in the example above, for error #501, the "PARAM" nodes indicate
+		that the error corresponds to File #16200, Field #89. </P> 
+	 <P>Finally, the "E" cross-reference in the ^TMP("DIERR",$J) global allows
+		you to determine quickly whether a particular error occurred. For example, if
+		you wanted to do some special error processing if a DBS call generated error
+		#305, you could check $D(^TMP("DIERR",$J,"E",305)). </P> 
+	 <P>The DIERR array is more complicated than the other arrays discussed,
+		thereby making more information available to the client application for error
+		handling. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_how3.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

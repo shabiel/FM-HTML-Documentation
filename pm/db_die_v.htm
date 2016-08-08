@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: VAL^DIE( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,val^die(),die">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>VAL^DIE( ): Validator</H4> 
+	 <P>The purpose of the Validator procedure is to take the external form of
+		user input and determine if that value is valid, i.e., if that value can be put
+		into the VA FileMan database. In addition, the Validator converts the
+		user-supplied value into the FileMan internal value when necessary. It is this
+		internal value that is stored. If the Validator determines that the value
+		passed is invalid, an up-arrow (<B>^</B>) is returned. </P> 
+	 <P>Word processing and computed fields cannot be validated. The .01 field
+		of a multiple must be input using FILE = subfile number and FIELD = .01. </P> 
+	 <P>Optionally, the Validator does the following: </P> 
+	 <UL> 
+		<LI>Returns the resolved external value of the data.<BR><BR></LI> 
+		<LI>Returns help text for invalid values.<BR><BR></LI> 
+		<LI>Loads the internal value into the FileMan Data Array (FDA) to prepare
+		  for a later Filer call. </LI> 
+	 </UL> 
+	 <H5>Format</H5> 
+	 <PRE>
+VAL^DIE(FILE,IENS,FIELD,FLAGS,VALUE,.RESULT,FDA_ROOT,MSG_ROOT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) File or subfile number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IENS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Standard IENS indicating internal entry numbers. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Field number for which data is being validated. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="6"><B><A NAME="flags">FLAGS</A> </B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. The possible values are:
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="4%"><B><A NAME="E">E</A></B></TD> 
+		  <TD VALIGN="TOP"><B>E</B>xternal value is returned in RESULT(0). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>F</B></TD> 
+		  <TD VALIGN="TOP"><B>F</B>DA node is set for valid data in array
+			 identified by FDA_ROOT. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>H</B></TD> 
+		  <TD VALIGN="TOP"><B>H</B>elp (single ?) is returned if VALUE is not
+			 valid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>R</B></TD> 
+		  <TD VALIGN="TOP"><B>R</B>ecord identified by IENS is verified to exist
+			 and to be editable. Do not include "R" if there are placeholders in the IENS.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="U">U</A></B></TD> 
+		  <TD VALIGN="TOP">Don't perform key validation. Without this flag, the
+			 data in VALUE is checked to ensure that no duplicate keys are created and that
+			 key field values are not deleted.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="VALUE">VALUE</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Value to be validated as input by a user. VALUE can
+				take several forms depending on the data type involved; e.g., a partial,
+				unambiguous match for a pointer; any of the supported ways to input dates (such
+				as "TODAY" or "11/3/93"). </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="RESULT">.RESULT</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Local variable which receives output from call. If
+				VALUE is valid, the internal value is returned. If not valid, ^ is returned. If
+				E flag is present, external value is returned in RESULT(0). </P> 
+			 <P><B>NOTE:</B> This array is killed at the beginning of each
+				Validator call. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="FDA_ROOT">FDA_ROOT</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional; required if F flag present) Root of FDA into which
+				internal value is loaded if F flag is present. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="MSG_ROOT">MSG_ROOT</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Root into which error, help, and message arrays are
+				put. If this parameter is not passed, these arrays are put into nodes
+				descendent from ^TMP. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>See input parameters<A HREF="#RESULT" TITLE=" .RESULT" CLASS="bodylink">
+		.RESULT</A>, <A HREF="#FDA_ROOT" TITLE="FDA_ROOT"
+		CLASS="bodylink">FDA_ROOT</A>, and
+		<A HREF="#MSG_ROOT" TITLE="MSG_ROOT" CLASS="bodylink">MSG_ROOT</A>. </P> 
+	 <P>RESULT = internal value or ^ if the passed VALUE is not valid. </P> 
+	 <P>RESULT(0) = external value if the passed VALUE is valid and E flag is
+		present. </P> 
+	 <H5>Example</H5> 
+	 <P>This example checks the validity of a value for a set of codes field.
+		Note that the flags indicate that the external value should be returned and
+		that a node in the FDA should be built. In this situation a VALUE of "YES"
+		would also have been acceptable and would have resulted in exactly the same
+		output as shown below: </P> 
+	 <PRE>
+    &gt;<B>S FILE=16200,FIELD=5,IENS=&quot;3,&quot;,FLAG=&quot;EHFR&quot;,VALUE=&quot;Y&quot;</B>
+    
+    &gt;<B>D VAL^DIE(FILE,IENS,FIELD,FLAG,VALUE,.ANSWER,&quot;MYFDA(1)&quot;)</B>
+    
+    &gt;<B>ZW ANSWER</B>
+    ANSWER=Y
+    ANSWER(0)=YES
+    
+    &gt;<B>ZW MYFDA(1)</B>
+    MYFDA(1,16200,&quot;3,&quot;,5)=Y
+
+</PRE> 
+	 <H5><A NAME="errors">Error Codes Returned</A></H5> 
+	 <P>In addition to codes indicating that the input parameters are incorrect
+		and that the file, field, or entry does not exist, primary error messages
+		include: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_120.htm" TITLE="Error 120"
+			 CLASS="bodylink">120</A></B></TD> 
+		  <TD VALIGN="TOP">Error occurred during execution of a FileMan hook.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_299.htm" TITLE="Error 299"
+			 CLASS="bodylink">299</A></B></TD> 
+		  <TD VALIGN="TOP">Ambiguous value. (Variable Pointer data type only.)
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_405.htm" TITLE="Error 405"
+			 CLASS="bodylink">405</A></B></TD> 
+		  <TD VALIGN="TOP">The file is uneditable. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_520.htm" TITLE="Error 520"
+			 CLASS="bodylink">520</A></B></TD> 
+		  <TD VALIGN="TOP">The field's data type or INPUT transform is
+			 inappropriate. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_602.htm" TITLE="Error 602"
+			 CLASS="bodylink">602</A></B></TD> 
+		  <TD VALIGN="TOP">The entry cannot be edited. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_701.htm" TITLE="Error 701"
+			 CLASS="bodylink">701</A></B></TD> 
+		  <TD VALIGN="TOP">Value is invalid.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_710.htm" TITLE="Error 710"
+			 CLASS="bodylink">710</A></B></TD> 
+		  <TD VALIGN="TOP">The field is uneditable. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_712.htm" TITLE="Error 712"
+			 CLASS="bodylink">712</A></B></TD> 
+		  <TD VALIGN="TOP">An inappropriate deletion of a field's value is being
+			 attempted. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_740.htm" TITLE="Error 740"
+			 CLASS="bodylink">740</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> </TD> 
+		  <TD VALIGN="TOP">A duplicate key is produced by a field's new
+			 value.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_742.htm" TITLE="Error 742"
+			 CLASS="bodylink">742</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> </TD> 
+		  <TD VALIGN="TOP">A value for a field in a key is being deleted.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_1610.htm" TITLE="Error 1610"
+			 CLASS="bodylink">1610</A></B></TD> 
+		  <TD VALIGN="TOP">Help was improperly requested. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="DetailsandFeatures">Details and Features</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="what">What is Validated</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The Validator takes the following steps in validating the input
+				data: </P> 
+			 <UL> 
+				<LI>Rejects value starting with "?". Help should be requested using
+				  HELP^DIE call. <BR><BR></LI> 
+				<LI>If R flag is sent, verifies that the entry is present and that
+				  editing is not blocked because the entry is being archived.<BR><BR></LI> 
+				<LI>If the field is uneditable, rejects the input if there is
+				  already data in the field.<BR><BR></LI> 
+				<LI>If the passed value is null or "<B>@</B>", signifying data
+				  deletion, rejects the input if the field is required, if the field is a key
+				  field, or if the tests present in any "DEL" nodes for the field are not passed.
+				  For multiples, the deletion of the last subentry in the multiple is rejected if
+				  the multiple is required.<BR><BR></LI> 
+				<LI>Verifies that the value of the field is not
+				  DINUMed.<BR><BR></LI> 
+				<LI>Checks all keys in which the field participates to ensure the
+				  new value does not create any duplicate keys.<BR><BR></LI> 
+				<LI>Passes the value through the field's INPUT transform and
+				  executes any screens on pointer, variable pointer, or set of codes fields. For
+				  pointer and variable pointer, values that do not yield at least a partial match
+				  are rejected (no LAYGO); ambiguous values are rejected (see note below for
+				  <A HREF="#VarPointers" TITLE="variable pointers" CLASS="bodylink">variable
+				  pointers</A>). If these tests are passed, the input value is accepted and the
+				  internal value becomes the value resulting in the execution of the INPUT
+				  transform or the pointer value resulting from the lookup.</LI> 
+			 </UL> 
+			 <P><B>NOTE:</B> No file or field access security checks on either the
+				file or field level are done. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Note for Pointers</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The internal entry number of the entry in the pointed-to file that
+				corresponds to the input is returned. If the lookup value partially matches
+				more than one entry in the pointed-to file, the call fails. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="VarPointers">Note for Variable
+			 Pointers</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>For variable pointer data types, the
+				<A HREF="#VALUE" TITLE="VALUE" CLASS="bodylink">VALUE</A> may include the
+				variable pointer PREFIX, MESSAGE, or FILENAME followed by a period (<B>.</B>)
+				before the lookup value. If no particular file is specified in this way, all of
+				the pointed-to files are searched. If the lookup value is not found in any file
+				searched or if more than one match is found in any file(s), the call fails -
+				VALUE is not valid. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Note for Set of Codes</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>For set of codes data types,
+				<A HREF="#VALUE" TITLE="VALUE" CLASS="bodylink">VALUE</A> is treated as case
+				insensitive. If the VALUE is ambiguous, the validation fails. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Returning External Values</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If the <A HREF="#E" TITLE="E flag" CLASS="bodylink">E flag</A> is
+				sent, the Validator returns the external value of VALUE in addition to its
+				internal value. This is returned in RESULT(0). For free text, number and MUMPS
+				data types, the external value is created by passing VALUE through the INPUT
+				transform (if any) and then the OUTPUT transform (if any). For date/time data
+				types, the external value is the standard FileMan external date/time format.
+				For pointers and variable pointers, the external value is the .01 of the entry
+				in the pointed-to file. For set of codes, the external value is the
+				"translation" of the code. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Validate and File</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If you want to validate a set of data and then file the valid
+				data, make a call to FILE^DIE (the Filer) with an E flag passed in the first
+				parameter. The nodes in the FDA identified by the second parameter should be
+				set to the external, unvalidated value used as input to the Validator. Based on
+				this flag, the Filer calls the Validator for each field and only files the
+				valid, internal values. Error messages are returned for the fields that could
+				not be filed.</P> 
+			 <P><B>NOTE:</B> You cannot mix internal and external values in the
+				FDA when calling the Filer. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_die_v.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

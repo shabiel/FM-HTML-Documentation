@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Global File Structure - File
+		Entries</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,global file structure,global,file,file entries,entries">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="gfs_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Global File Structure Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Global File Structure</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>File Entries (Data Storage)</H4> 
+	 <P>Each entry in a file corresponds to a positive-valued key subscript, the
+		internal entry number, of the file global. All data pertaining to an entry will
+		be stored in global nodes descendent from that subscript. The value of the .01
+		field of an entry is always stored in the first ^-piece of subscript zero,
+		descendent from the internal entry number subscript. Thus, for entry #1, an
+		employee named John Jones, you would have: </P> 
+	 <PRE>    ^EMP(1,0)=&quot;JONES,JOHN^&quot;
+</PRE> 
+	 <P>Suppose you want to store the employee's sex in the second ^-piece of
+		subscript zero, and date of birth in the third ^-piece, and department in the
+		fourth ^-piece. You would have: </P> 
+	 <PRE>    ^EMP(1,0)=&quot;JONES,JOHN^M^2341225^3&quot;
+</PRE> 
+	 <P>Notice that the entry for the employee's department in this file is a
+		number. This means that the employee's department is internal entry number 3 in
+		the Department file; and to find the employee's department, you would have to
+		consult that file. The 7-digit number representing the employee's date of birth
+		is FileMan's way of internally representing 12/25/1934. </P> 
+	 <P>How is multiple-valued data, such as skill, stored? There can be one or
+		five or ten skills on file for a given employee and they obviously cannot all
+		be stored (in the general case) in a single subscript. VA FileMan's answer is
+		to make the skills list a subfile within the employee entry. This requires
+		adding subscripts beyond the first internal key subscript which are different
+		in value from the zero subscript that stores each employee's name, sex, and
+		birth date. For example, if John Jones currently has two (free-text) skills on
+		file, you can consider those to be entries #1 and #2 in a two-entry file, which
+		can extend at a lower level from any unused subscript, say from SX as shown
+		below: </P> 
+	 <PRE>    ^EMP(0)=&quot;EMPLOYEE^3I^9^3&quot;
+    ^EMP(1,0)=&quot;JONES,JOHN^M^2341225^3&quot;
+    ^EMP(1,&quot;SX&quot;,0)=&quot;^3.01A^2^2&quot;
+    ^EMP(1,&quot;SX&quot;,1,0)=&quot;TYPING&quot;
+    ^EMP(1,&quot;SX&quot;,2,0)=&quot;STENOGRAPHY&quot;
+</PRE> 
+	 <P>Notice that the data global ^EMP has ^EMP(1,"SX",0) for the skill
+		multiple. The zero node, except for the first ^-piece, has the same structure
+		as ^EMP(0). The second ^-piece is the subfile ^DD number. This tells FileMan
+		which subsidiary dictionary to use for the data stored in this node. The actual
+		data (the employee's skills in our example) are stored in the next lower level
+		of subscripting. In the same manner that entries in the EMPLOYEE file have
+		internal entry numbers, entries in the multiple field also have internal entry
+		numbers in the subfile. In the example above, TYPING is the first entry and
+		STENOGRAPHY the second. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- gfs_4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

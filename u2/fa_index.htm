@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: LFA Index Only DD
+		Listing</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,list file attributes,attributes,data dictionary,dd,indexes and cross-references only,indexes,cross-references">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fa_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: List File Attributes Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">List File Attributes</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Indexes and Cross-References Only&nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0 with FM V. 22" WIDTH="35"
+		HEIGHT="11"></H4> 
+	 <P>The Indexes and Cross-References Only format shows the Traditional
+		cross-references and New-Style indexes that are defined on a file.</P> 
+	 <P>Here is a sample Indexes and Cross-References Only data dictionary
+		listing: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>INDEX AND CROSS-REFERENCE LIST -- FILE #16026           12/24/98    PAGE 1
+---------------------------------------------------------------------------
+
+File #16026
+
+  Traditional Cross-References:
+
+  B    REGULAR
+            Field:  NAME  (16026,.01)
+      Description:  Automatically created regular x-ref used to look-up and
+                    sort entries based on the value in the .01 (NAME) field.  
+                    1)= S ^DIZ(16026,&quot;B&quot;,$E(X,1,30),DA)=&quot;&quot;
+                    2)= K ^DIZ(16026,&quot;B&quot;,$E(X,1,30),DA)
+
+  New-Style Indexes:
+
+  KEYA (#6)    RECORD    REGULAR    IR    LOOKUP &amp; SORTING
+       Unique for:  Key A (#5), File #16026
+      Short Descr:  Uniqueness Index for Key 'A' of File #16026
+        Set Logic:  S ^DIZ(16026,&quot;KEYA&quot;,X(1),X(2),DA)=&quot;&quot;
+       Kill Logic:  K ^DIZ(16026,&quot;KEYA&quot;,X(1),X(2),DA)
+       Whole Kill:  K ^DIZ(16026,&quot;KEYA&quot;)
+             X(1):  NAME  (16026,.01)  (Subscr 1)
+             X(2):  SSN  (16026,6)  (Subscr 2)
+
+Subfile #16026.04
+
+  Traditional Cross-References:
+
+  B    REGULAR
+            Field:  DIAGNOSIS  (16026.04,.01)
+                    1)= S ^DIZ(16026,DA(1),1,&quot;B&quot;,$E(X,1,30),DA)=&quot;&quot;
+                    2)= K ^DIZ(16026,DA(1),1,&quot;B&quot;,$E(X,1,30),DA)
+</PRE>  
+	<P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fa_index.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

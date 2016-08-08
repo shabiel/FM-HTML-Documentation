@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN^DIFGG</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,filegrams,api,generator,en^difgg,difgg">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fg_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Filegrams API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Filegrams API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN^DIFGG: Generator</H4> 
+	 <P>The Filegram process consists of the following three components: </P> 
+	 <OL> 
+		<LI>Filegram generator (the DIFGG routines)<BR><BR></LI> 
+		<LI>Filegram installer (the DIFG routines)<BR><BR></LI> 
+		<LI>FILEGRAM template (stored in the PRINT template file) </LI> 
+	 </OL> 
+	 <P>You, as a programmer, will find that the only routines necessary to
+		process a Filegram are the installer and the generator routines. </P> 
+	 <P>The key variables DUZ, DUZ(0), and DT must be present in addition to the
+		required variables described below. </P> 
+	 <P>In order to create (or generate) a Filegram, D EN^DIFGG with the key
+		variables just above and the required input variables listed below. DUZ should
+		refer to a valid user. The optional input variables can be used to customize
+		the Filegram. </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFGT</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) This variable must equal the internal entry number in
+				the PRINT template file of the FILEGRAM template that defines the data to be
+				sent. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFG("FE")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) This variable must equal the internal number in the
+				base file of the entry to be sent. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ROWSPAN="5" VALIGN="TOP"><B>DIFG("FUNC")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) This variable must equal A, M, L, or D. The meanings of
+				these codes, which indicate the mode of the Filegram, are: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>A</B></TD> 
+		  <TD VALIGN="TOP">ADD (force an add) </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>M</B></TD> 
+		  <TD VALIGN="TOP">MODIFY </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>L</B></TD> 
+		  <TD VALIGN="TOP">LAYGO </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>D</B></TD> 
+		  <TD VALIGN="TOP">DELETE </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFG("FGR")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) Set this variable equal to the root of the global or
+				local array in which the Filegram will be built. The default is
+				^UTILITY("DIFG",$J, if this variable is not defined. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DILC</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) One fewer than the first subscript to generate.
+				Default=0. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DITAB</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) Initial indentation level for Filegram text. </P> </TD>
+		  
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIFGER</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>This output variable is defined if an error has occurred. Its
+				possible values are:</P> 
+			 <UL> 
+				<LI>A required variable was not passed.<BR><BR></LI> 
+				<LI>A variable's format is invalid.<BR><BR></LI> 
+				<LI>A variable's content is invalid. </LI> 
+			 </UL> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ft_difg1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

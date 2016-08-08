@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN^DDIOL</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,ddiol,en^ddiol">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN^DDIOL: Message Loader</H4> 
+	 <P>EN^DDIOL is designed as a replacement for simple WRITE statements in any
+		part of the data dictionary that has a programming 'hook', such as executable
+		help. </P> 
+	 <P>As alternate user interfaces are developed for accessing VA FileMan
+		databases, developers are faced with the issue of removing embedded WRITE
+		statements from their data dictionaries. Direct writes should be removed since
+		they might cause the text to display improperly in the new interface. This
+		separation of the user interface from the database definition helps you to
+		prepare your databases for access by any new interface, such as a Graphical
+		User Interface (GUI). </P> 
+	 <P>The environment in which the Loader is called determines how it
+		processes the text it is passed. </P> 
+	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="Loader Processing Table"
+	  TITLE="Loader Processing Table"> 
+		<TR> 
+		  <TH VALIGN="top">Mode</TH> 
+		  <TH VALIGN="top">How the Text Is Processed </TH> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>Scrolling mode</B></TD> 
+		  <TD VALIGN="top">Text is written to the screen </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>ScreenMan mode</B></TD> 
+		  <TD VALIGN="top">Text is written in ScreenMan's Command Area </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>DBS mode</B></TD> 
+		  <TD VALIGN="top">Text is loaded into an array </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>In DBS mode, the specific array where the text is placed depends on
+		which DBS call is made and whether an output array was specified in the DBS
+		call. </P> 
+	 <P>For example, if a call is made to the Validator (<A HREF="db_die_v.htm"
+		TITLE="VAL^DIE" CLASS="bodylink">VAL^DIE</A>), and the INPUT transform of the
+		field makes a call to the Loader, the text is placed into ^TMP("DIMSG",$J). If
+		a call is made to the Helper (<A HREF="db_die_h.htm" TITLE="HELP^DIE"
+		CLASS="bodylink">HELP^DIE</A>), and the executable help of the field makes a
+		call to the Loader, the text is placed into ^TMP("DIHELP",$J). If the call to
+		Validator or the Helper uses the MSG_ROOT parameter, the text is placed in the
+		array specified by MSG_ROOT. </P> 
+	 <P><U>Recommendation</U>: no line of text passed to the Loader should
+		exceed 70 characters in length.</P> 
+	 <H5>Formats</H5> 
+	 <OL> 
+		<LI> 
+		  <PRE>EN^DDIOL(VALUE,&quot;&quot;,FORMAT)
+</PRE> </LI> 
+		<LI> 
+		  <PRE>EN^DDIOL(.ARRAY)
+</PRE> </LI> 
+		<LI> 
+		  <PRE>EN^DDIOL(&quot;&quot;,GLOBAL_ROOT) </PRE> </LI> 
+	 </OL> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="top"><B>VALUE</B></TD> 
+		  <TD VALIGN="top">(Optional) If there is just one line of text to
+			 output, it can be passed in the first parameter. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>.ARRAY</B></TD> 
+		  <TD VALIGN="top">(Optional) If there is more than one line of text to
+			 output, stored in a local array, then the first parameter of the call is the
+			 name of the local array passed by reference and that contains string or numeric
+			 literals, where: 
+			 <PRE>    ARRAY(1) = string 1
+    ARRAY(2) = string 2 ...
+    ARRAY(n) = string n</PRE> 
+			 <P>Formatting instructions can also be included in this array. See
+				"<A HREF="#Formatting" TITLE="Formatting for Arrays"
+				CLASS="bodylink">Formatting for Arrays</A>" in Details and Features below. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>GLOBAL_ ROOT</B></TD> 
+		  <TD VALIGN="top">(Optional) An alternate way to pass the text to the
+			 call is in a global root. In that case, the first parameter is null, and the
+			 second parameter contains the name of the global root that contains string or
+			 numeric literals, where: 
+			 <PRE>    @GLOBAL_ROOT@(1,0) = string 1
+    @GLOBAL_ROOT@(2,0) = string 2 ...
+    @GLOBAL_ROOT@(n,0) = string n</PRE> 
+			 <P>or </P> 
+			 <PRE>    @GLOBAL_ROOT@(1) = string 1
+    @GLOBAL_ROOT@(2) = string 2 ...
+    @GLOBAL_ROOT@(n) = string n </PRE> 
+			 <P>Formatting instructions can also be included in this global array.
+				See "<A HREF="#Formatting" TITLE="Formatting for Arrays"
+				CLASS="bodylink">Formatting for Arrays</A>" in Details and Features below. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>FORMAT</B></TD> 
+		  <TD VALIGN="top">(Optional) Formatting instructions controlling how the
+			 string is written or placed in the array. You can specify: 
+			 <UL> 
+				<LI>One or more new lines before the string (!, !!, !!!, etc.)</LI>
+				
+				<LI>Horizontal position of string (?n)</LI> 
+			 </UL> 
+			 <P>FORMAT can be any number of "!" characters optionally followed by
+				"?n", where n is an integer expression. The default FORMAT is "!".</P> 
+			 <P>This parameter can only be used when call format is used to pass a
+				<I>single</I> string or numeric literal to EN^DDIOL. To pass formatting
+				instructions when text is passed as an <I>array</I> or <I>global</I> to
+				EN^DDIOL, see "<A HREF="#Formatting" TITLE="Formatting for Arrays"
+				CLASS="bodylink">Formatting for Arrays</A>" in Details and Features below. </P>
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>Suppose a
+		<A HREF="gfs_3a.htm#write_identifier" TITLE="Write Identifier"
+		CLASS="bodylink">Write Identifier</A> node contains the following WRITE
+		statement:</P> 
+	 <PRE>    ^DD(filenumber,0,&quot;ID&quot;,&quot;W1&quot;)=W &quot;   &quot;,$P(^(0),U,2)</PRE> 
+	 <P>An equivalent statement converted to use EN^DDIOL is:</P> 
+	 <PRE>    ^DD(filenumber,0,&quot;ID&quot;,&quot;W1&quot;)=D EN^DDIOL(&quot;   &quot;_$P(^(0),U,2),&quot;&quot;,&quot;?0&quot;)</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>The executable help of a field passes one line of text by value to the
+		Loader as illustrated below: </P> 
+	 <PRE>    &gt;<B>D EN^DDIOL(&quot;This is one line of text.&quot;,&quot;&quot;,&quot;!!?12&quot;)</B></PRE> 
+	 <P>If the call is made in scroll mode (e.g.,
+		<A HREF="cl_die.htm" TITLE="^DIE"
+		CLASS="bodylink">^DIE</A> executes the executable help), below is an example of
+		what the Loader writes to the screen: </P> 
+	 <PRE>    This is one line of text.</PRE> 
+	 <P>If the call is made in DBS mode, the Helper (<A HREF="db_die_h.htm"
+		TITLE="HELP^DIE" CLASS="bodylink">HELP^DIE</A>) executes the executable help.
+		The text is placed into the ^TMP global as shown below: </P> 
+	 <PRE>    ^TMP(&quot;DIHELP&quot;,$J,1)=&quot;&quot;
+    ^TMP(&quot;DIHELP&quot;,$J,2)=&quot;        This is one line of text.&quot;</PRE> 
+	 <P><B>Example 3</B></P> 
+	 <P>Below is an example of passing an array of text to the Loader: </P> 
+	 <PRE>    &gt;<B>S A(1)=&quot;First line.&quot;</B>
+    &gt;<B>S A(2)=&quot;Second line, preceded by one blank line or node.&quot;</B>
+    &gt;<B>S A(2,&quot;F&quot;)=&quot;!!&quot;</B>
+    &gt;<B>S A(3)=&quot;More text on second line.&quot;</B>
+    &gt;<B>S A(3,&quot;F&quot;)=&quot;?55&quot;</B>
+    &gt;<B>D EN^DDIOL(.A)</B></PRE> 
+	 <P><B>Example 4</B></P> 
+	 <P>Below is an example of passing a global that contains text to the
+		Loader: </P> 
+	 <PRE>    &gt;<B>S ^GLB(1)=&quot;First line.&quot;</B>
+    &gt;<B>S ^GLB(2)=&quot;Second line, preceded by one blank line or node.&quot;</B>
+    &gt;<B>S ^GLB(2,&quot;F&quot;)=&quot;!!&quot;</B>
+    &gt;<B>S ^GLB(3)=&quot;More text on second line.&quot;</B>
+    &gt;<B>S ^GLB(3,&quot;F&quot;)=&quot;?55&quot;</B>
+    &gt;<B>D EN^DDIOL(&quot;&quot;,&quot;^GLB&quot;)</B></PRE> 
+	 <H5>Details and Features</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="top"><B><A NAME="Formatting">Formatting for
+			 Arrays</A></B></TD> 
+		  <TD VALIGN="top">When you pass an array or a global to EN^DDIOL, you
+			 can also pass formatting instructions for each line of text in your array or
+			 global. These instructions control how the string is written or placed in the
+			 output array. You can specify: 
+			 <UL> 
+				<LI>One or more new lines before the string (!, !!, !!!,
+				  etc.)<BR><BR></LI> 
+				<LI>Horizontal position of string (?n)</LI> 
+			 </UL> 
+			 <P>Place the formatting instructions for a line of text in an "F"
+				node descendent from the node containing the text. The value of each "F" node
+				can be any number of "!" characters optionally followed by "?n", where n is an
+				integer expression. The default FORMAT is "!". </P> 
+			 <P>For example: </P> 
+			 <PRE>    A(1) = string 1
+    A(1,&quot;F&quot;) = format (e.g., &quot;!?35&quot;, &quot;?10&quot;, etc.)
+
+    ^G(1,0) = string 1
+    ^G(1,&quot;F&quot;) = format
+
+    ^G(1) = string 1
+    ^G(1,&quot;F&quot;) = format</PRE> 
+			 <P><B>NOTE:</B> If you use format (1) to pass a single string of text
+				to EN^DDIOL, you can pass the formatting instructions in the third parameter
+				FORMAT. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- title.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

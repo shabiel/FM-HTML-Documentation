@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Export Tool Print Format
+		Documentation Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,print format documentation option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>Print Format Documentation Option</H4> 
+	 <PRE></PRE> <HR> 
+	 <PRE>VA FileMan ...                                            [DIUSER]
+      Other Options ...                                      [DIOTHER]
+        Data Export to Foreign Format ...           [DDXP EXPORT MENU]
+          Print Format Documentation       [DDXP FORMAT DOCUMENTATION]</PRE> <HR> 
+	 <P>You can list the available FOREIGN FORMAT file entries on the system
+		using the Print Format Documentation option. When you use this option, you are
+		given the choice of specifying individual formats or of printing all of the
+		formats on your system. Since your system can contain many formats, try to
+		select individual ones. A typical dialogue for choosing formats and the
+		resulting output looks like this: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select DATA EXPORT TO FOREIGN FORMAT OPTION: <B>PRINT FORMAT DOCUMENTATION</B>
+
+     Select one of the following:
+          1         Only print selected foreign formats
+          2         Print all foreign formats
+
+Enter response: <B>1 &lt;RET&gt;</B>  Only print selected foreign formats
+
+Select FOREIGN FORMAT: <B>123 IMPORT NUMBERS</B> 
+
+Select FOREIGN FORMAT: <B>EXCEL-COMMA</B>  
+
+Select FOREIGN FORMAT: <B>&lt;RET&gt;</B>
+
+DEVICE: <B>&lt;RET&gt;</B>
+
+</PRE> <HR> 
+	 <PRE>AVAILABLE FOREIGN FORMATS                          NOV  2,1992 15:34    Page 1
+------------------------------------------------------------------------------
+NAME: 123 IMPORT NUMBERS
+
+DESCRIPTION:  This format exports data for use with LOTUS 1-2-3 spreadsheets.  
+              Non-numeric fields will be in quotes. Each field will be
+              separated by a space.  
+
+ USAGE NOTE:  To import into 1-2-3, choose FILE-&gt;IMPORT-&gt;NUMBERS.
+ 
+    OTHER NAME:  LOTUS 123 (NUMBERS)
+
+       DESCRIPTION:
+
+NAME: EXCEL-COMMA
+
+DESCRIPTION:  Use this format to export data to the EXCEL spreadsheet on the
+              Macintosh.  The exported data will have a comma between each
+              field's value.  The user will be asked to specify the data type
+              of each exported field.  Those fields that are not numeric will
+              be surrounded by quotes (&quot;). Commas are allowed in the
+              non-numeric data, but quotes (&quot;) are not.  
+
+ USAGE NOTE:
+
+    OTHER NAME:  COMMA DELIMITED
+
+       DESCRIPTION:  Exported data is delimited by commas.  Non-numeric data
+                     is surrounded by quotes.  
+
+    OTHER NAME:  CSV
+
+       DESCRIPTION:  Comma Separated Values. </PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_opt5.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

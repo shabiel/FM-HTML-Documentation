@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Backward Extended
+		Pointer</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,relational navigation,relational,navigation,backward extended pointer,extended pointer,pointer,backward">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="rn_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Relational Navigation Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Relational Navigation</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Backward Extended Pointer</H4> 
+	 <P><A HREF="rn_simp.htm" TITLE="Simple extended pointers"
+		CLASS="bodylink">Simple extended pointers</A> let you retrieve information from
+		an entry in another file that the current entry explicitly points to through a
+		POINTER TO A FILE field. What if you wanted to go the other way -- retrieve
+		information from an entry in another file that points to (<I>not</I> from) the
+		current entry? </P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG ALIGN="BOTTOM" SRC="rn_back.gif" WIDTH="625" HEIGHT="379"
+		 ALT="Example of Simple Extended Pointers."> </CENTER> 
+	 <P></P> 
+	 <P>Suppose you've selected the PATIENT file and you want to list dates of
+		radiology exams for certain patients. If the pointer is from the RADIOLOGY EXAM
+		file to the PATIENT file (<I>not</I> the other way around), you can list the
+		radiology exam dates using a <I>Backward Extended Pointer</I>. </P> 
+	 <P>In the file that contains the POINTER TO A FILE field, one of the
+		following three conditions must be true:</P> 
+	 <OL> 
+		<LI>Either a New-Style or Traditional cross-reference on the field
+		  exists. If the POINTER TO A FILE field is in a subfile Multiple, the whole file
+		  must be cross-referenced. Compound cross-references may be used as long as the
+		  first subscript in the cross-reference is the pointer value with no transforms.
+		  The use of a compound cross-reference may result in "navigation" to only a
+		  subset of the pointing entries. Even though a record may have a valid POINTER
+		  TO A FILE field, unless all the other fields that make up subscripts on the
+		  compound index are also non-null, there won't be an entry in the index for that
+		  record.<BR> <BR></LI> 
+		<LI>The .001 field of the file is the pointing field.<BR> <BR></LI> 
+		<LI>The .01 field of the pointing file is the pointing field, and there
+		  is a "DINUM" condition on the field. </LI> 
+	 </OL> 
+	 <P>To use a Backward Extended Pointer, you must make a
+		<A HREF="rn_jump.htm" TITLE="relational jump" CLASS="bodylink">relational
+		jump</A> from the current file to the file in question (enter the name of the
+		file pointing to the current file, followed by a colon). Once you make the
+		relational jump to the backwards-pointer-linked file, specify which
+		fields/elements to access in that file. </P> 
+	 <P>Returning to the situation mentioned above, within the RADIOLOGY EXAM
+		file there is a field called EXAMINEE pointing back to our PATIENT file. That
+		EXAMINEE pointer field is cross-referenced. You want to list the EXAM DATE
+		field from the RADIOLOGY EXAM file entries that point back to a patient. From
+		the PATIENT file, enter: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>FIRST PRINT FIELD:  <B>NAME;N;S1</B>
+THEN PRINT FIELD:  <B>RADIOLOGY EXAM: </B>     <B>&lt;-- <I>Relational Jump!</I></B>
+   By 'RADIOLOGY EXAM', do you mean the RADIOLOGY EXAM File,
+       pointing via its 'EXAMINEE' Field? YES// <B>&lt;RET&gt;</B>  (YES)
+  THEN PRINT RADIOLOGY EXAM FIELD: <B>EXAM DATE</B> 
+  THEN PRINT RADIOLOGY EXAM FIELD: <B>&lt;RET&gt;</B>
+THEN PRINT FIELD: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>As indicated by this example, you did not have to specify the EXAMINEE
+		field. That field was identified because it is a field in the RADIOLOGY EXAM
+		file that points back to the current file. Following is the output produced by
+		these print specifications: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>PATIENT LIST                          OCT  1,1996  15:12    PAGE 1
+
+NAME                            EXAM DATE
+-------------------------------------------------------------------
+
+FRANKLIN,BEN                     DEC 22,1995
+                                   
+FRANKLIN,BENJAMIN,JR.
+                              
+MILLER,GORMAN                    1995
+                                 1993
+                              
+SMITH,JOHN                       SEP 29,1995            
+                                 JUN 22,1996</PRE> <HR> 
+	 <P>The resulting output is a two-column report containing names from the
+		PATIENT file and corresponding examination dates from the RADIOLOGY EXAM file.
+		Since there may be several RADIOLOGY EXAM file entries for a given patient,
+		this report is an example of a Multiple-valued (Multiline) result being
+		returned.</P> 
+	 <P><B>NOTE:</B> For more information on Multiline results being returned,
+		please refer to the "<A HREF="rn_mult.htm" TITLE="Multiline Return Values"
+		CLASS="bodylink">Multiline Return Values</A>" topic in this chapter.</P> 
+	 <P>You can use Backwards Extended Pointers in the following places in VA
+		FileMan:</P> 
+	 <UL> 
+		<LI>"EDIT WHICH FIELD:" prompt (Enter or Edit File Entries option)
+		  <BR><BR></LI> 
+		<LI>"SEARCH FOR FIELD:" prompt (Search File Entries option)<BR><BR></LI> 
+		<LI>"SORT BY:" prompt (Print File Entries and Search File Entries
+		  option)<BR><BR></LI> 
+		<LI>"PRINT FIELD:" prompt (Print File Entries and Search File Entries
+		  option)</LI> 
+	 </UL> 
+		 <!-- hh.org -->
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- rn_back.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

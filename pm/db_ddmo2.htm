@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+	 <!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DELIX^DDMOD</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,delix^ddmod,ddmod">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white"> 
+	 
+
+
+
+ 	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>DELIXN^DDMOD: New-Style Index Deleter</H4> 
+	 <P>This procedure deletes a new-style index definition from the Index file.
+		Optionally, it deletes the data in the index or executes the kill logic for all
+		entries in the file. Compiled input templates that contain one or more of the
+		fields defined in the index are recompiled. If cross-references on the file are
+		compiled, they are recompiled.</P> 
+	 <P>DELIXN^DDMOD can be used is the pre-install or post-install routine of a
+		KIDS (Kernel Installation and Distribution System) Build, for example, to
+		delete a new-style index from the installing site.</P> 
+	 <P>See <A HREF="db_ddmod.htm" TITLE="DELIX^DDMOD"
+		CLASS="bodylink">DELIX^DDMOD</A> for information on the call to delete a
+		traditional cross-reference definition.</P> 
+	 <P></P> 
+	 <H5>Format</H5> 
+	 <PRE>DELIXN^DDMOD(FILE,INDEX,FLAGS,OUTPUT_ROOT,MSG_ROOT)</PRE> 
+	 <H5><A NAME="input">Input Parameters</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD><B>FILE</B></TD> 
+		  <TD COLSPAN="2">(Required) File or subfile number. For whole-file
+			 indexes, this is the number of the file at the upper level where the data in
+			 the index resides.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>INDEX</B></TD> 
+		  <TD COLSPAN="2">(Required) Index name.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>FLAGS</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. The possible values
+				are:</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ROWSPAN="2"></TD> 
+		  <TD VALIGN="TOP"><B>K</B></TD> 
+		  <TD> 
+			 <P>For Regular indexes, delete the data in the index. For MUMPS
+				indexes, execute the <B>K</B>ill logic for all entries in the file.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>W</B></TD> 
+		  <TD> 
+			 <P><B>W</B>rite messages to the current device as the index is
+				deleted and cross-references and input templates are recompiled.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A NAME="Output_root"><B>OUTPUT_ROOT</B></A></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) The name of the array that should receive information
+				about input templates and cross-references that may have been recompiled. See
+				"<A HREF="#output" CLASS="bodylink">Output</A>" below. This must be a closed
+				root, either local or global.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) The name of the array that should receive any error
+				messages. This must be a closed root, either local or global. If not passed,
+				errors are returned descendent from ^TMP("DIERR",$J).</P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="output">Output</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>OUTPUT_ROOT</B></TD> 
+		  <TD> 
+			 <P>See <A HREF="#Output_root" TITLE="OUTPUT_ROOT"
+				CLASS="bodylink">OUTPUT_ROOT</A> under "<A HREF="#input"
+				TITLE="Input Parameters" CLASS="bodylink">Input Parameters</A>."</P> 
+			 <P>If a field used in the index is used in any compiled input
+				templates, those input templates are recompiled. Information about the
+				recompiled input templates is stored descendant from OUTPUT_ROOT("DIEZ"):</P> 
+			 <PRE>OUTPUT_ROOT(&quot;DIEZ&quot;,input template #) = 
+input template name ^ file # ^ 
+compiled routine name</PRE> 
+			 <P>If cross-references for the file are compiled, they are
+				recompiled, and the compiled routine name is stored in OUTPUT_ROOT("DIKZ"):</P>
+			 
+			 <PRE>OUTPUT_ROOT(&quot;DIKZ&quot;) = compiled routine name</PRE> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>In this example, the new-style "G" index defined on file #16200 is
+		deleted. The "K" flag indicates that the entire ^DIZ(16200,"G") index should be
+		removed from the file.</P> 
+	 <PRE>    <B>&gt;D DELIXN^DDMOD(16200,&quot;G&quot;,&quot;K&quot;,&quot;MYOUT&quot;)
+
+    &gt;ZW MYOUT
+</B>    MYOUT(&quot;DIEZ&quot;,94)=ZZ TEST^16200^ZZIT
+    MYOUT(&quot;DIEZ&quot;,100)=ZZ TEST A^16200^ZZITA
+    MYOUT(&quot;DIKZ&quot;)=ZZCR
+</PRE> 
+	 <P>The MYOUT output array indicates that a field or fields used in the
+		deleted index are also used in the compiled input templates ZZ TEST (#94) and
+		ZZ TEST 2 (#100). Those two input templates were recompiled. Cross-references
+		on file #16200 were also recompiled under the ZZCR namespace.</P> 
+	 <P><B>Example 2</B></P> 
+	 <P>In this example, the whole-file regular index (the "J" index) is
+		deleted. The fields in the index come from fields in a multiple, subfile
+		#16200.075, but the whole-file index resides at the top-level file #16200. The
+		"K" flag indicates that the entire ^DIZ(16200,"J") index should be removed, and
+		the "W" flag indicates that messages should be printed to the current
+		device.</P> 
+	 <PRE>    <B>&gt;D DELIXN^DDMOD(16200,&quot;J&quot;,&quot;KW&quot;,&quot;MYOUT&quot;)
+</B>
+    Removing index ...
+    Deleting index definition ...
+
+
+    Compiling ZZ TEST Input Template of File 16200....
+    'ZZIT' ROUTINE FILED....
+    'ZZIT1' ROUTINE FILED.
+
+
+    Compiling ZZ TEST A Input Template of File 16200....
+    'ZZITA' ROUTINE FILED....
+    'ZZITA' ROUTINE FILED.
+
+    Compiling Cross-Reference(s) 16200 of File 16200.
+
+    ...SORRY, JUST A MOMENT PLEASE...
+
+
+    'ZZCR1' ROUTINE FILED.
+    'ZZCR2' ROUTINE FILED.
+    'ZZCR3' ROUTINE FILED.
+    'ZZCR4' ROUTINE FILED.
+    'ZZCR5' ROUTINE FILED.
+    'ZZCR6' ROUTINE FILED.
+    'ZZCR7' ROUTINE FILED.
+    'ZZCR8' ROUTINE FILED.
+    'ZZCR9' ROUTINE FILED.
+    'ZZCR10' ROUTINE FILED.
+    'ZZCR' ROUTINE FILED.
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD>The specified parameter is missing or invalid.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_301.htm" TITLE="Error 301"
+			 CLASS="bodylink">301</A></B></TD> 
+		  <TD>The passed flags are incorrect.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_ddmo2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 14, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

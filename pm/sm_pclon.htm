@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Susan Strack, 12/04/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: CLONE^DDS (Clone ScreenMan
+		Form)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman api,screenman,api,calls,clone^dds,dds,clone">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sm_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>CLONE^DDS</H4> 
+	 <P>You can use this entry point to make a copy of a form. All blocks used
+		on the form are copied and a new form that uses the new blocks is created. </P>
+	 
+	 <P>In the following illustration, CLONE^DDS is used to make a copy of the
+		XUEDIT CHARACTERISTICS form of the NEW PERSON file: </P> 
+	 <PRE>
+&gt;<B>D CLONE^DDS</B>
+
+
+CLONE FORM FROM WHAT FILE: <B>NEW PERSON</B>
+
+Select FORM to clone: <B>??</B>
+ 
+Choose from:
+   XUEDIT CHARACTERISTICS        #1     12/06/90         File #200
+   XUEXISTING USER               #2     12/12/90         File #200
+
+Select FORM to clone: <B>XUEDIT CHARACTERISTICS</B>  XUEDIT CHARACTERISTICS
+
+                                 #1     12/06/90         File #200
+
+
+</PRE> 
+	 <P>Once you have selected a form to clone, a report that lists the blocks
+		used on the form is printed: </P> 
+	 <PRE>
+  BLOCKS USED ON FORM &quot;XUEDIT CHARACTERISTICS&quot; (IEN #1)
+
+  Internal
+  Entry Number   Block Name
+  ------------   ----------
+  1              XUEDIT CHARACTERISTICS HDR
+  2              XUEDIT CHARACTERISTICS
+
+Enter RETURN to continue or '^' to exit: <B>&lt;RET&gt;</B>
+
+
+</PRE> 
+	 <P>You must assign names to the new form and blocks you are creating. If
+		the original form and blocks are namespaced - that is, start with the same set
+		of characters - you can choose to give the new form and blocks the same name,
+		but with the namespace replaced with another set of characters. Then, when you
+		are asked to enter new names, names that have the namespace replaced with the
+		set of characters are displayed as defaults: </P> 
+	 <PRE>
+The new form and blocks must be given unique names.
+
+Give the new form and blocks the same names as the original,
+but a different namespace? YES//<B> &lt;RET&gt;</B>
+
+
+Original namespace: <B>XU</B>
+     New namespace: <B>ZZ</B>
+
+Enter names for the new form and blocks.
+
+Original form name: XUEDIT CHARACTERISTICS
+     New form name: <B>ZZEDIT CHARACTERISTICS</B>
+
+
+Original block name: XUEDIT CHARACTERISTICS HDR
+     New block name: <B>ZZEDIT CHARACTERISTICS HDR</B>
+
+Original block name: XUEDIT CHARACTERISTICS
+     New block name: <B>ZZEDIT CHARACTERISTICS</B>
+
+
+</PRE> 
+	 <P>After you have given names to the new form and blocks, you are ready to
+		clone the form as follows: </P> 
+	 <PRE>
+Ready to clone form? <B>YES</B>
+
+Creating new blocks ...
+
+  ZZEDIT CHARACTERISTICS HDR       #71
+  ZZEDIT CHARACTERISTICS           #72
+
+Creating new form ...
+  ZZEDIT CHARACTERISTICS           #36
+
+Repointing to new blocks ...
+Reindexing new form ...
+
+
+DONE!
+&gt;
+</PRE> 
+	 <P><B>NOTE:</B> Be sure to check the properties of the cloned form and
+		blocks for namespaced variables, block references, etc., that may need to be
+		modified manually. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sm_pclon.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

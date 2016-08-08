@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN1^DIP</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,en1^dip,dip">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN1^DIP: Print Data</H4> 
+	 <P>Use EN1^DIP to print a range of entries, in columnar format. </P> 
+	 <H5>Input Variables</H5> 
+	 <CENTER> <B>Required</B></CENTER> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_l"
+			 CLASS="bodylink">L</A></B></TD> 
+		  <TD VALIGN="TOP">(Required) String that evaluates to zero. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_dic"
+			 CLASS="bodylink">DIC</A></B></TD> 
+		  <TD VALIGN="TOP">(Required) Global root or file number, in the usual
+			 format. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <CENTER> <B>Optional: Sorting and Print Fields</B></CENTER> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A
+			 HREF="cl_dip_v.htm#input_flds" CLASS="bodylink">FLDS</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) The various fields to be
+			 printed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_by"
+			 CLASS="bodylink">BY</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) The fields by which the data is
+			 to be sorted. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_fr"
+			 CLASS="bodylink">FR</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) The START WITH: values of the
+			 SORT BY fields.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A
+			 HREF="cl_dip_v.htm#input_fr_n" CLASS="bodylink">FR(n)</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) An alternate way to provide the
+			 START WITH: values of the SORT BY fields. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_to"
+			 CLASS="bodylink">TO</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) The GO TO: values of the SORT
+			 BY fields. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A
+			 HREF="cl_dip_v.htm#input_to_n" CLASS="bodylink">TO(n)</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) An alternate way to provide the
+			 GO TO: values of the SORT BY fields. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <CENTER> <B>Optional: Miscellaneous Features</B></CENTER> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_dhd"
+			 CLASS="bodylink">DHD</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) The header desired for the
+			 output. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_diaskhd"
+			 CLASS="bodylink">DIASKHD</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Set to null to prompt user for
+			 a header.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_dipcrit"
+			 CLASS="bodylink">DIPCRIT</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Set to 1 to print SORT criteria
+			 on the first page of the report. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_pg"
+			 CLASS="bodylink">PG</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Starting page number.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A
+			 HREF="cl_dip_v.htm#input_dhit" CLASS="bodylink">DHIT</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) M code to execute after each
+			 entry is printed.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_dioend"
+			 CLASS="bodylink">DIOEND</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) M code to execute after the
+			 printout has finished.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_diobeg"
+			 CLASS="bodylink">DIOBEG</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) M code to execute before the
+			 printout starts. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_dcopies"
+			 CLASS="bodylink">DCOPIES</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Number of copies to print (for
+			 SDP-type devices).</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_iop"
+			 CLASS="bodylink">IOP</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Name of device to send output
+			 to.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_dqtime"
+			 CLASS="bodylink">DQTIME</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Time to print, for queued
+			 printing. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_dis_0"
+			 CLASS="bodylink">DIS(0)</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) M code to screen out
+			 entries.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_dis_n"
+			 CLASS="bodylink">DIS(n)</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Additional screens, "OR"-ed
+			 with each other, "AND"-ed with the DIS(0) screen.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_disupno"
+			 CLASS="bodylink">DISUPNO</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Set to 1 to suppress output
+			 when no records are found. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_distop"
+			 CLASS="bodylink">DISTOP</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) Set to 0 to prevent users from
+			 stopping prints.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="cl_dip_v.htm#input_distop_c"
+			 CLASS="bodylink">DISTOP("C")</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">(Optional) M code to execute if a user
+			 stops the print. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <CENTER> <B>Optional: Controlling Sorts with BY(0)</B></CENTER> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>BY(0)</B></TD> 
+		  <TD VALIGN="MIDDLE" ALIGN="CENTER" ROWSPAN="6">See the "<A
+			 HREF="cl_dip_b.htm" TITLE="Controlling Sorts with BY(0)"
+			 CLASS="bodylink">Controlling Sorts with BY(0)</A>" section for more
+			 information.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>L(0)</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>FR(0,n)</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>TO(0,n)</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DISPAR(0,n)</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DISPAR(0,n,"OUT")</B></TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variables</H5> 
+	 <P>(NONE)</P> 
+	 <P><B>NOTE:</B> Unlike most calls, EN1^DIP kills all the input variables
+		before it quits. You do not have to kill them. </P> 
+	 <H5>Details and Features</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"> 
+			 <H4>Input Variables to Control Sorts </H4> </TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>You can use a special set of input variables to: </P> 
+			 <UL> 
+				<LI>Preselect a set of records for printing.<BR><BR></LI> 
+				<LI>Preselect the order that these records should be printed
+				  in.</LI> 
+			 </UL> 
+			 <P>The set of variables for controlling sorts is:</P> 
+			 <UL> 
+				<LI>BY(0), L(0), FR(0,n), TO(0,n), DISPAR(0,n), and
+				  DISPAR(0,n,"OUT") </LI> 
+			 </UL> 
+			 <P>Please see the "
+				<A HREF="cl_dip_b.htm" TITLE="Controlling Sorts with BY(0)"
+				CLASS="bodylink">Controlling Sorts with BY(0)</A>" section for more
+				information.</P> 
+			 <P></P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"> 
+			 <H4>Setting up BY, FR, and TO Variables to Sort within a
+				Multiple</H4> </TD> 
+		  <TD VALIGN="TOP">If you have a file like: 
+			 <PRE> .01 PARENT NAME 
+1 SPOUSE (mult.) 
+     .01 SPOUSE NAME 
+     1 SPOUSE DOB 
+     2 CHILDREN (mult.) 
+          .01 CHILDS NAME 
+          1 CHILDS DOB 
+          2 CHILDS SEX 
+          3 CHILDS NICKNAME 
+2 PARENT NICKNAME</PRE> 
+			 <P> And you wish to sort on the NICKNAME field for CHILDREN, from "A"
+				to "Z", then by the PARENT NICKNAME field from "B" to "E". You set: </P> 
+			 <PRE>     BY = &quot;1,2,3,2 
+     FR = &quot;A,B&quot; 
+     TO = &quot;Z,E&quot;</PRE> 
+			 <P>You must put in all field numbers to get down to the multiple in
+				the BY (1,2,3), but then it pops you out of the multiple so that the following
+				number '2' in the BY gets you field 2 at the top level (PARENT NICKNAME),
+				rather than field 2 within the lowest multiple (SEX). </P> 
+			 <P>But note the FR and TO: here you just put the starting and ending
+				values for the two fields on which you wish to sort. </P> 
+			 <P><B>NOTE:</B> This same logic does not work on the FLDS multiple.
+				It is suggested that in order to print fields within a multiple, the print
+				logic should be set up in a PRINT template. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"> 
+			 <H4>Using EN1^DIP to Print Audit Trails </H4> </TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The audit files are structured differently than other FileMan
+				files. To print audit trails for a file's data or Data Dictionary, the DIC
+				variable must contain the global location of the requested audit file and the
+				file number of the file that was audited as the open root. </P> 
+			 <P>To print a data audit trail for File #662001, set
+				DIC="^DIA(662001,". To print the DD audit trail, set DIC="^DDA(662001,". The
+				other input variables are set as for a normal print. Remember that the fields
+				being printed and sorted come from the audit files, not from the file for which
+				the audit trail was recorded. </P> </TD> 
+		</TR> 
+	 </TABLE>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dip.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

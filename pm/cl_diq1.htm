@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN^DIQ1 </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,en^diq1,diq1">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN^DIQ1: Data Retrieval</H4> 
+	 <P>This entry point retrieves data from a file for a particular entry.
+		<B>NOTE:</B> The equivalent Database Server calls are
+		<A HREF="db_diqgs.htm" TITLE="GETS^DIQ" CLASS="bodylink">GETS^DIQ</A> and
+		<A HREF="db_diqg1.htm" TITLE="$$GET1^DIQ" CLASS="bodylink">$$GET1^DIQ</A>. </P>
+	 
+	 <P>It is your responsibility to kill the output array, ^UTILITY("DIQ1",$J),
+		before and after using this call. </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>DIC</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>The file number or global root. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>DR</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>A string specifying the data fields to retrieve for the given
+				entry. The DR-string may contain:</P> 
+			 <UL> 
+				<LI>A single number corresponding to the internal number of a field
+				  in the file.<BR><BR></LI> 
+				<LI>A range of field numbers, in the form M:N, where M is the first
+				  and N the last number of the inclusive range. All fields whose numbers lie
+				  within this range will be retrieved.<BR><BR></LI> 
+				<LI>A combination of the above, separated by semicolons. If field
+				  numbers .01, 1, 2, 4, 10, 11, 12, 13, 14, 15, and 101 exist for a file, and you
+				  want to retrieve the data in these fields, simply write: 
+				  <PRE>    S DR=&quot;.01;1;4;10:15;101&quot;</PRE> </LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A
+			 NAME="DRsubfile#">DR(subfile_number)</A></B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>If you want to retrieve values from fields from a subentry in a
+				multiple field, include the top-level field number for the multiple in DR.
+				Then, include the multiple's subfield numbers whose values you want to retrieve
+				in a node in DR, subscripted by the subfile number. </P> 
+			 <P>See also
+				<A HREF="#DAsubfile%23" TITLE="DA(subfile_number)"
+				CLASS="bodylink">DA(subfile_number)</A> below for how to specify which subfile
+				entry to retrieve.</P> 
+			 <P>For example, if you want to retrieve data from subfields .01 and 7
+				for subentry 1 from field 4 which defines the multiple 16000.02, then you
+				write: </P> 
+			 <PRE>    S DIC=16000,DR=&quot;4&quot;,DA=777
+    S DR(16000.02)=&quot;.01:7&quot;,DA(16000.02)=1
+    D EN^DIQ1</PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>DA</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>The internal number of the entry from which data is to be
+				extracted. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A
+			 NAME="DAsubfile#">DA(subfile_number)</A></B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>If you want to retrieve values from fields from a subentry in a
+				multiple, set DA to the top-level entry number. Then, include the subentry
+				number in a node in DA, subscripted by the subfile number. See
+				<A HREF="#DRsubfile%23" TITLE="DR(subfile_number)"
+				CLASS="bodylink">DR(subfile_number)</A> above for how to specify which fields
+				in the subfile entry to retrieve.</P> 
+			 <P>You can descend one or more subfile levels; however, you can only
+				retrieve values for one subentry at any given subfile level. The full path from
+				the top level of the file to the lowest-level subfile entry must be fully
+				specified in nodes in DR and DA.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>DIQ</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) The local array name into which the field values will
+				be placed. ^UTILITY("DIQ1",$J, will be used if DIQ is not present. This array
+				name should not begin with DI. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4" ALIGN="LEFT"><B>DIQ(0)</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) This variable is used to control which is returned:
+				internal values, external values, or both. DIQ(0) also indicates when null
+				values are not returned. The DIQ(0) string can contain the values that follow:
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>I</B></TD> 
+		  <TD VALIGN="TOP">return <B>I</B>nternal values </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>E</B></TD> 
+		  <TD VALIGN="TOP">return <B>E</B>xternal values </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>N</B></TD> 
+		  <TD VALIGN="TOP">do not return <B>N</B>ull values </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>The format and location of the output from EN^DIQ1 depends on the status
+		of input variables DIQ and DIQ(0) and on whether or not a word processing field
+		is involved. </P> 
+	 <P><B>DIQ and DIQ(0) undefined </B> </P> 
+	 <P>Output into: </P> 
+	 <PRE>    ^UTILITY(&quot;DIQ1&quot;,$J,file#,DA,field#)=external value
+</PRE> 
+	 <P>This is for backward compatibility. Each field requested will be defined
+		in the utility global but the value may be null. The only exception to this
+		would be when DA held the number of an entry which does not exist. In that
+		case, nothing is returned. The values returned are the external values.
+		Printable values - pointers, sets of codes, etc. - are resolved; dates are in
+		external format. </P> 
+	 <P><B>DIQ(0) defined, DIQ undefined </B> </P> 
+	 <P>Output into: </P> 
+	 <PRE>    ^UTILITY(&quot;DIQ1&quot;,$J,file#,DA,field#,&quot;E&quot;)=external value
+    ^UTILITY(&quot;DIQ1&quot;,$J,file#,DA,field#,&quot;I&quot;)=internal value
+</PRE> 
+	 <P>If DIQ(0) contains "E", the external value is returned with a final
+		global subscript of "E". </P> 
+	 <P>If DIQ(0) contains "I", the internally stored value is returned with a
+		final global subscript of "I". The internal value is the value stored in the
+		file, for example, the record number of the entry in the pointed-to file, not
+		the resolved value of the pointer. Since computed fields store no data, no
+		nodes are returned for computed fields. </P> 
+	 <P>If DIQ(0) contains "N", no nodes are set for either internal or external
+		values if the field is null. </P> 
+	 <P>If DIQ(0) contains both "I" and "E", generally two nodes are returned
+		for each field: one with the internal value, one with the external value.
+		However, no nodes are produced for the internal value if the field is computed
+		and no nodes are produced at all for null-valued fields if DIC(0) contains "N".
+		Nodes are subscripted as described above. </P> 
+	 <P><B>DIQ defined </B> </P> 
+	 <P>The output is similar except that the data is stored in the specified
+		local array. So if DIQ(0) is not defined, then the output is: </P> 
+	 <PRE>    @(DIQ(file#,DA,field#))=external value
+</PRE> 
+	 <P>If DIQ(0) is defined, then the output is: </P> 
+	 <PRE>    @DIQ(file#,DA,field#,&quot;E&quot;)=external value
+    @DIQ(file#,DA,field#,&quot;I&quot;)=internal value
+</PRE> 
+	 <P><B>Word Processing Field </B> </P> 
+	 <P>Output from a word processing field will only be an external value. The
+		status of DIQ(0) has no effect. If DIQ is not defined, it goes into the global
+		nodes that follow: </P> 
+	 <PRE>    ^UTILITY(&quot;DIQ1&quot;,$J,file#,DA,field#,1)
+    ^UTILITY(&quot;DIQ1&quot;,$J,file#,DA,field#,2)
+        .
+        .
+        .
+</PRE> 
+	 <P>If DIQ is defined, it goes into: </P> 
+	 <P> </P> 
+	 <PRE>    @DIQ(file#,DA,field#,1)=External Value 1
+    @DIQ(file#,DA,field#,2)=External Value 2
+    @DIQ(file#,DA,field#,3)=External Value 3
+    @DIQ(file#,DA,field#,4)=External Value 4
+        .
+        .
+        .
+	 </PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_diq1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

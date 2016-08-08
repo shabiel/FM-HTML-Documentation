@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Relational Jumps Across
+		Files</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,relational navigation,relational,navigation,relational jumps across files,jumps,relational jumps">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="rn_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Relational Navigation Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Relational Navigation</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Relational Jumps Across Files</H4> 
+	 <P>In interactive VA FileMan mode, you can use the following syntax:</P> 
+	 <PRE>    file:</PRE> 
+	 <P>Doing this changes your context to the file you specify; you "jump" to
+		the specified file. You can then select fields from the file to which you have
+		jumped. You can only do this in four places in VA FileMan: </P> 
+	 <UL> 
+		<LI>"EDIT WHICH FIELD:" prompt (Enter or Edit File Entries
+		  option)<BR><BR></LI> 
+		<LI>"SEARCH FOR FIELD:" prompt (Search File Entries option)<BR><BR></LI> 
+		<LI>"SORT BY:" prompt (Print File Entries and Search File Entries
+		  option)<BR><BR></LI> 
+		<LI>"PRINT FIELD:" prompt (Print File Entries and Search File Entries
+		  option)</LI> 
+	 </UL> 
+	 <P>Relational jumping is mainly a convenience to make it easier to select
+		more than one field from another file -- by letting you temporarily "jump" to
+		the other file, it's easier to pick all the fields you want directly, rather
+		than having to use extended pointer syntax to specify each field. </P> 
+	 <P><B>NOTE:</B> When sorting, printing, searching, or editing, if you want
+		to reference several fields from another file, it is more efficient to jump to
+		the file and specify the needed fields than it is to use the extended pointer
+		syntax to reference the fields one at a time. Multiple uses of the extended
+		pointer cause multiple relational jumps. </P> 
+	 <P>There are three types of relational jumps which correspond to the three
+		extended pointer syntax: </P> 
+	 <TABLE BORDER="1"
+	 SUMMARY="Types of Relational Jumps Table (type and example)" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Type</B></TD> 
+		  <TD VALIGN="TOP"><B>Example</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A HREF="rn_simp.htm" TITLE="Simple (short form)"
+			 CLASS="bodylink">Simple (short form)</A> </TD> 
+		  <TD VALIGN="TOP">ATTENDING PHYSICIAN:</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A HREF="rn_simp.htm"
+			 TITLE="Simple (long form)" CLASS="bodylink">Simple (long form)</A> </TD> 
+		  <TD VALIGN="TOP">PROVIDER IN PERSON FILE: </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A HREF="rn_back.htm" TITLE="Backward"
+			 CLASS="bodylink">Backward</A> </TD> 
+		  <TD VALIGN="TOP">RADIOLOGY EXAM:</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A HREF="rn_join.htm" TITLE="Join"
+			 CLASS="bodylink">Join</A> </TD> 
+		  <TD VALIGN="TOP">PAYSCALE IN FACTOR FILE: </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Within the Enter or Edit File Entries option, for example, you can
+		respond to the prompts as depicted in the dialogue that follows:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>INPUT TO WHAT FILE: <B>PATIENT</B>
+EDIT WHICH FIELD: ALL// <B>NAME</B> 
+THEN EDIT FIELD:  <B>ATTENDING PHYSICIAN:</B>  <B>&lt;-- <I>Relational Jump!</I></B>
+EDIT WHICH DOCTOR FIELD: ALL// <B>NAME;"PHYSICIAN NAME"</B>
+THEN EDIT DOCTOR FIELD: <B>NICKNAME</B>
+THEN EDIT DOCTOR FIELD: <B>&lt;RET&gt;</B>
+THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P>Because of a pointer linkage between the ATTENDING PHYSICIAN field in
+		the PATIENT file and the DOCTOR file, you can use the simple, short form of the
+		extended pointer to navigate to the DOCTOR file. Then, during an interactive
+		editing session you can specify the fields you want to edit for each patient.
+		In this case, after you edit the patient's name, you can edit that patient's
+		physician's name and nickname.</P> <HR CLASS="hrstyle"> 
+	 <TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"
+	  CLASS="white"> 
+		<TR> 
+		  <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+			 <!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+             TAG="BODY" startspan --> 
+	 <P ALIGN="CENTER">
+		<A HREF="http://www.va.gov/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Department of Veterans Affairs Home Page">
+		<ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> Home Page</A> /
+		<A HREF="http://vaww.vhaco.va.gov/vhacio/" CLASS="bodylink"
+		 TARGET="_top" TITLE="Office of Information Home Page">
+		<ACRONYM TITLE="Office of Information">OI</ACRONYM> Home Page</A> /
+		<A HREF="http://vista.med.va.gov/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Health Systems Design and Development (HSD&D) Home Page">
+		<ACRONYM TITLE="Health Systems Design and Development">HSD&amp;D</ACRONYM> Home
+		Page</A>/
+		<A HREF="http://vista.med.va.gov/iss/site_map.htm" CLASS="bodylink"
+		 TARGET="_top" TITLE="Infrastructure and Security Services (ISS) Site Map">Site
+		Map</A> /
+		<A HREF="http://vista.med.va.gov/termsofuse.htm" CLASS="bodylink" TARGET="_top"
+		 TITLE="Health Systems Design and Development (HSD&D) Terms of Use Page"> Terms of Use</A> /
+		<A HREF="http://www.va.gov/privacy/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A>
+		</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- rn_jump.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

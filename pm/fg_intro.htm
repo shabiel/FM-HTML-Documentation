@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Filegrams Introduction</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,filegrams,api,introduction">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white"> 
+	 <P>H</P>
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fg_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Filegrams API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Filegrams API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Filegrams Introduction</H4> 
+	 <P>Filegrams are a feature in VA FileMan intended for use by system
+		managers, package developers, and programmers. </P> 
+	 <P>A Filegram is a process that moves a record (also called an entry) from
+		a file on one computer system to a duplicate file on another <B>independent
+		</B>computer system. An independent computer system is defined as a system
+		having its own database. Sending data from the "live" account at a medical
+		center to the "test" account at the same medical center is an example of moving
+		a Filegram locally. Sending data from a computer in the San Francisco Medical
+		Center to a computer in the Salt Lake City Medical Center is an example of
+		moving a Filegram remotely.</P> 
+	 <P>The Filegram process consists of the following three components: </P> 
+	 <OL> 
+		<LI>Filegram generator (the DIFGG routines)<BR><BR></LI> 
+		<LI>Filegram installer (the DIFG routines)<BR><BR></LI> 
+		<LI>FILEGRAM template (stored in the PRINT template file) </LI> 
+	 </OL> 
+	 <P>Although there is a set of options to work with Filegrams, you, as a
+		programmer, will find that the only routines necessary to process a Filegram
+		are the installer and the generator routines which are described in this
+		chapter as ^DIFG and EN^DIFGG, respectively. </P> 
+	 <P>For more information about Filegrams, see the "<A
+		HREF="../u2/fg_frm.htm" TARGET="_top" TITLE="Filegrams"
+		CLASS="bodylink">Filegrams</A>" chapter of "<A HREF="../u2/index.htm"
+		TARGET="_top" TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+		CLASS="bodylink">VA FileMan Advanced User Manual</A>."</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fg_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

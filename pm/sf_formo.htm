@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Form-only Fields</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,form-ony fields,fields,form only">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Form-only Fields</H4> 
+	 <P>Form-only fields are fields that are defined only on the form. They
+		allow you to request from the user data that is not linked to a VA FileMan
+		field. You might use a form-only field to control the flow of data input. For
+		example, when the user presses the Enter/Return key at a form-only field, you
+		might branch to a "pop-up" page (window) or branch only if the user enters a
+		certain value. You might also use a form-only field to request data from the
+		user, store the response in a local or global variable, and process the
+		response after the user exits the form. </P> 
+	 <P>When you define a form-only field, you specify parameters that look like
+		the VA FileMan Reader (^DIR) parameters. In addition, you can define Save Code,
+		code that is executed when the user issues the "Save" command. You might use
+		the Save Code to store the value entered by the user in local or global
+		variables. </P> 
+	 <P>The following chart describes the field properties that pertain only to
+		Form-only fields. See the "<A HREF="cl_dir.htm" TARGET="display"
+		TITLE="Reader: ^DIR" CLASS="bodylink">Reader: ^DIR</A>" section for more
+		detailed information about the Reader parameters: </P> 
+	 <H5>Properties of Form-only Fields</H5> 
+	 <TABLE BORDER="1" SUMMARY="Properties of Form-only Fields Table"
+	  WIDTH="100%" TITLE="Properties of Form-only Fields Table"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Form-only Field Property</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Read Type</B></TD> 
+		  <TD VALIGN="TOP">This property defines the type of the form-only field.
+			 Valid values are: 
+			 <UL> 
+				<LI>D = DATE<BR><BR></LI> 
+				<LI>F = FREE TEXT<BR><BR></LI> 
+				<LI>L = LIST OR RANGE<BR><BR></LI> 
+				<LI>N = NUMERIC<BR><BR></LI> 
+				<LI>P = POINTER<BR><BR></LI> 
+				<LI>S = SET OF CODES<BR><BR></LI> 
+				<LI>Y = YES OR NO<BR><BR></LI> 
+				<LI>DD = DATA DICTIONARY </LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Parameters</B></TD> 
+		  <TD VALIGN="TOP">This property corresponds to the parameters that can
+			 be used in the first ^-piece of the DIR(0) input variable to ^DIR. The "O"
+			 parameter has no effect, since the Required property can be used to make a
+			 field required. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Qualifiers</B></TD> 
+		  <TD VALIGN="TOP">This property corresponds to the second ^- piece of
+			 the DIR(0) input variable to ^DIR. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Help (WP)</B></TD> 
+		  <TD VALIGN="TOP">The lines in this word processing field correspond to
+			 the nodes in the DIR("?",#) input array to ^DIR. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>INPUT Transform</B></TD> 
+		  <TD VALIGN="TOP">This property corresponds to the third ^-piece of the
+			 DIR(0) input variable to ^DIR. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Screen</B></TD> 
+		  <TD VALIGN="TOP">This is M code that sets the variable DIR("S"). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Save Code</B></TD> 
+		  <TD VALIGN="TOP">This is M code that is executed when the user issues a
+			 "Save" command and ScreenMan hasdetected a change to the value of the form-only
+			 field.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sf_formo.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

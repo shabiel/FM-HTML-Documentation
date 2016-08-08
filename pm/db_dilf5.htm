@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: FDA^DILF( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,fda^dilf(),dilf">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>FDA^DILF( ): FDA Loader</H4> 
+	 <P>This procedure can be used to load data into the FDA. It accepts either
+		the traditional DA( ) array or the IENS for specifying the entry. No validation
+		of VALUE is done. </P> 
+	 <H5>Format</H5> 
+	 <PRE>1. FDA^DILF(FILE,IENS,FIELD,FlagS,VALUE,FDA_ROOT,MSG_ROOT)
+
+2. FDA^DILF(FILE,.DA,FIELD,FlagS,VALUE,FDA_ROOT,MSG_ROOT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="17%"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) File or subfile number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>.DA</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P> (Required for format 2) DA() array containing entry and subentry
+				numbers. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IENS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required for format 1) Standard IENS indicating internal entry
+				numbers. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Field number for which data is being loaded into the
+				FDA. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="2"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flag to control processing: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>R</B></TD> 
+		  <TD VALIGN="TOP"><B>R</B>ecord identified by IENS or .DA is verified to
+			 exist. Do not use the R FLAG if the IENS or DA() array contain placeholder
+			 codes instead of actual record numbers. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>VALUE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required, can be null) Value to which the FDA node will be set.
+				Depending on how the FDA is used, this could be the internal or external value.
+				For word processing fields, this is the root of the array that contains the
+				word processing data. Internal and external values cannot be mixed in a single
+				FDA. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FDA_ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The root of the FDA in which the new node is loaded.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Root into which error, help, and message arrays are
+				put. If this parameter is not passed, these arrays are put into nodes
+				descendent from ^TMP. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>Successful completion of this call results in the creation of a node
+		descendent from the root passed in FDA_ROOT. The format of the node is: </P> 
+	 <PRE>
+    FDA_ROOT(FILE,&quot;IENS&quot;,FIELD)=VALUE
+</PRE> 
+	 <P>For more information on the format of the
+		<A HREF="db_int4.htm" TITLE="FDA" CLASS="bodylink">FDA</A>, see the "<A
+		HREF="db_how.htm" TITLE="Database Server Introduction"
+		CLASS="bodylink">Database Server Introduction</A>."</P> 
+	 <P>By default, error messages are returned in ^TMP. If MSG_ROOT is passed,
+		messages are returned there. </P> 
+	 <H5>Example</H5> 
+	 <P>This example loads the FDA for the first sub-subentry in the second
+		subentry of entry number 4 for field number 4 in subfile number 16200.32 with a
+		value of "NEW DATA" [the FDA is descended from ^TMP("MYDATA",$J)]: </P> 
+	 <PRE>
+    &gt;<B>S FILE=16200.32,IENS=&quot;1,2,4,&quot;,FIELD=4,VALUE=&quot;NEW DATA&quot;,ROOT=
+</B>      <B>&quot;^TMP(&quot;&quot;MYDATA&quot;&quot;,$J)&quot;
+</B>    
+    &gt;<B>D FDA^DILF(FILE,IENS,FIELD,&quot;&quot;,VALUE,ROOT)
+</B>    
+    &gt;<B>D ^%G
+</B>    
+    Global ^<B>TMP(&quot;MYDATA&quot;,$J
+</B>            TMP(&quot;MYDATA&quot;,$J
+    ^TMP(&quot;MYDATA&quot;,736101456,16200.32,&quot;1,2,4,&quot;,4) = NEW DATA
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">One of the input parameters is not properly specified.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
+			 CLASS="bodylink">401</A></B></TD> 
+		  <TD VALIGN="TOP">The file does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_501.htm" TITLE="Error 501"
+			 CLASS="bodylink">501</A></B></TD> 
+		  <TD VALIGN="TOP">The field does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_601.htm" TITLE="Error 601"
+			 CLASS="bodylink">601</A></B></TD> 
+		  <TD VALIGN="TOP">The entry does not exist. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dilf5.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

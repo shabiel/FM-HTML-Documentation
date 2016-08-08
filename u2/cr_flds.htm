@@ -1,0 +1,475 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/27/03--><!--Edited March 2007, Hardhats.org-->
+
+
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan V. 22.0 Advanced User Manual: Creating Fields</title><meta name="subject" content="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <meta name="keywords" content="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,creating files and fields,files,fields,creating,editing,changing,modifying,deleting">
+	 <link rel="StyleSheet" type="text/css" href="user.css"></head>
+ 
+  <body topmargin="0" bgcolor="white">
+	<br><img src="common/fileman_au_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+	<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="cr_frm.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Creating Files and Fields Chapter TOC" class="menubarlink">Chapter</a></td> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">Creating Files and Fields</a></h3>
+	 <hr class="hrstyle"> 
+	 <h4>Creating Fields</h4> 
+	 <p>For any file, you can create fields describing logically related data
+		that pertains to entries in that file. When created, every file automatically
+		receives one field: a
+		<a href="cr_mod.htm#name_field" title="NAME field" class="bodylink">NAME
+		field</a> (the #.01 field). You must explicitly define any other fields. All
+		such definitions are made (and changed) with the Modify File Attributes option.
+		</p> 
+	 <p>When you create a file, after you give the new file a name, you are
+		asked: </p> 
+	 <pre>    Select FIELD:</pre> 
+	 <p>Enter a new field name and respond with YES when VA FileMan asks: </p> 
+	 <pre>    Are you adding 'xxxxxxxx' as a new FIELD?</pre> 
+	 <p>The "xxxxxxxx" represents the name of the field you entered. After
+		answering YES to this prompt, you are now ready to specify what sort of data
+		the new field will contain. A field can only be <i>one</i> type of data; the
+		choices are listed in the following section.</p> 
+	 <h5><a name="data_types">Field Data Types</a></h5> 
+	 <p>There are nine Data Types:</p> 
+	 <table summary="DATA TYPEs Table (row #, data type name, and description)" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b>No.</b></td> 
+		  <td valign="top"><b>Data Type</b></td> 
+		  <td valign="top"><b>Description</b></td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">1</td> 
+		  <td valign="top"><a href="#Date/Time" title="DATE/TIME" class="bodylink">DATE/TIME</a></td> 
+		  <td valign="top">Dates with or without time stamps.</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">2</td> 
+		  <td valign="top"><a href="#Numeric" title="NUMERIC" class="bodylink">NUMERIC</a></td> 
+		  <td valign="top">NUMERIC Data Types, including dollar values. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">3</td> 
+		  <td valign="top"><a href="#Set" title="SET OF CODES" class="bodylink">SET OF CODES</a></td> 
+		  <td valign="top">Codes that represent values (e.g.,
+			 1=MALE/2=FEMALE).</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">4</td> 
+		  <td valign="top"><a href="#Free" title="FREE TEXT" class="bodylink">FREE TEXT</a> </td> 
+		  <td valign="top">A single alphanumeric string of characters. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">5</td> 
+		  <td valign="top"><a href="#Word" title="WORD-PROCESSING" class="bodylink">WORD-PROCESSING</a></td> 
+		  <td valign="top">A Multiline document of text. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">6</td> 
+		  <td valign="top"><a href="#Computed" title="COMPUTED" class="bodylink">COMPUTED</a></td> 
+		  <td valign="top">A virtual field, values not stored. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">7</td> 
+		  <td valign="top"><a href="#Pointer" title="POINTER TO A FILE" class="bodylink">POINTER TO A FILE</a></td> 
+		  <td valign="top">Referencing an entry in some other file. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">8</td> 
+		  <td valign="top"><a href="#Variable" title="VARIABLE-POINTER" class="bodylink">VARIABLE-POINTER</a></td> 
+		  <td valign="top">Referencing an entry in a defined set of files.</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top">9</td> 
+		  <td valign="top"><a href="#MUMPS" title="MUMPS" class="bodylink">MUMPS</a></td> 
+		  <td valign="top">Used by programmers to enter M code. </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p>You are asked for the Data Type of any field you are creating. You must
+		pick one of these nine choices. Data validation checks are then asked depending
+		on the Data Type entered. For some Data Types, a default "HELP" prompt is
+		automatically composed.</p> 
+	 <p><b>NOTE:</b> You can review and change a file's field attributes easily
+		by running the Modify File Attributes option in Screen Mode. For examples of
+		entering a field attributes in Screen Mode, please refer to the "Examples of
+		File and Field Creation" topic that follows.</p> <hr> 
+	 <h5><a name="Screenmode">Screen Mode Field Editing</a>&nbsp;</h5> 
+	 <p>When using the Modify File Attributes option you can make your field
+		entries in the traditional Scrolling Mode or choose to create, modify, or
+		review a file's field attributes easily by running the Modify File Attributes
+		option in Screen Mode.</p> 
+	 <p> To make your entries in Screen Mode, simply press the Enter/Return key
+		to accept the default response at the "DO YOU WANT TO USE THE SCREEN-MODE
+		VERSION? Yes//" prompt.</p> 
+	 <p>The following example illustrates using Screen Mode when editing the .01
+		field of the ORDER file (#100): </p> 
+	 <pre> </pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br><br>MODIFY WHAT FILE: <b>ORDER</b> <br><br>Select FIELD: <b>.01 &lt;RET&gt;</b>  ORDER #</pre> <hr> 
+	 <p>You will then be taken into Screen Mode where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="firstscr.JPG" alt="Example of Editing Properties of a Field in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>Using the Screen Mode version of this option, after entering the field
+		name or number (e.g., .01 field) after the "Select FIELD:" prompt, you are
+		presented with a
+		<a href="../u1/sm_frm.htm" target="_top" title="ScreenMan" class="bodylink">ScreenMan</a> form (screen) that can be reviewed and edited
+		like any other. In this example, the most important field on this screen is the
+		Data Type field in the upper right corner; it is a required entry. In this
+		example, required entries in Screen Mode are indicated by a caption with a
+		different color and an underline.</p> 
+	 <p><b>NOTE:</b> Screen Mode highlights the captions for required fields
+		with an underline. However, depending on your terminal or terminal emulator
+		software and your personal preferences, the form of the highlight can vary
+		(e.g., some emulators will highlight required field captions in reverse video,
+		a different color, with an underline, or any combination of highlights).</p> 
+	 <p>In this case, the Data Type field has been defined as
+		<a href="#Numeric" class="bodylink" title="NUMERIC Data Type">NUMERIC</a> and
+		is <i>not editable</i> as indicated by the message displayed near the bottom of
+		the screen (i.e., "NOTE THAT THIS FIELD'S DEFINITION IS NOT EDITABLE"); this is
+		because a programmer has previously edited the definition in a special way.
+		However, unlike the Data Type field, the value of the HELP-PROMPT field (i.e.,
+		"Enter the Order number."), which is the message that is displayed to users
+		when they enter a single question mark ("<b>?</b>") while editing the ORDER #
+		field, can be edited. The DESCRIPTION and TECHNICAL DESCRIPTION fields are
+		multi-line <a href="#Word" title="WORD-PROCESSING Data Type" class="bodylink">WORD-PROCESSING</a> fields; to edit them, press the
+		Enter/Return key and a separate screen opens (i.e., a "pop-up" window). The
+		DESCRIPTION is displayed to users who enter two question marks ("<b>??</b>")
+		while editing the ORDER # field. The TECHNICAL DESCRIPTION, however, is for
+		internal documentation only.</p> <hr> 
+	 <h5><a name="Date/Time">DATE/TIME Data Type</a></h5> 
+	 <p>A Data Type defined as DATE/TIME allows you to enter a minimum and
+		maximum date. You can also indicate whether the date can be entered with an
+		imprecise date (e.g., JUL 1969) or with the time-of-day (e.g., JUL 20@4). VA
+		FileMan does not accept dates before 1700.</p> 
+	 <p>For example, when defining a DATE/TIME Data Type, you are asked the
+		following questions: </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select FIELD: <b>DATE OF BIRTH</b>
+  Are you adding 'DATE OF BIRTH' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (Yes)<br><br>DATA TYPE OF DATE OF BIRTH: <b>DA</b>TE/TIME <br>EARLIEST DATE (OPTIONAL): <b>1/1/1860 &lt;RET&gt;</b>  (JAN 01, 1860) <br>LATEST DATE: <b>1963 &lt;RET&gt;</b>  (1963) <br>CAN DATE BE IMPRECISE (Y/N):  YES// <b>&lt;RET&gt;</b>
+CAN TIME OF DAY BE ENTERED (Y/N):  NO// <b>&lt;RET&gt;</b>  NO</pre> <hr> 
+	 <p> If you reply YES to the "CAN TIME OF DAY BE ENTERED (Y/N): NO//"
+		prompt, you would then be asked "CAN SECONDS BE ENTERED?".</p> 
+	 <pre></pre> <hr> 
+	 <pre>WILL DATE OF BIRTH FIELD BE MULTIPLE:  No// <b>&lt;RET&gt;</b>  (No) <br>IS DATE OF BIRTH ENTRY MANDATORY (Y/N):  NO// <b>Y &lt;RET&gt;</b>  YES<br>...<br>'HELP'-PROMPT:  TYPE A DATE BETWEEN 1/1/1860 AND 1963 <br>           Replace <b>&lt;RET&gt;</b>
+DESCRIPTION:
+  1&gt; <b>&lt;RET&gt;</b>
+</pre> <hr> 
+	 <p>A default Help prompt is automatically written for you with the
+		DATE/TIME Data Type. You can change this prompt using the "Replace ... With"
+		syntax. </p> 
+	 <p><b>NOTE:</b> This Help information is displayed when the user inputs a
+		single question mark ("<b>?</b>") when editing this field.</p> 
+	 <p>You can review and change a file's field attributes easily by running
+		the Modify File Attributes option in
+		<a href="#Screenmode" title="Screen Mode" class="bodylink">Screen Mode</a>.
+		Thus, we have also provided an
+		<a href="cr_ex.htm#Date/Time" title="example of entering a DATE/TIME Data Type in Screen Mode" class="bodylink">example of entering a DATE/TIME Data Type in Screen
+		Mode</a>.&nbsp;</p> <hr> 
+	 <h5><a name="Numeric">NUMERIC Data Type</a></h5> 
+	 <p>A Data Type defined as NUMERIC requires you to enter the lowest and
+		highest values allowed, the maximum number of decimal digits allowed, and to
+		state whether dollar values are allowed (e.g., $33).</p> 
+	 <p>For example, when defining a NUMERIC Data Type, you are asked the
+		following questions: </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select FIELD: <b>AGE AT ONSET</b>   <br>  Are you adding 'AGE AT ONSET' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (YES)<br> <br>DATA TYPE OF AGE AT ONSET: <b>NUMERIC</b> <br>INCLUSIVE LOWER BOUND: <b>0</b>
+INCLUSIVE UPPER BOUND: <b>100</b> <br>IS THIS A DOLLAR AMOUNT (Y/N):  NO// <b>&lt;RET&gt;</b></pre> <hr> 
+	 <p>If you answer YES at the "IS THIS A DOLLAR AMOUNT (Y/N):" prompt, VA
+		FileMan would allow users to precede input data with a dollar sign ("<b>$</b>")
+		and show up to two decimal places. </p> 
+	 <pre></pre> <hr> 
+	 <pre>MAXIMUM NUMBER OF FRACTIONAL DIGITS: 0// <b>&lt;RET&gt;</b> <br>WILL AGE AT ONSET FIELD BE MULTIPLE? No// <b>&lt;RET&gt;</b>  (No)    <br>IS AGE AT ONSET ENTRY MANDATORY (Y/N): NO// <b>&lt;RET&gt;</b>  NO<br>....<br>'HELP'-PROMPT:  Type a Number between 0 and 100, 0 Decimal Digits <br>           Replace <b>&lt;RET&gt;</b>
+DESCRIPTION:
+  1&gt; <b>&lt;RET&gt;</b></pre> <hr> 
+	 <p>A default Help prompt is automatically written for you with the NUMERIC
+		Data Type. You can change this prompt using the "Replace ... With" syntax. </p>
+	 
+	 <p><b>NOTE:</b> This Help information is displayed when the user inputs a
+		single question mark ("<b>?</b>") when editing this field.</p> 
+	 <p>You can review and change a file's field attributes easily by running
+		the Modify File Attributes option in
+		<a href="#Screenmode" title="Screen Mode" class="bodylink">Screen Mode</a>.
+		Thus, we have also provided an
+		<a href="cr_ex.htm#Numeric" title="example of entering a NUMERIC Data Type in Screen Mode" class="bodylink">example of entering a NUMERIC Data Type in Screen
+		Mode</a>.&nbsp;</p> <hr> 
+	 <h5><a name="Set">SET OF CODES Data Type</a></h5> 
+	 <p>A Data Type defined as a SET OF CODES can be used to restrict a user to
+		just a few possible values (e.g., YES or NO). When defining a SET OF CODES Data
+		Type, enter a valid code and a translation of what each code means. The user
+		can enter the code, the full meaning, or a portion of the full meaning. If the
+		field is set up to require only a one-character response (as shown in the
+		example below), this Data Type can simplify the user's data entry. </p> 
+	 <p>VA FileMan has only a limited amount of space to store the codes and
+		their external values. If the limit is exceeded, you are told "TOO
+		MUCH!!--SHOULD BE A 'POINTER', NOT 'SET'." The SET OF CODES Data Type is
+		sometimes referred to as a SET. </p> 
+	 <p>For example, when defining a SET OF CODES Data Type, you are asked the
+		following questions: </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select FIELD: <b>SEX</b>
+  Are you adding 'SEX' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (Yes)  <br><br>DATA TYPE OF SEX: <b>SET</b> OF CODES<br>INTERNALLY-STORED CODE: <b>m</b>  WILL STAND FOR: <b>MALE</b> <br>INTERNALLY-STORED CODE: <b>f</b>  WILL STAND FOR: <b>FEMALE</b> <br>INTERNALLY-STORED CODE: <b>&lt;RET&gt;</b>
+WILL SEX FIELD BE MULTIPLE: No// <b>&lt;RET&gt;</b>  (No) <br>IS SEX ENTRY MANDATORY (Y/N):  No// <b>Y &lt;RET&gt;</b>  YES<br>... <br>'HELP'-PROMPT: <b>&lt;RET&gt;</b>
+DESCRIPTION:
+  1&gt; <b>&lt;RET&gt;</b></pre> <hr> 
+	 <p>In this example, "<b>m</b>" stands for Male and "<b>f</b>" stands for
+		Female. Numbers as well as alphabetic characters can be used. </p> 
+	 <p>You can review and change a file's field attributes easily by running
+		the Modify File Attributes option in
+		<a href="#Screenmode" title="Screen Mode" class="bodylink">Screen Mode</a>.
+		Thus, we have also provided an
+		<a href="cr_ex.htm#Set" title="example of entering a  SET OF CODES Data Type in Screen Mode" class="bodylink">example of entering a SET OF CODES Data Type in Screen
+		Mode</a>.&nbsp;</p> <hr> 
+	 <h5><a name="Free">FREE TEXT Data Type</a></h5> 
+	 <p>A Data Type defined as FREE TEXT allows you to enter the maximum and
+		minimum allowable string length of the FREE TEXT data. You can also enter an M
+		PATTERN MATCH that input data will have to match.</p> 
+	 <p>For example, when defining a FREE TEXT Data Type, you are asked the
+		following questions: </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select FIELD: <b>DIAGNOSIS</b>
+  Are you adding 'DIAGNOSIS' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (Yes)<br><br>DATA TYPE OF DIAGNOSIS: <b>FREE TEXT</b> <br>MINIMUM LENGTH: <b>3</b>
+MAXIMUM LENGTH: <b>30</b> <br>(OPTIONAL) PATTERN MATCH (IN 'X'): <b>&lt;RET&gt;</b></pre> <hr> 
+	 <p>The PATTERN MATCH is written in M code. If input data violates the
+		PATTERN MATCH or the Minimum/Maximum lengths, the data is not accepted and the
+		user is shown the Help prompt information. </p> 
+	 <pre></pre> <hr> 
+	 <pre>WILL DIAGNOSIS FIELD BE MULTIPLE? No// <b>Y &lt;RET&gt;</b>  (Yes)<br>IS DIAGNOSIS ENTRY MANDATORY(Y/N): NO// <b>&lt;RET&gt;</b>  NO<br>SHOULD USER SEE AN "ADDING A NEW DIAGNOSIS?" MESSAGE FOR NEW<br>   ENTRIES (Y/N): <b>N &lt;RET&gt;</b>  NO<br>HAVING ENTERED OR EDITED ONE DIAGNOSIS, SHOULD USER BE ASKED <br>   ANOTHER (Y/N): <b>Y &lt;RET&gt;</b>  YES </pre> <hr> 
+	 <p>With these specifications, the user is not given a confirming message
+		when new subentries are added to the Multiple. The user is allowed to enter
+		several diagnoses in a row for a given patient. </p> 
+	 <pre></pre> <hr> 
+	 <pre>....<br>....<br>'HELP'-PROMPT:  Answer must be 3-30 characters in length.<br>           Replace <b>&lt;RET&gt;</b>
+DESCRIPTION:
+  1&gt; <b>&lt;RET&gt;</b></pre> <hr> 
+	 <p>A default Help prompt is automatically written for you with the FREE
+		TEXT Data Type. You can change this prompt using the "Replace ... With" syntax.
+		</p> 
+	 <p><b>NOTE:</b> This Help information is displayed when the user inputs a
+		single question mark ("<b>?</b>") when editing this field.</p> 
+	 <p>You can review and change a file's field attributes easily by running
+		the Modify File Attributes option in
+		<a href="#Screenmode" title="Screen Mode" class="bodylink">Screen Mode</a>.
+		Thus, we have also provided an
+		<a href="cr_ex.htm#Free_text" title="example of entering a  FREE TEXT Data Type in Screen Mode" class="bodylink">example of entering a FREE TEXT Data Type in Screen
+		Mode</a>.&nbsp;</p> <hr> 
+	 <h5><a name="Word">WORD-PROCESSING Data Type</a></h5> 
+	 <p>A Data Type defined as a WORD-PROCESSING field allows entry of unlimited
+		free-text data. The data can be edited, formatted, and printed with word
+		processing text editors. </p> 
+	 <p>NOTE: For a description of VA FileMan's native text editors, please
+		refer to the "<a href="../u1/se_frm.htm" target="_top" title="Screen Editor" class="bodylink">Screen Editor</a>" and "<a href="../u1/le_frm.htm" target="_top" title="Line Editor" class="bodylink">Line Editor</a>" chapters in
+		the "<a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="bodylink">VA
+		FileMan Getting Started Manual</a>."</p> 
+	 <p>For example, when defining a WORD-PROCESSING Data Type, you are asked
+		the following questions: </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select FIELD: <b>HISTORY</b>
+  Are you adding 'HISTORY' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (Yes) <br><br>DATA TYPE OF HISTORY: <b>WORD-PROCESSING</b>
+SHALL THIS TEXT NORMALLY APPEAR IN WORD-WRAP MODE? Yes// <b>&lt;RET&gt;</b>  (Yes)<br>....<br>....<br>'HELP'-PROMPT: <b>SUBJECTIVE NARRATIVE OF PATIENT'S PROBLEM HISTORY</b>
+DESCRIPTION:
+  1&gt; <b>&lt;RET&gt;</b></pre> <hr> 
+	 <p>If you answer YES to the "SHALL THIS TEXT NORMALLY APPEAR IN WORD-WRAP
+		MODE" question, text is automatically wrapped at word boundaries to fit in the
+		column in which it is being printed. Usually, this is the preferred way to
+		print text. However, when it is important that lines of text be printed exactly
+		as they were entered, answer NO to the "SHALL THIS TEXT NORMALLY APPEAR IN
+		WORD-WRAP MODE" question. Thus, text is output in no-wrap mode. You would
+		probably want a spreadsheet or a restaurant menu printed in no-wrap mode. </p> 
+	 <p><b>NOTE:</b> If the column in which no-wrap text is being printed is too
+		short to accommodate the line of text, your printer may break the line in the
+		middle of words or otherwise destroy the formatting of the text. </p> 
+	 <p>You can review and change a file's field attributes easily by running
+		the Modify File Attributes option in
+		<a href="#Screenmode" title="Screen Mode" class="bodylink">Screen Mode</a>.
+		Thus, we have also provided an
+		<a href="cr_ex.htm#word" title="example of entering a  WORD-PROCESSING Data Type in Screen Mode" class="bodylink">example of entering a WORD-PROCESSING Data Type in Screen
+		Mode</a>.&nbsp;</p> <hr> 
+	 <h5><a name="Computed">COMPUTED Data Type</a></h5> 
+	 <p>When a Data Type is defined as COMPUTED its value is determined at the
+		time the field is accessed. This computation is based on an expression stored
+		in the data dictionary. The field value (or data) itself is not stored in the
+		data dictionary. The COMPUTED expression is constructed using field names,
+		literals or constants, functions, and operators. These elements are explained
+		fully in the "<a href="ce_frm.htm" target="_top" title="Computed Expressions" class="bodylink">Computed Expressions</a>" chapter in this manual. <br> <br>
+		<b>NOTE:</b> The functions referred to above are VA FileMan functions stored in
+		the FUNCTION file (#.5), not M functions. A developer with programmer access
+		can also enter M code in a COMPUTED field. The M code must set the variable "X"
+		to the COMPUTED field value.</p> 
+	 <p>For example, when defining a COMPUTED Data Type, you are asked the
+		following questions:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select FIELD: <b>AGE</b>
+  Are you adding 'AGE' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (Yes)<br><br>DATA TYPE OF AGE: <b>COMPUTED</b>  <br><br>'COMPUTED-FIELD' EXPRESSION: <b>TODAY-(DATE OF BIRTH)\365.25</b>
+
+....
+NUMBER OF FRACTIONAL DIGITS TO OUTPUT (ONLY ANSWER IF NUMBER-VALUED): <b>2</b>
+</pre> <hr> 
+	 <p>For this example, we assume the DATE OF BIRTH field was previously
+		created. Thus, we can reference it in the " 'COMPUTED-FIELD' EXPRESSION". Also,
+		the "NUMBER OF FRACTIONAL DIGITS TO OUTPUT" question is asking whether you
+		should enter the number of digits that should normally appear to the right of
+		the decimal point when this field is displayed.</p> 
+	 <pre></pre> <hr> 
+	 <pre>SHOULD VALUE ALWAYS BE INTERNALLY ROUNDED TO 2 DECIMAL PLACES? No// <b>Y<br>&lt;RET&gt;</b>  (Yes)<br>WHEN TOTALLING THIS FIELD, SHOULD THE SUM BE COMPUTED FROM<br>       THE SUMS OF THE COMPONENT FIELDS? No// <b>&lt;RET&gt;</b>  (No)<br>LENGTH OF FIELD: 8// <b>&lt;RET&gt;</b> <br></pre> <hr> 
+	 <p>You can review and change a file's field attributes easily by running
+		the Modify File Attributes option in
+		<a href="#Screenmode" title="Screen Mode" class="bodylink">Screen Mode</a>.
+		Thus, we have also provided an
+		<a href="cr_ex.htm#Computed" title="example of entering a  COMPUTED Data Type in Screen Mode" class="bodylink">example of entering a COMPUTED Data Type in Screen
+		Mode</a>.&nbsp;</p> <hr> 
+	 <h5><a name="Pointer">POINTER TO A FILE Data Type</a></h5> 
+	 <p>A Data Type defined as a POINTER TO A FILE requires you to enter the
+		name or number of the pointed-to file and that file must already exist (defined
+		previously).</p> 
+	 <p>For example, when defining a POINTER TO A FILE Data Type, you are asked
+		the following questions: </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select FIELD: <b>RELIGION</b>
+  Are you adding 'RELIGION' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (Yes)<br><br>DATA TYPE OF RELIGION: <b>POINTER</b> TO A FILE  <br>POINT TO WHICH FILE: <b>RELIGION</b> <br></pre> <hr> 
+	 <p>The file that is pointed to must already exist on your system. If you
+		enter a single question mark ("<b>?</b>") at the "POINT TO WHICH FILE:" prompt,
+		you will be presented with a list of the available files. </p> 
+	 <pre></pre> <hr> 
+	 <pre>SHOULD 'ADDING A NEW RELIGION FILE ENTRY' ("LAYGO") <br>BE ALLOWED WHEN ANSWERING THE 'RELIGION' QUESTION?  No// <b>&lt;RET&gt;</b>  (No)  </pre> <hr> 
+	 <p>By answering NO to this prompt, users who are editing patient data are
+		not able to add a new entry on the fly to the RELIGION file. This prompt
+		depends on whether you have LAYGO access to the file or not.</p> 
+	 <pre></pre> <hr> 
+	 <pre>WILL RELIGION FIELD BE MULTIPLE? No// <b>&lt;RET&gt;</b>  (No)<br>IS RELIGION ENTRY MANDATORY (Y/N): NO// <b>&lt;RET&gt;</b>  NO<br>.... <br>'HELP'-PROMPT: <b>&lt;RET&gt;</b>
+DESCRIPTION:
+  1&gt; <b>&lt;RET&gt;</b>
+</pre> <hr> 
+	 <p>You can review and change a file's field attributes easily by running
+		the Modify File Attributes option in
+		<a href="#Screenmode" title="Screen Mode" class="bodylink">Screen Mode</a>.
+		Thus, we have also provided an
+		<a href="cr_ex.htm#Pointer" title="example of entering a  POINTER TO A FILE Data Type in Screen Mode" class="bodylink">example of entering a POINTER TO A FILE Data Type in Screen
+		Mode</a>.&nbsp;</p> <hr> 
+	 <h5><a name="Variable">VARIABLE-POINTER Data Type</a></h5> 
+	 <p>A Data Type defined as a VARIABLE-POINTER (as with the
+		<a href="cr_ex.htm#Pointer" title="POINTER TO A FILE" class="bodylink">POINTER
+		TO A FILE</a> Data Type) requires you to enter the names or numbers of the
+		pointed-to files and those files must already exist (defined previously).
+		Additionally, an order, message, and prefix must be associated with each
+		file.</p> 
+	 <p>For example, when defining a VARIABLE-POINTER Data Type, you are asked
+		the following questions: </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select FIELD: <b>PROVIDER</b>
+  Are you adding 'PROVIDER' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (Yes)  <br><br>DATA TYPE OF PROVIDER: <b>VARIABLE-POINTER</b>
+Select VARIABLE POINTER: <b>PROVIDER</b>      <br> <br></pre> <hr> 
+	 <p>You answer the "Select VARIABLE POINTER:" prompt with the name or number
+		of an existing file. </p> 
+	 <pre></pre> <hr> 
+	 <pre>Are you adding 'PROVIDER' as a new VARIABLE-POINTER? No// <b>Y &lt;RET&gt;</b>  (Yes)<br> <br>VARIABLE-POINTER:  PROVIDER// <b>&lt;RET&gt;</b>
+MESSAGE: <b>Staff Provider</b>  <br>ORDER: <b>1</b>  <br>PREFIX: <b>S</b>
+SHOULD USER BE ALLOWED TO ADD A NEW ENTRY: <b>NO &lt;RET&gt;</b>  NO</pre> <hr> 
+	 <p>The MESSAGE is part of the online Help associated with the
+		VARIABLE-POINTER field when a single question mark ("<b>?</b>") is entered
+		during editing. In this example, the PROVIDER file MESSAGE is associated with
+		"Staff Provider." </p> 
+	 <p>The several pointed-to files are searched based on their ORDER. In this
+		example, since the ORDER for the PROVIDER VARIABLE-POINTER is one, the PROVIDER
+		file is the first file searched.</p> 
+	 <p>The PREFIX field is used to reference a particular pointed-to file. To
+		see the entries in a particular file, you would enter that file's PREFIX
+		followed by a period and a question mark at the VARIABLE-POINTER's field name
+		(e.g., in this example, entering "<b>S.?</b>" would give you the option to list
+		the entries in the PROVIDER file). If you want to refer to only one of the
+		several pointed-to files, put that file's PREFIX followed by a period at the
+		VARIABLE-POINTER's field name (e.g., in this example, entering "<b>S.</b>"
+		would refer you to the PROVIDER file).</p> 
+	 <p>By answering NO to the "SHOULD USER BE ALLOWED TO ADD A NEW ENTRY:"
+		prompt, the user is <i>not</i> allowed to add new entries on the fly to the
+		PROVIDER file (the same as the RELIGION field entered as a
+		<a href="cr_ex.htm#Pointer" title="POINTER TO A FILE" class="bodylink">POINTER
+		TO A FILE</a>). If you had answered YES, then new entries could be added to the
+		PROVIDER file.</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select VARIABLE-POINTER: <b>16 &lt;RET&gt;</b>  PERSON <br>  Are you adding 'PERSON' as a new VARIABLE-POINTER? (the 2ND)? No// <b>Y &lt;RET&gt;</b>  (Yes)<br>VARIABLE-POINTER:    PERSON// <b>&lt;RET&gt;</b>
+MESSAGE: <b>Other Provider</b> <br>ORDER: <b>2</b>
+PREFIX: <b>O</b>
+SHOULD USER BE ALLOWED TO ADD A NEW ENTRY: <b>YES &lt;RET&gt;</b>  YES</pre> <hr> 
+	 <p>In this example, a second VARIABLE-POINTER was created to the PERSON
+		file (#16). By answering YES to the "SHOULD USER BE ALLOWED TO ADD A NEW
+		ENTRY:" prompt, users who are editing patient data are allowed to add entries
+		to the PERSON file. </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select VARIABLE-POINTER: <b>&lt;RET&gt;</b></pre> <hr> 
+	 <p>You stop identifying files for a VARIABLE-POINTER by simply pressing the
+		Enter/Return key without any additional entries at the "Select
+		VARIABLE-POINTER:" prompt.</p> 
+	 <pre></pre> <hr> 
+	 <pre>WILL PROVIDER FIELD BE MULTIPLE?  No// <b>&lt;RET&gt;</b>  (No) <br>IS PROVIDER ENTRY MANDATORY (Y/N):  NO// <b>&lt;RET&gt;</b>  NO<br>'HELP'-PROMPT: <b>&lt;RET&gt;</b>
+DESCRIPTION:
+  1&gt; <b>&lt;RET&gt;</b></pre> <hr> 
+	 <p>After entering both VARIABLE-POINTERS, when you enter a single question
+		mark ("<b>?</b>") at the "PROVIDER" field prompt, you will see the following
+		Help message:</p> 
+	 <pre></pre> <hr> 
+	 <pre>PROVIDER: <b>?</b>
+     Enter one of the following:
+       S.EntryName to select a Staff Provider
+       O.EntryName to select a Other Provider
+ 
+     To see the entries in any particular file type &lt;Prefix.?&gt; 
+</pre> <hr> 
+	 <p>In this example, if you simply enter a name at the "PROVIDER:" prompt,
+		then the system will search each of the VARIABLE-POINTER field files for the
+		name you have entered. If a match is found, the system will ask you if it is
+		the correct entry. However, if you know the file the entry should be in, then
+		you can speed processing by using the following syntax to select an entry: </p>
+	 
+	 <ul> 
+		<li><b>PREFIX.entry name</b><br><br></li> 
+		<li><b>MESSAGE.entry name</b><br><br></li> 
+		<li><b>File Name.entry name</b></li> 
+	 </ul> 
+	 <p><b>NOTE:</b> You do <i>not</i> need to enter the entire file name or
+		message to direct the lookup. Using the first few characters will suffice.</p> 
+	 <p>You can review and change a file's field attributes easily by running
+		the Modify File Attributes option in
+		<a href="#Screenmode" title="Screen Mode" class="bodylink">Screen Mode</a>.
+		Thus, we have also provided an
+		<a href="cr_ex.htm#Variable" title="example of entering a  VARIABLE-POINTER Data Type in Screen Mode" class="bodylink">example of entering a VARIABLE-POINTER Data Type in Screen
+		Mode</a>.&nbsp;</p> <hr> 
+	 <h5><a name="MUMPS">MUMPS Data Type</a></h5> 
+	 <p>Those with programmer access can define a field as a MUMPS Data Type.
+		This Data Type is designed specifically to contain executable M code. The code
+		entered into this kind of field is verified to be valid M code that conforms to
+		VA programming standards.</p> 
+	 <p>MUMPS Data Type fields are usually used in files that are part of
+		developer tools systems. For example, the OPTION file (#19) is part of the MENU
+		MANAGEMENT system used in the VA for assigning menus and associated actions to
+		each computer user. The ENTRY ACTION field on the OPTION file is defined as a
+		MUMPS type field. This field allows a developer who is creating an option to
+		enter M code to do any setup and initialization that is needed before the end
+		user can do the action allowed by the option.</p>
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
+	 <!-- cr_flds.htm -->
+	 <p align="center">Reviewed/Updated: March 4, 2007</p>
+	 <p>&nbsp;</p> 
+
+  </body></html>

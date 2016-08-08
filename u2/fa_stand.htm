@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: LFA Standard/Modified
+		Standard DD Listings</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,list file attributes,attributes,data dictionary,dd,standard and modified standard data dictionaries,standard,modified">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fa_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: List File Attributes Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">List File Attributes</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Standard and Modified Standard Data Dictionaries</H4> 
+	 <P>The most complete information about a file is obtained by using the
+		Standard data dictionary format, which is the default for the List File
+		Attributes option. In addition to detailed information about every field in the
+		file, the Standard data dictionary format gives the file access, identifiers,
+		cross-references, other files pointing to the file, files pointed to by the
+		file, and any templates (including forms and blocks) associated with the file.
+		</P> 
+	 <P>Here is a sample data dictionary in Standard format: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>STANDARD DATA DICTIONARY #16026 -- PATIENT FILE              05/31/91  PAGE 1
+STORED IN ^DIZ(16026,  (1 ENTRY)   SITE: KDEMO V7   UCI: VAH,KXX               
+
+DATA          NAME                  GLOBAL        DATA
+ELEMENT       TITLE                 LOCATION      TYPE
+-------------------------------------------------------------------------------
+A sample file containing some of the fields found in a file of patient 
+information in a hospital database.  
+
+
+              DD ACCESS: #
+              RD ACCESS: #
+              WR ACCESS: #
+             DEL ACCESS: #
+           LAYGO ACCESS: #
+           AUDIT ACCESS: #
+
+
+CROSS
+REFERENCED BY: NAME(B)
+
+
+   CREATED ON: MAR 22,1991
+
+
+16026,.01     NAME                   0;1 FREE TEXT (Required)
+
+              INPUT TRANSFORM:  K:$L(X)&gt;30!($L(X)&lt;3)!'(X'?1P.E) X
+              LAST EDITED:      MAR 29, 1991 
+              HELP-PROMPT:      Answer must be 3-30 characters in length. 
+              GROUP:            DEMOG
+              CROSS-REFERENCE:  16026^B 
+                                1)= S ^DIZ(16026,&quot;B&quot;,$E(X,1,30),DA)=&quot;&quot;
+                                2)= K ^DIZ(16026,&quot;B&quot;,$E(X,1,30),DA)
+                                Automatically created regular x-ref used to 
+                                look-up and sort entries based on the value in 
+                                the .01 (NAME) field.
+
+
+16026,1       SEX                    0;2 SET (Required)
+
+                                'm' FOR MALE; 
+                                'f' FOR FEMALE; 
+              LAST EDITED:      MAR 22, 1991 
+              GROUP:            DEMOG
+
+16026,2       DATE OF BIRTH          0;3 DATE (Required)
+
+              INPUT TRANSFORM:  S %DT=&quot;E&quot; D ^%DT S X=Y K:2630000&lt;X!(1600101&gt;X) 
+                                X
+              LAST EDITED:      MAR 22, 1991 
+              HELP-PROMPT:      TYPE A DATE BETWEEN 1/1/1860 AND 1963 
+              GROUP:            DEMOG
+
+16026,3       RELIGION               0;4 POINTER TO RELIGION FILE (#13)
+
+              LAST EDITED:      MAR 22, 1991 
+
+16026,4       DIAGNOSIS              1;0 Multiple #16026.04
+                                 (Add New Entry without Asking)
+</PRE> <HR> 
+	 <P>(Page 2)</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>STANDARD DATA DICTIONARY #16026 -- PATIENT FILE              05/31/91  PAGE 2
+STORED IN ^DIZ(16026,  (1 ENTRY)   SITE: KDEMO V7   UCI: VAH,KXX               
+
+DATA          NAME                  GLOBAL        DATA
+ELEMENT       TITLE                 LOCATION      TYPE
+-------------------------------------------------------------------------------
+16026.04,.01    DIAGNOSIS              0;1 FREE TEXT (Multiply asked)
+
+                INPUT TRANSFORM:  K:$L(X)&gt;30!($L(X)&lt;3) X
+                LAST EDITED:      MAR 22, 1991 
+                HELP-PROMPT:      Answer must be 3-30 characters in length. 
+                CROSS-REFERENCE:  16026.04^B 
+                                  1)= S ^DIZ(16026,DA(1),1,&quot;B&quot;,$E(X,1,30),DA)=&quot;&quot;
+                                  2)= K ^DIZ(16026,DA(1),1,&quot;B&quot;,$E(X,1,30),DA)
+
+
+16026.04,1      AGE AT ONSET           0;2 NUMBER
+
+                INPUT TRANSFORM:  K:+X'=X!(X&gt;100)!(X&lt;0)!(X?.E1&quot;.&quot;1N.N) X
+                LAST EDITED:      APR 29, 1991 
+                HELP-PROMPT:      Type a Number between 0 and 100, 0 Decimal 
+                                  Digits 
+
+16026.04,2      HISTORY                1;0   WORD-PROCESSING #16026.42
+
+16026,5       PROVIDER               2;1          VARIABLE POINTER
+
+              FILE  ORDER  PREFIX    LAYGO  MESSAGE
+                 6    1    S            n   STAFF PROVIDER 
+                 16   2    O            y   OTHER PROVIDER 
+                                         
+              LAST EDITED:      MAR 22, 1991 
+
+16026,6       SSN                    2;2 FREE TEXT (Required) (audited)
+
+              Social Security Number    
+              INPUT TRANSFORM:  K:$L(X)&gt;9!($L(X)&lt;9)!'(X?9N) X
+              LAST EDITED:      MAR 22, 1991 
+              HELP-PROMPT:      Enter 9 numbers without dashes. 
+              DESCRIPTION:      An entry is required.  If you do not know this
+                                patient's Social Security Number, enter
+                                '000000000' to indicate the number is unknown.  
+
+              GROUP:            DEMOG
+
+      FILES POINTED TO                      FIELDS
+
+PROVIDER (#6)                     PROVIDER (#5)
+
+PERSON (#16)                      PROVIDER (#5)
+
+RELIGION (#13)                    RELIGION (#3)
+
+INPUT TEMPLATE(S):
+
+PRINT TEMPLATE(S):
+CAPTIONED                                         USER #0    
+ZZDIAGPRINT                   MAR 29, 1991@12:18  USER #140
+   Used to print information from the DIAGNOSIS multiple.
+
+SORT TEMPLATE(S):
+
+FORM(S)/BLOCKS(S):</PRE> <HR> 
+	 <H5>Modified Standard Format</H5> 
+	 <P>Another data dictionary format is the Modified Standard format, which
+		allows you to suppress printing the M code and to restrict the listing to
+		specified groups of fields.</P> 
+	 <P>For example, the following dialogue eliminates the M code from the
+		Standard listing and only prints those fields in the DEMOG group (NAME, SEX,
+		DATE OF BIRTH, and SSN):</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select LISTING FORMAT: STANDARD// <B>MOD</B>IFIED STANDARD
+WANT THE LISTING TO INCLUDE MUMPS CODE? N// <B>&lt;RET&gt;</B>
+WANT TO RESTRICT LISTING TO CERTAIN GROUPS OF FIELDS? NO// <B>Y</B> 
+Include GROUP: <B>DEMOG</B>
+And include GROUP: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P><B>NOTE:</B> If you answer the question concerning M code YES and do not
+		specify any groups, the output from the Modified Standard format will be the
+		same as that of the Standard format.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fa_stand.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

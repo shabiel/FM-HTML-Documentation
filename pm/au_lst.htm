@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by George Timson and Susan Strack, 04/03/02-->
+<!--Revised by Thom Blom, 07/23/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: LAST^DIAUTL</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer,auditing API,LAST^DIAUTL,LAST,DIAUTL">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white"> 
+	<BR>
+	<IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Auditing API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>
+LAST^DIAUTL( ): Who last changed data</H4> 
+  <p>This extrinsic function uses the audit trail to retrieve the last user
+who touched a particular field value, and the date/time when this editing occurred.
+	 <P></P> 
+	 <H5>Format</H5> 
+	 <PRE>$$LAST^DIAUTL(FILE,ENTRY,FIELD)</PRE> 
+	 <H5><A NAME="input">Input Parameters</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  
+<td VALIGN=TOP><b>FILE</b></td>
+
+<td VALIGN=TOP COLSPAN="2">(Required) File number of a file which is being
+audited.&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>ENTRY</b></td>
+
+<td>(Required) Entry number in the audited file.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>FIELD</b></td>
+
+<td VALIGN=TOP COLSPAN="2">(Required) Specifies which fields in the audited file are to be examined for audit history.&nbsp; Can be one of the following:&nbsp;
+<ul>
+<li>
+A single field number.<br>
+<br>
+</li>
+
+<li>
+A list of field numbers, separated by semicolons.<br>
+<br>
+</li>
+
+<li>
+A range of field numbers, in the form M:N, where M and N are the end points
+of the inclusive range. All field numbers within this range are retrieved.<br>
+<br>
+</li>
+
+<li>
+<b>
+*</b> for all fields.</li>
+</ul>
+</td></tr>
+	 </TABLE> 
+	 <H5><A NAME="output">Output</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+Returns a string, delimited by an up-arrow.&nbsp; The string is null if
+there is no audit history on file for the given fields in the given entry.&nbsp;
+If there is a history, the first up-arrow piece of the returned string is
+the (FileMan-format) date/time of the most recent audited event, and the
+second up-arrow piece is the user number (DUZ) of the user who made that
+most recent change.
+		</TR> 
+	 </TABLE> 
+	 <H5>Example</H5> 
+	 <P>
+Find who last changed demographics of entry number 666 in File #2.</P> 
+	 <PRE>    <B>&gt;W $$LAST^DIAUTL(2,666,&quot;0:1&quot;)
+</B>     3000708.103432^78
+</PRE> 
+	 <P>User number 78 was the user who most recently changed any of the audited fields numbered
+
+between 0 and 1 in this Entry.&nbsp; This user did so on 8 July, 2000 at 10:34 AM. 
+	 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- au_lst.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

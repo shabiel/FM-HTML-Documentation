@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Transferring File Entries,
+		Transferring Data Within the Same File </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,transferring file entries,transferring,file entries,transferring data within the same file,transferring dta,data,transferring,same file">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="te_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Transferring File Entries Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Transferring File Entries</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>Transferring Data Within the Same File</H4> 
+	 <P>You can use the Transfer File Entries option to merge two entries that
+		are in the same file. To do this: </P> 
+	 <OL> 
+		<LI>Identify the input and output file as the same<BR><BR></LI> 
+		<LI>Identify the two entries</LI> 
+	 </OL> 
+	 <P>Data values are then transferred from the FROM entry to the TO entry.
+		The following example shows the simple dialogue: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>TRANSFER ENTRIES</B>   
+
+Select TRANSFER OPTION: <B>?</B>
+ ANSWER WITH TRANSFER OPTION NUMBER, OR NAME
+CHOOSE FROM:
+   1           TRANSFER FILE ENTRIES
+   2           COMPARE/MERGE FILE ENTRIES
+
+Select TRANSFER OPTION: <B>1 &lt;RET&gt;</B>  TRANSFER FILE ENTRIES 
+ 
+INPUT TO WHAT FILE: <B>PATIENT</B>
+TRANSFER FROM WHAT FILE: <B>PATIENT</B>
+TRANSFER DATA INTO WHICH PATIENT: <B>RECIPIENT,ROGER</B>
+TRANSFER DATA FROM PATIENT: <B>SENDER,SAM</B> 
+WANT TO DELETE THIS ENTRY AFTER IT'S BEEN TRANSFERRED?  NO//</PRE> <HR> 
+	 <P>If the TO entry (Roger Recipient in our example) already has a value on
+		file for a given field, that value will be preserved (i.e., it will <I>not</I>
+		be overwritten by the corresponding field value in the FROM entry). This rule
+		applies to word processing data fields also. If the recipient has any text on
+		file, corresponding text from the sender's entry is not merged with it. Thus,
+		if you decide to delete the FROM entry (Sam Sender here), you may lose some
+		data. </P> 
+	 <P>In the case of distinct Multiple-valued subfields, merging will take
+		place. The subentries in the FROM entry would be added to the Multiple in the
+		TO entry. Further, if two subentries have the same .01 value and if any of the
+		subfields are blank in the TO entry, the FROM subentry's data will be placed in
+		the blank subfield. In this way, data is added to Multiples in the same way
+		that it is added to files. </P> 
+	 <P>For example, suppose DIAGNOSIS is the label of the .01 field of a
+		Multiple and AGE AT ONSET is a subfield in that Multiple. If Roger Recipient
+		has a DIAGNOSIS of "Angina" and Sam Sender has one of "Diabetes", Recipient
+		ends up with both "Angina" and "Diabetes". Further, if both Recipient and
+		Sender had "Angina", but Recipient had no AGE AT ONSET for that subentry and
+		Sender did have one, the Sender's AGE AT ONSET data for "Angina" would be
+		transferred to Recipient. </P> 
+	 <P>The following example illustrates the transfer of data values from one
+		entry to another in more detail. (These two entries will also be used in the
+		discussion of the Compare/Merge File Entries option.) Before the transfer, the
+		Inquire to File Entries option displays these two entries from the SCHOLAR
+		file: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>NAME:  RUSSELL,BERTRAND A.  SSN:  999-99-9999
+    SUBJECT AREA:  PHILOSOPHY
+ TOPICS:  RUSSELL'S PARADOX
+ TOPICS:  PRINCIPLE OF EXCLUDED MIDDLE 
+ TOPICS:  SET THEORY
+ TOPICS:  THEORY OF TYPES
+ TOPICS:  LIAR PARADOX</PRE> <HR> 
+	 <PRE></PRE> <HR> 
+	 <PRE>NAME:  RUSSELL,BERTRAND W.  DATE OF BIRTH:    1872    SSN:  888-88-8888
+    SUBJECT AREA:  MATHEMATICS
+  TOPICS:  RUSSELL'S PARADOX
+  TOPICS:  SET THEORY
+  TOPICS:  THEORY OF TYPES
+  TOPICS:  AXIOM OF INFINITY</PRE> <HR> 
+	 <P>The transfer is then initiated with the following dialogue: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select TRANSFER OPTION: <B>TRANS</B>FER FILE ENTRIES 
+ 
+ INPUT TO WHAT FILE: <B>SCHOLAR</B>
+ TRANSFER FROM FILE: <B>SCHOLAR</B>
+ TRANSFER DATA INTO WHICH SCHOLAR: <B>RU</B>
+      1    RUSSELL,BERTRAND A.
+      2    RUSSELL,BERTRAND W.
+ CHOOSE 1-2: <B>1</B>
+ TRANSFER FROM SCHOLAR: <B>RUSSELL,BERTRAND W.</B>
+     WANT TO DELETE THIS ENTRY AFTER IT'S TRANSFERRED?  NO// <B>YES</B> 
+  ...EXCUSE ME, LET ME THINK ABOUT THAT A MOMENT..... </PRE> <HR> 
+	 <P>Data values are then merged such that no pre-existing values are
+		overwritten but new values are added. The DATE OF BIRTH is added since the
+		pre-existing value was null. Different subentries in the TOPICS Multiple are
+		added to the pre-existing list of topics. The Inquire to File Entries option
+		shows the result: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>NAME:  RUSSELL, BERTRAND A.  DATE OF BIRTH:  1872   SSN:  999-99-9999
+   SUBJECT AREA:  PHILOSOPHY
+ TOPICS: RUSSELL'S PARADOX
+ TOPICS: PRINCIPLE OF EXCLUDED MIDDLE
+ TOPICS: SET THEORY
+ TOPICS: THEORY OF TYPES
+ TOPICS: LIAR PARADOX
+ TOPICS: AXIOM OF INFINITY
+ 
+The entry for Russell,Bertrand W. has been deleted.</PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- te_same.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

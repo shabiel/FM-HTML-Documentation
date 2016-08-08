@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Format and Conventions of DBS
+		Calls</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,format and conventions of dbs calls,conventions,format">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>Format and Conventions of the Calls</H4> 
+	 <P>All of the DBS calls use parameter passing instead of relying on
+		variables set prior to the call that are passed through the symbol table.
+		However, FileMan's key variables (e.g., DUZ and DT) are not passed in the
+		parameter list. When needed, FileMan continues to expect them to be defined in
+		the local symbol table. </P> 
+	 <P>Except where noted, the order of the parameters in the argument list
+		follows a consistent pattern as follows: </P> 
+	 <PRE>
+    TAG^ROUTINE(FILE,IENS,FIELD,FLAGS,OTHER_REQUIRED_PARAMS,
+        OTHER_OPTIONAL_PARAMS)
+</PRE> 
+	 <P>If a particular call does not use one or more of the first four
+		parameters, that parameter is omitted from the list of arguments. Generally,
+		when a file is needed, the file number (not global root) must be passed. This
+		allows for consistency when referring either to a top level file or to a
+		subfile. Similarly, a field is identified by its field number. </P> 
+	 <P>When it is necessary to pass the root of a local or global array, the
+		complete closed reference of the array for use with subscript indirection is
+		needed, not the traditional open FileMan root. Examples are illustrated below:
+		</P> 
+	 <TABLE BORDER="1" WIDTH="80%"
+	 SUMMARY="Acceptable and Unacceptable Roots Table"
+	 TITLE="Acceptable and Unacceptable Roots Table"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="40%"><B>Acceptable Roots</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="40%"><B>Unacceptable Roots</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">^TMP("NMSP",$J)</TD> 
+		  <TD VALIGN="TOP">^TMP("NMSP",$J, </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">LOCALVAR </TD> 
+		  <TD VALIGN="TOP">LOCALVAR(</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Since the array identified by this root is accessed by indirection, the
+		contents of the array may be changed by the VA FileMan call. The description of
+		the individual calls indicates whether you can rely on the arrays not being
+		changed. In addition, to assure that an input array is not inadvertently
+		changed during the DBS call, namespace the array. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_int2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

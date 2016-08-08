@@ -1,0 +1,689 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Advanced Edit
+		Techniques</TITLE> <META NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
+	 <META NAME="subject"
+	  CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual,advanced edit techniques,edit,stuffing">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="e3_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Advanced Edit Techniques Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Advanced Edit Techniques</A></H3> <HR
+	 CLASS="hrstyle"> 
+	 <H4>Field Value Stuffing</H4> 
+	 <P>You can make the editing process quicker, easier, and more accurate by
+		"stuffing" field values, when appropriate. The amount of data that needs to be
+		entered from the keyboard can be reduced by providing responses that can be
+		verified by pressing the Enter/Return key or that are automatically put into
+		the file.</P> <HR> 
+	 <H5>Set Field Default (2 //)</H5> 
+	 <P>You can require a particular field to default to a certain data value by
+		answering the "EDIT WHICH FIELD:" prompt with the name of the field followed
+		with two slashes ("<B>//</B>") and the default value.</P> 
+	 <P>For example, if you enter:</P> 
+	 <PRE>    EDIT WHICH FIELD: <B>SEX//MALE</B></PRE> 
+	 <P>In this example, every time you get to the SEX field prompt for an entry
+		in which sex has not yet been recorded, MALE will be prompted as the default
+		value of the SEX field. </P> <HR> 
+	 <H5><A NAME="defaults_3">Stuff/Delete Field Value (3///)</A></H5> 
+	 <P>VA FileMan offers a way to force a value to be inserted into the
+		database, even if a different value is already on file (i.e., "stuff"). You
+		simply use three slashes ("<B>///</B>") instead of two:</P> 
+	 <PRE>    EDIT WHICH FIELD: <B>SEX///MALE</B></PRE> 
+	 <P>No terminal dialogue occurs when such mandatory defaults are inserted.
+		</P> 
+	 <P>If you want to force the value of SEX to be deleted, you would respond
+		as follows:</P> 
+	 <PRE>    EDIT WHICH FIELD: <B>SEX///@</B></PRE> 
+	 <P>After entering the at-sign ("<B>@</B>"), you would see the message:</P> 
+	 <PRE>    WARNING: THIS MEANS AUTOMATIC DELETION!!</PRE> 
+	 <P>The three-slash default's value must contain the external value of the
+		field. The value is validated (using the INPUT transform) just as a
+		user-supplied response is validated. </P> <HR> 
+	 <H5><A NAME="defaults_4">Unvalidated Stuffs: (4////)</A></H5> 
+	 <P>If you have programmer access, you can define a default that does not go
+		through the INPUT transform by using four slashes ("<B>////</B>"). If you use
+		this kind of default, you must show the internally stored value of the field.
+		</P> 
+	 <P>For example, since SEX is a SET OF CODES DATA TYPE where "m" stands for
+		MALE, you could define a four-slash stuff like this:</P> 
+	 <PRE>    EDIT WHICH FIELD:  <B>SEX////m</B></PRE> <HR> 
+	 <H5><A NAME="defaults_variable">Variable Stuffs</A></H5> 
+	 <P>An even more powerful kind of default is the variable default. In this
+		mode, you specify, not a literal value like the word MALE, but rather a field
+		name from which to calculate the default value for each entry being edited.
+		</P> 
+	 <P>One example of the usefulness of this kind of default is a case where
+		you are editing two fields that usually have the same value. Suppose that, for
+		a set of patients, you want to enter a NEXT OF KIN field, followed by a
+		BENEFICIARY field. Once you have typed a patient's NEXT OF KIN, you want to see
+		that particular answer as the default value of BENEFICIARY. </P> 
+	 <P>The process would look like this: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>INPUT TO WHAT FILE: <B>PATIENT</B> 
+EDIT WHICH FIELD: ALL// <B>NEXT OF KIN</B> 
+THEN EDIT FIELD: <B>BENEFICIARY//NEXT OF KIN</B>  
+  DO YOU MEAN 'NEXT OF KIN' AS A VARIABLE? YES// <B>&lt;RET&gt;</B>
+THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+
+Select PATIENT NAME: <B>BROWN,JOE</B>
+NEXT OF KIN: <B>MRS SARAH BROWN</B> 
+BENEFICIARY: MRS SARAH BROWN// <B>&lt;RET&gt;</B>
+
+Select PATIENT NAME: <B>CAPLAN</B>, IRVING
+NEXT OF KIN: <B>MR BILL CAPLAN</B> 
+BENEFICIARY: MR BILL CAPLAN// <B>MISS JULIE CAPLAN</B> 
+</PRE> <HR> 
+	 <P>Here, Mrs. Sarah Brown ends up as both the NEXT OF KIN and BENEFICIARY
+		for Joe Brown, while Irving Caplan's NEXT OF KIN and BENEFICIARY are two
+		distinct people. </P> 
+	 <P>A variable default value can be any computed expression -- such as LAST
+		VISIT DATE+365 (see the "<A HREF="ce_frm.htm" TARGET="_top"
+		TITLE="Computed Expressions" CLASS="bodylink">Computed Expressions</A>"
+		chapter). </P> <HR> 
+	 <H5><A NAME="defaults_wp">Word-processing Field Stuffing</A></H5> 
+	 <P>The effect of stuffing values in a WORD-PROCESSING DATA TYPE field is
+		similar to defaults for other fields: the default value becomes the first line
+		of the WORD-PROCESSING text. Also, you can stuff many lines of text into a
+		WORD-PROCESSING DATA TYPE by use of a computed expression that has a Multiline
+		value (e.g., another WORD-PROCESSING-type field). </P> 
+	 <P>Alternatively, you can automatically append data to a WORD-PROCESSING
+		DATA TYPE field by following the "<B>//</B>" or "<B>///</B>" with a "<B>+</B>"
+		sign. This means add on the following text to whatever may already be on file.
+		Let's take the example of our WORD-PROCESSING-type HISTORY field data in the
+		PATIENT file: </P> 
+	 <PRE>    EDIT WHICH FIELD: <B>DIAGNOSIS</B>
+    EDIT WHICH DIAGNOSIS SUB-FIELD: <B>HISTORY//+ This case is essentially
+normal</B> </PRE> 
+	 <P>The text string following the "<B>//+</B>" is appended automatically to
+		any HISTORY field text that already exists for the chosen patient and
+		diagnosis. If no HISTORY field text existed, the string would become Line 1 of
+		the HISTORY field text. </P> 
+	 <P>When editing the entry, you see the text with the addition and can edit
+		it in the usual way. If you use three slashes ("<B>///</B>") instead of two,
+		the addition is made, and you are not presented with the text to edit. </P>
+	 <HR> 
+	 <H5><A NAME="looping">Looping (^LOOP)</A></H5> 
+	 <P>The Enter or Edit File Entries option allows you to loop through a group
+		of entries, without having to select each entry individually. After choosing
+		the fields to edit, enter the entire word <B>^LOOP</B> in upper- or lowercase.
+		Then, you can choose which entries to loop through by responding to the "EDIT
+		ENTRIES BY:" and "START WITH ... GO TO" prompts. Answer these prompts in the
+		same way that you respond to the "SORT BY:" and "START WITH ... GO TO" prompts
+		in the Print File Entries option. (See the "<A
+		HREF="../u1/pr_intro.htm#specifying_sort" TARGET="display"
+		TITLE="Specifying SORT BY Fields" CLASS="bodylink">Specifying SORT BY
+		Fields</A>" topic in the "<A HREF="../u1/pr_frm.htm" TARGET="_top"
+		TITLE="Print: How to Print Reports from Files" CLASS="bodylink">Print: How to
+		Print Reports from Files</A>" chapter of the "<A HREF="../u1/index.htm"
+		TARGET="_top" TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+		CLASS="bodylink">VA FileMan Getting Started Manual</A>" for details.) </P> 
+	 <P>In the example below, all entries would be looped through.</P> 
+	 <P><B>NOTE:</B> You can enter a SORT template at the "EDIT ENTRIES BY:"
+		prompt. </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>EDIT WHICH FIELD: <B>NAME</B>
+    THEN EDIT FIELD: <B>DATE OF BIRTH</B>
+    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+ 
+    Select PATIENT NAME: <B>^LOOP</B>   
+        EDIT ENTRIES BY:  NAME// <B>&lt;RET&gt;</B>
+        START WITH NAME:  FIRST// <B>&lt;RET&gt;</B>
+
+        ADAMS,JOHN 
+    NAME: ADAMS,JOHN// <B>ADAMS,JACK</B>
+    DATE OF BIRTH: APR 1, 1923// <B>&lt;RET&gt;</B>
+ 
+        BROWN,JOE 
+    NAME: BROWN,JOE// <B>&lt;RET&gt;</B>
+    DATE OF BIRTH: FEB 27, 1939// <B>JAN 27, 1939</B>
+		:
+</PRE> <HR> 
+	 <P>This <B>^LOOP</B> feature, in combination with the <B>///-stuff</B>
+		convention, makes it easy to load data values into newly created fields. Use
+		caution with the automatic loading and automatic deleting features of VA
+		FileMan, since these features loop through entries and make changes without
+		stopping for verification. </P> 
+	 <P>For example, suppose we have a patient database to which a new field
+		called FOLLOW-UP DATE has been added. We want to create values for this field
+		for all patients who have LAST VISIT DATEs earlier than 1977 on file. For all
+		such patients, we want FOLLOW-UP DATE set equal to JUNE 1, 1982. Use the Enter
+		or Edit File Entries option as follows: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>EDIT WHICH FIELD: <B>FOLLOW-UP DATE///JUNE 1, 1982</B> 
+    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+ 
+    Select PATIENT NAME: <B>^LOOP</B> 
+ 
+      EDIT ENTRIES BY: NAME// <B>LAST VISIT DATE</B>
+      START WITH LAST VISIT DATE: FIRST// <B>1900</B>
+      GO TO LAST VISIT DATE: LAST// <B>DEC 31, 1976</B>
+           WITHIN LAST VISIT DATE, EDIT ENTRIES BY: <B>&lt;RET&gt;</B>
+ 
+    ...HOLD ON, PLEASE...
+
+            JONES,SAM 
+            SMITH,SALLY 
+            JOHNSON,BILL 
+             	  :
+</PRE> <HR> 
+	 <P>Now, without keyboard input, the system automatically loads the June 1,
+		1982 data value into each entry's new FOLLOW-UP DATE field while looping
+		through LAST VISIT DATEs up to 1977. </P> 
+	 <P>Suppose you wanted to undo the work done in the previous example, that
+		is, you want to delete all these FOLLOW-UP DATEs:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>EDIT WHICH FIELD: <B>FOLLOW-UP DATE/// @</B>
+      WARNING-THIS MEANS AUTOMATIC DELETION!  
+    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+
+    Select PATIENT NAME: <B>^LOOP</B>
+      EDIT ENTRIES BY: NAME// <B>LAST VISIT DATE</B> 
+      START WITH LAST VISIT DATE: FIRST// <B>1900</B> 
+      GO TO LAST VISIT DATE: LAST// <B>12 31 76</B> 
+        WITHIN LAST VISIT DATE, EDIT ENTRIES BY: <B>&lt;RET&gt;</B>
+ 
+    ...JUST A MOMENT, PLEASE...
+
+            JONES, SAM 
+            SMITH, SALLY 
+                  :
+</PRE> <HR> 
+	 <H4><A NAME="input_templates">INPUT Templates</A></H4> 
+	 <H5>Overview</H5> 
+	 <P>Just as you can store complex output specification in a PRINT or a SORT
+		template for later use, you can store a long list of edit fields in an INPUT
+		template. If you answer the "EDIT WHICH FIELD:" prompt at least five different
+		times, or if you answer it with a right bracket ("<B>]</B>"), you will be
+		prompted for a template name. The following is an example: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select OPTION: <B>E</B>NTER OR EDIT FILE ENTRIES 
+
+    INPUT TO WHAT FILE: <B>PATIENT </B>
+    EDIT WHICH FIELD: ALL// <B>NAME</B>
+    THEN EDIT FIELD: <B>DATE OF BIRTH</B> 
+    THEN EDIT FIELD: <B>]</B>
+    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+    STORE THESE FIELDS IN TEMPLATE: <B>UPDATE</B>
+</PRE> <HR> 
+	 <P>UPDATE is the name of the template. You'll notice that brackets were not
+		included. </P> 
+	 <P>When stored in a template, the input specifications can be easily
+		recalled in the future without retyping them. The template name must be from 2
+		to 30 characters in length; do not begin the template name with a bracket. Any
+		field numbers (with their defaults and other qualifications, if you have
+		specified any) are stored. When you return to this option, you can edit the
+		same fields again in the same way by answering the "EDIT WHICH FIELD:" prompt
+		with the name of the template enclosed in brackets, (e.g., [UPDATE]). </P> 
+	 <P>When you return to use an INPUT template in this way, you will be asked
+		if you wish to edit its field specifications. If you answer YES, you will first
+		see the template name, which you can then edit. Entering an at-sign
+		("<B>@</B>") at the "NAME:" prompt will delete the entire INPUT template.</P> 
+	 <P>You can then edit the security codes for READ and WRITE access, and then
+		the original answers to the "EDIT WHICH FIELD:" prompts. </P> 
+	 <P>If your previous answer is less than 20 characters, it is followed by
+		two slashes ("<B>//</B>"), after which you can re-enter the line. Longer
+		answers are followed by "Replace" and are edited with the "Replace&#133;With"
+		syntax. Deleting with the at-sign ("<B>@</B>") works in either case.</P> 
+	 <P><B>NOTE:</B> The "Replace&#133;With"
+		syntax is described in the "<A HREF="../u1/e1_intro.htm#replace_with"
+		TARGET="display"
+		TITLE='Longer Default Responses and the "Replace ... With" Editor'
+		CLASS="bodylink">Longer Default Responses and the "Replace &#133; With"
+		Editor</A>" topic in the "<A HREF="../u1/e1_frm.htm" TARGET="_top"
+		TITLE="VA FileMan Prompts" CLASS="bodylink">VA FileMan Prompts</A>" chapter of
+		the "<A HREF="../u1/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Getting Started HTML Manual" CLASS="bodylink">VA
+		FileMan Getting Started Manual</A>."</P> 
+	 <P>To insert a new field ahead of the field being displayed, precede your
+		line with an up-arrow ("<B>^</B>"). When you have finished, you can save your
+		edited INPUT template under the same name (use
+		<B>&lt;Spacebar&gt;&lt;Return&gt;</B>) or a new one. </P> 
+	 <P>You can create a special INPUT template by entering the right bracket
+		("<B>]</B>") at the "EDIT WHICH FIELD: ALL//" prompt. This template will
+		contain all the fields currently in the file and will update the template when
+		new fields are added to the file. </P> 
+	 <PRE>    EDIT WHICH FIELD:  ALL// <B>]</B>
+    EDIT WHICH FIELD:  ALL// <B>&lt;RET&gt;</B>
+    STORE THESE FIELDS IN TEMPLATE: <B>EVERY FIELD</B></PRE> <HR> 
+	 <H5><A NAME="branching">Branching Within INPUT Templates</A></H5> 
+	 <P>Sometimes, you want to dynamically control editing based on the
+		responses given for a particular entry or on other aspects of the editing
+		session. By using a technique called branching, the designer of an INPUT
+		template can make the presentation of certain fields conditional based on the
+		values of other fields. You must have programmer access to set up branching.
+		With programmer access, any executable M code can be put into an INPUT
+		template. </P> 
+	 <P>You can branch either to a field prompt elsewhere in the template or to
+		a predefined place holder. The place holder is identified by <B>@n</B>, where
+		"<B>n</B>" is an integer (e.g., <B>@1</B>). </P> 
+	 <P>To branch within an INPUT template, you enter M code at one of the "EDIT
+		FIELD:" prompts. You set the variable Y to the branch destination. Y can be
+		given the value of a field label, a field number, or a place holder. If Y is
+		set to zero and editing is being done at the top level of a file, the template
+		is exited. If Y is set to zero and a Multiple is being edited, the Multiple is
+		exited. </P> 
+	 <P>The variable X will contain the <I>updated</I>, <I>internal</I> value of
+		the field edited at the previous prompt. Thus, you can check X to determine if
+		you want to set Y to branch or not. For example, suppose you had a file called
+		ADMISSIONS. Some of the fields are concerned only with the discharge of a
+		patient. You want to branch around those fields, if the DATE OF DISCHARGE is
+		empty in the database and no date is given in the current editing session. Your
+		template could be defined like this: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select OPTION: <B>ENTER OR EDIT FILE ENTRIES</B>
+ 
+    INPUT TO WHAT FILE: <B>ADMISSIONS</B>
+    EDIT WHICH FIELD: ALL// <B>NAME</B>   
+    THEN EDIT FIELD: <B>DIAGNOSIS</B>
+    THEN EDIT FIELD: <B>ADMITTING PHYSICIAN</B>
+    THEN EDIT FIELD: <B>DATE OF DISCHARGE</B>   
+    THEN EDIT FIELD: <B>S:X=&quot;&quot; Y=&quot;@1&quot;</B>
+    THEN EDIT FIELD: <B>DISCHARGING PHYSICIAN</B>    
+    THEN EDIT FIELD: <B>FOLLOW-UP DATE</B>
+    THEN EDIT FIELD: <B>@1</B>
+    THEN EDIT FIELD: <B>BILLING METHOD</B>
+    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+    STORE THESE FIELDS IN TEMPLATE: <B>EDIT ADMISSION</B>
+      Are you adding 'EDIT ADMISSION' as a new INPUT TEMPLATE? <B>Y &lt;RET&gt;</B>  (YES)
+</PRE> <HR> 
+	 <P>This template will branch around the discharge related questions, if the
+		DATE OF DISCHARGE is null. </P> 
+	 <P>If you wanted to further enhance the template to ask for MEDICARE NUMBER
+		only if BILLING METHOD is "M" (for Medicare), you could change the template
+		like this: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>INPUT TO WHAT FILE: ADMISSIONS// <B>&lt;RET&gt;</B>
+    EDIT WHICH FIELD: ALL// <B>[EDIT ADMISSION] &lt;RET&gt;</B>  (OCT 31, 1991@14:17)
+         USER #2 FILE #16155  
+    WANT TO EDIT 'EDIT ADMISSION' INPUT TEMPLATE? NO// <B>Y &lt;RET&gt;</B>  (YES)
+    NAME: EDIT ADMISSION// <B>&lt;RET&gt;</B>
+    READ ACCESS: @// <B>&lt;RET&gt;</B>
+    WRITE ACCESS: @// <B>&lt;RET&gt;</B>
+    EDIT WHICH FIELD: .01//  <B>&lt;RET&gt;</B>  NAME  
+    THEN EDIT FIELD: 1// <B>&lt;RET&gt;</B>  DIAGNOSIS  
+    THEN EDIT FIELD: 2// <B>&lt;RET&gt;</B>  ADMITTING PHYSICIAN  
+    THEN EDIT FIELD: 3// <B>&lt;RET&gt;</B>  DATE OF DISCHARGE  
+    THEN EDIT FIELD: S:X=&quot;&quot; Y=&quot;@1&quot;// <B>&lt;RET&gt;</B>
+    THEN EDIT FIELD: 4// <B>&lt;RET&gt;</B>  DISCHARGING PHYSICIAN  
+    THEN EDIT FIELD: 5// <B>&lt;RET&gt;</B>  FOLLOW-UP DATE  
+    THEN EDIT FIELD: @1// <B>&lt;RET&gt;</B>
+    THEN EDIT FIELD: 6// <B>&lt;RET&gt;</B>  BILLING METHOD  
+    THEN EDIT FIELD: 7// <B>S:X=&quot;M&quot; Y=&quot;MEDICARE NUMBER&quot;</B>
+    THEN EDIT FIELD: <B>S Y=0</B>
+    THEN EDIT FIELD: <B>MEDICARE NUMBER</B>   
+    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+    STORE THESE FIELDS IN TEMPLATE: <B>&lt;Space&gt;&lt;RET&gt;</B>  EDIT ADMISSION 
+      (OCT 31, 1991@14:17)      USER #2 FILE #16155  
+    EDIT ADMISSION TEMPLATE ALREADY EXISTS.... OK TO REPLACE? <B>Y &lt;RET&gt;</B>  (YES)
+</PRE> <HR> 
+	 <P>After the BILLING METHOD field is edited, a test is made of its
+		contents. It is a SET OF CODES DATA TYPE; thus, the test is for the letter "M"
+		alone (the internal value of the field). If it is equal to "M", the template
+		branches to the MEDICARE NUMBER field. If it is not equal to "M", the template
+		proceeds to the next prompt where Y is set unconditionally to zero. The
+		template is exited here so that the MEDICARE NUMBER prompt is not shown when it
+		is not needed.</P> 
+	 <P>An editing session using this template to add a new admission might look
+		like this: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select ADMISSIONS NAME: <B>KEETON,KAREN</B>
+      Are you adding 'KEETON,KAREN' as a new ADMISSIONS (the 4TH)?  No// <B>Y &lt;RET&gt;</B>  (Yes)
+    DIAGNOSIS: <B>MEASLES</B>
+    ADMITTING PHYSICIAN: <B>MERCHANT,JEAN</B>
+    DATE OF DISCHARGE: <B>&lt;RET&gt;</B>
+    BILLING METHOD: <B>M &lt;RET&gt;</B>  MEDICARE
+    MEDICARE NUMBER: <B>3093-0393</B>
+</PRE> <HR> 
+	 <P>The discharge related questions were skipped, and the "MEDICARE NUMBER:"
+		prompt was given. A future editing of this record upon patient discharge could
+		look like this: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select ADMISSIONS NAME: <B>KEE</B>TON,KAREN  
+             ...OK? YES// <B>&lt;RET&gt;</B>  (YES)
+
+    NAME: KEETON,KAREN// <B>^DATE OF DISCHARGE</B> 
+    DATE OF DISCHARGE: <B>5/9/90 &lt;RET&gt;</B>  (MAY 09, 1990)
+    DISCHARGING PHYSICIAN: <B>MERCHANT,JEAN</B>
+    FOLLOW-UP DATE: <B>6/1/90 &lt;RET&gt;</B>  (JUN 01, 1990)
+    BILLING METHOD: MEDICARE// <B>&lt;RET&gt;</B>
+    MEDICARE NUMBER: 3093-0393// <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P>There is a potential hazard in using branching. In this example, suppose
+		the BILLING METHOD were changed to "P" (for private insurance). The simple
+		branching logic used would not show you the MEDICARE NUMBER field to edit or
+		delete. You must ensure that your template can handle this kind of situation.
+		In this example, if you have programmer access to do so, you might add M code
+		to delete the MEDICARE NUMBER, if BILLING METHOD were not equal to "M". </P>
+	 <HR> 
+	 <H4><A NAME="edit_reference">Edit Qualifiers</A></H4> 
+	 <H5>Customizing Data Editing</H5> 
+	 <P>When creating an INPUT template, there are several ways you can control
+		the editing session to display customized prompts, to enable the duplication of
+		data by pressing the Spacebar and the Enter/Return keys
+		(<B>&lt;Space&gt;&lt;RET&gt;</B>), and to make a field required. </P> 
+	 <P>The following table summarizes the edit qualifiers you can use to
+		accomplish these results. They are described in more detail in the next three
+		sections. Enter these qualifiers in conjunction with fields at the "EDIT
+		FIELD:" prompt.</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Edit Qulaifiers Table (qaulifier and action)"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>Qualifier</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%"><B>Action</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%">field<B>;"xxx"</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Replace the field's label with a literal
+			 string during an editing session (see "<A HREF="#forcing_prompts"
+			 TITLE="Forcing Special Prompts" CLASS="bodylink">Forcing Special Prompts</A>"
+			 below). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%">field<B>;T</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Replace a field's label with its title
+			 during an editing session (see "<A HREF="#forcing_prompts"
+			 TITLE="Forcing Special Prompts" CLASS="bodylink">Forcing Special Prompts</A>"
+			 below). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%">field<B>;DUP</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Save responses for later use with
+			 <B>&lt;Space&gt;&lt;RET&gt;</B> and allow their recall (see "<A
+			 HREF="#duplicating" TITLE="Duplicating Input Values"
+			 CLASS="bodylink">Duplicating Input Values</A>" below). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%">field<B>;REQ</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Require a response to a field that is
+			 usually not required (see "<A HREF="#required_input"
+			 TITLE="Forcing Required Input" CLASS="bodylink">Forcing Required Input</A>"
+			 below). </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>You can combine specifiers as long as you separate them with semicolons
+		(e.g., <B>DATE OF BIRTH;T;REQ</B>).</P> <HR> 
+	 <H5><A NAME="forcing_prompts">Forcing Special Prompts</A></H5> 
+	 <P>Normally, the standard label or name of a field is used to ask the user
+		for the input value of that field. You can customize the prompt for a field by
+		answering the "EDIT WHICH FIELD:" prompt with the label, followed by a
+		semi-colon ("<B>;</B>") and the desired prompt in quotation marks. Thus: </P> 
+	 <PRE>    EDIT WHICH FIELD: <B>DATE OF BIRTH;&quot;DOB&quot;</B> </PRE> 
+	 <P>Causes the DATE OF BIRTH field to be presented in the form: </P> 
+	 <PRE>    DOB:</PRE> 
+	 <P>or in the form:</P> 
+	 <PRE>    DOB:  APR 1, 1923//</PRE> 
+	 <P>To use the field's title instead of its label as the input prompt,
+		follow the field name (or number) with <B>;T</B>. Thus, when editing the
+		PATIENT file, you can enter: </P> 
+	 <PRE>    EDIT WHICH FIELD: <B>.01 &lt;RET&gt;</B>  NAME
+    THEN EDIT FIELD: <B>SSN;T</B>
+    THEN EDIT FIELD: <B>&lt;RET&gt;</B></PRE> 
+	 <P>If you enter these specifications <I>and</I> if this field's title is
+		defined as "Social Security Number," the user will encounter the "Social
+		Security Number:" prompt instead of the "SSN:" prompt.</P> <HR> 
+	 <H5><A NAME="duplicating">Duplicating Input Values</A></H5> 
+	 <P>Sometimes many entries will need the same data value input for a
+		particular field. If you follow a field label with <B>;DUP</B> when selecting
+		the field for editing, VA FileMan will use the data value that was just input
+		for the prior entry, if you enter a single space character
+		(<B>&lt;Spacebar&gt;&lt;Return&gt;</B>) at the field prompt. For example:</P> 
+	 <PRE>    EDIT WHICH FIELD:  <B>SEX;DUP</B></PRE> 
+	 <P><B>NOTE:</B> If all entries have the same data value, you may instead
+		want to use the <A HREF="#looping" TITLE="^LOOP" CLASS="bodylink">^LOOP</A>
+		facility described earlier in this chapter.</P> <HR> 
+	 <H5><A NAME="required_input">Forcing Required Input</A></H5> 
+	 <P>When creating an INPUT template, VA FileMan allows you to designate
+		fields as required. Designating a field as required means that the user must
+		enter data in that field. To do this, follow the field name with <B>;REQ</B>.
+		The required specification looks like this: </P> 
+	 <PRE>    EDIT WHICH FIELD: <B>NAME;REQ</B></PRE> 
+	 <P>Adding <B>;REQ</B> does not permanently affect the definition of the
+		field. It is only effective for the current input session or for the specific
+		INPUT template. To permanently make a field mandatory, use the Modify File
+		Attributes option.</P> <HR> 
+	 <H4><A NAME="word_wrapping">Text Formatting in Word-processing
+		Fields</A></H4> 
+	 <H5>Word Wrapping</H5> 
+	 <P>Word wrapping is performed when a WORD-PROCESSING-type field is printed.
+		Two functions occur as part of word wrapping during prints: lines are "filled"
+		to the right margin and lines are "broken" only at word breaks. </P> 
+	 <P>If word wrap is on (a data dictionary setting for the
+		WORD-PROCESSING-type field in question), you can <I>override</I> the word
+		wrapping function and force a line to be printed as it appears in the editor by
+		doing one of the following with the line: </P> 
+	 <UL> 
+		<LI>Starting the line with a space.<BR><BR></LI> 
+		<LI>Pressing the Tab key at the end of the line while using the Line
+		  Editor, or type <B>|Tab|</B> at the end of the line while using the Screen
+		  Editor.<BR><BR></LI> 
+		<LI>Turning wrap off by using the <B>|NOWRAP|</B> function described
+		  below. </LI> 
+	 </UL> 
+	 <P>Lines that contain only punctuation are always printed as is. Thus, if
+		you put a single space on a line, the previous line will not be filled and the
+		subsequent line will begin in column one. </P> 
+	 <P><B>NOTE:</B> The editor's line numbers are meaningful only when editing.
+		Since word processing data is usually printed in a wraparound mode, what is
+		internally line three might be printed as lines five and six.</P> <HR> 
+	 <H5><A NAME="tabs">Tabs</A></H5> 
+	 <P>Tabs can be meaningful wherever they occur in a line. </P> 
+	 <P><B>NOTE:</B> If you insert a tab by typing the special Tab key on the
+		keyboard (or <B>&lt;Ctrl-I&gt;</B> on terminals without a Tab key), a
+		<B>|Tab|</B> will be inserted in the text instead. When editing, a tab is
+		recognized as <B>|Tab|</B>, not as five blank spaces. </P> <HR> 
+	 <H5><A NAME="windows">Formatting Text with Word-processing Windows (Frames)
+		| |</A></H5> 
+	 <P>Expressions framed by vertical bars ("<B>| |</B>") are known as word
+		processing <I>windows</I> or <I>frames</I>, and are evaluated as computed
+		expression at print-time and will be printed as evaluated. (MailMan does not
+		typically evaluate expressions within vertical bars, neither does the Inquire
+		to File Entries option or the CAPTIONED PRINT template.) For example,
+		<B>|TODAY+1|</B> will print out tomorrow's date.</P> 
+	 <P>You can use word processing windows to insert one of the following into
+		the text of a WORD-PROCESSING-type field when that WORD-PROCESSING-type field
+		is printed: </P> 
+	 <UL> 
+		<LI>A Field Name.<BR><BR></LI> 
+		<LI>A
+		  <A HREF="ce_frm.htm" TARGET="_top" TITLE="Computed Expression"
+			CLASS="bodylink">Computed Expression</A>.<BR><BR></LI> 
+		<LI><A HREF="#window_ref" TITLE="Text Formatting Expression"
+		  CLASS="bodylink">Text Formatting Expression</A></LI> 
+	 </UL> 
+	 <P>The "<A HREF="ce_frm.htm" TARGET="_top" TITLE="Computed Expressions"
+		CLASS="bodylink">Computed Expressions</A>" chapter contains details of how to
+		compose and use computed expressions. </P> <HR> 
+	 <H5><A NAME="window_ref">Text Formatting Expressions in Word-processing
+		Windows</A></H5> 
+	 <P>The following is the list of recognized special text formatting
+		functions that you can use within word-processing windows. Most of these
+		functions can be used in other contexts -- for example, at the "PRINT FIELD:"
+		prompt. See the "<A HREF="ce_frm.htm" TARGET="_top"
+		TITLE="Computed Expressions" CLASS="bodylink">Computed Expressions</A>" chapter
+		for additional information about functions. </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Text Format Expression in Word-processin Windows Table (expression and description)">
+		
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>Text Format Expression</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>|RIGHT-JUSTIFY|</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Causes the text that follows it to be
+			 padded with spaces between words, so the right margin is even. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|DOUBLE-SPACE|</B></TD> 
+		  <TD VALIGN="TOP">Causes the text that follows it to be printed with
+			 blank lines inserted every other line. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|SINGLE-SPACE|</B></TD> 
+		  <TD VALIGN="TOP">Turns off double-spacing for the text that follows it.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|TOP|</B></TD> 
+		  <TD VALIGN="TOP">Causes a page break to occur at this point. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|NOBLANKLINE|</B></TD> 
+		  <TD VALIGN="TOP">If nothing will be printed on the line, this causes
+			 the line to be suppressed so that a blank line is not output. It is useful if
+			 the line contains only a computed expression that might evaluate to null. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|PAGEFEED(arg)| </B></TD> 
+		  <TD VALIGN="TOP">Causes page breaks to occur in the text that follows
+			 it, whenever fewer than <B>arg</B> number lines remain on the current page.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|PAGESTART(arg)| </B></TD> 
+		  <TD VALIGN="TOP">Causes the text on the following pages to begin at
+			 line <B># arg</B> of the page. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|SETPAGE(arg)| </B></TD> 
+		  <TD VALIGN="TOP">Resets page numbering, so that the page number that
+			 follows it will be <B>arg+1</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|BLANK(arg)|</B></TD> 
+		  <TD VALIGN="TOP">Causes <B>arg</B> number of blank lines to be inserted
+			 at this point in the text. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|INDENT(arg)|</B></TD> 
+		  <TD VALIGN="TOP">Causes the text that follows it to be indented
+			 <B>arg</B> number of spaces from the left margin. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|SETTAB(arg1,arg2,arg3..)| </B></TD> 
+		  <TD VALIGN="TOP">Sets tab positions for the text that follows it. In
+			 subsequent lines, the first <B>|TAB|</B> encountered will cause indentation to
+			 column position <B>arg1</B> characters from the left margin. The second
+			 <B>|TAB|</B> encountered will cause indentation to column position <B>arg2</B>,
+			 and so on. If any <B>SETTAB arg</B> is negative, the text following the
+			 corresponding <B>|TAB|</B> will be right justified so that the rightmost column
+			 of that text will fall in the column number that is the absolute value of the
+			 <B>SETTAB arg</B>. If a <B>SETTAB arg</B> is the literal "<B>C</B>" (i.e.,
+			 <B>|SETTAB("C")|</B>), the text following the corresponding tab setting will be
+			 centered. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|CENTER(arg)|</B></TD> 
+		  <TD VALIGN="TOP">Causes the <B>arg</B> to be centered. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|TAB|</B></TD> 
+		  <TD VALIGN="TOP">Causes the text to start printing at predetermined
+			 indents. The default column settings are 5,10,15,20,..., which can be reset
+			 with <B>SETTAB</B>. <B>|TAB|</B> at the end of a line causes that line to be
+			 printed as is (no word wrapping). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|TAB n|</B></TD> 
+		  <TD VALIGN="TOP">Overrides any <B>SETTAB</B> specification for the text
+			 that follows it and causes tabbing to the <B>n</B><SUP>th</SUP> column over
+			 from the left margin. Output is right justified on the <B>n</B><SUP>th</SUP>
+			 column, if "<B>n</B>" is negative. For example, the text following <B>|TAB
+			 12|</B> will begin at column 12; the text following <B>|TAB "C"|</B> will be
+			 centered. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|WIDTH(arg)|</B> </TD> 
+		  <TD VALIGN="TOP">Specifies that the text that follows it will always be
+			 printed in a column <B>arg</B> characters wide. (<B>Arg</B>, in other words, is
+			 the difference between the left margin position and the right margin position,
+			 plus one.) <BR> <BR> <B>NOTE:</B> In the absence of a <B>WIDTH</B>
+			 specification, the output column width is determined by the user (or defaulted
+			 by the system) at print time. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|NOWRAP|</B></TD> 
+		  <TD VALIGN="TOP">Causes the text that follows it to be printed
+			 line-for-line (without wraparound). This eliminates the need to end each line
+			 with a tab or start the line with a space to force the line to be printed as it
+			 stands. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|WRAP| </B></TD> 
+		  <TD VALIGN="TOP">Causes the text that follows it to be printed in
+			 wraparound mode. This is the default setting. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|UNDERLINE(arg)|</B></TD> 
+		  <TD VALIGN="TOP">Causes the <B>arg</B> to be underlined. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>|_|</B></TD> 
+		  <TD VALIGN="TOP">Starts underlining. Underlining continues until a
+			 second <B>|_|</B> is encountered. This only works on printers that underline.
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>NOTE:</B> In order to print a "<B>|</B>" character, you must enter it
+		as "<B>||</B>". Likewise, to print "<B>||</B>" enter "<B>||||</B>". </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- e3_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

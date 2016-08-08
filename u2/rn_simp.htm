@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Simple Extended
+		Pointer</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,relational navigation,relational,navigation,simple extended pointer,simple,extended pointer,pointer">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="rn_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Relational Navigation Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Relational Navigation</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Simple Extended Pointer</H4> 
+	 <P>The most common form of relational navigation uses <I>simple extended
+		pointers</I>. This type of navigation requires a pointer field to exist from
+		the current file to another file. Using a pointer field from an entry in the
+		current file, you can easily retrieve information from the pointed-to entry in
+		another file. </P> 
+	 <P>For example, suppose you are printing a report from the PATIENT file.
+		Further suppose that the PATIENT file has a pointer field called ATTENDING
+		PHYSICIAN field to the DOCTOR file. Now, what if you wanted to include the
+		phone number of the attending physician for each patient in your report from
+		the PATIENT file? The attending physician's phone number is stored in the
+		DOCTOR file, not the PATIENT file.</P> 
+	 <P>You can include the attending physician's phone number for each patient
+		in your report, by using a simple extended pointer at the "PRINT FIELD:"
+		prompt:</P> 
+	 <PRE>    PRINT FIELD: <B>ATTENDING PHYSICIAN:PHONE NUMBER</B></PRE> 
+	 <P>You can use simple extended pointers in many places in VA FileMan,
+		including:</P> 
+	 <UL> 
+		<LI>Reports (Print Fields, Sort Criteria, Search Criteria)<BR><BR></LI> 
+		<LI>Editing Records (edit information in related files, not just current
+		  file)<BR><BR></LI> 
+		<LI>Computed Expressions<BR><BR></LI> 
+		<LI>COMPUTED fields<BR><BR></LI> 
+		<LI>Within word processing <B>|Windows|</B></LI> 
+	 </UL> 
+	 <P>The syntax for simple extended pointers is described below.</P> <HR> 
+	 <H5>Simple Extended Pointer Syntax (Short form)</H5> 
+	 <P>With simple extended pointers, there must be an existing relationship
+		based on a pointer field from the current file to the file you are interested
+		in. In this case, you can reference a field in a pointed-to entry by using the
+		syntax: </P> 
+	 <PRE>    pfield:element</PRE> 
+	 <P>"<B>Pfield</B>" is the name (or number, preceded by #) of a pointer
+		field in the current file, and "element" is an element that exists in the field
+		to which pfield points. This is called the short form of extended pointer
+		syntax.</P> 
+	 <P>For example, since ATTENDING PHYSICIAN is a pointer field in the current
+		file to the DOCTOR file, the short form of extended pointer syntax to reference
+		the PHONE NUMBER field in the DOCTOR file would be:</P> 
+	 <PRE>    ATTENDING PHYSICIAN:PHONE NUMBER</PRE> <HR> 
+	 <H5>Simple Extended Pointer Syntax (Long Form)</H5> 
+	 <P>The most complete or general form of extended pointer syntax (also
+		called long form) is shown below:</P> 
+	 <PRE>    expr:file:element  
+          (<B>or</B>)
+    expr IN file FILE:element</PRE> 
+	 <P>"<B>Expr</B>" is any expression that applies to the file that is your
+		current context. "<B>File</B>" is the name of any file. "<B>Element</B>" is any
+		element (field) in the file named by "<B>file</B>."</P> 
+	 <P>For example, since ATTENDING PHYSICIAN is a pointer field in the current
+		file to the DOCTOR file, the long form of extended pointer syntax to reference
+		the PHONE NUMBER field in the DOCTOR file would be:</P> 
+	 <PRE>    ATTENDING PHYSICIAN:DOCTOR:PHONE NUMBER
+                         <B>(or)</B>
+    ATTENDING PHYSICIAN IN file DOCTOR:PHONE NUMBER</PRE> <HR> 
+	 <H5>Examples</H5> 
+	 <P><B>Relational Query Example</B></P> 
+	 <P>You can use simple extended pointers to make relational queries. For
+		example, suppose you want to print all patients who are older than their
+		attending physicians. A field in the PATIENT file called ATTENDING PHYSICIAN
+		points to the DOCTOR file. Given a field PT AGE in the PATIENT file and a field
+		DR AGE in the DOCTOR file, you can use the Print File Entries option and then
+		enter the information that follows: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>OUTPUT FROM WHAT FILE: <B>PATIENT </B>
+SORT BY:  NAME// <B>PT AGE&gt;(ATTENDING PHYSICIAN:DR AGE)</B> 
+WITHIN PT AGE&gt;(ATTENDING PHYSICIAN:DR AGE), SORT BY:<B>&lt;RET&gt;</B>
+
+FIRST PRINT FIELD: <B>NAME</B></PRE> <HR> 
+	 <P>Here, the simple extended pointer (ATTENDING PHYSICIAN:DR AGE) is used
+		to make a comparison between values in fields in two different files.</P> 
+	 <P><B>COMPUTED Field Example</B></P> 
+	 <P>Suppose the PATIENT file has an ATTENDING PHYSICIAN field that points to
+		the DOCTOR file. The DOCTOR file, in turn, has a field called SPECIALTY. If you
+		want to create a COMPUTED field within the PATIENT file data dictionary that is
+		equivalent to the SPECIALTY field in the DOCTOR file, you can define a COMPUTED
+		field as: </P> 
+	 <PRE>   'COMPUTED-FIELD' EXPRESSION:  <B>ATTENDING PHYSICIAN:SPECIALTY</B></PRE> 
+	 <P>The file does not have to be specified in this case since there is a
+		direct link between the two files through the pointer field. This is an example
+		of the <B><I>short form</I></B> of the simple extended pointer syntax. </P> 
+	 <P>An equivalent computed expression, which explicitly identifies the file
+		is: ATTENDING PHYSICIAN IN DOCTOR FILE:SPECIALTY. This is the <B><I>long
+		form</I></B> of the syntax. It is "long" because the file name is included.
+		</P> <HR> 
+	 <H5>How to Navigate With a Variable Pointer Field</H5> 
+	 <P>If the pointing field is a variable pointer, the long form of the
+		extended pointer syntax must be used so that VA FileMan will know which of the
+		pointed-to files to search. Here is the syntax: </P> 
+	 <PRE>    vpfield IN file FILE:element 
+           <B>(OR)</B>
+    vpfield:file:element</PRE> 
+	 <P>"<B>Vpfield</B>" is the variable-pointer field in the current file,
+		"<B>file</B>" is one of the possible pointed-to files, and "<B>element</B>"
+		applies to that pointed-to file. </P> 
+	 <P>The following is an example from the PATIENT file where the PROVIDER
+		field is a variable pointer to either the PHYSICIAN file or the PERSON file,
+		and PHONE is a field in the PERSON file. You could enter the following print
+		specifications: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>FIRST PRINT FIELD: <B>NAME</B>
+THEN PRINT FIELD: <B>PROVIDER</B>
+THEN PRINT FIELD: <B>FILE(PROVIDER)</B>
+THEN PRINT FIELD: <B>PROVIDER:PERSON:PHONE</B>
+THEN PRINT FIELD: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>You would receive the following output:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>NAME                PROVIDER         FILE(PROVIDER)   PROVIDER:PERSON:PHONE
+---------------------------------------------------------------------------
+BROWN,JOHN L.       CRUSHER,BEVERLY   PHYSICIAN 
+GREEN,RICHARD       MCCOY,LEONARD M.  PERSON            223-3332</PRE> <HR> 
+	 <P>The long form simple pointer asked for the PHONE field from the PERSON
+		file. Only the variable pointer from the GREEN,RICHARD entry pointed to the
+		PERSON file. Thus, only his phone number is displayed. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- rn_simp.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

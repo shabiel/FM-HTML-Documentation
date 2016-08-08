@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: $$ROOT^DILFD( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure & Security Services,Infrastructure Security Services,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$root^dilfd(),dilfd">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>$$ROOT^DILFD( ): File Root Resolver</H4> 
+	 <P>This extrinsic function resolves the file root when passed file or
+		subfile numbers. At the top level of the file $$ROOT returns the global name.
+		When passing a subfile number, $$ROOT uses the IENS to build the root string.
+		</P> 
+	 <H5>Format</H5> 
+	 <PRE>
+$$ROOT^DILFD(FILE,IENS,FLAGS,ERROR_FLAG)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) File number or subfile number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IENS</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required when passing subfile numbers) Standard IENS indicating
+				internal entry number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) If set to 1 (true), returns a closed root. The default
+				is to return an open root. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>ERROR_FLAG</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) If set to 1 (true), processes an error message if error
+				is encountered. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <PRE>
+    &gt;<B>S DIC=$$ROOT^DILFD(999000.07,&quot;1,38,&quot;)</B>
+    
+    &gt;<B>W DIC</B>
+    ^DIZ(999000,38,2,
+
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <PRE>
+    &gt;<B>S DIC=$$ROOT^DILFD(999000)</B>
+    
+    &gt;<B>W DIC</B>
+    ^DIZ(999000,
+
+</PRE> 
+	 <P><B>Example 3</B></P> 
+	 <PRE>
+    &gt;<B>S CROOT=$$ROOT^DILFD(999000,&quot;&quot;,1)</B>
+    
+    &gt;<B>W CROOT</B>
+    ^DIZ(999000)
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_200.htm" TITLE="Error 200"
+			 CLASS="bodylink">200</A></B></TD> 
+		  <TD VALIGN="TOP">Invalid parameter</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_205.htm" TITLE="Error 205"
+			 CLASS="bodylink">205</A></B></TD> 
+		  <TD VALIGN="TOP">The File and IENS represent different subfile levels.
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dlfd5.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,467 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: System Management - Device Handling</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,system management,mangement,system,device handling,devices,handling">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="pm_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: System Management Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">System Management</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Device Handling for Standalone VA FileMan</H4> 
+	 <P>VA FileMan requires a %ZIS routine. Kernel supplies a %ZIS as the device
+		selection gateway to its device handler component. In addition to writing your
+		own device selection routine and saving it as %ZIS in the Manager Account,
+		standalone users have two possibilities: </P> 
+	 <OL> 
+		<LI>You may have a device selection routine supplied by your M vendor.
+		  You can use the M vendor's routine provided that it returns the variables
+		  expected by VA FileMan from such a device selection program. These variables
+		  are listed below. In this case, you simply create a %ZIS routine that calls the
+		  vendor-supplied routine. <BR><BR> However, even if you use a vendor's (or your
+		  own) routine for device selection, you must have %ZISS, as described below, in
+		  your Manager Account, if you want to use VA FileMan's screen-oriented
+		  utilities.<BR><BR></LI> 
+		<LI>If you do not have another device selection routine, refile the DIIS
+		  and DIISS routines as described in the "VA FileMan Installation Guide." This
+		  results in all VA FileMan output going to the terminal that requests it. If you
+		  do not modify the %ZIS and %ZISS routines as described below, your terminal
+		  will be treated as a VT100 (ANSI) terminal.</LI> 
+	 </OL> 
+	 <P>VA FileMan controls terminals by using terminal characteristics stored
+		in IO variables. In addition, certain operating system dependent actions are
+		controlled by executing code stored in %ZOSF nodes. Together the IO variables
+		and %ZOSF nodes allow full use of VA FileMan in both scrolling and
+		screen-oriented modes. The instructions below describe how to modify the %ZIS
+		and %ZISS routines in order to set the necessary IO variables, and how to set
+		the necessary %ZOSF nodes. </P> 
+	 <H5>Setting IO variables: %ZIS and %ZISS</H5> 
+	 <P>%ZIS sets the IO variables required for terminal output that is not
+		screen-oriented. The DIIS routine supplied with VA FileMan sets the IO
+		variables to the values specific to the VT100 terminal type. If you are using
+		or emulating a VT100 terminal, you can rename the DIIS routine unmodified as
+		%ZIS. If you are using or emulating a VT220 or VT320 terminal, you must modify
+		%ZIS to set IOST equal to "C-VT220" or "C-VT320".</P> 
+	 <P>The variables returned by %ZIS are: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="%ZIS Variables Returned Table (variable and description)"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Variable</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IO</B></TD> 
+		  <TD VALIGN="TOP">The device <B>$I</B>. If <B>IO</B> is null
+			 (<B>""</B>), no input or output occurs. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOM</B></TD> 
+		  <TD VALIGN="TOP">The margin width (e.g., 80). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>ION</B></TD> 
+		  <TD VALIGN="TOP">The device name, consisting of 1 to 30 alphanumeric
+			 characters. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOSL</B></TD> 
+		  <TD VALIGN="TOP">The screen length (e.g., 24). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOF</B></TD> 
+		  <TD VALIGN="TOP">The indirect argument of a WRITE statement to generate
+			 a top-of-page (e.g., <B>#</B>). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOST</B></TD> 
+		  <TD VALIGN="TOP">The output device type (e.g., CRT). If <B>IOST</B>
+			 begins with the letter <B>C</B>, the Inquire, Search, and Print output programs
+			 will wait till the user presses the Enter/Return key after each screen's worth
+			 of display. If <B>IOST</B> begins with a <B>P</B>, output will terminate with a
+			 page feed. If <B>IOST</B> contains <B>SINGLE</B>, output will stop after each
+			 page feed and wait for the Enter/Return key to be pressed (<B>&lt;RET&gt;</B>).
+			 If the output terminal is other than the terminal requesting the output, and
+			 <B>IOST</B> does <I>not</I> contain <B>K</B>, the <B>&lt;RET&gt;</B> will be
+			 read from the requesting terminal.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOPAR</B></TD> 
+		  <TD VALIGN="TOP">The parameter that should follow the first colon in
+			 the argument of the OPEN command. For most devices, this string should be null.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOT</B></TD> 
+		  <TD VALIGN="TOP">Equal to a string naming the device type (e.g.,
+			 <B>IOT=TRM</B>). This variable must be returned equal to the string <B>SDP</B>
+			 in order for VA FileMan's multiple-copies feature to be called. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOXY</B></TD> 
+		  <TD VALIGN="TOP">The executable M code that performs cursor positioning
+			 given the input variables <B>DX</B> and <B>DY</B>. <B>DX</B> and <B>DY</B>
+			 contain the column and row positions, respectively, to which to move the
+			 cursor. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>The %ZISS routine sets the IO variables required by VA FileMan's
+		screen-oriented utilities. The DIISS routine supplied by VA FileMan sets the IO
+		variables according to the value of IOST. DIISS recognizes IOST values of
+		C-VT220 and C-VT320. If IOST equals anything else, the IO variables are set to
+		values specific to the VT100 terminal type. </P> 
+	 <P>Not all of the variables returned by %ZISS are required by VA FileMan's
+		screen-oriented utilities. The variables returned by %ZISS are: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="%ZISS Variables Returned Table (variable and description)"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Variable</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOAWM0</B></TD> 
+		  <TD VALIGN="TOP">Auto wrap mode off </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOAWM1</B></TD> 
+		  <TD VALIGN="TOP">Auto wrap mode on </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOCOMMA</B></TD> 
+		  <TD VALIGN="TOP">Keypad's comma key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOCUB</B></TD> 
+		  <TD VALIGN="TOP">Cursor backward </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOCUD</B></TD> 
+		  <TD VALIGN="TOP">Cursor down</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOCUF</B></TD> 
+		  <TD VALIGN="TOP">Cursor forward </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOCUU</B></TD> 
+		  <TD VALIGN="TOP">Cursor up</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IODCH</B></TD> 
+		  <TD VALIGN="TOP">Delete character </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IODL</B></TD> 
+		  <TD VALIGN="TOP">Delete line</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IODO</B></TD> 
+		  <TD VALIGN="TOP">Do key</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOEDALL</B></TD> 
+		  <TD VALIGN="TOP">Erase in display entire page </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOEDEOP</B></TD> 
+		  <TD VALIGN="TOP">Erase in display from cursor to end of page </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOELALL</B></TD> 
+		  <TD VALIGN="TOP">Erase in line entire line </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOELEOL</B></TD> 
+		  <TD VALIGN="TOP">Erase in line from cursor to end of line </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOENTER</B></TD> 
+		  <TD VALIGN="TOP">Keypad's enter key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOFIND</B></TD> 
+		  <TD VALIGN="TOP">Find key</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOHELP</B></TD> 
+		  <TD VALIGN="TOP">Help key</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOICH</B></TD> 
+		  <TD VALIGN="TOP">Insert character </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOIL</B></TD> 
+		  <TD VALIGN="TOP">Insert line</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOINHI</B></TD> 
+		  <TD VALIGN="TOP">High intensity </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOINLOW</B></TD> 
+		  <TD VALIGN="TOP">Low intensity </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOINORM</B></TD> 
+		  <TD VALIGN="TOP">Normal intensity </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOINSERT</B></TD> 
+		  <TD VALIGN="TOP">Insert key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOIRM0</B></TD> 
+		  <TD VALIGN="TOP">Replace mode </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOIRM1</B></TD> 
+		  <TD VALIGN="TOP">Insert mode </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP0</B></TD> 
+		  <TD VALIGN="TOP">Keypad 0 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP1</B></TD> 
+		  <TD VALIGN="TOP">Keypad 1 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP2</B></TD> 
+		  <TD VALIGN="TOP">Keypad 2 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP3</B></TD> 
+		  <TD VALIGN="TOP">Keypad 3 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP4</B></TD> 
+		  <TD VALIGN="TOP">Keypad 4 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP5</B></TD> 
+		  <TD VALIGN="TOP">Keypad 5 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP6</B></TD> 
+		  <TD VALIGN="TOP">Keypad 6 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP7</B></TD> 
+		  <TD VALIGN="TOP">Keypad 7 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP8</B></TD> 
+		  <TD VALIGN="TOP">Keypad 8 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKP9</B></TD> 
+		  <TD VALIGN="TOP">Keypad 9 key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKPAM</B></TD> 
+		  <TD VALIGN="TOP">Keypad application mode on </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOKPNM</B></TD> 
+		  <TD VALIGN="TOP">Keypad numeric mode on </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOMINUS</B></TD> 
+		  <TD VALIGN="TOP">Keypad's minus key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IONEXTSC</B></TD> 
+		  <TD VALIGN="TOP">Next screen key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOPERIOD</B></TD> 
+		  <TD VALIGN="TOP">Keypad's period key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOPF1</B></TD> 
+		  <TD VALIGN="TOP">Function key 1 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOPF2</B></TD> 
+		  <TD VALIGN="TOP">Function key 2 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOPF3</B></TD> 
+		  <TD VALIGN="TOP">Function key 3 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOPF4</B></TD> 
+		  <TD VALIGN="TOP">Function key 4 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOPREVSC</B></TD> 
+		  <TD VALIGN="TOP">Previous screen key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOREMOVE</B></TD> 
+		  <TD VALIGN="TOP">Keypad's remove key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IORI</B></TD> 
+		  <TD VALIGN="TOP">Reverse index </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IORVOFF</B></TD> 
+		  <TD VALIGN="TOP">Reverse video off </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IORVON</B></TD> 
+		  <TD VALIGN="TOP">Reverse video on </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOSGR0</B></TD> 
+		  <TD VALIGN="TOP">Turn off select graphic rendition attributes </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOSELECT</B></TD> 
+		  <TD VALIGN="TOP">Select key </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOSTBM</B></TD> 
+		  <TD VALIGN="TOP">Set top and bottom margins </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOUOFF</B></TD> 
+		  <TD VALIGN="TOP">Underline off </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOUON</B></TD> 
+		  <TD VALIGN="TOP">Underline on </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOBLC</B></TD> 
+		  <TD VALIGN="TOP">Bottom left corner </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOBRC</B></TD> 
+		  <TD VALIGN="TOP">Bottom right corner </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOBT</B></TD> 
+		  <TD VALIGN="TOP">Bottom "<B>T</B>" </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOG0</B></TD> 
+		  <TD VALIGN="TOP">Graphics off</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOG1</B></TD> 
+		  <TD VALIGN="TOP">Graphics on</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOHL</B></TD> 
+		  <TD VALIGN="TOP">Horizontal line </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOLT</B></TD> 
+		  <TD VALIGN="TOP">Left "<B>T</B>" </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOMT</B></TD> 
+		  <TD VALIGN="TOP">Middle "<B>T</B>", or cross hair (<B>+</B>) </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IORT</B></TD> 
+		  <TD VALIGN="TOP">Right "<B>T</B>" </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOTLC</B></TD> 
+		  <TD VALIGN="TOP">Top left corner </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOTRC</B></TD> 
+		  <TD VALIGN="TOP">Top right corner </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOTT</B></TD> 
+		  <TD VALIGN="TOP">Top "<B>T</B>" </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IOVL</B></TD> 
+		  <TD VALIGN="TOP">Vertical line </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>After you save DIISS as %ZISS, you can modify %ZISS if you wish to use
+		ScreenMan on terminal types other than those supported in DIISS. The routine
+		DIISS itself contains more information on how to modify the routine. </P> 
+	 <P><B>NOTE: About IO variables and DataTree MUMPS --</B> If your version of
+		DataTree MUMPS supports VT220 emulation, set up %ZIS and %ZISS for VT220 and
+		use the emulation.</P> 
+	 <H5>Summary of IO Setups</H5> 
+	 <P>Depending on your terminal type, you need to do the following to make
+		full use of VA FileMan's screen-oriented utilities. </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="Summary of IO setups Table (terminal type and description)"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Terminal Type</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>VT100</B></TD> 
+		  <TD VALIGN="TOP">No action needed; the default settings are acceptable.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>VT220</B>, <B>VT320</B></TD> 
+		  <TD VALIGN="TOP">Edit the %ZIS routine to set <B>IOST</B> variable to
+			 "<B>C-VT220</B>" or "<B>C-VT320</B>". </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Other terminal types</B> </TD> 
+		  <TD VALIGN="TOP">Edit %ZIS to set <B>IOST</B> to "<B>C-WHATEVER</B>"
+			 and <B>IOXY</B> to the code to position the cursor for that terminal. Modify
+			 %ZISS routine to set all the <B>IO</B> variables for your terminal type. The
+			 routine contains instructions for a simple modification strategy. </TD> 
+		</TR> 
+	 </TABLE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pm_dev.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

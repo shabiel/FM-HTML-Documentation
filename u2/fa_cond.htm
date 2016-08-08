@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: LFA Condensed Data
+		Dictionary Listing </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,list file attributes,attributes,data dictionary,dd,condensed data dictionary,condensed">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fa_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: List File Attributes Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">List File Attributes</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Condensed Data Dictionary</H4> 
+	 <P>Another format for listing a file's attributes is the Condensed format,
+		and the following example illustrates a Condensed data dictionary listing: </P>
+	 
+	 <PRE></PRE> <HR> 
+	 <PRE>CONDENSED DATA DICTIONARY---PATIENT FILE      (#16026)UCI: VAH,KXX 
+
+STORED IN: ^DIZ(16026,                                    05/31/91    PAGE 1
+--------------------------------------------------------------------------------
+
+                                                  FILE SECURITY
+                                   DD SECURITY    : #     DELETE SECURITY: #
+                                   READ SECURITY  : #     LAYGO SECURITY : #
+                                   WRITE SECURITY : #
+CROSS REFERENCED BY:
+      NAME(B) 
+
+
+                                 FILE STRUCTURE
+
+FIELD     FIELD
+NUMBER    NAME
+
+.01       NAME (RF), [0;1]
+1         SEX (RS), [0;2]
+2         DATE OF BIRTH (RD), [0;3]
+3         RELIGION (P13'), [0;4]
+4         DIAGNOSIS (Multiple-16026.04), [1;0]
+          .01  DIAGNOSIS (MF), [0;1]
+          1    AGE AT ONSET (NJ3,0), [0;2]
+          2    HISTORY (Multiple-16026.42), [1;0]
+               .01  HISTORY (W), [0;1]
+5         PROVIDER (V), [2;1]
+6         SSN (RFa), [2;2]</PRE> <HR> 
+	 <P>The codes in parentheses following the field names in the Condensed data
+		dictionary contain information regarding the specifications of the field. </P> 
+	 <P>Here is a complete list of those codes and their meanings: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Condensed Data Dictionary Codes Table (code and description)"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Code</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>a</B></TD> 
+		  <TD VALIGN="TOP">The field has been marked for <B>auditing</B> all the
+			 time. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>e</B></TD> 
+		  <TD VALIGN="TOP">The auditing is only on <B>edit</B> or delete. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>A </B></TD> 
+		  <TD VALIGN="TOP">For Multiples, new subentries can be <B>added</B>
+			 without being asked. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>BC</B></TD> 
+		  <TD VALIGN="TOP">The data is <B>Boolean computed</B> (true or false)
+			 and <B>C</B> the data is <B>computed</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Cm</B></TD> 
+		  <TD VALIGN="TOP">The data is <B>Multiline computed</B>.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>D</B></TD> 
+		  <TD VALIGN="TOP">The data is <B>date-valued</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DC</B></TD> 
+		  <TD VALIGN="TOP">The data is <B>date-valued, computed</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>F</B></TD> 
+		  <TD VALIGN="TOP">The data is <B>FREE TEXT</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>I</B></TD> 
+		  <TD VALIGN="TOP">The data is uneditable. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Jn</B></TD> 
+		  <TD VALIGN="TOP">To specify a print length of "<B>n</B>" characters.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Jn,d</B></TD> 
+		  <TD VALIGN="TOP">To specify printing "<B>n</B>" characters with
+			 "<B>d</B>" <B>decimals</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>K </B></TD> 
+		  <TD VALIGN="TOP">The data is M code. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>M</B></TD> 
+		  <TD VALIGN="TOP">For Multiples, the user is asked for another
+			 subentry.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>N</B></TD> 
+		  <TD VALIGN="TOP">The data is <B>NUMERIC-valued</B>.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>O</B></TD> 
+		  <TD VALIGN="TOP">The field has an <B>OUTPUT transform</B>.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Pn</B></TD> 
+		  <TD VALIGN="TOP">The data is a <B>POINTER TO A FILE</B> reference to
+			 file "<B>n</B>". </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Pn'</B></TD> 
+		  <TD VALIGN="TOP">LAYGO to the pointed-to file is not allowed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>R</B></TD> 
+		  <TD VALIGN="TOP">Entry of data is <B>required</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>S</B></TD> 
+		  <TD VALIGN="TOP">The data is from a discreet <B>SET OF CODES</B>. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>V</B></TD> 
+		  <TD VALIGN="TOP">The data is a <B>VARIABLE-POINTER</B>.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>W</B></TD> 
+		  <TD VALIGN="TOP">The data is <B>WORD-PROCESSING</B>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>WL</B></TD> 
+		  <TD VALIGN="TOP">The <B>WORD-PROCESSING</B> data is normally printed in
+			 <B>line mode</B> (i.e., without word wrap). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>X</B></TD> 
+		  <TD VALIGN="TOP">Editing is not allowed under the Modify File
+			 Attributes option, because the INPUT transform has been modified under the
+			 Utility Functions submenu. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>*</B></TD> 
+		  <TD VALIGN="TOP">There is a screen associated with a POINTER TO A FILE,
+			 VARIABLE-POINTER, or SET OF CODES DATA TYPEs. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>For example, the SSN field is required (<B>R</B>), is FREE TEXT
+		(<B>F</B>), and is audited (<B>a</B>). </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fa_cond.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

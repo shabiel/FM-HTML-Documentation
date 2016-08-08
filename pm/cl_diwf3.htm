@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN2^DIWF</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,en2^diwf,diwf">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN2^DIWF: Form Document</H4> 
+	 <UL> 
+		<LI><A HREF="cl_diwf.htm"
+		  TITLE="Form Document Print Introduction (Read First)" CLASS="bodylink">Form
+		  Document Print Introduction (Read First)</A> </LI> 
+	 </UL> 
+	 <P>This entry point is used when the calling program knows both the
+		document file and the entry within that file that contains the desired word
+		-processing text to be used as a target document.</P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIWF</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The global root at which the desired text is stored. Thus, in our
+				example, if APPOINTMENT REMINDER is the third document in the Form Letter file
+				(stored in ^DIZ(16001,) and the word processing field is stored in subscript 1,
+				you can: </P> 
+			 <PRE>    S DIWF=&quot;^DIZ(16001,3,1,&quot;</PRE> 
+			 <P>DIWF will then automatically use this entry and the user will not
+				be asked to select the document file and which document in that file. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIWF(1)</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If the calling program wants to specify which file should be used
+				as a source for generating output, the number of that file should appear in the
+				variable DIWF(1). Otherwise, the user will be asked the "Print from what FILE:"
+				question. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <P>After this point, EN1^DIP is invoked. You can have the calling program
+		set the usual BY, FR, and TO variables if you want to control the SORT sequence
+		of the data file. </P> 
+	 <H5>Output Variable</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>Y</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Y will be -1 if: </P> 
+			 <UL> 
+				<LI>There is no data beneath the root passed in DIWF.<BR><BR></LI> 
+				<LI>The file passed in DIWF(1) could not be found. </LI> 
+			 </UL> </TD> 
+		</TR> 
+	 </TABLE> 
+		 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_diwf3.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

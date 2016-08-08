@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Extract Tool Important
+		Items to Note</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,extract tool,tools,extract,important items to note">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Extract Tool Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Important Items to Note</H4> 
+	 <P>Before beginning the extract process, consider each of the following
+		important facts about the Extract Tool: </P> 
+	 <UL> 
+		<LI>An extract activity is file-specific, not user-specific. Anyone with
+		  access to the file and the Extract Tool options can complete or change an
+		  existing extract activity.<BR><BR></LI> 
+		<LI>When the extracted data is moved to the
+		  <A HREF="ex_dest.htm" TITLE="destination" CLASS="bodylink">destination</A>
+		  file, the source entries in the primary file are blocked from
+		  selection.<BR><BR></LI> 
+		<LI>A Subfile cannot be extracted by itself. At least one field from
+		  every Multiple level <I>above</I> the Subfile must also be extracted. If no
+		  field is extracted at the next higher level, the .01 field at that level will
+		  automatically be extracted.<BR><BR></LI> 
+		<LI>You may want to extract Identifiers and/or KEY fields from the source
+		  file to the <A HREF="ex_dest.htm" TITLE="destination"
+		  CLASS="bodylink">destination</A> file, so that records in the
+		  <A HREF="ex_dest.htm" TITLE="destination" CLASS="bodylink">destination</A> file
+		  can be uniquely identified.<BR><BR></LI> 
+		<LI>An EXTRACT template is the only type of PRINT template that can be
+		  used by the
+		  <A HREF="ex_opt6.htm" TITLE="Update Destination File" CLASS="bodylink">Update
+		  Destination File</A> option.<BR><BR></LI> 
+		<LI>The
+		  <A HREF="ex_aafl.htm" TITLE="ARCHIVAL ACTIVITY file" CLASS="bodylink">ARCHIVAL
+		  ACTIVITY file</A> (#1.11) contains a brief history that describes who performed
+		  the various extract activity steps and when the steps were
+		  completed.<BR><BR></LI> 
+		<LI>The extract activity can be canceled at any time before the
+		  <A HREF="ex_opt7.htm" TITLE="Purge Extracted Entries" CLASS="bodylink">Purge
+		  Extracted Entries</A> option is used.<BR><BR></LI> 
+		<LI>The
+		  <A HREF="ex_opt7.htm" TITLE="Purge Extracted Entries" CLASS="bodylink">Purge
+		  Extracted Entries</A> option deletes all of the source data in the primary file
+		  from which you extracted data.<BR><BR></LI> 
+		<LI>Selected entries cannot be purged until they have been moved to the
+		  <A HREF="ex_dest.htm" TITLE="destination" CLASS="bodylink">destination</A>
+		  file. </LI> 
+		<LI>A second extract from a file cannot be performed until the active
+		  extract activity has been completed, either by purging or canceling.</LI> 
+	 </UL>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ex_imp.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

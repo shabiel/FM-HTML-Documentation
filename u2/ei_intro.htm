@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Import and Export Tools
+		Introduction</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,introduction,delimited,fixed-length">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>Import and Export Tools Introduction</H4> 
+	 <P>If you want to use an application like Microsoft Excel to manipulate
+		data stored in a VA FileMan file, you need some way to exchange that data
+		between VA FileMan and your application. VA FileMan provides the Import and
+		Export Tools for this purpose.</P> 
+	 <P>Suppose, for example, that you want to use Microsoft Word's print merge
+		utility to print a form letter to a list of recipients that is maintained in a
+		VA FileMan file. You can use VA FileMan's <B>Export Tool</B> to export the list
+		of recipients from the VA FileMan file to Microsoft Word. Once you've done
+		this, you can use Word to generate your form letters based on the exported
+		list.</P> 
+	 <H5>What Applications Can You Exchange Data With?</H5> 
+	 <P>In theory, you can exchange data with any application that supports
+		<A HREF="ei_delim.htm" TITLE="Delimited" CLASS="bodylink">Delimited</A> or
+		<A HREF="ei_fixed.htm" TITLE="Fixed-length" CLASS="bodylink">Fixed-length</A>
+		ASCII data exchange. Many applications do, using a variety of formats.
+		Typically, you can expect the ability to import and export data with the
+		following types of applications:</P> 
+	 <UL> 
+		<LI>Databases<BR><BR></LI> 
+		<LI>Spreadsheets<BR><BR></LI> 
+		<LI>Statistical and Analysis Programs (SAS, SPSS, etc.)<BR><BR></LI> 
+		<LI>Vertical Applications<BR><BR></LI> 
+		<LI>Word Processor (data records, <I>not</I> word processing text)</LI> 
+	 </UL> 
+	 <P><B>NOTE:</B> You can export data records to a word processor, which
+		often uses data records for functions such as print merges. You can't use the
+		Import or Export Tools to exchange word processing fields from VA FileMan
+		files, however.</P> 
+	 <H5>How Data is Moved Between Applications</H5> 
+	 <P>Movement of data between applications that do not "speak the same
+		language" is a complex process because it involves coordinating activities in
+		different computer applications and often in multiple computing environments.
+		</P> 
+	 <P>VA FileMan's <B>Import</B> and <B>Export Tools</B> use ASCII data
+		exchange. It is the oldest and most widely supported way of exchanging data
+		between applications. Data for a particular record or group of records can be
+		transported in one of two standard formats:</P> 
+	 <UL> 
+		<LI><A HREF="ei_delim.htm" TITLE="Delimited"
+		  CLASS="bodylink">Delimited</A><BR><BR></LI> 
+		<LI><A HREF="ei_fixed.htm" TITLE="Fixed-length"
+		  CLASS="bodylink">Fixed-length</A></LI> 
+	 </UL> 
+	 <P>To <B><I>export</I></B> data from a VA FileMan file, use the <B>Export
+		Tool</B> to create an ASCII data file containing exported records. The exported
+		data is formatted in such a way that it can be recognized by the particular
+		foreign application. The ASCII data file can then be imported into the foreign
+		application. </P> 
+	 <P>To <B><I>import</I></B> data to a VA FileMan file, use your foreign
+		application to generate an ASCII data file containing records in either
+		delimited or fixed-length formats. Then use the <B>Import Tool</B> to load
+		those records into the VA FileMan file you specify.</P> 
+	 <H5>Dependency on Correct Data Communication</H5> 
+	 <P>For import or export of data to succeed, the data must be passed
+		correctly on all communication pathways between VA FileMan and the foreign
+		application. A glitch in the communication of data can cause data exchange to
+		fail.</P> 
+	 <P>For example, suppose the foreign application expects the fields in
+		records you are exporting to be separated (or "delimited") by the Tab character
+		(<B>&lt;TAB&gt;</B>). The Export Tool can output a <B>&lt;TAB&gt;</B> between
+		each field's data value. However, if you use a communication program's screen
+		capture facility to create a file of the exported data and if that
+		communication program automatically changes <B>&lt;TAB&gt;</B>s into a certain
+		number of spaces to align text, the exported data will be corrupted and the
+		import will fail.</P> 
+	 <P>You should be familiar with your importing or exporting application and
+		with any communications programs that you are using. Knowledge of all the
+		applications involved, starting with VA FileMan and its Import and Export
+		Tools, increases the likelihood of a successful transfer of data.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

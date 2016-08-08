@@ -1,0 +1,626 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+	 <!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DBS API TOC</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,toc,table of contents,contents">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD> <FRAMESET cols="25%,75%" FRAMEBORDER="YES">
+  <FRAME SRC="dba_frm1.htm" NAME="toc"
+	TITLE="Database Server (DBS) API Table of Contents (TOC) Frame that displays all topic links">
+  <FRAME SRC="db_intro.htm" NAME="display"
+	TITLE="Database Server (DBS) API Topic Display Frame"> <NOFRAMES> 
+  <BODY CLASS="toc"><!--Text, images, and content links-->
+	 <TABLE CELLSPACING="3" CELLPADDING="5" BORDER="0" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only" CLASS="tdstyle">
+
+<!-- Image in upper left corner -->
+<!-- Left hand navigation links -->
+		<TR ALIGN="CENTER"> 
+		  <TD><A HREF="http://vista.med.va.gov/"
+			 TITLE="VistA, VHA OI - Health Systems Design & Development (HSD&D) Logo: Return to Home Page"
+			 TARGET="_top">
+			 <IMG BORDER="0" SRC="vista_logo1.jpg"
+			  ALT="VistA, VHA OI - Health Systems Design & Development (HSD&D) Logo: Return to Home Page"
+			  WIDTH="122" HEIGHT="68"></A><BR> <A HREF="#navskip"><IMG SRC="clr_pxl.gif"
+			 ALT="[skip navigation]" WIDTH="25" HEIGHT="1" BORDER="0"></A></TD> 
+		</TR> 
+		<TR ALIGN="CENTER"> 
+		  <TD HEIGHT="29"><A HREF="http://vista.med.va.gov/fileman/index.htm"
+			 TARGET="_top" TITLE="VA FileMan: Return to Home Page"
+			 CLASS="navbarlink"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>
+			 FileMan Home Page</A></TD> 
+		</TR> 
+		<TR ALIGN="CENTER"> 
+		  <TD HEIGHT="29"> 
+			 <P><A HREF="index.htm" TARGET="_top" CLASS="navbarlink"
+				TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"><IMG
+				SRC="up.gif" BORDER="0" WIDTH="17" HEIGHT="16"
+				ALT="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents">
+				Main Contents</A></P></TD> 
+		</TR> 
+		<TR ALIGN="CENTER"> 
+		  <TD ALIGN="LEFT"><HR></TD> 
+		</TR> 
+		<TR ALIGN="CENTER"> 
+		  <TD ALIGN="LEFT"> 
+			 <H3 ALIGN="CENTER"><A NAME="navskip">DBS API<BR><SMALL>(Alphabetic
+				List)</SMALL></A></H3> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_intro.htm" TARGET="display"
+					 CLASS="navbarlink"
+					 TITLE="Introduction (Database Server API)">Introduction</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="dbc_frm1.htm" CLASS="navbarlink"
+					 TITLE="Listing by Category (Database Server API)">List by Category</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">How to Use</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_int2.htm" TARGET="display"
+					 CLASS="navbarlink" TITLE="Call Format (Database Server API)">Call
+					 Format</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_int3.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="IENS (Database Server API)">IENS</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_int4.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="FDA (Database Server API)">FDA</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_int5.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="Documentation Conventions (Database Server API)">Documentation
+					 Conventions</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">How the DBS Communicates</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_how1.htm" TARGET="display"
+					 CLASS="navbarlink" TITLE="Overview (Database Server API)">Overview</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_how2.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="Return Arrays (Database Server API)">Return Arrays</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_how3.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="Contents of Arrays (Database Server API)">Contents of Arrays</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_how4.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="Messages from Arrays (Database Server API)">Messages from
+					 Arrays</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_how5.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="Cleaning Up (Database Server API)">Cleaning Up</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_how6.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="Example DBS Call (Database Server API)">Example DBS Call</A></TD> 
+				</TR> 
+			 </TABLE><HR> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">DDMOD</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_ddmod.htm" TARGET="display"
+					 CLASS="navbarlink"
+					 TITLE="DELIX^DDMOD (Database Server API)">DELIX^DDMOD</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_ddmo2.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="DELIXN^DDMOD (Database Server API)">DELIXN^DDMOD</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_ddmo3.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="FILESEC^DDMOD (Database Server API)">FILESEC^DDMOD</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">DIALOG</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_dia_b.htm" TARGET="display"
+					 CLASS="navbarlink" TITLE="BLD^DIALOG (Database Server API)">BLD^DIALOG</A></TD>
+				  
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dia_e.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$EZBLD^DIALOG (Database Server API)">$$EZBLD^DIALOG</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dia_m.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="MSG^DIALOG (Database Server API)">MSG^DIALOG</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">DIC</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_dicf.htm" TARGET="display"
+					 CLASS="navbarlink" TITLE="FIND^DIC (Database Server API)">FIND^DIC</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dicf1.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$FIND1^DIC (Database Server API)">$$FIND1^DIC</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dic_l.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="LIST^DIC (Database Server API)">LIST^DIC</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">DID</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_didf1.htm" TARGET="display"
+					 CLASS="navbarlink" TITLE="FIELD^DID (Database Server API)">FIELD^DID</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_didf2.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="FIELDLST^DID (Database Server API)">FIELDLST^DID</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_didf3.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="FILE^DID (Database Server API)">FILE^DID</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_didf4.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="FILELST^DID (Database Server API)">FILELST^DID</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_didg.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$GET1^DID (Database Server API)">$$GET1^DID</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">DIE</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_die_c.htm" TARGET="display"
+					 CLASS="navbarlink" TITLE="CHK^DIE (Database Server API)">CHK^DIE</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_die_f.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="FILE^DIE (Database Server API)">FILE^DIE</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_die_h.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="HELP^DIE (Database Server API)">HELP^DIE</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_die_kv.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$KEYVAL^DIE (Database Server API)">$$KEYVAL^DIE</A>&nbsp;<IMG
+					 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+					 HEIGHT="11"></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_die_u.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="UPDATE^DIE (Database Server API)">UPDATE^DIE</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_die_v.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="VAL^DIE (Database Server API)">VAL^DIE</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_die_vals.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="VALS^DIE (Database Server API)">VALS^DIE</A>&nbsp;<IMG
+					 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+					 HEIGHT="11"></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_die_w.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="WP^DIE (Database Server API)">WP^DIE</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">DILF</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_dilf1.htm" TARGET="display"
+					 CLASS="navbarlink" TITLE="CLEAN^DILF (Database Server API)">CLEAN^DILF</A></TD>
+				  
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf2.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$CREF^DILF (Database Server API)">$$CREF^DILF</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf3.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="DA^DILF (Database Server API)">DA^DILF</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf4.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="DT^DILF (Database Server API)">DT^DILF</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf5.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="FDA^DILF (Database Server API)">FDA^DILF</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf_html.htm" TARGET="display"
+					 CLASS="navbarlink"
+					 TITLE="$$HTML^DILF (Database Server API)">$$HTML^DILF</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf6.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$IENS^DILF (Database Server API)">$$IENS^DILF</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf7.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$OREF^DILF (Database Server API)">$$OREF^DILF</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf8.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$VALUE1^DILF (Database Server API)">$$VALUE1^DILF</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dilf9.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="VALUES^DILF (Database Server API)">VALUES^DILF</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">DILFD</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_dlfd1.htm" TARGET="display"
+					 CLASS="navbarlink"
+					 TITLE="$$EXTERNAL^DILFD (Database Server API)">$$EXTERNAL^DILFD</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dlfd2.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$FLDNUM^DILFD (Database Server API)">$$FLDNUM^DILFD</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dlfd3.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="PRD^DILFD (Database Server API)">PRD^DILFD</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dlfd4.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="RECALL^DILFD (Database Server API)">RECALL^DILFD</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dlfd5.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$ROOT^DILFD (Database Server API)">$$ROOT^DILFD</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dlfd6.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$VFIELD^DILFD (Database Server API)">$$VFIELD^DILFD</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_dlfd7.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="$$VFILE^DILFD (Database Server API)">$$VFILE^DILFD</A></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD HEIGHT="9"></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD> 
+					 <P CLASS="navbartext">DIQ</P></TD> 
+				</TR> 
+			 </TABLE> 
+			 <TABLE WIDTH="100%"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="4%" ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif"
+					 ALT="bullet" WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD WIDTH="1%"></TD> 
+				  <TD WIDTH="95%"><A HREF="db_diqg1.htm" TARGET="display"
+					 CLASS="navbarlink" TITLE="$$GET1^DIQ (Database Server API)">$$GET1^DIQ</A></TD>
+				  
+				</TR> 
+				<TR> 
+				  <TD ALIGN="RIGHT"><IMG SRC="bullet_black_small.gif" ALT="bullet"
+					 WIDTH="5" HEIGHT="5" BORDER="0"></TD> 
+				  <TD></TD> 
+				  <TD><A HREF="db_diqgs.htm" TARGET="display" CLASS="navbarlink"
+					 TITLE="GETS^DIQ (Database Server API)">GETS^DIQ</A></TD> 
+				</TR> 
+			 </TABLE> </TD> 
+		</TR> 
+		<TR ALIGN="CENTER"> 
+		  <TD></TD> 
+		</TR> 
+		<TR ALIGN="CENTER"> 
+		  <TD><BR><BR> <A HREF="http://www.va.gov/" TARGET="_top"><IMG BORDER="0"
+			 SRC="vaseal.gif" ALT="Department of Veterans Affairs Seal: Return to Home Page"
+			 WIDTH="90" HEIGHT="90"></A><BR>
+			 <IMG SRC="clr_pxl.gif" ALT="[skip navigation]" WIDTH="142" HEIGHT="1"
+			  BORDER="0"><BR></TD> 
+		</TR> 
+				 
+				 
+				 
+				 
+				 
+				 
+				 				
+
+<!-- VA seal -->
+	 </TABLE> <!--End of text, images, and content links-->
+  </BODY> </NOFRAMES></FRAMESET><NOFRAME> </NOFRAME> 
+</HTML>

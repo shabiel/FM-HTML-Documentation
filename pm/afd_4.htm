@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: M Computed Expressions</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="afd_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Advanced File Definition Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Advanced File Definition</A></H3> 
+	 <H4>Computed Expressions</H4> <HR CLASS="hrstyle"> 
+	
+<p>A programmer can enter an executable line of M[UMPS] code at any point
+in FileMan dialog where one would normally be allowed to use a <a href="../u2/ce_frm.htm" TARGET="_top" class="bodylink" TITLE="Computed Expressions: VA FileMan V. 22.0 Advanced User HTML Manual">Computed
+Expression.</a>
+<p>The Computed-Expression M[UMPS] code must create a variable X, which
+will be understood to be the value of its computation. The variables D0,
+D1, etc. can be assumed to exist, defining which file or subfile entry
+is being used.&nbsp; 
+
+<P><B>COMPUTED DATES</B><P>A Computed Date will have "CD" 
+in the Field Specifier.  The X value created by the code should look like the <a HREF="cl_dt.htm" class="bodylink" TITLE="Introduction to Date/Time Formats: VA FileMan V. 22.0 Programmer HTML Manual"> numerical
+internal form of a Date</a>  -- or a null string if the computation
+results in no legal date.
+<P><B>COMPUTED POINTERS</B><P>A Computed Pointer will have "Cp" 
+in the Field Specifier, followed immediately by the file number of the pointed-to.  The
+  X value 
+created by the code should look like the numerical
+internal entry number of an entry in that file  -- or a null string if the computation
+results in no legal pointer value.
+<P><B>COMPUTED MULTIPLES</B><P>A Computed Multiple will have "Cm" 
+in the Field Specifier.  The code should create a value X several times, once for each multiple.
+Then, in the same loop, it should <B>XECUTE DICMX</b>. DICMX will exist at the time the code is used.
+The code should also create a variable D each time. Executing DICMX may result in
+  D being killed, in which case the code should quit its loop.
+
+<p><br><b>NOTE:</b> A M[UMPS] Computed Expression should be written so that
+more code can be concatenated to the end of it. IF statements, QUIT commands,
+and FOR loops should not appear.&nbsp; For an expression of any complexity,
+the best form to use is
+<br>&nbsp;&nbsp;&nbsp; <b>SET X=$$^ROUTINE(D0)</b><br>or <b>DO ^ROUTINE</b>
+<br>
+<h3>
+Examples</h3>
+
+
+<h4>Example 1</h4>
+<p>Create a Computed Pointer from the PATIENT file (#2) to the NEW PERSON file
+(#200) which points to
+the last user who edited the patient:<br>
+<br>
+<img border="0" src="Compoin.jpg"></p>
+<h4>Example 2</h4>
+<p>Create a Computed Date which gives the patient's next birthday:<br>
+<br>
+<img border="0" src="compdate.JPG" width="565" height="280"><br>
+</p>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- afd_4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

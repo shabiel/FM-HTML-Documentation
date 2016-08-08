@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Running an Init on Target System (4 of
+		16)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,running an init on target system,step 4">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Running an Init on Target System (4 of 16)</H4> 
+	 <H5>Determining Install Status of DDs and Data</H5> 
+	 <P>Next, the init determines which file's data dictionaries and data values
+		will be installed on the target system. Based on the parameters the developer
+		included in the init in combination with the environment encountered at the
+		target site, the installer is asked a series of questions for each file.</P> 
+	 <P><B>NOTE:</B> With the one exception mentioned below, no changes are made
+		on the target system at this time. The answers obtained are saved to be used
+		later in the installation process when the target system is updated. </P> 
+	 <P>The exported files are checked one-by-one. What happens to each file is
+		described in the list that follows: </P> 
+	 <UL> 
+		<LI>The name of the file is displayed to the installer whether or not a
+		  partial DD is being sent and whether or not data is coming with the file. If
+		  there is not a file with the same file number on the target system, the DD will
+		  be installed and the installer is next presented with the questions concerning
+		  the installation of the data.<BR><BR> </LI> 
+		<LI>If there is already a file under that number and the names are the
+		  same, the init tells the installer.<BR><BR><B>NOTE:</B> You already have the
+		  'file name' File.<BR><BR></LI> 
+		<LI>If there is a file with that number, but the file names do not match,
+		  the installer is asked if the name should be replaced. The default response is
+		  NO. In the event of miss matched file names, the following instructions are
+		  provided:<BR><BR> 
+		  <UL> 
+			 <LI>If the installer is sure that the files are really the same and
+				that just the name has been changed, this question should be answered YES. In
+				this case, the init does a DIE call to change the name of the file on the
+				target system. (This is the only situation in which the target system is
+				altered during this phase of the install.) The init then continues with the
+				dialog as if the file names had matched in the first place.<BR><BR> </LI> 
+			 <LI>If the installer determines that the files are not the same and
+				answers NO, then the init asks if the incoming file should replace the file
+				currently on the system. If the installer answers NO to this question, the
+				current file will be left unchanged. However, this choice will result in the
+				installation of an incomplete package. Therefore, if this happens, the
+				installation should probably be stopped and the package developer
+				consulted.<BR><BR></LI> 
+			 <LI>If the installer chooses to replace the file on the target
+				system, the init asks if the current file's data and templates should be kept.
+				Based on the answers to these questions, the current DD (and optionally the
+				data and templates) will be deleted, before the new DD is brought in. A call to
+				DIU is set up to do the DD deletion and also to delete the data and templates
+				if the installer so instructs. See the description of
+				<A HREF="cl_diu2.htm" TITLE="EN^DIU2" CLASS="bodylink">EN^DIU2</A> for
+				additional information.<BR><BR></LI> 
+		  </UL> </LI> 
+		<LI>If to this point the DD will be installed, the init checks if the
+		  developer defined a screen to determine whether or not to install the DD. The
+		  existence of a developer-defined screen overrides the installer's ability to
+		  decide if the DD should be installed. If the screen exists and its conditions
+		  are not met, the DD will not be installed but the init continues. The package
+		  developer should indicate what to do when the screen stops the DD from
+		  installing.<BR><BR></LI> 
+		<LI>If the developer decided to let the installer determine if the DD
+		  will be installed, the init asks if an existing DD should be overwritten. If
+		  the installer answers NO, the existing DD will be unchanged. Package developers
+		  should indicate when it is okay to answer this question NO.<BR><BR></LI> 
+		<LI>If data is being brought with the DD and the package developer
+		  decided to ask the question, the installer is asked whether to overwrite the
+		  target system data or merge it with the incoming data. The package developer
+		  determines whether data merges or overwrites; the installer can decide if the
+		  data will be installed, not how it will be installed. The developer should
+		  advise the installer on how to answer this question.<BR><BR></LI> 
+		<LI>If the developer did not give the installer the option of installing
+		  the data or not, the init just indicates whether the data will merge with or
+		  overwrite the current data. </LI> 
+	 </UL> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_dif6d.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: LFA Brief Data Dictionary
+		Listing</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,list file attributes,attributes,data dictionary,dd,brief data dictionary,brief">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fa_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: List File Attributes Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">List File Attributes</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Brief Data Dictionary</H4> 
+	 <P>When you choose Brief as the data dictionary format, a brief listing
+		will be produced; the Brief format is more readable but less complete than the
+		default of a Standard listing. Next, you are asked for a destination for the
+		listing's output at the "DEVICE:" prompt. You can specify any valid printer or
+		press the Enter/Return key to send output to your screen as illustrated below:
+		</P> 
+	 <PRE>    Select LISTING FORMAT:  STANDARD//   <B>BRIEF</B>
+    ALPHABETICALLY BY LABEL?  NO//  <B>&lt;RET&gt;</B>
+
+    DEVICE:  <B>&lt;RET&gt;</B></PRE> 
+	 <P>Here is a sample of a Brief data dictionary listing of an elementary
+		file of patients: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>BRIEF DATA DICTIONARY #16026 -- PATIENT FILE          05/31/91  PAGE 1
+SITE: KDEMO V7   UCI: VAH,KXX                                                  
+-------------------------------------------------------------------------------
+
+NAME                           16026,.01    FREE TEXT 
+                                        
+                                   Answer must be 3-30 characters in length. 
+
+SEX                            16026,1    SET 
+                                          'm' FOR MALE;
+                                          'f' FOR FEMALE;
+
+
+DATE OF BIRTH                  16026,2    DATE 
+                                        TYPE A DATE BETWEEN 1/1/1860 AND 1963 
+
+RELIGION                       16026,3    POINTER TO RELIGION FILE (#13) 
+
+DIAGNOSIS                      16026,4  16026.04  
+   Multiple 
+
+  DIAGNOSIS                    16026.04,.01    FREE TEXT 
+                                        
+                                   Answer must be 3-30 characters in length. 
+
+  AGE AT ONSET                 16026.04,1    NUMBER 
+                                        
+                           Type a Number between 0 and 100, 0 Decimal Digits 
+
+  HISTORY                      16026.04,2  16026.42  WORD-PROCESSING  
+
+PROVIDER                       16026,5    VARIABLE POINTER 
+              FILE  ORDER  PREFIX    LAYGO  MESSAGE
+               6      1    S            n   STAFF PROVIDER 
+               16     2    O            y   OTHER PROVIDER 
+
+SSN                            16026,6    FREE TEXT 
+  Social Security Number                Enter 9 numbers without dashes.</PRE> <HR> 
+	 <P>The information in the data dictionary reports originated in the
+		definition of the file and its fields. </P> 
+	 <P><B>NOTE:</B> The "<A HREF="cr_frm.htm" TARGET="_top"
+		TITLE="Creating Files and Fields" CLASS="bodylink">Creating Files and
+		Fields</A>" chapter explains in detail the source of the information displayed
+		by the List File Attributes option. </P> 
+	 <P>This data dictionary listing tells you that for each patient, the
+		following information may be available:</P> 
+	 <UL> 
+		<LI>A NAME that is from 3 to 30 characters long.<BR><BR></LI> 
+		<LI>A recorded SEX of either <B>m</B> (MALE) or <B>f</B>
+		  (FEMALE).<BR><BR></LI> 
+		<LI>A DATE OF BIRTH.<BR><BR></LI> 
+		<LI>A RELIGION (for a list of all valid religions, we would have to
+		  consult a RELIGION file).<BR><BR></LI> 
+		<LI>One or more diagnoses and for each DIAGNOSIS; DIAGNOSIS is a
+		  Multiple-valued field that has the following information: <BR><BR> 
+		  <UL> 
+			 <LI>An AGE AT ONSET<BR><BR></LI> 
+			 <LI>A HISTORY</LI> 
+		  </UL> <BR><BR></LI> 
+		<LI>A PROVIDER (e.g., a primary care physician). For a list of valid
+		  PROVIDERs, you would consult File #6 and then File #16. If the PROVIDER's name
+		  does not appear, it can then be entered in File #16, since LAYGO
+		  (Learn-As-You-Go) has been allowed.<BR><BR></LI> 
+		<LI>A SOCIAL SECURITY NUMBER (SSN).</LI> 
+	 </UL> 
+		 	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fa_brief.htm -->	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

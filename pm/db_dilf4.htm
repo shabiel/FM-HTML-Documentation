@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DT^DILF( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,dt^dilf(),dilf">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P><TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>DT^DILF( ): Date Converter</H4> 
+	 <P>This procedure converts a user-supplied value into VA FileMan's internal
+		date format and (optionally) into the standard FileMan external, readable date
+		format. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+DT^DILF(FLAGS,IN_DATE,.RESULT,LIMIT,MSG_ROOT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="9" WIDTH="16%"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing of user input and the type
+				of output returned. Generally, FLAGS is the same as %DT input variable to ^%DT
+				entry point, with the following exceptions: "A" is not allowed and the meaning
+				of "E" is different (see below). The possible values are: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>E</B></TD> 
+		  <TD VALIGN="TOP"><B>E</B>xternal, readable date returned in zero-node
+			 of RESULT. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>F</B></TD> 
+		  <TD VALIGN="TOP"><B>F</B>uture dates are assumed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>N</B></TD> 
+		  <TD VALIGN="TOP"><B>N</B>umeric-only input is not allowed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>P</B></TD> 
+		  <TD VALIGN="TOP"><B>P</B>ast dates are assumed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>R</B></TD> 
+		  <TD VALIGN="TOP"><B>R</B>equired time input. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>S</B></TD> 
+		  <TD VALIGN="TOP"><B>S</B>econds will be returned. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>T</B></TD> 
+		  <TD VALIGN="TOP"><B>T</B>ime input is allowed but not required. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>X</B></TD> 
+		  <TD VALIGN="TOP">E<B>X</B>act date (with month and day) is required.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IN_DATE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Date input as entered by the user in any of the formats
+				known to FileMan. Also, help based on the FLAGS passed can be requested with a
+				"?". </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>.RESULT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Local array that receives the internal value of the
+				date/time and, if the E flag is sent, the readable value of the date. If input
+				is not a valid date, -1 is returned. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>LIMIT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) A value equal to a date/time in FileMan internal format
+				or NOW. IN_DATE is accepted only if it is greater than or equal to LIMIT if it
+				is positive, or less than or equal to LIMIT if it is negative. This is
+				equivalent to the %DT(0) variable in the ^%DT call. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Root into which error, help, and message arrays are
+				put. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>Output is returned in the local array passed by reference in the RESULT
+		parameter, shown below: </P> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>RESULT</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Date in internal FileMan format. If input is invalid or if help is
+				requested with a "?", -1 is returned. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>RESULT(0)</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If requested, date in external, readable format. When appropriate,
+				error messages and help text are returned in the standard manner in ^TMP or in
+				MSG_ROOT (if it is specified). </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Example</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>Following is an example of one of the many kinds of user inputs that can
+		be processed by this call. Use of the E flag ensures that the readable form of
+		the data is returned in the 0-node as follows: </P> 
+	 <PRE>
+    &gt;<B>D DT^DILF(&quot;E&quot;,&quot;T+10&quot;,.ANSWER)
+</B>    
+    &gt;<B>ZW ANSWER
+</B>    ANSWER=2931219
+    ANSWER(0)=DEC 19, 1993
+
+</PRE> 
+	 <P><B><A NAME="Example2">Example 2</A></B></P> 
+	 <P>This is an example of a request for help when time is allowed as input:
+		</P> 
+	 <PRE>
+    &gt;<B>D DT^DILF(&quot;T&quot;,&quot;?&quot;,.ANSWER,&quot;&quot;,&quot;MYHELP&quot;)
+</B>    
+    &gt;<B>ZW ANSWER
+</B>    ANSWER=-1
+    &gt;<B>ZW MYHELP
+</B>    MYHELP(&quot;DIHELP&quot;)=10
+    MYHELP(&quot;DIHELP&quot;,1)=Examples of Valid Dates:
+    MYHELP(&quot;DIHELP&quot;,2)=   JAN 20 1957 or JAN 57 or 1/20/57 or 012057
+    MYHELP(&quot;DIHELP&quot;,3)=   T   (for TODAY), T+1 (for TOMORROW), T+2,
+       T+7, etc.
+    MYHELP(&quot;DIHELP&quot;,4)=T-1 (for YESTERDAY), T-3W (for 3 WEEKS AGO), etc.
+    MYHELP(&quot;DIHELP&quot;,5)=If the year is omitted, the computer uses the
+       CURRENT YEAR.
+    MYHELP(&quot;DIHELP&quot;,6)=You may omit the precise day, as:  JAN, 1957.
+    MYHELP(&quot;DIHELP&quot;,7)=
+    MYHELP(&quot;DIHELP&quot;,8)=If the date is omitted, the current date is assumed.
+    MYHELP(&quot;DIHELP&quot;,9)=Follow the date with a time, such as JAN 20@10,
+       T@10AM, 10:30, etc.
+    MYHELP(&quot;DIHELP&quot;,10)=You may enter NOON, MIDNIGHT, or NOW to indicate
+       the time.
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>In addition to errors indicating that the input parameters are incorrect
+		or missing, the following error code may be returned: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_330.htm" TITLE="Error 330"
+			 CLASS="bodylink">330</A></B></TD> 
+		  <TD VALIGN="TOP">Date/time is not acceptable. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Details and Features</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Acceptable User Input</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>This call processes a wide range of formats for dates and times.
+				"<A HREF="#Example2" TITLE="Example 2" CLASS="bodylink">Example 2</A>" above
+				that shows the response to an IN_DATE of "?" summarizes the acceptable formats.
+				Remember that the allowable values are controlled by the FLAGS sent and by the
+				LIMIT parameter. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Internal Format</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The primary use of this call is to transform the date/time passed
+				in the IN_DATE parameter into the format used by FileMan to store values in
+				Date/Time data type fields. That format is "YYYDDMM.HHMMSS" where YYY is the
+				number of years since 1700. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Readable Date</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>When the E flag is sent to request that the readable form of the
+				data be returned, the format is always "MON dd,yyyy@ hh:mm:ss." </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dilf4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

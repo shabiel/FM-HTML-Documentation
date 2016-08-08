@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Transferring File Entries,
+		Comparing Entries</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,transferring file entries,transferring,file entries,comparing entries,comparing,comparison">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="te_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Transferring File Entries Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Transferring File Entries</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>Comparing Entries</H4> 
+	 <P>You can use the Compare/Merge File Entries option as a simple tool to
+		compare entries. To do this:</P> 
+	 <OL> 
+		<LI>Identify a file.<BR><BR></LI> 
+		<LI>Identify the two entries to be compared.<BR><BR></LI> 
+		<LI>Answer NO to the "MERGE ENTRIES AFTER COMPARING THEM?" prompt. </LI> 
+	 </OL> 
+	 <P>In this example below, two similar entries in the SCHOLAR file are used.
+		</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select TRANSFER OPTION: <B>COMPARE/MERGE FILE ENTRIES</B>
+COMPARE ENTRIES IN WHAT FILE: <B>SCHOLAR </B>
+COMPARE SCHOLAR: <B>RU</B></PRE> <HR> 
+	 <P>VA FileMan responds to this abbreviated response with the matching
+		entries in the list that follows: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>1   RUSSELL,BERTRAND A.
+    2 RUSSELL,BERTRAND W.
+CHOOSE 1-2: <B>1</B>
+   WITH SCHOLAR: <B>RUSSELL,BERTRAND W.</B>
+
+NOTE: Use this option ONLY DURING NON-PEAK HOURS if merging entries in a
+file that is pointed-to either by many files, or by large files.
+
+MERGE ENTRIES AFTER COMPARING THEM? No// <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>Here you choose whether to simply compare entries or to actually merge
+		them. If you are merging, the process of repointing entries in other files from
+		the merged-from entry to the merged-to entry can be time-consuming or may
+		create many tasked jobs. This is more likely if the file is pointed to by many
+		files or if the files that point to it have many entries. In these situations,
+		consider merging at times when your system is not busy. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DO YOU WANT TO DISPLAY ONLY THE DISCREPANT FIELDS?  NO// <B>&lt;RET&gt;</B>
+DEVICE: <B>&lt;RET&gt;</B>                RIGHT MARGIN:     80// <B>&lt;RET&gt;</B>
+ 
+ 
+COMPARISON OF SCHOLAR FILE ENTRIES           FEB 14, 1991  11:59    PAGE 1
+SCHOLAR             RUSSELL, BERTRAND A.         RUSSELL,BERTRAND W.
+----------------------------------------------------------------------------
+ 
+*** NAME            RUSSELL,BERTRAND A.          RUSSELL,BERTRAND W. 
+ 
+*** SSN             999-99-9999                  888-88-8888
+ 
+*** SUBJECT AREA    PHILOSOPHY                   MATHEMATICS 
+ 
+*** DATE OF BIRTH   1872 
+ 
+Press RETURN to continue or '^' to exit:</PRE> <HR> 
+	 <P>The asterisks ("<B>***</B>") appearing in front of the field label
+		indicate the entries contain different data in those fields. This simple report
+		compares the data in each field in the two entries. </P> <HR CLASS="hrstyle"> 
+	 <TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"
+	  CLASS="white"> 
+		<TR> 
+		  <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+			 <!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm"
+             TAG="BODY" startspan --> 
+	 <P ALIGN="CENTER">
+		<A HREF="http://www.va.gov/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Department of Veterans Affairs Home Page">
+		<ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> Home Page</A> /
+		<A HREF="http://vaww.vhaco.va.gov/vhacio/" CLASS="bodylink"
+		 TARGET="_top" TITLE="Office of Information Home Page">
+		<ACRONYM TITLE="Office of Information">OI</ACRONYM> Home Page</A> /
+		<A HREF="http://vista.med.va.gov/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Health Systems Design and Development (HSD&D) Home Page">
+		<ACRONYM TITLE="Health Systems Design and Development">HSD&amp;D</ACRONYM> Home
+		Page</A>/
+		<A HREF="http://vista.med.va.gov/iss/site_map.htm" CLASS="bodylink"
+		 TARGET="_top" TITLE="Infrastructure and Security Services (ISS) Site Map">Site
+		Map</A> /
+		<A HREF="http://vista.med.va.gov/termsofuse.htm" CLASS="bodylink" TARGET="_top"
+		 TITLE="Health Systems Design and Development (HSD&D) Terms of Use Page"> Terms of Use</A> /
+		<A HREF="http://www.va.gov/privacy/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A>
+		</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- te_comp.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

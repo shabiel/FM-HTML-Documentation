@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Export Tool Select Fields
+		for Export Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,select fields for export option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>2. Select Fields for Export Option</H4> 
+	 <P>With the
+		<A HREF="ei_opt1.htm" TITLE="Define Foreign File Format Option"
+		 CLASS="bodylink">Define Foreign File Format option</A>, you determined the data
+		format for your export, and made sure there was a corresponding FOREIGN FORMAT
+		file entry. The next step is to choose what file and field data to export. Do
+		this using the Select Fields for Export Option; this creates a SELECTED EXPORT
+		FIELDS template.</P> 
+	 <P>The process of creating a SELECTED EXPORT FIELDS template is very
+		similar to the way you choose fields for printing with the Print File Entries
+		option. </P> 
+	 <P><B>NOTE:</B> For details on selecting fields, please refer to the "<A
+		HREF="../u1/pr_intro.htm#specifying_print" TARGET="display"
+		TITLE="Choosing Print Fields" CLASS="bodylink">Choosing Print Fields</A>" topic
+		in the "<A HREF="../u1/pr_frm.htm" TARGET="_top"
+		TITLE="Print: How to Print Reports from Files" CLASS="bodylink">Print: How to
+		Print Reports from Files</A>" chapter of the "<A HREF="../u1/index.htm"
+		TARGET="_top" TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+		CLASS="bodylink">VA FileMan Getting Started Manual</A>."</P> 
+	 <P>First, you must identify the file from which you are exporting data.
+		This is the primary file. Then you choose from which fields to export data.</P>
+	 
+	 <P>In addition to fields from that file and its Multiples, you can export
+		data from other files by using the extended pointer syntax (see the "<A
+		HREF="rn_frm.htm" TARGET="_top" TITLE="Relational Navigation"
+		CLASS="bodylink">Relational Navigation</A>" chapter in this manual). Also, you
+		can put other computed expressions at the "EXPORT FIELD:" prompt to make use of
+		VA FileMan functions or M code. </P> 
+	 <P>There are several kinds of specifications that are valid at the "PRINT
+		FIELD:" prompt that are <I>not</I> allowed at the "EXPORT FIELD:" prompt. They
+		are: </P> 
+	 <UL> 
+		<LI>WORD-PROCESSING-type fields.<BR><BR></LI> 
+		<LI>"<B>ALL</B>" signifying all the fields in a file.<BR><BR></LI> 
+		<LI>Print qualifiers following the field designation (like "<B>;X</B>" or
+		  "<B>;C22</B>").<BR><BR></LI> 
+		<LI>Statistical print qualifiers preceding the field (like "<B>#</B>" or
+		  "<B>&amp;</B>").<BR><BR></LI> 
+		<LI>Backward extended pointers.<BR><BR></LI> 
+		<LI>Relational jumps to other files (i.e., use of a terminating colon);
+		  instead, use the full extended pointer syntax to obtain data from other
+		  files.<BR><BR></LI> 
+		<LI>Specifications that return more than one value (e.g., a Multiple in a
+		  pointed-to file); you can specify Multiples in the primary file.</LI> 
+	 </UL> 
+	 <P>After you enter a set of field specifications, you are immediately
+		prompted for a template in which to store the selected fields. You <I>must</I>
+		store your field specifications in a template to proceed with the next step in
+		the data export. After you specify a template name for the SELECTED EXPORT
+		FIELDS template, you have completed this step. </P> 
+	 <P>The following is an example of the "EXPORT FIELD:" dialogue. The example
+		uses the sample PATIENT file. Several unacceptable responses are shown; the
+		error messages are the ones you would receive to these responses: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select VA FileMan OPTION: <B>OTHER OPTIONS</B>  
+Select OTHER OPTION: <B>D</B>ATA EXPORT TO FOREIGN FORMAT  
+
+Select DATA EXPORT TO FOREIGN FORMAT OPTION: <B>SE</B>LECT FIELDS FOR EXPORT
+
+OUTPUT FROM WHAT FILE: <B>PATIENT</B>
+
+FIRST EXPORT FIELD: <B>NAME;S</B>
+
+SORRY.  You cannot add ;S to the export field specifications.
+
+FIRST EXPORT FIELD: <B>NAME</B>    
+THEN EXPORT FIELD: <B>INTERNAL(SEX)</B>
+THEN EXPORT FIELD: <B>RELIGION:</B>
+
+SORRY.  You cannot jump to another file when selecting fields
+for export.
+
+THEN EXPORT FIELD: <B>$E(RELIGION:CLASSIFICATION,1,5)</B>
+THEN EXPORT FIELD: <B>DIAGNOSIS &lt;RET&gt;</B>  (multiple)
+  THEN EXPORT DIAGNOSIS SUB-FIELD: <B>DIAGNOSIS</B>    
+  THEN EXPORT DIAGNOSIS SUB-FIELD: <B>HISTORY &lt;RET&gt;</B>  (word-processing)
+
+SORRY.  You cannot choose a word processing field for export.
+
+  THEN EXPORT DIAGNOSIS SUB-FIELD: <B>AGE AT ONSET</B>    
+  THEN EXPORT DIAGNOSIS SUB-FIELD: <B>&lt;RET&gt;</B>
+THEN EXPORT FIELD: <B>&lt;RET&gt;</B>
+STORE EXPORT LOGIC IN TEMPLATE:  <B>PATIENT TEST</B>
+  Are you adding 'PATIENT TEST' as a new PRINT TEMPLATE?  No// <B>Y &lt;RET&gt;</B>  (Yes)
+
+Select DATA EXPORT TO FOREIGN FORMAT OPTION:
+</PRE> <HR> 
+	 <P>SELECTED EXPORT FIELDS templates are sometimes referred to as PRINT
+		templates in the user dialogue. This is because they are stored in the PRINT
+		TEMPLATE file (#.4). </P> 
+	 <P><B>NOTE:</B> Even though you cannot "jump" to the RELIGION file (#13)
+		using the RELIGION field, which is a pointer to the RELIGION file, you can
+		retrieve data from that file by using
+		<A HREF="rn_intro.htm" TITLE="extended pointer syntax"
+		 CLASS="bodylink">extended pointer syntax</A>.</P> 
+	 <P>You can edit a SELECTED EXPORT FIELDS template. The editing must occur
+		in the Export Data option, <I>not</I> in the standard Print File Entries
+		option. To edit one, enter the template name at the "FIRST EXPORT FIELD:"
+		prompt preceded by a left bracket ("<B>[</B>"). </P> 
+	 <P>If an EXPORT template (see the
+		<A HREF="ei_opt3.htm" TITLE="Step 3: Create Export Template Option"
+		CLASS="bodylink">Step 3</A>) has been created based on the SELECTED EXPORT
+		FIELDS template that you edit, the SELECTED EXPORT FIELDS template will
+		<I>not</I> be updated to reflect the changes. You must create a new SELECTED
+		EXPORT FIELDS template to make use of the changes. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_opt2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

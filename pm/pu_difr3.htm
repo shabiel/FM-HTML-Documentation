@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DIFROM and the Package File</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,package file and difrom,package file">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>PACKAGE File and DIFROM</H4> 
+	 <P>The PACKAGE file (#9.4) is used both to document a software package and
+		to aid in exporting the package. A PACKAGE file entry is not required to build
+		inits; inits can be built on the fly. Some of the fields are used for
+		documentation only and some for both the export process and documentation.
+		Whenever you build an init using an entry in the PACKAGE file, that entry is
+		also put into the PACKAGE file of the target system when the init is run. Thus,
+		a copy of the documentation for the package will be on both the source and
+		target systems. </P> 
+	 <P>The fields that DIFROM uses during the package export process are
+		described below. All fields not noted below are used for documentation
+		only:</P> 
+	 <OL> 
+		<LI><A HREF="#NAME" TITLE="NAME" CLASS="bodylink">NAME</A><BR><BR></LI> 
+		<LI><A HREF="#PREFIX" TITLE="PREFIX"
+		  CLASS="bodylink">PREFIX</A><BR><BR></LI> 
+		<LI><A HREF="#Template" TITLE="Template Multiples"
+		  CLASS="bodylink">Template Multiples</A><BR><BR></LI> 
+		<LI><A HREF="#EXCLUDED" TITLE="EXCLUDED NAME SPACE"
+		  CLASS="bodylink">EXCLUDED NAME SPACE</A><BR><BR></LI> 
+		<LI><A HREF="#ENVIRONMENT" TITLE="ENVIRONMENT CHECK ROUTINE"
+		  CLASS="bodylink">ENVIRONMENT CHECK ROUTINE</A><BR><BR></LI> 
+		<LI><A HREF="#PRE-INIT" TITLE="PRE-INIT AFTER USER COMMIT"
+		  CLASS="bodylink">PRE-INIT AFTER USER COMMIT</A><BR><BR></LI> 
+		<LI><A HREF="#POST-INITIALIZATION" TITLE="POST-INITIALIZATION ROUTINE"
+		  CLASS="bodylink">POST-INITIALIZATION ROUTINE</A><BR><BR></LI> 
+		<LI><A HREF="#FILE" TITLE="FILE" CLASS="bodylink">FILE</A><BR><BR></LI> 
+		<LI><A HREF="#Other" TITLE="Other PACKAGE File Fields"
+		  CLASS="bodylink">Other PACKAGE File Fields</A></LI> 
+	 </OL> <HR> 
+	 <H5><A NAME="NAME">NAME</A></H5> 
+	 <P>This is a brief (4-30 characters) name describing the package. It is
+		used to identify the package and does not affect the init directly. However, it
+		is the key field used when installing the PACKAGE file entry on the target
+		system. If you change the name and install a package on a system where it
+		already exists under a different name, a new entry will be created in the
+		PACKAGE file on the target system. The unchanged old entry will remain, too.
+		</P> 
+	 <H5><A NAME="PREFIX">PREFIX</A></H5> 
+	 <P>This is the 2-4 character namespace of the package. It is the unique
+		identifier for the package. The PREFIX controls which Templates, Options,
+		Bulletins, etc., are included in the init routines for export. Those components
+		with names beginning with the package's PREFIX are automatically exported,
+		except for those beginning with the letters in the EXCLUDED NAME SPACE
+		multiple. </P> 
+	 <H5><A NAME="Template">Template Multiples</A></H5> 
+	 <P>There is a multiple field for each of the following template types:
+		INPUT, SORT, PRINT, and SCREEN (FORM). The developer uses these multiples to
+		have the init include templates in addition to those within the PREFIX
+		namespace. Each of these multiples contains the free-text name of a template
+		and the number of the file associated with that template (a pointer to the FILE
+		of Files).</P> 
+	 <P>Note that for SCREEN (FORM) templates, all blocks pointed-to by exported
+		forms are automatically included in the init regardless of their namespace. The
+		blocks need not be specified by the developer. </P> 
+	 <H5><A NAME="EXCLUDED">EXCLUDED NAME SPACE</A></H5> 
+	 <P>The developer can use the EXCLUDED NAME SPACE multiple to exclude
+		templates, options, bulletins, etc., that are a subset of the package's
+		namespace. For example, if the namespace of a package were PRC and the EXCLUDED
+		NAME SPACE multiple contained the entry PRCZ, then any of the components of the
+		package with names beginning with "PRCZ" would not be exported. </P> 
+	 <H5><A NAME="ENVIRONMENT">ENVIRONMENT CHECK ROUTINE</A></H5> 
+	 <P>When the installer starts the init, the routine identified in the
+		ENVIRONMENT CHECK ROUTINE field is run before any of the init routines DIFROM
+		created and before any questions are asked. The installer cannot interrupt the
+		init process until this routine has completed. Thus, this pre-init should be
+		used to simply examine the environment; it should not change any data. </P> 
+	 <H5><A NAME="PRE-INIT">PRE-INIT AFTER USER COMMIT</A></H5> 
+	 <P>The routine named in the PRE-INIT AFTER USER COMMIT field runs after the
+		installer has committed to proceeding with the install but before any data is
+		updated. This routine may edit or delete data. The developer uses this routine
+		to make any data conversions, etc., that need to be performed before the init
+		brings in new data. </P> 
+	 <H5><A NAME="POST-INITIALIZATION">POST-INITIALIZATION ROUTINE</A></H5> 
+	 <P>The routine named in the POST-INITIALIZATION ROUTINE field runs after
+		the inits put everything in place. Here, the developer makes any data
+		conversions, etc., that need to be performed after the new data is installed.
+		</P> 
+	 <H5><A NAME="FILE">FILE</A></H5> 
+	 <P>This is a multiple field used to describe how the data dictionaries
+		(DDs) and data from the exported files are to be handled in the inits. The
+		following fields are included within the FILE multiple:</P> 
+	 <UL> 
+		<LI><B>FILE</B> 
+		  <P>This field contains the number of the file to be exported. It is a
+			 pointer to the FILE of Files (#1).</P> <BR><BR></LI> 
+		<LI><B>FIELD</B> 
+		  <P>This optional multiple within the FILE multiple allows the developer
+			 to send a subset of the fields from a file. If only some of the fields are
+			 being exported, a "partial" file is being sent. If no entries are made in the
+			 FIELD multiple, all of the fields from the file are exported. Only the names of
+			 fields at the top level of a file can be entered. Thus, single fields at the
+			 top level and entire multiples with all the subfields and subfiles descendent
+			 from those multiples can be sent.</P> 
+		  <P>The .01 field will automatically be sent, whether or not it appears
+			 in this multiple, unless the file being exported is File #200. If a partial of
+			 File #200 is being sent, the .01 is sent only if it is included in this
+			 multiple or if the PREFIX is XU (Kernel's namespace).</P> 
+		  <P><B>NOTE:</B> This list only applies to the information about fields
+			 found in the data dictionary. It is not possible at this time to send a subset
+			 of the actual data. </P> <BR><BR></LI> 
+		<LI><B>ASSIGN A VERSION NUMBER </B> 
+		  <P>If this set of codes field is YES, the version number entered by the
+			 developer while running DIFROM to build the init will be used to create the
+			 following node when the init is run on the target system: </P> 
+		  <PRE>
+    ^DD(File#,0,&quot;VR&quot;)=Version Number</PRE> 
+		  <P>The version number is that of the package being installed, not the
+			 VA FileMan version number.</P> 
+		  <P>If this field is NO or left null, a "VR" node will not be built by
+			 the init. Thus, whatever was present in this node on the target system will
+			 remain. Once a "VR" node has been set, the developer should continue to update
+			 it with each version. Otherwise, the node will contain the wrong version. </P>
+		  <BR><BR></LI> 
+		<LI><B>UPDATE THE DATA DICTIONARY </B> 
+		  <P>This set of codes field controls whether or not a pre-existing DD on
+			 the target system will be updated during the init. The DD is included in the
+			 init routines regardless of how this question is answered. If a DD for the file
+			 does not exist on the target system, it is always installed.</P> 
+		  <P>If this field is YES or left null, the DD in the init will overlay
+			 an existing DD on the target system.</P> 
+		  <P><B>NOTE:</B> The existing DD on the target system is not deleted
+			 first. For example, if a field is changed from one type to another, it is
+			 possible that the DD information from the previous definition of the field will
+			 be left behind. This situation may cause problems for FileMan. If this might
+			 happen, the developer is urged to clean up the field from the DD in a pre-init,
+			 using a call to <A HREF="cl_dik1.htm" TITLE="^DIK"
+			 CLASS="bodylink">^DIK</A>.</P> 
+		  <P>If this field is NO, the DD currently on the target system will not
+			 be changed. The developer can still send data for the file. </P> <BR><BR></LI> 
+		<LI><B>MAY USER OVERRIDE DD UPDATE </B> 
+		  <P>If this set of codes field is YES, the installer decides if a
+			 pre-existing DD will be overwritten. When the init routine runs, the question,
+			 "Shall I write over the existing Data Definition?" is asked if there is a
+			 pre-existing DD on the target system. If the installer answers this question
+			 NO, the existing DD will not be changed. This feature is useful when a package
+			 contains some DDs that are unchanged from the previous version. If the DD is
+			 not found on the target system, it will be brought in by the init regardless of
+			 this field's contents.</P> 
+		  <P>If answered NO or left null, the installer cannot choose whether or
+			 not to not bring in the DD.</P> 
+		  <P><B>NOTE:</B> If there is a screen on the DD, the question is not
+			 asked regardless of the contents of this field. The result of the screen's test
+			 determines if the new DD is installed or not. </P> <BR><BR></LI> 
+		<LI><B>SCREEN TO DETERMINE DD UPDATE </B> 
+		  <P>The developer can enter M code in this field to examine the target
+			 environment to determine whether or not to bring in a DD. The code should set
+			 the value of $T. If $T is true, the new DD is installed; if $T=0, it is not. If
+			 the developer enters a screen, the installer is not given the option of
+			 installing the DD. The screen alone determines whether or not the DD is
+			 installed.</P> 
+		  <P><B>NOTE:</B> If the DD does not exist on the target system, the
+			 screen is ignored and the incoming DD is installed.</P><BR><BR> </LI> 
+		<LI><B>DATA COMES WITH FILE </B> 
+		  <P>If this set of codes field is YES, DIFROM picks up ALL of the data
+			 for the file from the system on which the developer builds the init. This data
+			 is included in the init routines. Data from all fields is sent even if the
+			 developer is only sending selected fields from the DD. Pointers are not
+			 resolved to their external values. Thus, data with pointers should not be sent
+			 if the pointed-to entries may be in different locations on the target
+			 system.</P> 
+		  <P>If this field is NO or left null, the init does not pick up data.
+			 The contents of the following two fields are ignored.</P><BR><BR> </LI> 
+		<LI><B>MERGE OR OVERWRITE SITE'S DATA </B> 
+		  <P>This set of codes field controls how exported entries are combined
+			 with existing ones on the target site. The possible values are "m" (MERGE) and
+			 "o" (OVERWRITE). The default is MERGE.</P> 
+		  <P>When an init is installed, incoming entries and subentries are
+			 checked to see if they match ones on the target system. (A detailed description
+			 of this process is given in the "<A HREF="pu_difr6.htm"
+			 TITLE="Running an Init section" CLASS="bodylink">Running an Init</A>" section.)
+			 If a match is not found, the entry or subentry is added. The contents of this
+			 field determine what happens to entries that do match.</P> 
+		  <P>If incoming entries are to be merged with existing ones, fields with
+			 non-null values are left unchanged on the target system. Data from the init is
+			 placed into fields with null values.</P> 
+		  <P>If incoming entries are to overwrite existing ones, fields with
+			 non-null values in the init overwrite values currently on the target system. If
+			 the field is null in the init and the field on the target system contains data,
+			 the current value is not overwritten with a null value. </P> <BR><BR></LI> 
+		<LI><B>MAY USER OVERRIDE DATA UPDATE </B> 
+		  <P>If this set of codes field is YES, the installer can decide whether
+			 or not to install the data from the init. The installer can choose to bring in
+			 the data or not to bring it in. However, the merge/overwrite flag cannot be
+			 changed; merge cannot be switched to overwrite, and vice versa.</P> 
+		  <P>If the field is NO or left null, the installer cannot choose if the
+			 target system's data is updated or not.</P> </LI> 
+	 </UL> 
+	 <H5><A NAME="Other">Other PACKAGE File Fields</A></H5> 
+	 <P>Other PACKAGE file fields are used only for documentation and do not
+		affect the DIFROM procedure. One of the documentation fields, SHORT
+		DESCRIPTION, is required. It is a free text field of up to 60 characters. Other
+		documentation fields include: ROUTINE, GLOBAL, VERSION, DEVELOPMENT ISC, and
+		KEY VARIABLE. There are fields to document the development, verification, site
+		installation, and patch history. This data describing the package is bundled
+		and exported with the rest of the package. It is put into the recipient's
+		PACKAGE file. </P> 
+	 <P>Some of the documentation fields are updated on the target system when
+		the init is run. For example, the date/time that the pre- and post-inits are
+		run is automatically recorded in the PACKAGE file entry as is the version
+		number. </P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_difr3.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

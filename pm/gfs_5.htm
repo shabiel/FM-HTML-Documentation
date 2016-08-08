@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Global File Structure -
+		Cross-references</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,global file structure,global,file,cross-references">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="gfs_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Global File Structure Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Global File Structure</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Cross-references</H4> 
+	 <P>The M capabilities of string-valued array subscripting offer a simple,
+		general way to cross-reference VA FileMan files. To minimize the number of
+		global names used by the system, FileMan stores each cross-reference set as a
+		descendent of an alphanumeric subscript of the file's global. A file, such as
+		an EMPLOYEE file, that should be accessible by name, is set up by the system so
+		that there is a subscript "B", which in turn is subscripted by strings
+		corresponding to the first 30 characters from the .01 field for every entry in
+		the file. For each such string-valued subscript, the next level of subscripting
+		contains the internal entry numbers of the entries that contain the name. </P> 
+	 <P>Let's add to our previous example a second employee, internal entry
+		number 9, also named John Jones, and a third employee, internal number 7, whose
+		name is Sam Smith. Then you would have: </P> 
+	 <PRE>    ^EMP(1,0)=&quot;JONES,JOHN^M^2341225^3&quot;
+    ^EMP(7,0)=&quot;SMITH,SAM^M^2231109^2&quot;
+    ^EMP(9,0)=&quot;JONES,JOHN^M^2500803^18&quot;
+    ^EMP(&quot;B&quot;,&quot;JONES,JOHN&quot;,1)=&quot;&quot;
+    ^EMP(&quot;B&quot;,&quot;JONES,JOHN&quot;,9)=&quot;&quot;
+    ^EMP(&quot;B&quot;,&quot;SMITH,SAM&quot;,7)=&quot;&quot;
+</PRE> 
+	 <P>Notice that all the data is in the subscripting and the global nodes
+		under ^EMP("B") are simply null strings. FileMan allows for these strings to be
+		non-null in the case where a mnemonic cross-reference is set up for the name.
+		Multiple cross-references (C, D, etc.) are also allowed. </P> 
+	 <P>In Version 22.0 of VA FileMan, cross-references (indexes) may be defined
+		that have more than one data field subscript before the record number. These
+		cross-references can then be used for a lookup and the user will be prompted
+		for more than one lookup value, one for each data subscript on the index. Such
+		compound indexes must be defined as a new-style index on the
+		<A HREF="gfs_3e.htm" TARGET="display" TITLE="INDEX file" CLASS="bodylink">INDEX
+		file</A>.&nbsp;<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+		WIDTH="35" HEIGHT="11"></P> 
+	 <P>Example: An entry from a cross-reference with the name and the
+		date-of-birth on the data above might look like: </P> 
+	 <PRE>^EMP(&quot;C&quot;,&quot;JONES,JOHN&quot;,2341225,1)=&quot;&quot;</PRE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- gfs_5.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

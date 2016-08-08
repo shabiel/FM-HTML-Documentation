@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by George Timson and Susan Strack, 04/04/02-->
+<!--Revised by Thom Blom, 07/23/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: CHANGED^DIAUTL( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure and Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer,auditing API,CHANGED^DIAUTL( ),CHANGED,DIAUTL">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white"> 
+  	<BR>
+	<IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Auditing API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>
+CHANGED^DIAUTL( ): Historical Data Retriever</H4> 
+	 <P><p>This procedure returns a list of IENs of entries that have had audit
+  events within a specified time period. Optionally, the oldest value of each
+  audited field within that time period is returned with each entry.
+	 <P></P> 
+	 <H5>Format</H5> 
+	 <PRE>DO CHANGED^DIAUTL(FILE,FIELDS,FLAG,TARGET_ROOT,START_DATE,END_DATE)</PRE> 
+	 <H5><A NAME="input">Input Parameters</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  
+<td VALIGN=TOP><b>FILE</b></td>
+
+<td VALIGN=TOP>(Required) File number of a file which is being
+audited.&nbsp;</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>FIELDS</b></td>
+
+<td VALIGN=TOP>(Required) Specifies which fields from the audited
+  file are to be examined for audit history.&nbsp; Can be one of the following:&nbsp;
+  <ul>
+    <li>
+A single field number.<br>
+<br>
+    </li>
+
+<li>
+A list of field numbers, separated by semicolons.<br>
+<br>
+    </li>
+
+<li>
+A range of field numbers, in the form M:N, where M and N are the end points
+of the inclusive range. All field numbers within this range are retrieved.<br>
+<br>
+    </li>
+
+<li>
+<b>
+*</b> meaning, &quot;examine all audited fields.&quot;</li>
+  </ul>
+</td>
+</tr>
+
+<tr>
+<td><b>FLAG</b></td>
+
+<td>(Optional) "O" if the &quot;oldest&quot; values within the specified time
+  period are to be returned.&nbsp; Without
+the "O" parameter, the API returns only the entry numbers.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>TARGET_ROOT</b></td>
+
+<td VALIGN=TOP>(Required) The name of a closed root reference.&nbsp;</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><b>START_DATE</b></td>
+
+<td VALIGN=TOP>(Optional) Beginning date/time (FileMan format)
+of the auditing period.&nbsp; If no START_DATE is specified, the file's audit history will be scanned from its earliest
+  date/time.</td>
+</tr>
+
+<tr>
+<td valign="top"><b>END_DATE</b></td>
+
+<td>(Optional) Ending date/time (FileMan format) of the auditing period.&nbsp;If no END_DATE specified, the file's audit history will be scanned through
+its most recent date/time.</td>
+</tr>
+	 </TABLE> 
+
+
+	 <H5><A NAME="output">Output</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<tr>
+<td VALIGN=TOP><b>TARGET_ROOT</b></td>
+
+<td VALIGN=TOP>The output array is found in TARGET_ROOT(IEN)=&quot;&quot;
+<br>oldest values, if requested by the "O" parameter, are in
+  TARGET_ROOT(IEN,field#)</td>
+</tr>
+	 </TABLE> 
+ <br>
+Note that CHANGED^DIAUTL can only retrieve what is recorded in the FileMan Audit file
+  (#1.1),&nbsp;
+and does not look at subfiles (multiple fields).&nbsp;
+Data entry events that happen before auditing is turned on for a particular field,&nbsp;are
+  not recorded.
+
+<p>Also, if the PURGE DATA AUDITS option is run, information
+from the audit trail is removed.
+<br>&nbsp;
+
+
+	 <h5>Examples</h5> 
+<h6>Example 1</h6>
+	 <P>
+Find which entries in File #999000 have been changed since yesterday.</P> 
+	 <PRE>    <B>&gt;S %DT=&quot;&quot;,X=&quot;T-1&quot; D ^%DT,CHANGED^DIAUTL(999000,&quot;*&quot;,&quot;&quot;,&quot;^TMP($J)&quot;,Y)</B>
+
+&nbsp;&nbsp;&nbsp; ^TMP($J,7)=&quot;&quot;
+&nbsp;&nbsp;&nbsp; ^TMP($J,4878)=&quot;&quot;
+&nbsp;&nbsp;&nbsp; ^TMP($J,9899)=&quot;&quot;</pre>
+
+	 <P>Three records have had audited events since yesterday at 12:01 AM.
+</PRE> 
+
+
+<h6>Example 2</h6>
+Find which NAMEs in File #999000 have ever been changed, and retrieve the
+original NAMEs.
+<pre>&nbsp;&nbsp;&nbsp; &gt;<b>D CHANGED^DIAUTL(999000,.01,&quot;O&quot;,&quot;ARRAY&quot;)&nbsp; ZW ARRAY</b>
+
+&nbsp;&nbsp;&nbsp; ARRAY(344)=&quot;&quot;
+&nbsp;&nbsp;&nbsp; ARRAY(344,.01)=&quot;DELETED,DAVID&quot;
+&nbsp;&nbsp;&nbsp; ARRAY(477)=&quot;&quot;
+&nbsp;&nbsp;&nbsp; ARRAY(477,.01)=&quot;UNMARRIED,UNA&quot;</pre>
+
+Two records are found, because the audit status of the .01 field of this&nbsp;
+
+file is "EDITED OR DELETED".&nbsp; Entry 344 no longer exists.&nbsp; Entry 477 has a&nbsp;
+
+new married name.&nbsp; It is the EXTERNAL version of the old value that is returned.&nbsp;
+
+If the name were changed twice in the time period, the oldest value would be&nbsp;
+
+returned.
+	 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- au_chng.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

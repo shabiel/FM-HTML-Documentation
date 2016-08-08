@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Susan Strack, 12/04/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: A Trigger on the Same File</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,trigger cross-references,cross-references,triggers,same file,same">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css">
+	 </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="tr_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Trigger Cross-references Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Trigger Cross-references</A></H3> <HR
+	 CLASS="hrstyle"> 
+	 <H4>A Trigger on the Same File</H4> 
+	 <P>Adding a time and date stamp to the file whenever a particular field is
+		updated is a simple example of a trigger. Suppose the Patient file has a
+		date-valued field called DATE NAME CHANGED. Here is how you could put the
+		current date and time into this field whenever the patient's NAME is entered or
+		changed: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS 
+Select UTILITY OPTION: <B>CRO</B>SS-REFERENCE A FIELD
+
+MODIFY WHAT FILE: <B>PATIENT &lt;RET&gt;</B>              (1890 entries)
+Select FIELD: <B>NAME</B>
+
+CURRENT CROSS-REFERENCE IS REGULAR 'B' INDEX OF FILE
+
+Choose E (Edit)/D (Delete)/C (Create): <B>CREATE</B>
+WANT TO CREATE A NEW CROSS-REFERENCE FOR THIS FIELD?
+NO// <B>Y </B> (YES) CROSS-REFERENCE NUMBER:  2// <B>&lt;RET&gt;</B>
+Select TYPE OF INDEXING: REGULAR// <B>TRI</B>GGER
+
+WHEN THE NAME field (#.01) of the PATIENT File (#2)
+IS CHANGED, WHAT FIELD SHOULD BE 'TRIGGERED': <B>DATE NAME CHANGED &lt;RET&gt;</B>  ..OK </PRE> <HR> 
+	 <P>The field to be triggered must already exist. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>---- SET LOGIC ----
+
+IN ANSWERING THE FOLLOWING QUESTION, 'DATE NAME CHANGED'
+   CAN BE USED TO REFER TO THE EXISTING TRIGGERED FIELD VALUE.
+PLEASE ENTER AN EXPRESSION WHICH WILL BECOME THE VALUE OF THE DATE
+NAME CHANGED field (#2) OF THE 'PATIENT' File (#2) 
+ WHENEVER 'NAME' FIELD IS ENTERED OR CHANGED: <B>NOW</B>
+
+DO YOU WANT TO MAKE THE SETTING OF 'DATE NAME CHANGED' CONDITIONAL?  
+  NO//   (NO)</PRE> <HR> 
+	 <P>If you answered YES, you can set conditions for the trigger. You will
+		get the prompt: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>ENTER AN EXPRESSION FOR THE CONDITION: <B>&lt;RET&gt;</B>
+
+--- KILL LOGIC ---
+
+IN ANSWERING THE FOLLOWING QUESTION, 'DATE NAME CHANGED'
+ CAN BE USED TO REFER TO THE EXISTING TRIGGERED
+ FIELD VALUE.  NOTE: 'OLD NAME' CAN BE USED TO REFER TO THE VALUE
+ OF THE NAME FIELD BEFORE ITS CHANGE OR DELETION.
+PLEASE ENTER AN EXPRESSION WHICH WILL BECOME THE VALUE OF 
+THE 'DATE NAME CHANGED' field (#2) OF THE 'PATIENT' File (#2) 
+  WHENEVER 'NAME' IS CHANGED OR DELETED: <B>&lt;RET&gt;</B>  NO EFFECT</PRE> <HR> 
+	 <P>You have specified that the NAME field will trigger the DATE NAME
+		CHANGED field (noting that the NAME field is already cross-referenced in the
+		usual way). You have requested that the current date/time (NOW) be stuffed into
+		the triggered field. </P> 
+	 <P>Since this triggering will occur whenever NAME is changed, you don't
+		have to specify anything else that depends on the pre-existing value of NAME.
+		When the entire patient entry is deleted, the DATE NAME CHANGED will be deleted
+		along with the name. Thus, no KILL LOGIC is needed. The response to pressing
+		the Enter/Return key at that prompt is "NO EFFECT". </P> 
+	 <P>Since you always want the trigger to take place when NAME is changed, no
+		condition is placed on the trigger. A trigger can be setup that will only occur
+		under specified circumstances. </P> 
+	 <PRE>    WANT TO PROTECT THE 'DATE NAME CHANGED' FIELD, SO THAT 
+    IT CAN'T BE CHANGED BY THE 'ENTER &amp; EDIT' ROUTINE? NO// <B>YES</B></PRE> 
+	 <P>You specify that the only way you want the DATE NAME CHANGED field to be
+		updated is via this trigger. No Enter or Edit File Entries option user (not
+		even one with an @-sign) will be able to change a patient's DATE NAME CHANGED
+		field directly. </P> 
+	 <PRE>    NO-DELETION MESSAGE: <B>&lt;RET&gt;</B></PRE> 
+	 <P>If you enter a free text message at this prompt, this cross-reference
+		cannot be deleted. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DESCRIPTION:  
+1&gt;<B>The DATE NAME CHANGED field will be triggered whenever the </B>
+2&gt;<B>NAME field is entered or updated.  The triggered value will be</B>
+3&gt;<B>NOW.  This field cannot be edited.</B>
+4&gt;<B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>The description will appear in a standard DD listing. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>...CROSS-REFERENCE IS SET
+
+DO YOU WANT TO RUN THE CROSS-REFERENCE FOR EXISTING
+ENTRIES NOW? NO// <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>Finally, you have the option of using the new trigger to update the
+		file. In this case, it would not be useful to put the current date and time
+		into the DATE NAME CHANGED field for every existing entry. Thus, the NO default
+		is accepted. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- tr_same.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

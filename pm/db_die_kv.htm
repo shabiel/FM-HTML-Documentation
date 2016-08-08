@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: FILE^DIE( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,file^die(),die">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>$$KEYVAL^DIE( ): Key Validator&nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></H4> 
+	 <P>The Key Validator extrinsic function verifies that new values contained
+		in the FDA do not produce an invalid key. All keys in which any field in the
+		FDA participates are checked. If the value for a field in a key being checked
+		is not present in the FDA, the value used to verify the key is obtained from
+		the previously filed data.</P> 
+	 <H5>Format</H5> 
+	 <PRE>$$KEYVAL^DIE(FLAGS,FDA_ROOT,MSG_ROOT)</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD><B>FLAGS </B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. The possible values are:
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD></TD> 
+		  <TD><B>Q</B></TD> 
+		  <TD><B>Q</B>uit when the first problem in the FDA is encountered.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FDA_ROOT</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Required) The root of the FDA that contains the data to be
+				checked. The array can be a local or global one. See the "<A HREF="db_how.htm"
+				TITLE="Database Server Introduction" CLASS="bodylink">Database Server
+				Introduction</A>" for details of the structure of the
+				<A HREF="db_int4.htm" TITLE="FDA" CLASS="bodylink">FDA</A>.</P> 
+			 <P>The value of fields in the FDA must be the internal value. Do not
+				pass external (e.g., unresolved pointer values, non-FileMan dates) in the
+				FDA.</P> 
+			 <P>No action is taken on fields in the referenced FDA if those fields
+				do not participate in a Key defined in the KEY file. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) The root of an array into which error messages are
+				returned. If this parameter is not included, errors are returned in the default
+				array: ^TMP("DIERR",$J). </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>This Boolean function returns a 1 if key integrity is not violated by
+		any value in the FDA and a 0 if an invalid key was produced by any of the
+		values. Error messages and DIERR are also returned when necessary. </P> 
+	 <H5>Example</H5> 
+	 <P>In the following example, two fields from File #99999 (SAMPLE file) are
+		set into an FDA. These are values for a new record; therefore, the IENS is
+		"+1,". The values (".111" and "Albert Jones") are valid internal values for
+		fields .01 and .02. $$KEYVAL^DIE returns "0" indicating that key integrity is
+		violated by these values. The returned error message states the values create a
+		duplicate key. The key that is duplicated is the "A" key.</P> 
+	 <PRE>&gt;<B>K MYERRORS,MYFDA</B>
+
+&gt;<B>S MYFDA(99999,&quot;+1,&quot;,.01)=.111</B>
+
+&gt;<B>S MYFDA(99999,&quot;+1,&quot;,.02)=&quot;Albert Jones&quot;</B>
+
+&gt;<B>W $$KEYVAL^DIE(&quot;&quot;,&quot;MYFDA&quot;,&quot;MYERRORS&quot;)</B>
+0
+&gt;<B>W DIERR</B>
+1^1
+&gt;<B>ZW MYERRORS</B>
+MYERRORS(&quot;DIERR&quot;)=1^1
+MYERRORS(&quot;DIERR&quot;,1)=740
+MYERRORS(&quot;DIERR&quot;,1,&quot;PARAM&quot;,0)=3
+MYERRORS(&quot;DIERR&quot;,1,&quot;PARAM&quot;,&quot;FILE&quot;)=99999
+MYERRORS(&quot;DIERR&quot;,1,&quot;PARAM&quot;,&quot;IENS&quot;)=+1,
+MYERRORS(&quot;DIERR&quot;,1,&quot;PARAM&quot;,&quot;KEY&quot;)=11
+MYERRORS(&quot;DIERR&quot;,1,&quot;TEXT&quot;,1)=New values are invalid because they create a
+  duplicate Key 'A' for the SAMPLE file.
+MYERRORS(&quot;DIERR&quot;,&quot;E&quot;,740,1)=
+</PRE> 
+	 <H5><A NAME="errors">Error Codes Returned</A></H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_740.htm" TITLE="Error 740"
+			 CLASS="bodylink">740</A></B></TD> 
+		  <TD VALIGN="TOP">A duplicate key is produced by a field's new
+			 value.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_742.htm" TITLE="Error 742"
+			 CLASS="bodylink">742</A></B></TD> 
+		  <TD VALIGN="TOP">A value for a field in a key is being deleted.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_744.htm" TITLE="Error 744"
+			 CLASS="bodylink">744</A></B></TD> 
+		  <TD VALIGN="TOP">Not all fields in a key have a value.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Details and Features</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Possible IENS</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The only placeholder the IENS in the FDA can contain is the '+'
+				for records not yet added to the database. You cannot use the '?' or '?+'
+				placeholders since the Key Validator will not attempt to lookup an entry to
+				obtain existing values for a key. (See the "<A HREF="db_how.htm"
+				TARGET="display" TITLE="Database Server Introduction" CLASS="bodylink">Database
+				Server Introduction</A>" for details of the
+				<A HREF="db_int3.htm" TARGET="display" TITLE="IENS" CLASS="bodylink">IENS</A>;
+				see <A HREF="db_die_u.htm" TARGET="display" TITLE="UPDATE^DIE"
+				CLASS="bodylink">UPDATE^DIE</A> for description of
+				<A HREF="db_die_u.htm#placeholder" TITLE="placeholders"
+				CLASS="bodylink">placeholders</A>.) </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_die_kv.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

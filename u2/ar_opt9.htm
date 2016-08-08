@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Find Archived Entries
+		</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,archiving,archive">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ar_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Archiving Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Archiving</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Find Archived Entries</H4> 
+	 <P>The Find Archived Entries option scans an archive file and retrieves an
+		archive entry (or entries) that matches the NAME field (#.01) and/or the
+		PRIMARY KEY and/or Identifier field(s) of the requested entry. On the prompts
+		for lookup values and on the resulting report, PRIMARY KEY and Identifier
+		fields are both called "Identifiers." The information contained in the archived
+		entry is printed in CAPTIONED format [field name (field number)=value]. This
+		option should only be used with tapes or files archived under VA FileMan V.
+		19.0 or later. </P> 
+	 <P><B>NOTE:</B> The PRIMARY KEY is new with Version 22.0&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+		HEIGHT="11"></P> 
+	 <P>Several requests for archived entries can be made at a time. An "(id)"
+		next to a prompt indicates an Identifier, PRIMARY KEY, or Specifier field. One
+		set of all the prompts makes one request. </P> 
+	 <P>The matching process is dependent on the presence or absence of an index
+		on the archive file or tape. The matching process for archive files or tapes
+		with no index can be more time-consuming, since it has to read the entire
+		archived file to determine all matches. The matching process finds a match when
+		the values of all the answered prompts match with that of an archived entry. If
+		a partial value is typed at any prompt, the matching process finds all matches
+		that begin with the partial value for that particular prompt. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select ARCHIVE OPTION: <B>FIND</B> ARCHIVED ENTRIES
+
+This option will scan your archived file and will attempt to 
+retrieve entries that match the name (.01) field and/or the 
+identifier field(s) of the archived file.
+
+Magnetic tapes should be opened with variable length records.
+
+SEQUENTIAL ARCHIVE DEVICE: <B>HFS</B> DISK FILE
+HOST FILE NAME: TMP.TMP// <B>ARC.DAT</B>        
+
+You are reading archived information from the CHANGE file.
+Do you want to continue? YES// <B>&lt;RET&gt;</B>
+
+Multiple requests may be made.
+One set of all prompts makes one request.
+
+This archived file contains an index of all archived entries.
+Do you want to see the index now? YES// <B>&lt;RET&gt;</B>
+
+NO.          VERSION          PROGRAMMER 
+                
+101          17.10            DOE,JANE
+102          17.32            DOE,JOHN
+103          17.35            DOE,JOHN
+330          17.09            DOE,JULIA
+
+Enter NO.: <B>&lt;RET&gt;</B>
+Enter VERSION (id) : <B>&lt;RET&gt;</B>
+Enter PROGRAMMER (id) : <B>DOE,JU</B>LIA
+
+Enter NO.: <B>&lt;RET&gt;</B>
+Enter VERSION (id) : <B>&lt;RET&gt;</B>
+Enter PROGRAMMER (id) : <B>&lt;RET&gt;</B>
+
+Enter NO.: <B>&lt;RET&gt;</B>
+PRINT FOUND ENTRIES TO DEVICE: <B>&lt;RET&gt;</B>  DECSERVER
+
+Searching archived file...
+Formatting found entries...
+Press RETURN to continue or '^' to exit: <B>&lt;RET&gt;</B>
+
+
+ARCHIVE RETRIEVAL LIST                           AUG 30,1992 PAGE: 1
+REQUEST: 1
+  PROGRAMMER = DOE,JU
+--------------------------------------------------------------------
+ 
+ARCHIVE FILE: CHANGE (#16000)
+ 
+  LOOKUP VALUE (#.01): 330
+    IDENTIFIERS: 
+      VERSION (#1) = 17.09
+      PROGRAMMER (#7) = DOE,JULIA
+    FIELDS: 
+      FIELD NAME: NO. (#.01) = 330
+      FIELD NAME: VERSION (#1) = 17.09
+ 
+           MATCHES FOUND: 1</PRE>  
+	<P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ar_opt9.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

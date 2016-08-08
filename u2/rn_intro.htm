@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Relational Navigation
+		Introduction</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,relational navigation,relational,navigation,introduction">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="rn_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Relational Navigation Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Relational Navigation</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Relational Navigation Introduction</H4> 
+	 <P>Relational navigation gives you a way to reach beyond the current file
+		to reference fields within other files. </P> 
+	 <P>Suppose, for example, you are doing a printout from the PATIENT file. In
+		the PATIENT file, there is a pointer to the DOCTOR file. This links a given
+		patient to a given doctor. But the only information about the doctor available
+		from the point of view of the PATIENT file is the doctor's name. What if, in
+		your printout, you want to print the doctor's name, phone number, and specialty
+		(where phone number and specialty are fields in the DOCTOR file)?</P> 
+	 <P>The answer is to use relational navigation. By using the pointer
+		relationship between the PATIENT and the DOCTOR file, you can start from the
+		PATIENT file, and for each record in the PATIENT file, retrieve not only the
+		name of the doctor for that patient, but also additional information about the
+		doctor from the DOCTOR file.</P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG ALIGN="BOTTOM" SRC="rn_intro.gif" WIDTH="625" HEIGHT="391"
+		 ALT="Example of Pointer Relaionships Between Files."> </CENTER> 
+	 <P></P> 
+	 <P>You can use relational navigation in many places in VA FileMan to
+		<I>move beyond the current file</I> and retrieve or edit information in related
+		files' records, including:</P> 
+	 <UL> 
+		<LI>Reports (Print Fields, Sort Criteria, Search Criteria)<BR><BR></LI> 
+		<LI>Editing Records (edit information in related files, not just current
+		  file)<BR><BR></LI> 
+		<LI>Computed Expressions<BR><BR></LI> 
+		<LI>COMPUTED Fields<BR><BR></LI> 
+		<LI>Within word processing <B>|Windows|</B></LI> 
+	 </UL> 
+	 <P>The syntax to perform relational navigation, called Extended Pointer
+		syntax, is discussed throughout this chapter.</P> 
+	 <P>Several types of pointer relationships between files can be exploited to
+		combine information:</P> 
+	 <UL> 
+		<LI><A HREF="rn_simp.htm" TITLE="Simple Extended Pointer (most common)"
+		  CLASS="bodylink">Simple Extended Pointer (most common)</A><BR><BR></LI> 
+		<LI><A HREF="rn_back.htm" TITLE="Backward Extended Pointer"
+		  CLASS="bodylink">Backward Extended Pointer</A><BR><BR></LI> 
+		<LI><A HREF="rn_join.htm" TITLE="Join Extended Pointer"
+		  CLASS="bodylink">Join Extended Pointer</A></LI> 
+	 </UL> 
+	 <P>A special form of relational navigation, called
+		<A HREF="rn_jump.htm" TITLE="relational jumping" CLASS="bodylink">relational
+		jumping</A>, uses these pointer relationships to let you "jump" from one file
+		to another. This makes it easier to specify a group of fields from another file
+		when specifying what fields to edit, search, print, or sort by in interactive
+		VA FileMan.</P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- rn_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

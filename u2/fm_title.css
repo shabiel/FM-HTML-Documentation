@@ -1,0 +1,17 @@
+body
+   {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+      background-color: #ffffff; 
+      font-size: 80%;
+   }
+
+h1 {font-size: 160%; font-weight: bold; font-family: "Comic Sans Ms", "Verdana", "Arial", "Helvetica", "sans-serif"}
+h2 {font-size: 130%; font-weight: normal; font-family: "Comic Sans Ms", "Verdana", "Arial", "Helvetica", "sans-serif"}}
+h3 {font-weight: normal; font-family: "Comic Sans Ms", "Verdana", "Arial", "Helvetica", "sans-serif"}}
+h4 {font-weight: normal; font-family: "Comic Sans Ms", "Verdana", "Arial", "Helvetica", "sans-serif"}}
+
+td { font-size: 80%;}
+th { font-size: 80%;}
+
+pre { font-family: Courier New, Courier; 
+      font-size: 120% }
+

@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN1^DIP BY(0) Information</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,en1^dip by(0),dip by(0)">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN1^DIP: <A NAME="ControlSorts">Controlling Sorts with BY(0)</A></H4> 
+	 <P>Ordinarily, you control the way EN1^DIP sorts output using the BY, FR,
+		and TO input variables. This lets you sort based on field values, a previous
+		sort stored in a SORT template, or on the records stored in a SEARCH
+		template.</P> 
+	 <P>The BY(0) feature allows you to control the sort. With BY(0), you can
+		force VA FileMan to sort using an existing compound index (i.e., one that
+		indexes more than a single data field) for efficiency. Or, use of BY(0) allows
+		you to pre-sort a list of record numbers in a global and pass this pre-sorted
+		list to EN1^DIP. This lets you pre-sort reports in any way that you can use
+		subscripts to sort a global. The only limitation is that the total number of
+		subscripts in the global that you sort by must be seven or less.</P> 
+	 <P>The two main ways in which the BY(0) feature should be used are as
+		follows: </P> 
+	 <UL> 
+		<LI>Set BY(0) to the global location of an <B>existing FileMan index</B>.
+		  In particular, this lets you sort based on a MUMPS cross-reference or a
+		  compound cross-reference defined on the INDEX file (not possible otherwise).
+		  Since the sorting is already done in advance, any such prints are very fast.
+		  <BR><BR> </LI> 
+		<LI>Set BY(0) to the global location of a list of records you create
+		  "<B>on the fly</B>." This lets you sort the records in any order you want, and
+		  also lets you easily limit the number of records by pre-selecting them.</LI> 
+	 </UL> 
+	 <H5>Input Variables for Sorting with BY(0)</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>BY(0)</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional; Required for BY(0) sorts) Set this variable to an open
+				global root. The open global root should be the static part of a global; a list
+				of record numbers must be stored at a descendent subscript level. </P> 
+			 <PRE>  ^DIZ(662001,&quot;E&quot;,&quot;ALBERT&quot;,1009)
+  ^DIZ(662001,&quot;E&quot;,&quot;ANDREA&quot;,339)
+  ^DIZ(662001,&quot;E&quot;,&quot;ANDREW&quot;,552)
+  --------------- ----------------
+  &lt;-static part-&gt; &lt;-dynamic part-&gt;
+</PRE> 
+			 <P>In the example just above, you would set BY(0) to
+				'^DIZ(662001,"E",'.</P> 
+			 <P>There can be intervening subscript levels between the static,
+				fixed global root and the subscript level where the list of records numbers is
+				stored. Any intervening subscript levels define a sort order. Use the L(0)
+				input variable to tell FileMan the number of dynamic subscript levels it needs
+				to sort through (see <A HREF="#L(0)" TITLE="L(0)" CLASS="bodylink">L(0)</A>
+				description below).</P> 
+			 <P>Alternatively, you can set BY(0) to the name of a SEARCH template,
+				in [brackets]. This tells VA FileMan to sort on the list of record numbers
+				contained in the corresponding SEARCH template entry in the ^DIBT global.</P> 
+			 <P>BY(0) affects your sorts as follows:</P> 
+			 <UL> 
+				<LI>It restricts the possible records for printing to those in the
+				  specified list.<BR><BR></LI> 
+				<LI>When you set BY(0) to a static global reference, each
+				  intervening subscript level (between the static part of the global reference
+				  and the subscript level containing record numbers) defines a sort level,
+				  starting from the highest intervening subscript level.</LI> 
+			 </UL> 
+			 <P><B>BY(0) for a VA FileMan Index</B></P> 
+			 <P>If you set BY(0) to sort based on an existing FileMan-maintained
+				cross-reference, make sure the subscript you set L(0) to point to is in fact
+				the location where FileMan stores its list of records (when sorting on a
+				regular single-field index, L(0) should be 2).</P> 
+			 <P><B>BY(0) for a List of Records "On the Fly"</B></P> 
+			 <P>If you build your own list of sorted records on the fly in a
+				temporary global (as opposed to setting BY(0) to a VA FileMan-maintained
+				cross-reference) it's best not to let the final subscript of your static global
+				reference be "B". For more information, see the
+				<A HREF="#b_on_the_fly" TITLE="On the Fly discussion"
+				CLASS="bodylink">discussion</A> in the "<A HREF="#DetailsandFeatures"
+				TITLE="Details and Features" CLASS="bodylink">Details and Features</A>" section
+				below.</P> 
+			 <P><B>NOTE:</B> If you are using both the BY and BY(0) input
+				variables, don't set BY to the name of a template; an error message will print
+				or hard errors could result.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="L(0)">L(0)</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional; Required if BY(0) is set to an open global root.) </P> 
+			 <P>Use L(0) to specify the number of dynamic subscript levels that
+				exist beyond the static global root, including the subscript level containing
+				the list of record numbers. The minimum value of L(0) is 1.</P> 
+			 <P>EN1^DIP lets you sort by up to 7 subscripts; therefore the maximum
+				value of L(0) is 8.</P> 
+			 <P>For example, if BY(0) refers to a regular "E" index on a file --
+				'^DIZ(662001,"E",' -- you should set L(0)=2 -- that is, one for the subscript
+				containing the (dynamic) value of the field being cross-referenced, plus one
+				for the record number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FR(0,n)</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) To select only a subset of records at a given subscript
+				level "n", you can use FR(0,n) and/or TO(0,n). For "n" equal to any of the "n"
+				dynamic sorting subscript levels in the global specified by BY(0), you can set
+				FR(0,n) to the sort-from value for that subscript level.</P> 
+			 <P>This restricts the printed records to those whose subscript values
+				at subscript level n sort the same or greater than the value you set into
+				FR(0,n). If FR(0,n) is undefined for any subscript n, the sort on that
+				subscript level begins with the first value for that subscript. </P> 
+			 <P><B>NOTE:</B> These values must be in internal format, as they are
+				stored in the subscript of the index or global defined by BY(0).</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TO(0,n)</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable contains the ending value (the sort-to
+				value) for any of the "n" dynamic sorting subscripts in the global specified by
+				BY(0). If TO(0,n) is undefined for any subscript "n", the sort on that
+				subscript level ends with the last value for that subscript.</P> 
+			 <P><B>NOTE:</B> These values must be in internal format, as they are
+				stored in the subscript of the index or global defined by BY(0).</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DISPAR(0,n)">DISPAR(0,n)</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) Like the FR(0,n) and TO(0,n) variables, this variable
+				array can be set for any of the "n" dynamic sorting subscripts in the global
+				specified by BY(0). This array allows you to create subheaders for the sorting
+				subscripts in the global. In order to create a sub-header, you must define a
+				title for the subscript, as VA FileMan has no knowledge of the subscripts. Each
+				entry in the array can have information in two ^-pieces. </P> 
+			 <OL> 
+				<LI>The first piece contains the sort qualifiers that are normally
+				  entered interactively before a sort field (see the User Manual for more
+				  information.) Two of the sort qualifiers can be used here: "!" to number the
+				  entries by sort value and "#" to page break when the sort values
+				  changes.<BR><BR></LI> 
+				<LI>The second piece contains the sort qualifiers that are normally
+				  entered interactively after the sort field. In order to print a subheader, you
+				  must enter literal subheader "caption" (e.g., <B>;"Station/PO Number: "</B>).
+				  To have no subheader text other than the subheader value, use a null caption
+				  (e.g., <B>;""</B>). You can also use the
+				  <A HREF="../u1/pr_intro.htm#sort_reference" TITLE="sort qualifiers"
+					CLASS="bodylink">sort qualifiers</A> ;Cn ;Ln or ;Sn, (see the "<A
+				  HREF="../u1/index.htm" TARGET="_top" TITLE="Getting Started Manual"
+				  CLASS="bodylink">Getting Started Manual</A>" for more information.) </LI> 
+			 </OL> 
+			 <P>The subheaders defined in DISPAR(0,n) cannot be suppressed.</P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DISPAR(0,n,"OUT")</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) If a literal title is input to
+				<A HREF="#DISPAR(0,n)" TITLE="DISPAR(0,n)" CLASS="bodylink">DISPAR(0,n)</A>
+				above, then you can also enter M code to transform the value of the subscript
+				from the global before it is printed as a subheader. It acts like an OUTPUT
+				transform. At the time of execution, the untransformed value will be in Y. The
+				code should put the transformed value back into Y. Any other variables used in
+				the code should be NEWed. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="examples">Examples</A></H5> 
+	 <P><B><A NAME="example_1">Example 1</A></B></P> 
+	 <P>Suppose you have a simple MUMPS cross-reference that inverts dates so
+		that the values in the cross-reference are 99999999-date. The cross-reference
+		might look something like: </P> 
+	 <PRE>    ^DIZ(662001,&quot;AC&quot;,97069889,2)=&quot;&quot;
+    ^DIZ(662001,&quot;AC&quot;,97969898,3)=&quot;&quot;
+    ^DIZ(662001,&quot;AC&quot;,97969798,1)=&quot;&quot;
+        ...etc.
+</PRE> 
+	 <P>If you wanted to sort all entries by this inverse date and to convert
+		the date values into a readable format for the subheader, you would set up the
+		variables for the EN^DIP call like this: </P> 
+	 <PRE>    &gt;<B>S DIC=&quot;^DIZ(662001,&quot;,L=0,FLDS=&quot;your field list&quot;</B>
+    &gt;<B>S BY(0)=&quot;^DIZ(662001,&quot;&quot;AC&quot;&quot;,&quot;</B>
+    &gt;<B>S L(0)=2</B>
+    &gt;<B>S DISPAR(0,1)=&quot;^;&quot;&quot;DATE&quot;&quot;&quot;</B>
+    &gt;<B>S DISPAR(0,1,&quot;OUT&quot;)=&quot;S:Y Y=99999999-Y S
+Y=$$FMTE^XLFDT(Y)&quot;</B>
+</PRE> 
+	 <P><B><A NAME="example_2">Example 2</A></B></P> 
+	 <P>Suppose you have a list of record numbers in a global that looked like
+		this: </P> 
+	 <PRE>    ^TMP($J,1)=&quot;&quot;
+    ^TMP($J,3)=&quot;&quot;
+    ^TMP($J,35)=&quot;&quot;
+    ^TMP($J,39)=&quot;&quot;
+        ...etc.
+</PRE> 
+	 <P>If you wanted to print those records sorted by the .01 field of the
+		file, you would: </P> 
+	 <PRE>    &gt;<B>S DIC=&quot;^DIZ(662001,&quot;,L=0,BY=.01,(FR,TO)=&quot;&quot;,FLDS=&quot;your
+            field list&quot;</B>
+    &gt;<B>S BY(0)=&quot;^TMP($J,&quot;</B>
+    &gt;<B>S L(0)=1</B>
+</PRE> 
+	 <P><B><A NAME="example_3">Example 3</A></B></P> 
+	 <P>Suppose you have a MUMPS multifield-style cross-reference, with
+		subscripts based on the values of two fields. The first field in the subscript
+		is free-text, and the second is a number. The cross-reference might look like:
+		</P> 
+	 <PRE>    ^DIZ(662001,&quot;AD&quot;,&quot;ANY&quot;,4.99,5)=&quot;&quot;
+    ^DIZ(662001,&quot;AD&quot;,&quot;ANYTHING&quot;,1.3,2)=&quot;&quot;
+    ^DIZ(662001,&quot;AD&quot;,&quot;ANYTHING&quot;,1.45,1)=&quot;&quot;
+    ^DIZ(662001,&quot;AD&quot;,&quot;SOMETHING&quot;,.4,10)=&quot;&quot;
+        ...etc.
+</PRE> 
+	 <P>You want to sort from value "A" to "AZ" on the free-text field and from
+		1 to 2 on the numeric field. Also, you want to print a subheader for the
+		numeric field. You could set your variables like this: </P> 
+	 <PRE>    &gt;<B>S DIC=&quot;^DIZ(662001,&quot;,L=0,FLDS=&quot;your field list&quot;</B>
+    &gt;<B>S BY(0)=&quot;^DIZ(662001,&quot;&quot;AD&quot;&quot;,&quot;</B>
+    &gt;<B>S L(0)=3</B>
+    &gt;<B>S FR(0,1)=&quot;A&quot;,TO(0,1)=&quot;AZ&quot;</B>
+    &gt;<B>S FR(0,2)=1,TO(0,2)=2</B>
+    &gt;<B>S DISPAR(0,2)=&quot;^;&quot;&quot;NUMBER&quot;&quot;&quot;</B>
+    &gt;<B>S DISPAR(0,2,&quot;OUT&quot;)=&quot;S Y=$J(Y,2)&quot;</B>
+</PRE> 
+	 <H5><A NAME="DetailsandFeatures">Details and Features</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="23%"><B>Sorting on MUMPS
+			 Cross-References</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The BY(0) feature is designed to let you pre-sort your FileMan
+				reports using MUMPS cross-references. As long as the MUMPS cross-reference has
+				0 to 7 dynamic (sorting) subscripts, followed by the record numbers stored in a
+				final subscript level, you can order your reports based on that cross-reference
+				using BY(0).</P> 
+			 <P>While you may have used MUMPS cross-references in the past only
+				for sorting hard-coded reports, you may want to consider using them with
+				FileMan-based reports as well. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="sorting_compound_index">Sorting a Compound
+			 Cross-reference Defined in the INDEX file</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP">The BY(0) feature will allow you to sort using a
+			 compound cross-reference on the new INDEX file (a compound cross-reference is
+			 one that indexes more than one data field). This feature will let you use any
+			 index that has no more than 7 data valued subscripts.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Sorting Using One or More Subscript Levels</B></TD>
+		  
+		  <TD> 
+			 <P>Each intervening subscript level between the static part of the
+				open global root in BY(0) and the record number subscript level serves as one
+				sort level, starting with the highest subscript level. </P> 
+			 <P>In <A HREF="#example_3" TITLE="example 3" CLASS="bodylink">Example
+				3</A> above, the records would sort by the value of the free-text field stored
+				in the first dynamic subscript, and within that by the value of the numeric
+				field stored in the second dynamic subscript. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Additional Sorting with BY, FR, and TO</B></TD> 
+		  <TD> 
+			 <P>When using BY(0), you can still sort in the usual way (setting BY,
+				FR, and TO) to <B>further</B> sort and limit the range within the list provided
+				by BY(0). Note that if you set BY(0), BY cannot contain the name of a SORT
+				template. If your sort is complicated, see the documentation below on "<A
+				HREF="#StoringBY(0)Specs"
+				TITLE="Storing BY(0) specifications in SORT Templates" CLASS="bodylink">Storing
+				BY(0) specifications in SORT Templates</A>." </P> 
+			 <P>VA FileMan selects only the list of records specified by BY(0) and
+				its associated variables. FileMan accepts as-is the sort sequence created by
+				any dynamic subscripts in the global specified in BY(0). Then within that sort
+				sequence, it further sorts the records by the information provided in the BY,
+				FR, and TO variables.</P> 
+			 <P>You can only sort by up to 7 sort levels in EN1^DIP, so the number
+				of subscripts you sort by using BY(0) combined with the number of fields you
+				sort by using BY must not total more than 7.</P> 
+			 <P>If BY(0) has been defined without BY, FR, and TO, the user will
+				<I>not </I>be prompted for the SORT BY or FROM/TO ranges. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="StoringBY(0)Specs">Storing BY(0)
+			 Specifications in SORT Templates</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> </TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>You can store the BY(0) information in a SORT template, in order
+				to design more complicated sorts. This allows you to sort using the global
+				described in the BY(0) variable, and within those subscripts, to sort by
+				additional fields and to save the entire sort description into a template. You
+				need programmer access to do this.</P> 
+			 <P>In FileMan's sort dialog (with programmer access), at the SORT BY:
+				prompt, you can enter the characters BY(0) as shown in the example immediately
+				below. When you enter BY(0), you are then prompted for the BY(0), L(0) and all
+				related values, exactly the same as if they were entered as input variables to
+				the EN1^DIP call. </P> 
+			 <PRE>Select OPTION: <B>2  PRINT FILE ENTRIES
+</B>
+OUTPUT FROM WHAT FILE: ZZTAMI TEST// 
+SORT BY: NAME// <B>BY(0)</B>
+
+BY(0): // <B>^DIZ(662001,&quot;H&quot;,</B>
+L(0): //<B>2</B>
+
+Edit ranges or subheaders? NO// <B>YES</B>
+
+SUBSCRIPT LEVEL: 1// <B>1</B>
+FR(0,n): // <B>2690101</B>
+TO(0,n): // <B>2701231</B>
+DISPAR(0,n) PIECE ONE: // 
+DISPAR(0,n) PIECE TWO: // <B>;&quot;Date of Birth: &quot;
+</B>DISPAR(0,n,OUT): // <B>S Y=$$FMTE^XLFDT(Y,1)</B> 
+
+Edit ranges or subheaders? NO// 
+
+BY(0)=^DIZ(662001,&quot;H&quot;,     L(0)=2
+
+SUB: 1	FR(0,1): 2690101
+       TO(0,1): 2701231
+       DISPAR(0,1) PIECE ONE: 
+       DISPAR(0,1) PIECE TWO: ;&quot;Date of Birth: &quot;
+       DISPAR(0,1,OUT): S Y=$$FMTE^XLFDT(Y,1)
+
+OK? YES// 
+Enter additional sort fields? NO// <B>YES</B>
+
+WITHIN BY(0), SORT BY: <B>NAME</B>  
+START WITH NAME: FIRST// 
+      WITHIN NAME, SORT BY: 
+
+STORE IN 'SORT' TEMPLATE: <B>ZZTAMIBY0</B>
+
+</PRE> 
+			 <P>When you enter BY(0), you are prompted for BY(0) and L(0). In
+				addition, you're asked if you want to edit ranges or subheaders. This lets you
+				enter the FR(0,n), TO(0,n), DISPAR(0,n) and DISPAR(0,n,"OUT") values for
+				various subscript levels. This lets you specify all the aspects of sorting
+				using BY(0). You can store this criteria in a SORT template. If you answer YES
+				to "Enter additional sort fields?", you will be allowed to enter additional
+				sort fields, exactly the same as you would when creating a SORT template
+				without the BY(0) features.</P> 
+			 <P>The functionality of BY(0) interactively or in a SORT template is
+				identical to its functionality in the EN1^DIP programmer call. </P> 
+			 <P>An error results if, in a call to EN1^DIP, you sort by a SORT
+				template that contains BY(0) sort criteria, and also use BY(0) as an input
+				variable. </P> 
+			 <P><B>NOTE:</B> The sort ranges associated with subscripts in the
+				BY(0) global or index can be set dynamically by setting the FR(0,n) and TO(0,n)
+				input variables. These input variables will override any sort ranges set in the
+				template. </P> 
+			 <P>The "SUBSCRIPT LEVEL" prompt refers to the position of the data
+				value in the global or index. Thus, entering a value for FR(0,n) when the
+				SUBSCRIPT LEVEL is 1, sets the "from" value for the first data valued
+				subscript. </P> 
+			 <P>Use the documentation for the
+				<A HREF="cl_dip_v.htm#input_by" TITLE="BY(0)" CLASS="bodylink">BY(0)</A> and
+				related input variables for additional help. Also be sure to use online
+				<B>?</B> and <B>??</B> help. </P> 
+			 <P>The following is an example of how to call EN1^DIP when the BY(0)
+				information is contained in a template: </P> 
+			 <PRE><B>S DIC=&quot;^DIZ(16600,&quot;,L=0,BY=&quot;[ZZTEST]&quot;,FR(0,1)=70001,FLDS=.01 
+D EN1^DIP</B> </PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>BY(0) "Don'ts"</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>You should not use BY(0) if you are merely setting it to the
+				global location of an existing regular cross-reference. You will not gain any
+				speed, because FileMan's built-in sort optimizer already knows to sort on
+				regular cross-references.</P> 
+			 <P>Also, don't specify a field's regular cross-reference as the
+				global reference in BY(0) to sort on, and then sort on the same field using BY,
+				FR, and TO. This actually increases the amount of work FileMan needs to do!</P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A NAME="b_on_the_fly"><B>"On the Fly" Globals Whose
+			 Static Global Reference Ends with "B"</B></A></TD> 
+		  <TD> 
+			 <P>If you build your own list of sorted records on the fly in a
+				temporary global (as opposed to setting BY(0) to a VA FileMan-maintained
+				cross-reference) it's best not to let the final subscript of your static global
+				reference be "B". </P> 
+			 <P>This will avoid problems that might be caused by VA FileMan's
+				special handling of the "B" index for mnemonic cross-references. </P> </TD> 
+		</TR> 
+	 </TABLE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dip_b.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

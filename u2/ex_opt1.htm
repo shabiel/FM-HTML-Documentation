@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Extract Tool Select Entries
+		to Extract Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,extract tool,tools,extract,step 1, select entries to extract">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Extract Tool Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Select Entries to Extract Option (1 of 9)</H4> 
+	 <P>The Select Entries to Extract option initiates the extract activity. In
+		this option the entries are selected and stored in a template and an entry in
+		the <A HREF="ex_aafl.htm" TITLE="ARCHIVAL ACTIVITY file"
+		CLASS="bodylink">ARCHIVAL ACTIVITY file</A> is created. Entries are selected in
+		the same manner as the Search File Entries option (for guidance, please refer
+		to the "<A HREF="../u1/sr_frm.htm" TARGET="_top" TITLE="Search"
+		CLASS="bodylink">Search</A>" chapter of the "<A HREF="../u1/index.htm"
+		TARGET="_top" TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+		CLASS="bodylink">VA FileMan Getting Started Manual</A>"). The Select Entries to
+		Extract option performs the following functions: </P> 
+	 <OL> 
+		<LI>During the search phase, the search criteria for selecting entries is
+		  specified and must be stored in a template. <BR> <BR> <B>NOTE:</B> If you want
+		  to extract a subentry contained in a Multiple field, you must extract the
+		  entire entry. <BR><BR> </LI> 
+		<LI>During the sort phase -- which is indicated by the "SORT BY" prompt
+		  -- you can enter additional restrictions on the entries to be selected. If no
+		  further restrictions are required, simply accept the defaults provided at the
+		  "SORT BY" and "START WITH" prompts.<BR><BR></LI> 
+		<LI>During the print phase -- which is indicated by the "PRINT FIELD"
+		  prompt -- VA FileMan gathers the entries specified in the search and sort
+		  phases and adds the internal entry numbers of the selected entries to the
+		  SEARCH template. Although specifying print fields is not required, the print
+		  process must be run to completion. Simply press the Enter/Return key at the
+		  "PRINT FIELD" prompt or specify actual fields to print a report of identifying
+		  information for the extracted records.</LI> 
+	 </OL> 
+	 <P>In the sample dialogue that follows, notice the sequence in which the
+		search, sort, and print prompts appear: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EXTRACT FROM WHAT FILE: <B>CHANGE</B>
+
+  -A- SEARCH FOR CHANGE FIELD: <B>.01 &lt;RET&gt;</B>  NO. 
+  -A- CONDITION: <B>LESS THAN</B>
+  -A- LESS THAN: <B>900</B>
+
+  -B- SEARCH FOR CHANGE FIELD: <B>&lt;RET&gt;</B>
+
+  IF: A// <B>&lt;RET&gt;</B>  NO. LESS THAN 900
+
+STORE RESULTS OF SEARCH IN TEMPLATE: <B>ZZTEST TEMPLATE</B>
+ Are you adding 'ZZTEST TEMPLATE' as a new SORT TEMPLATE?  No// <B>Y &lt;RET&gt;</B>  (Yes)
+
+SORT BY: <B>VERSION </B>
+START WITH VERSION: FIRST// <B>&lt;RET&gt;</B>
+  WITHIN VERSION, SORT BY: <B>&lt;RET&gt;</B>
+FIRST PRINT FIELD: <B>.01 &lt;RET&gt;</B> NO. 
+THEN PRINT FIELD: <B>VERSION</B> 
+THEN PRINT FIELD: <B>PROGRAMMER</B>
+THEN PRINT FIELD: <B>&lt;RET&gt;</B>
+HEADING: CHANGE EXTRACT SEARCH Replace <B>&lt;RET&gt;</B>
+DEVICE: <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P>The resulting output looks like:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>CHANGE EXTRACT SEARCH                 AUG 30, 1992  10:59   PAGE 1
+NO.          VERSION            PROGRAMMER
+------------------------------------------------------------------
+
+101          17.10              DOE,JANE
+102          17.32              DOE,JOHN
+103          17.35              DOE,JOHN
+    3 MATCHES FOUND.</PRE> <HR> 
+	 <P>After you use this option, VA FileMan marks the ARCHIVAL ACTIVITY file
+		entry with a status of SELECTED. If an unfinished extract activity exists for a
+		file and you select this same file for a subsequent extract activity, you will
+		see the following message: </P> 
+	 <PRE>
+    There is already an outstanding <I>extract</I> activity.
+    Please finish it or CANCEL it.</PRE> 
+	 <P>Since the ARCHIVAL ACTIVITY file maintains a record of both your extract
+		and archiving activities, you will see the italicized word <I>archiving</I>
+		whenever the outstanding file activity is an archiving one. To add or delete
+		entries from the SEARCH/SORT template you just created, use the
+		<A HREF="ex_opt2.htm" TITLE="Add/Delete Selected Entries"
+		 CLASS="bodylink">Add/Delete Selected Entries</A> option. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ex_opt1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

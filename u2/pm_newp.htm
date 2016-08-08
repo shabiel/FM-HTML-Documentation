@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: System Management - NEW
+		PERSON File</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,system management,mangement,system,new person file,file 200,200,standalone va fileman,standalone">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="pm_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: System Management Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">System Management</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>NEW PERSON File for Standalone VA FileMan</H4> 
+	 <P>In general, the files you need to run VA FileMan without Kernel are
+		installed by the DINIT routines. However, one file that is referenced by VA
+		FileMan is not included -- the NEW PERSON file (#200). The NEW PERSON file is
+		supplied by Kernel. </P> 
+	 <P>This section describes the fields in the NEW PERSON file directly
+		accessed by VA FileMan; this is a small subset of the fields in Kernel's NEW
+		PERSON file. The fields described contain characteristics of the VA FileMan
+		users. If you set up a file in the proper global location with these fields,
+		you will enhance standalone VA FileMan's functionality. However, the NEW PERSON
+		file is <I>not</I> required to run standalone VA FileMan. </P> 
+	 <P>The file that needs to be established is File #200 (NEW PERSON) with a
+		global root of ^VA(200,. Use the information below when creating the file using
+		the Modify File Attributes option. (See the "<A HREF="fn_frm.htm" TARGET="_top"
+		TITLE="VA FileMan Functions" CLASS="bodylink">VA FileMan Functions</A>" chapter
+		for a description of the <A HREF="fn_user.htm" TITLE="USER()"
+		CLASS="bodylink">USER()</A> function.) </P> 
+	 <P>The fields directly accessed are: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="NEW PERSON File Fields Accessed in Standalone VA FileMan Table (field name, field number, Node;Piece, and description)">
+		
+		<TR> 
+		  <TD VALIGN="TOP"><B>Field Name</B></TD> 
+		  <TD VALIGN="TOP"><B>Field #</B> </TD> 
+		  <TD VALIGN="TOP"><B>Node;Piece</B></TD> 
+		  <TD VALIGN="TOP"><B>Description </B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>NAME</B></TD> 
+		  <TD VALIGN="TOP">.01</TD> 
+		  <TD VALIGN="TOP">0;1 </TD> 
+		  <TD VALIGN="TOP">Identifies the user. It is pointed to and displayed in
+			 several places. A FREE TEXT field holding from 3 to 30 characters. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>INITIAL</B></TD> 
+		  <TD VALIGN="TOP">1</TD> 
+		  <TD VALIGN="TOP">0;2 </TD> 
+		  <TD VALIGN="TOP">Used by the USER() function. A FREE TEXT field holding
+			 from 2 to 5 characters. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TITLE</B></TD> 
+		  <TD VALIGN="TOP">8</TD> 
+		  <TD VALIGN="TOP">0;9 </TD> 
+		  <TD VALIGN="TOP">Used by the USER() function. A POINTER TO A FILE that
+			 points to the TITLE file (#3.1) located at ^DIC(3.1,. You will need to define
+			 this file to use USER("T"). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>NICK NAME</B></TD> 
+		  <TD VALIGN="TOP">13</TD> 
+		  <TD VALIGN="TOP">.1;4 </TD> 
+		  <TD VALIGN="TOP">Used by the USER() function. A FREE TEXT field holding
+			 from 1 to 10 characters. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE RANGE</B></TD> 
+		  <TD VALIGN="TOP">31.1</TD> 
+		  <TD VALIGN="TOP">1;1</TD> 
+		  <TD VALIGN="TOP">Used to assign numbers to newly created files. A FREE
+			 TEXT field with the format nnnnn-nnnnn. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TEXT TERMINATOR</B></TD> 
+		  <TD VALIGN="TOP">31.2 </TD> 
+		  <TD VALIGN="TOP">1;4</TD> 
+		  <TD VALIGN="TOP">Holds the default text terminator used by the Line
+			 Editor. A FREE TEXT field holding from 1 to 5 characters. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>PREFERRED EDITOR</B></TD> 
+		  <TD VALIGN="TOP">31.3 </TD> 
+		  <TD VALIGN="TOP">1;5</TD> 
+		  <TD VALIGN="TOP">Holds the user's Preferred Editor. A POINTER TO A FILE
+			 that points to the ALTERNATE EDITOR file (#1.2). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TYPE AHEAD</B></TD> 
+		  <TD VALIGN="TOP">200.09</TD> 
+		  <TD VALIGN="TOP">200;9</TD> 
+		  <TD VALIGN="TOP">Used to determine if "type ahead" is allowed for the
+			 user. A SET OF CODES field: "Y"=allowed; "N"=not allowed. Default is "N." </TD>
+		  
+		</TR> 
+	 </TABLE> 
+	 <P>In addition to these fields accessed directly by VA FileMan, Kernel uses
+		the NEW PERSON file to set up VA FileMan key variables. You can define
+		additional NEW PERSON file fields to use to define these local variables as
+		follows: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="NEW PERSON File Fields For Key Variables in Standalone VA FileMan Table (field name, field number, Node;Piece, and description)">
+		
+		<TR> 
+		  <TD VALIGN="TOP"><B>Field Name</B></TD> 
+		  <TD VALIGN="TOP"><B>Field #</B> </TD> 
+		  <TD VALIGN="TOP"><B>Node;Piece</B></TD> 
+		  <TD VALIGN="TOP"><B>Description </B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Internal Entry Number</B></TD> 
+		  <TD VALIGN="TOP"><B>--</B> </TD> 
+		  <TD VALIGN="TOP"><B>--</B></TD> 
+		  <TD VALIGN="TOP">Used to set DUZ for the user. There is no defined .001
+			 field on the NEW PERSON file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE MANAGER ACCESS CODE</B></TD> 
+		  <TD VALIGN="TOP">3 </TD> 
+		  <TD VALIGN="TOP">0;4</TD> 
+		  <TD VALIGN="TOP">Used to set DUZ(0) for user. A FREE TEXT field from 1
+			 to 15 characters. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>LANGUAGE</B></TD> 
+		  <TD VALIGN="TOP">200.07</TD> 
+		  <TD VALIGN="TOP">200;7</TD> 
+		  <TD VALIGN="TOP">Used to set DUZ("LANG"). A A POINTER TO A FILE that
+			 points to the LANGUAGE file (#.85) identifying the user's language. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TIMED READ (# OF SECONDS)</B></TD> 
+		  <TD VALIGN="TOP">200.1 </TD> 
+		  <TD VALIGN="TOP">200;10</TD> 
+		  <TD VALIGN="TOP">Used to set DTIME for the user. A NUMERIC field with a
+			 value of 1 to 99999. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>When these additional fields are defined, you can use them in a signon
+		routine to set these key variables. </P> 
+	 <P>Of course, you may choose to place additional information about your
+		users in the NEW PERSON file (#200). If you add other fields to your NEW PERSON
+		file, use field numbers greater than 10,000 and use subfile numbers with at
+		least 5 digits following the decimal place. Also, place the fields in global
+		nodes subscripted with numbers greater than 10,000. If you numberspace your
+		data elements in this way, you will be able to avoid conflicts, if you later
+		install Kernel's NEW PERSON file.</P>
+		 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pm_newp.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

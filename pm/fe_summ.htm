@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Form Editor Command
+		Summary</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman,form editor,screenman form editor,editor,commands,summary of commands,command summary">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fe_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Form Editor Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Form Editor</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Command Summary</H4> 
+	 <UL> 
+		<LI><A HREF="#Navigating"
+		  TITLE="Navigating on the Main Screen and Block Viewer Screen"
+		  CLASS="bodylink">Navigating on the Main Screen and Block Viewer
+		  Screen</A><BR><BR></LI> 
+		<LI><A HREF="#page" TITLE="Quick Page Navigation" CLASS="bodylink">Quick
+		  Page Navigation</A><BR><BR></LI> 
+		<LI><A HREF="#Moving" TITLE="Moving Screen Elements"
+		  CLASS="bodylink">Moving Screen Elements</A><BR><BR></LI> 
+		<LI><A HREF="#Adding" TITLE="Adding, Selecting, and Editing"
+		  CLASS="bodylink">Adding, Selecting, and Editing</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="Navigating">Navigating on the Main Screen and Block Viewer
+		Screen</A></H5> 
+	 <TABLE BORDER="1"
+	  SUMMARY="Navigating on the Main Screen and Block Viewer Screen in the ScreenMan Form Editor Table"
+	  TITLE="Navigating on the Main Screen and Block Viewer Screen in the ScreenMan Form Editor Table"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>To move the cursor</B></TD> 
+		  <TD VALIGN="TOP"><B>Press</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Up one line</TD> 
+		  <TD VALIGN="TOP">&lt;ARROW UP&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Down one line</TD> 
+		  <TD VALIGN="TOP">&lt;ARROW DOWN&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Right one column</TD> 
+		  <TD VALIGN="TOP">&lt;ARROW RIGHT&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Left one column</TD> 
+		  <TD VALIGN="TOP">&lt;ARROW LEFT&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">One field to the right</TD> 
+		  <TD VALIGN="TOP">&lt;Tab&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">One field to the left</TD> 
+		  <TD WIDTH="136">Q</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Five columns to the right </TD> 
+		  <TD VALIGN="TOP">S </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Five columns to the left</TD> 
+		  <TD VALIGN="TOP">A </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Top of screen</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;ARROW UP&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Bottom of screen</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;ARROW DOWN&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Right edge of screen</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;ARROW RIGHT&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Left edge of screen</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;ARROW LEFT&gt; </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>To switch between the Main Screen and the Block Viewer Screen</B>
+		</P> 
+	 <OL> 
+		<LI>Press <B>&lt;PF1&gt;V</B> </LI> 
+	 </OL> <HR> 
+	 <H5><A NAME="page">Quick Page Navigation</A></H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Quick Page Navigation in the ScreenMan Form Editor Table"
+	  TITLE="Quick Page Navigation in the ScreenMan Form Editor Table"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>To</B></TD> 
+		  <TD VALIGN="TOP"><B>Press</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Go to the next page</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;PF1&gt;&lt;ARROW DOWN&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Go to the previous page</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;PF1&gt;&lt;ARROW UP&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Go into a subpage associated with a field </TD> 
+		  <TD VALIGN="TOP">Select the field with &lt;SpaceBar&gt; or
+			 &lt;RET&gt;and press &lt;PF1&gt;D </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>To select a screen element (field caption, field data, or block
+		name)</B> </P> 
+	 <OL> 
+		<LI>Position the cursor over the element and press <B>&lt;SpaceBar&gt; or
+		  &lt;RET&gt;</B>.<BR><BR></LI> 
+		<LI>Press <B>&lt;SpaceBar&gt; or &lt;RET&gt;</B> again to deselect the
+		  element. </LI> 
+	 </OL> 
+	 <P><B>To reorder all fields on a block </B></P> 
+	 <OL> 
+		<LI>Select the block on the Block Viewer Screen.<BR><BR></LI> 
+		<LI>Press <B>&lt;PF1&gt;O</B>. </LI> 
+	 </OL> <HR> 
+	 <H5><A NAME="Moving">Moving Screen Elements</A></H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Moving Screen Elements in the ScreenMan Form Editor Table"
+	  TITLE="Moving Screen Elements in the ScreenMan Form Editor Table"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>To drag a selected element</B></TD> 
+		  <TD VALIGN="TOP"><B>Press</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Up one line</TD> 
+		  <TD VALIGN="TOP">&lt;ARROW UP&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Down one line</TD> 
+		  <TD VALIGN="TOP">&lt;ARROW DOWN&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Right one column</TD> 
+		  <TD VALIGN="TOP">&lt;ARROW RIGHT&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Left one column</TD> 
+		  <TD VALIGN="TOP">&lt;ARROW LEFT&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Five columns to the right</TD> 
+		  <TD VALIGN="TOP">&lt;Tab&gt; or S </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Five columns to the left</TD> 
+		  <TD VALIGN="TOP">Q or A </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Top of screen</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;ARROW UP&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Bottom of screen</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;ARROW DOWN&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Right edge of screen</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;ARROW RIGHT&gt; </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Left edge of screen</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;&lt;ARROW LEFT&gt; </TD> 
+		</TR> 
+	 </TABLE> <HR> 
+	 <H5><A NAME="Adding">Adding, Selecting, and Editing</A></H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Adding, Selecting, and Editing in the ScreenMan Form Editor Table"
+	  TITLE="Adding, Selecting, and Editing Table"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>To</B></TD> 
+		  <TD VALIGN="TOP"><B>Press</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Select or create a new form</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;M or &lt;PF2&gt;M </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Select another page</TD> 
+		  <TD VALIGN="TOP">&lt;PF1&gt;P </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Add a new page</TD> 
+		  <TD VALIGN="TOP">&lt;PF2&gt;P </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Add a new block</TD> 
+		  <TD VALIGN="TOP">&lt;PF2&gt;B </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Add a new field</TD> 
+		  <TD VALIGN="TOP">&lt;PF2&gt;F </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Edit properties of current form </TD> 
+		  <TD VALIGN="TOP">&lt;PF4&gt;M </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Edit properties of current page</TD> 
+		  <TD VALIGN="TOP">&lt;PF4&gt;P </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>To invoke the ScreenMan form to edit field or block properties</B>
+		</P> 
+	 <OL> 
+		<LI>Select the field or block and press <B>&lt;PF4&gt;</B>. </LI> 
+	 </OL> 
+	 <P><B>To edit the caption of a field on the Main Screen</B> </P> 
+	 <OL> 
+		<LI>Position the cursor over the caption and press
+		  <B>&lt;PF3&gt;</B>.<BR><BR></LI> 
+		<LI>Press the Enter/Return key when finished editing. </LI> 
+	 </OL> 
+	 <P><B>To edit the data length of a field on the Main Screen</B> </P> 
+	 <OL> 
+		<LI>Position the cursor over the underline that represents the data and
+		  press <B>&lt;PF3&gt;</B>.<BR><BR></LI> 
+		<LI>Press <B>&lt;ARROW RIGHT&gt;</B> and <B>&lt;ARROW LEFT&gt;</B> to
+		  change the length. <BR><BR></LI> 
+		<LI>Press the Enter/Return key when finished. </LI> 
+	 </OL> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fe_summ.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

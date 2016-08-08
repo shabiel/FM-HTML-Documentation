@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Kyle Clarke and Thom Blom, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Storing Data in a Global other than
+		^DIZ</TITLE><META NAME="subject"
+	 CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure Security Services,Infrastructure and Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css">
+	</HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="afd_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Advanced File Definition Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Advanced File Definition</A></H3> 
+	 <H4>File Global Storage</H4> <HR CLASS="hrstyle"> 
+	 <H5>Storing Data in a Global other than ^DIZ</H5> 
+	 <P>When setting up a new file, (Modify File Attributes option), you can
+		instruct VA FileMan to: </P> 
+	 <UL> 
+		<LI>store the new file's data in the default ^DIZ global array,
+		  descendent from the file number just assigned </LI> 
+	 </UL> 
+	 <P>OR: </P> 
+	 <UL> 
+		<LI>store the new file in another global array </LI> 
+	 </UL> 
+	 <P>The dialog looks like this: </P> 
+	 <PRE>
+    MODIFY WHAT FILE: <B>TEST
+</B>    ARE YOU ADDING 'TEST' AS A NEW FILE? <B>Y</B>  (YES)
+    FILE NUMBER: 24000//  <B>&lt;RET&gt;
+</B>    INTERNAL GLOBAL REFERENCE: ^DIZ(24000,//  
+
+</PRE> 
+	 <P>At this prompt, you either press the Enter/Return key to choose the
+		default or you type an explicit global reference. This reference is in the
+		following format: </P> 
+	 <PRE>
+    ^GLOBAL( or ^GLOBAL(subscript1,subscript2,…
+
+</PRE> 
+	 <P>The <B>^</B> preceding GLOBAL( need not be entered. Extended global
+		reference ([UCI]) may be entered ahead of the global name. If the subscripted
+		global already exists with data in it, a warning message is displayed. </P> 
+	 <P>If the subscripted global is a descendent of a global that stores the
+		data for another file, an error message is displayed. For example, if a file's
+		data is stored at:</P> 
+	 <PRE>^GLOBAL(662001,</PRE> 
+	 <P> you cannot define another file that stores its data at: </P> 
+	 <PRE>^GLOBAL(662001,&quot;A&quot;,</PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- afd_1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

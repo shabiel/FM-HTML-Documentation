@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: FILE^DDMP - Data Import</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,import and export tools,import tools,export tools,import,export,api,file^ddmp,ddmp">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="im_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Import and Export Tools API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools API</A></H3><HR
+	 CLASS="hrstyle"> 
+	 <H4>FILE^DDMP: Data Import</H4> 
+	 <P>This procedure imports data from ASCII host files into VA FileMan file
+		entries. Each record (line of data) in the host file is stored as a new entry
+		in a specified FileMan file. </P> 
+	 <P>For additional information about the Import and Export Tools, see the
+		"<A HREF="../u2/ei_frm.htm" TARGET="_top"
+		TITLE="Import and Export Tools" CLASS="bodylink">Import and Export Tools</A>"
+		chapter of the "<A HREF="../u2/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Advanced User HTML Manual" CLASS="bodylink">VA
+		FileMan Advanced User Manual</A>."</P> 
+	 <H5>Format</H5> 
+	 <PRE>FILE^DDMP([FILE],[[.]FIELDS],[.CONTROL],.SOURCE,[.]FORMAT)</PRE> 
+	 <H5>Input</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE </B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP">(Optional) File number into which imported
+			 data will be filed. Do not pass this parameter if the import file
+			 <A HREF="#file_field_name" TITLE="specifies" CLASS="bodylink">specifies</A> the
+			 destination VA FileMan file and fields. The file must already exist.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>[.]FIELDS</B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>(Optional) Array specifying the fields into which imported data
+				will be filed. The array can either:</P> 
+			 <OL> 
+				<LI>Name an IMPORT template, or<BR><BR></LI> 
+				<LI>Directly specify the fields for import.</LI> 
+			 </OL> 
+			 <P>Do not pass this parameter if the import file
+				<A HREF="#file_field_name" TITLE="specifies" CLASS="bodylink">specifies</A> the
+				destination FileMan file and fields. </P> 
+			 <P>If you have the import fields stored in an
+				<A HREF="../u2/ei_imp.htm#fields" TARGET="_top" TITLE="IMPORT template"
+				 CLASS="bodylink">IMPORT template</A>, simply set the top-level, unsubscripted
+				node to the name of the template, surrounded by [brackets].</P> 
+			 <P>If you are directly specifying fields in this array, set the
+				top-level, unsubscripted node in the FIELDS array to the list of destination
+				field numbers at the top level of the file. Separate each field number with a
+				semicolon. The list of field numbers should match the order of the
+				corresponding data pieces in each import file record. </P> 
+			 <P>For any field number that identifies a <B>multiple</B>, include
+				the top-level field number of the multiple in the top-level node of the FIELDS
+				array. Then, set an additional node in the FIELDS array for the multiple,
+				subscripted by the data dictionary subfile number of the multiple. Set this
+				additional node to the list of subfield numbers in the multiple into which to
+				have data filed, separated by semicolons. The order of subfield numbers in this
+				node should match the order of the corresponding data pieces for the multiple
+				in the import file record. </P> 
+			 <P>For subfiles within subfiles, repeat this process of identifying
+				the top-level field number of the multiple in the appropriate FIELDS node (one
+				data dictionary level above that of the multiple). Then add an additional node
+				subscripted by data dictionary number identifying the fields in the subfile
+				into which data is to be filed. </P> 
+			 <P>You can add more than one subentry for the same subfile (see "<A
+				HREF="#subfiles" TITLE="Importing into Subfiles" CLASS="bodylink">Importing
+				into Subfiles</A>" in "<A HREF="#details_and_features" CLASS="bodylink"
+				TITLE="Details and Features">Details and Features</A>" below). </P> 
+			 <P>If the import is based on fixed length (rather than
+				character-delimited) data, follow each field's number with the length of the
+				data for that field enclosed in square brackets. For example,
+				".01[30];.02[30];.03[10]". </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="8"><B>.CONTROL</B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP">(Optional) Pass this array by reference.
+			 You can control the behavior of FILE^DDMP by setting the following nodes in the
+			 CONTROL array:</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3"><B>CONTROL("FLAGS")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">(Optional) Concatenated string of
+			 character flags to control processing of the import. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>E</B></TD> 
+		  <TD VALIGN="TOP"><B>E</B>xternal values are contained in the import
+			 file. Convert the values to FileMan internal format and verify during import.
+			 If the E flag is not present, data is assumed to be in internal format and is
+			 not verified.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>F </B></TD> 
+		  <TD VALIGN="TOP">Import <B>F</B>ile contains identity of destination
+			 FileMan file and fields. If F flag is not present, the FILE and FIELDS
+			 parameters are required and must contain file and field information. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>CONTROL("MSGS")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">(Optional) Set to the root of an array
+			 (local or global) into which error messages should be returned. If a value is
+			 not passed, messages are returned in nodes descendent from ^TMP("DIERR",$J).
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>CONTROL("MAXERR")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">(Optional) Set to the number of errors
+			 which may be encountered before aborting the import. Default is not to
+			 abort.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>CONTROL("IOP")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) Set to the name of the device (as stored in the DEVICE
+				file) on which to print the Import Report. This pre-selects the output device.
+				You can also set CONTROL("IOP") to match any of the additional formats for the
+				IOP input variable recognized by ^%ZIS entry point (see the Kernel Systems
+				Manual for more information on ^%ZIS and IOP).</P> Default is to ask the user
+			 for output device.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>CONTROL("QTIME")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">(Optional) Set to the time for queuing the
+			 data filing and subsequent printing of the
+			 <A HREF="../u2/ei_imp.htm#Report" TARGET="_top" TITLE="Import Results report"
+			 CLASS="bodylink">Import Results report</A>. This pre-selects the time for
+			 queuing. The time can be in any format that
+			 <A HREF="cl_dt1.htm" TITLE="^%DT" CLASS="bodylink">^%DT</A> recognizes. Default
+			 is to ask the user whether or not to queue and for the queuing time.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3"><B>.SOURCE </B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>(Required) An array that identifies the import file. Pass this
+				array by reference. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>SOURCE("FILE")</B></TD> 
+		  <TD COLSPAN="2">(Required) Set this node to the import file name.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>SOURCE("PATH")</B></TD> 
+		  <TD COLSPAN="2">(Optional) Path or directory where the file can be
+			 found. If this node is not defined, the default path is used to locate the
+			 file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4"><B>[.]FORMAT</B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>(Required) Specifies the format of the incoming data. You can
+				either:</P> 
+			 <OL> 
+				<LI>Pass the name of a FOREIGN FORMAT File entry in the top-level,
+				  unsubscripted node of this array, or</LI> 
+				<LI>Set individual nodes in this array to define the import format
+				  (pass by reference). </LI> 
+			 </OL> 
+			 <P>If you set individual nodes in the array to define the format, you
+				can set: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FORMAT("FDELIM")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Set this node to the field delimiter used
+			 for the imported data, if a field delimiter is used.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FORMAT("FIXED")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Set this node to "YES" if the incoming
+			 data is in fixed-length format. If not set to "YES", the default format is
+			 field-delimited.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FORMAT("QUOTED")</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Set this node to "YES", if you would like
+			 FileMan to ignore the field delimiter in any quoted strings in the incoming
+			 data.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>Error messages and information supplied via EN^DDIOL are returned in
+		^TMP or in the array specified by MSG_ROOT. DIERR is defined if there was an
+		error. Error messages are <B>not</B> returned for individual records whose
+		import fails, however. </P> 
+	 <H5>Example</H5> 
+	 <P>In the example below, the import file is PEOPLE2.CSV. The import file is
+		in Excel (Comma) format, which means the data is comma-delimited. There is a
+		corresponding entry in the FOREIGN FORMAT file called "Excel (Comma)"
+		describing the Excel (Comma) format. </P> 
+	 <P>The following code calls FILE^DDMP to import data from PEOPLE2.CSV: </P>
+	 
+	 <PRE>    S FILE=16100
+    S CONTROL(&quot;MSGS&quot;)=&quot;MYMSGS&quot;
+    S CONTROL(&quot;FLAGS&quot;)=&quot;E&quot;
+    S FIELDS=&quot;.01;14;14&quot;
+    S FIELDS(16100.014)=&quot;.01;1&quot;
+    S SOURCE(&quot;FILE&quot;)=&quot;PEOPLE2.CSV&quot;
+    S SOURCE(&quot;PATH&quot;)=&quot;VA6$:[SMITH]&quot;
+    D FILE^DDMP(FILE,.FIELDS,.CONTROL,.SOURCE,&quot;EXCEL(COMMA)&quot;)</PRE> 
+	 <P>The import data is in external format, so the call to FILE^DDMP uses the
+		E flag. The data in the import file contains records of five comma-delimited
+		values that are to be imported into file #16100, as specified in the FIELDS
+		parameter:</P> 
+	 <UL> 
+		<LI>Data piece 1: File as the .01 field of file #16100.<BR><BR></LI> 
+		<LI>Data pieces 2 &amp; 3: File as first entry in subfile #16100.014
+		  (field #s .01 and 1).<BR><BR></LI> 
+		<LI>Data pieces 4 &amp; 5: File as second entry in subfile #16100.014
+		  (field #s .01 and 1).</LI> 
+	 </UL> 
+	 <P>If the data for this import were in fixed length format, the code to set
+		the FIELDS array might look like this: </P> 
+	 <PRE>    S FIELDS=&quot;.01[30];14;14&quot;
+    S FIELDS(16100.014)=&quot;.01[30];1[25]&quot;</PRE> 
+	 <P>Note that the field numbers that specify a multiple at the top level
+		have no length associated with them. </P> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Incorrect parameter was passed.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_312.htm" TITLE="Error 312"
+			 CLASS="bodylink">312</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Required identifier is missing. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_409.htm" TITLE="Error 409"
+			 CLASS="bodylink">409</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">File does not exist.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_501.htm" TITLE="Error 501"
+			 CLASS="bodylink">501</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Field does not exist.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_520.htm" TITLE="Error 520"
+			 CLASS="bodylink">520</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">A word-processing field was
+			 specified.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_525.htm" TITLE="Error 525"
+			 CLASS="bodylink">525</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Multiple specified, but no fields in
+			 subfile chosen.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_1810.htm"
+			 TITLE="Error 1810" CLASS="bodylink">1810</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Data could not be moved into M
+			 environment.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_1812.htm"
+			 TITLE="Error 1812" CLASS="bodylink">1812</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">No data found in host file.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_1820.htm"
+			 TITLE="Error 1820" CLASS="bodylink">1820</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Format could not be found in the Foreign
+			 Format file.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_1821.htm"
+			 TITLE="Error 1821" CLASS="bodylink">1821</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Inconsistencies in the format chosen.</TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_1822.htm"
+			 TITLE="Error 1822" CLASS="bodylink">1822</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Incorrect data length for a fixed length
+			 format.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_1833.htm"
+			 TITLE="Error 1833" CLASS="bodylink">1833</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Inconsistency involving the "F" flag.</TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_1850.htm"
+			 TITLE="Error 1850" CLASS="bodylink">1850</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">Error in device selection or queuing
+			 setup.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A HREF="err_1870.htm"
+			 TITLE="Error 1870" CLASS="bodylink">1870</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="80%">The IMPORT template does not exist for the
+			 file.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="details_and_features">Details and Features</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><A NAME="data_formats"><B>Data Formats</B></A></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P> Data fields in the import file can be either character-delimited
+				or fixed length. The method used should match the method described in the
+				<A HREF="../u2/ei_sig.htm" TARGET="_top" TITLE="FOREIGN FORMAT file entry"
+				CLASS="bodylink">FOREIGN FORMAT file entry</A> whose name is passed to
+				FILE^DDMP (alternatively, you can specify these values directly in the FORMAT
+				parameter and not reference a FOREIGN FORMAT File entry.) The only fields from
+				the FOREIGN FORMAT file entry used during import are: </P> 
+			 <UL> 
+				<LI><A HREF="../u2/ei_sig.htm#Field_delimiter" TARGET="_top"
+				  TITLE="FIELD DELIMITER" CLASS="bodylink">FIELD DELIMITER</A><BR><BR></LI> 
+				<LI><A HREF="../u2/ei_sig.htm#Record_length_fixed" TARGET="_top"
+				  TITLE="RECORD LENGTH FIXED?" CLASS="bodylink">RECORD LENGTH
+				  FIXED?</A><BR><BR></LI> 
+				<LI><A HREF="../u2/ei_sig.htm#Quote_non_numeric_fields"
+				  TARGET="_top" TITLE="QUOTE NON-NUMERIC FIELDS" CLASS="bodylink">QUOTE
+				  NON-NUMERIC FIELDS</A> </LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A NAME="required_fields"><B>Required fields
+			 </B></A></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>All required VA FileMan identifier fields for the destination file
+				must have data filed into them from the import record:</P> 
+			 <UL> 
+				<LI>If a field defined as a required identifier is not a
+				  destination field, the import is not performed.<BR><BR></LI> 
+				<LI>If a record being filed has a null value for a required
+				  identifier, that record will not be filed.</LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A NAME="file_field_name"><B>Identifying Destination
+			 File and Fields in Import File</B></A></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>You can store the destination VA FileMan file and fields in the
+				import file, rather than passing them to FILE^DDMP in the FILE and FIELDS
+				parameters. Use the "F" flag to indicate that file and field information is
+				being sent in the import file. </P> 
+			 <P>To specify the file and fields in the import file, the first line
+				of data in the import file must be: </P> 
+			 <PRE>    FILE=filename</PRE> 
+			 <P> Don't leave any spaces between the literal tag "FILE=" and the
+				name of the file involved. You can identify the file by file number rather than
+				name, also. </P> 
+			 <P> The second line in the import file must contain a list of
+				destination field names, in the order of the data pieces in each import file
+				record. You can use field numbers rather than field names to identify the
+				fields (for instance, you might want to specify a field by number if its name
+				contains punctuation characters). </P> 
+			 <P>If the import is delimited, the names should be separated by
+				whatever the specified delimiter is:</P> 
+			 <PRE>    NAME,ADDRESS</PRE> 
+			 <P>If the import is fixed length, the field names should be followed
+				by the field length in [brackets], and then separated by a comma:</P> 
+			 <PRE>    NAME[25],ADDRESS 1[20]</PRE> 
+			 <P> To specify a field in a subfile, show the complete path to the
+				field using the format: </P> 
+			 <PRE>    multiple fieldname:fieldname</PRE> 
+			 <P>Specify as many multiple field names as necessary (separated by
+				colons) to indicate a complete path to the field being imported.</P> 
+			 <P> The third and subsequent lines of the import file should contain
+				the data records to be filed.</P> 
+			 <P>Here is a listing of an example import file containing destination
+				field information: </P> 
+			 <PRE>    FILE=DA RETURN CODES
+    DA RETURN STRING,TERMINAL TYPE STRING
+    [=7c,C-QVT103
+    [?1;0c,C-WYSE 75
+    [?1;2c,C-VT100
+    [?1;6c,C-VT100</PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A NAME="subfiles"><B>Importing into
+			 Subfiles</B></A></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Each record (line of data) from an import file is always stored as
+				a new record at the top level of the destination VA FileMan file. However, you
+				can populate more than one entry in a subfile descendent from the new entry,
+				from a single import record. </P> 
+			 <P> To file more than one entry in a subfile, repeat the subfile's
+				multiple field number in the field string of the higher level file or subfile.
+				Each import record must add the <B>same set of fields</B> to the subfile in
+				question, however, as specified by the set of fields you list in the subfile's
+				FIELDS(subfile#) node. </P> 
+			 <P>Also, new subentries need to be added to every subfile on a path
+				to the lowest level subfile. Because of this, you must include fields for the
+				.01 field and all the required identifiers for every subfile as well as at the
+				top level of the file.</P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ft_ddmpf.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

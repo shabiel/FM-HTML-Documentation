@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Transferring File Entries,
+		Merging Entries</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,transferring file entries,transferring,file entries,merging entries,merging,merge">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="te_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Transferring File Entries Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Transferring File Entries</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>Merging Entries</H4> 
+	 <P>You can use the Compare/Merge File Entries option to merge entries. To
+		do this:</P> 
+	 <OL> 
+		<LI>Identify a file.<BR><BR></LI> 
+		<LI>Identify the two entries to be compared.<BR><BR></LI> 
+		<LI>Answer YES to the "MERGE THESE ENTRIES AFTER COMPARING THEM?"
+		  prompt.<BR><BR></LI> 
+		<LI>Choose which entry will supply the default values.<BR><BR></LI> 
+		<LI>Choose to retain or delete the "merge from" record.<BR><BR></LI> 
+		<LI>Optionally adjust, field-by-field, which entry supplies the default
+		  value.<BR><BR></LI> 
+		<LI>Choose to proceed with the merge, summarize before merging, or
+		  re-edit the merge criteria.</LI> 
+	 </OL> 
+	 <P>This process is described in detail via an example below: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>MERGE THESE ENTRIES AFTER COMPARING THEM? NO// <B>YES</B>
+    1 RUSSELL,BERTRAND A.
+    2 RUSSELL,BERTRAND W.</PRE> <HR> 
+	 <P>After choosing a file and two entries to compare, enter YES at the
+		"MERGE THESE ENTRIES AFTER COMPARING THEM? NO//" prompt to merge the entries as
+		well as compare them.</P> 
+	 <P>You now specify which of the two entries will be used to supply the
+		default values. The entry you choose will be the "merge to" entry that will
+		contain the merged data.</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>NOTE: Records will be merged into the entry selected for the default.
+WHICH ENTRY SHOULD BE USED FOR DEFAULT VALUES (1 OR 2)? <B>1</B>
+ *** Records will be merged into RUSSELL,BERTRAND A. </PRE> <HR> 
+	 <P>You next indicate the disposition of the "merge from" entry. You can
+		choose to delete it or retain it unmodified. You can also redirect pointers
+		that point to the "merged from" entry to point to the "merge to" entry. Free
+		text pointers will <I>not</I> be redirected.</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DO YOU WANT TO DELETE THE MERGED FROM ENTRY AFTER MERGING ? <B>YES</B>
+DO YOU WANT TO REPOINT ENTRIES POINTING TO THIS ENTRY? <B>YES</B>
+ENTER FILE TO EXCLUDE FROM REPOINT/MERGE: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P><B>NOTE:</B> You can also choose to exclude pointers from specified
+		files in the repointing process. In this example, all pointers will be
+		repointed. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DO YOU WANT TO DISPLAY ONLY THE DISCREPANT FIELDS?  NO// <B>&lt;RET&gt;</B>
+DEVICE: <B>&lt;RET&gt;</B>  </PRE> <HR> 
+	 <P>Press the Enter/Return key at the "DEVICE:" prompt so that you can
+		continue to control how the merge is to proceed. Since the merge is
+		interactive, it is not appropriate to release control to a printer or other
+		output device. While working at a keyboard printer is possible, it is not
+		recommended, because you will not be able to monitor the selection of data
+		values that is described below. </P> 
+	 <P>VA FileMan will display the data from the entries being merged. Brackets
+		indicate the values that will be used to create the final merged entry. If the
+		data values in both entries are the same, no brackets are shown. To start, the
+		values for Russell,Bertrand A. are bracketed because that entry was chosen as
+		the default entry. To switch the value that will go into the merged entry,
+		enter that field's number. The following example shows the initial defaults in
+		brackets and the response to switching the value for the SSN field: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>COMPARISON OF SCHOLAR FILE ENTRIES     FEB 14, 1991  11:59    PAGE 1
+SCHOLAR                    [RUSSELL, BERTRAND A.]    RUSSELL,BERTRAND W.
+-------------------------------------------------------------------------------
+ 
+1.  NAME                   [RUSSELL,BERTRAND A.]     RUSSELL,BERTRAND W. 
+ 
+2.  SSN                    [999-99-9999]             888-88-8888  
+ 
+3.  SUBJECT AREA           [PHILOSOPHY]              MATHEMATICS AND PHILOSOPHY
+
+4.  DATE OF BIRTH          [1872] 
+ 
+Default is enclosed in brackets, e.g., [RUSSELL,BERTRAND A.]
+Enter 1-4 to change a default value, ^ to exit report, RETURN to continue: <B>2</B></PRE> <HR> 
+	 <PRE></PRE> <HR> 
+	 <PRE>COMPARISON OF SCHOLAR FILE ENTRIES     FEB 14, 1991  11:59    PAGE 1
+SCHOLAR                    [RUSSELL, BERTRAND A.]    RUSSELL,BERTRAND W.
+-------------------------------------------------------------------------------
+ 
+1.  NAME                   [RUSSELL,BERTRAND A.]     RUSSELL,BERTRAND W. 
+ 
+2.  SSN                    999-99-9999               [888-88-8888]  
+ 
+3.  SUBJECT AREA           [PHILOSOPHY]               MATHEMATICS AND PHILOSOPHY 
+ 
+4.  DATE OF BIRTH          [1872] 
+ 
+Default is enclosed in brackets, e.g., [RUSSELL,BERTRAND A.]
+Enter 1-4 to change a default value, ^ to exit report, RETURN to continue: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P><B>NOTE:</B> The DATE OF BIRTH field from Russell,Bertrand W. is
+		bracketed because the default entry has no value for that field; it is null.
+		When the default ("merged to") entry has no data in a field, data will always
+		be brought over from the "merged from" entry. You have no control over this
+		aspect of the merging. Even if you attempt to switch the data value to the null
+		value and remove the brackets, the data will still be brought into the "merged
+		to" field. </P> 
+	 <P>If there is more than one screen of field information, VA FileMan will
+		display additional screens. In this case, there is one field that is a
+		Multiple. The Compare/Merge File Entries option neither displays data from
+		WORD-PROCESSING or Multiple fields nor allows the selection of data for the
+		final "merge to" entry. The number of subentries in the Multiples of the two
+		fields is displayed: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>COMPARISON OF PATIENT FILE ENTRIES       FEB 14, 1991  11:59  PAGE 2
+SCHOLAR           [RUSSELL, BERTRAND A.]   RUSSELL,BERTRAND W.
+---------------------------------------------------------------------
+  NOTE: Multiples will be merged into the target record. 
+ 
+1. "TOPICS"       " 5 entries"             " 4 entries" 
+ 
+Enter RETURN to continue: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>The merging of data for a WORD-PROCESSING field or for a Multiple and
+		its subfields is done in the same way that the Transfer File Entries option
+		does it.</P> 
+	 <P>Although VA FileMan is ready to perform the merge at this time, you are
+		prompted with other options -- just in case you are not ready. In order to
+		cancel the merge, enter the up-arrow ("<B>^</B>") at the "ACTION:" prompt to
+		exit.</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>OK.  I'M READY TO DO THE MERGE. 
+ 
+       Select one of the following: 
+             P PROCEED to merge the data
+             S SUMMARIZE the modifications before proceeding
+             E EDIT the data again before proceeding
+ ACTION: </PRE> <HR> 
+	 <P>These three options are described below.</P> 
+	 <H5>PROCEED</H5> 
+	 <P>If you enter P or PROCEED at the "ACTION:" prompt, then VA FileMan will
+		proceed to merge the data specified: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>ACTION: <B>P</B>ROCEED to merge the data. 
+ 
+ I will now merge all subfiles in this file ...
+ This may take some time, please be patient. 
+ 
+ I will now repoint all files that point to this entry ...
+ This may take some time, please be patient. 
+ 
+ Gathering files and checking 'PT' nodes 
+ 
+ Merging entries 
+ 
+ Merge complete 
+ 
+ Deleting From entry  </PRE> <HR> 
+	 <P>The merging of the data is now complete. Be careful when using this
+		option because the "merge from" entry can be deleted and data could be lost.
+		</P> 
+	 <H5>SUMMARIZE</H5> 
+	 <P>To review the changes that will be made to the "merge to" entry, enter
+		an S or SUMMARIZE at the "ACTION:" prompt before proceeding to merge. The
+		following will be shown: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>ACTION: <B>S</B>UMMARIZE the modifications before proceeding  
+ 
+ SUMMARY OF MODIFICATIONS TO RUSSELL,BERTRAND A.
+ 
+ FIELD   OLD VALUE  NEW VALUE 
+ 
+ -------------------------------------------------  
+ 
+ 2.  SSN   999-99-9999  888-88-8888  
+ 
+ 4.  DATE OF BIRTH    1872 
+ 
+   NOTE: Multiples will be merged into the target record 
+ 
+ Enter RETURN to continue: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <H5>EDIT</H5> 
+	 <P>Enter an E or EDIT at the "ACTION:" prompt to change the decisions made
+		earlier. If you choose this action, you will again be shown the values in both
+		entries, with your current selections in brackets, and will have the
+		opportunity to switch the data going into the "merge to" entry.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- te_merge.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

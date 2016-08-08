@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Export Tool Define Foreign
+		File Format Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,define foreign file formats option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>Define Foreign File Format Option</H4> 
+	 <PRE></PRE> <HR> 
+	 <PRE>VA FileMan ...                                        [DIUSER]
+      Other Options ...                                  [DIOTHER]
+        Data Export to Foreign Format ...       [DDXP EXPORT MENU]
+          Define Foreign File Format          [DDXP DEFINE FORMAT]
+            **&gt; Locked with DDXP-DEFINE
+</PRE> <HR> 
+	 <P>All exports depend on a Foreign Format. In addition, you can use Foreign
+		Formats for imports as well. Usually, you will be able to use an existing
+		format to properly format your data for export or import. </P> 
+	 <P>To find out what formats exist on your system, see the "<A
+		HREF="ei_opt5.htm" TITLE="Print Format Documentation" CLASS="bodylink">Print
+		Format Documentation</A>" section. If no existing format meets your needs, use
+		the Define Foreign File Format option to create a new one. You can use the
+		Define Foreign File Format option to: </P> 
+	 <UL> 
+		<LI>Define a new Foreign Format from scratch.<BR><BR></LI> 
+		<LI>Modify a Foreign Format that has <I>not</I> been used to create an
+		  EXPORT template.<BR><BR></LI> 
+		<LI>Copy an existing format in order to create a similar, modified
+		  one.</LI> 
+	 </UL> 
+	 <P>If you are using the Export Tool through Kernel's menu system, you need
+		the DDXP-DEFINE key to use the Define Foreign File Format option. </P> 
+	 <P><B>The following is an example of making a new format from an existing
+		one:</B></P> 
+	 <P>The Define Foreign File Format option is the first one on the Data
+		Export to Foreign Format submenu: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select OPTION: <B>OTHER OPTIONS</B>
+Select OTHER OPTION: <B>DATA EXPORT TO FOREIGN FORMAT</B>  
+
+Select DATA EXPORT TO FOREIGN FORMAT OPTION: <B>DEFINE FOREIGN FILE FORMAT</B>
+</PRE> <HR> 
+	 <P>You are first asked for the name of a format. If you want to create a
+		new format from scratch, enter a new name. You will be presented with the
+		ScreenMan form used to define a Foreign Format (see below). </P> 
+	 <P><B>NOTE:</B> Whenever you are asked to choose a FOREIGN FORMAT, you can
+		reply with either the format's NAME or one of its OTHER NAMES. </P> 
+	 <P>Here, an existing format's name is given: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select FOREIGN FORMAT: <B>123 IMPORT NUMBERS</B>
+
+123 IMPORT NUMBERS foreign format has been used to create an Export Template.
+Therefore, its definition cannot be changed.
+</PRE> <HR> 
+	 <P>This format has already been used to create an EXPORT template. Since
+		that template relies on the information in the FOREIGN FORMAT file's entry at
+		the time the template was created, you <I>cannot</I> modify this format.
+		Instead, you are given the option of seeing what is in the format:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Do you want to see the contents of 123 IMPORT NUMBERS format? NO// <B>YES</B>
+
+NAME: 123 IMPORT NUMBERS                FIELD DELIMITER: 032
+  MAXIMUM OUTPUT LENGTH: 0              FORMAT USED?: YES
+  QUOTE NON-NUMERIC FIELDS?: YES        PROMPT FOR DATA TYPE?: YES
+  SEND LAST FIELD DELIMITER?: YES       SUBSTITUTE FOR NULL: 0
+ DESCRIPTION:  This format exports data for use with LOTUS 1-2-3
+ spreadsheets.  Non-numeric fields will be in quotes.  Each field
+ will be separated by a space.  A 0 will be exported for null-
+ valued numeric fields in the primary file.
+ USAGE NOTES:  To import into 1-2-3, choose FILE-&gt;IMPORT-&gt;NUMBERS.
+</PRE> <HR> 
+	 <P>As this example shows, the FORMAT USED? field is YES. This indicates
+		that the format has been used to create an EXPORT template. </P> 
+	 <P>Whether you ask to see the contents of the format or not, you are next
+		given the chance to make a copy of the format in order to modify it. You enter
+		a name for the new format that does not yet exist in the FOREIGN FORMAT
+		file:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Do you want to use 123 IMPORT NUMBERS as the basis
+for a new format?  NO// <B>YES &lt;RET&gt;</B>  (Yes)
+
+Name for new FOREIGN FORMAT: <B>CLONE 123 IMPORT NUMBERS</B>
+
+  Are you adding 'CLONE 123 IMPORT NUMBERS' as 
+    a new FOREIGN FORMAT (the 22ND)?  No// <B>Y &lt;RET&gt;</B>  (Yes)
+</PRE> <HR> 
+	 <P>When the new format has been created, you are given the opportunity to
+		modify it. The ScreenMan form that follows is used for editing Foreign Formats:
+		</P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG ALIGN="BOTTOM" SRC="EI_opt1a.gif" WIDTH="601" HEIGHT="307"
+		 ALT="Example of a Foreign File Format Form (page 1)."> </CENTER> 
+	 <P>The meaning of the fields on this page of the form is described in the
+		"<A HREF="ei_sig.htm" TITLE="FOREIGN FORMAT File Attributes Reference"
+		CLASS="bodylink">FOREIGN FORMAT File Attributes Reference</A>" section. You are
+		presented with the same form whether you are modifying an existing format or
+		creating one from scratch. </P> 
+	 <P><B>NOTE:</B> It is important to always create and edit formats using the
+		Data Export options because validity checks on the relationships between the
+		various fields are built into the ScreenMan form. If you enter inconsistent
+		data, you will be alerted when you try to exit the form.</P> 
+	 <P>There is a second page of the form that contains documenting information
+		about the format. The second page allows you to enter a description and usage
+		notes for the format. You can also enter other names for the format (in a
+		Multiple); these other names can then be used to reference the format anywhere
+		in the Export or Import Tools. </P> 
+	 <P>Here is what the second page looks like with the Multiple's "pop-up"
+		window opened: </P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG SRC="EI_opt1b.gif" ALIGN="BOTTOM" WIDTH="607" HEIGHT="310"
+		ALT="Example of a Foreign File Format Form (popup, page 2)."> </CENTER> 
+	 <P>After you have completed and filed the ScreenMan forms, you are returned
+		to the Data Export submenu. You can now use the new format to create an EXPORT
+		template or do an import.</P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_opt1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: VALUES^DILF( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,values^dilf(),dilf">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>VALUES^DILF( ): FDA Values Retriever</H4> 
+	 <P>This procedure returns values from an FDA for a specified field. The
+		IENS associated with a particular value is also returned. Use $$VALUE1^DILF if
+		you want the single value associated with a particular file and field in a
+		standard FDA. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+VALUES^DILF(FILE,FIELD,FDA_ROOT,.RESULT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) File or subfile number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) Field number for which data is being requested. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FDA_ROOT</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) The root of the FDA from which data is being requested.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME=".RESULT">.RESULT</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) Local array that receives output from the call. The
+				array is killed at the beginning of each call. See the "<A
+				HREF="#OUTPUT" TITLE="Output" CLASS="bodylink">Output</A>" below, for the
+				structure of the array. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="OUTPUT">Output</A></H5> 
+	 <P>See the
+		<A HREF="#.RESULT" TITLE=".RESULT input parameter" CLASS="bodylink">.RESULT
+		input parameter</A>. </P> 
+	 <P>The output from the call is returned in the array identified by RESULT.
+		Its structure is: </P> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD>RESULT</TD> 
+		  <TD>Number of values found for the specified field. If no node exists
+			 in the FDA for the field, RESULT=0</TD> 
+		</TR> 
+		<TR> 
+		  <TD>RESULT(seq#)</TD> 
+		  <TD>Value for a particular instance of the field. Seq# is an integer
+			 starting with 1 that identifies the particular value</TD> 
+		</TR> 
+		<TR> 
+		  <TD>RESULT(seq#,"IENS")</TD> 
+		  <TD>The IENS of the entry or subentry with the value in
+			 RESULT(seq#)</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Example</H5> 
+	 <PRE>
+    <B>&gt;ZW MYFDA
+</B>    MYFDA(&quot;DATA&quot;,16200,&quot;33,&quot;,4)=FREE TEXT DATA
+    MYFDA(&quot;DATA&quot;,16200.04,&quot;1,33,&quot;,1)=16
+    MYFDA(&quot;DATA&quot;,16200.04,&quot;2,33,&quot;,1)=45
+    
+    &gt;<B>D VALUES^DILF(16200.04,1,&quot;MYFDA(&quot;&quot;DATA&quot;&quot;)&quot;,.MYVALUES)
+</B>    
+    &gt;<B>ZW MYVALUES
+</B>    MYVALUES=2
+    MYVALUES(1)=16
+    MYVALUES(1,&quot;IENS&quot;)=1,33,
+    MYVALUES(2)=45
+    MYVALUES(2,&quot;IENS&quot;)=2,33,
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>None</P> <HR CLASS="hrstyle"> 
+	 <TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"
+	  CLASS="white"> 
+		<TR> 
+		  <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+             <!--Bottom Navigation Links-->
+             <!--webbot bot="Include" U-Include="common/bottom_links.htm"
+             TAG="BODY" startspan --> 
+	 <P ALIGN="CENTER">
+		<A HREF="http://www.va.gov/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Department of Veterans Affairs Home Page">
+		<ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> Home Page</A> /
+		<A HREF="http://vaww.vhaco.va.gov/vhacio/" CLASS="bodylink"
+		 TARGET="_top" TITLE="Office of Information Home Page">
+		<ACRONYM TITLE="Office of Information">OI</ACRONYM> Home Page</A> /
+		<A HREF="http://vista.med.va.gov/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Health Systems Design and Development (HSD&D) Home Page">
+		<ACRONYM TITLE="Health Systems Design and Development">HSD&amp;D</ACRONYM> Home
+		Page</A>/
+		<A HREF="http://vista.med.va.gov/iss/site_map.htm" CLASS="bodylink"
+		 TARGET="_top" TITLE="Infrastructure and Security Services (ISS) Site Map">Site
+		Map</A> /
+		<A HREF="http://vista.med.va.gov/termsofuse.htm" CLASS="bodylink" TARGET="_top"
+		 TITLE="Health Systems Design and Development (HSD&D) Terms of Use Page"> Terms of Use</A> /
+		<A HREF="http://www.va.gov/privacy/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A>
+		</P> <!--webbot bot="Include" endspan i-checksum="11718" --> 
+
+             <!--Date content was reviewed or updated-->
+             <p>Reviewed/Updated: <!--webbot bot="Timestamp"
+             S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->July 24, 2003<!--webbot bot="Timestamp" endspan i-checksum="14304" -->
+             </p>
+			 <P ALIGN="CENTER"> If you
+				have questions, need more information, or are having accessibility problems
+				with this website, please contact us by E-Mail: <A
+				 HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/pm/db_dilf9.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

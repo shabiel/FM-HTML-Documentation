@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Filegrams
+		Introduction</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,filegrams,introduction">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fg_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Filegrams Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Filegrams</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Filegrams Introduction</H4> 
+	 <P><B>NOTE:</B> In order to use the full capabilities of VA FileMan's
+		Filegram procedures, Kernel V. 6.5 or later must be installed on your
+		system.</P> 
+	 <P>Filegrams are a feature in VA FileMan intended for use by System
+		Managers, Package Developers, and Programmers. </P> 
+	 <P>A filegram is a process that moves a record (also called an entry) from
+		a file on one computer system to a duplicate file on another <I>independent</I>
+		computer system. An independent computer system is defined as a system having
+		its own database. Sending data from the "live" account at a medical center to a
+		"test" account at the same medical center is an example of moving a filegram
+		locally. Sending data from a computer in the San Francisco Medical Center to a
+		computer in the Salt Lake City Medical Center is an example of moving a
+		filegram remotely.</P> 
+	 <P>The records you can move by a filegram can be either physical (stored in
+		one file) or logical (related fields stored in different files). Logical
+		records are loaded into filegrams by using VA FileMan's relational navigational
+		syntax (<B>:</B>). </P> 
+	 <P>For successful filegram installation, the recipient system must have the
+		following: </P> 
+	 <UL> 
+		<LI>Kernel V. 6.5 or later.<BR><BR></LI> 
+		<LI>The FILEGRAM HISTORY file (#1.12).<BR><BR></LI> 
+		<LI>The Filegram key to the Filegram submenu.<BR><BR></LI> 
+		<LI>A file structure that matches the one reflected by the entry in the
+		  filegram. This is the structure existing on the sender's system.</LI> 
+	 </UL> 
+	 <H5>FILEGRAM-type Templates</H5> 
+	 <P>The Filegram process requires you to create an OUTPUT template, which is
+		stored in the PRINT TEMPLATE file (#.4) along with regular PRINT templates. VA
+		FileMan recognizes the FILEGRAM-type and regular PRINT templates as OUTPUT
+		templates, but their similarity ends there. </P> 
+	 <P><B>NOTE:</B> Since FILEGRAM-type templates are stored in the PRINT
+		TEMPLATE file, the dialogues you encounter in the Filegram process will refer
+		to a FILEGRAM-type template as a PRINT template. </P> 
+	 <P>Regular PRINT templates already created are screened so that you cannot
+		accidentally replace an existing PRINT template with a FILEGRAM-type template.
+		</P> 
+	 <H5>Filegram and Archiving Relationship</H5> 
+	 <P>FILEGRAM-type templates are the only kind of template allowed in the
+		archiving process. See the "<A HREF="ar_frm.htm" TARGET="_top"
+		TITLE="Archiving" CLASS="bodylink">Archiving</A>" chapter in this manual for a
+		full description of archiving in VA FileMan. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fg_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

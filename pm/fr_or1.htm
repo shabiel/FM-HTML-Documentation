@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Programming Conventions</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,programming conventions,programming,conventions">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+ 	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Orientation</A></H3> 
+	 <H4>Programming Conventions</H4> <HR CLASS="hrstyle"> 
+	 <P><B>NOTE:</B> A knowledge of the M programming language is presumed
+		throughout this manual. Unless otherwise noted, VA FileMan V. 22.0 is written
+		following the 1995 ANSI MUMPS standard, with several Type A extensions. </P> 
+	 <H5><A NAME="nonstandard_m">Nonstandard M Features</A></H5> 
+	 <P>Z-commands and Z-functions are avoided throughout VA FileMan routines.
+		For certain purposes [such as allowing terminal breaking and spooling to a
+		Standard Disk Processor (SDP) disk device], FileMan executes lines of
+		nonstandard M code out of the MUMPS OPERATING SYSTEM file (#.7). The
+		nonstandard code used (if any) depends on the answer to the prompt: </P> 
+	 <PRE>
+    TYPE OF MUMPS SYSTEM YOU ARE USING:
+
+</PRE> 
+	 <P>This prompt appears during the DINIT initialization routine. Answering
+		OTHER to this question will ensure that VA FileMan uses only standard M code.
+		</P> 
+	 <P>VA FileMan also makes use of nonstandard M code that is stored in the
+		%ZOSF global. If FileMan is installed on a system that contains Kernel, it uses
+		the %ZOSF global created by Kernel. If it is being used without Kernel (i.e.,
+		stand-alone), the necessary %ZOSF nodes are set for many operating systems by
+		running DINZMGR in the manager account. See the "<A HREF="../u2/pm_zosf.htm"
+		TITLE="System Management" CLASS="bodylink">System Management</A>" chapter of
+		the "VA FileMan Advanced User Manual" for details. </P> 
+	 <P>String-valued subscripts (up to 30 characters long) are used extensively
+		but only in the $ORDER collating sequence approved by the MUMPS Development
+		Committee (MDC). Non-negative integer and fractional canonic numbers collate
+		ahead of all other strings. </P> 
+	 <P>The $ORDER function is used at several points in VA FileMan's code.
+		FileMan routines assume that reference to an undefined global subscript level
+		sets the naked indicator to that level, rather than leaving it undefined. In
+		all other respects, the FileMan code conforms to the 1995 ANSI Standard for the
+		M language with Type A extensions. </P> 
+	 <H5><A NAME="names">Routine, Variable, and Global Names</A></H5> 
+	 <P>In keeping with the convention that all programs which are a part of the
+		same application or utility package should be namespaced, all VA FileMan
+		routine names begin with DI or DD. (The "<A HREF="../u2/pm_dev.htm"
+		TARGET="_top" TITLE="Device Handling for Stanalone VA FileMan"
+		CLASS="bodylink">Device Handling for Standalone VA FileMan</A>" section of the
+		"VA FileMan Advanced User Manual" explains that some DI* routines are renamed
+		in the management account.) The
+		<A HREF="../u2/pm_dinit.htm" TARGET="_top" TITLE="DINIT"
+		CLASS="bodylink">DINIT</A> routine initializes FileMan. The DI routine itself
+		is the main option reader (see the "<A HREF="pu_di.htm"
+		TITLE="^DI Programmer Access" CLASS="bodylink">^DI: Programmer Access</A>"
+		chapter. </P> 
+	 <P>Except in DI, the routines do not contain unargumented or exclusive KILL
+		commands. All multi-character local variable names created by VA FileMan
+		routines begin with % or the letter D, or consist of one uppercase letter
+		followed by one numeral (except that IO(0), by convention, contains the $I
+		value of the signon device). Since FileMan uses single character variable names
+		extensively, do <I>not</I> use them in code that is executed from within
+		FileMan programming hooks unless their use is documented in the hook's
+		description or you New them. Also, do not expect single character variables to
+		return unchanged after calling a FileMan entry point. </P> 
+	 <P>The following local variables are of special importance in the routines:
+		</P> 
+	 <TABLE BORDER="1" SUMMARY="Local Variable Table"
+	  TITLE="Local Variable Table" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Variable</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DT</B></TD> 
+		  <TD VALIGN="TOP">if defined, is assumed to be the current date. For
+			 example, June 1, 1987 is DT=2870601. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DTIME</B></TD> 
+		  <TD VALIGN="TOP">if defined, is the integer value of the number of
+			 seconds the user has to respond to a timed read. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DUZ</B></TD> 
+		  <TD VALIGN="TOP">if defined, is assumed to be the User Number, a
+			 positive number uniquely identifying the current user. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DUZ(0)</B></TD> 
+		  <TD VALIGN="TOP">if defined, is assumed to be the FileMan Access Code,
+			 a character string describing the user's security clearance with regard to
+			 files, to templates, and to data fields within a file. See the chapter on "<A
+			 HREF="../u2/ds_frm.htm" TARGET="_top" TITLE="Data Security"
+			 CLASS="bodylink">Data Security</A>" in the "<A HREF="../u2/" TARGET="_top"
+			 TITLE="VA FileMan Advanced User Manual" CLASS="bodylink">VA FileMan Advanced
+			 User Manual</A>." Setting DUZ(0) equal to the @-sign overrides all security
+			 checks and allows special programmer features which are described later. If the
+			 user's M implementation supports terminal break, a programmer is allowed to
+			 break execution at any point, whereas a user who does not have programmer
+			 access can only break during output routines. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>U</B></TD> 
+		  <TD VALIGN="TOP">if defined, is equal to a single up-arrow (^)
+			 character. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>If not defined, the default values set for these variables are: </P> 
+	 <TABLE BORDER="1" SUMMARY="Variables Default Values Table"
+	  TITLE="Variables Default Values Table" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Variable</B></TD> 
+		  <TD VALIGN="TOP"><B>Default Value</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DT</B></TD> 
+		  <TD VALIGN="TOP">today's date, derived from $H </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DTIME</B></TD> 
+		  <TD VALIGN="TOP">300 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DUZ</B></TD> 
+		  <TD VALIGN="TOP">0 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DUZ(0)</B></TD> 
+		  <TD VALIGN="TOP">""</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>U</B></TD> 
+		  <TD VALIGN="TOP">"^" </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>VA FileMan routines explicitly refer to the following globals: </P> 
+	 <TABLE BORDER="1" SUMMARY="Va FileMan Global Information Table"
+	 TITLE="Va FileMan Global Information Table" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Global</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DD</B></TD> 
+		  <TD VALIGN="TOP">All attribute dictionaries </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DDA</B></TD> 
+		  <TD VALIGN="TOP">Data dictionary audit trail </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DI</B></TD> 
+		  <TD VALIGN="TOP">Data types</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DIA</B></TD> 
+		  <TD VALIGN="TOP">Data audit trail </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DIAR</B></TD> 
+		  <TD VALIGN="TOP">Archival activity and filegrams </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DIBT</B></TD> 
+		  <TD VALIGN="TOP">Sort templates and the results of file searches </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DIC</B></TD> 
+		  <TD VALIGN="TOP">Dictionary of files </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DIE</B></TD> 
+		  <TD VALIGN="TOP">Input templates </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DIPT</B></TD> 
+		  <TD VALIGN="TOP">Print templates and filegram templates </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DIST</B></TD> 
+		  <TD VALIGN="TOP">ScreenMan forms and blocks and Alternate Editors </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DISV</B></TD> 
+		  <TD VALIGN="TOP">Most recent lookup value in any file or subfile (by
+			 DUZ) </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DIZ</B></TD> 
+		  <TD VALIGN="TOP">Default location for new data files as they are
+			 created </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DOPT</B></TD> 
+		  <TD VALIGN="TOP">Option lists </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^DOSV</B></TD> 
+		  <TD VALIGN="TOP">Statistical results </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>^%ZOSF</B></TD> 
+		  <TD VALIGN="TOP">M vendor-specific executable code </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>The routines use the ^UTILITY and ^TMP globals for temporary scratch
+		space. The ^XUTL global is also used if you are running some M implementations.
+		</P> 
+	 <H5><A NAME="delimiters">Delimiters within Strings</A></H5> 
+	 <P>The up-arrow (^) character is conventionally used to delimit data
+		elements which are strung together to be stored in a single global node. A
+		corollary of this rule is that the routines almost never allow input data to
+		contain up-arrows; the user types an up-arrow (^) to change or terminate the
+		sequence of questions being asked. Within ^-pieces, semicolons are usually used
+		as secondary delimiters and colons as tertiary delimiters. </P> 
+	 <P>VA FileMan routines use the local variable <B>U</B> as equal to the
+		single up-arrow (^) character. </P> 
+	 <H5><A NAME="canonic">Canonic Numbers</A></H5> 
+	 <P>VA FileMan recognizes only canonic numbers. A canonic number is a number
+		that does <B>not</B> begin or end with meaningless zeroes. For example, 7 is a
+		canonic number, whereas 007 and 7.0 are not. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fr_or1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: FILE^DID( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,file^did(),did">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white"> 
+     	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>FILE^DID( ): DD File Retriever</H4> 
+	 <P>This procedure retrieves the values of the file-level attributes for the
+		specified file. It does not return subfile attributes. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+FILE^DID(FILE,FLAGS,ATTRIBUTES,TARGET_ROOT,MSG_ROOT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) File number (but not subfile attributes). </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. The possible values are:
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>N</B></TD> 
+		  <TD VALIGN="TOP"><B>N</B>o entry in the target array is created if the
+			 attribute is null. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Z</B></TD> 
+		  <TD VALIGN="TOP">Word processing attributes include <B>Z</B>ero (0)
+			 nodes with text. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="FILE_ATTRIBUTES">ATTRIBUTES</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) A list of attribute names separated by semicolons. Full
+				attribute names must be used:</P> 
+			 <UL> 
+				<LI>ARCHIVE FILE</LI> 
+				<LI>AUDIT ACCESS</LI> 
+				<LI>DATE</LI> 
+				<LI>DD ACCESS </LI> 
+				<LI>DEL ACCESS</LI> 
+				<LI>DESCRIPTION</LI> 
+				<LI>DEVELOPER</LI> 
+				<LI>DISTRIBUTION PACKAGE</LI> 
+				<LI>ENTRIES</LI> 
+				<LI>GLOBAL NAME</LI> 
+				<LI>LAYGO ACCESS</LI> 
+				<LI>LOOKUP PROGRAM</LI> 
+				<LI>NAME</LI> 
+				<LI>PACKAGE REVISION DATA</LI> 
+				<LI>REQUIRED IDENTIFIERS</LI> 
+				<LI><A NAME="RD_ACCESS">RD ACCESS</A>&nbsp;<IMG SRC="new.gif"
+				  ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></LI> 
+				<LI>VERSION</LI> 
+				<LI>WR ACCESS</LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TARGET_ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The name of a closed array reference. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The name of a closed root array reference that is used
+				to pass error messages. If not passed, messages are returned in
+				^TMP("DIERR",$J). </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TARGET_ROOT</B></TD> 
+		  <TD> 
+			 <P> The array is subscripted by the attribute names. Some attributes
+				can have multiple sub-attributes and these are further subscripted with a
+				sequence number and the sub-attribute name. Attributes that contain word
+				processing text also have a sequence number for each line of text. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Example</H5> 
+	 <PRE>
+    &gt;<B>D FILE^DID(999000,&quot;&quot;,&quot;NAME;GLOBAL NAME;REQUIRED IDENTIFIERS&quot;,&quot;TEST&quot;)</B>
+
+    &gt;<B>ZW TEST</B>
+    TEST(&quot;GLOBAL NAME&quot;)=^DIZ(999000,
+    TEST(&quot;NAME&quot;)=ZZZDLTEST
+    TEST(&quot;REQUIRED IDENTIFIERS&quot;)=TEST(&quot;REQUIRED IDENTIFIERS&quot;)
+    TEST(&quot;REQUIRED IDENTIFIERS&quot;,1,&quot;FIELD&quot;)=.01
+    TEST(&quot;REQUIRED IDENTIFIERS&quot;,2,&quot;FIELD&quot;)=1
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_200.htm" TITLE="Error 200"
+			 CLASS="bodylink">200</A></B></TD> 
+		  <TD VALIGN="TOP">There is an error in one of the variables passed.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">Missing or invalid input parameter. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_301.htm" TITLE="Error 301"
+			 CLASS="bodylink">301</A></B></TD> 
+		  <TD VALIGN="TOP">Flags passed are unknown or incorrect. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
+			 CLASS="bodylink">401</A></B></TD> 
+		  <TD VALIGN="TOP">The specified file or subfile does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_403.htm" TITLE="Error 403"
+			 CLASS="bodylink">403</A></B></TD> 
+		  <TD VALIGN="TOP">The file lacks a Header Node. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_404.htm" TITLE="Error 404"
+			 CLASS="bodylink">404</A></B></TD> 
+		  <TD VALIGN="TOP">The file Header Node lacks a file #. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_501.htm" TITLE="Error 501"
+			 CLASS="bodylink">501</A></B></TD> 
+		  <TD VALIGN="TOP">The field name or number does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_505.htm" TITLE="Error 505"
+			 CLASS="bodylink">505</A></B></TD> 
+		  <TD VALIGN="TOP">The field name passed is ambiguous. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_510.htm" TITLE="Error 510"
+			 CLASS="bodylink">510</A></B></TD> 
+		  <TD VALIGN="TOP">The data type for the specified field cannot be
+			 determined. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_520.htm" TITLE="Error 520"
+			 CLASS="bodylink">520</A></B></TD> 
+		  <TD VALIGN="TOP">An incorrect kind of field is being processed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_537.htm" TITLE="Error 537"
+			 CLASS="bodylink">537</A></B></TD> 
+		  <TD VALIGN="TOP">Field has a corrupted pointer definition. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_didf3.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html>
+<head>
+<!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/27/03--><!--Edited March 2007, Hardhats.org-->
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <title>VA FileMan V. 22.0 Advanced User Manual: Using Functions as
+Elements in Computed Expressions</title>
+  <meta name="subject"
+ content="VA FileMan V. 22.0 Advanced User HTML Manual">
+  <meta name="keywords"
+ content="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,computed expressions,computed,expressions,elements">
+  <link rel="StyleSheet" type="text/css" href="user.css">
+</head>
+<body topmargin="0" bgcolor="white">
+<br>
+<img src="common/fileman_au_heading.gif"
+ alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0"
+ height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle"
+ summary="This table is for formatting purposes only" valign="TOP"
+ border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+  <tbody>
+    <tr>
+      <td class="menubartext" align="left" height="1" valign="bottom"
+ width="10%">Contents:</td>
+      <td align="left" height="1" valign="bottom" width="7%"> <a
+ href="index.htm" target="_top"
+ title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+ class="menubarlink">Main</a> </td>
+      <td align="left" height="1" valign="bottom" width="17%"><a
+ href="ce_frm.htm" target="_top"
+ title="VA FileMan V. 22.0 Advanced User HTML Manual: Computed Exptressions Chapter TOC"
+ class="menubarlink">Chapter</a></td>
+      <td class="menubartext" align="left" height="1" valign="bottom"
+ width="10%">See Also: </td>
+      <td align="left" height="1" valign="bottom" width="28%"><a
+ href="../u1/index.htm" target="_top"
+ title="VA FileMan V. 22.0 Getting Started HTML Manual"
+ class="menubarlink">Getting Started Manual</a></td>
+      <td colspan="4" align="left" height="1" valign="bottom"
+ width="28%"> <a href="../pm/index.htm" target="_top"
+ title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer
+Manual</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">Computed Expressions</a></h3>
+<hr class="hrstyle">
+<h4>Using Functions as Elements in Computed Expressions</h4>
+<p>You can use recognized functions as an element in any COMPUTED field
+expression. A function performs an operation that returns a value. The "<a
+ href="fn_frm.htm" target="_top" title="VA FileMan Functions"
+ class="bodylink">VA FileMan Functions</a>" chapter describes the set
+of functions supplied with VA FileMan; these functions are available to
+all users. Functions can also be added by making entries in the
+FUNCTION file (#.5). If you examine this file, you will know all of the
+functions available to you. </p>
+<p><b>NOTE:</b> The "<a href="../pm/index.htm" target="_top"
+ title="VA FileMan V. 22.0 Programmer HTML Manual" class="bodylink">VA
+FileMan Programmer Manual</a>" describes how to add functions in the "<a
+ href="../pm/pu_ce.htm" target="display"
+ title="VA FileMan Functions (Creating)" class="bodylink">VA FileMan
+Functions (Creating)</a>" chapter.</p>
+<p>Some functions require an argument or arguments; others are
+argumentless. The arguments of the function can be any element,
+including field name, field number (preceded with the <b>#</b>),
+quoted literal, or even other functions. The SQUAREROOT function, for
+example, would take an argument that evaluated to '64' and return '8'.
+Thus, if the AGE field of a patient has the value 64, the expression
+'SQUAREROOT(AGE)' would equal 8.<br>
+</p>
+<p>MUMPS Functions ($ASCII, $EXTRACT, $RANDOM, etc.) can also be used
+as computed-expression Functions.&nbsp; Thus, $P(NAME,",",1) will
+return, in the PATIENT File, the Patient's last name.&nbsp; MUMPS
+Functions must be abbreviated by their initial character; "$PIECE"
+won't work.&nbsp; The FileMan "TRANSLATE" Function is equivalent to
+MUMPS "$TRANSLATE".<br>
+</p>
+<p><b>NOTE:</b> You can find the syntax and description of the
+functions exported with VA FileMan in the "<a href="fn_frm.htm"
+ target="_top" title="VA FileMan Functions" class="bodylink">VA FileMan
+Functions</a>" chapter. </p>
+<p>&nbsp;</p>
+<hr class="hrstyle"><!-- ce_func.htm -->
+<p align="center">Reviewed/Updated: March 10,2008</p>
+<p>&nbsp;</p>
+</body>
+</html>

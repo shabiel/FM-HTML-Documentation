@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Add/Delete Selected Entries
+		Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,archiving,archive">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ar_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Archiving Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Archiving</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Add/Delete Selected Entries</H4> 
+	 <P>Use the Add/Delete Selected Entries option to add entries to or delete
+		them from the archiving activity. This is an easy way to clear out unwanted
+		entries or add needed ones before archiving. </P> 
+	 <P>This option uses the Inquire to File Entries option to display the
+		selected entries and then allows you to add or delete an entry. If you add or
+		delete an entry to an established archiving activity, then the status of the
+		activity will change to EDITED. </P> 
+	 <P>The Add/Delete Selected Entries option will <I>not</I> allow you to edit
+		an archiving activity list after the Write Entries to Temporary Storage option
+		has been done. If you need to change the archiving activity list after writing
+		to temporary storage, you must cancel that archiving activity and start a new
+		one. </P> 
+	 <P>When using this option, you first select the archiving activity number
+		that you want to modify. You can also identify the archiving activity by its
+		file number or file name. Then, choose the entry that you want to add or
+		delete. </P> 
+	 <P>Here is an example in which an entry is being added to the archiving
+		activity: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select ARCHIVE OPTION: <B>ADD/DELETE</B> SELECTED ENTRIES
+Select ARCHIVAL ACTIVITY: <B>?</B>
+  ANSWER WITH ARCHIVAL ACTIVITY ARCHIVE NUMBER, OR FILE
+CHOOSE FROM:
+   1        VA FILEMAN CHANGE           08-05-89     ARCHIVED(PERMANENT)     
+SELECTOR:LOUIE,LOUIE     ARCHIVING
+   3        CHANGE                      08-30-92     SELECTED     
+SELECTOR:SMITH,J     ARCHIVING
+
+Select ARCHIVAL ACTIVITY: <B>3</B>
+
+Select CHANGE NO.: <B>330</B>
+NO.:  330                              VERSION:  17.09
+ PROGRAMMER:  DOE,JULIA                ROUTINE:  DIL2
+ DATE CHANGED:  OCT 24, 1986
+
+ADD this entry TO the ARCHIVAL SELECTION?  YES// <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>If you enter two question marks ("<B>??</B>") at the prompt where you
+		select the entry for addition or deletion, a list of the file's entries is
+		displayed. Those that are already part of the archiving activity are identified
+		by "*ON ARCHIVE LIST*". The "ADD this entry TO the ARCHIVAL SELECTION? YES//"
+		question appears if you have selected an entry not already on the list for
+		archiving. A "DELETE ..." question appears if you have selected an entry
+		already on the list.</P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ar_opt2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

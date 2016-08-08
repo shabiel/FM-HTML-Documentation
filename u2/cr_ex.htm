@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/27/03--><!--Edited March 2007, Hardhats.org-->
+
+
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan V. 22.0 Advanced User Manual: Examples of File and Field Creation</title><meta name="subject" content="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <meta name="keywords" content="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,creating files and fields,files,fields,creating,editing,changing,modifying,deleting,examples">
+	 <link rel="StyleSheet" type="text/css" href="user.css"></head>
+ 
+  <body topmargin="0" bgcolor="white">
+	<br><img src="common/fileman_au_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+	<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="cr_frm.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Creating Files and Fields Chapter TOC" class="menubarlink">Chapter</a></td> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">Creating Files and Fields</a></h3>
+	 <hr class="hrstyle"> 
+	 <h4>Examples of File and Field Creation</h4> 
+	 <p>The following examples of creating files/fields or editing fields in a
+		file are illustrated using
+		<a href="cr_flds.htm#Screenmode" title="Screen Mode" class="bodylink">Screen
+		Mode</a>&nbsp;.</p> 
+	 <ul> 
+		<li><a href="#File" title="File Creation" class="bodylink">File
+		  Creation</a><br><br></li> 
+		<li><a href="#Date/Time" title="DATE/TIME Field" class="bodylink">DATE/TIME Field</a><br><br></li> 
+		<li><a href="#Set" title="SET OF CODES Field" class="bodylink">SET OF
+		  CODES Field</a><br><br></li> 
+		<li><a href="#Free_text" title="FREE TEXT Field" class="bodylink">FREE
+		  TEXT Field</a><br><br></li> 
+		<li><a href="#Word" title="WORD-PROCESSING Field" class="bodylink">WORD-PROCESSING Field</a><br><br></li> 
+		<li><a href="#Computed" title="COMPUTED Field" class="bodylink">COMPUTED
+		  Field</a><br><br></li> 
+		<li><a href="#Pointer" title="POINTER TO A FILE Field" class="bodylink">POINTER TO A FILE Field</a><br><br></li> 
+		<li><a href="#Variable" title="VARIABLE-POINTER Field" class="bodylink">VARIABLE-POINTER Field</a><br><br></li> 
+		<li><a href="#Multiple" title="Creating a Multiple" class="bodylink">Creating a Multiple</a><br><br></li> 
+		<li><a href="#Subfields" title="Subfields" class="bodylink">Subfields</a><br><br></li> 
+		<li><a href="#Numeric" title="NUMERIC Subfield" class="bodylink">NUMERIC
+		  Subfield</a></li> 
+	 </ul> 
+	 <p><b>NOTE:</b> These examples assume that the user does <i>not</i> have
+		programmer access. For explanations of additional capabilities available to the
+		programmer, please refer to the "<a href="../pm/afd_frm.htm" target="_top" title="Advanced File Definition" class="bodylink">Advanced File Definition</a>"
+		chapter in the "<a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="bodylink">VA FileMan
+		Programmer Manual</a>."</p> <hr> 
+	 <h5><a name="File">File Creation</a></h5> 
+	 <p>The following example illustrates the file definition dialogue you see
+		when creating a new file using the Modify File Attributes option. In this case,
+		we will create the ORDER file (#100, a standard VA FileMan file):</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br> <br>MODIFY WHAT FILE: <b>ORDER</b> <br>  Are you adding 'ORDER' as a new FILE?  No// <b>Y &lt;RET&gt;</b>  (Yes) <br>   FILE NUMBER:  99000// <b>100</b>
+
+...SORRY, HOLD ON...
+     A FreeText NAME Field (#.01) has been created.
+ 
+
+Select FIELD: <b>NAME</b></pre> <hr> 
+	 <p>VA FileMan prompts you to enter the file name. If it is a new file, VA
+		FileMan will ask you to confirm that you want to add a new file. The default
+		file number to the left of the "<b>//</b>" (e.g., 99000) is related to a site
+		number that is assigned to your computer when VA FileMan is initialized. This
+		file number is within the range of numbers assigned to your site. Be sure to
+		follow local policies when assigning file numbers.</p> 
+	 <p>As you can see from this example, when a file is created a field with
+		the label NAME and number .01 is automatically created. When creating a new
+		file, you can change the definition of this field in the same way you can
+		change the definition of any other field.</p> 
+	 <p>When you select a field (e.g., the NAME field), you will then be taken
+		into a ScreenMan form where you can edit the properties of the field, as shown
+		below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="CR_1.gif" alt="Example of Editing the .01 Field in Screen Mode." height="317" width="615"> </center> 
+	 <pre></pre> <hr> 
+	 <h5><a name="Date/Time">DATE/TIME Field</a></h5> 
+	 <p>In the following example, the DATA TYPE field for the RELEASE DATE/TIME
+		field (#.68) in the ORDER file (#100) has a value of DATE/TIME:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br> <br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b>
+ 
+
+Select FIELD: <b>RELEASE DATE/TIME</b></pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Datefld.jpg" alt="Example of a DATE/TIME DATA TYPE in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, whenever the DATA TYPE field is editable, a "pop-up"
+		window appears, containing editable attributes of the field that are pertinent
+		to its specific Data Type. DATE/TIME-type fields don't have any required
+		entries. You can accept all the default values within the "pop-up" window,
+		simply by closing the window by pressing the "F1-C" keys.</p> 
+	 <p><b>NOTE:</b> To delete the entire field, enter an at-sign ("<b>@</b>")
+		at the "FIELD LABEL:" prompt.</p> <hr> 
+	 <h5><a name="Set">SET OF CODES Field</a></h5> 
+	 <p>In the following example, the DATA TYPE field for the FLAGGED field
+		(#.61) in the ORDER file (#100) has a value of SET OF CODES:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br><br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b>
+  
+
+Select FIELD: <b>FLAGGED</b></pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Setfld.jpg" alt="Example of a SET OF CODES DATA TYPE in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, whenever the DATA TYPE field is editable, a "pop-up"
+		window appears, containing editable attributes of the field that are pertinent
+		to its specific Data Type. SET OF CODES-type fields require input of all the
+		allowable "Internal" values (i.e., "CODE" prompt), and their "External"
+		equivalents (i.e., "WILL STAND FOR" prompt).</p> 
+	 <p>Using the <b>&lt;ArrowUp&gt;</b> and <b>&lt;ArrowDown&gt;</b> keys makes
+		it easy to edit the codes. It is permissible to leave a blank row, but every
+		Internal Code (i.e., "CODE," on the left) must have a corresponding External
+		Code ("WILL STAND FOR," on the right), and vice versa.</p> <hr> 
+	 <h5><a name="Free_text">FREE TEXT Field</a></h5> 
+	 <p>In the following example, the DATA TYPE field for the REASON FOR FLAG
+		field (#.67) in the ORDER file (#100) has a value of FREE TEXT:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br><br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b> <br><br> <br>Select FIELD: <b>REASON FOR FLAG</b> </pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Freefld.jpg" alt="Example of a FREE TEXT DATA TYPE in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, whenever the DATA TYPE field is editable, a "pop-up"
+		window appears, containing editable attributes of the field that are pertinent
+		to its specific Data Type. FREE TEXT-type fields require input for the
+		"MINIMUM" and "MAXIMUM" lengths of the field. In this example, users must enter
+		from 1 to 80 characters for this field.</p> 
+	 <p>If included, the PATTERN MATCH must be written in M. For example, you
+		can insure that the data value will not start with a punctuation character by
+		entering a PATTERN MATCH of "<b>X'?1P.E</b>". This is a good check to make on a
+		field that is allowed to be just one character in length. Sometimes, users may
+		mistype and answer a field prompt with "<b>/</b>" (same key as "<b>?</b>") or
+		some other meaningless punctuation character. A PATTERN MATCH check such as
+		"<b>X'?1P.E</b>" will keep that kind of mistake out of your database.</p>
+	 <hr size="8"> 
+	 <h5><a name="Word">WORD-PROCESSING Field</a></h5> 
+	 <p>In the following example, the DATA TYPE field for the ORDER TEXT field
+		(#.11) in the ORDER file (#100) has a value of WORD-PROCESSING:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br> <br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b>
+ 
+
+Select FIELD: <b>ORDER TEXT</b></pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Wpfld.jpg" alt="Example of a WORD-PROCESSING DATA TYPE in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, whenever the DATA TYPE field is editable, a "pop-up"
+		window appears, containing editable attributes of the field that are pertinent
+		to its specific DATA TYPE. With WORD-PROCESSING-type fields VA FileMan asks
+		only one question in the "pop-up" window (i.e., "SHALL THIS TEXT NORMALLY
+		APPEAR IN WORD-WRAP MODE"). If you answer YES to this question, text is
+		automatically wrapped at word boundaries to fit in the column in which it is
+		being printed.</p> 
+	 <p><b>NOTE:</b> When it is important that lines of text be printed exactly
+		as they were entered, answer NO to the "SHALL THIS TEXT NORMALLY APPEAR IN
+		WORD-WRAP MODE" question.</p> <hr> 
+	 <h5><a name="Computed">COMPUTED Field</a></h5> 
+	 <p>In the following example, the DATA TYPE field for the JUST RELEASED
+		field (#1000) in the ORDER file (#100) has a value of COMPUTED:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br> <br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b>
+ 
+
+Select FIELD: <b>JUST RELEASED</b></pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Compfld.jpg" alt="Example of a COMPUTED DATA TYPE in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, whenever the DATA TYPE field is editable, a "pop-up"
+		window appears, containing editable attributes of the field that are pertinent
+		to its specific Data Type. With COMPUTED-type fields VA FileMan displays the
+		characteristics of the computed expression in the "pop-up" window. The syntax
+		of these expressions is explained fully in the "<a href="ce_frm.htm" target="_top" title="Computed Expressions" class="bodylink">Computed
+		Expressions</a>" chapter. Field #.68 is the
+		<a href="#Date/Time" title="RELEASE DATE/TIME" class="bodylink">RELEASE
+		DATE/TIME</a> field. The JUST RELEASED field will be TRUE if the
+		<a href="#Date/Time" title="RELEASE DATE/TIME" class="bodylink">RELEASE
+		DATE/TIME</a> was less than two days ago. </p> 
+	 <p><b>NOTE:</b> We can specify this virtual value to be BOOLEAN,
+		STRING-VALUED, DATE-VALUED, or NUMERIC. Only in the last case are the three
+		fields following the "TYPE OF RESULT" prompt editable. </p> <hr> 
+	 <h5><a name="Pointer">POINTER TO A FILE Field</a></h5> 
+	 <p>In the following example, the DATA TYPE field for the WHO ENTERED field
+		(#3) in the ORDER file (#100) has a value of POINTER TO A FILE:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br> <br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b>
+ 
+ 
+Select FIELD: <b>WHO ENTERED</b></pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Pointfld.jpg" alt="Example of a POINTER TO A FILE DATA TYPE in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, whenever the DATA TYPE field is editable, a "pop-up"
+		window appears, containing editable attributes of the field that are pertinent
+		to its specific Data Type. With POINTER TO A FILE-type fields VA FileMan asks
+		you to enter the pointed-to file name in the "pop-up" window. The file that is
+		pointed to (in this case, the NEW PERSON file) must already exist on your
+		system. If you enter a <b>?</b> (single question mark) at this prompt, you will
+		be presented with a list of the available files from which you can choose.</p> 
+	 <p>By answering NO to the "LAYGO" question, you insure that users who are
+		editing the "WHO ENTERED" data are not able to add a new entry on the fly to
+		the NEW PERSON file. </p> <hr> 
+	 <h5><a name="Variable">VARIABLE-POINTER Field</a></h5> 
+	 <p>In the following example, the DATA TYPE field for the ITEM ORDERED field
+		(#7) in the ORDER file (#100) has a value of VARIABLE-POINTER:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br> <br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b>
+ 
+
+Select FIELD: <b>ITEM ORDERED</b></pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Varfld.jpg" alt="Example of a VARIABLE-POINTER DATA TYPE in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, whenever the DATA TYPE field is editable, a "pop-up"
+		window appears, containing editable attributes of the field that are pertinent
+		to its specific Data Type. With VARIABLE-POINTER-type fields VA FileMan asks
+		you to enter the pointed-to file name and its order in the first "pop-up"
+		window. In this case, the first VARIABLE-POINTER file entered was the OPTION
+		file, which would already have to exist. The ORDER was also set to one. When
+		you press the Enter/Return key at the "ORDER" prompt for each VARIABLE-POINTER,
+		there is an additional "pop-up" window (i.e., a "pop-up window within the
+		pop-up window"). The additional questions pertaining to the VARIABLE-POINTER
+		file you are currently entering will appear in this secondary "pop-up"
+		window.</p> 
+	 <p>As you can see in this example, the OPTION file's MESSAGE, is associated
+		with "PROTOCOL." Since its ORDER is one, it is the first file searched. The
+		PREFIX "MISC" can also be used to refer to the OPTION file. Just as with the
+		<a href="#Pointer" title="WHO ENTERED" class="bodylink">WHO ENTERED</a> POINTER
+		TO A FILE field (previously described), users cannot add new options to the
+		OPTION file on the fly when they are entering an ITEM ORDERED in the ORDER file
+		because the "SHOULD USER BE ALLOWED TO ADD A NEW ENTRY:" prompt is NO.</p> <hr>
+	 
+	 <h5><a name="Multiple">Creating a Multiple</a></h5> 
+	 <p>The following example illustrates creating a Multiple field. For this
+		example, we will simulate creating the RESPONSES field (#4.5) in the ORDER file
+		(#100). It has a Data Type of NUMERIC:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br> <br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b>
+ 
+
+Select FIELD: <b>RESPONSES</b>
+  Are you adding 'RESPONSES' as a new FIELD? No// <b>Y &lt;RET&gt;</b>  (Yes)<br>  FIELD NUMBER: 4.5// <b>&lt;RET&gt;</b> <br><br></pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Newmul.jpg" alt="Example of Creating a Multiple in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>A Multiple field is created just as any other, except that the "IS THIS
+		FIELD MULTIPLE..." question is answered YES. In Screen Mode, after answering
+		YES to this question, a "pop-up" window appears containing editable attributes
+		pertinent to a Multiple field. With Multiple-type fields, VA FileMan asks if
+		you want users to be notified when they are adding new entries and if users
+		should be asked if they want to make another entry. In this case, we answered
+		NO to both questions.</p> <hr> 
+	 <h5><a name="Subfields">Subfields</a></h5> 
+	 <p>To create or edit Subfields of a Multiple field, select a
+		Multiple-valued field (e.g., the
+		<a href="#Multiple" title="RESPONSES" class="bodylink">RESPONSES</a> Multiple
+		field, previously created):</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES  <br>DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <b>&lt;RET&gt;</b>  (Yes)<br> <br>MODIFY WHAT FILE: ORDER// <b>&lt;RET&gt;</b>
+ 
+
+Select FIELD: <b>RESPONSES</b>  (multiple) </pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the field, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Mulfld.jpg" alt="Example of a Multiple Field in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, after entering a Multiple field, a special screen
+		appears that displays information about the Multiple <i>as a whole</i>. </p> 
+	 <p><b>NOTE:</b> If you wanted to delete <i>the entire Multiple field</i>,
+		you would enter an at-sign ("<b>@</b>") at the "MULTIPLE-FIELD LABEL"
+		prompt.</p> 
+	 <p>After viewing this screen, you can proceed to add fields to the Multiple
+		or to edit existing <b><a href="#Numeric" title="Subfields" class="bodylink">Subfields</a></b>. This is done at the "Select SUB-FIELD:"
+		prompt that is displayed when you exit Screen Mode (shown below).</p> <hr> 
+	 <h5><a name="Numeric">Numeric Subfield</a></h5> 
+	 <p>After selecting a Multiple-valued field (e.g., the
+		<a href="#Multiple" title="RESPONSES" class="bodylink">RESPONSES</a> Multiple
+		field in the ORDER file), you can enter or modify the Multiple's subfields by
+		entering the field's number or name (label) at the "Select xxxxxxx SUB-FIELD:"
+		prompt (where xxxxxxx represents the name of the Multiple).</p> 
+	 <p> A .01 field with the same name as the Multiple field was added
+		automatically when the field was identified as a Multiple. The .01 field is the
+		identifying key for an entry in the Subfile (Multiple); it is similar to a
+		file's .01 field, which is the file's identifying key. In the following
+		example, the .01 subfield is edited to have a Data Type of NUMERIC:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select RESPONSES SUB-FIELD: <b>.01 &lt;RET&gt;</b>  ITEM ENTRY   </pre> <hr> 
+	 <p>You will then be taken into a ScreenMan form where you can edit the
+		properties of the subfield, as shown below:</p> 
+	 <p></p> 
+	 <center>
+		<img src="Numfld.jpg" alt="Example of a NUMERIC DATA TYPE in Screen Mode." height="455" width="640"> </center> 
+	 <pre></pre> <hr> 
+	 <p>In Screen Mode, while editing a sub-field of a Multiple, you will notice
+		that the heading at the top of the screen reminds you that you are now editing
+		a field <i>within a Multiple</i> (e.g., "Field #.01 in Sub-File #100.045 of
+		File #100").</p> 
+	 <p>Also, whenever the DATA TYPE field is editable, a "pop-up" window
+		appears, containing editable attributes of the field that are pertinent to its
+		specific Data Type. With NUMERIC-type fields VA FileMan asks you to enter the
+		"INCLUSIVE LOWER BOUND" (e.g., set to 1) and the "INCLUSIVE UPPER BOUND (e.g.,
+		set to 9999999). In addition, you are asked if the numeric value is a dollar
+		amount and if decimal digits will be allowed (i.e., the "MAXIMUM NUMBER OF
+		FRACTIONAL DIGITS"). </p> 
+	 <p>A default Help prompt is automatically written for you with the NUMERIC
+		Data Type. In this case, the English message "Type a Number between 1 and
+		9999999, 0 Decimal Digits" has been built automatically from the
+		specifications. As always, you can accept the default Help prompt or change it
+		using the Replace ... With syntax.</p> 
+	 <p><b>NOTE:</b> This Help information is displayed when the user inputs a
+		single question mark ("<b>?</b>") when editing this field.</p>
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
+	 <!-- cr_ex.htm -->
+	 <p align="center">Reviewed/Updated: March 4, 2007</p>
+	 <p>&nbsp;</p> 
+
+  </body></html>

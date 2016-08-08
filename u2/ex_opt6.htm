@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Extract Tool Update
+		Destination File Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,extract tool,tools,extract,step 6,update destination file option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Extract Tool Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Update Destination File Option (6 of 9)</H4> 
+	 <P>Once you have used the Update Destination File option, the extracted
+		data from the <A HREF="ex_src.htm" TITLE="source file" CLASS="bodylink">source
+		file</A> is moved to the
+		<A HREF="ex_dest.htm" TITLE="destination file" CLASS="bodylink">destination
+		file</A>. After you enter the name of the EXTRACT template that you wish to
+		use, VA FileMan makes sure the template's
+		<A HREF="ex_map.htm" TITLE="mapping information" CLASS="bodylink">mapping
+		information</A> is correct and acceptable and then populates the destination
+		file, adding entries as new records. VA FileMan will not, however, check to see
+		if any of those records to be moved already exist in the destination file.
+		Since this two-step process can be quite time-consuming, it can be queued at
+		the "DEVICE:" prompt. </P> 
+	 <P>Here is a sample of the dialogue:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select EXTRACT OPTION: <B>UPDATE</B> DESTINATION FILE
+Select EXTRACT ACTIVITY: <B>3 &lt;RET&gt;</B>  CHANGE  08-31-92     EDITED    
+SELECTOR:SMITH,J   EXTRACT
+
+You MUST enter an EXTRACT template name.  This EXTRACT template 
+will be used to populate your destination file.
+PRINT TEMPLATE: <B>CHANGE EXTRACT &lt;RET&gt;</B>      **EXTRACT**    (AUG 
+30,1992)       USER #2  FILE #16000 
+
+Excuse me, this will take a few moments...
+Checking the destination file...
+
+If entries cannot be moved to the destination file, an exception 
+report will be printed.
+
+Select a device where to print the exception report.
+
+QUEUEING to this device will queue the Update process.
+EXCEPTION REPORT DEVICE: <B>Q</B>UEUE TO PRINT ON
+DEVICE: <B>PRINTER</B></PRE> <HR> 
+	 <P>After the destination file has been updated, VA FileMan changes the
+		extract activity status from SELECTED or EDITED to UPDATED DESTINATION FILE. At
+		this point, the entries from the source file are no longer available on
+		lookups. This protective measure prevents you from attempting to edit the
+		selected source file entries so that they contain the same data as the
+		corresponding destination file entries. </P> 
+	 <P>The following Exception Report is printed when the Extract Tool fails to
+		move all of the data in a source entry into the destination file. A failed
+		INPUT transform is one possible cause of such a failure. In this case, the
+		incomplete entry in the destination file is deleted. The source entry is not
+		locked and its internal entry number is deleted from the extract list. The
+		total number of entries extracted is reduced by the total numbers of entries
+		appearing on the exception report. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EXTRACT  ACTIVITY EXCEPTION REPORT            JUN 27,1996   PAGE: 1
+-------------------------------------------------------------------
+
+EXTRACT ACTIVITY: 9          ARCHIVER: SMITH, J
+
+THE FOLLOWING ENTRIES IN THE 'TEST' FILE WERE NOT MOVED BY THE 
+EXTRACT TOOL
+
+Entry # 9 was NOT processed because:
+  The value 'NEW' for field FTEXT MULT LABEL in FTEXT MULT SUB-FIELD in file TEST is not
+valid.
+
+Enter # 30 was NOT processed because:
+  The value 'NEW' for field FTEXT MULT LABEL in FTEXT MULT SUB-FIELD in file TEST is not 
+valid.
+
+*** PLEASE KEEP THIS FOR FUTURE REFERENCE ***</PRE> <HR> 
+	 <P>The following is a list of recommended steps to take when an exception
+		report is printed: </P> 
+	 <OL> 
+		<LI>Finish the active extract activity by purging or
+		  canceling.<BR><BR></LI> 
+		<LI> Determine the problem with the source entry and fix it.<BR><BR></LI>
+		
+		<LI>If there are several entries on the exception report, start another
+		  extract activity. Your SEARCH/SORT template can be reused to use the same
+		  search specifications.<BR><BR></LI> 
+		<LI>Adjust the extract list to match the list of entries on the exception
+		  report by using the Add/Delete Selected Entries option.<BR><BR></LI> 
+		<LI>Proceed as before.</LI> 
+	 </OL> 
+	 <P>For exceptions caused by INPUT transforms, keep in mind that the value
+		of each field in an extracted record is tested against the INPUT transform of
+		its destination field. If any value fails its destination field's INPUT
+		transform, the extract for the entire record will fail. Make sure the INPUT
+		transforms on the destination fields are appropriate for the data you will be
+		extracting. </P> 
+	 <P><B>NOTE:</B> If you are extracting a <B>Sub</B>record using the
+		EXTRACT^DIAXU entry point and its FILING_LEVEL parameter, and a value fails the
+		INPUT transform, only the extract of the Subrecord will fail.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ex_opt6.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Create/Edit Filegram
+		Template Option </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,filegrams,create/edit filegram template option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fg_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Filegrams Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Filegrams</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Create/Edit Filegram Template Option</H4> 
+	 <P>Use the Create/Edit Filegram Template option to create a FILEGRAM-type
+		template or edit an existing FILEGRAM-type template. A FILEGRAM-type template
+		is similar to a regular PRINT template without any formatting instructions. You
+		always receive the "STORE FILEGRAM LOGIC IN TEMPLATE:" prompt, no matter how
+		many fields you identify. (See the "<A
+		HREF="../u1/pr_intro.htm#print_templates" TARGET="_top"
+		TITLE="Print: How to Print Reports from Files" CLASS="bodylink">Print: How to
+		Print Reports from Files</A>" chapter of the "<A HREF="../u1/index.htm"
+		TARGET="_top" TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+		CLASS="bodylink">VA FileMan Getting Started Manual</A>" for information about
+		regular PRINT templates.) </P> 
+	 <P>The Create/Edit Filegram Template option is the first step in developing
+		a filegram; there won't be a filegram without the template. This template is
+		also used in the archiving process. Before using this option, you may wish to
+		familiarize yourself with the file(s) and fields involved. </P> 
+	 <P>The following dialogue illustrates how to create a FILEGRAM-type
+		template: </P> 
+	 <PRE>    OUTPUT FROM WHAT FILE: <B>CHANGE</B>
+    FIRST SEND CHANGE FIELD: <B>??</B>
+</PRE> 
+	 <P>You can enter <B>ALL</B> at this prompt, if you want to include all
+		fields in the file in your filegram. <B>ALL</B> can also be used in existing
+		file navigation paths. Enter <B>[?</B> at this prompt to get a listing of
+		existing FILEGRAM-type templates for the selected file. Here, two question
+		marks ("<B>??</B>") requests a list of the fields in the file. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>CHOOSE FROM:
+	.01	NAME   
+	1	VERSION
+	2	TAG
+	3	ROUTINE
+	4	CHANGE
+	5	REPORTER (multiple)
+	6	DATE CHANGED
+	7	PROGRAMMER
+	9	BUG OR FEATURE
+	10	PURPOSE
+	11	DESCRIPTION (word-processing)</PRE> <HR> 
+	 <P>In the example that follows, the PROGRAMMER field is a pointer to the
+		NEW PERSON file (#200). </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>FIRST SEND CHANGE FIELD: <B>1 &lt;RET&gt;</B>  VERSION
+ THEN SEND CHANGE FIELD: <B>3 &lt;RET&gt;</B>  ROUTINE
+ THEN SEND CHANGE FIELD: <B>4 &lt;RET&gt;</B>  CHANGE
+ THEN SEND CHANGE FIELD: <B>5 &lt;RET&gt;</B>  REPORTER (multiple)
+  FIRST SEND REPORTER SUB-FIELD: <B>.01</B>
+   THEN SEND REPORTER SUB-FIELD: <B>&lt;RET&gt;</B>
+ THEN SEND CHANGE FIELD: <B>6 &lt;RET&gt;</B>  DATE CHANGED
+ THEN SEND CHANGE FIELD: <B>7 &lt;RET&gt;</B>  PROGRAMMER
+ THEN SEND CHANGE FIELD: <B>11 &lt;RET&gt;</B>  DESCRIPTION (word-processing)
+ THEN SEND CHANGE FIELD: <B>&lt;RET&gt;</B>
+STORE FILEGRAM LOGIC IN TEMPLATE: <B>ZZTEST FILEGRAM</B>
+  Are you adding 'ZZTEST FILEGRAM' as a new PRINT TEMPLATE?  No// <B>Y &lt;RET&gt;</B>  (Yes)</PRE> <HR> 
+	 <P>The template for your filegram is now set up. Edit this template just
+		like you would any other PRINT template. </P> 
+	 <P><B>NOTE:</B> You do not have to include the .01 field, because it is
+		automatically included for use as a lookup value. </P> 
+	 <P>To send logical records in a filegram, simply use file navigation to and
+		from existing files at the "SEND FIELD:" prompts. See the "<A HREF="rn_frm.htm"
+		TARGET="_top" TITLE="Relational Navigation" CLASS="bodylink">Relational
+		Navigation</A>" chapter in this manual for a discussion of relational
+		navigation using forward and backward pointers. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fg_opt1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

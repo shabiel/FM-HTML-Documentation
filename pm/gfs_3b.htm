@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Global File Structure - Field
+		Definition 0-Node</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,global file structure,global,file,field definition 0-node,node,0-node,field definition,field,definition">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="gfs_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Global File Structure Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Global File Structure</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Attribute Dictionary: Field Definition 0-Node</H4> 
+	 <P>Each entry in the attribute dictionary is a descriptor of one of the
+		data fields in the file. VA FileMan always assigns the internal number .01 to
+		the NAME field and lets you assign numbers to the other fields. The attribute
+		dictionary stores the definition of each field descendent from the node
+		^DD(filenumber,fieldnumber). Crucial information about the field is stored in:
+		</P> 
+	 <PRE>    ^DD(filenumber,fieldnumber,0)
+</PRE> 
+	 <P>Every field has this 0-node defined in the attribute dictionary. </P> 
+	 <P>In our example, the EMPLOYEE file has four fields in addition to the
+		NAME field: SEX, BIRTHDATE, DEPARTMENT, and SKILL. SKILL is multiple-valued.
+		Let us suppose that the attribute dictionary for this file is stored in: </P> 
+	 <PRE>    ^DD(3)
+</PRE> 
+	 <P><B>Piece 1</B> The field's label is always found as the first ^-piece in
+		subscript zero. Thus, for our example, you would have: </P> 
+	 <PRE>
+    ^DD(3,.01,0)=&quot;NAME^&quot;
+    ^DD(3,1,0)=&quot;SEX^&quot;
+    ^DD(3,2,0)=&quot;DOB^&quot;
+    ^DD(3,3,0)=&quot;DEPARTMENT^&quot;
+    ^DD(3,4,0)=&quot;SKILL^&quot;
+</PRE> 
+	 <P><B>Piece 2</B> A string containing any of the following letters and
+		symbols: </P> 
+	 <TABLE BORDER="1" SUMMARY="Field Definition 0-Node, Piece 2 Table"
+	 TITLE="Field Definition 0-Node, Piece 2 Table" WIDTH="100%"> 
+		<TR VALIGN="top"> 
+		  <TH>character</TH> 
+		  <TH>meaning</TH> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>a</B></TD> 
+		  <TD>The field has been marked for auditing <B>a</B>ll the time.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>e</B></TD> 
+		  <TD>The auditing is only on <B>e</B>dit or delete.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>A</B></TD> 
+		  <TD>For multiples, a user entering a new subentry is not <B>A</B>sked
+			 for verification.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>BC</B></TD> 
+		  <TD>The data is <B>B</B>oolean <B>C</B>omputed (true or false).</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>C</B></TD> 
+		  <TD>The data is <B>C</B>omputed.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>Cm</B></TD> 
+		  <TD>The data is <B>m</B>ultiline <B>C</B>omputed.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>D</B></TD> 
+		  <TD>The data is <B>D</B>ate-valued.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>DC</B></TD> 
+		  <TD>The data is <B>D</B>ate-valued, <B>C</B>omputed.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>F</B></TD> 
+		  <TD>The data is <B>F</B>ree text.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>I</B></TD> 
+		  <TD>The data is uneditable.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>Jn</B></TD> 
+		  <TD>To specify a print length of <B>n</B> characters.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>Jn,d</B></TD> 
+		  <TD>To specify printing <B>n</B> characters with <B>d</B>ecimals.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>K</B></TD> 
+		  <TD>The data is M code.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>M</B></TD> 
+		  <TD>For <B>M</B>ultiples, after selecting or adding a subentry, the
+			 user is asked for another subentry.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>N</B></TD> 
+		  <TD>The data is <B>N</B>umeric-valued.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>O</B></TD> 
+		  <TD>The field has an <B>O</B>UTPUT transform.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>Pn</B></TD> 
+		  <TD>The data is a <B>P</B>ointer reference to file "<B>n</B>".</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>Pn'</B></TD> 
+		  <TD>LAYGO to the <B>P</B>ointed-to file is <B>n</B>ot allowed.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>R</B></TD> 
+		  <TD>Entry of data is <B>R</B>equired.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>S</B></TD> 
+		  <TD>The data is from a discrete <B>S</B>et of codes.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>V</B></TD> 
+		  <TD>The data is a <B>V</B>ariable pointer.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>W</B></TD> 
+		  <TD>The data is <B>W</B>ord processing.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>WL</B></TD> 
+		  <TD>The <B>W</B>ord processing data is normally printed in <B>L</B>ine
+			 mode (i.e., without word wrap).</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>X</B></TD> 
+		  <TD>Editing is not allowed under the Modify File Attributes option
+			 because the INPUT transform has been modified by the Input Transform option on
+			 the Utility Functions submenu.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>*</B></TD> 
+		  <TD>If there is a screen associated with a pointer or set of codes data
+			 type.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>NOTE: </B>The second ^-piece begins with the subfile number if the
+		field is a multiple. </P> 
+	 <P><B>Piece 3</B> Only contains data for Pointer and Set of Codes data
+		types. In those cases, the data is: </P> 
+	 <P></P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR VALIGN="top"> 
+		  <TD><B>Pointer</B></TD> 
+		  <TD>The global root of the pointed-to file.</TD> 
+		</TR> 
+		<TR VALIGN="top"> 
+		  <TD><B>Set of Codes</B> </TD> 
+		  <TD>The set of codes of allowed responses and their meanings.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> <B>Piece 4</B> One of the following, based on the kind of data storage:
+		</P> 
+	 <UL> 
+		<LI>subscript location and ^-piece, separated by a semicolon
+		  (<B>;</B>)<BR><BR></LI> 
+		<LI>subscript location and character-positions, also separated by a
+		  semicolon (<B>;</B>), where <B>Em,n</B> designates character-positions <B>m</B>
+		  through <B>n</B><BR><BR></LI> 
+		<LI>subscript location, followed by a semicolon (<B>;</B>) followed by 0
+		  (zero), to designate multiple-valued data, and <BR><BR></LI> 
+		<LI>semicolon preceded and followed by a space ('<B> ; </B>') to indicate
+		  no data storage (i.e., computed fields)</LI> 
+	 </UL> 
+	 <P><B>Piece 5</B> M code to check an input in the variable X. If the input
+		is invalid, the variable X is killed by the code. This is the field's INPUT
+		transform. In the case of a computed field, the code creating the variable X is
+		stored here. (Pieces following the fifth piece are part of this M code.) </P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- gfs_3b.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

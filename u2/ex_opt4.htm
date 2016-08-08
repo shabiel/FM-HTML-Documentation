@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Extract Tool Modify
+		Destination File Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,extract tool,tools,extract,step 4,modify destination file option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Extract Tool Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Modify Destination File Option (4 of 9)</H4> 
+	 <P>You can use either the Modify File Attributes option or the Modify
+		Destination File option when you are ready to create the destination file that
+		will receive your extracted data. You can also use these options to correct
+		discrepancies that you noticed while you were building your EXTRACT template.
+		The two options are nearly identical. However, one major difference exists: the
+		Modify Destination File option prompts for a new file attribute: ARCHIVE FILE
+		(see the "<A HREF="ex_dest.htm" TITLE="Destination File"
+		CLASS="bodylink">Destination File</A>" topic in this chapter). If you use the
+		Modify File Attributes option to create the destination file, you will need to
+		access the Modify Definition File option to set the ARCHIVE FILE flag. </P> 
+	 <P>Here is a sample of the type of dialogue that you will encounter when
+		modifying your destination file: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select EXTRACT OPTION: <B>MODIFY</B> DESTINATION FILE 
+
+This option allows you to build a file which will store data 
+extracted from other files.  When creating fields in the 
+destination file, all data types are selectable.  However, only a 
+few data types are acceptable for receiving extracted data.
+
+Please see your User Manual for more guidance on building the 
+destination file.
+
+MODIFY WHAT FILE: <B>CHANGE EXTRACT</B></PRE> <HR> 
+	 <P>From this point on, you will see the usual dialogue while creating a new
+		file and creating fields. </P> 
+	 <P>Once you have finished creating your destination file, you will see the
+		dialogue that follows:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select FIELD: <B>&lt;RET&gt;</B>
+ARCHIVE FILE? NO// <B>?</B>
+
+    Enter either 'Y' or 'N'
+
+ARCHIVE FILE? NO// <B>??</B>
+    'YES' will not allow modifications or deletions of data or data
+dictionary
+    'NO'  will place no restrictions on the file.
+
+ARCHIVE FILE? NO// <B>&lt;RET&gt;</B>
+
+Select EXTRACT OPTION:</PRE>  
+	<P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ex_opt4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

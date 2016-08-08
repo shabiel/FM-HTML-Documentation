@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN^DIQ</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,en^diq,diq">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN^DIQ: Display</H4> 
+	 <P>This entry point displays a range of data elements in captioned format,
+		to the current device. The output from this call is very similar to that of the
+		<A HREF="../u1/in_intro.htm#Option" TARGET="display"
+		 TITLE="Inquiry to File Entries" CLASS="bodylink">Inquiry to File Entries</A>
+		option (described in the "<A HREF="../u1/in_frm.htm" TARGET="_top"
+		TITLE="Inquire Option" CLASS="bodylink">Inquire Option</A>" section of the "VA
+		FileMan Getting Started Manual"). </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DIC</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) The global root of the file in the form ^GLOBAL( or
+				^GLOBAL(#, </P> 
+			 <P>If you are displaying an entry in a subfile, set DIC to the full
+				global root leading to the subfile entry, including all intervening subscripts
+				and the terminating comma, up to but not including the ien of the subfile entry
+				to display.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DA</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) If you are displaying an entry at the <B>top level</B>
+				of a file, set DA to the internal entry number of the file entry to
+				display.</P> 
+			 <P>If you are editing an entry in a <B>subfile</B>, set up DA as an
+				array, where DA=entry number in the subfile to display, DA(1) is the entry
+				number at the next higher file level,...DA(n) is the entry number at the file's
+				top level. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DR</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) Names the global subscript or subscripts which are to
+				be displayed by DIQ. If DR contains a colon (:), the range of subscripts is
+				understood to be specified by what precedes and follows the colon. Otherwise,
+				DR is understood to be the literal name of the subscript. All data fields
+				stored within, and descendent from, the subscript(s) will be displayed, even
+				those which normally have Read access security protection. </P> 
+			 <P>If DR is not defined, all fields are displayed. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4" WIDTH="20%"><B>DIQ(0)</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) You can include the following flags in this variable to
+				change the display of the entry: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>C</B></TD> 
+		  <TD VALIGN="TOP">To display <B>C</B>omputed fields. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>A</B></TD> 
+		  <TD VALIGN="TOP">To display <B>A</B>udit records for the entry. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>R</B></TD> 
+		  <TD VALIGN="TOP">To display the entry's <B>R</B>ecord number (IEN).
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_diq_1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

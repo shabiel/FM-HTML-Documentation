@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Delimited Import/Export
+		Data Format</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,delimited data format">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>Delimited Data Format</H4> 
+	 <P>Suppose you have a record with LASTNAME = "Smith", FIRSTNAME = "Jane",
+		AGE = "36". In delimited data format, you choose a delimiter character to place
+		between field values. Let's use a comma as the delimiter character.</P> 
+	 <P>A comma ("<B>,</B>") is then inserted between each of a record's fields,
+		to "delimit" them. The resulting record, exported in comma-delimited format,
+		would look like:</P> 
+	 <PRE>    Smith,Jane,36</PRE> 
+	 <P>Groups of records are exported line-by-line, one line after another. A
+		file of records in comma-delimited format might look like:</P> 
+	 <PRE>    USER,TEST,1 GREEN LANE,,,Amherst,NH,03012
+    JONES,SUSAN,30 Plaza Court,,,San Francisco,CA,94105
+    SMITH,JOE,90 123rd St.,,,San Francisco,CA,94112</PRE> 
+	 <P>In order to use delimited data format, both applications (the exporting
+		application and the importing application) must be able to recognize the
+		format. </P> 
+	 <H5>Quoted Fields in Delimited Format</H5> 
+	 <P>Now suppose in the previous example that instead of two separate fields
+		for LASTNAME and FIRSTNAME, there is only a single NAME field for both. Suppose
+		that incoming data you want to place in the single NAME field comes in the form
+		SMITH,JOE, but you still want to use commas as your delimiter. You can use the
+		"Fields Quoted" setting in the Import form (or the
+		<A HREF="ei_sig.htm#Quote_non_numeric_fields" TITLE="Quote Non-Numeric Fields"
+		 CLASS="bodylink">Quote Non-Numeric Fields</A> setting in a Foreign Format) to
+		ignore the delimiter if it is between quotes in the incoming data.</P> 
+	 <P>Thus, if you set "Fields Quoted" to YES in your import form, and you
+		pass in a record that looks like:</P> 
+	 <PRE>    &quot;SMITH,JOE&quot;,90 123rd St.,,,San Francisco,CA,94112</PRE> 
+	 <P>For quoted fields, like "SMITH,JOE", the Import Tool will ignore the
+		comma delimiter in-between the quotes and treat "SMITH,JOE" as a single field
+		value.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_delim.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

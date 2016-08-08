@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Susan Strack, 12/04/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Triggers Introduction</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,trigger cross-references,cross-references,triggers,introduction">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css">
+	</HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="tr_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Trigger Cross-references Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Trigger Cross-references</A></H3> <HR
+	 CLASS="hrstyle"> 
+	 <H4>Trigger Cross-references Introduction</H4> 
+	 <P>A trigger causes something else to happen. In VA FileMan, you can set up
+		a trigger so that the entry of data in one field automatically updates a second
+		field value. Since a trigger is considered a type of cross-reference on the
+		field for which data is entered, a trigger is logically created under the
+		Cross-Reference a Field or File option in the Utility Functions menu. </P> 
+	 <P>To understand how a trigger is set up, you must first understand that
+		every cross-reference specification describes both: </P> 
+	 <UL> 
+		<LI>what happens when a new value is entered, either initially or when an
+		  existing value is changed (set logic)<BR><BR></LI> 
+		<LI>what happens when an old value is changed or deleted (kill
+		  logic)</LI> 
+	 </UL> 
+	 <P>In other words, when patient SMITH,JACK is first entered into a file of
+		patients, a SMITH,JACK regular cross-reference on the name is built (and
+		nothing is deleted). Then, when this name is edited (changed) to be SMITH,JOHN
+		Q--two things happen: </P> 
+	 <UL> 
+		<LI>the SMITH,JACK regular cross-reference is deleted<BR><BR></LI> 
+		<LI>a SMITH,JOHN Q regular cross-reference is created</LI> 
+	 </UL> 
+	 <P>Finally, when this patient is deleted from the file, the SMITH,JOHN Q
+		cross-reference is deleted (and none is created). </P> 
+	 <P>When you are using the Cross-Reference a Field or File option and you
+		specify a trigger, you must identify both what happens when a new field value
+		is entered (either initially or through an edit on an existing value) and when
+		an old value is changed or deleted. </P> 
+	 <P>You must be careful in setting up any trigger cross-reference since
+		unexpected effects can sometimes result. Note that at the moment when the
+		trigger actually occurs: </P> 
+	 <UL> 
+		<LI>No validity check is made on the value being forced into the field
+		  (in other words, the value doesn't go through the triggered field's INPUT
+		  transform).<BR><BR></LI> 
+		<LI>Cross-references (if any) do occur on the triggered field (e.g., a
+		  triggered field can in turn trigger other fields in a chain reaction!).</LI> 
+	 </UL> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- tr_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

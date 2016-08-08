@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: COMMA^%DTC</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,comma^%dtc,dtc">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>COMMA^%DTC: Number Format</H4> 
+	 <P>Formats a number to a string that will separate billions, millions, and
+		thousands with commas. </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>X</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) The number you want to format. X may be positive or
+				negative. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>X2</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) The number of decimal digits you want the output to
+				have. If X2 is not defined, two decimal digits are returned. If X2 is a number
+				followed by the dollar sign (e.g., 3$) then a dollar sign will be prefixed to X
+				before it is output. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>X3</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) The length of the desired output. If X3 is less than
+				the formatted X, X3 will be ignored. If X3 is not defined, then a length of
+				twelve is used. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variable</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>X</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The initial value of X, formatted with commas, rounded to the
+				number of decimal digits specified in X2. If X2 contained a dollar sign, then
+				the dollar sign will be next to the leftmost digit. If X was negative, then the
+				returned value of X will be in parentheses. If X was positive, a trailing space
+				will be appended. If necessary, X will be padded with leading spaces so that
+				the length of X will equal the value of the X3 input variable. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1 </B> </P> 
+	 <PRE>
+ &gt;<B>S X=12345.678 D COMMA^%DTC</B>
+</PRE> 
+	 <P>The result is: </P> 
+	 <PRE>
+X=&quot;  12,345.68 &quot;
+</PRE> 
+	 <P><B>Example 2 </B> </P> 
+	 <PRE>
+&gt;<B>S X=9876.54,X2=&quot;0$&quot; D COMMA^%DTC</B>
+</PRE> 
+	 <P>The result is: </P> 
+	 <PRE>
+X=&quot;     $9,877 &quot;
+</PRE> 
+	 <P><B>Example 3 </B> </P> 
+	 <PRE>
+&gt;<B>S X=-3,X2=&quot;2$&quot; D COMMA^%DTC</B>
+</PRE> 
+	 <P>The result is: </P> 
+	 <PRE>
+X=&quot;     ($3.00)&quot;
+</PRE> 
+	 <P><B>Example 4 </B> </P> 
+	 <PRE>
+&gt;<B>S X=12345.678,X3=10 D COMMA^%DTC</B>
+</PRE> 
+	 <P>The result is: </P> 
+	 <PRE>
+X=&quot;12,345.68 &quot;
+	 </PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dtc10.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

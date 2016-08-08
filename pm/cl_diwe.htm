@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN^DIWE</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,en^diwe,diwe">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN^DIWE: Text Editing</H4> 
+	 <P>This routine is used to edit word processing text using VA FileMan's
+		editors. If the user has established a Preferred Editor through Kernel, that
+		editor is presented for use. FileMan's editors expect the text to contain only
+		printable ASCII characters. </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><b>DDWAUTO</b></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable can be set to an interval in minutes
+             that the Screen Editor should automatically save the text for the
+             user. It can be an integer between 1 and 120. If set to 0, no
+             autosave occurs. The setting takes effect for only the current
+             invokation of the Screen Editor and can be changed by the user via
+             the &lt;PF1&gt;&lt;PF1&gt;S key sequence. The default value of
+             DDWAUTO is 0. This variable is killed by FileMan. </P> 
+ </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><b>DDWTAB</b></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable indicates to the Screen Editor the
+             initial tab stop positions. The setting takes effect for only the
+             current invokation of the Screen Editor and can subsequently be
+             changed by the user via the &lt;PF1&gt;&lt;PF1&gt;&lt;Tab&gt; key
+             sequence. </P> 
+			 <P>To set individual tab stops, set DDWTAB to a series of numbers
+             separated by commas; for example, </P> 
+             <pre>    DDWTAB = &quot;4,7,15,20&quot;</pre>
+			 <P>sets tab stops at columns 4, 7, 15, and 20. To set tab stops at
+             repeated intervals after the last stop, or after column 1, type the
+             interval as +n; for example, </P> 
+             <pre>    DDWTAB = &quot;10,20,+5&quot;</pre>
+			 <P>sets tab stops at columns 10, 20, 25, 30, 35, etc. </P> 
+			 <P>If not passed, the Screen Editor assumes DDWTAB =
+             &quot;+8&quot;; that is, it initially sets tab stops at columns 1,
+             9, 17, 25, etc. This variable is killed by FileMan. </P> 
+ </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIC</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The global root of where the text is located. </P> 
+			 <P><B>NOTE:</B> VA FileMan uses ^UTILITY($J,"W") when EN^DIWE is
+				called. Thus, DIC should not be set equal to that global location. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DWLW</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable indicates the maximum number of
+				characters that will be stored on a word-processing global node. When the user
+				enters text, the input line will not be broken to DWLW-characters until after
+				the Enter/Return key is pressed. Thus, if DWLW=40 and the user types 90
+				characters before pressing the Enter/Return key, the text would be stored in
+				three lines in the global. If this variable is not set, the default value is
+				245. This variable is always killed by FileMan. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DWPK</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable determines how lines that are shorter
+				than the maximum line length (set by DWLW) are treated by FileMan. It can be
+				set to 1 or 2. This variable is always killed by FileMan. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DWPK=1</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If the user enters lines shorter than the maximum line length in
+				variable DWLW, the lines will be stored as is; they will not be joined. If
+				lines longer than DWLW are entered, the lines will be broken at word
+				boundaries. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DWPK=2</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If the user types lines shorter than the maximum line length in
+				variable DWLW, the lines will be joined until they get to the maximum length;
+				the lines are "filled" to DWLW in length. If the lines are longer than DWLW,
+				they will be broken at word boundaries. This is the default used if DWPK is not
+				set prior to the EN^DIWE call. </P> 
+			 <P><B>NOTE:</B> DWLW and DWPK only have an effect if text is entered
+				using the Line Editor. They do not affect how text is stored if the Screen
+				Editor or some other Alternate Editor is used. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="dwdisabl">DWDISABL</A></B></TD> 
+		  <TD VALIGN="TOP"><IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11">This variable
+			 can be used to disable specific Line Editor commands. For example, if DWDISABL
+			 contains "P", then the Print command in the Line Editor is disabled. This
+			 variable is killed by FileMan. (Optional)</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIWEPSE</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) If this variable is defined before entering the
+				Preferred Editor (if the Preferred Editor is not the Line Editor), the user
+				receives the following prompt: </P> 
+			 <PRE>    Press RETURN to continue or '^' to exit:
+</PRE> 
+			 <P>Set this variable if you want to allow the user to read
+				information on the screen before the display is cleared by a screen-oriented
+				editor. This variable is always killed by FileMan. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIWESUB</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) The first 30 characters of this variable are displayed
+				within angle brackets (&lt; and &gt;) on the top border of the Screen Editor
+				screen. This variable is killed by FileMan. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIWETXT</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) The first IOM characters of this variable are displayed
+				in high intensity on the first line of the Screen Editor screen. This variable
+				is killed by FileMan. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDWLMAR</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable indicates the initial column position of
+				the left margin when the Screen Editor is invoked. The user can subsequently
+				change the location of the left margin. This variable is killed by FileMan.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDWRMAR</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable indicates the initial column position of
+				the right margin when the Screen Editor is invoked. The user can subsequently
+				change the location of the right margin. This variable is killed by FileMan.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDWRW</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable indicates to the Screen Editor the line
+				in the document on which the cursor should initially rest. This variable has
+				effect only if the user's preferred editor is the Screen Editor and applies
+				only when the Screen Editor is first invoked. If the user switches from the
+				Screen Editor to another editor and then back to the Screen Editor, the cursor
+				always rests initially on line 1. </P> 
+			 <P>If this variable is set to "B", the cursor will initially rest at
+				the bottom of the document and the value of DDWC described immediately below is
+				ignored. The default value of DDWRW is 1. This variable is killed by FileMan.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDWC</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable indicates to the Screen Editor the
+				initial column position of the cursor. The same restrictions described above
+				for DDWRW apply to DDWC.</P> 
+			 <P>If this variable is set to "E", the cursor will initially rest at
+				the end of the line defined by DDWRW. The default value of DDWC is 1. This
+				variable is killed by FileMan. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="ddwflags">DDWFLAGS</A></B></TD> 
+		  <TD VALIGN="TOP"><IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> Flags to
+			 control the behavior of the Screen Editor. The possible values are:</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"></TD> 
+		  <TD VALIGN="TOP"> 
+			 <TABLE BORDER="BORDER"
+			 SUMMARY="This table is for formatting purposes only" WIDTH="100%"> 
+				<TR> 
+				  <TD WIDTH="10%"><B>M</B></TD> 
+				  <TD>Indicates that the Screen Editor should initially be in NO
+					 WRAP <B>M</B>ode when invoked.</TD> 
+				</TR> 
+				<TR> 
+				  <TD><B>Q</B></TD> 
+				  <TD>Indicates that if the user attempts to <B>Q</B>uit the editor
+					 with &lt;PF1&gt;Q, the confirmation message "Do you want to save changes?" is
+					 NOT asked. </TD> 
+				</TR> 
+				<TR> 
+				  <TD><B>R</B></TD> 
+				  <TD>Indicates that the Screen Editor should initially be in
+					 <B>R</B>EPLACE mode when invoked.</TD> 
+				</TR> 
+			 </TABLE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"></TD> 
+		  <TD VALIGN="TOP">This variable is killed by FileMan. (Optional)</TD> 
+		</TR> 
+	 </TABLE>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_diwe.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

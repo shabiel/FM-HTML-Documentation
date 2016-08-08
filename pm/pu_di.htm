@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^DI (Programmer Access)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,programmer access,access,programmer,^di,di,^di: Programmer Access">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">^DI: Programmer Access</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>^DI: Programmer Access</H4> 
+	 <P>Often, VA FileMan's options are accessed through a menu system that
+		calls up the main VA FileMan menu. For example, if Kernel is installed, VA
+		FileMan can be entered from Kernel's menu system, if a user has been granted
+		access. </P> 
+	 <P>However, the main menu can also be displayed directly from the M command
+		prompt. When you call VA FileMan directly, you are using "programmer mode."
+		</P> 
+	 <P>There are four entry points in the DI routine that you can use to enter
+		VA FileMan. Each way of calling up the main menu has a different effect upon
+		the local M variables that are defined when you begin your FileMan session.
+		They are described below: </P> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>P^DI</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>This entry point cleans the symbol table; that is, it kills all
+				local variables except those that are required for VA FileMan's operation. (The
+				variables DUZ and DTIME are unchanged.) In addition, the variable DUZ(0) is set
+				equal to <B>@</B>. The @-sign gives you complete programmer access to all of
+				FileMan's files and functionality. </P> 
+			 <P><B>NOTE:</B> Included in the variables killed are the IO
+				variables. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Q^DI</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Like P^DI, this entry point sets DUZ(0)="@". However, the
+				remaining variables in the local symbol table are unchanged.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>C^DI</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Like P^DI, this entry point cleans the symbol table. However, it
+				leaves DUZ(0) unchanged; whatever Access Code string was in DUZ(0) before the
+				call remains to control access within FileMan. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>D^DI</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>This entry point leaves all local variables alone. It neither
+				cleans the symbol table nor resets DUZ(0). </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>In addition, other necessary variables are set to default values if they
+		are undefined when you start VA FileMan from programmer mode. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_di.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Changing and Deleting
+		Fields</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,creating files and fields,files,fields,creating,editing,changing,modifying,deleting">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cr_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Creating Files and Fields Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Creating Files and Fields</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>Changing and Deleting Fields</H4> 
+	 <UL> 
+		<LI><A HREF="#field_attributes" TITLE="Changing Field Attributes"
+		  CLASS="bodylink">Changing Field Attributes</A><BR><BR></LI> 
+		<LI><A HREF="#data_type" TITLE="Changing a Field's Data Type"
+		  CLASS="bodylink">Changing a Field's Data Type</A><BR><BR></LI> 
+		<LI><A HREF="#Deleting" TITLE="Deleting a Field"
+		  CLASS="bodylink">Deleting a Field</A></LI> 
+	 </UL> 
+	 <H5><A NAME="field_attributes">Changing Field Attributes</A></H5> 
+	 <P>After creating a field in a file, you can return to <B>change</B> or
+		<B>delete</B> the field within the Modify File Attributes option, simply by
+		entering the field name (or number) when asked: </P> 
+	 <PRE>    Select FIELD:</PRE> 
+	 <P>When you return to the field in this option, you are able to change a
+		field's: </P> 
+	 <UL> 
+		<LI>Label (Name)<BR><BR></LI> 
+		<LI>Title (long form of its name)<BR><BR></LI> 
+		<LI>Audit and Audit Conditions (to indicate which fields should be
+		  audited) <BR><BR></LI> 
+		<LI>Read/Delete/Write<BR><BR></LI> 
+		<LI>Source<BR><BR></LI> 
+		<LI>Destination<BR><BR></LI> 
+		<LI>Group<BR><BR></LI> 
+		<LI>Description of the field, a word processing field (what the user sees
+		  after entering two question marks)<BR><BR></LI> 
+		<LI>Technical Description </LI> 
+	 </UL> 
+	 <P>After you are presented with these attributes of the field, you can
+		change the attributes defined during the initial definition of the field as
+		illustrated in the "<A HREF="cr_flds.htm" TITLE="Creating Fields"
+		CLASS="bodylink">Creating Fields</A>" section. </P> 
+	 <P>For example, let's say you have created an SSN field (Social Security
+		Number) in the PATIENT file and would now like to edit the field: </P> 
+	 <PRE> </PRE> <HR> 
+	 <PRE>Select FIELD: <B>SSN</B>
+LABEL:  SSN// <B>&lt;RET&gt;</B> 
+TITLE: <B>Social Security Number</B> 
+AUDIT: <B>YES, ALWAYS</B>       
+AUDIT CONDITION: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P><B>NOTE:</B> Auditing is described in the "<A HREF="au_frm.htm"
+		TARGET="_top" TITLE="Auditing" CLASS="bodylink">Auditing</A>" chapter in this
+		manual. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>READ ACCESS (OPTIONAL): <B>&lt;RET&gt;</B>
+DELETE ACCESS (OPTIONAL): <B>&lt;RET&gt;</B>
+WRITE ACCESS (OPTIONAL): <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P><B>NOTE:</B> Control of various kinds of access to files is described in
+		the "<A HREF="ds_frm.htm" TARGET="_top" TITLE="Data Security"
+		CLASS="bodylink">Data Security</A>" chapter in this manual.</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>SOURCE: <B>&lt;RET&gt;</B> 
+Select DESTINATION: <B>&lt;RET&gt;</B> 
+Select GROUP:  <B>DEMOG</B></PRE> <HR> 
+	 <P>A GROUP is a shorthand way for the user to refer to several fields at
+		once when using the Print File Entries or the Enter or Edit File Entries
+		options. Here, SSN is being assigned to the DEMOG group. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DESCRIPTION: 
+1&gt;An entry is required.  If you do not know this patient's Social 
+2&gt;Security Number, enter '000000000' to indicate the number is 
+3&gt;unknown<B>.</B>
+EDIT Option: <B>&lt;RET&gt;</B>
+TECHNICAL DESCRIPTION: 
+1&gt; <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>The DESCRIPTION and TECHNICAL DESCRIPTION attributes document the use
+		and meaning of the field. The information in DESCRIPTION is shown to the user
+		when two question marks are entered at the "EDIT Option:" prompt. When
+		initially creating a field, you are prompted for the DESCRIPTION field after
+		the 'HELP'-PROMPT. The TECHNICAL DESCRIPTION is displayed only when the data
+		dictionary is printed. </P> 
+	 <P><B>NOTE:</B> Versions of VA FileMan prior to Version 21.0 allowed you to
+		also enter a Help Frame for field documentation; that attribute is no longer
+		supported.</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DATA TYPE OF SSN:  FREE TEXT// <B>&lt;RET&gt;</B>
+MINIMUM LENGTH: 9// <B>&lt;RET&gt;</B>
+MAXIMUM LENGTH: 9// <B>&lt;RET&gt;</B>
+(OPTIONAL) PATTERN MATCH (IN 'X'): X?9N// <B>&lt;RET&gt;</B>
+IS SSN ENTRY MANDATORY (Y/N): Y// <B>&lt;RET&gt;</B>
+'HELP'-PROMPT:  ANSWER MUST BE 9 CHARACTERS IN LENGTH 
+  Replace <B>... </B>With  <B>Enter 9 numbers without dashes, e.g., 123456789.</B>
+  Replace <B>&lt;RET&gt;</B>
+      Enter 9 numbers without dashes, e.g., 123456789. </PRE> <HR> 
+	 <P>To illustrate the use of GROUPs, add the NAME, DATE OF BIRTH, and SEX
+		fields into the DEMOG group: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select FIELD: <B>NAME</B> 
+LABEL:   NAME// <B>^GROUP</B>
+Select GROUP: <B>DEMOG</B> 
+DESCRIPTION: 
+1&gt; <B>&lt;RET&gt;</B>
+TECHNICAL DESCRIPTION:
+1&gt; <B>&lt;RET&gt;</B>
+
+DATA TYPE OF NAME:   FREE TEXT// <B>^</B></PRE> <HR> 
+	 <P>DATE OF BIRTH and SEX can be added to the GROUP in the same way. Now,
+		when using the Enter or Edit File Entries option, you could say: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT WHICH FIELD: <B>DEMOG</B>
+ 1    DEMOG    NAME
+ 2    DEMOG    SEX
+ 3    DEMOG    DATE OF BIRTH
+EDIT WHICH FIELD: <B>&lt;RET&gt;</B>
+
+Select PATIENT NAME: <B>GREEN</B>,RICHARD<B></B>
+NAME:   GREEN,RICHARD// <B>&lt;RET&gt;</B>
+SEX:   MALE// <B>&lt;RET&gt;</B>
+DATE OF BIRTH:   JAN 3, 1955// <B>&lt;RET&gt; </B></PRE> <HR> 
+	 <H5><A NAME="data_type">Changing a Field's Data Type</A></H5> 
+	 <P>Within the Modify File Attributes option, you can change the Data Type
+		itself. There are limitations on the sort of changes you can make. These are
+		listed below. </P> 
+	 <P>You must be very careful in making such changes if you already have file
+		data entered, because there is no guarantee that the old data will match the
+		newly specified criteria (e.g., field length). However, if you do change a
+		field definition, you are asked if you want existing data checked for
+		inconsistencies. A list of any discrepancies is printed. If more than one
+		discrepancy is found, you can save the list of discrepant entries in a
+		template. To generate this list later, use the
+		<A HREF="ut_ver.htm" TITLE="Verify Fields" CLASS="bodylink">Verify Fields</A>
+		option on the Utility Functions submenu. </P> 
+	 <P>The following restrictions apply to changing the definitions of existing
+		data fields in a file: </P> 
+	 <UL> 
+		<LI>Multiple-valued fields cannot be changed to single-valued fields or
+		  vice versa. Multiple-valued fields can only be defined when creating a
+		  field.<BR><BR></LI> 
+		<LI>COMPUTED fields cannot be changed to other types of fields or vice
+		  versa.<BR><BR></LI> 
+		<LI>WORD-PROCESSING-type fields should only be changed into
+		  Multiple-valued FREE TEXT fields.<BR><BR></LI> 
+		<LI>Only a Multiple-valued FREE TEXT field can be changed into a
+		  WORD-PROCESSING field, and only if no other subfields are defined for that
+		  field.<BR><BR></LI> 
+		<LI>POINTER TO A FILE Data Types cannot be changed to VARIABLE-POINTER
+		  types or vice versa. </LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="Deleting">Deleting an Existing Field</A></H5> 
+	 <P>Deleting a field and its definition is done by deleting the field Name
+		(LABEL). Delete the field by typing the at-sign ("<B>@</B>") after the display
+		of a field's LABEL when using the Modify File Attributes option: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>MOD</B>IFY FILE ATTRIBUTES 
+DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <B>NO &lt;RET&gt;</B>  (No)
+
+MODIFY WHAT FILE: <B>PATIENT</B>
+
+Select FIELD: <B>SEX</B>
+LABEL:  SEX// <B>@</B>
+    SURE YOU WANT TO DELETE THE ENTIRE 'SEX' FIELD? <B>YES</B>
+OK TO DELETE 'SEX' FIELDS IN THE EXISTING ENTRIES? <B>YES</B></PRE> <HR> 
+	 <P><B>CAUTION:</B> If you answer NO to the "OK TO DELETE" question, data
+		conflicts may occur in the future, if you create new fields. It is advisable to
+		always delete existing entries. Only a programmer can delete the entries after
+		you have answered NO.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cr_chang.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

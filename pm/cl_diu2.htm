@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN^DIU2 </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,en^diu2,diu2">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN^DIU2: Data Dictionary Deletion</H4> 
+	 <P>Occasionally you may need to delete a file's data dictionary and its
+		entry in ^DIC in order to properly update a running system. Use this entry
+		point to do it.</P> 
+	 <P>You usually have the option of deleting the data when you delete the
+		data dictionary. (See the
+		<A HREF="#(DIU)0" TITLE="DIU(0) variable" CLASS="bodylink">DIU(0) variable</A>
+		below.) However, data will always be deleted if your file is in ^DIC(File#,. Be
+		careful using this utility when your data is in the ^DIC global. </P> 
+	 <P>In all cases, both DIU and DIU(0) are returned from the call. You will
+		find that DIU is returned as the global root regardless of whether it was
+		defined as the file number or as the global root when making the call. </P> 
+	 <P><B>NOTE:</B> If the root of a file's data is an unsubscripted global
+		[e.g., DIU="^MYDATA("], you must make sure that the systems on which you want
+		to perform the deletion do not restrict the killing of the affected
+		unsubscripted globals. </P> 
+	 <P><B>REMINDER: </B>It is your responsibility to clean up (kill) DIU, the
+		input variable, after any call to this routine! </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIU<B></B></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) The file number or global root, e.g., ^DIZ(16000.1,.
+				This must be a subfile number when deleting a subfile's data dictionary. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD ROWSPAN="5" VALIGN="TOP"><B><A
+			 NAME="(DIU)0">DIU(0)</A><B></B></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>Input parameter string that may contain the following: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>D</B></TD> 
+		  <TD VALIGN="TOP"><B>D</B>elete the data as well as the data dictionary.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>E</B></TD> 
+		  <TD VALIGN="TOP"><B>E</B>cho back information during deletion. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>S</B></TD> 
+		  <TD VALIGN="TOP"><B>S</B>ubfile data dictionary is to be deleted. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>T</B></TD> 
+		  <TD VALIGN="TOP"><B>T</B>emplates are to be deleted. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Example</H5> 
+	 <PRE>
+&gt;<B>S DIU=&quot;^DIZ(16000.1,&quot;,DIU(0)=&quot;&quot; D EN^DIU2
+</B></PRE> 
+	 <P>Only the data dictionary will be deleted. The data and templates remain.
+		By including either the D or T, you can also delete the data or the templates.
+		If the E is included, then the user will be asked whether or not the global
+		should be deleted. </P> 
+	 <H5>Subfile Deletion</H5> 
+	 <P>If you want to delete the dictionary for a subfile, you must include the
+		S in DIU(0). The variable, DIU, in this case must be a subfile data dictionary
+		number. It cannot be a global root. When deleting a subfile's dictionary, all
+		dictionaries subordinate to that dictionary are also deleted. Data can also be
+		deleted when deleting a subfile; this process could take some time depending on
+		the number of entries in the whole file. </P> 
+	 <P><B>Example</B></P> 
+	 <PRE>
+&gt;<B>S DIU=16000.01,DIU(0)=&quot;S&quot; D EN^DIU2</B>
+	 </PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_diu2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

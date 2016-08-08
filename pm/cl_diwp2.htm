@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^DIWW</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,^diww,diww">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="20%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="navbarlink">Contents:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="20%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="navbarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="35%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual" CLASS="navbarlink">See
+			 Also:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="25%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="navbarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>^DIWW: Formatter/Word-processing Print</H4> 
+	 <P>Use ^DIWW to output to the current device the remaining text left in
+		^UTILITY($J,"W") by <A HREF="cl_diwp1.htm" TITLE="^DIWP">^DIWP</A>. </P> 
+	 <P>The ^DIWW entry point is designed to be used in conjunction with the
+		<A HREF="cl_diwp1.htm" TITLE="^DIWP">^DIWP</A> entry point. Using ^DIWP, you
+		can accumulate and format text in ^UTILITY($J,"W"), in one of <B>two modes</B>:
+		</P> 
+	 <OL> 
+		<LI>In ^DIWP's <B>"accumulate" mode</B>, repeated calls to ^DIWP
+		  accumulate and format text in ^UTILITY($J,"W"). When you have finished
+		  accumulating text, you should call ^DIWW to write the text to the current
+		  device. ^DIWW writes the accumulated text to the current device with the
+		  margins you specified in your calls to ^DIWP and then removes the text from
+		  ^UTILITY.<BR><BR></LI> 
+		<LI>In ^DIWP's <B>"write" mode</B>, if the text added to ^UTILITY($J,"W")
+		  by ^DIWP causes one or more (that is, n) line breaks, n lines are written to
+		  the current device (and the remaining partial line is stored in ^UTILITY.) This
+		  leaves one line of text in ^UTILITY once all calls to ^DIWP are completed. To
+		  write the remaining line of text to the current device and remove it from
+		  ^UTILITY, call ^DIWW.</LI> 
+	 </OL> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_diwp2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

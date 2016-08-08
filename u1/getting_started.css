@@ -1,0 +1,60 @@
+/* This Style Sheet should be used with all User/Getting Started-type manuals/web pages, */
+
+/* The following style applies to the BODY font size and background color within a left frame in a frameset and/or left side Table of Contents (TOC). */
+
+body.toc { background: #ccccff; }
+
+/* The following style applies to all text within the page. */
+
+body { font-family: Verdana, Georgia, "New Century Schoolbook", Palatino, serif; font-size: 70%; color: #000000; }
+
+/* Since most of the text is inside TD (table cells) tags, the following style governs what that text looks like in tables. */
+
+td { font-family: Verdana, Georgia, "New Century Schoolbook", Palatino, serif; font-size: 70%; }
+
+/* The following style is for the left and top menu bars coloring. */
+
+.tdstyle { background-color: #ccccff; color: #000000; }
+
+/* The following style is for the header rule coloring. */
+
+.hrstyle { color: #000000; }
+
+/* The following style is for text inside TH (table header) tags. */
+
+th { font-family: Verdana, Georgia, "New Century Schoolbook", Palatino, serif; font-size: 70%; }
+
+/* These rules make the headers display in a certain typeface and size  */
+					
+h1	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
+h2	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
+h3	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
+h4	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
+h5	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
+h6	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
+
+/* The following class rule is for hyperlinks on the left menu. */
+
+a.navbarlink:link { color: blue; text-decoration: underline; font-size: 120%; font-family: Arial, Helvetica, Univers, Zurich BT; }
+a.navbarlink:visited { color: blue; text-decoration: underline; font-size: 120%; font-family: Arial, Helvetica, Univers, Zurich BT; }
+a.navbarlink:hover {color: black; text-decoration: none; font-size: 120%; font-family: Arial, Helvetica, Univers, Zurich BT; }
+
+/* The following class is for the text on the left menu. */
+
+.navbartext { color: #000000; text-decoration: none; font-size: 120%; font-family: Arial, Helvetica, Univers, Zurich BT; font-weight: bold; }
+
+/* The following class is for the hyperlinks on the top menu. */
+
+a.menubarlink:link { color: blue; text-decoration: underline; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; }
+a.menubarlink:visited { color: blue; text-decoration: underline; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; }
+a.menubarlink:hover {color: black; text-decoration: none; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; }
+
+/* The following class is for the text on the top menu. */
+
+.menubartext { font-family: Arial, Helvetica, Univers, Zurich BT; font-weight: bold; color: #000000; }
+
+/* The following class is for the hyperlinks on the rest of the page. */
+
+a.bodylink:link { color: blue; text-decoration: underline; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; }
+/* a.bodylink:visited { color: blue; text-decoration: underline; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; } */
+a.bodylink:hover { color: black; text-decoration: none; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; }

@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: $$EXTERNAL^DILFD( )</TITLE><META
+	 NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$external^dilfd(),dilfd">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P><TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>$$EXTERNAL^DILFD( ): Converter to External</H4> 
+	 <P>This extrinsic function converts any internal value to its external
+		format. It decodes codes, makes FileMan dates readable, and follows pointer or
+		variable pointer chains to resolve their values. OUTPUT transforms are applied
+		to their fields. For more information about how FileMan handles OUTPUT
+		transforms and pointers, read this function's "<A HREF="#DetailsAndFeatures"
+		TITLE="Details and Features" CLASS="bodylink">Details and Features</A>."</P> 
+	 <H5>Format</H5> 
+	 <PRE>
+$$EXTERNAL^DILFD(FILE,FIELD,FLAGS,INTERNAL,MSG_ROOT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The number of the file or subfile that contains the
+				field that describes the internal value passed in. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The number of the field that describes the internal
+				value passed in. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) To control processing. </P> 
+			 <P>A single-character code that explains how to handle OUTPUT
+				transforms found along pointer chains. The default describes how fields not
+				found along a pointer chain are always handled, regardless of whether a flag is
+				passed. See "<A HREF="#DetailsAndFeatures" TITLE="Details and Features"
+				CLASS="bodylink">Details and Features</A>" in this section for definition and
+				explanation of pointer chains. </P> 
+			 <P>The default, if no flag is passed, is the way this function
+				generally handles OUTPUT transforms. If a field has an OUTPUT transform, the
+				transform is applied to the internal value of the field and FileMan does not
+				process the value further. This means it is the responsibility of the OUTPUT
+				transform to resolve codes, transform dates, and follow pointer or variable
+				pointer chains to their destination. </P> 
+			 <P>The default handling of pointer chains, therefore, is to follow
+				the chain either until the last field is found, at which point the field is
+				transformed according to its data type, or until a field with an OUTPUT
+				transform is found, at which point FileMan applies the OUTPUT transform to the
+				field where it is found and quits. The possible values are: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="4%"><B><A NAME="F">F</A></B></TD> 
+		  <TD VALIGN="TOP">If the <B>F</B>irst field in a pointer chain has an
+			 OUTPUT transform, apply the transform to that first field and quit. Ignore any
+			 other OUTPUT transforms found along the pointer chain. With the exception of
+			 this function, FileMan regularly handles OUTPUT transforms this way. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>L</B></TD> 
+		  <TD VALIGN="TOP">If the <B>L</B>ast field in a pointer chain has an
+			 OUTPUT transform, apply the transform to that last field and quit. Ignore any
+			 other OUTPUT transforms found along the pointer chain. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>U</B></TD> 
+		  <TD VALIGN="TOP"><B>U</B>se the first OUTPUT transform found on the
+			 last field in the pointer chain. Following the pointer chain, watch for OUTPUT
+			 transforms. When one is found, remember it, but keep following the pointer
+			 chain. When the last field in the chain is reached, apply the remembered
+			 transform to that last field. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>INTERNAL</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The internal value that is to be converted to its
+				external format. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The array that should receive any error messages. This
+				must be a closed array reference and can be either local or global. For
+				example, if MSG_ROOT equals "OROUT(42)", any errors generated appear in
+				OROUT(42,"DIERR"). </P> 
+			 <P>If the MSG_ROOT is not passed, errors are returned descendent from
+				^TMP("DIERR",$J). </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Output</H5> 
+	 <P>This function evaluates to an external format value, as defined by a
+		field in a file in the database. In the event of an error, this function
+		outputs the empty string instead.</P> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <PRE>
+    &gt;<B>W $$EXTERNAL^DILFD(19,4,&quot;&quot;,&quot;A&quot;)
+</B>    action
+
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <PRE>
+    &gt;<B>W $$EXTERNAL^DILFD(4.302,.01,&quot;&quot;,2940209.0918)
+</B>    FEB 09, 1994@09:18
+
+</PRE> 
+	 <P><B>Example 3</B></P> 
+	 <PRE>
+    &gt;<B>W $$EXTERNAL^DILFD(3.7,.01,&quot;&quot;,DUZ)
+</B>    DOE,JOHN
+
+</PRE> 
+	 <P><B>Example 4</B></P> 
+	 <PRE>
+    &gt;<B>W $$EXTERNAL^DILFD(3298428.1,.01,&quot;&quot;,1)
+</B>    11111 1 11111
+
+</PRE> 
+	 <P><B>Example 5</B></P> 
+	 <PRE>
+    &gt;<B>W $$EXTERNAL^DILFD(3298428.1,.01,&quot;F&quot;,1)
+</B>    11111 1 11111
+
+</PRE> 
+	 <P><B>Example 6</B></P> 
+	 <PRE>
+    &gt;<B>W $$EXTERNAL^DILFD(3298428.1,.01,&quot;L&quot;,1)
+</B>    22222 TOAD 22222
+
+</PRE> 
+	 <P><B>Example 7</B></P> 
+	 <PRE>
+    &gt;<B>W $$EXTERNAL^DILFD(3298428.1,.01,&quot;U&quot;,1)
+</B>    11111 TOAD 11111
+
+</PRE> 
+	 <P><B>Example 8</B></P> 
+	 <PRE>
+    &gt;<B>W $$EXTERNAL^DILFD(3298428.1,.01,&quot;GGG&quot;,1) W DIERR D ^%G
+</B>    1^1
+    Global <B>^TMP(&quot;DIERR&quot;
+</B>            TMP(&quot;DIERR&quot;
+    ^TMP(&quot;DIERR&quot;,731987397,1) = 301
+    ^TMP(&quot;DIERR&quot;,731987397,1,&quot;PARAM&quot;,0) = 1
+    ^TMP(&quot;DIERR&quot;,731987397,1,&quot;PARAM&quot;,1) = GGG
+    ^TMP(&quot;DIERR&quot;,731987397,1,&quot;TEXT&quot;,1) = The passed flag(s) 'GGG' are
+       unknown or inconsistent.
+    ^TMP(&quot;DIERR&quot;,731987397,&quot;E&quot;,301,1) = 
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">The input parameter is missing or invalid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_301.htm" TITLE="Error 301"
+			 CLASS="bodylink">301</A></B></TD> 
+		  <TD VALIGN="TOP">The passed flag(s) are unknown or inconsistent. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="../../docs/pm/err_348.htm" TITLE="Error 348"
+			 CLASS="bodylink">348</A></B></TD> 
+		  <TD VALIGN="TOP">The passed value points to a file that does not exist
+			 or lacks a Header Node. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
+			 CLASS="bodylink">401</A></B></TD> 
+		  <TD VALIGN="TOP">File # does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_403.htm" TITLE="Error 403"
+			 CLASS="bodylink">403</A></B></TD> 
+		  <TD VALIGN="TOP">File # lacks a Header Node. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_404.htm" TITLE="Error 404"
+			 CLASS="bodylink">404</A></B></TD> 
+		  <TD VALIGN="TOP">The Header node of the file lacks a file number. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_501.htm" TITLE="Error 501"
+			 CLASS="bodylink">501</A></B></TD> 
+		  <TD VALIGN="TOP">File # does not contain a field. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_510.htm" TITLE="Error 510"
+			 CLASS="bodylink">510</A></B></TD> 
+		  <TD VALIGN="TOP">The data type cannot be determined. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_537.htm" TITLE="Error 537"
+			 CLASS="bodylink">537</A></B></TD> 
+		  <TD VALIGN="TOP">Corrupted pointer definition. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_603.htm" TITLE="Error 603"
+			 CLASS="bodylink">603</A></B></TD> 
+		  <TD VALIGN="TOP">Entry lacks the required Field #. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_648.htm" TITLE="Error 648"
+			 CLASS="bodylink">648</A></B></TD> 
+		  <TD VALIGN="TOP">The value points to a file that does not exist or
+			 lacks a Header Node. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5><A NAME="DetailsAndFeatures">Details and Features</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="10"><B>Data Types</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>The internal value of a field is the way it is stored in the
+				database. The external value is the way a user expects the field to look. (See
+				also <A HREF="#OutputTransforms" TITLE="OUTPUT Transforms"
+				CLASS="bodylink">OUTPUT Transforms</A>, below.) FileMan must perform the
+				transformation whenever such a value is displayed. The data types that undergo
+				this process are: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Date/Time</B></TD> 
+		  <TD VALIGN="TOP">The internal value is a numeric code, while the
+			 external is readable text. For example, the internal value of 2940214.085938
+			 has an external value of FEB 14,1994@ 08:59:57. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Numeric</B></TD> 
+		  <TD VALIGN="TOP">The internal and external values are identical. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Set of Codes</B></TD> 
+		  <TD VALIGN="TOP">The full external value is decoded from abbreviated
+			 internal value. Each set of codes field defines which codes are allowed and
+			 what they mean. For example, the internal value of F may have the external
+			 value of FEMALE for a certain field. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Free Text</B></TD> 
+		  <TD VALIGN="TOP">The internal and external values are identical. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Word Processing</B></TD> 
+		  <TD VALIGN="TOP">$$EXTERNAL^DILFD does not handle this data type. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Computed</B></TD> 
+		  <TD VALIGN="TOP">This data type does not have an internal value, so
+			 $$EXTERNAL^DILFD does not handle this data type. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Pointer to a File</B> </TD> 
+		  <TD VALIGN="TOP">The internal value of this field is the internal entry
+			 number of one record in the pointed-to file. The external format of a pointer
+			 value is the external format of the .01 field of the record identified by the
+			 pointer's internal value. The definition of a pointer must always identify the
+			 pointed-to file. For example, if 1 is the internal value of a pointer to the
+			 State file, then the external value is ALABAMA, because the .01 of the State
+			 file is defined as Free Text (needing no transform) and the .01 field of record
+			 # 1 in the State file is ALABAMA. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Variable Pointer</B></TD> 
+		  <TD VALIGN="TOP">Unlike the Pointer data type, the internal value of a
+			 variable pointer identifies the pointed-to file. Like the Pointer, the variable
+			 pointer's external format is the external value of the .01 field of the
+			 pointed-to record. The Prefix.Value notation many users are familiar with is
+			 not the external format of a variable pointer; that is merely a user interface
+			 convention. For example, the internal value 1;DIC(5, has the external format of
+			 ALABAMA (it is the variable pointer equivalent of the previous example). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MUMPS </B></TD> 
+		  <TD VALIGN="TOP">The internal and external values are identical. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="OutputTransforms">OUTPUT
+			 Transforms</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>OUTPUT transforms assume full responsibility for transforming the
+				internal value to its external format. So transforms on sets of codes work with
+				values like F, not FEMALE; those on pointers deal with 1, not ALABAMA; etc.
+				This includes following pointer chains to their conclusions (see immediately
+				below). </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Pointer Chains</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>A pointer chain is a list of one or more pointer fields that point
+				to one another in sequence, the final pointer of which points to a file with a
+				non-pointer .01 field. Thus, for example, if the .01 field of File A points to
+				the State file, that is a pointer chain with one link. If File B points to File
+				A, that makes a pointer chain with two links. Chains can be made up of any mix
+				of pointers and variable pointers. Every field in the chain except the first
+				one must be a .01 field, since pointers point to files, not fields; the first
+				pointer field may or may not be a .01 field. </P> 
+			 <P>When FileMan converts a pointer or variable pointer to its
+				external value, it must follow the links to the final field and convert that
+				field to its external value. An OUTPUT transform on a pointer field, therefore,
+				must do the same. The flags available for this function allow developers to try
+				out different ways of handling OUTPUT transforms on pointer fields. These flags
+				only alter this function's behavior, however. The rest of FileMan continues to
+				treat OUTPUT transforms on pointer chains as described under the
+				<A HREF="#F" TITLE="F flag" CLASS="bodylink">F flag</A> (under Input
+				Parameters, above). </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dlfd1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

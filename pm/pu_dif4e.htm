@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Running DIFROM to Export Data (5 of
+		17)</TITLE><META NAME="subject"
+	 CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,running difrom to export data,export data,running difrom,step 5">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Running DIFROM to Export Data (5 of 17)</H4> 
+	 <H5>Specifications for Exported Files</H5> 
+	 <P>DIFROM next asks the developer whether any data dictionaries will be
+		included with the init. The developer must answer YES in order to include
+		either DDs or file data. </P> 
+	 <P>If the init is being built from a PACKAGE file entry, the developer is
+		given the option to display online the information in the FILE multiple from
+		the relevant PACKAGE file entry. If the FILE multiple has no entries or if the
+		developer is building an init without the PACKAGE file, the developer is
+		prompted for a list of files to be included in the init. </P> 
+	 <P>If the developer does not want to accept the PACKAGE file information as
+		shown or if the init is being built on the fly, DIFROM allows the developer to
+		enter or edit the FILE multiple's data. This data specifies how to include the
+		files in the init and what installation options the installer will have at the
+		time the init is run on the target system. The documentation describing the
+		FILE multiple of the PACKAGE file details the questions the developer will see
+		and the significance of the answers. </P> 
+	 <P>A developer can send only some of the fields from a file, that is, send
+		a partial file. The FIELDS multiple contains a list of exported fields when a
+		partial file is being exported. Normally, the .01 field of a file is
+		automatically exported even if it is not specified in the FIELDS multiple.
+		However, the developer has the option of sending or not sending the .01 field
+		of File #200 (the NEW PERSON file). If a partial of File #200 is being sent and
+		the package does not have Kernel's namespace (XU), the .01 field will be sent
+		only if it is specified for export. </P> 
+	 <P>If the init is being built from a PACKAGE file entry, DIFROM next loops
+		through each of the template multiples. It builds a list of the templates to be
+		included in the init. There are multiples for INPUT, PRINT, SORT and SCREEN
+		(FORM) templates. The developer uses these multiples to send templates that are
+		not within the package's namespace. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_dif4e.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

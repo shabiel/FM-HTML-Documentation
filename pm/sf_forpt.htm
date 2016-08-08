@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Relational
+		Navigation/Forward Pointers</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,relational navigation,navigate,navigation,relational,forward pointers,forward,pointers">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Relational Navigation: Forward Pointers</H4> 
+	 <P>On a page of a form, you can place a block that contains fields from a
+		file other than the Primary File of the form. If the file is reached via a
+		forward pointer, you must define a Pointer Link for that block. The syntax of
+		the Pointer Link property is similar to FileMan's relational syntax. When you
+		define the Pointer link, your point of reference is the Primary File of the
+		form. </P> 
+	 <P>In the following illustration, the Primary File of the form is the ORDER
+		file (#16202). There are two blocks on the page. Block A contains fields from
+		the ORDER file, and Block B contains fields from the CUSTOMER file (#16201).
+		CUSTOMER NAME in the ORDER file points to the CUSTOMER file. </P> 
+	 <P></P>
+	 <IMG ALIGN="BOTTOM" SRC="sf_forpt.gif"
+	 ALT="Example of a Form with Forward-Pointer Relational Navigation." WIDTH="595"
+	 HEIGHT="427"> 
+	 <P></P> 
+	 <P>If CUSTOMER NAME is field #1, the Pointer Link property for Block B can
+		be set to either "CUSTOMER NAME" or 1. The following sections describe in more
+		detail the syntax for the Pointer Link property. </P> 
+	 <H5>Syntax for Pointer Link -- Navigating Via DD Fields</H5> 
+	 <P>In the valid formats listed below, "Pfield" is a pointer-type field.
+		Both "Pfield" and "Field" can be either field names or field numbers.
+		"Mult_field" is the name or number of a multiple field. "File" is the name or
+		number of a file. A file or field name can be enclosed in quotation marks. </P>
+	 
+	 <TABLE BORDER="1"
+	 SUMMARY="Syntax for Pointer Link -- Navigating Via DD Fields Table"
+	 WIDTH="100%" TITLE="Syntax for Pointer Link -- Navigating Via DD Fields Table">
+		
+		<TR> 
+		  <TD VALIGN="TOP"><B>Format</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Pfield</TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The Primary File of the form has a field
+			 Pfield that points to the file associated with the block. That pointer field
+			 determines the record to display in the pointed-to block. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Pfield_1:Pfield_2: ... :Pfield_n </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to block is reached after
+			 relational jumps across many files. Here, Pfield_1 in the Primary File points
+			 to File 2 that contains a Pfield_2 that points to File 3, etc. Finally,
+			 Pfield_n points to the file associated with the block being defined. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4">Field;Opt_spec </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The value of Field in the Primary File
+			 should be used to do a lookup into the file associated with the block. 
+			 <P>You can control how the lookup is done by using any of the
+				following optional specifiers (<A NAME="OptSpec">Opt_spec</A>): </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;I</TD> 
+		  <TD VALIGN="TOP">Use the <B>I</B>nternal form of the field value for
+			 the lookup </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;L</TD> 
+		  <TD VALIGN="TOP">Allow <B>L</B>AYGO </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;IX(xref list)</TD> 
+		  <TD VALIGN="TOP">Use specific <B>I</B>nde<B>X</B>(es) in the lookup.
+			 (For example ;IX(B^C) specifies that the B and C index should be used.) If the
+			 specifier is not used, all indexes starting with the B index are used in the
+			 lookup. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Field;Opt_spec:File:Pfield_1: Pfield_2: ... :Pfield_n
+			 </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to block is reached after
+			 relational jumps across many files. The first jump is accomplished with a
+			 lookup into File. See <A HREF="#OptSpec" TITLE="Opt_spec"
+			 CLASS="bodylink">Opt_spec</A>. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Mult_field_1:Mult_field_2: ... :Mult_field_n:Pfield
+			 </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to block is reached after
+			 descending into subfiles of the Primary File and finally a relational jump via
+			 a pointer field within a subfile. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="form_only">Syntax for Pointer Link -- Navigating Via Form-only
+		Fields</A></H5> 
+	 <P>Form-only fields can also be used to relationally link blocks.</P> 
+	 <P>In the formats below, the characters "FO" indicate that a form-only
+		field is being identified. "Pform_only" is a pointer-type form-only field and
+		"Form_only" is a form-only field that is not a pointer. Form_only and
+		Pform_only are three-piece comma-delimited strings that uniquely identify
+		form-only fields on the form. They have the following format: </P> 
+	 <P> Format of Form_only: Field_id,Block_id,Page_id </P> 
+	 <P>where</P> 
+	 <UL> 
+		<LI>Field_id = Field Order number; or Caption of the field; or Unique
+		  Name of the field<BR><BR></LI> 
+		<LI>Block_id = Block Order number; or Block Name<BR><BR></LI> 
+		<LI>Page_id = Page Number; or Page Name (required only if Block Order
+		  number is used to identify the block.) </LI> 
+	 </UL> 
+	 <P> Valid formats are: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="Syntax for Pointer Link -- Navigating Via Form-only Fields Table"
+	 TITLE="Syntax for Pointer Link -- Navigating Via Form-only Fields Table"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Format</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">FO(Pform_only) </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The pointer-type form-only field is a
+			 pointer to the file associated with the block being defined. The contents of
+			 the form-only field determines the record to display in the pointed-to file.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">FO(Pform_only):Pfield_1: ... Pfield_n </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to file is reached after
+			 relational jumps across many files. Here, the pointer-type form-only field
+			 points to File 1 that contains a Pfield_1 that points to File 2, etc. Finally,
+			 Pfield_n points to the file associated with the block being defined. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4">FO(Form_only);Opt_spec </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The value of the form-only field is used
+			 to do a lookup into the file associated with the block. 
+			 <P>You can control how the lookup is done by using any of the
+				following optional specifiers (<A NAME="OptSpec2">Opt_spec</A>): </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;I</TD> 
+		  <TD VALIGN="TOP">Use the <B>I</B>nternal form of the field value for
+			 the lookup </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;L</TD> 
+		  <TD VALIGN="TOP">Allow <B>L</B>AYGO </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;IX(xref list)</TD> 
+		  <TD VALIGN="TOP">Use specific <B>I</B>nde<B>X</B>(es) in the lookup.
+			 (For example ;IX(B^C) specifies that the B and C index should be used.) If this
+			 specifier is not used, all indexes starting with the B index are used in the
+			 lookup. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">FO(Form_only);Opt_spec:File: Pfield_1: ... Pfield_n
+			 </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to file is reached after
+			 relational jumps across many files. The first jump is accomplished with a
+			 lookup. See <A HREF="#OptSpec2" TITLE="Opt_spec" CLASS="bodylink">Opt_spec</A>.
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sf_forpt.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

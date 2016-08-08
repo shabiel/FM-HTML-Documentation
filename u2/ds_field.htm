@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Protection for Fields in a
+		File</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,Infrastructure and Security Services,Infrastructure Security Services,ISS,iis,vista,fileman,va fileman,user,advanced user manual,data security,data,security,protection for fields in a file,protection">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ds_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Data Security Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Data Security</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Protection for Fields in a File</H4> 
+	 <P>Your Access Code is checked to control access to data fields within each
+		file. </P> 
+	 <P><B>NOTE:</B> File Access Security does not affect field-level
+		protection. </P> 
+	 <TABLE BORDER="1"
+	  SUMMARY="Access Code Controls Table (control and description)" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Access Code</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>WRITE</B></TD> 
+		  <TD VALIGN="TOP">The Enter or Edit File Entries option looks at the
+			 WRITE access for every field used to see if the WRITE access has been defined.
+			 If the field's WRITE Access Code has no characters in common with your Access
+			 Code, you will not be able to see that field. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DELETE </B></TD> 
+		  <TD VALIGN="TOP">The Enter or Edit File Entries option looks at the
+			 DELETE access of a field when you try to delete a value for that field (with
+			 the at-sign ["<B>@</B>"]). If there is a DELETE access string and if it has no
+			 characters in common with your Access Code, you will be prohibited from
+			 deleting.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>READ</B></TD> 
+		  <TD VALIGN="TOP">The Inquire to File Entries, Print File Entries, and
+			 Search File Entries options look at the READ access for every field accessed.
+			 If this READ Access Code has no characters in common with your Access Code, you
+			 cannot see data stored in the field.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>There is an exception to this field protection: If the invoking program
+		has set the Access Code equal to the at-sign ("<B>@</B>"), all fields will be
+		accessible. The at-sign ("<B>@</B>") is also considered the programmer's Access
+		Code to the <I>entire</I> data dictionary.</P> 
+	 <P>To enter or edit a field's READ, DELETE, or WRITE access, use the Modify
+		File Attributes option, indicate the field to be protected, and enter the
+		desired codes when asked for the "READ ACCESS:," "DELETE ACCESS:," and "WRITE
+		ACCESS:." Any code character entered must be in your current Access Code,
+		unless you have the at-sign ("<B>@</B>").</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ds_field.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

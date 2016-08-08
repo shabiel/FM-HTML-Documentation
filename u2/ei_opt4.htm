@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Export Tool Export Data
+		Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,step 4,choose entries/export data">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>4. Choose Entries/Export Data</H4> 
+	 <P>In the final step to export data, use the Export Data option to select
+		which entries from the file to export, and then perform the export.</P> 
+	 <P>First, choose which entries to export with a "SEARCH" dialogue; then
+		choose the order of the exported entries with a "SORT BY" dialogue (you are not
+		given the "SORT BY" dialogue, if you are exporting fields from Subfiles.)
+		Finally, specify the device to send the exported data to. </P> 
+	 <P>During either the Search or Sort process, you can use previously created
+		SEARCH and SORT templates. Those templates need not have been originally made
+		during a data export; however, SORT templates that contain unacceptable
+		qualifiers should not be used. At the "SORT BY:" prompt, you can only use the
+		following subset of sort qualifiers:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Sort Qualifiers Table (sort qualifier and description)"> 
+		<TR> 
+		  <TD WIDTH="20%"><B>Sort Qualifiers</B></TD> 
+		  <TD WIDTH="80%"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="20%"><B>'</B> </TD> 
+		  <TD WIDTH="80%">To not sort. Used when you want to use the "FROM &#133;
+			 TO" dialogue to restrict the entries to be exported. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>-</B></TD> 
+		  <TD>To sort in reverse order. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>;Ln</B></TD> 
+		  <TD>To sort on the first n-characters only. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>;TXT</B></TD> 
+		  <TD>To sort following strict ASCII sorting sequence.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>The "<A HREF="../u1/pr_frm.htm" TARGET="_top" TITLE="Print"
+		CLASS="bodylink">Print</A>" and "<A HREF="../u1/sr_frm.htm"
+		TARGET="_top" TITLE="Search" CLASS="bodylink">Search</A>" chapters of the "<A
+		HREF="../u1/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Getting Started HTML Manual" CLASS="bodylink">VA
+		FileMan Getting Started Manual</A>" contain more detailed information about
+		searching and sorting.</P> <HR> 
+	 <H5>Export Example</H5> 
+	 <P>Here is an example of an export using the "PATIENT TO 123" EXPORT
+		template created in
+		<A HREF="ei_opt3.htm" TITLE="Steop 3: Create Export Template Option"
+		CLASS="bodylink">Step 3</A>. You begin by identifying the file and the EXPORT
+		template that you want to use for the export. Do <I>not</I> enclose the
+		template's name with brackets. Again, you can delete the EXPORT template after
+		a successful export, if you want. </P> 
+	 <P>Because there is a Multiple involved, you are told that you will not
+		have the opportunity to sort. Then, you are given the opportunity to search the
+		file for entries to export. </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select DATA EXPORT TO FOREIGN FORMAT OPTION: <B>EXPORT DATA</B>
+
+OUTPUT FROM WHAT FILE: PATIENT// <B>&lt;RET&gt;</B>
+
+Choose an EXPORT template: <B>PATIENT TO 123 &lt;RET&gt;</B>    **EXPORT**
+                         (OCT 30, 1992@15:08) USER #7  FILE #99002
+ 
+
+Do you want to delete the PATIENT TO 123 template
+after the data export is complete?
+Enter Yes or No: NO// <B>&lt;RET&gt;</B>
+
+Since you are exporting fields from multiples,
+a sort will be done automatically.
+You will not have the opportunity to sort the data before export.
+
+Do you want to SEARCH for entries to be exported? NO// <B>YES</B>
+
+  -A- SEARCH FOR PATIENT FIELD: <B>DATE OF BIRTH</B>  
+  -A- CONDITION: <B>&lt; &lt;RET&gt;</B>  LESS THAN
+  -A- LESS THAN DATE: <B>1980 &lt;RET&gt;</B>  (1980)
+
+  -B- SEARCH FOR PATIENT FIELD: <B>&lt;RET&gt;</B>
+
+IF: A// <B>&lt;RET&gt;</B>  DATE OF BIRTH LESS THAN 1980 (1980)
+
+STORE RESULTS OF SEARCH IN TEMPLATE: <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P>If Multiples had not been involved, you would now be able to respond to
+		the SORT BY dialogue. You can do the same things with sort here that you can do
+		when using the Print File Entries option. </P> <HR> 
+	 <H5>What Device to Send Export Data To</H5> 
+	 <P>After you complete the sort dialogue, you are immediately given the
+		"DEVICE:" prompt. Choose what device the exported data should be sent to:</P> 
+	 <PRE>    DEVICE: <B>&lt;RET&gt;</B></PRE> 
+	 <P>If you press the Enter/Return key at the "DEVICE:" prompt, the export
+		output will be displayed on your <I>screen</I>. Sending the formatted export
+		data to the screen allows you to use a PC-based screen capture to put the data
+		into a file. This file would be a readable ASCII file on that computer. This
+		method of transferring the data into a file is a simple one that will often be
+		successful and convenient, especially if the importing application is on the
+		same PC. </P> 
+	 <P>When using a screen capture to create a file from the exported data, you
+		must consider the peculiarities of your communication and terminal emulation
+		software. Your communication application, for example, may intercept certain
+		control characters (like the <B>&lt;TAB&gt;</B>, ASCII 9) and convert them into
+		something else. This may cause the import to fail. Also, your terminal
+		emulation may automatically "break" lines at 80 characters by inserting an
+		unwanted carriage return or line feed. When emulating VT-100 and other ANSI
+		terminals, you can avoid this last problem by turning wraparound mode off. </P>
+	 
+	 <P><B>CAUTION:</B> When exporting data to your terminal's screen, there
+		will be no page breaks. Therefore, there is no graceful way to interrupt the
+		export once it has begun. </P> <HR> 
+	 <H5>Sending Export Data to a Host File</H5> 
+	 <P>Having data printed on-screen is of little use, if you are using a
+		terminal with no screen-capture capabilities. An alternative is to send the
+		data to a file on the host system, for example, to a VMS file if you are using
+		DSM. Another advantage to sending data to a Host file is that only the exported
+		data will be in the file. (Often, screen captures will unavoidably contain
+		extraneous parts of the user's dialogue prior to or after the export.) To
+		export your data to a file, at the "DEVICE:" prompt, send your export output to
+		an HFS-type device. </P> 
+	 <P>Your IRM should be able to help you, if you're not sure how to use HFS
+		devices. The "Kernel Systems Manual" also describes how to send output to Host
+		files, including how to set up and use HFS-type devices. </P> 
+	 <P>When a Host file is created, you must move that ASCII file to the
+		computer on which the importing application resides. A file transfer protocol,
+		such as KERMIT or XMODEM, can be used to move this file. </P> 
+	 <P>The export can be queued, if it is not sent to the screen. Queuing the
+		export is recommended for large files and for complex sorts of the data. </P> 
+	 <P><B>NOTE -- On HFS Device Setup on OpenVMS Systems:</B> DSM for OpenVMS
+		requires that you add a command parameter to the OPEN command, if you export
+		records longer than 512 characters to a Host file. The parameter is
+		RECORDSIZE=nnnn, where "nnnn" is greater than the longest record that you are
+		exporting. If you are using Kernel's DEVICE file (#3.5), the OPEN PARAMETER
+		field for the HFS device you are using should be edited to look like
+		"(NEW:RECORDSIZE=nnnn)". </P> <HR> 
+	 <H5>Sample Output</H5> 
+	 <P>The data below has been prepared for import by Lotus 1-2-3, so it need
+		not be easily read by people. However, you can see that text fields are
+		surrounded by quotes; empty text fields consist just of two quotes (<B>""</B>).
+		A space is in between each field's value. Numeric values have no quotes. If a
+		field defined as numeric in the VA FileMan data dictionary has no value, a zero
+		(0) is output because this format has
+		<A HREF="ei_sig.htm#Substitute_for_null" TITLE="SUBSTITUTE FOR NULL"
+		CLASS="bodylink">SUBSTITUTE FOR NULL</A> set to "0". <BR> </P> 
+	 <PRE>&quot;GREEN,ARNOLD&quot; &quot;m&quot; &quot;PROTE&quot; &quot;GANGRENE&quot; 45 
+&quot;RED,MARCIE&quot; &quot;f&quot; &quot;CATHO&quot; &quot;SLEEPING SICKNESS&quot; 28 
+&quot;BLUE,THOMAS&quot; &quot;m&quot; &quot;PROTE&quot; &quot;CIRRHOSIS&quot; 25 
+&quot;BLACK,MICHELLE&quot; &quot;f&quot; &quot;OTHER&quot; &quot;FLU&quot; 34 
+&quot;YELLOW,TOMMY&quot; &quot;m&quot; &quot;&quot; &quot;BLOOD POISONING&quot; 44 
+&quot;GREEN,ARNOLD&quot; &quot;m&quot; &quot;PROTE&quot; &quot;GUN SHOT &quot; 50 
+&quot;BLACK,MICHELLE&quot; &quot;f&quot; &quot;OTHER&quot; &quot;FLU&quot; 37 
+&quot;YELLOW,TOMMY&quot; &quot;m&quot; &quot;&quot; &quot;FLU&quot; 0 
+&quot;BLACK,MICHELLE&quot; &quot;f&quot; &quot;OTHER&quot; &quot;FLU&quot; 46 
+&quot;BLACK,MICHELLE&quot; &quot;f&quot; &quot;OTHER&quot; &quot;APPENDICITIS&quot; 39</PRE> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_opt4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

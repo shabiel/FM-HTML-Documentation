@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Forms - the DDSBR
+		Variable</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,ddsbr variable,ddsbr,variable">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>The DDSBR Variable</H4> 
+	 <P>ScreenMan allows you to branch the user to a field under conditions you
+		specify. You can do this by defining M code in the Branching Logic, Pre Action,
+		Post Action, and Post Action on Change properties at the field level, and at
+		the Data Validation property at the form level. The M code can set the local
+		variable DDSBR to a value that defines the location of the field to which you
+		wish to take the user. </P> 
+	 <P>DDSBR has the following format: </P> 
+	 <PRE>   DDSBR=Field id^Block id^Page id</PRE> 
+	 <P>where, </P> 
+	 <UL> 
+		<LI>Field id = Field Order number; or Caption of the field; or Unique
+		  Name of the field<BR><BR></LI> 
+		<LI>Block id = Block Order number; or Block Name<BR><BR></LI> 
+		<LI>Page id = Page Number; or Page Name </LI> 
+	 </UL> 
+	 <P>For example, </P> 
+	 <PRE>    S:X=&quot;Y&quot; DDSBR=&quot;FIELD 1^BLOCK 1^PAGE 2&quot;</PRE> 
+	 <P>would take the user to the field with unique name or caption "FIELD 1"
+		on the block named "BLOCK 1" on the page named "PAGE 2", if the internal value
+		of the field equals "Y". </P> 
+	 <P>ScreenMan assumes values for any of the ^-pieces of DDSBR that are
+		empty, as illustrated in the following table: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Assumptions When Pieces of DDSBR Are Null Table"
+	  TITLE="Assumptions When Pieces of DDSBR Are Null Table"> 
+		<TR> 
+		  <TD COLSPAN="2" VALIGN="TOP"><B>Assumptions When Pieces of DDSBR Are
+			 Null</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>If DDSBR is set to:</B></TD> 
+		  <TD VALIGN="TOP"><B>ScreenMan assumes:</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Field id</TD> 
+		  <TD VALIGN="TOP">Current block and current page </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Field id^Block id</TD> 
+		  <TD VALIGN="TOP">Current page </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Field id^^Page id</TD> 
+		  <TD VALIGN="TOP">Current block </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">^Block id</TD> 
+		  <TD VALIGN="TOP">Field with lowest Field Order, current page </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">^Block id^Page id</TD> 
+		  <TD VALIGN="TOP">Field with lowest Field Order </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">^^Page id</TD> 
+		  <TD VALIGN="TOP">Field with lowest Field Order, Block with lowest Block
+			 Order </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>To branch the user to the Command Line, DDSBR takes the following
+		format: </P> 
+	 <PRE>    S DDSBR=&quot;COM&quot;</PRE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sf_ddsbr.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

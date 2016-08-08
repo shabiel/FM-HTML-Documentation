@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^DIOZ</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,^dioz,dioz">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>^DIOZ: SORT Template Compilation</H4> 
+	 <P>This entry point marks a SORT template compiled or uncompiled. The ^DIOZ
+		entry point asks for the name of the SORT template to be used and whether the
+		user wishes (1) to mark it compiled or (2) to uncompile it if it is already
+		marked compiled. Actual compilation occurs at the time the template is used in
+		the sort/print. There are no input or output variables. </P> 
+	 <P>SORT templates can be compiled into M routines to increase efficiency of
+		the sort and improve system performance. Good candidates for compilation are
+		sorts with many sort fields or those that sort on fields reached with
+		relational syntax. The process of sort compilation is different from other
+		FileMan compiling activities. SORT templates can be "marked" for compilation,
+		then each time the SORT template is used in a FileMan sort/print, a new
+		compiled routine is created. When the print job finishes, the routine is
+		deleted. The routine is named DISZnnnn where "nnnn" is a four-digit number. The
+		routine names are reused. Routine numbers are taken from the Compiled Routine
+		file (described in the section on the
+		<A HREF="../u2/pm_dioz.htm" TARGET="_top" TITLE="ENRLS^DIOZ"
+		 CLASS="bodylink">ENRLS^DIOZ</A> utility in the "VA FileMan Advanced User
+		Manual"). Thus, a routine name is not tied to a particular SORT template. </P>
+	 <HR CLASS="hrstyle"> 
+	 <TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"
+	  CLASS="white"> 
+		<TR> 
+		  <TD ALIGN="CENTER" VALIGN="TOP" COLSPAN="2">
+			 <!--Bottom Navigation Links-->
+             <!--webbot bot="Include" U-Include="common/bottom_links.htm"
+             TAG="BODY" startspan --> 
+	 <P ALIGN="CENTER">
+		<A HREF="http://www.va.gov/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Department of Veterans Affairs Home Page">
+		<ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> Home Page</A> /
+		<A HREF="http://vaww.vhaco.va.gov/vhacio/" CLASS="bodylink"
+		 TARGET="_top" TITLE="Office of Information Home Page">
+		<ACRONYM TITLE="Office of Information">OI</ACRONYM> Home Page</A> /
+		<A HREF="http://vista.med.va.gov/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Health Systems Design and Development (HSD&D) Home Page">
+		<ACRONYM TITLE="Health Systems Design and Development">HSD&amp;D</ACRONYM> Home
+		Page</A>/
+		<A HREF="http://vista.med.va.gov/iss/site_map.htm" CLASS="bodylink"
+		 TARGET="_top" TITLE="Infrastructure and Security Services (ISS) Site Map">Site
+		Map</A> /
+		<A HREF="http://vista.med.va.gov/termsofuse.htm" CLASS="bodylink" TARGET="_top"
+		 TITLE="Health Systems Design and Development (HSD&D) Terms of Use Page"> Terms of Use</A> /
+		<A HREF="http://www.va.gov/privacy/" CLASS="bodylink" TARGET="_top"
+		 TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A>
+		</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dioz1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 14, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

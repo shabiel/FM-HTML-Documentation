@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Page Properties</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,page properties,properties,property,page">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Page Properties</H4> 
+	 <UL> 
+		<LI><A HREF="#Page_number" TITLE="Page Number" CLASS="bodylink">Page
+		  Number</A><BR><BR></LI> 
+		<LI><A HREF="#Page_name" TITLE="Page Name" CLASS="bodylink">Page
+		  Name</A><BR><BR></LI> 
+		<LI><A HREF="#coordinates"
+		  TITLE="Page Coordinate and Lower Right Coordinate" CLASS="bodylink">Page
+		  Coordinate and Lower Right Coordinate</A><BR><BR></LI> 
+		<LI><A HREF="#Header" TITLE="Header Block" CLASS="bodylink">Header
+		  Block</A><BR><BR></LI> 
+		<LI><A HREF="#pop_up_page" TITLE='Is This a "Pop-Up" Page?'
+		  CLASS="bodylink">Is This a "Pop-Up" Page?</A><BR><BR></LI> 
+		<LI><A HREF="#Next_prev_page" TITLE="Next Page and Previous Page"
+		  CLASS="bodylink">Next Page and Previous Page</A><BR><BR></LI> 
+		<LI><A HREF="#Parent_field" TITLE="Parent Field" CLASS="bodylink">Parent
+		  Field</A><BR><BR></LI> 
+		<LI><A HREF="#Pre_post_action" TITLE="Pre Action and Post Action"
+		  CLASS="bodylink">Pre Action and Post Action</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="Page_number">Page Number</A></H5> 
+	 <P>(Required) The Page Number uniquely identifies a page on a form. You can
+		use this number to refer to the page in ScreenMan functions and utilities.
+		ScreenMan does not display Page Numbers to the user. </P> <HR> 
+	 <H5><A NAME="Page_name">Page Name</A></H5> 
+	 <P>(Required) Like the Page Number, you can use the Page Name to refer to a
+		page in ScreenMan functions and utilities. ScreenMan displays the Page Name to
+		the user if, during an attempt to file data, ScreenMan finds required fields
+		with null values. ScreenMan uses the Caption of the field and the Page Name to
+		inform the user of the location of the required field. </P> <HR> 
+	 <H5><A NAME="coordinates">Page Coordinate and Lower Right
+		Coordinate</A></H5> 
+	 <P>(Required) The Page Coordinate property defines the location of the top
+		left corner of the page on the screen. The format of a coordinate is:
+		Row,Column. Regular pages normally have a Page Coordinate of "1,1". They do not
+		have a Lower Right Coordinate. </P> 
+	 <P>The Page Coordinate of "pop-up" pages defines the position of the top
+		left corner of the border of the "pop-up" page. "Pop-up" pages must have a
+		Lower Right Coordinate, which defines the position of the bottom right corner
+		of the border of the "pop-up" page. </P> 
+	 <P>All blocks on the page are positioned relative to the page on which they
+		are defined. If a page is moved - that is, if the Page Coordinate is changed -
+		all blocks and all fields on that page move with it. </P> 
+	 <P>The
+		<A HREF="fe_intro.htm" TARGET="display" TITLE="Form Editor"
+		 CLASS="bodylink">Form Editor</A> greatly simplifies the process of assigning
+		coordinates to "pop-up" pages. It allows you to drag and drop an entire
+		"pop-up" page and to drag and drop the lower right corner to resize the
+		"pop-up" page. It therefore eliminates the need for you to manually enter Page
+		Coordinate values. </P> <HR> 
+	 <H5><A NAME="Header">Header Block</A></H5> 
+	 <P>A page can have one Header Block that contains uneditable information.
+		ScreenMan always positions the Header Block at coordinate "1,1" relative to the
+		page. </P> 
+	 <P>There is no need to place header blocks on a page. Display blocks with a
+		coordinate of "1,1" provide the same functionality as header blocks. </P> <HR> 
+	 <H5><A NAME="pop_up_page">Is This a "Pop-Up" Page?</A></H5> 
+	 <P>If this page is a "pop-up" page, rather than a regular page, set this
+		property to YES. </P> <HR> 
+	 <H5><A NAME="Next_prev_page">Next Page and Previous Page</A></H5> 
+	 <P>The Next Page and Previous Page properties are set to Page Numbers. The
+		user can go to the next and previous pages by pressing <B>&lt;PF1&gt;&lt;ARROW
+		DOWN&gt;</B> and <B>&lt;PF1&gt;&lt;ARROW UP&gt;</B>, respectively. The user can
+		also ^-jump to fields on other pages that are linked to the current page via
+		the next and previous page links. See the "<A HREF="sf_lay.htm#Linking"
+		TARGET="display" TITLE="Linking Pages of a Form" CLASS="bodylink">Linking Pages
+		of a Form</A>" section for more information about using these properties to
+		link pages. </P> 
+	 <P>ScreenMan also uses the Next Page property during filing. Starting with
+		the first page displayed to the user, ScreenMan follows the Next Page links,
+		loads those pages not already loaded, and checks that all required fields on
+		those pages have values. If any of the required fields have null values, no
+		filing occurs; otherwise, ScreenMan files the data along with any defaults.
+		</P> <HR> 
+	 <H5><A NAME="Parent_field">Parent Field</A></H5> 
+	 <P>This property can be used to link a subpage to a field on the parent
+		page. Parent Field has the following format: </P> 
+	 <P> Field id,Block id,Page id </P> 
+	 <P>where</P> 
+	 <UL> 
+		<LI>Field id = Field Order number; or Caption of the field; or Unique
+		  Name of the field<BR><BR></LI> 
+		<LI>Block id = Block Order number; or Block Name<BR><BR></LI> 
+		<LI>Page id = Page Number; or Page Name </LI> 
+	 </UL> 
+	 <P>For example: </P> 
+	 <PRE>    ZZFIELD 1,ZZBLOCK 1,ZZPAGE 1</PRE> 
+	 <P>identifies the field with Caption or Unique Name "ZZFIELD 1," on the
+		block named "ZZBLOCK 1," on the page named "ZZPAGE 1". </P> <HR> 
+	 <H5><A NAME="Pre_post_action">Pre Action and Post Action</A></H5> 
+	 <P>ScreenMan executes the M code in the Pre Action property when the user
+		reaches the page and the M code in the Post Action property when the user
+		leaves the page.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sf_propp.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

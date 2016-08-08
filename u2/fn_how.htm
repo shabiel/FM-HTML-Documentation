@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: VA FileMan Functions - How
+		to Use</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,va fileman functions,functions,how to use,using">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fn_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: VA FileMan Functions Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">VA FileMan Functions</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>How to Use VA FileMan Functions</H4> 
+	 <P>This chapter lists each VA FileMan Function, including syntax and simple
+		examples of their use. You can use them in any computed expression (see the "<A
+		HREF="ce_frm.htm" TARGET="_top" TITLE="Computed Expressions"
+		CLASS="bodylink">Computed Expressions</A>" chapter).</P> 
+	 <P>A function performs an operation that returns a value. Many functions
+		are included with VA FileMan; you can also add functions by making entries in
+		the FUNCTION file (#.5). The "<A HREF="../pm/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Programmer HTML Manual" CLASS="bodylink">VA FileMan
+		Programmer Manual</A>" describes how to add functions, in the "<A
+		HREF="../pm/pu_ce.htm" TARGET="display" TITLE="VA FileMan Functions (Creating)"
+		CLASS="bodylink">VA FileMan Functions (Creating)</A>" section.</P> 
+	 <P>Some functions require an argument or arguments; others are
+		"argumentless." The arguments of the function can be any element, including
+		field name, field number (preceded with the <B>#</B>), quoted literal, or even
+		other functions. The SQUAREROOT function, for example, would take an argument
+		of 64 and return 8. Thus, if the AGE field of a patient has the value 64, the
+		expression SQUAREROOT(AGE) would return 8.</P> 
+	 <P><B>NOTE:</B> If there is an output transform on a field, the function
+		code is applied to the field after it has been transformed. In most cases, if a
+		field has an output transform, you should therefore use the syntax
+		FUNCTION_NAME(INTERNAL(FIELD_NAME)), rather than FUNCTION_NAME(FIELD_NAME).</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fn_how.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

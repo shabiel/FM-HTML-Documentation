@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 6/20/01-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: RECALL^DILFD( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,Infrastructure & Security Services,Infrastructure Security Services,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,recall^dilfd(),dilfd">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>RECALL^DILFD( ): Recall Record Number</H4> 
+	 <P>This procedure saves a record number for later retrieval using spacebar
+		recall. While Classic FileMan has automatically performed this procedure for
+		applications in the past, the FileMan DBS lookup calls cannot do so. The
+		decision to perform this procedure can only be made by code that knows its
+		context, that knows whether the selection taking place results from a user's
+		selection or from some silent activity. In addition, FileMan often is inactive
+		when a user selection occurs (such as when a user picks a single entry from a
+		listbox managed by the application). For these reasons, the maintenance of the
+		spacebar recall feature will increasingly be the responsibility of the
+		applications. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+RECALL^DILFD(FILE,IENS,USER)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) The file or subfile number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IENS</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) The IENS that identifies the record selected. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>USER</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) The user number (i.e., DUZ) of the user who made the
+				selection. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Example</H5> 
+	 <PRE>
+    &gt;<B>D RECALL^DILFD(19,&quot;1,&quot;,9) W $G(DIERR) D ^%G
+</B>    
+    Global ^DISV(9,&quot;^DIC(19,&quot;)
+            DISV(9,&quot;^DIC(19,&quot;)
+    ^DISV(9,&quot;^DIC(19,&quot;) = 1
+
+</PRE> 
+	 <H5>Error Codes</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">An input parameter is missing or invalid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_205.htm" TITLE="Error 205"
+			 CLASS="bodylink">205</A></B></TD> 
+		  <TD VALIGN="TOP">The FILE and IENS represent different subfile levels.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
+			 CLASS="bodylink">401</A></B></TD> 
+		  <TD VALIGN="TOP">File # does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_402.htm" TITLE="Error 402"
+			 CLASS="bodylink">402</A></B></TD> 
+		  <TD VALIGN="TOP">The global root is missing or not valid. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dlfd4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Transferring File Entries,
+		Transferring Entries into a New File </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,transferring file entries,transferring,file entries,transferring entries into a new file,transferring entries,transferring,entries,new file">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="te_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Transferring File Entries Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Transferring File Entries</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>Transferring Entries into a New File</H4> 
+	 <P>You can use the Transfer Entries option to create a new file. To do
+		this: </P> 
+	 <OL> 
+		<LI>At the "INPUT TO WHAT FILE:" prompt, enter the name of a nonexistent
+		  file.<BR><BR></LI> 
+		<LI>If you have programmer access, you will be prompted for the global
+		  location for the new file.<BR><BR></LI> 
+		<LI>When you specify the file to transfer <I>from</I>, you can request
+		  that the data dictionary of that file be copied as the data dictionary for your
+		  new file.</LI> 
+	 </OL> 
+	 <P>Here is an example of using the Transfer File Entries option to create a
+		new file:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>INPUT TO WHAT FILE: <B>SCHOLAR COPY</B>
+     Are you adding 'SCHOLAR COPY' as a new FILE?  No// <B>Y &lt;RET&gt;</B>  (Yes)
+   FILE NUMBER: 16031// <B>&lt;RET&gt;</B>
+ 
+INTERNAL GLOBAL REFERENCE: ^DIZ(16031,// <B>&lt;RET&gt;</B>
+...SORRY, I'M WORKING AS FAST AS I CAN...
+     A FreeText NAME Field (#.01) has been created.
+TRANSFER FROM FILE: <B>SCHOLAR</B>
+DO YOU WANT TO TRANSFER THE 'SCHOLAR' DATA DICTIONARY INTO YOUR NEW 
+FILE? <B>YES</B></PRE> <HR> 
+	 <P><B>NOTE:</B> You are asked the global reference question only if you
+		have programmer access. </P> 
+	 <P>Answering YES copies (or "clones") the data definitions of the old file.
+		Then, if the old file has had any templates created, you will be asked: </P> 
+	 <PRE>    DO YOU WANT TO COPY 'SCHOLAR' TEMPLATES INTO YOUR NEW FILE?</PRE> 
+	 <P>Once you have created a new file with identical field and template
+		descriptions, you can transfer entries into it. This is a method of copying a
+		file. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- te_new.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

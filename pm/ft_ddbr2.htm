@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: BROWSE^DDBR</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,browser,api,browse^ddbr,ddbr">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="br_frm.htm" TARGET="_top" CLASS="nmenubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Browser API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Browser API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>BROWSE^DDBR</H4> 
+	 <P>This procedure enables the user to utilize FileMan's Browser to view and
+		navigate through a document stored in a sequential local or global array. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+BROWSE^DDBR(SOURCE_ARRAY,FLAGS,TITLE,LINE,TABS,TOP,BOTTOM)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>SOURCE_ARRAY</B> </TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) Source array in a closed root format, passed by value
+				which is the location of a sequential local or global array containing text.
+				This array can optionally include the ",0)" subscript nodes which are contained
+				in FileMan word processing structures. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3"><B>FLAGS</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) Flags to control processing.</P> </TD> 
+		</TR> 
+		<TR ALIGN="LEFT" VALIGN="TOP"> 
+		  <TD VALIGN="TOP" WIDTH="5%"><B>N</B></TD> 
+		  <TD VALIGN="TOP"><B>N</B>o copy of the document is made. The Browser
+			 will use the source document. Useful for long static documents. 
+			 <P></P> <B>CAUTION:</B> When the N flag is used, the Browser does not
+			 make a copy of the text; instead it uses the actual record array to browse
+			 through. Thus, it is best used when documents stored in word processing fields
+			 are static and are not likely to be edited by another user during the browse
+			 session. This may be preferable if the source array is a scratch global and is
+			 very large. Time and resources are saved by not having to copy such a structure
+			 into ^TMP("DDB",$J). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>R</B></TD> 
+		  <TD VALIGN="TOP"><B>R</B>estrict switching. 
+			 <P></P> See
+			 <A HREF="#switch" TITLE="Switch function" CLASS="bodylink">Switch function</A>
+			 in the "<A HREF="#details_and_features" CLASS="bodylink"
+			 TITLE="Details and Features">Details and Features</A>" section. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TITLE</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) Text centered in screen title. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>LINE</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) The line in the document that would be at the bottom
+				margin of the opening screen. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TABS</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) Closed array root, passed by value; used to scroll
+				horizontally. If not set, the Browser provides default tab stops. Also see "<A
+				HREF="#tabs" TITLE="Setting Tab Stops" CLASS="bodylink">Setting Tab Stops</A>"
+				under the "<A HREF="#details_and_features" CLASS="bodylink"
+				TITLE="Details and Features">Details and Features</A>" section. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TOP</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) A number representing the location of the title bar of
+				the Browser screen. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>BOTTOM</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) A number representing the location of the status bar of
+				the Browser screen. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>A successful call enables the user to utilize the Browser to view and
+		navigate throughout a document stored in a sequential local or global array.
+		</P> 
+	 <H5>Example</H5> 
+	 <PRE>    &gt;<B>K ^TMP(&quot;EXAMPLE&quot;,$J)</B>
+    &gt;<B>N I F I=1:1:300 S ^TMP(&quot;EXAMPLE&quot;,$J,I)=&quot;THIS IS LINE &quot;_I</B>
+    
+    &gt;<B>D BROWSE^DDBR(&quot;^TMP(&quot;&quot;EXAMPLE&quot;&quot;,$J)&quot;,&quot;N&quot;,&quot;Example&quot;)</B></PRE> 
+	 <P>The Browser screen displays as follows: </P> 
+	 <PRE>
+----------------------------------------------------------------------------------
+                                      Example
+----------------------------------------------------------------------------------
+THIS IS LINE 1
+THIS IS LINE 2
+THIS IS LINE 3
+THIS IS LINE 4
+THIS IS LINE 5
+THIS IS LINE 6
+THIS IS LINE 7
+THIS IS LINE 8
+THIS IS LINE 9
+THIS IS LINE 10
+THIS IS LINE 11
+THIS IS LINE 12
+THIS IS LINE 13
+THIS IS LINE 14
+THIS IS LINE 15
+THIS IS LINE 16
+THIS IS LINE 17
+THIS IS LINE 18
+THIS IS LINE 19
+THIS IS LINE 20
+THIS IS LINE 21
+THIS IS LINE 22
+----------------------------------------------------------------------------------
+Col&gt;   1 |&lt;PF1&gt;H=help &lt;PF1&gt;E=Exit| Line&gt;     22 of 300     Screen&gt;     1 of 14
+----------------------------------------------------------------------------------
+
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_200.htm" TITLE="Error 200"
+			 CLASS="bodylink">200</A></B></TD> 
+		  <TD VALIGN="TOP">Invalid field.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">Invalid parameter.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_309.htm" TITLE="Error 309"
+			 CLASS="bodylink">309</A></B></TD> 
+		  <TD VALIGN="TOP">Multiple field. Invalid file and IENS. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
+			 CLASS="bodylink">401</A></B></TD> 
+		  <TD VALIGN="TOP">Data Dictionary reference for file and field not
+			 valid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_501.htm" TITLE="Error 501"
+			 CLASS="bodylink">501</A></B></TD> 
+		  <TD VALIGN="TOP">Extended reference invalid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_510.htm" TITLE="Error 510"
+			 CLASS="bodylink">510</A></B></TD> 
+		  <TD VALIGN="TOP">Invalid type in data dictionary. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_601.htm" TITLE="Error 601"
+			 CLASS="bodylink">601</A></B></TD> 
+		  <TD VALIGN="TOP">Record entry does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_602.htm" TITLE="Error 602"
+			 CLASS="bodylink">602</A></B></TD> 
+		  <TD VALIGN="TOP">Record unavailable.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_842.htm" TITLE="Error 842"
+			 CLASS="bodylink">842</A></B></TD> 
+		  <TD VALIGN="TOP">Device/Terminal type setup issues. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>NOTE:</B> For additional information about Browser error messages,
+		see the "<A HREF="db_how2.htm" TITLE="How Information is Returned"
+		CLASS="bodylink">How Information is Returned</A>" and "<A HREF="db_how3.htm"
+		TITLE="Contents of Arrays" CLASS="bodylink">Contents of Arrays</A>" sections in
+		the "<A HREF="dba_frm.htm" TARGET="_top" CLASS="bodylink"
+		TITLE="DataBase Server (DBS) API">DataBase Server (DBS) API</A>" chapter. </P> 
+	 <H5><A NAME="details_and_features">Details and Features</A></H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="switch">Switch Function</A></B></TD> 
+		  <TD> 
+			 <P>Switch allows the user to view more than one document. When using
+				the Switch (&lt;PF1&gt;S) function in the Browser to select other FileMan word
+				processing fields, it is important to note that browsing is done directly on
+				the actual record text. Users can only access word processing fields in FileMan
+				files for which they have Read access. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="tabs">Setting Tab Stops</A></B></TD> 
+		  <TD> 
+			 <P>This will set up the TAB with stops at every tenth column.</P> 
+			 <PRE>    F I=10:10:100 S TAB(I)=&quot;&quot; 
+ 
+    TAB(10)=&quot;&quot;
+    TAB(20)=&quot;&quot;
+    TAB(30)=&quot;&quot;
+       .
+       .
+       .
+    TAB(90)=&quot;&quot;
+    TAB(100)=&quot;&quot;
+</PRE> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>NOTE: </B>Browser always begins at column 1.</P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ft_ddbr2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Forms - Computed
+		Fields</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,computed fields,computed,fields">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Computed Fields</H4> 
+	 <P>ScreenMan computed fields, like form-only fields, are fields that are
+		defined only on the form. You cannot place computed fields from FileMan files
+		on a form because the M code for those fields often directly references data in
+		files, which is outside the context of ScreenMan's transaction. </P> 
+	 <P>When you define a ScreenMan computed field, you enter a Computed
+		Expression. The computed expression has the following format: </P> 
+	 <P> M code that sets the local variable Y </P> 
+	 <P>For example: </P> 
+	 <PRE>    S:$D(FLAG) Y=$P(MYVAR,&quot;,&quot;,2)_&quot; &quot;_$P(MYVAR,&quot;,&quot;)</PRE> 
+	 <P>The computed expression can reference data dictionary fields, form-only
+		fields, and computed fields used elsewhere on the form. If the user changes the
+		value of a field used in a computed expression, ScreenMan automatically
+		recalculates and repaints the computed field. </P> 
+	 <P>The expression atom that identifies other form elements has a syntax
+		that uses curly braces (<B>{}</B>) as described below. </P> 
+	 <H5>Referencing Data Dictionary Fields</H5> 
+	 <P>In the formats below, "Field" is the name or number of a data dictionary
+		field. "Pfield" is the name or number of a pointer-type data dictionary field.
+		"File" is the name or number of a file. </P> 
+	 <TABLE BORDER="1"
+	 SUMMARY="Syntax for Computed Expression Atom that References a DD Field Table"
+	 WIDTH="100%"
+	 TITLE="Syntax for Computed Expression Atom that References a DD Field Table"> 
+		<TR> 
+		  <TD COLSPAN="3" VALIGN="TOP"><B>Syntax for Computed Expression Atom
+			 that References a DD Field</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Format</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="2">{Field;Opt_spec} </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The value of Field is retrieved. 
+			 <P>An Opt_spec (optional specifier) can be used to retrieve the
+				internal, rather than the external form: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;I</TD> 
+		  <TD VALIGN="TOP">Retrieve the <B>I</B>nternal form of the Field value.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">{Pfield:Field;Opt_spec} </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">Pfield is a pointer to a file. The value
+			 of Field in that file is retrieved. The Opt_spec value of ;I can be used as
+			 described immediately above to retrieve the internal, rather than the external
+			 form. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3">{Field_1;Opt_spec1: File:Field_2;Opt_spec}
+			 </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">Field_1 is not a pointer field. The value
+			 of Field_1 is used to do a lookup into File. Field_2 from that file is
+			 retrieved. 
+			 <P>An Opt_spec value of ;I can be used to retrieve the internal
+				rather than the external form. </P> 
+			 <P>In addition, you can control how the lookup is done by using any
+				of the following optional specifiers for Opt_spec1: </P> 
+			 <P> </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;I</TD> 
+		  <TD VALIGN="TOP">Use the <B>I</B>nternal form of the field value for
+			 the lookup </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;IX(xref list)</TD> 
+		  <TD VALIGN="TOP">Use specific <B>I</B>nde<B>X</B>(es) in the lookup.
+			 (For example ;IX(B^C) specifies that the B and C index should be used.) If this
+			 specifier is not used, all indexes starting with the B index are used in the
+			 lookup. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Referencing Form-Only and Computed Fields</H5> 
+	 <P>A computed expression atom can also reference form-only fields and
+		computed fields used on the form.</P> 
+	 <P>In the formats below, the syntax is similar to the that for referencing
+		data dictionary fields, except that "FO(Form_only)" is used instead of "Field."
+		"Form_only" is a three-piece comma-delimited string that identifies a form-only
+		or computed field. See the description of
+		<A HREF="sf_forpt.htm#form_only"
+		TITLE="Syntax for Pointer Link -- Navigating Via Form Only"
+		CLASS="bodylink">Syntax for Pointer Link -- Navigating Via Form-only Fields</A>
+		for a description of the format of "Form_only." </P> 
+	 <TABLE BORDER="1"
+	 SUMMARY="Syntax for Computed Expression Atom that References a Form-only Field Table"
+	 WIDTH="100%"
+	 TITLE="Syntax for Computed Expression Atom that References a Form-only Field Table">
+		
+		<TR> 
+		  <TD COLSPAN="3" VALIGN="TOP"><B>Syntax for Computed Expression Atom
+			 that References a Form-only Field</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Format</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="2">{FO(Form_only);Opt_spec} </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">The value of Form_only is retrieved. 
+			 <P>An Opt_spec (optional specifier) can be used to retrieve the
+				internal, rather than the external form. </P> 
+			 <P> </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;I</TD> 
+		  <TD VALIGN="TOP">Retrieve the <B>I</B>nternal form of the Form_only
+			 field. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">{FO(Pform_only: Field;Opt_spec} </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">Pfield_order is a pointer-type form-only
+			 field that points to a file. The value of Field in that file is retrieved. 
+			 <P>The Opt_spec value of ;I can be used as described above to
+				retrieve the internal, rather than the external form. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3">{FO(Form_only);Opt_spec1
+			 :File:Field_2;Opt_spec} </TD> 
+		  <TD VALIGN="TOP" COLSPAN="2">Form_only is a form-only field that is not
+			 a pointer-type form-only field. The value of Field_order is used to do a lookup
+			 into File. Field_2 from that file is retrieved. 
+			 <P>An Opt_spec value of ;I can be used to retrieve the internal,
+				rather than the external form. </P> 
+			 <P>In addition, you can control how the lookup is done by using any
+				of the following optional specifiers for Opt_spec1: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;I</TD> 
+		  <TD VALIGN="TOP">Use the <B>I</B>nternal form of the field value for
+			 the lookup </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">;IX(xref list)</TD> 
+		  <TD VALIGN="TOP">Use specific <B>I</B>nde<B>X</B>(es) in the lookup.
+			 (For example ;IX(B^C) specifies that the B and C index should be used.) If this
+			 specifier is not used, all indexes starting with the B index are used in the
+			 lookup.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <PRE>    S Y=&quot;The value is: &quot;_{NUMERIC}
+    S:$D(var)#2 Y=&quot;The value is: &quot;_{NUMERIC}
+    S Y={LAST NAME}_&quot;,&quot;_{FIRST NAME}
+    S Y={NAME}_&quot; &quot;_{NAME:SSN}
+    S Y={FO(PRICE)}*1.085
+    S Y={FO(NAME):NEW PERSON:SSN}</PRE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sf_comp.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

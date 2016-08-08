@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: BLD^DIALOG</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,build^dialog,dialog">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>BLD^DIALOG( ): DIALOG Extractor</H4> 
+	 <P>This entry point performs the following functions:</P> 
+	 <OL> 
+		<LI>Extracts a dialog from a FileMan
+		  <A HREF="dia_frm.htm" TARGET="_top" TITLE="DIALOG file" CLASS="bodylink">DIALOG
+		  file</A> entry<BR><BR></LI> 
+		<LI>Substitutes dialog parameters into the text if requested<BR><BR></LI>
+		
+		<LI>Returns the text in an array</LI> 
+	 </OL> 
+	 <P>If the DIALOG entry has POST MESSAGE ACTION code, this code is executed
+		after the message has been built, but before quitting.</P> 
+	 <H5>Format</H5> 
+	 <PRE>BLD^DIALOG(DIALOG#,[.]TEXT_PARAM,[.]OUTPUT_PARAM, OUTPUT_ARRAY,FLAGS)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIALOG#</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Record number from the
+				<A HREF="dia_frm.htm" TARGET="_top" TITLE="DIALOG file" CLASS="bodylink">DIALOG
+				file</A> for the text to be returned.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>[.]TEXT_PARAM</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Local array containing the dialog parameters to
+				substitute into the resulting text. Set the subscript of each node in this
+				array to a dialog parameter that's in a |window| in the referenced DIALOG
+				entry's text. The value of each node should be in external, printable format
+				and will be substituted in the Dialog text for that dialog parameter. </P> 
+			 <P>If there is only one parameter in the list, you can pass its value
+				in a local variable or as a literal, otherwise, pass by reference. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>[.]OUTPUT_PARAM</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) This is useful mainly if you are returning error
+				messages as part of an API for other programmers to use. Use it to pass dialog
+				parameters back to the user of your API, such that they can be accessed
+				individually instead of just being embedded in the error text.</P> 
+			 <P>Use only with DIALOG file entries of type Error. Pass this local
+				array by reference. Subscript each node by the parameter name and set the node
+				to the corresponding parameter value. The parameter values can be in any format
+				(external or internal). </P> 
+			 <P>For example, if you pass DIPAROUT by reference and want to pass
+				back standalone values for the '1' and 'FILE' parameters in the output array
+				along with dialog text, set DIPAROUT to:</P> 
+			 <PRE>    DIPAROUT(1)=TEST FILE
+    DIPAROUT(&quot;FILE&quot;)=662001</PRE> 
+			 <P>Dialog text will be returned as expected but, in addition, dialog
+				parameter values will be returned in:</P> 
+			 <PRE>    ^TMP(&quot;DIERR&quot;,$J,msg#,&quot;PARAM&quot;,1)
+    ^TMP(&quot;DIERR&quot;,$J,msg#,&quot;PARAM&quot;,&quot;FILE&quot;)</PRE> 
+			 <P><B>NOTE:</B> If you only want to return one parameter, you can
+				pass its value in a local variable or as a literal rather than in an array by
+				reference. BUT the subscript for such a parameter in the output array is always
+				1. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>OUTPUT_ARRAY</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) If provided, the text will be output in the local or
+				global array named by this parameter. If this parameter is null, output is
+				returned in the ^TMP global, under the "DIERR", "DIHELP", or "DIMSG" subscripts
+				as documented in the DBS "<A HREF="db_how3.htm" TITLE="Contents of Arrays"
+				CLASS="bodylink">Contents of Arrays</A>" section. </P> 
+			 <P>If you specify DIR("A") or DIR("?") as the output array, special
+				handling is provided for populating the output array for use in a call to the
+				Reader, <A HREF="cl_dir.htm" TITLE="^DIR" CLASS="bodylink">^DIR</A>. Text is
+				output in the format needed for input to the Reader. </P> 
+			 <P><B>NOTE:</B> You are responsible for cleaning up the output array
+				or global <B>before</B> calling BLD^DIALOG. If the array already exists,
+				BLD^DIALOG simply appends its output to the current contents of the output
+				array, under a new message subscript. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. The possible values are:
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="10%"><B>S</B></TD> 
+		  <TD VALIGN="TOP"><B>S</B>uppress the blank line that is normally
+			 inserted between discrete blocks of text that are built by separate calls to
+			 this routine. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="10%"><B>F</B></TD> 
+		  <TD VALIGN="TOP"><B>F</B>ormat the local array similar to the default
+			 output format of the ^TMP global, so that MSG^DIALOG can be called to either
+			 Write the array to the current device or to a simple local array. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>If the OUTPUT_ARRAY input parameter is not passed, Dialog text is
+		returned in ^TMP under the "DIERR", "DIHELP", or "DIMSG" subscripts as
+		documented in the DBS "<A HREF="db_how3.htm" TITLE="Contents of Arrays"
+		CLASS="bodylink">Contents of Arrays</A>" section. If the DIALOG text is
+		returned in a local array instead, the name of the array and leading
+		subscript(s) are defined by the name of the array passed to this routine. </P> 
+	 <P>In addition to the DIALOG text, a local variable is returned. The local
+		variable is one of the following:</P> 
+	 <TABLE BORDER="1" WIDTH="90%"
+	  SUMMARY="Variables Returned Along with DIALOG Text Table"
+	  TITLE="Variables Returned Along with DIALOG Text Table"> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Variable Name</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Returned if Dialog </B><B>Type
+			 Is:</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Variable Value</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DIERR</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Error</TD> 
+		  <TD>Piece 1: # of discrete error messages returned <BR> Piece 2: Total
+			 # of lines of text returned</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DIHELP</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Help</TD> 
+		  <TD>Total # of lines of text returned</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DIMSG</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">General Message</TD> 
+		  <TD>Total # of lines of text returned</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>NOTE:</B> (1) If the variable to be used (DIHELP, DIERR, or DIMSG)
+		already exists before calling BLD^DIALOG, the number or numbers already stored
+		in the variable are incremented (not overwritten) to reflect the cumulative
+		total over repetitive calls to BLD^DIALOG.</P> 
+	 <P>The local variable (DIHELP, DIERR, or DIMSG) is not set if you ask for
+		text to be built in the special variables DIR("A") and DIR("?"), used as input
+		to <A HREF="cl_dir.htm" TITLE="^DIR" CLASS="bodylink">^DIR</A>. </P> 
+	 <P><A NAME="NOTE">(2) </A>If you wish to add entries to the DIALOG file,
+		you must use a numberspace assigned by the Database Administrator. See the
+		Developer Tools, Dialog File section in this manual for more information.</P> 
+	 <H5>Examples</H5> 
+	 <P>The DIALOG entry numbers shown in the examples below are for
+		demonstration purposes and are not distributed as part of the VA FileMan
+		package. </P> 
+	 <P><B>Example 1</B></P> 
+	 <P>In the case of errors, the output looks like the following example.
+		^TMP("DIERR",$J,error_number) is set equal to the IEN from the DIALOG file. The
+		actual error text is contained descendent from the "TEXT" subscript. If output
+		parameters were passed to the routine, they are returned descendent from the
+		"PARAM" subscript, where "PARAM",0) contains the total number of output
+		parameters. Finally, there is an entry descendent from "E", where the next
+		subscript is the IEN from the DIALOG file, and the final subscript refers to
+		the error number in this output array. This serves as a sort of cross-reference
+		by error code. When errors are generated by a routine called from developers'
+		code, this cross-reference can be used by the developer to quickly check
+		whether a specified error had been generated: </P> 
+	 <PRE>    DIPAROUT(1)=TEST FILE
+    DIPAROUT(&quot;FILE&quot;)=662001
+
+    &gt;<B>D BLD^DIALOG(10999,&quot;Myfile&quot;,.DIPAROUT)</B>
+</PRE> 
+	 <P>The output looks like: </P> 
+	 <PRE>    DIERR=1^1
+
+    ^TMP(&quot;DIERR&quot;,591465626,1) = 10999
+    ^TMP(&quot;DIERR&quot;,591465626,1,&quot;PARAM&quot;,0) = 2
+    ^TMP(&quot;DIERR&quot;,591465626,1,&quot;PARAM&quot;,1) = TEST FILE
+    ^TMP(&quot;DIERR&quot;,591465626,1,&quot;PARAM&quot;,&quot;FILE&quot;) = 662001
+    ^TMP(&quot;DIERR&quot;,591465626,1,&quot;TEXT&quot;,1) = Entries in file Myfile cannot 
+       be edited.
+    ^TMP(&quot;DIERR&quot;,591465626,&quot;E&quot;,10999,1) =
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>Here we generate a second error to show how it is appended to the
+		previous error in the ^TMP global: </P> 
+	 <PRE>    DIPARIN(1)='B'
+    DIPARIN(&quot;FILE&quot;)=662001
+    DIPAROUT(1)='B'
+    DIPAROUT(&quot;FILE&quot;)=662001
+
+    &gt;<B>D BLD^DIALOG(10202,.DIPARIN,.DIPAROUT)</B>
+</PRE> 
+	 <P>Now the output looks like this: </P> 
+	 <PRE>    DIERR=2^2
+
+    ^TMP(&quot;DIERR&quot;,591465626,1) = 10999
+    ^TMP(&quot;DIERR&quot;,591465626,1,&quot;PARAM&quot;,0) = 2
+    ^TMP(&quot;DIERR&quot;,591465626,1,&quot;PARAM&quot;,1) = TEST FILE
+    ^TMP(&quot;DIERR&quot;,591465626,1,&quot;PARAM&quot;,&quot;FILE&quot;) = 662001
+    ^TMP(&quot;DIERR&quot;,591465626,1,&quot;TEXT&quot;,1) = Entries in file Myfile cannot
+        be edited.
+    ^TMP(&quot;DIERR&quot;,591465626,2) = 10202
+    ^TMP(&quot;DIERR&quot;,591465626,2,&quot;PARAM&quot;,0) = 2
+    ^TMP(&quot;DIERR&quot;,591465626,2,&quot;PARAM&quot;,1) = 'B'
+    ^TMP(&quot;DIERR&quot;,591465626,2,&quot;PARAM&quot;,&quot;FILE&quot;) = 662001
+    ^TMP(&quot;DIERR&quot;,591465626,2,&quot;TEXT&quot;,1) = There is no 'B' index for File
+        #662001.
+    ^TMP(&quot;DIERR&quot;,591465626,&quot;E&quot;,10999,1) = 
+    ^TMP(&quot;DIERR&quot;,591465626,&quot;E&quot;,10202,2) =
+</PRE> 
+	 <P><B>Example 3</B></P> 
+	 <P>In this example, we build the same error message as in Example 1, but
+		this time we put the output into a local array. Notice that we do not send a
+		flag in the FLAGS parameter for this call, so only the error text is returned.
+		This would ordinarily be done when the developer planned to process the output
+		from their own routine. </P> 
+	 <PRE>    &gt;<B>D BLD^DIALOG(10999,&quot;Myfile&quot;,.DIPAROUT,&quot;MYARRAY&quot;)</B>
+</PRE> 
+	 <P>The output looks like: </P> 
+	 <PRE>    DIERR=1^1
+
+    MYARRAY(1)=Entries in file Myfile cannot be edited.
+</PRE> 
+	 <P><B>Example 4</B></P> 
+	 <P>In this example, we build the same error message as in Example 3, again
+		sending the output to a local array. This time, however, we will pass the F
+		flag in the FLAGS parameter so that all of the error information is returned in
+		a format similar to that of the ^TMP global, but without the $J subscript. In
+		this format, the developer could then call MSG^DIALOG to either write the array
+		to the current device or to copy the text into a simple array. This might, for
+		example, be done when the developer wanted to examine the error messages
+		returned and kill some of them before having FileMan write the remaining
+		messages. </P> 
+	 <PRE>    &gt;<B>D BLD^DIALOG(10999,&quot;Myfile&quot;,.DIPAROUT,&quot;MYARRAY&quot;,&quot;F&quot;)</B>
+</PRE> 
+	 <P>The output looks like: </P> 
+	 <PRE>    DIERR=1^1
+
+    MYARRAY(&quot;DIERR&quot;,1)=10999
+    MYARRAY(&quot;DIERR&quot;,1,&quot;PARAM&quot;,0)=2
+    MYARRAY(&quot;DIERR&quot;,1,&quot;PARAM&quot;,1)=TEST FILE
+    MYARRAY(&quot;DIERR&quot;,1,&quot;PARAM&quot;,&quot;FILE&quot;)=662001
+    MYARRAY(&quot;DIERR&quot;,1,&quot;TEXT&quot;,1)=Entries in file Myfile cannot be     edited.
+    MYARRAY(&quot;DIERR&quot;,&quot;E&quot;,10999,1)=
+</PRE> 
+	 <P><B>Example 5</B></P> 
+	 <P>In this example, we build a help message with a single input parameter.
+		Notice that the only output is the DIHELP variable and the text. Similarly,
+		other types of messages only return the DIMSG variable and the text. </P> 
+	 <PRE>    &gt;<B>D BLD^DIALOG(10335,&quot;PRINT&quot;)</B>
+</PRE> 
+	 <P>The output looks like: </P> 
+	 <PRE>    DIHELP=4
+
+    ^TMP(&quot;DIHELP&quot;,591469242,1) = This number will be used to determine
+        how large to make the generated
+    ^TMP(&quot;DIHELP&quot;,591469242,2) = compiled PRINT routines.  The size
+        must be a number greater
+    ^TMP(&quot;DIHELP&quot;,591469242,3) = than 2400, the larger the better, up
+        to the maximum routine size for
+    ^TMP(&quot;DIHELP&quot;,591469242,4) = your operating system.
+</PRE> 
+	 <P><B>Example 6</B></P> 
+	 <P>Now we build the same help message as Example 5 but put it into a local
+		array. </P> 
+	 <PRE>    &gt;<B>D BLD^DIALOG(10335,&quot;PRINT&quot;,&quot;&quot;,&quot;MYARRAY&quot;)</B>
+</PRE> 
+	 <P>Now the output looks like: </P> 
+	 <PRE>    DIHELP=4
+
+    MYARRAY(1)=This number will be used to determine how large to make
+        the generated
+    MYARRAY(2)=compiled PRINT routines.  The size must be a number
+        greater
+    MYARRAY(3)=than 2400, the larger the better, up to the maximum
+        routine size for
+    MYARRAY(4)=your operating system.
+</PRE> 
+	 <P><B>Example 7</B></P> 
+	 <P>In this final example, we build the same help message as in Example 6
+		but put it into the special array DIR("?"). Note that for the special local
+		variables used for calls to the FileMan Reader, ^DIR, this call puts the text
+		into the format that the Reader expects. It does not set the DIMSG, DIHELP, or
+		DIERR variables. </P> 
+	 <PRE>    &gt;<B>D BLD^DIALOG(10335,&quot;PRINT&quot;,&quot;&quot;,&quot;DIR(&quot;&quot;?&quot;&quot;)&quot;)</B>
+</PRE> 
+	 <P>The output looks like: </P> 
+	 <PRE>    DIR(&quot;?&quot;)=your operating system.
+    DIR(&quot;?&quot;,1)=This number will be used to determine how large to make
+       the generated
+    DIR(&quot;?&quot;,2)=compiled PRINT routines.  The size must be a number greater
+    DIR(&quot;?&quot;,3)=than 2400, the larger the better, up to the maximum routine
+       size for
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>None</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dia_b.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

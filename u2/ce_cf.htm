@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Using Computed Expressions
+		in Computed Fields</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,computed expressions,computed,expressions">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ce_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Computed Exptressions Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Computed Expressions</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Using Computed Expressions in COMPUTED Fields</H4> 
+	 <P>One important place where you can use a computed expression is in a
+		field that is computed. The COMPUTED field Data Type allows a computed
+		expression to be stored in the data dictionary. </P> 
+	 <P>To define a field as COMPUTED, use the Modify File Attributes option and
+		reply to the "DATA TYPE:" prompt with "computed." </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select OPTION: <B>MOD</B>IFY FILE ATTRIBUTES  
+DO YOU WANT TO USER THE SCREEN-MODE VERSION? Yes// <B>NO &lt;RET&gt;</B>  (No)
+
+MODIFY WHAT FILE: <B>PATIENT</B>
+
+Select FIELD: <B>AGE</B>  
+  Are you adding 'AGE' as a new FIELD (the 13TH)? <B>Y &lt;RET&gt;</B>  (YES)
+   FIELD NUMBER: 13// <B>&lt;RET&gt;</B>
+
+DATA TYPE OF AGE: <B>COMPUTED</B>
+</PRE> <HR> 
+	 <P>You now enter the computed expression that will be stored in the AGE
+		field. In this case, a function (TODAY), a field name (DATE OF BIRTH), and a
+		numeric literal are combined with two arithmetic binary operators to give a
+		numeric result. </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>'COMPUTED-FIELD' EXPRESSION: <B>TODAY-DATE OF BIRTH\365.25</B>
+
+TRANSLATES TO THE FOLLOWING CODE:
+S Y(16033,13,1)=$S($D(^DIZ(16033,D0,0)):^(0),1:&quot;&quot;),X=DT S 
+X=X,X1=X,X2=$P(Y(16033,13,1),U,3),X=&quot;&quot; D:X2 ^%DTC:X1 S X=X\365.25
+</PRE> <HR> 
+	 <P><B>NOTE:</B> You will only see the generated code if you have programmer
+		access. </P> 
+	 <P>When creating a COMPUTED field that might have a numeric result, the
+		following dialogue is presented: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>NUMBER OF FRACTIONAL DIGITS TO OUTPUT (ONLY ANSWER IF NUMBER-VALUED): <B>0</B></PRE> <HR> 
+	 <P>Pressing the Enter/Return key at this prompt means that the field is not
+		numeric; it will be left justified on output. If you do answer, you indicate
+		that the field is numeric and that you want the computed value rounded to a
+		certain number of decimal places when it is printed. In this case, the number
+		will be rounded to a whole number. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>SHOULD VALUE ALWAYS BE INTERNALLY ROUNDED TO 0 DECIMAL PLACES?
+    No// <B>&lt;RET&gt;</B>  (No)</PRE> <HR> 
+	 <P>Since the value of a COMPUTED field can be used in other calculations,
+		you need to indicate when rounding should occur. If you accept the default
+		(i.e., "No"), rounding will <I>not</I> be done when the COMPUTED field is used
+		in other calculations. A YES answer to this prompt means that you do want the
+		rounded value used in calculations. Usually, you do not want values rounded at
+		interim steps in a series of calculations. Thus, usually, you will accept the
+		"No" default. </P> 
+	 <P>When a COMPUTED field is printed, the value will always be rounded to
+		the number of decimal places you specify.</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>WHEN TOTALLING THIS FIELD, SHOULD THE SUM BE COMPUTED FROM THE SUMS 
+    OF THE COMPONENT FIELDS? No// <B>&lt;RET&gt;</B>  (No)</PRE> <HR> 
+	 <P>If your computed expression involves division or multiplication, you
+		will be asked how the field should be totaled. (You can total the values of a
+		field in the Print File Entries option.) A NO answer to this prompt means that
+		the COMPUTED field's expression will be evaluated for each entry and those
+		results will be added. A YES answer means that values of each of the fields in
+		the COMPUTED field's expression will be added first and then the COMPUTED
+		field's expression will be applied to those totals. </P> 
+	 <P>For example, suppose <B>A</B> and <B>B</B> are the names of two fields
+		and <B>A/B</B> is a computed expression. The table below shows the results of
+		printing <B>A</B>, <B>B</B>, and <B>A/B</B> with different answers to the "WHEN
+		TOTALLING THIS FIELD, ..." prompt:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY='Table showing different results to the "WHEN TOTATLLING THIS FIELD" prompt (Filed A, Field B, computed expression - Yes, computed expression - No)'>
+		
+		<TR> 
+		  <TD VALIGN="TOP"> 
+			 <PRE></PRE> </TD> 
+		  <TD VALIGN="TOP"><B>A</B></TD> 
+		  <TD VALIGN="TOP"><B>B</B></TD> 
+		  <TD VALIGN="TOP"><B>A/B </B> <BR> (YES: Total from totals of component
+			 fields) </TD> 
+		  <TD VALIGN="TOP"><B>A/B</B> <BR> (NO: Total from results for each
+			 entry)</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"> 
+			 <PRE></PRE> </TD> 
+		  <TD VALIGN="TOP">10</TD> 
+		  <TD VALIGN="TOP">5</TD> 
+		  <TD VALIGN="TOP">2</TD> 
+		  <TD VALIGN="TOP">2</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"> 
+			 <PRE></PRE> </TD> 
+		  <TD VALIGN="TOP">100</TD> 
+		  <TD VALIGN="TOP">50</TD> 
+		  <TD VALIGN="TOP">2</TD> 
+		  <TD VALIGN="TOP">2</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"> 
+			 <PRE></PRE> </TD> 
+		  <TD VALIGN="TOP">2</TD> 
+		  <TD VALIGN="TOP">1</TD> 
+		  <TD VALIGN="TOP">2</TD> 
+		  <TD VALIGN="TOP">2</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Total</B></TD> 
+		  <TD VALIGN="TOP">112</TD> 
+		  <TD VALIGN="TOP">56</TD> 
+		  <TD VALIGN="TOP">[112/56=] 2</TD> 
+		  <TD VALIGN="TOP">[2+2+2=] 6</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>To summarize, if you want your total to be the ratio or product of the
+		total of the component fields, then answer this question YES. Otherwise, a NO
+		answer is appropriate. </P> 
+	 <P><B>NOTE:</B> The answer to this prompt only affects the Total produced
+		by the Print File Entries option. </P> 
+	 <P>When defining a COMPUTED field, you will also be asked: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>LENGTH OF FIELD:  8// <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>Here you can enter the maximum number of character positions that the
+		field should occupy in output. The default value is eight, even if the COMPUTED
+		field involves FREE TEXT-type fields. Be sure to allocate enough space to
+		accommodate the results. If the COMPUTED field's value is numeric, the entire
+		result is displayed regardless of the requested length. </P> 
+	 <P>The COMPUTED-type field can be a very useful tool. Having set up such a
+		field, you can then search or sort by it, and also include it in the definition
+		of other COMPUTED-type fields. In the latter case, independence is preserved.
+		Thus, for example, if you define COMPUTED Field #2 in terms of COMPUTED Field
+		#1 and then decide to redefine Field #1, Field #2 will automatically use the
+		new Field #1 calculation. If you try to delete a field that is referenced by a
+		COMPUTED-type field, you will be warned. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ce_cf.htm -->	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

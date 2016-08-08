@@ -1,0 +1,453 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^%DT</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,^%dt,dt">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0">
+
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>^%DT</H4> 
+	 <UL> 
+		<LI><A HREF="cl_dt.htm"
+		  TITLE="Introduction to Date/Time Formats (Read First)"
+		  CLASS="bodylink">Introduction to Date/Time Formats (Read First)</A></LI> 
+	 </UL> 
+	 <P>This routine accepts input and validates the input as being a correct
+		date and time. </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="13" WIDTH="15%"><B>%DT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>A string of alphabetic characters which alter how %DT responds.
+				Briefly stated, the acceptable characters are: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="8%"><B>A</B></TD> 
+		  <TD><B>A</B>sk for date input. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>E</B></TD> 
+		  <TD><B>E</B>cho the answer. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>F</B></TD> 
+		  <TD><B>F</B>uture dates are assumed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A NAME="I_Input_Variable">I</A></B></TD> 
+		  <TD>For <B>I</B>nternalization, assume that the day number precedes the
+			 month number in input.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>M</B></TD> 
+		  <TD>Only <B>M</B>onth and year input is allowed.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>N</B></TD> 
+		  <TD>Pure <B>N</B>umeric input is not allowed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>P</B></TD> 
+		  <TD><B>P</B>ast dates are assumed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>R</B></TD> 
+		  <TD><B>R</B>equires time input. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>S </B></TD> 
+		  <TD><B>S</B>econds should be returned.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>T</B></TD> 
+		  <TD><B>T</B>ime input is allowed but not required. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>X</B> </TD> 
+		  <TD>E<B>X</B>act input is required. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>For an explanation of each character, see "<A
+				HREF="#InputVariablesInDetail" TITLE="%DT Input Variables in Detail"
+				CLASS="bodylink">%DT Input Variables in Detail</A>."</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>X</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>If %DT does not contain an A, then the variable X must be defined
+				as equal to the value to be processed. See Date Fields in the "<A
+				HREF="../u1/he_intro.htm#date" TARGET="display"
+				TITLE="Editing Specific Field Types" CLASS="bodylink">Editing Specific Field
+				Types</A>" chapter of the "VA FileMan Getting Started Manual" for acceptable
+				values for X and for the interpretation of those values. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>%DT("A")</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) A prompt which will be displayed prior to the reading
+				of the input. Without this variable, the prompt "DATE:" will be issued. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>%DT("B")</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>The default answer to the "DATE:" prompt. It is your
+				responsibility to ensure that %DT("B") contains a valid date/time. Allowable
+				date input formats are explained in the "<A HREF="../u1/he_intro.htm#date"
+				TARGET="display" TITLE="Editing Specific Field Types" CLASS="bodylink">Editing
+				Specific Field Types</A>" chapter of the "VA FileMan Getting Started Manual."
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>%DT(0)</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Prevents the input date value from being accepted if it
+				is chronologically before or after a particular date. Set %DT(0) equal to a VA
+				FileMan-format date (e.g., %DT(0)=2690720) to allow input only of dates greater
+				than or equal to that date. Set it negative (e.g., %DT(0)=-2831109.15) to allow
+				only dates less than or equal to that date/time. Set it to NOW to allow dates
+				from the current (input) time forward. Set it to -NOW to allow dates up to the
+				current time. </P> 
+			 <P><B>NOTE:</B> Be sure to kill this variable after returning from
+				%DT. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variables</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3" WIDTH="15%"><B>Y</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2" WIDTH="585"> 
+			 <P>%DT always returns the variable Y, which can be one of two values:
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="265"><B>Y=-1</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="316">The date/time was invalid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="265"><B>Y=YYYMMDD.HHMMSS</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="316">The value determined by %DT. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>X</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2" WIDTH="585"> 
+			 <P>X is always returned. It contains either what was passed to %DT
+				(in the case where %DT did not contain an A) or what the user entered. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DTOUT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2" WIDTH="585"> 
+			 <P>This is only defined if %DT has timed-out waiting for input from
+				the user. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="InputVariablesInDetail">%DT Input Variables in Detail</A></H5>
+	 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD WIDTH="10%" VALIGN="TOP"><B>A</B></TD> 
+		  <TD> 
+			 <P>%DT <B>A</B>sks for input from the terminal. It continues to ask
+				until it receives correct input, a null, or an up-arrow. If %DT does not
+				contain the character A, the input to %DT is assumed to be in the variable X.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>E</B></TD> 
+		  <TD> 
+			 <P>The <B>E</B>xternal format of the input will be echoed back to the
+				user after it has been entered. If the input was erroneous, two question marks
+				and a "beep" will be issued. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>F</B></TD> 
+		  <TD> 
+			 <P>If a year is not entered (example 1), or if a two-digit year is
+				entered (example 2), a date in the <B>F</B>uture is assumed.</P> 
+			 <P><B>EXCEPTION:</B> If a two-digit year is entered and those two
+				digits equal the current year, the current year is assumed even if the date is
+				in the past (example 3).</P> 
+			 <TABLE WIDTH="100%" BORDER="1"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD><B>Example</B></TD> 
+				  <TD><B>Current Date</B></TD> 
+				  <TD><B>User Input </B></TD> 
+				  <TD><B>Date Returned</B></TD> 
+				  <TD><B>Returned Without F </B></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER"><B>1)</B></TD> 
+				  <TD>July 1, 2000</TD> 
+				  <TD>5/1</TD> 
+				  <TD>May 1, 2001</TD> 
+				  <TD>May 1, 2000</TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER"><B>2)</B></TD> 
+				  <TD>July 1, 2000</TD> 
+				  <TD>5/1/90</TD> 
+				  <TD>May 1, 2090</TD> 
+				  <TD>May 1, 1990</TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER"><B>3)</B></TD> 
+				  <TD>July 1, 2000</TD> 
+				  <TD>5/1/00</TD> 
+				  <TD>May 1, 2000</TD> 
+				  <TD>May 1, 2000</TD> 
+				</TR> 
+			 </TABLE> 
+			 <P>See "<A HREF="#DT_Note" TITLE="Y2K Changes" CLASS="bodylink">Y2K
+				Changes</A>" below for the behavior of %DT when neither the F nor P flag is
+				used. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>I</B></TD> 
+		  <TD> For <B>I</B>nternationalization, this flag makes %DT assume that
+			 in the input, the day number precedes the month number. For example, input of
+			 05/11/2000 is assumed to be November 5, 2000 (instead of May 11, 2000). Also,
+			 with this flag, the month must be input as a number. For example, November must
+			 be input as 11, not NOV. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>M</B></TD> 
+		  <TD> 
+			 <P>Only <B>M</B>onth and year input is allowed. Input with a specific
+				day or time is rejected (example 1). If only a month and two digits are
+				entered, the two digits are interpreted as a year instead of a day (example
+				2).</P> 
+			 <P>If the M flag is used with theX flag, a month must be specified;
+				otherwise, the input can be just a year (example 3).</P> 
+			 <TABLE WIDTH="100%" BORDER="1"
+			  SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="606" COLSPAN="4"><B>M Flag </B></TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="80"><B>Example</B></TD> 
+				  <TD WIDTH="127"><B>Date Input</B></TD> 
+				  <TD WIDTH="165"><B>Date Returned</B></TD> 
+				  <TD WIDTH="201"><B>Returned Without M</B></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER" WIDTH="80"><B>1)</B></TD> 
+				  <TD WIDTH="127">7-05-2005</TD> 
+				  <TD WIDTH="165">Invalid</TD> 
+				  <TD WIDTH="201">July 5, 2005</TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER" WIDTH="80"><B>2)</B></TD> 
+				  <TD WIDTH="127">7-05</TD> 
+				  <TD WIDTH="165">July 2005</TD> 
+				  <TD WIDTH="33%">July 5, 2000*</TD> 
+				</TR> 
+			 </TABLE> 
+			 <P ALIGN="LEFT">*Assuming the current year is 2000 and the F and P
+				flags aren't used.</P> 
+			 <TABLE WIDTH="100%" BORDER="1"
+			 SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD COLSPAN="4" ALIGN="LEFT" WIDTH="606"><B>M Flag (with X
+					 Flag)</B> </TD> 
+				</TR> 
+				<TR> 
+				  <TD WIDTH="88"><B>Example</B></TD> 
+				  <TD WIDTH="133"><B>Date Input</B></TD> 
+				  <TD WIDTH="175"><B>Date Returned</B></TD> 
+				  <TD WIDTH="198"><B>Returned Without X</B></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER" WIDTH="88"><B>3)</B></TD> 
+				  <TD WIDTH="133">05 or 2005</TD> 
+				  <TD WIDTH="175">Invalid</TD> 
+				  <TD WIDTH="198">2005</TD> 
+				</TR> 
+			 </TABLE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>N</B></TD> 
+		  <TD> 
+			 <P>Ordinarily, a user can enter a date in a purely <B>N</B>umeric
+				form, i.e., MMDDYY. However, if %DT contains an N, then this type of input is
+				not allowed. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>P</B></TD> 
+		  <TD> 
+			 <P> If a year is not entered (example 1), or if a two-digit year is
+				entered (example 2), a date in the <B>P</B>ast is assumed.</P> 
+			 <P><B>EXCEPTION:</B> If a two-digit year is entered and those two
+				digits equal the current year, the current year is assumed even if the date is
+				in the future (example 3).</P> 
+			 <TABLE WIDTH="100%" BORDER="1"
+			 SUMMARY="This table is for formatting purposes only"> 
+				<TR> 
+				  <TD WIDTH="88"><B>Example</B></TD> 
+				  <TD WIDTH="116"><B>Current Date</B></TD> 
+				  <TD WIDTH="98"><B>User Input </B></TD> 
+				  <TD WIDTH="123"><B>Date Returned</B></TD> 
+				  <TD WIDTH="163"><B>Returned Without P </B></TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER" WIDTH="88"><B>1)</B></TD> 
+				  <TD WIDTH="116">March 1, 1995</TD> 
+				  <TD WIDTH="98">6/1</TD> 
+				  <TD WIDTH="123">June 1, 1994</TD> 
+				  <TD WIDTH="163">June 1, 1995</TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER" WIDTH="88"><B>2)</B></TD> 
+				  <TD WIDTH="116">March 1, 1995</TD> 
+				  <TD WIDTH="98">6/1/98</TD> 
+				  <TD WIDTH="123">June 1, 1898</TD> 
+				  <TD WIDTH="163">June 1, 1998</TD> 
+				</TR> 
+				<TR> 
+				  <TD ALIGN="CENTER" WIDTH="88"><B>3)</B></TD> 
+				  <TD WIDTH="116">March 1, 1995</TD> 
+				  <TD WIDTH="98">6/1/95</TD> 
+				  <TD WIDTH="123">June 1, 1995</TD> 
+				  <TD WIDTH="163">June 1, 1995</TD> 
+				</TR> 
+			 </TABLE> 
+			 <P>See "<A HREF="#DT_Note" TITLE="Y2K Changes" CLASS="bodylink">Y2K
+				Changes</A>" below for the behavior of %DT when neither the F nor P flag is
+				used.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>R</B></TD> 
+		  <TD> 
+			 <P>Time is <B>R</B>equired. It must be input. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>S</B></TD> 
+		  <TD> 
+			 <P><B>S</B>econds are to be returned. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>T</B></TD> 
+		  <TD> 
+			 <P><B>T</B>ime is allowed in the input, but it is not necessary. See
+				Date Fields in the "<A HREF="../u1/he_intro.htm#date" TARGET="display"
+				TITLE="Editing Specific Field Types" CLASS="bodylink">Editing Specific Field
+				Types</A>" chapter of the "VA FileMan Getting Started Manual" for details of
+				how user-input times are interpreted. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>X</B></TD> 
+		  <TD> 
+			 <P>E<B>X</B>act input is required. If X is used without M, date input
+				must include a day and month. Without X, the input can be just month-year or
+				only a year. </P> 
+			 <P>If X is used with M, date input must include a month. If M is used
+				without X, then the input can be just a year.</P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B><A NAME="DT_Note">Y2K Changes:</A></B>&nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> <BR>
+		<B>Behavior of %DT when neither the F nor P flag is used</B></P> 
+	 <P>If no year is entered, the current year is assumed (example 1). </P> 
+	 <P>If a two-digit year is entered, a year less than 20 years in the future
+		and no more than 80 years in the past is assumed. For example, in the year
+		2000, two-digit years are assumed to be between 1920 through 2019. </P> 
+	 <P><B>NOTE:</B> Only the year, not the current month and day, is taken into
+		account in this calculation (examples <B>2</B> through <B>5</B> in the table
+		below). </P> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD ALIGN="CENTER"><B>Example</B></TD> 
+		  <TD><B>Current Date</B> </TD> 
+		  <TD><B>User Input</B></TD> 
+		  <TD><B>Date Returned</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="CENTER"><B>1)</B></TD> 
+		  <TD>Sep 15, 2000</TD> 
+		  <TD>3/15</TD> 
+		  <TD>Mar 15, 2000</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="CENTER"><B>2)</B></TD> 
+		  <TD>Sep 15, 2000</TD> 
+		  <TD>1/1/20</TD> 
+		  <TD>Jan 01,1920</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="CENTER"><B>3)</B></TD> 
+		  <TD>Sep 15, 2000</TD> 
+		  <TD>12/31/20</TD> 
+		  <TD>Dec 31, 1920</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="CENTER"><B>4)</B></TD> 
+		  <TD>Sep 15, 2000</TD> 
+		  <TD>1/1/19</TD> 
+		  <TD>Jan 01, 2019</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="CENTER"><B>5)</B></TD> 
+		  <TD>Sep 15, 2000</TD> 
+		  <TD>12/31/19</TD> 
+		  <TD>Dec 31, 2019</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dt1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

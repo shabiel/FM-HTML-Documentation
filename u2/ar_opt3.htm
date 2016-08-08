@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Print Selected Entries
+		Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,archiving,archive">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0"> 
+	 
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ar_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Archiving Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Archiving</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Print Selected Entries</H4> 
+	 <P>The Print Selected Entries option displays each entry from a selected
+		archiving activity in a regular print or a filegram format (depending on the
+		template you identify). The archiving activity entries are printed on whatever
+		device you indicate. You can use this option for an archiving activity with any
+		status except PURGED. </P> 
+	 <P>The example below illustrates the regular print format: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select ARCHIVE OPTION: <B>PRINT</B> SELECTED ENTRIES
+Select ARCHIVAL ACTIVITY: <B>3 &lt;RET&gt;</B>       CHANGE  08-30-92     EDITED     
+SELECTOR:SMITH,J	ARCHIVING
+
+Enter regular Print Template name or fields you wish to see printed
+on this report of entries to be archived.
+
+FIRST PRINT FIELD: <B>[ZZTEST TEMPLATE</B>
+
+
+CHANGE ARCHIVAL ACTIVITY                AUG 30, 1992  11:09   PAGE 1
+NO.             VERSION                 PROGRAMMER
+--------------------------------------------------------------------
+ 
+101             17.10                   DOE,JANE
+102             17.32                   DOE,JOHN
+103             17.35                   DOE,JOHN
+330             17.09                   DOE,JULIA</PRE> <HR> 
+	 <P>Shown below is an example of a Filegram format produced by naming a
+		FILEGRAM-type template to print (only a single entry is shown.):</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>FIRST PRINT FIELD: <B>[ZZTESTFILEGRAM</B>
+ 
+CHANGE ARCHIVAL ACTIVITY                AUG 30, 1992  11:09   PAGE 1
+--------------------------------------------------------------------
+ 
+          NO.:  330
+$DAT^CHANGE^16000^N^
+CHANGE^16000^L=330
+ BEGIN:CHANGE^16000@1
+   SPECIFIER:VERSION^1=17.09
+   IDENTIFIER:PROGRAMMER^7=DOE,JULIA
+ END: CHANGE^16000
+ NO.^.01=330
+ VERSION^1=17.09
+$END DAT</PRE>  
+	<P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ar_opt3.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

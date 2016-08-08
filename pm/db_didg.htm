@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: $$GET1^DID( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$get1^did(),did">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>$$GET1^DID( ): Attribute Retriever</H4> 
+	 <P>This extrinsic function retrieves a single attribute from a single file
+		or field. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+$$GET1^DID(FILE,FIELD,FLAGS,ATTRIBUTE,TARGET_ROOT,MSG_ROOT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) File number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>Field number or name. (Required only when field attributes are
+				being requested, otherwise this function assumes a file attribute is being
+				requested) </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="2"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flag to control processing: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Z</B></TD> 
+		  <TD VALIGN="TOP"><B>Z</B>ero nodes on word processing attributes are
+			 included in the array subscripts. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>ATTRIBUTE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) A list of data dictionary attribute names separated by
+				semicolons. Full attribute names must be used. To see a list of the
+				<A HREF="db_didf3.htm#FILE_ATTRIBUTES" TITLE="FILE ATTRIBUTES"
+				 CLASS="bodylink">FILE ATTRIBUTES</A> that you can use, click here. To see a
+				list of the
+				<A HREF="db_didf1.htm#FIELD_ATTRIBUTES" TITLE="FIELD ATTRIBUTES"
+				 CLASS="bodylink">FIELD ATTRIBUTES</A> that can be used, click here.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TARGET-ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>Closed array reference where multi-lined attributes will be
+				returned. (Required only when multi-line values are returned, such as word
+				processing attributes like "DESCRIPTION") </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG-ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The name of a closed root reference that is used to
+				pass error messages. If not passed, ^TMP("DIERR",$J) is used. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>A successful call returns the attribute requested. This can either be
+		set into a variable or written to the output device. </P> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1 </B> </P> 
+	 <PRE>
+    &gt; <B>S X=$$GET1^DID(999000,&quot;&quot;,&quot;&quot;,&quot;DESCRIPTION&quot;,&quot;ARRAY&quot;,&quot;ERR&quot;) ZW @X</B>
+    ARRAY(1)=This is the description of the file (ZZZDLTEST).
+    ARRAY(2)=And this is the second line of the description.
+</PRE> 
+	 <P><B>Example 2 </B> </P> 
+	 <PRE>
+    &gt;<B>W $$GET1^DID(999000,&quot;&quot;,&quot;&quot;,&quot;GLOBAL NAME&quot;)</B>
+    ^DIZ(999000,
+
+</PRE> 
+	 <P><B>Example 3 </B> </P> 
+	 <PRE>
+    &gt;<B>W $$GET1^DID(999000,.01,&quot;&quot;,&quot;LABEL&quot;)</B>
+    NAME
+
+</PRE> 
+	 <P><B>Example 4 </B> </P> 
+	 <PRE>
+    &gt;<B>S X=$$GET1^DID(999000,.01,&quot;Z&quot;,&quot;DESCRIPTION&quot;,&quot;ARRAY&quot;,&quot;ERR&quot;) ZW @X</B>
+    ARRAY(1,0)=This is the description of the .01 filed
+    ARRAY(2,0)=in file 999000.
+
+    &gt;<B>W X</B>
+    ARRAY
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_200.htm" TITLE="Error 200"
+			 CLASS="bodylink">200</A></B></TD> 
+		  <TD VALIGN="TOP">Parameter is invalid or missing. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">Specified parameter in missing or invalid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_505.htm" TITLE="Error 505"
+			 CLASS="bodylink">505</A></B></TD> 
+		  <TD VALIGN="TOP">Ambiguous field.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Details and Features</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="17%"><B>File/Field</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>This retriever call differentiates whether the request is for a
+				file or a field by the second parameter. If the second parameter is null, the
+				retriever assumes (since no field is passed) that a file attribute is desired.
+				If the second parameter is not null, the retriever assumes a field attribute is
+				requested. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_didg.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

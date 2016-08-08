@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Storing User Messages - DIALOG
+		File</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,dialof file,dialof.storing user messages,storing,file,introduction">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dia_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIALOG File Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">DIALOG File</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>DIALOG File: User Messages</H4> 
+	 <H5><A NAME="Introduction">Introduction</A></H5> 
+	 <P>The VA FileMan DIALOG file is used to store dialog that would normally
+		appear on a screen during interaction with a user. This dialog may include
+		error messages, user help, and other types of prompts. FileMan distributes a
+		set of entries in the DIALOG file. </P> 
+	 <P>The VA FileMan calls,
+		<A HREF="db_dia_b.htm" TITLE="BLD^DIALOG" CLASS="bodylink">BLD^DIALOG</A> or
+		<A HREF="db_dia_e.htm" TITLE="$$EZBLD^DIALOG"
+		 CLASS="bodylink">$$EZBLD^DIALOG</A>, are used to move text from the DIALOG file
+		into arrays. The text can then be displayed using the display mode of choice.
+		</P> 
+	 <P>Developers may add entries to the DIALOG file. Entries such as error
+		messages, help messages and other general prompts can be placed in the file.
+		The DIALOG file should not be used for storing alternate synonyms either for
+		data or for fields in the data dictionary such as field labels or descriptions.
+		</P> 
+	 <P><B>NOTE:</B> If you wish to add entries to the DIALOG file, you must
+		apply to the DataBase Administrator (DBA) for a numberspace.</P> 
+	 <P>Advantages of the DIALOG file for user interaction are: </P> 
+	 <UL> 
+		<LI>User interaction can be easily separated from the other program
+		  functionality, a necessary step in creating alternate interfaces to
+		  roll-and-scroll, such as GUI.<BR><BR></LI> 
+		<LI>Text stored in the DIALOG File can be re-used.<BR><BR></LI> 
+		<LI>Package error lists can be identified and listed by error number in
+		  documentation.<BR><BR></LI> 
+		<LI>Text can be returned in multiple languages without changes to
+		  developers' code. (See the "<A HREF="app_b_d.htm"
+		  TITLE="Internationalization section" TARGET="display"
+		  CLASS="bodylink">Internationalization and the DIALOG File</A>" section of the
+		  "DIALOG File" chapter.)</LI> 
+	 </UL> 
+	 <H5><A NAME="Use">Use of the DIALOG File</A></H5> 
+	 <P>VA FileMan controls and distributes entries in the DIALOG file in the
+		number range 0 through 10000. These entries should not be edited by other
+		package developers, with the exception of adding foreign language equivalents
+		for text (see the "
+		<A HREF="app_b_d.htm" TARGET="display"
+		TITLE="Internationalization and the DIALOG File"
+		CLASS="bodylink">Internationalization and the DIALOG File</A>" section of the
+		"DIALOG File" chapter for details). Some of the VA FileMan error messages are
+		available for retrieval by other package developers, using the VA FileMan
+		program calls. These messages are listed in the "<A HREF="err_frm.htm"
+		TARGET="_top" TITLE="Error Codes" CLASS="bodylink">Error Codes</A>" chapter.
+		Entries within the FileMan number range that are not in the Error Codes listing
+		should not be used as they are subject to change. </P> 
+	 <P>Other packages may make entries in the DIALOG file for their own use.
+		The VHA Database Administrator (DBA) will assign number ranges to a subscribing
+		package. </P> 
+	 <P>If your package or site already has a file <A
+		NAME="numberspace">numberspace</A> assigned by the DBA, you can use that number
+		(or numbers) multiplied by 10000 (plus any decimal value between .001 and .999)
+		for adding entries to the DIALOG file. (Ex., Kernel owns file 200, so they can
+		use numbers 2000000 2000000.999. If I'm site 665, I own numberspace 665000 for
+		files, so I can use 6,650,000,000 through 6,650,000,000.999 in the DIALOG
+		file). </P> 
+	 <P>If developers do not follow these guidelines, their DIALOG entries may
+		be overwritten when new packages are installed. Note that an entry number does
+		not have to be an integer--up to 3 decimal places can be used to identify an
+		entry. </P> 
+	 <H5><A NAME="Creating">Creating DIALOG File Entries</A></H5> 
+	 <P>Developers may enter or edit entries to the DIALOG file using VA FileMan
+		Enter/Edit. The only required fields are the DIALOG NUMBER which uniquely
+		identifies the entry, the TYPE (Error, Help or General Message), and the dialog
+		TEXT. </P> 
+	 <P>Dialog text can contain parameter windows delimited by vertical bars.
+		Within a pair of vertical bars, the developer puts a value that will correspond
+		to a subscript in a parameter list. This subscript need not be numeric, but may
+		be meaningful alpha characters such as "FIELD". When the dialog text with
+		windows is retrieved using a call to either
+		<A HREF="db_dia_b.htm" TITLE="BLD^DIALOG" CLASS="bodylink">BLD^DIALOG</A> or
+		<A HREF="db_dia_e.htm" TITLE="$$EZBLD^DIALOG"
+		 CLASS="bodylink">$$EZBLD^DIALOG</A>, a subscripted parameter list is input to
+		the call. The parameters are matched by subscript to the windows in the text,
+		and the values from the parameter list are inserted into the corresponding
+		windows in the text. If parameters are included in the text, the INTERNAL
+		PARAMETERS NEEDED field should be set to YES. A multiple field called PARAMETER
+		is used in documenting these parameters. </P> 
+	 <P>For error messages only, a list of output parameters can also be passed
+		to <A HREF="db_dia_b.htm" TITLE="BLD^DIALOG" CLASS="bodylink">BLD^DIALOG</A> or
+		<A HREF="db_dia_e.htm" TITLE="$$EZBLD^DIALOG"
+		 CLASS="bodylink">$$EZBLD^DIALOG</A>. This list is returned by the routine in a
+		standard format. Output parameters might be, for example, file or field numbers
+		which the calling routine may then use to make a decision. Output parameters
+		should also be documented in the PARAMETER multiple described immediately
+		above. </P> 
+	 <P>Another important optional field is the POST-MESSAGE ACTION field. If
+		the developer wishes to perform some special action whenever a message is
+		retrieved, M code is simply inserted into this field. The code will then be
+		executed whenever the associated message is retrieved with a call to
+		<A HREF="db_dia_b.htm" TITLE="BLD^DIALOG" CLASS="bodylink">BLD^DIALOG</A> or
+		<A HREF="db_dia_e.htm" TITLE="$$EZBLD^DIALOG"
+		 CLASS="bodylink">$$EZBLD^DIALOG</A>. </P> 
+	 <P>The TRANSLATION (LANGUAGE) multiple in the DIALOG file allows a
+		developer to enter text in a language other than English. See the "<A
+		HREF="app_b_d.htm" TITLE="Internationalization and the DIALOG File"
+		CLASS="bodylink">Internationalization and the DIALOG File</A>" section of the
+		"DIALOG File" chapter for additional information on this feature. </P> 
+	 <P>Finally, there is a place to enter documentation for the ROUTINE names
+		and LINE TAGs which use the dialog entries. This is optional internal
+		documentation for the use by developers only. </P> 
+	 <P>Following is an example creating a new entry in the DIALOG file. </P> 
+	 <PRE>    Select DIALOG: <B>10001
+</B>      Are you adding '10001' as a new DIALOG (the 239TH)? <B>Y &lt;RET&gt;</B>  (YES)
+    TYPE: <B>? &lt;RET&gt;</B>
+         Enter code that reflects how this dialogue is used when talking to the users.
+         Choose from: 
+           1        ERROR
+           2        GENERAL MESSAGE
+           3        HELP
+    TYPE: <B>3 &lt;RET&gt;</B>  HELP
+    PACKAGE: <B>VA FILEMAN &lt;RET&gt;</B>          DI
+    DESCRIPTION:
+      1&gt;<B>Here we enter a description of the help message itself.  This</B>
+      2&gt;<B>description is for our own documentation.</B>
+      3&gt;
+    EDIT Option: 
+    INTERNAL PARAMETERS NEEDED: <B>Y &lt;RET&gt;</B>  YES
+    TEXT:
+      1&gt;<B>Here we enter the actual text of the help messages, with</B>
+      2&gt;<B>parameters designated by vertical bars |1| as shown.</B>
+      3&gt;
+    EDIT Option: 
+    Select PARAMETER SUBSCRIPT: <B>1</B>
+      Are you adding '1' as a new PARAMETER SUBSCRIPT (the 1ST for this DIALOG)? <B>Y &lt;RET&gt;</B> (YES)
+      PARAMETER DESCRIPTION: <B>Brief description of parameter 1 goes here. For
+      documentation only.</B>
+    Select PARAMETER SUBSCRIPT: <B>&lt;RET&gt;</B> 
+    POST MESSAGE ACTION: <B>? &lt;RET&gt;</B>   This is Standard MUMPS code.  This code will be
+    executed whenever this message is retrieved through a call to BLD^DIALOG
+    or $$EZBLD^DIALOG
+    POST MESSAGE ACTION: <B>S MYVAR=&quot;HELP #10001 WAS REQUESTED&quot;</B>
+    Select LANGUAGE:
+    Select ROUTINE NAME: DIKZ// <B>&lt;RET&gt;</B>
+      ROUTINE NAME: DIKZ// <B>&lt;RET&gt;</B>
+      LINE TAG:  // <B>&lt;RET&gt;</B>
+</PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- dia_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

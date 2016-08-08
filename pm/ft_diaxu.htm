@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN^DIAXU</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,extract tool,extract,tool,api,en^diaxu,diaxu">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Extract Tool API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN^DIAXU: Extract Data</H4> 
+	 <P>The extract tool has been enhanced and this has resulted in a number of
+		changes to the output variables of the EN^DIAXU entry point.</P> 
+	 <P>This entry point extracts data specified in the EXTRACT template for a
+		single entry and moves that data to a destination file. The source entry may be
+		deleted after the extract process is completed. </P> 
+	 <P>If you need to extract in batches (more than one entry), you should use
+		the <A HREF="ft_diax2.htm" TITLE="EXTRACT^DIAXU"
+		CLASS="bodylink">EXTRACT^DIAXU</A> entry point instead.</P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXF</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) The number of the file that contains the source
+				entry.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXT</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) The EXTRACT template name enclosed in brackets in the
+				source file that contains specifications of data to be extracted. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXFE </B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) Internal entry number of the source entry from which
+				data will be extracted. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXDEL</B> </TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable, if defined, tells the program to delete
+				the source entry. If not defined, the source entry is unchanged. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Output Variables (Successful Extracts)</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD COLSPAN="2"> 
+			 <P ALIGN="LEFT">If the extract process was completed and the data was
+				<B>successfully</B> moved to the destination file, the variables are returned
+				as follows: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXDA</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Internal entry number of entry created in the destination file.
+				</P> 
+			 <P> In addition to DIAXDA, <BR> </P> 
+			 <PRE>  ^TMP(&quot;DIAXU&quot;,$J,&quot;RESULT&quot;,DIAXF,DIAXFE)=DIAXDA</PRE> 
+			 <P>is returned.&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXNTC</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>No longer returned. For batch processing of extracts, you should
+				use the <A HREF="ft_diax2.htm" TITLE="EXTRACT^DIAXU"
+				CLASS="bodylink">EXTRACT^DIAXU</A> entry point instead of this one.&nbsp;<IMG
+				SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+				HEIGHT="11"></P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXFE</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>No longer killed upon exit.&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXF</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Not killed.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXT</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Not killed.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXDEL</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Not killed.</P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variables (If an Error Occurs)</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD COLSPAN="2"> 
+			 <P ALIGN="LEFT">If an <B>error</B> occurs during the extract process,
+				the following variable and global array are returned instead: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIERR</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Contains the following two ^-pieces of information: </P> 
+			 <OL> 
+				<LI>Number of errors generated during the call, and<BR><BR></LI> 
+				<LI>Total number of lines of the error messages </LI> 
+			 </OL> 
+			 <P>In addition, the following "RESULT","ERR" node is returned:</P> 
+			 <PRE>  ^TMP(&quot;DIAXU&quot;,$J,&quot;RESULT&quot;,&quot;ERR&quot;,file#,ien)</PRE> 
+			 <P>For example, </P> 
+			 <PRE>  ^TMP(&quot;DIAXU&quot;,$J,&quot;RESULT&quot;,&quot;ERR&quot;,662001,5)</PRE> 
+			 <P>No longer indicates the total number of errors encountered during
+				the extract process.&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>(array in ^TMP)</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Error information is returned in ^TMP("DIERR",$J), in the same
+				format that error information is returned for DBS calls.&nbsp;<IMG
+				SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11">
+				</P> 
+			 <P>Please refer to the "<A HREF="db_how.htm"
+				TITLE="How to Use the Database Server" CLASS="bodylink">How to Use the Database
+				Server</A>" section for a complete description of this array.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIAXDA</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Not defined.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>All input variables</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Left defined. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>This entry point calls
+		<A HREF="db_dicf1.htm" TITLE="$$FIND1^DIC" CLASS="bodylink">$$FIND1^DIC</A>,
+		<A HREF="db_dic_l.htm" TITLE="LIST^DIC" CLASS="bodylink">LIST^DIC</A>,
+		<A HREF="db_die_u.htm" TITLE="UPDATE^DIE" CLASS="bodylink">UPDATE^DIE</A>,
+		<A HREF="db_diqg1.htm" TITLE="$$GET1^DIQ" CLASS="bodylink">$$GET1^DIQ</A>, and
+		<A HREF="db_diqgs.htm" TITLE="GETS^DIQ" CLASS="bodylink">GETS^DIQ</A>; any
+		errors returned by these entry points can also be returned by EN^DIAXU.</P> 
+	 <P>In addition, the following errors may be returned:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD><B><A HREF="err_201.htm" TITLE="Error 201"
+			 CLASS="bodylink">201</A></B></TD> 
+		  <TD>An input variable is missing or invalid.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_601.htm" TITLE="Error 601"
+			 CLASS="bodylink">601</A></B></TD> 
+		  <TD VALIGN="TOP">The entry does not exist. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ft_diaxu.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

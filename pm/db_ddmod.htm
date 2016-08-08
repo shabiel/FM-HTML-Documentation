@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+	 <!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DELIX^DDMOD</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,delix^ddmod,ddmod">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white"> 
+     	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>DELIX^DDMOD: Traditional Cross-Reference Deleter</H4> 
+	 <P>This procedure deletes a traditional cross-reference definition from the
+		data dictionary of a file. Optionally, it deletes the data in the index or
+		executes the kill logic for all entries in the file. Compiled input templates
+		that contain the field on which the cross-reference is defined are recompiled.
+		If cross-references on the file are compiled, they are recompiled.</P> 
+	 <P>DELIX^DDMOD can be used is the pre-install or post-install routine of a
+		KIDS (Kernel Installation and Distribution System) Build, for example, to
+		delete a traditional cross-reference from the installing site. </P> 
+	 <P>See <A HREF="db_ddmo2.htm" TITLE="DELIXN^DDMOD"
+		CLASS="bodylink">DELIXN^DDMOD</A> for information on the call to delete a
+		new-style index definition. </P> 
+	 <P></P> 
+	 <H5>Format</H5> 
+	 <PRE>DELIX^DDMOD(FILE,FIELD,CROSS_REF,FLAGS,OUTPUT_ROOT,MSG_ROOT)</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD><B>FILE</B></TD> 
+		  <TD COLSPAN="2">(Required) File or subfile number.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>FIELD</B></TD> 
+		  <TD COLSPAN="2">(Required) Field number.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>CROSS_REF</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Required) Cross-reference number. Traditional cross-references
+				are defined in the data dictionary under^DD(file#,field#,1,cross reference
+				number)</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>FLAGS</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. The possible values
+				are:</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ROWSPAN="2"></TD> 
+		  <TD VALIGN="TOP"><B>K</B></TD> 
+		  <TD> 
+			 <P>For Regular, KWIC, Mnemonic, and Soundex-type cross-references,
+				delete the data in the index. For MUMPS and Trigger-type cross-references,
+				execute the <B>K</B>ill logic of the cross-reference for all entries in the
+				file. For Bulletin-type cross-references, the "K" flag is ignored; the kill
+				logic for Bulletin-type cross-references is never executed by this procedure.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>W</B></TD> 
+		  <TD> 
+			 <P><B>W</B>rite messages to the current device as the index is
+				deleted and cross-references and input templates are recompiled.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><A NAME="Output_root"><B>OUTPUT_ROOT</B></A></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) The name of the array that should receive information
+				about input templates and cross-references that may have been recompiled and a
+				flag to indicate that the deletion was audited in the DD Audit file (#.6). See
+				"<A HREF="#output" CLASS="bodylink">Output</A>" below. This must be a closed
+				root, either local or global.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD COLSPAN="2">(Optional) The name of the array that should receive
+			 any error messages. This must be a closed root, either local or global. If not
+			 passed, errors are returned descendent from ^TMP("DIERR",$J).</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="output">Output</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>OUTPUT_ROOT</B></TD> 
+		  <TD> 
+			 <P>See <A HREF="#Output_root" TITLE="OUTPUT_ROOT"
+				CLASS="bodylink">OUTPUT_ROOT</A> under Input Parameters.</P> 
+			 <P>If the field on which the deleted cross-reference was defined is
+				used in any compiled input templates, those input templates are recompiled.
+				Information about the recompiled input templates is stored descendant from
+				OUTPUT_ROOT("DIEZ"):</P> 
+			 <PRE>OUTPUT_ROOT(&quot;DIEZ&quot;,input template #) = 
+input template name ^ file # ^ 
+compiled routine name</PRE> 
+			 <P>If cross-references for the file are compiled, they are
+				recompiled, and the compiled routine name is stored in OUTPUT_ROOT("DIKZ"):</P>
+			 
+			 <PRE>OUTPUT_ROOT(&quot;DIKZ&quot;) = compiled routine name</PRE> 
+			 <P>If the data dictionary for the file is audited, an entry is made
+				in the DD Audit file (#.6) and OUTPUT_ROOT("DDAUD") is set to 1:</P> 
+			 <PRE>OUTPUT_ROOT(&quot;DDAUD&quot;) = 1</PRE> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>In this example, regular cross-reference #4 (the "C" index), defined on
+		field #12 in file #16200, is deleted. The "K" flag indicates that the entire
+		^DIZ(16200,"C") index should be removed from the file.</P> 
+	 <PRE>    &gt;<B>D DELIX^DDMOD(16200,12,4,&quot;K&quot;,&quot;MYOUT&quot;)
+
+    &gt;ZW MYOUT
+</B>
+    MYOUT(&quot;DDAUD&quot;)=1
+    MYOUT(&quot;DIEZ&quot;,100)=ZZTEST EDIT^16200^ZZIT
+    MYOUT(&quot;DIKZ&quot;)=ZZCR
+
+</PRE> 
+	 <P>The MYOUT output array indicates that the deletion was recorded in the
+		DD Audit file (#.6). The input template ZZTEST EDIT (#100) was recompiled into
+		the ZZIT namespaced routines, because field #12 is used in that template.
+		Cross-references on file #16200 are recompiled under the ZZCR namespace.</P> 
+	 <P><B>Example 2</B></P> 
+	 <P>In this example, the whole-file regular cross-reference #7 (the "N"
+		index), defined on field #15 within subfile #16200.075, is deleted. The "K"
+		flag indicates that the entire ^DIZ(16200,"N") index should be removed, and the
+		"W" flag indicates that messages should be printed to the current device.</P> 
+	 <PRE>   <B> &gt;D DELIX(16200.075,15,7,&quot;KW&quot;)
+</B>
+    Removing index ...
+    Deleting cross-reference definition ...
+
+
+    Compiling ZZ TEST CR Input Template of File 16200...
+    'ZZIT1' ROUTINE FILED..
+    'ZZIT' ROUTINE FILED....
+    'ZZIT2' ROUTINE FILED.
+
+    Compiling Cross-Reference(s) 16200 of File 16200.
+
+    ...SORRY, HOLD ON...
+
+    'ZZCR1' ROUTINE FILED.
+    'ZZCR2' ROUTINE FILED.
+    'ZZCR3' ROUTINE FILED.
+    'ZZCR4' ROUTINE FILED.
+    'ZZCR5' ROUTINE FILED.
+    'ZZCR' ROUTINE FILED.
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD>The specified parameter is missing or invalid.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_301.htm" TITLE="Error 301"
+			 CLASS="bodylink">301</A></B></TD> 
+		  <TD>The passed flags are incorrect.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_401.htm" TITLE="Error 401"
+			 CLASS="bodylink">401</A></B></TD> 
+		  <TD>The file does not exist.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_406.htm" TITLE="Error 406"
+			 CLASS="bodylink">406</A></B></TD> 
+		  <TD>The file has no .01 definition.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_407.htm" TITLE="Error 407"
+			 CLASS="bodylink">407</A></B></TD> 
+		  <TD>A word-processing field is not a file.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_501.htm" TITLE="Error 501"
+			 CLASS="bodylink">501</A></B></TD> 
+		  <TD>The file does not contain the specified field.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_ddmod.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

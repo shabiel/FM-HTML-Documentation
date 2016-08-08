@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Error Codes Introduction</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,va fileman error messages,errors,error messages,introduction,codes,error codes">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="err_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: VA FileMan Error Codes Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">VA FileMan Error Codes</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>VA FileMan Error Codes Introduction</H4> 
+	 <P>Descriptions of the error codes returned by VA FileMan's DBS are
+		contained in this section. When an error condition is recognized, an error
+		code, the text of the error, and (when appropriate) one or more parameters are
+		returned to the client application. The "How the DBS Communicates" section of
+		the "<A HREF="dba_frm.htm" TARGET="_top" TITLE="Database Server"
+		CLASS="bodylink">Database Server</A>" chapter describes in detail the array
+		structure in which this information about the error is returned. </P> 
+	 <P>The following information is ordered by error code number. After the
+		number is a brief DESCRIPTION of the condition that produced the error. </P> 
+	 <P>Then the TEXT of the error is shown. Within the text, information that
+		is inserted into the message at the time it is created is represented by a
+		parameter name surrounded by vertical bars (|). For example, in the text of
+		message number 201, you see "|1|". Parameter 1 represents the variable name
+		that is missing or invalid. When the message is created, the name of the
+		variable causing the error is substituted into the text for the |1|. </P> 
+	 <P>After the text, the PARAMETERS associated with the error are listed.
+		Each parameter is followed by a short description. The names of the parameters
+		identify both the place within the text of a message into which they are
+		inserted and the subscript in the PARAM array that identifies them. Some
+		parameter names are constant in all appropriate error messages: FILE
+		representing file number, FIELD representing field number, and IENS
+		representing the IENS. If you need to identify in your application code the
+		file, field, or entry that caused an error, check these subscripts of the PARAM
+		array. Of course, if no parameters are listed, this indicates that there are
+		none associated with the particular error condition. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- err_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

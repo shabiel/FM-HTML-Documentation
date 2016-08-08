@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Display Filegram Template
+		Option </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,filegrams,display filegram template option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fg_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Filegrams Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Filegrams</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Display Filegram Template Option</H4> 
+	 <P>The Display Filegram Template option displays the FILEGRAM-type template
+		in a two-column format (like the Inquire to File Entries option). Multiple-type
+		fields are shown last in the display, no matter what their field number. </P> 
+	 <P>Here is an example of the output produced by the Display Filegram
+		Template option: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select FILEGRAM OPTION: <B>DIS</B>PLAY FILEGRAM TEMPLATE
+SELECT FILEGRAM TEMPLATE: <B>ZZTEST FILEGRAM</B>
+ 
+
+NAME: ZZTEST FILEGRAM             DATE CREATED: AUG 24, 1989
+  READ ACCESS:  @           FILE: 1001
+  USER #:  29               WRITE ACCESS:  @
+  DATE LAST USED: AUG 24, 1989	
+ORDER:  1                   FILEGRAM FILE:  1001
+ LEVEL:  1                        DATE LAST STORED: AUG 24, 1989
+FIELD ORDER:  1             FIELD NUMBER:  .01
+CAPTION (c):  NAME			
+FIELD ORDER:  2             FIELD NUMBER:  1
+CAPTION (c):  VERSION		
+FIELD ORDER:  3             FIELD NUMBER:  3
+CAPTION (c):  ROUTINE
+FIELD ORDER:  4             FIELD NUMBER:  4
+CAPTION (c):  CHANGE
+FIELD ORDER:  5             FIELD NUMBER:  6
+CAPTION (c):  DATE CHANGED
+FIELD ORDER:  6             FIELD NUMBER:  7
+CAPTION (c):  PROGRAMMER
+FIELD ORDER:  7             FIELD NUMBER:  11
+CAPTION (c):  DESCRIPTION
+ORDER:  2                   FILEGRAM FILE:  1001.05
+  LEVEL: 2                  PARENT:  1001
+  CROSS-REFERENCE: MULTIPLE	USER RESPONSE TO GET HERE: REPORTER
+  DATE LAST STORED: AUG 24, 1989
+FIELD ORDER:  1                   FIELD NUMBER:  .01
+CAPTION (c):  REPORTER  
+
+FIRST PRINT FIELD:  S DIFGT=315 D FG^DIFGB;X//  
+COMPILED (c):  N</PRE> <HR> 
+	 <P>The code in the FIRST PRINT FIELD has special meaning to VA FileMan.
+		</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fg_opt2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

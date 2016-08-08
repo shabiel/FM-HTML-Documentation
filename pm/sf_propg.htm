@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Field Properties</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,field properties,properties,property,field">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Field Properties</H4> 
+	 <UL> 
+		<LI><A HREF="#Field_type" TITLE="Field Type" CLASS="bodylink">Field
+		  Type</A><BR><BR></LI> 
+		<LI><A HREF="#field_order" TITLE="Field Order" CLASS="bodylink">Field
+		  Order</A><BR><BR></LI> 
+		<LI><A HREF="#Field" TITLE="Field"
+		  CLASS="bodylink">Field</A><BR><BR></LI> 
+		<LI><A HREF="#Unique_name" TITLE="Unique Name" CLASS="bodylink">Unique
+		  Name</A><BR><BR></LI> 
+		<LI><A HREF="#Captions"
+		  TITLE="Caption, Executable Caption, and Suppress Colon After Caption"
+		  CLASS="bodylink">Caption, Executable Caption, and Suppress Colon After
+		  Caption</A><BR><BR></LI> 
+		<LI><A HREF="#Default" TITLE="Default and Executable Default"
+		  CLASS="bodylink">Default and Executable Default</A><BR><BR></LI> 
+		<LI><A HREF="#data_length" TITLE="Data Length" CLASS="bodylink">Data
+		  Length</A><BR><BR></LI> 
+		<LI><A HREF="#coordinates" TITLE="Caption and Data Coordinates"
+		  CLASS="bodylink">Caption and Data Coordinates</A><BR><BR></LI> 
+		<LI><A HREF="#Right_justify" TITLE="Right Justify" CLASS="bodylink">Right
+		  Justify</A><BR><BR></LI> 
+		<LI><A HREF="#Required" TITLE="Required"
+		  CLASS="bodylink">Required</A><BR><BR></LI> 
+		<LI><A HREF="#Display_group" TITLE="Display Group"
+		  CLASS="bodylink">Display Group</A><BR><BR></LI> 
+		<LI><A HREF="#Disable" TITLE="Disable Editing and Disallow LAYGO"
+		  CLASS="bodylink">Disable Editing and Disallow LAYGO</A><BR><BR><BR></LI> 
+		<LI><A HREF="#Data_validation" TITLE="Data Validation"
+		  CLASS="bodylink">Data Validation</A><BR><BR></LI> 
+		<LI><A HREF="#Subpage" TITLE="Subpage Link" CLASS="bodylink">Subpage
+		  Link</A><BR><BR></LI> 
+		<LI><A HREF="#misc"
+		  TITLE="Branching Logic, Pre Action, Post Action, and Post Action on Change"
+		  CLASS="bodylink">Branching Logic, Pre Action, Post Action, and Post Action on
+		  Change</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="Field_type">Field Type</A></H5> 
+	 <P>(Required) Four different types of fields can be defined on a block:
+		</P> 
+	 <UL> 
+		<LI>Caption only<BR><BR></LI> 
+		<LI>Data dictionary<BR><BR></LI> 
+		<LI>Form only<BR><BR></LI> 
+		<LI>Computed </LI> 
+	 </UL> 
+	 <P>Caption-only fields are for displaying text on the screen. They have no
+		data portion associated with them. </P> 
+	 <P>Data dictionary fields correspond to fields in a file. They have a data
+		portion, which is the value of the field, and an optional caption portion,
+		which serves to identify the data on the screen for the user. </P> 
+	 <P>Form-only fields are fields that are defined only on the form and are
+		not tied to a field in a FileMan file. See the "<A HREF="sf_formo.htm"
+		TARGET="display" TITLE="Form-only Fields" CLASS="bodylink">Form-only
+		Fields</A>" section for more information about this field type. </P> 
+	 <P><A HREF="sf_comp.htm" TARGET="display" TITLE="Computed fields"
+		CLASS="bodylink">Computed fields</A>, like form-only fields, are fields that
+		are defined only on the form. You cannot place computed fields from FileMan
+		files on a form. The computed expression is defined on the form and can be
+		based on other fields on the form. Users cannot navigate to computed fields.
+		</P> <HR> 
+	 <H5><A NAME="field_order">Field Order</A></H5> 
+	 <P>(Required) The Field Order number determines the order in which users
+		traverse the fields in the block as they press the Enter/Return key. Field
+		Order is the .01 field of the Field multiple of the BLOCK file. </P> <HR> 
+	 <H5><A NAME="Field">Field</A></H5> 
+	 <P>(Required for Data Dictionary type fields.) The Field property applies
+		only to data dictionary type fields. It identifies a field in a VA FileMan file
+		or subfile. The DD Number of the block identifies the file or subfile that
+		contains the field. </P> <HR> 
+	 <H5><A NAME="Unique_name">Unique Name</A></H5> 
+	 <P>You can optionally give fields on a block a Unique Name. Unique Names
+		are never seen by the user. They can be used to identify fields in some of the
+		ScreenMan utilities, such as PUT^DDSVAL and $$GET^DDSVAL, and in the computed
+		expressions of computed fields. No two fields on a block can have the same
+		Unique Name. </P> <HR> 
+	 <H5><A NAME="Captions">Caption, Executable Caption, and Suppress Colon
+		After Caption</A></H5> 
+	 <P>A Caption is uneditable text that appears on the screen. Captions of
+		data dictionary, form-only, and computed fields serve to identify for the user
+		the data portion of the fields. Captions of these types of fields are
+		automatically followed by a colon, unless the Suppress Colon After Caption
+		property is set to YES. Captions of caption-only fields have no associated data
+		element and are not automatically followed by a colon. </P> 
+	 <P>If you want the text of a caption to be determined whenever the page is
+		painted, you can enter M code as an Executable Caption. The code should set the
+		local variable Y equal to the text you want displayed. A field with an
+		Executable Caption must have "!M" as a Caption. </P> <HR> 
+	 <H5><A NAME="Default">Default and Executable Default</A></H5> 
+	 <P>You can assign a Default to a Data Dictionary or form-only type field on
+		a form. ScreenMan presents the Default value to the user if the value of the
+		field is null when the page on which the field is located is first displayed.
+		Since ScreenMan validates the Default, it must be valid, unambiguous, and in
+		external form; otherwise, it is not used. </P> 
+	 <P>If the field is a multiple field, you can assign one of the following
+		defaults: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Valid Default Values for Multiple Fields Table"
+	  TITLE="Valid Default Values for Multiple Fields Table"> 
+		<TR> 
+		  <TD COLSPAN="2" VALIGN="TOP"><B>Valid Default Values for Multiple
+			 Fields</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Default</B></TD> 
+		  <TD VALIGN="TOP"><B>Subrecord displayed</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">FIRST</TD> 
+		  <TD VALIGN="TOP">The subrecord with the lowest IEN </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">LAST</TD> 
+		  <TD VALIGN="TOP">The subrecord with the highest IEN </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Subrecord number</TD> 
+		  <TD VALIGN="TOP">The subrecord with the specified IEN </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Here, the characters "FIRST" and "LAST" are keywords that ScreenMan
+		interprets as the subrecords with the lowest and highest IENs, respectively.
+		</P> 
+	 <P>If the value of the default should be determined at the time the page is
+		first presented to the user, you can enter M code as an Executable Default. The
+		code should set the local variable Y equal to a valid, unambiguous value in
+		external form. If the default in Y is invalid, it is not used. A field with an
+		Executable Default must have "!M" as a Default. </P> <HR> 
+	 <H5><A NAME="data_length">Data Length</A></H5> 
+	 <P>(Required for all field types, except caption-only.) Data Length defines
+		the length of the edit window for the data portion of fields. Ideally, the Data
+		Length should equal the maximum length of the external form of the data - the
+		form displayed to the user. </P> 
+	 <P>The Data Length of a word processing field need only be 1, since the
+		contents of the field are not displayed in the edit window. A Data Length of 1
+		gives the cursor a place to rest when the user navigates to the field. When the
+		user presses the Enter/Return key at the field, control is passed to the user's
+		Preferred Editor, where the text can be displayed and, if allowed, edited. </P>
+	 
+	 <P>If you define a Data Length smaller than a field's maximum size,
+		ScreenMan still provides two ways for the user to see the entire value of the
+		field: </P> 
+	 <UL> 
+		<LI>Since the edit window is a "scrolling window," text outside the
+		  confines of the edit window can scroll in, as text in the window scrolls
+		  out.<BR><BR></LI> 
+		<LI>When the cursor is within an edit window, the user can press
+		  <B>&lt;PF1&gt;Z</B> to invoke the "zoom editor." An area opens in the Command
+		  Area where up to 245 characters can be seen and edited at once.</LI> 
+	 </UL> 
+	 <P><B>NOTE:</B> You cannot define an edit window that wraps around to a
+		second line. In addition, the edit window must not extend into the rightmost
+		column of the screen. This space must be left blank so that the cursor has a
+		place to rest beyond the last character of the data value. You must, therefore,
+		never define a data length that causes the edit window to extend beyond the
+		next to last column of the screen -- that is, column 79 on an 80-column
+		display. </P> <HR> 
+	 <H5><A NAME="coordinates">Caption and Data Coordinates</A></H5> 
+	 <P>(Required if a field has a caption or data portion.) Caption and Data
+		Coordinates define the location of fields on the screen and are relative to the
+		coordinate of the block on which they are defined. The format of coordinate is:
+		Row,Column. The coordinate "1,1" for example, corresponds to the block's top
+		left corner - the first column on the first row of the block. </P> 
+	 <P>The
+		<A HREF="fe_intro.htm" TARGET="display" TITLE="Form Editor"
+		CLASS="bodylink">Form Editor</A> greatly simplifies the process of assigning
+		coordinates to captions and data. It allows you to drag and drop fields on the
+		screen, and thus eliminates the need to explicitly assign values to the
+		coordinate properties. </P> <HR> 
+	 <H5><A NAME="Right_justify">Right Justify</A></H5> 
+	 <P>Set the Right Justify property to YES to display the data for the field
+		to be right-justified. </P> <HR> 
+	 <H5><A NAME="Required">Required</A></H5> 
+	 <P>You can make any non-multiple field on a form required. Making a field
+		required on a form does not affect the definition of the field in the data
+		dictionary. You need not make a field required that is already required by its
+		data definition. The captions of required fields are underlined for easy
+		identification. See the "<A HREF="sf_file.htm" TARGET="display"
+		TITLE="Data Filing" CLASS="bodylink">Data Filing</A>" section for more
+		information on how ScreenMan checks required fields before filing.</P> 
+	 <P>Before filing, ScreenMan checks that: </P> 
+	 <UL> 
+		<LI>Required fields on all pages that can be accessed via the next and
+		  previous page links have values, even if you have not accessed those pages
+		  during the editing session.<BR><BR></LI> 
+		<LI>If you have accessed any subpages, required fields in those subpages
+		  must also have values.</LI> 
+	 </UL> 
+	 <P>If any required field is empty, the user cannot file any data changes.
+		When they attempt to file, ScreenMan displays a list of those fields that
+		require values.</P> 
+	 <P><B>NOTE:</B> "Pop-up" pages NOT accessed during the editing session will
+		not be checked for Required fields. </P> 
+	 <P>You can change the Required property on the fly while a form is running
+		by making a call to
+		<A HREF="sm_ureq.htm" TARGET="display" TITLE="REQ^DDSUTL"
+		CLASS="bodylink">REQ^DDSUTL</A>. See that section for more information on this
+		call. </P> <HR> 
+	 <H5><A NAME="Display_group">Display Group</A></H5> 
+	 <P>Display group helps users resolve ambiguity when they attempt to ^-jump
+		to a field that has a caption that is not unique. If more than one field has
+		the same caption, when users try to ^-jump to a field with that caption, they
+		are presented with a list of fields to choose from. The text in the Display
+		Group property is displayed in parentheses after the caption to help the user
+		identify the correct field. </P> 
+	 <P>For example, if two fields have the caption "NAME:", but one of those
+		fields has a Display Group "Next of Kin," when users enter ^NAME, they will be
+		asked to choose between "NAME" and "NAME (Next of Kin)". </P> <HR> 
+	 <H5><A NAME="Disable">Disable Editing and Disallow LAYGO</A></H5> 
+	 <P>If you set the Disable Editing property to "YES," users cannot navigate
+		to the field, unless the field is a word processing field. If the field is
+		defined as uneditable in the Data Dictionary, users cannot navigate to it -
+		even if the field's value is null. See the "<A HREF="../u1/sm_intro.htm#Wp"
+		TITLE="Word-processing Fields" CLASS="bodylink">Word-processing Fields</A>"
+		section in the "VA FileMan Getting Started Manual" for information about
+		uneditable word processing fields. </P> 
+	 <P>If you set the Disable Editing property to "REACHABLE," users can
+		navigate to the field, but they cannot change the value. You might want to make
+		an uneditable field reachable if, for example, you want to attach branching
+		logic to that field, to take the user to another page when they press the
+		Enter/Return key. You might also want to make an uneditable field reachable if
+		the data value cannot fit in an edit window. Then the user can navigate to the
+		field and see the entire contents of the field, either by scrolling the data in
+		the edit window or by invoking the "zoom editor."</P> 
+	 <P>You can change Disable Editing property on the fly while a form is
+		running by making a call to
+		<A HREF="sm_uuned.htm" TARGET="display" TITLE="UNED^DDSUTL"
+		 CLASS="bodylink">UNED^DDSUTL</A>. See this section for more information on this
+		call. </P> 
+	 <P><B>NOTE:</B> Fields on display blocks are always uneditable. On display
+		blocks, users can navigate only to multiple and word processing fields. </P> 
+	 <P>Disabling editing for multiple fields has no meaning. However, you can
+		prevent users from adding new entries into a multiple by setting the Disallow
+		LAYGO property to YES. Multiple fields on display blocks automatically prohibit
+		LAYGO. </P> <HR> 
+	 <H5><A NAME="Data_validation">Data Validation</A></H5> 
+	 <P>ScreenMan uses the definition of a field to automatically validate
+		values input by the user. You can use the Data Validation property to validate
+		the value even further. Data Validation is M code that is executed after the
+		user enters a new value for a field and after the automatic validation that
+		ScreenMan normally performs. If the code sets the variable DDSERROR, ScreenMan
+		rejects the value. You might also want to ring the bell and make a call to
+		HLP^DDSUTL to display a message to the user that indicates the reason the value
+		was rejected. </P> <HR> 
+	 <H5><A NAME="Subpage">Subpage Link</A></H5> 
+	 <P>A subpage can be linked to a parent page by the Subpage Link property.
+		The Subpage Link must be equal to the Page Number of the subpage. </P> <HR> 
+	 <H5><A NAME="misc">Branching Logic, Pre Action, Post Action, and Post
+		Action on Change</A> </H5> 
+	 <P>These properties contain M code that is executed at the following times:
+		</P> 
+	 <TABLE BORDER="1"
+	  SUMMARY="descriptions of Field-level Pre and Post Actions Table" WIDTH="100%"
+	  TITLE="descriptions of Field-level Pre and Post Actions Table"> 
+		<TR> 
+		  <TD COLSPAN="2" VALIGN="TOP"><B>Descriptions of Field-level Pre and
+			 Post Actions</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Property</B></TD> 
+		  <TD VALIGN="TOP"><B>Executed</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Branching Logic</TD> 
+		  <TD VALIGN="TOP">When the user presses the Enter/Return key at the
+			 field </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Pre Action</TD> 
+		  <TD VALIGN="TOP">Right before the user lands on the field </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Post Action</TD> 
+		  <TD VALIGN="TOP">When the user leaves the field </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Post Action on Change</TD> 
+		  <TD VALIGN="TOP">When the user leaves the field, and only if the user
+			 changed the value of the field </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>The code in the Branching Logic, Pre Action, Post Action, Post Action on
+		Change, and Data Validation at the field level can rely on the following
+		variables: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Variables Available in Field-level Pre and Post Actions Table"
+	  TITLE="Variables Available in Field-level Pre and Post Actions Table"> 
+		<TR> 
+		  <TD COLSPAN="2" VALIGN="TOP"><B>Variables Available in Field-level Pre
+			 and Post Actions</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Local Variable</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">X</TD> 
+		  <TD VALIGN="TOP">The current internal value of the field </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">DDSEXT</TD> 
+		  <TD VALIGN="TOP">The current external value of the field </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">DDSOLD</TD> 
+		  <TD VALIGN="TOP">The previous internal value of the field </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>The Post Action and Post Action on Change are not executed when the user
+		times out at a field, enters an ^ to go to the Command Area, or ^-jumps to
+		another field.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sf_propg.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 14, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

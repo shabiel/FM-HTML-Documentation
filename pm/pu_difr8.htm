@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Running an Init on Target System (14
+		of 16)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,running an init on target system,step 14">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Running an Init on Target System (14 of 16)</H4> 
+	 <H5><A NAME="SpecProcessing">Special Processing</A></H5> 
+	 <UL> 
+		<LI>HELP FRAMES 
+		  <P>If an exact match is found for a HELP FRAME entry, only the existing
+			 word processing field TEXT and the multiple fields RELATED FRAME and INVOKED BY
+			 ROUTINE are deleted from the existing entry. Then, the new entry is brought in
+			 on top of the old one.</P> 
+		  <P>For all entries brought in by the init, the init loops through the
+			 RELATED FRAME multiple and resolves the pointer field RELATED FRAME, which is a
+			 pointer back to the Help Frame file. </P> <BR><BR></LI> 
+		<LI>BULLETINS 
+		  <P>If a matching entry is found, the old entry in the Bulletin file is
+			 deleted. However, entries in the bulletin's MAIL GROUP multiple (which identify
+			 recipients of the bulletin) present on the target system before the install
+			 will remain associated with the bulletin after the incoming bulletin is
+			 installed.</P> 
+		  <P>The init displays each bulletin brought in by the init and reminds
+			 the installer to "Remember to add mail groups for new bulletins." </P><BR><BR>
+		  </LI> 
+		<LI>PACKAGE FILE ENTRIES 
+		  <P> The current date/time is stuffed into the field DATE INSTALLED AT
+			 THIS SITE, within the VERSION multiple for the current version of the
+			 package.</P> 
+		  <P>The pointer field PRIMARY HELP FRAME is resolved. </P> <BR><BR></LI>
+		
+		<LI>PACKAGE PARAMETERS entry in the ORDER PARAMETERS file (an Order Entry
+		  file) 
+		  <P>Pointer fields DISPLAY GROUP DEFAULT, PROTOCOL TO EXPORT, DEFAULT
+			 PROTOCOL, and MENU are resolved. If pointers to the Protocol file cannot be
+			 resolved because the pointed-to protocol cannot be found, the init routines add
+			 a new entry to the Protocol file (with just a .01 field) in order to resolve
+			 the pointer. This is done because PROTOCOLS are exported in a special set of
+			 routines (called ONIT routines) that are normally executed as a post-init. </P>
+		  <BR><BR></LI> 
+		<LI>OPTIONS 
+		  <P>If a matching entry is found, the entire old entry is not deleted.
+			 Only the DESCRIPTION field (a word processing field) and the ITEMS multiple
+			 (containing menu items) are deleted from the old entry before the new one is
+			 brought in. </P> 
+		  <P>For example, if the site has a local lock on an OPTION, and no lock
+			 is brought in by the init, the local lock is preserved.</P> 
+		  <P>The pointer fields SERVER BULLETIN, SERVER MAIL GROUP, PACKAGE, HELP
+			 FRAME and the .01 field of the ITEMS multiple (which points back to the Option
+			 file) are all resolved. </P> <BR><BR></LI> 
+		<LI>SECURITY KEYS 
+		  <P>No special processing, except that if a matching entry is found in
+			 the target system, it is merged rather than replaced. Note that pointers in the
+			 SUBORDINATE KEY multiple are not resolved; so, data should not be exported in
+			 that multiple. </P> <BR><BR></LI> 
+		<LI>FUNCTION 
+		  <P>No special processing is done for the Function file. </P>
+		  <BR><BR></LI> 
+		<LI>PRINT, INPUT and SORT TEMPLATES 
+		  <P>The only special processing done for these templates is that after
+			 they are all installed, compiled PRINT and INPUT templates are automatically
+			 recompiled. The init uses the system's preferred routine size from the MUMPS
+			 OPERATING SYSTEM file (#.7) when compiling these templates. It is possible that
+			 the recipient of the init could already have routines with the same names that
+			 the compiling routine will use. Thus, the developer should warn the installer
+			 of the routine names that will be used by incoming compiled templates,
+			 especially if the developer is sending templates that are not namespaced. </P>
+		  <BR><BR></LI> 
+		<LI>SCREEN TEMPLATES (FORMS) 
+		  <P>Any BLOCKS that are pointed-to by FORMS are automatically included
+			 in the init routines. The BLOCKS are installed first, with no special
+			 processing. Then, the FORMS are installed. Finally, pointers to the Block file
+			 from the Form file are resolved. </P> </LI> 
+	 </UL> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_difr8.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

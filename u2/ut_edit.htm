@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: File Utilities - Edit
+		File</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,file utilities,utilities,edit file,edit">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ut_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: File Utilities Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">File Utilities</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Edit File</H4> 
+	 <P>The Edit File option available on the VA FileMan Utility Functions
+		submenu displays the various attributes of a file you specify in Screen Mode
+		(i.e., invokes a
+		<A HREF="../u1/sm_frm.htm" TARGET="_top" TITLE="ScreenMan"
+		 CLASS="bodylink">ScreenMan</A> form).&nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0 with FM V. 22" WIDTH="35" HEIGHT="11">
+		</P> 
+	 <P>Here is an example using the Edit File option with the ORDER file (#100)
+		in Screen Mode:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select Utility Functions Option: <B>edit</B> File
+
+MODIFY WHAT FILE: ORDER// <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>You will then be taken into a ScreenMan form where you can edit the
+		properties of the file, as shown below:</P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG SRC="Editfile.jpg"
+		 ALT="ScreenMan Form where you can edit the properties of a file." WIDTH="640"
+		 HEIGHT="455"> </CENTER> 
+	 <P></P> 
+	 <PRE></PRE> <HR> 
+	 <P>You can use this option to:</P> 
+	 <UL> 
+		<LI><B>Edit the Name of a File --</B> Edit the file name at the "FILE
+		  NAME:" prompt. <BR> <BR> </LI> 
+		<LI><B>Delete a File --</B> If you enter an at-sign ("<B>@</B>") at the
+		  "FILE NAME:" prompt, you are given the choice of deleting the <B><I>entire
+		  file</I></B> and its data attribute dictionary (including all of its templates
+		  and file definitions) or just deleting the <B><I>current individual entries in
+		  the file</I></B>. However, you <I>cannot</I> delete a file that is pointed to
+		  by another file. <BR> <BR> </LI> 
+		<LI><B>Enter or Edit the Description of a File --</B> You can enter or
+		  edit the word processing text description for documenting the file at the
+		  "DESCRIPTION..." prompt. This description appears in the Standard, Modified
+		  Standard, and Global Map format data dictionary listings. <BR> <BR> </LI> 
+		<LI><B>Enter or Edit the Application Group --</B> You can enter or edit
+		  the Application Group at the "Select APPLICATION GROUP:" prompt. Enter a
+		  namespace (from two to four characters) indicating a package accessing this
+		  file. <BR> <BR> </LI> 
+		<LI><B>Enter or Edit the Developer's Name --</B> You can enter or edit
+		  the name of the package developer at the "DEVELOPER:" prompt. Entering two
+		  question marks ("<B>??</B>") lets you choose from a list of names. <BR> <BR>
+		  </LI> 
+		<LI><B>Enter or Edit the File Access Parameters --</B> You can enter or
+		  edit the security access to a file by making entries at the "DATA DICTIONARY
+		  ACCESS:", "READ ACCESS:", "WRITE ACCESS:", "DELETE ACCESS:", "LAYGO ACCESS:",
+		  and/or "AUDIT ACCESS:" prompts. File security is fully explained in the "<A
+		  HREF="ds_frm.htm" TARGET="_top" CLASS="bodylink" TITLE="Data Security">Data
+		  Security</A>" chapter. <BR> <BR> </LI> 
+		<LI><B>Turn Auditing On/Off for a File's Data Dictionary --</B> If you
+		  want to turn auditing on for data dictionary changes, enter YES at the "DD
+		  AUDIT:" prompt. Answer NO, if you don't want to audit data dictionary changes.
+		  This is fully explained in the "<A HREF="au_frm.htm" TARGET="_top"
+		  TITLE="Auditing" CLASS="bodylink">Auditing</A>" chapter.</LI> 
+		<LI><B>Ask/Don't Ask Users to Confirm Their Entry Selection --</B> If you
+		  want users who select an entry in a file (for any lookup purpose) to confirm
+		  their entry selection by answering positively at the "&#133;OK?" prompt, answer
+		  YES at the "ASK 'OK' WHEN LOOKING UP AN ENTRY:" prompt. <BR> <BR> <B>NOTE:</B>
+		  This feature can be helpful on files containing many similar or confusingly
+		  named entries (e.g., files for drugs). <BR> <BR> If you don't want users to
+		  confirm their entry selection, answer NO at the "ASK 'OK' WHEN LOOKING UP AN
+		  ENTRY:" prompt. The default is NO. <BR> <BR> </LI> 
+		<LI><B>Enter or Edit a Post-Selection Action (only available when you
+		  have programmer access) --</B> If you have programmer access, you can write M
+		  code for a
+		  <A HREF="../pm/afd_10.htm" TITLE="Post-Selection Action"
+		  CLASS="bodylink">Post-Selection Action</A>, for entries in this file. This is
+		  explained in the "<A HREF="../pm/index.htm" TARGET="_top"
+		  TITLE="VA FileMan V. 22.0 Programmer HTML Manual" CLASS="bodylink">VA FileMan
+		  Programmer Manual</A>." <BR> <BR> </LI> 
+		<LI><B>Enter a Lookup Routine (only available when you have programmer
+		  access) --</B> If you have programmer access, you also can enter an existing
+		  lookup routine. To do this, enter a routine namespace (from three to six
+		  characters, no "<B>^</B>") at the "LOOK-UP PROGRAM:" prompt. The name you
+		  choose for the lookup routine must be a routine currently on the system. This
+		  special lookup routine will be executed instead of the standard VA FileMan
+		  lookup logic, whenever a call is made to ^DIC. <BR> <BR> </LI> 
+		<LI><B>Specify that Cross-references on a File Should be Compiled (only
+		  available when you have programmer access) --</B> If you have programmer
+		  access, you also can specify that cross-references on a file should be
+		  compiled. To do this, enter a routine namespace (from three to six characters,
+		  no "<B>^</B>") at the "CROSS-REFERENCE ROUTINE:" prompt. This will become the
+		  namespace of the compiled routine(s). If a <I>new</I> routine name is entered,
+		  but the cross-references are not compiled at this time, the routine name will
+		  be automatically deleted. <BR> <BR> To <B>stop</B> the use of the compiled
+		  cross-references, enter an at-sign ("<B>@</B>") at the "CROSS-REFERENCE
+		  ROUTINE:" prompt. At this point, the cross-references are considered
+		  uncompiled, and VA FileMan will not use the routine for re-indexing. If you
+		  decide later to recompile the cross-references, you will be shown the routine
+		  name previously used so that you can easily reuse the same routine name.
+		  Stopping the use of the compiled cross-reference does <I>not</I> delete the
+		  compiled routines. If you want, you can delete those routines manually.</LI> 
+	 </UL>	 <P>&nbsp;</P> 
+<HR CLASS="hrstyle">
+	 <!-- ut_edit.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

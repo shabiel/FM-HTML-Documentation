@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DD^%DT</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,dd^%dt,dt">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>DD^%DT: Internal to External Date</H4> 
+	 <UL> 
+		<LI><A HREF="cl_dt.htm"
+		  TITLE="Introduction to Date/Time Formats (Read First)"
+		  CLASS="bodylink">Introduction to Date/Time Formats (Read First)</A></LI> 
+	 </UL> 
+	 <P>There are two ways to convert a date from internal to external format -
+		this call and
+		<A HREF="cl_dt3.htm" TARGET="display" TITLE='X ^DD("DD")' CLASS="bodylink">X
+		^DD("DD")</A>. (This is the reverse of what
+		<A HREF="cl_dt.htm" TARGET="display" TITLE="%DT" CLASS="bodylink">%DT</A>
+		does.) This entry point takes an internal date in the variable Y and converts
+		it to its external representation. </P> 
+	 <H5><A NAME="example1">Example 1</A></H5> 
+	 <PRE>&gt;S Y=2690720.163 D DD^%DT W Y
+JUL 20, 1969@1630</PRE> 
+	 <P>This results in Y being equal to JUL 20, 1969@16:30. (Single space
+		before the 4-digit year.)</P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="15%"><B>Y</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) This contains the internal date to be converted. If
+				this has five or six decimal places, seconds will automatically be returned.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>%DT</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This forces seconds to be returned even if Y does not
+				have that resolution. %DT must contain S for this to happen. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variable</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="15%"><B>Y</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Y is returned as the external form of the date. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>See also
+		<A HREF="cl_dio2.htm" TARGET="display" TITLE="DT^DIO2"
+		 CLASS="bodylink">DT^DIO2</A>, which takes an internal date in the variable Y
+		and <I>writes out</I> its external form.</P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dt2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

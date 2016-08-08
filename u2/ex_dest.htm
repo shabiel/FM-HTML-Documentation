@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Extract Tool Destination
+		File</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,extract tool,tools,extract,destination file">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Extract Tool Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Destination File</H4> 
+	 <P>The term "destination file" represents the VA FileMan file that stores
+		the extracted data. The destination file can be located anywhere on the network
+		that is recognized by the system. To create this file, you select either of two
+		VA FileMan options: Modify File Attributes or the Extract Tool's
+		<A HREF="ex_opt4.htm" TITLE="Modify Destination File" CLASS="bodylink">Modify
+		Destination File</A>.</P> 
+	 <P>For each extract field in the
+		<A HREF="ex_src.htm" TITLE="source file" CLASS="bodylink">source file</A>, a
+		corresponding field in the destination file must exist. Certain Data Types can
+		optionally be resolved to external form before moving the data to the
+		destination file. For example, data extracted from a POINTER TO A FILE DATA
+		TYPE field can be moved to a FREE TEXT-type field in the destination file, if
+		external form of data is moved; or such data can be moved to a NUMERIC-type
+		field, if the internal value is moved (see the "<A HREF="ex_map.htm"
+		TITLE="Mapping Information" CLASS="bodylink">Mapping Information</A>" topic in
+		this manual). </P> 
+	 <P>The destination file uses a file level attribute called ARCHIVE FILE.
+		The following is a description of this flag: </P> 
+	 <UL> 
+		<LI>YES means this is an archive file and users <I>cannot</I> modify or
+		  delete the data or the data dictionary. Any data dictionary changes may
+		  invalidate the archived data.<BR><BR></LI> 
+		<LI>NO (or null) means there are no restrictions on the file.</LI> 
+	 </UL> 
+	 <P>If you need to update an archive file's data dictionary, you must
+		convert the old data to the new data dictionary format. </P> 
+	 <P>Updates to an archive file will be allowed only through the extract
+		option, <A HREF="ex_opt6.htm" TITLE="Update Destination File"
+		CLASS="bodylink">Update Destination File</A> option, or through the programmer
+		entry point
+		<A HREF="../pm/ft_diax2.htm" TARGET="display" TITLE="EXTRACT^DIAXU"
+		 CLASS="bodylink">EXTRACT^DIAXU</A> (see the "<A HREF="../pm/index.htm"
+		TARGET="_top" TITLE="VA FileMan Programmer HTML Manual" CLASS="bodylink">VA
+		FileMan Programmer Manual</A>" for details). </P> 
+	 <P>Only Regular, KWIC, and Soundex-type cross-references are recommended
+		for archive files. No other types of cross-references should be created. </P> 
+	 <P>If you are building a destination file that will store archived data,
+		set the ARCHIVE FILE flag to YES (do this with the
+		<A HREF="ex_opt4.htm" TITLE="Modify Destination File" CLASS="bodylink">Modify
+		Destination File</A> option). Setting the ARCHIVE FILE flag to YES prevents
+		users from modifying or deleting the data in the file or the file's data
+		dictionary while using VA FileMan options or programmer calls. Users are also
+		prevented from deleting file entries while using VA FileMan options or
+		programmer calls. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ex_dest.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

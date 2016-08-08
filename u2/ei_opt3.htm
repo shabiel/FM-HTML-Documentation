@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Export Tool Create Export
+		Template Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,step 3,create export template option,templates">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>3. Create Export Template Option</H4> 
+	 <P>The next step to export data is to create an EXPORT template with the
+		Create Export Template option. The EXPORT template combines the SELECTED EXPORT
+		FIELDS template (created in
+		<A HREF="ei_opt2.htm" TITLE="Step 2: Select Fields for Export Option"
+		 CLASS="bodylink">Step 2</A>) with a FOREIGN FORMAT (see
+		<A HREF="ei_how.htm#Foreign_Format_Entries"
+		 TITLE="Step 1: Make Sure a FOREIGN FORMAT File Entry is Available"
+		 CLASS="bodylink">Step 1</A>).</P> 
+	 <P>Besides choosing a SELECTED EXPORT FIELDS template and a FOREIGN FORMAT,
+		you will be asked for any additional information that is needed to fully define
+		the export. If you do not supply the requested information, the EXPORT template
+		cannot be created. Values in the FOREIGN FORMAT entry you choose determine
+		whether or not you will be prompted for more information. </P> 
+	 <P>The following table indicates which values for which FOREIGN FORMAT
+		fields will result in prompts:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="FOREIGN FORMAT Fields tha will RESULT in Prompts Table (Foreign Format field, value, and information required)">
+		
+		<TR> 
+		  <TD VALIGN="TOP"><B>FOREIGN FORMAT Field</B></TD> 
+		  <TD VALIGN="TOP"><B>Value </B> </TD> 
+		  <TD VALIGN="TOP"><B>Information Required</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">FIELD DELIMITER</TD> 
+		  <TD VALIGN="TOP">"ASK"</TD> 
+		  <TD VALIGN="TOP">The character or characters to separate fields. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">RECORD DELIMITER</TD> 
+		  <TD VALIGN="TOP">"ASK"</TD> 
+		  <TD VALIGN="TOP">The character or characters to separate records. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">RECORD LENGTH FIXED?</TD> 
+		  <TD VALIGN="TOP">"1" or "YES" </TD> 
+		  <TD VALIGN="TOP">The number of characters in each field to be exported.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">NEED FOREIGN FIELD NAMES?</TD> 
+		  <TD VALIGN="TOP">"1" or "YES" </TD> 
+		  <TD VALIGN="TOP">The name of each field recognized by the importing
+			 application. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">MAXIMUM OUTPUT LENGTH</TD> 
+		  <TD VALIGN="TOP">"&Oslash;" </TD> 
+		  <TD VALIGN="TOP">The maximum number of characters on each line of
+			 output, usually the longest possible exported record. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">PROMPT FOR DATA TYPE?</TD> 
+		  <TD VALIGN="TOP">"1" or "YES" </TD> 
+		  <TD VALIGN="TOP">The DATA TYPE of each exported field; possible choices
+			 are FREE TEXT, NUMERIC, or DATE/TIME. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>In the example below, the file and field specifications in the SELECTED
+		EXPORT FIELDS template example from
+		<A HREF="ei_opt2.htm" TITLE="Step 2: Select Fields for Export Option"
+		 CLASS="bodylink">Step 2</A> are combined with the 123 Import Numbers FOREIGN
+		FORMAT:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select DATA EXPORT TO FOREIGN FORMAT OPTION: <B>C</B>REATE EXPORT TEMPLATE
+
+OUTPUT FROM WHAT FILE: <B>PATIENT &lt;RET&gt;</B>  (10 entries)
+
+Enter SELECTED EXPORT FIELDS Template: <B>PAT</B>IENT TEST   
+**SELECTED EXPORT FIELDS**  (OCT 30, 1992@11:32) USER #7  FILE #99002
+
+Do you want to see the fields stored in the PATIENT TEST template?
+Enter Yes or No: NO// <B>YES</B>
+
+FIRST PRINT FIELD: NAME// <B>&lt;RET&gt;</B>
+THEN PRINT FIELD: INTERNAL(SEX)// <B>&lt;RET&gt;</B>
+THEN PRINT FIELD: $E(RELIGION:CLASSIFICATION,1,5)// <B>&lt;RET&gt;</B>
+THEN PRINT FIELD: DIAGNOSIS// <B>&lt;RET&gt;</B>
+  THEN PRINT DIAGNOSIS SUB-FIELD: DIAGNOSIS// <B>&lt;RET&gt;</B>
+  THEN PRINT DIAGNOSIS SUB-FIELD: AGE AT ONSET// <B>&lt;RET&gt;</B>
+  THEN PRINT DIAGNOSIS SUB-FIELD: // <B>&lt;RET&gt;</B>
+THEN PRINT FIELD: // <B>&lt;RET&gt;</B>
+
+Do you want to use this template?
+Enter Yes or No: YES// <B>&lt;RET&gt;</B>
+
+Do you want to delete the PATIENT TEST template
+after the export template is created?
+Enter Yes or No: NO// <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P>When asked if you want the SELECTED EXPORT FIELDS template deleted,
+		answer YES only if you know you won't need the template again. If an EXPORT
+		template is not successfully created, the SELECTED EXPORT FIELDS template will
+		not be deleted. </P> 
+	 <P>Next, identify the FOREIGN FORMAT to use, and name the EXPORT template
+		that you're creating. You can't overwrite an existing PRINT template:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select FOREIGN FORMAT: <B>123 IMPORT NUMBERS &lt;RET&gt;</B> **DISTRIBUTED BY VA FILEMAN**
+
+Enter name for EXPORT Template: <B>PATIENT TO 123</B>
+  Are you adding 'PATIENT TO 123' as 
+    a new PRINT TEMPLATE (the 197TH)?  No// <B>Y &lt;RET&gt;</B>  (Yes)
+</PRE> <HR> 
+	 <P>After you choose the EXPORT template name, you are prompted for any
+		additional information needed. In this example, the format does require
+		additional information: the DATA TYPE for each field (in this situation the
+		defaults derived by the Export Tool are correct) and the maximum length of each
+		record:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Enter the data types of the fields being exported below.
+
+Do you want to continue?
+Enter Yes or No: YES// <B>&lt;RET&gt;</B>
+
+NAME: FREE TEXT// <B>&lt;RET&gt;</B>  FREE TEXT
+INTERNAL(SEX): FREE TEXT// <B>&lt;RET&gt;</B>  FREE TEXT  
+$E(RELIGION:CLASSIFICATION,1,5): FREE TEXT// <B>&lt;RET&gt;</B>  FREE TEXT  
+DIAGNOSIS in DIAGNOSIS subfile: FREE TEXT// <B>&lt;RET&gt;</B>  FREE TEXT  
+AGE AT ONSET in DIAGNOSIS subfile: NUMERIC// <B>&lt;RET&gt;</B>  NUMERIC
+
+Enter the maximum length of a physical record that can be exported.
+Enter '^' to stop the creation of an EXPORT template.
+
+MAXIMUM OUTPUT LENGTH: <B>100</B>
+
+     Export Template created.
+</PRE> <HR> 
+	 <P>The Export Tool checks to make sure that your SELECTED EXPORT FIELDS
+		template does not contain fields from Subfiles (Multiples) that are not
+		descendent from each other. (See the "<A HREF="ei_mult.htm"
+		TITLE="Exporting Data From Multiples" CLASS="bodylink">Exporting Data From
+		Multiples</A>" topic in this section.) If you have not followed that
+		restriction, you will receive an error message. The SELECTED EXPORT FIELDS
+		template would have to be modified.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_opt3.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

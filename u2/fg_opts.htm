@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Using Filegrams</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,filegrams,using">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fg_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Filegrams Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Filegrams</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Using Filegrams</H4> 
+	 <P>Here is a summary of the basic steps needed to send and install a
+		filegram: </P> 
+	 <OL> 
+		<LI>The filegram <B>sender</B> creates a FILEGRAM-type template for a
+		  specified file (<A HREF="fg_opt1.htm" TITLE="Create/Edit Filegram Template"
+		  CLASS="bodylink">Create/Edit Filegram Template</A> option). The
+		  <A HREF="fg_opt2.htm" TITLE="Display Filegram Template"
+			CLASS="bodylink">Display Filegram Template</A> option can be used to review the
+		  template.<BR><BR></LI> 
+		<LI>The <B>sender</B> can optionally designate specifiers with the
+		  <A HREF="fg_opt5.htm" TITLE="Specifiers" CLASS="bodylink">Specifiers</A>
+		  option. These are used for matching existing entries with
+		  filegrams.<BR><BR></LI> 
+		<LI>The <B>sender</B> then generates a filegram for a specific entry (<A
+		  HREF="fg_opt3.htm" TITLE="Generate Filegram" CLASS="bodylink">Generate
+		  Filegram</A> option). The filegram is placed into a MailMan message. The
+		  filegram sender sends this message to an individual or individuals at a remote
+		  or local destination.<BR><BR></LI> 
+		<LI>The <B>recipient</B>
+		  <A HREF="fg_mail.htm" TITLE="receives the Filegram with MailMan"
+			CLASS="bodylink">receives the Filegram with MailMan</A>, reading the mail
+		  message containing the filegram, and forwarding it to S.DIFG-SRV-HISTORY. This
+		  is a special server that loads the message into the recipient's FILEGRAM
+		  HISTORY file (#1.12) and sets up the interface between VA FileMan and MailMan
+		  on the target system.<BR><BR>If you want to install the filegram on a system
+		  other than the one where you received it, instead of immediately forwarding to
+		  the S.DIFG-SRV-HISTORY server, forward the message to an individual on the
+		  ultimate target system (who in turn forwards it to <I>their</I>
+		  S.DIFG-SRV-HISTORY server.<BR><BR></LI> 
+		<LI>Both the <B>sender</B> and the <B>recipient</B> can use the
+		  <A HREF="fg_opt4.htm" TITLE="View Filegram" CLASS="bodylink">View Filegram</A>
+		  option to inspect the filegram.<BR><BR></LI> 
+		<LI>Then the <B>recipient</B> of the filegram on the target system uses
+		  the
+		  <A HREF="fg_opt6.htm" TITLE="Install/Verify Filegram option"
+		  CLASS="bodylink">Install/Verify Filegram option</A> to install the filegram
+		  into the destination file.<BR><BR></LI> 
+		<LI><B>Senders</B> and <B>recipients</B> can
+		  <A HREF="fg_del.htm" TITLE="delete a filegram" CLASS="bodylink">delete a
+		  filegram</A> at any time.</LI> 
+	 </OL> 
+	 <P>The recipient can choose to modify the S.DIFG-SRV-HISTORY server or
+		create another server to aid in the installation of filegrams. </P> 
+	 <P><B>NOTE:</B> For additional information about setting up servers, please
+		refer to the Kernel and MailMan documentation.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fg_opts.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

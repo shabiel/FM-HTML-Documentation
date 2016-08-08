@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Input Transform</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="afd_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Advanced File Definition Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Advanced File Definition</A></H3> 
+	 <H4><A NAME="Input Transform">INPUT Transform</A></H4> <HR CLASS="hrstyle">
+	 
+	 <P>An INPUT transform is M code for a particular field that is executed to
+		determine if the data for that field is valid.</P> 
+	 <P>The M code for some field types' INPUT transforms is automatically
+		generated when you create the field (this is the case for Free Text, Numeric,
+		Date/time, Computed, MUMPS, and screened Pointer field types). </P> 
+	 <P> The Input Transform option of the Utility Functions submenu allows
+		those with programmer access to customize the M code in automatically generated
+		INPUT transforms. It also lets you create input tranforms for other field
+		types. In the Input Transform option, when you select the field, you see an M
+		statement that validates the variable X and kills it if it is invalid. Here, X
+		usually contains the user's response that is being validated. If the field is a
+		variable pointer data type, X contains the value in internally stored format -
+		that is, 'record_number;storage_root'. </P> 
+	 <P>You can rewrite this line of code to meet individual requirements. If
+		desired, the code can transform X by resetting it to another value to be filed.
+		An <A NAME="example">example</A> would be a name transform that deletes an
+		extraneous space character following a comma as shown below: </P> 
+	 <PRE>    INPUT TRANSFORM: K:$L(X)&gt;30!($L(X)&lt;3) X    Replace <B>K</B> 
+    With <B>S:X[&quot;, &quot; X=$P(X,&quot;, &quot;)_&quot;,&quot;_$P(X,&quot;,
+&quot;,2) K</B> 
+    Replace <B>&lt;RET&gt;
+</B>    S:X[&quot;, &quot; X=$P(X,&quot;, &quot;)_&quot;,&quot;_$P(X,&quot;, &quot;,2) K:$L(X)&gt;30!($L(X)&lt;3) X 
+
+
+</PRE> 
+	 <P>Unlike the M code for <A HREF="afd_8.htm" CLASS="bodylink">OUTPUT
+		transforms</A>, you <B>can</B> use the IF, FOR, and QUIT commands in the M code
+		for INPUT transforms. </P> 
+	 <P>Once an INPUT transform has been created for a field, the syntax
+		checking that the field performs can no longer be modified using the Modify
+		File Attributes option. A data dictionary listing will show XXXX for such a
+		field. </P> 
+	 <P>For a computed field, the INPUT transform is simply the M code that is
+		executed whenever the field is computed. Hence, a computed field calculation
+		can be edited by a programmer using this option. </P> 
+	 <H5><A NAME="input_transform_verify">INPUT Transforms and the Verify Fields
+		Option</A></H5> 
+	 <P>INPUT transforms are ordinarily executed before data is filed (in which
+		case the INPUT transform expects data in <B>external</B> form, <B>not yet
+		filed</B>). But the INPUT transform is also executed by VA FileMan's
+		<A HREF="../u2/ut_ver.htm" TARGET="_top" CLASS="bodylink">Verify Fields</A>
+		option (in which case the data being checked is in <B>internal</B> form, and
+		<B>already filed</B>). Some parts of your INPUT transform may not be compatible
+		with data in its internal form or when the data is already filed. For example,
+		you may check to make sure a field's value is not stored in a cross-reference
+		before you file it; once you file the entry, however, the field value does
+		exist in the cross-reference and Verify Fields would report the entry as
+		invalid.</P> 
+	 <P>To help the Verify Fields option report fewer invalid values in this
+		situation, the Verify Fields option sets the variable DIUTIL to "VERIFY FIELDS"
+		when it is running. You can then check for this variable in your custom INPUT
+		transform and skip any checks that would not be compatible with data that is in
+		its internal form or already filed.&nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0" width="35" height="11"></P> 
+	 <P>For example:</P> 
+	 <PRE>    I $G(DIUTIL)'=&quot;VERIFY FIELDS&quot;</PRE> 
+	 <P>The Verify Fields option does not execute the INPUT transform for the
+		following field types:</P> 
+	 <UL> 
+		<LI>Screened Pointers<BR><BR></LI> 
+		<LI>Screened Set of Codes</LI> 
+	 </UL>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- afd_7.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

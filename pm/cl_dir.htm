@@ -1,0 +1,1006 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^DIR</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,^dir,dir">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white"> 
+	 
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>^DIR: Reader</H4> 
+	 <P>DIR is a general purpose response reader that can be used to issue a
+		prompt, read input interactively, perform syntax checking on the input, issue
+		error messages or help text, and return input in a processed form. Its use is
+		recommended to standardize user dialog and to eliminate repetitive coding. </P>
+	 
+	 <P>DIR is reentrant: A DIR call may be made from within a DIR call. To
+		reenter DIR, use the NEW command to save the DIR array (NEW DIR) before setting
+		input variables and making the second call. </P> 
+	 <UL> 
+		<LI><A HREF="#iovar_brief" TITLE="Input and Output Variables (Summary)"
+		  CLASS="bodylink">Input and Output Variables (Summary)</A><BR><BR></LI> 
+		<LI><A HREF="#i_var_req" TITLE="Required Input Variables (Full Listing)"
+		  CLASS="bodylink">Required Input Variables (Full Listing)</A><BR><BR></LI> 
+		<LI><A HREF="#i_var_opt" TITLE="Optional Input Variables (Full Listing)"
+		  CLASS="bodylink">Optional Input Variables (Full Listing)</A><BR><BR></LI> 
+		<LI><A HREF="#o_var" TITLE="Output Variables (Full Listing)"
+		  CLASS="bodylink">Output Variables (Full Listing)</A><BR><BR></LI> 
+		<LI><A HREF="#discussion" TITLE="Examples"
+		  CLASS="bodylink">Examples</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="iovar_brief">Input and Output Variables (Summary)</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD COLSPAN="3" VALIGN="TOP" ALIGN="CENTER"><B>Input
+			 Variables-Required</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%" ROWSPAN="4"><B><A HREF="#DIR_0"
+			 TITLE="DIR(0)" CLASS="bodylink">DIR(0)</A></B></TD> 
+		  <TD VALIGN="TOP" WIDTH="45%"> 
+			 <P><B>Required</B>: First character of Piece-1 (first 3 characters
+				for DD-type) </P> </TD> 
+		  <TD VALIGN="TOP" WIDTH="35%">Read type</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Optional: </B>Subsequent characters of Piece-1
+			 </TD> 
+		  <TD VALIGN="TOP">Input modifiers</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Optional: </B>Piece-2</TD> 
+		  <TD VALIGN="TOP">Input parameters</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Optional: </B>Piece-3</TD> 
+		  <TD VALIGN="TOP">INPUT transform</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="CENTER" COLSPAN="3"><B>Input Variables-Optional</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="#DA" TITLE="DA" CLASS="bodylink">DA</A></B></TD> 
+		  <TD COLSPAN="2">For DD-type reads, can specify entry from which to
+			 retrieve default value </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIR_A" TITLE='DIR("A")'
+			 CLASS="bodylink">DIR("A")</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Programmer-supplied prompt to override
+			 default </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIR_A_A" TITLE='DIR("A",#)'
+			 CLASS="bodylink">DIR("A",#)</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Array for information to be displayed
+			 before the prompt </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIR_B" TITLE='DIR("B")'
+			 CLASS="bodylink">DIR("B")</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Default response </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="#DIR_L" TITLE='DIR("L")'
+			 CLASS="bodylink">DIR("L")</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2" ROWSPAN="2">For set-of-code fields:
+			 programmer-specified format to display codes.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="#DIR_L" TITLE='DIR("L",#)'
+			 CLASS="bodylink">DIR("L",#)</A></B></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><a HREF="#DIR_PRE" TITLE="DIR(&quot;S&quot;)" CLASS="bodylink">DIR(&quot;PRE&quot;)</a></B></TD> 
+		  <TD COLSPAN="2" valign="top">Pre-validation transform</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#DIR_S" TITLE='DIR("S")'
+			 CLASS="bodylink">DIR("S")</A></B></TD> 
+		  <TD COLSPAN="2">Screen for pointer, set-of-code, and list/range
+			 reads</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIR_T" TITLE='DIR("T")'
+			 CLASS="bodylink">DIR("T")</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Time specification to be used instead of
+			 DTIME </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIR_Q" TITLE='DIR("?")'
+			 CLASS="bodylink">DIR("?")</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP" ROWSPAN="2">Help displayed when the user
+			 enters a single question mark </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIR_Q_Q" TITLE='DIR("?",#)'
+			 CLASS="bodylink">DIR("?",#)</A></B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIR_QQ" TITLE='DIR("??")'
+			 CLASS="bodylink">DIR("??")</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Help displayed when the user enters a
+			 double question mark </TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="3" VALIGN="TOP" ALIGN="CENTER"><B>Output Variables-Always
+			 Returned</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#X" TITLE="X"
+			 CLASS="bodylink">X</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Unprocessed user response </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#Y" TITLE="Y"
+			 CLASS="bodylink">Y</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Processed user response </TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="3" VALIGN="TOP" ALIGN="CENTER"><B>Output
+			 Variables-Conditionally Returned</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#Y_0" TITLE="Y(0)"
+			 CLASS="bodylink">Y(0)</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">External form of response for set,
+			 pointer, list, and date </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DTOUT" TITLE="DTOUT"
+			 CLASS="bodylink">DTOUT</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Defined if the user times out </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DUOUT" TITLE="DUOUT"
+			 CLASS="bodylink">DUOUT</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Defined if the user entered an up-arrow
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIRUT" TITLE="DIRUT"
+			 CLASS="bodylink">DIRUT</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Defined if the user entered an up-arrow,
+			 pressed the Enter/Return key, or timed out </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="#DIROUT" TITLE="DIROUT"
+			 CLASS="bodylink">DIROUT</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Defined if the user enters two up-arrows
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5><A NAME="i_var_req">Required Input Variables (Full Listing)</A></H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD ROWSPAN="23" ALIGN="LEFT" VALIGN="TOP"><A
+			 NAME="DIR_0"><B>DIR(0)</B></A></TD> 
+		  <TD COLSPAN="5"> 
+			 <P>DIR(0) is the only required input variable. It is a three piece
+				variable. The first character of the first piece must be defined (or first 3
+				characters for DD-type). Additional characters of the first piece and the
+				second two pieces are all optional. </P> 
+			 <P>The first character of the first up-arrow piece indicates the type
+				of the input to be read. The second piece describes parameters, delimited by
+				colons, to be applied to the input. Examples are maximum length for free text
+				data or decimal digits for numeric data. The third piece is executable M code
+				that acts on the input in the same manner as an INPUT transform. The acceptable
+				types are shown below:<BR><BR></P></TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="5" ALIGN="CENTER"><B><A NAME="DIR(0) Summary">DIR(0)
+			 (Summary)</A></B></TD> 
+		</TR> 
+		<TR> 
+		  <TD ROWSPAN="2" ALIGN="LEFT" VALIGN="BOTTOM"><B>DIR(0) Read
+			 Type</B></TD> 
+		  <TD COLSPAN="2" VALIGN="BOTTOM"><B><A HREF="#Piece_1" TITLE="PIECE-1"
+			 CLASS="bodylink">PIECE-1</A></B></TD> 
+		  <TD VALIGN="BOTTOM"><B><A HREF="#Piece_2" TITLE="PIECE-2"
+			 CLASS="bodylink">PIECE-2</A></B></TD> 
+		  <TD VALIGN="BOTTOM"><B><A HREF="#Piece_3" TITLE="PIECE-3"
+			 CLASS="bodylink">PIECE-3</A></B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="BOTTOM"><B>First Character (required)</B></TD> 
+		  <TD VALIGN="BOTTOM"><B>Subsequent Characters (optional)</B></TD> 
+		  <TD VALIGN="BOTTOM"><B>Format</B></TD> 
+		  <TD VALIGN="BOTTOM"><B>Executable M code (optional)</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#Date" TITLE="Date"
+			 CLASS="bodylink">Date</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">D</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A>,<A HREF="#Piece_2_O" TITLE="O"
+			 CLASS="bodylink">O</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Minimum date:Maximum date:%DT</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">code</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#End_of_Page"
+			 TITLE="End-of-Page" CLASS="bodylink">End-of-Page</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">E</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">--</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">--</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#Free_Text" TITLE="Free-Text"
+			 CLASS="bodylink">Free-Text</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">F</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A>,<A HREF="#Piece_2_O" TITLE="O" CLASS="bodylink">O</A>,<A
+			 HREF="#Piece_2_U" TITLE="U" CLASS="bodylink">U</A>,<A HREF="#Piece_2_r"
+			 TITLE="r" CLASS="bodylink">r</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Minimum length:Maximum length</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">code</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#List" TITLE="List or range"
+			 CLASS="bodylink">List or range</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">L</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A>,<A HREF="#Piece_2_O" TITLE="O" CLASS="bodylink">O</A>,<A
+			 HREF="#Piece_2_C" TITLE="C" CLASS="bodylink">C</A> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Minimum:Maximum:Maximum decimals</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">code </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#Numeric" TITLE="Numeric"
+			 CLASS="bodylink">Numeric</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">N</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A>,<A HREF="#Piece_2_O" TITLE="O" CLASS="bodylink">O</A>
+			 </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Minimum:Maximum:Maximum decimals</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">code </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#Pointer" TITLE="Pointer"
+			 CLASS="bodylink">Pointer</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">P</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A>,<A HREF="#Piece_2_O" TITLE="O" CLASS="bodylink">O</A>,<A
+			 HREF="#Piece_2_r" TITLE="r" CLASS="bodylink">r</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Global Root or #:DIC(0)</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">code </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#Set" TITLE="Set of Codes"
+			 CLASS="bodylink">Set of Codes</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">S</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A>,<A HREF="#Piece_2_O" TITLE="O" CLASS="bodylink">O</A>,<A
+			 HREF="#Piece_2_X" TITLE="X" CLASS="bodylink">X</A>,<A HREF="#Piece_2_B"
+			 TITLE="B" CLASS="bodylink">B</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Code:Stands for;Code:stands for;</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">code </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#Yes_No"
+			 TITLE="Yes/No" CLASS="bodylink">Yes/No</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Y</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A>,<A HREF="#Piece_2_O" TITLE="O"
+			 CLASS="bodylink">O</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">--</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">code </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="#DD" TITLE="DD"
+			 CLASS="bodylink">DD</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">#,#</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="#Piece_2_A" TITLE="A"
+			 CLASS="bodylink">A</A>,<A HREF="#Piece_2_O" TITLE="O" CLASS="bodylink">O</A>,<A
+			 HREF="#Piece_2_r" TITLE="r" CLASS="bodylink">r</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">--</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">code </TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="5" ALIGN="CENTER"><B>DIR(0) (Detailed
+			 Explanation)</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="5"> 
+			 <P><B><A NAME="Piece_1">Piece-1 of DIR(0) (Subsequent Characters are
+				Optional):</A></B></P> 
+			 <P>The first up-arrow piece of DIR(0) can contain other parameters
+				that help to specify the nature of the input or modify the behavior of the
+				reader. These characters must appear after the character indicating type (or
+				after the field number if it is a DD type). They are described below and
+				<A HREF="#discussion" TITLE="examples" CLASS="bodylink">examples</A> are
+				provided later in this section): </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A NAME="Piece_2_A">A</A></B></TD> 
+		  <TD COLSPAN="4"> 
+			 <P>Indicates that nothing should be <B>A</B>ppended to the
+				programmer-supplied prompt <A HREF="#DIR_A" TITLE='DIR("A")'
+				CLASS="bodylink">DIR("A")</A>, which is described below. If there is no
+				DIR("A"), then no prompt is issued. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A NAME="Piece_2_B">B</A></B></TD> 
+		  <TD COLSPAN="4"> 
+			 <P>Only applies to a set of codes; indicates that the possible
+				choices are to be listed horizontally after the prompt. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A NAME="Piece_2_C">C</A></B></TD> 
+		  <TD COLSPAN="4"> 
+			 <P>Only applies to list reads. The values returned in Y and the Y()
+				array are <B>C</B>ompressed. They are not expanded to include each individual
+				number, rather, ranges of values are returned using the hyphen syntax. This is
+				similar to the format in which the user can enter a range of numbers. </P> 
+			 <P>This flag is particularly useful when a user may select many
+				numbers, for example, when decimals are involved. The call is much faster and
+				the possibility of the local symbol table filling up with nodes in the Y()
+				array is eliminated. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A NAME="Piece_2_O">O</A></B></TD> 
+		  <TD COLSPAN="4"> 
+			 <P>Indicates that a response is <B>O</B>ptional. If this is not
+				included, then a null response is not allowed. For DD type reads, the O is
+				automatically included if the field in question is not a required field.
+				</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A NAME="Piece_2_r">r</A></B></TD> 
+		  <TD COLSPAN="4"> 
+			 <P>If users do not choose to accept the default response, they must
+				type in their entire response. They will not get the "Replace-With" prompt,
+				regardless of how long the default response is.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A NAME="Piece_2_U">U</A></B></TD> 
+		  <TD COLSPAN="4"> 
+			 <P>Only applies to free text reads. It allows the user response to
+				contain ^ (<B>U</B>p-arrow). A leading up-arrow aborts the read and sets DUOUT
+				and DIRUT whether or not U is in DIR(0). However, the U allows ^s to be
+				embedded in the user response.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A NAME="Piece_2_X">X</A></B></TD> 
+		  <TD COLSPAN="4"> 
+			 <P>Only applies to the set of codes. Indicates that an e<B>X</B>act
+				match is requested. No lowercase to uppercase conversion is to be done.
+				</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="5"> 
+			 <P><B><A NAME="Piece_2">Piece-2 of DIR(0) (Optional) </A></B></P> 
+			 <P>Qualifying limits on user response are as described in the
+				<A HREF="#DIR(0)%20Summary" TITLE="summary table" CLASS="bodylink">summary
+				table</A> above. </P> 
+			 <P><B><A NAME="Piece_3">Piece-3 of DIR(0) (Optional)</A></B></P> 
+			 <P>The third piece of DIR(0) is executable M code that acts like the
+				INPUT transform of a field in a data dictionary. The value that was entered by
+				the user is contained in the variable X. The code can examine X and, if it is
+				not appropriate, should KILL X. If X is undefined after the execution of the
+				third piece of DIR(0), the reader knows that the input was unacceptable, issues
+				a help message, and re-asks for input. It is unnecessary to put checks for
+				minimum and maximum or length in the third piece. These should be specified in
+				the second piece of DIR(0). An example of DIR(0) with all three pieces is: </P>
+			 
+			 <PRE>    S DIR(0)=&quot;F^3:30^K:X'?.U X&quot;</PRE> 
+			 <P>which says that if the input is not all uppercase, then the data
+				is unacceptable. The check for a length from 3 to 30 characters takes place
+				automatically because of the second piece. The third piece is not executed if
+				the specifications in the second piece are not met. If the user combines the DD
+				data type with a third piece in DIR(0), for example:</P> 
+			 <PRE>   S DIR(0)=&quot;19,.01^^K:X'?1&quot;&quot;DI&quot;&quot; X&quot;</PRE> 
+			 <P>then the third piece of DIR(0) is not executed until after the
+				INPUT transform has been executed and X was not KILLed by the transform.<br>
+             <br>
+             For pointer-type reads, the third piece of DIR(0) is executed after
+             an entry is selected from the file.
+				</P></TD> 
+		</TR> 
+	 </TABLE>
+	 <P></P> 
+	 <H5><A NAME="i_var_opt">Optional Input Variables (Full Listing)</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DA">DA</A></B></TD> 
+		  <TD> 
+			 <P>(Optional) For DD-type reads only, if DIR("B") is not set, you may
+				retrieve a value from the database to display as a default. Identify the entry
+				from which the value should come by setting the DA variable to its record
+				number. If a subfile is involved, set up a DA() array where DA equals the
+				record number for the lowest level subfile, DA(1) for the next higher, and so
+				on. </P> 
+			 <P><B>NOTE:</B> Although you can retrieve defaults from the database
+				by using DA, the values in the database are not changed by ^DIR calls. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A NAME="DIR_A">DIR("A")</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) The reader provides a generic default prompt for each
+				type, e.g., enter a number or enter response. To issue a more meaningful
+				prompt, DIR("A") can be set to a character string that more clearly indicates
+				the nature of the data being requested. For example, setting the following:
+				</P> 
+			 <PRE>    S DIR(&quot;A&quot;)=&quot;PRICE PER DISPENSE UNIT: &quot;
+    S DIR(0)=&quot;NA^0:5:2&quot;
+</PRE> 
+			 <P>causes the prompt to appear as: </P> 
+			 <PRE>    PRICE PER DISPENSE UNIT:
+</PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_A_A">DIR("A",#)</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) If you want to issue a longer message before actually
+				reading the input, you can set the DIR("A",#) array in addition to DIR("A").
+				The #'s must be numeric. After the array has been displayed, DIR("A") is issued
+				as the prompt for the read. It is necessary for DIR("A") to be set if the
+				programmer is to use this array. For example, setting the following:</P> 
+			 <PRE>    S DIR(&quot;A&quot;)=&quot;PRICE PER DISPENSE UNIT:&quot;
+    S DIR(&quot;A&quot;,1)=&quot;Enter price data with two decimal points.&quot;
+    S DIR(&quot;A&quot;,2)=&quot;Cost calculations require this precision.&quot;
+</PRE> 
+			 <P>causes the following dialog to appear to the user: </P> 
+			 <PRE>    Enter price data with two decimal points.
+    Cost calculations require this precision.
+    PRICE PER DISPENSE UNIT:
+</PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_B">DIR("B")</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) Set this variable to the default response for the
+				prompt issued. It appears after the prompt and before the // (double slashes).
+				If the user simply presses the Enter/Return key, the default response is
+				accepted by the reader. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_L">DIR("L")</A> &nbsp;<IMG
+			 SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"><BR> DIR("L",#)</B></TD> 
+		  <TD> 
+			 <P>(Optional) Only applies to set-of-codes fields. Lets you replace
+				the standard vertical listing of codes that the Reader displays with your own
+				listing. It is up to you to ensure that the contents of the DIR("L") array
+				match the codes in the second ^-piece of DIR(0).</P> 
+			 <P>The format of the DIR("L") array is similar to DIR("A") and
+				DIR("?"). The #'s must be numeric starting from 1. The numeric subscripted
+				array nodes are written first and the DIR("L") node is written last. For
+				example, if you code:</P> 
+			 <PRE>    S DIR(0)=&quot;SO^1:ONE;2:TWO;3:THREE;4:FOUR;5:FIVE&quot; 
+    S DIR(&quot;L&quot;,1)=&quot;Select one of the following:&quot; 
+    S DIR(&quot;L&quot;,2)=&quot;&quot; 
+    S DIR(&quot;L&quot;,3)=&quot;  1  ONE      4  FOUR&quot; 
+    S DIR(&quot;L&quot;,4)=&quot;  2  TWO      5  FIVE&quot; 
+    S DIR(&quot;L&quot;)=&quot;  3  THREE&quot; 
+    D ^DIR</PRE> 
+			 <P>the user sees the following:</P> 
+			 <PRE>    Select one of the following: 
+ 
+    1  ONE      4  FOUR 
+    2  TWO      5  FIVE 
+    3  THREE    
+
+    Enter response:</PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_PRE">DIR(&quot;PRE")</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable contains M code that acts as a
+             pre-validation transform. It can either change X, in which case the
+             reader will proceed as though the user had entered the new value in
+             X, or kill X, in which case the reader will behave as though the
+             user entered an illegal value. DIR(&quot;PRE&quot;) is executed
+             almost immediately after the READ takes place, just after DTOUT is
+             set if the READ timed out, and before any other checking is done.
+             The only inputs are X and DTOUT, and the only outputs are X and
+             DTOUT. </P> 
+ </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_S">DIR("S")</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) Use the DIR("S") variable to screen the allowable
+				responses for pointer, set of codes, and list/range reads. This variable works
+				as the <A HREF="cl_dic.htm#DIC(S)" TITLE='DIC("S") variable'
+				CLASS="bodylink">DIC("S") variable</A> does for
+				<A HREF="cl_dic.htm" TARGET="display" TITLE="^DIC" CLASS="bodylink">^DIC</A>
+				calls. Set DIR("S") equal to M code containing an IF statement. After
+				execution, if $T is set to 1, the user response is accepted; if set to 0, it is
+				not. </P> 
+			 <P>For pointer reads, when DIR("S") is executed, the M naked
+				indicator is equal to the 0 node of the entry being screened. The variable Y
+				equals its record number. </P> 
+			 <P>For set of codes reads, when the DIR("S") is executed, Y equals
+				the internal code. </P> 
+			 <P>For list/range reads, if you also use the C flag in piece 1 of
+				DIR(0), your output is still compressed. Internally during the call, however,
+				the range must be uncompressed so that each number in the range can be
+				screened. So using DIR("S") with the C flag during list/range reads loses the C
+				flag's advantages in speed (but the C flag's advantage in avoiding storage
+				overflows remains).</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_T">DIR("T")</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) Time-out value to be used in place of DTIME. Value is
+				represented in seconds. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_Q">DIR("?")</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable contains a simple help prompt which is
+				displayed to the user when one question mark is entered. It usually takes the
+				place of the reader's default prompt. For example, if you code:</P> 
+			 <PRE>    S DIR(0)=&quot;F^3:10&quot;
+    S DIR(&quot;?&quot;)=&quot;Enter from three to ten characters&quot;
+    S DIR(&quot;A&quot;)=&quot;NICKNAME&quot;
+    D ^DIR
+</PRE> 
+			 <P>the user sees the following: </P> 
+			 <PRE>    NICKNAME: <B>?</B>
+    Enter from three to ten characters.
+</PRE> 
+			 <P><B>NOTE: </B>When displayed, a period (.) is added to the DIR("?")
+				string. Periods are not appended when displaying the DIR("?",#) array, however.
+				</P> 
+			 <P>When one question mark is entered in DD reads, the data
+				dictionary's help prompt is shown before DIR("?"). For pointer reads, a list of
+				choices from the pointed-to file is shown in addition to DIR("?"). </P> 
+			 <P>As an alternative, you can set DIR("?") to an up-arrow followed by
+				M code, which is executed when the user enters one question mark. An example
+				might be:</P> 
+			 <PRE>    S DIR(&quot;?&quot;)=&quot;^D HELP^%DTC&quot;
+</PRE> 
+			 <P>Execution of this M code overrides the reader's default prompt. If
+				DIR("?") is defined in this way (a non-null second piece), the DIR("?",#) array
+				is not displayed. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_Q_Q">DIR("?",#)</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This array allows the user to display more than one
+				line of help when the user types a single question mark. The first up-arrow
+				piece of DIR("?") must be set for the array to be used. The second up-arrow
+				piece of DIR("?") must be null, otherwise the DIR("?",#) array is ignored. The
+				#'s must be numeric starting from 1. The numbered lines are written first, that
+				is, first DIR("?",1), then DIR("?",2), etc. The last help line written is
+				DIR("?"). These lines are the only ones written, which means that the reader's
+				default prompt is not issued. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIR_QQ">DIR("??")</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) This variable, if defined, is a two-part variable. The
+				first up-arrow piece may contain the name of a help frame. The help processor
+				displays this help frame if the user enters two question marks. </P> 
+			 <P>The second part of this variable (after the first up-arrow piece)
+				may contain M code that is executed after the help frame is displayed. </P> 
+			 <P>For example:</P> 
+			 <PRE>    S DIR(&quot;??&quot;)=&quot;DIHELPXX^D EN^XXX&quot;
+</PRE> 
+			 <P><B>NOTE:</B> In order to use this variable, you must have Kernel's
+				help processor on your system. </P> </TD> 
+		</TR> 
+	 </TABLE>
+	 <P></P> 
+	 <H5><A NAME="o_var">Output Variables (Full Listing)</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B><A NAME="X">X</A></B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>This is the unprocessed response entered by the user. It is always
+				returned. If the user accepts the default in DIR("B"), it is the default. If
+				the user up-arrows out or just presses the Enter/Return key on an optional
+				input, X is the up-arrow or null. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="23"><B><A NAME="Y">Y</A></B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>Y is always defined as the processed output. The values returned
+				are: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>Type</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"><B>Y Returned as </B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Date</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">The date/time in VA FileMan format. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>End-of-Page</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Y=1 for continue (user pressed the
+			 Enter/Return key). <BR> Y=0 for exit (the user pressed up-arrow). <BR> Y="" for
+			 time out (the user timed out). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Free-Text</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">The data typed in by the user. In this
+			 case, it is the same as X. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>List or range</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">The list of numeric values, delimited by
+			 commas and ending with a comma. 
+			 <P></P> If the C flag was not included in the first piece of DIR(0),
+			 an expanded list of numbers, including each individual number in a range, is
+			 returned. If the C flag was included, a compressed list that uses the hyphen
+			 syntax to indicate a range of numbers is returned. 
+			 <P></P> Any leading zeros or trailing zeros following the decimal
+			 point are removed; i.e., only canonic numbers are returned. If the list of
+			 returned numbers has more than 245 characters, integer-subscripted elements of
+			 Y [Y(1), Y(2), etc.] contain the additional numbers. Y(0) is always returned
+			 equal to Y. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Numeric</B> </TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">The canonic value of the number entered by
+			 the user; i.e., leading zeros are deleted and trailing zeros after the decimal
+			 are deleted. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Pointer</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">The normal value of Y from a DIC lookup,
+			 that is, Internal Entry Number^Entry Name. If the lookup was unsuccessful,
+			 Y=-1. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Set of Codes</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">The internal value of the response.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Yes/No</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Y=1 for yes. <BR> Y=0 for no </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DD (#,#)</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">The first ^-piece of Y contains the result
+			 of the variable X after it has been passed through the INPUT transform of the
+			 field specified. Depending on the data type involved, subsequent ^-pieces may
+			 contain additional information. </TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>The following list summarizes the values of Y upon timeout,
+				up-arrows, or pressing the Enter/Return keys for all reads. Exceptions are
+				noted. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Condition</B></TD> 
+		  <TD VALIGN="TOP"><B>Value of Y</B> </TD> 
+		  <TD VALIGN="TOP"><B>Comments</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Timeout</B></TD> 
+		  <TD VALIGN="TOP">Y="" </TD> 
+		  <TD VALIGN="TOP">--</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Up-arrow (^)</B></TD> 
+		  <TD VALIGN="TOP">Y=^</TD> 
+		  <TD VALIGN="TOP">in all cases except end-of-page reads. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y=0</B></TD> 
+		  <TD VALIGN="TOP">upon end-of-page reads. </TD> 
+		  <TD VALIGN="TOP">--</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Double Up-arrow (^^)</B> </TD> 
+		  <TD VALIGN="TOP">Y=^^</TD> 
+		  <TD VALIGN="TOP">in all cases except end-of-page reads.</TD> 
+		</TR> 
+		<TR> 
+		  <TD ROWSPAN="6" VALIGN="TOP"><B>Return</B></TD> 
+		  <TD VALIGN="TOP">Y=""</TD> 
+		  <TD VALIGN="TOP">for optional reads (reads allowing a null
+			 response).</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Y=-1</TD> 
+		  <TD VALIGN="TOP">for pointer reads.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Y=0</TD> 
+		  <TD VALIGN="TOP">for YES/NO type when NO is default.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Y=1</TD> 
+		  <TD VALIGN="TOP">for YES/NO type when YES is default.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Y=1</TD> 
+		  <TD VALIGN="TOP">for end-of-page reads.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Y=default </TD> 
+		  <TD VALIGN="TOP">when a default is provided other than for YES/NO type
+			 questions. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="Y_0">Y(0)</A></B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>This is defined for the set of codes, list, pointer, date, and
+				Yes/No reads. It is also returned for DD reads when the field has a set of
+				codes, pointer, variable pointer, or date data type. It holds the external
+				value of the response for set of codes or Yes/No, the zero node of the entry
+				selected for a pointer, and the external date for a date and variable pointer.
+				To have Y(0) returned for pointer-types, the DIC(0) string in the second piece
+				of DIR(0) must contain a Z, for example: </P> 
+			 <PRE>    DIR(0)=&quot;P^19:EMZ&quot;</PRE> 
+			 <P>For list reads, it contains the same values as the Y variable.
+				There may be additional nodes in the Y() array depending on the size of the
+				list selected by the user. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DTOUT">DTOUT</A></B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>If the read has timed-out, then DTOUT is defined. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DUOUT">DUOUT</A></B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>If the user entered a leading up-arrow, DUOUT is defined. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIRUT">DIRUT</A></B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>If the user enters a leading up-arrow, times out, or enters a null
+				response, DIRUT is defined. A null response results from pressing the
+				Enter/Return key at a prompt with no default or entering the at-sign (@),
+				signifying deletion. If, however, the user presses the Enter/Return key in
+				response to an end of page read, DIRUT is not defined. If DIRUT is defined, the
+				user can enter the following common check to quit after a reader call:</P> 
+			 <PRE>    Q:$D(DIRUT)
+</PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="DIROUT">DIROUT</A></B></TD> 
+		  <TD COLSPAN="3" VALIGN="TOP"> 
+			 <P>If the user entered two up-arrows, DIROUT is defined. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> 
+	 <H5><A NAME="discussion">Examples</A></H5> 
+	 <UL> 
+		<LI><A HREF="#Date" TITLE="Date" CLASS="bodylink">Date</A><BR><BR></LI> 
+		<LI><A HREF="#End_of_Page" TITLE="End-of-Page"
+		  CLASS="bodylink">End-of-Page</A><BR><BR></LI> 
+		<LI><A HREF="#Free_Text" TITLE="Free Text" CLASS="bodylink">Free
+		  Text</A><BR><BR></LI> 
+		<LI><A HREF="#List" TITLE="List or Range" CLASS="bodylink">List or
+		  Range</A><BR><BR></LI> 
+		<LI><A HREF="#Numeric" TITLE="Numeric"
+		  CLASS="bodylink">Numeric</A><BR><BR></LI> 
+		<LI><A HREF="#Pointer" TITLE="Pointer"
+		  CLASS="bodylink">Pointer</A><BR><BR></LI> 
+		<LI><A HREF="#Set" TITLE="Set" CLASS="bodylink">Set</A><BR><BR></LI> 
+		<LI><A HREF="#Yes_No" TITLE="Yes/No"
+		  CLASS="bodylink">Yes/No</A><BR><BR></LI> 
+		<LI><A HREF="#DD" TITLE="DD" CLASS="bodylink">DD</A></LI> 
+	 </UL> <HR> 
+	 <P><B><A NAME="Date">Date Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;D^2880101:2880331:EX&quot;</PRE> 
+	 <P>This tells the reader that the input must be an acceptable date. To
+		determine that, <A HREF="cl_dt1.htm" TITLE="^%DT" CLASS="bodylink">^%DT</A> is
+		invoked with the %DT variable equal to EX. If the date is a legitimate date,
+		then it is checked to see if the date falls between January 1, 1988 and March
+		31, 1988. In general, both minimum and maximum are optional. If they are there,
+		they must be in VA FileMan format. The only exceptions are that NOW and DT may
+		be used to reference the current date/time.Remember that NOW contains a time
+		stamp. If it is used as a minimum or maximum value, an R or T should be put
+		into the %DT variable. </P> 
+	 <P>If DIR(0) is set up to expect a time in the response, you can help the
+		user by including that requirement in the prompt. Otherwise, a response without
+		a time stamp (such as TODAY) might unexpectedly fail.</P> <HR> 
+	 <P><B><A NAME="End_of_Page">End-of-Page Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;E&quot;</PRE> 
+	 <P>There are no parameters. Enter/Return and up-arrow are the only
+		acceptable responses. This DIR(0) setting causes the following prompt to be
+		issued: </P> 
+	 <PRE>    Press the return key to continue or '^' to exit:
+</PRE> <HR> 
+	 <P><B><A NAME="Free_Text">Free-Text Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;F^3:30&quot;</PRE> 
+	 <P>This tells the reader that the input must be alphanumeric or
+		punctuation, (control characters are not allowed) and that the length of input
+		must be no fewer than 3 and no more than 30 characters. The maximum acceptable
+		length for a free-text field is 245 characters.</P> 
+	 <P><B>NOTE:</B> A leading up-arrow always aborts the read and sets DIRUT or
+		DUOUT. </P> 
+	 <P><B>With DIR(0) containing U</B></P> 
+	 <PRE>S DIR(0)=&quot;FU^3:30&quot;</PRE> 
+	 <P> The user can enter any response that is from 3 to 30 characters long.
+		The response can contain embedded up-arrows. Without U, an embedded up-arrow
+		causes the user to receive an error message. </P> 
+	 <P><B>With DIR(0) containing A</B></P> 
+	 <PRE>    S DIR(0)=&quot;FA^2:5&quot;,DIR(&quot;A&quot;)=&quot;INITIAL&quot;
+</PRE> 
+	 <P>The prompt is set only to the word INITIAL. If the A were not included,
+		a colon and space would be appended to the prompt and it would look like this:
+		</P> 
+	 <PRE>    INITIAL:</PRE> <HR> 
+	 <P><B><A NAME="List">List or Range Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;L^1:25&quot;</PRE> 
+	 <P>This tells the reader that the input may be any set of numbers between 1
+		and 25. The numbers may be separated by commas, dashes, or a combination of
+		both. Two acceptable responses to the example above are: </P> 
+	 <PRE>    1,2,20
+    4-8,16,22-25
+</PRE> 
+	 <P>Remember that this is a numeric range or list. It can only contain
+		positive integers and zero (no negative numbers). </P> 
+	 <P><B>With DIR(0) containing C</B></P> 
+	 <PRE>    &gt;<B>S DIR(0)=&quot;LC^1:100:2&quot; D ^DIR</B>
+
+    Enter a list or range of numbers (1-100): <B>5,8.01,9-40,    
+7.03,45.9,80-100</B>
+
+    &gt;<B>ZW Y</B>
+    Y=5,7.03,8.01,9-40,45.9,80-100,
+    Y(0)=5,7.03,8.01,9-40,45.9,80-100,</PRE> 
+	 <P>Here the user can enter numbers from 1 to 100 with up to two decimal
+		places. The C flag tells the reader not to return each individual number in Y.
+		Instead, inclusive ranges of numbers are returned. In this case, without the C
+		flag, 137 subscripted nodes of the Y( ) array would be returned; the call would
+		be very slow and might cause an error if the size of the Y( ) array exceeded
+		local storage.</P> <HR> 
+	 <P><B><A NAME="Numeric">Numeric Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;N^20:30:3&quot;
+</PRE> 
+	 <P>This tells the reader that the input must be a number between 20 and 30
+		with no more than three decimal digits. </P> 
+	 <P><B>NOTE:</B> If no maximum is specified in the second ^-piece, the
+		default maximum is 999999999999. </P> 
+	 <P><B>With DIR(0) containing O </B></P> 
+	 <PRE>    S DIR(0)=&quot;NO^0:120&quot;,DIR(&quot;A&quot;)=&quot;AGE&quot;</PRE> 
+	 <P>This allows the user to press the Enter/Return key without entering any
+		response and leave the reader. Without the O, the following messages appear:
+		</P> 
+	 <PRE>    This is a required response.  Enter '^' to exit.
+</PRE> <HR> 
+	 <P><B><A NAME="Pointer">Pointer Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;P^19:EMZ&quot;
+</PRE> 
+	 <P>This tells the reader to do a lookup on File 19, setting DIC(0)="EMZ"
+		before making the call.</P> 
+	 <P>If the user enters a response that causes the lookup to fail, the user
+		is prompted again for a lookup value.</P> 
+	 <P>A pointer read can be used to look up in a subfile. In that case, the
+		global root must be used in place of the file number. For example, to look up
+		in the menu subfile (stored descendent from subscript 10) for entry #2 in File
+		19: </P> 
+	 <PRE>   S DIR(0)=&quot;P^DIC(19,2,10,:QEM&quot;
+</PRE> 
+	 <P>Remember to set any necessary variables, e.g., DA(1). </P> <HR> 
+	 <P><B><A NAME="Set">Set Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;S^1:MARRIED;2:SINGLE&quot;
+</PRE> 
+	 <P>This tells the reader to only accept one of the two members of the set.
+		The response may be 1, 2, MARRIED, or SINGLE. When DIR("A") is included without
+		the A modifier on the first piece, the prompting is done as follows: </P> 
+	 <PRE>    S DIR(0)=&quot;S^M:MALE;F:FEMALE&quot;
+    S DIR(&quot;A&quot;)=&quot;SEX&quot; D ^DIR
+
+    Select one of the following:
+           M      MALE
+           F       FEMALE
+    SEX: 
+</PRE> 
+	 <P><B>With DIR(0) containing A</B></P> 
+	 <PRE>    S DIR(0)=&quot;SA^M:MALE;F:FEMALE&quot;
+    S DIR(&quot;A&quot;)=&quot;SEX: &quot; D ^DIR</PRE> 
+	 <P>Whereas, with the A, it would appear as follows: </P> 
+	 <PRE>    SEX:
+</PRE> 
+	 <P><B>With DIR(0) containing B</B></P> 
+	 <PRE>    S DIR(0)=&quot;SB^M:MALE;F:FEMALE&quot;
+    S DIR(&quot;A&quot;)=&quot;SEX&quot; D ^DIR
+</PRE> 
+	 <P>When this is executed, instead of getting the vertical listing as shown
+		above, the prompt would appear as: </P> 
+	 <PRE>    SEX: (M/F):
+</PRE> 
+	 <P><B>With DIR(0) containing X</B></P> 
+	 <PRE>    S DIR(0)=&quot;SX^M:MALE;F:FEMALE&quot;
+    S DIR(&quot;A&quot;)=&quot;SEX&quot;
+</PRE> 
+	 <P>This would cause a lowercase M or F to be rejected. The prompting is
+		done as follows: </P> 
+	 <PRE>    Select one of the following:
+        M   Male
+        F   Female
+    SEX:  <B>f</B>  (user's response)
+    Enter a code from the list.</PRE> <HR> 
+	 <P><B><A NAME="Yes_No">Yes/No Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;Y&quot;,DIR(&quot;B&quot;)=&quot;YES&quot; </PRE> 
+	 <P>This tells the reader that the response can only be Yes or No. When
+		using DIR("B") to provide a default response, spell out the entire word so that
+		when the user presses the Enter/Return key to accept the default, echoing
+		functions properly. </P> <HR> 
+	 <P><B><A NAME="DD">DD Example</A></B></P> 
+	 <PRE>S DIR(0)=&quot;19,1&quot;</PRE> 
+	 <P>This format is different from the others in that the first number is a
+		file number and the second is a field number in that file. The reader uses the
+		data dictionary for field 1 in file 19 and issues the label of that field as
+		the prompt. The input is passed through the INPUT transform in the dictionary.
+		Help messages are also the ones contained in the dictionary for this field.
+		</P> 
+	 <P>Normally, DD reads based on a free text field do not allow embedded
+		up-arrows. However, if the field specified is positioned on the data node using
+		the Em,n format (instead of the ^-piece format), up-arrows embedded in the
+		user's response are accepted. (See the "<A HREF="afd_2.htm"
+		TITLE="Field Global Storage" CLASS="bodylink">Field Global Storage</A>" section
+		of the Advanced File Definition chapter for an explanation of locating fields
+		on the data node.) Initial up-arrows abort the read and set DIRUT and DUOUT.
+		</P> 
+	 <P>It is not possible to use this format if the field defines a subfile,
+		i.e., the second piece of the zero node of the field definition contains a
+		subfile number. To use the reader for a field in a subfile, do the following:
+		</P> 
+	 <PRE>    S DIR(0)=&quot;Subfile#,field#&quot;
+</PRE> 
+	 <P>It is the programmer's responsibility to set any variables necessary for
+		the INPUT transform to execute correctly. </P> 
+	 <P>Always NEW or KILL DA before doing a DD type DIR call, unless you wish
+		to use the default feature. The default feature allows you to retrieve default
+		values from the database for DD reads by setting DA (or the DA array for
+		subfiles) equal to the record number containing the desired default value.</P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dir.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

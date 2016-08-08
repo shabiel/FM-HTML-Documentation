@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Glossary</TITLE><META NAME="subject"
+	 CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,glossary">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Glossary</A></H3> <HR COLOR="#663366"> 
+	 <P ALIGN="CENTER"><IMG SRC="redball.gif" BORDER="0" WIDTH="13" HEIGHT="13"
+		ALT="bullet"> Search the "<A HREF="http://www.instantweb.com/foldoc/"
+		TARGET="display" CLASS="bodylink"
+		TITLE="Free Online Dictionary of Computing">Free Online Dictionary of
+		Computing</A>"</P> 
+	 <DL> 
+		<DT><B>Attribute Dictionary</B></DT> 
+		<DD>See
+		  <A HREF="#data_dictionary" CLASS="bodylink" TITLE="Data Dictionary">Data
+		  Dictionary</A>.</DD> 
+		<DT><B>Audit</B></DT> 
+		<DD>A VA FileMan feature that provides an ongoing chronological listing
+		  of who made what changes to data values.</DD> 
+		<DT><B>Compound Index</B></DT> 
+		<DD>An index that has more than one data-valued subscript. See
+		  <A HREF="#index" CLASS="bodylink" TITLE="Index">Index</A>.</DD> 
+		<DT><B><A NAME="CompoundKey">Compound Key</A></B></DT> 
+		<DD>A key that is composed of more than one field. Keys are stored in the
+		  KEY file (#.31). See <A HREF="#key" CLASS="bodylink" TITLE="Key">Key</A> and
+		  <A HREF="#SimpleKey" CLASS="bodylink" TITLE="Simple Key">Simple Key</A>.</DD> 
+		<DT><B><A NAME="cross_reference">Cross-reference</A></B></DT> 
+		<DD>An attribute of a field or a file that identifies an action that
+		  should take place when the value of a field is changed. Often, the action is
+		  the placement of the field's value into an
+		  <A HREF="#index" CLASS="bodylink" TITLE="index">index</A>. A traditional
+		  cross-reference is defined with a specific field. A new-style cross reference
+		  is a file attribute and can be composed of one or more fields.
+		  <A HREF="#NewStyleCrossRef" CLASS="bodylink"
+		  TITLE="New-style cross-references">New-style cross-references</A> are stored in
+		  the INDEX file (#.11).</DD> 
+		<DT><B>Database Management System</B></DT> 
+		<DD>A collection of software that handles the storage, retrieval and
+		  updating of records in a data base.</DD> 
+		<DT><B><A NAME="data_dictionary">Data Dictionary</A></B></DT> 
+		<DD>This is a file that defines a file's structure, to include a file's
+		  fields and relationship to other files. This is sometimes called schema.</DD> 
+		<DT><B>Data Dictionary Listing</B></DT> 
+		<DD>The printable report that shows the data dictionary.</DD> 
+		<DT><B>Delimiter</B></DT> 
+		<DD>A special character used to separate a field, record, or string. VA
+		  FileMan usually uses the ^ character as the delimiter within strings.</DD> 
+		<DT><B>DIC</B></DT> 
+		<DD>VA FileMan routine that searches a file and finds an entry, adds an
+		  entry, or returns a condition indicating that the lookup was unsuccessful.</DD>
+		
+		<DT><B>DIFROM</B></DT> 
+		<DD>VA FileMan routines that transfer software packages from one FileMan
+		  environment to another. DIFROM is used to install new packages as well as
+		  update versions of current packages. DIFROM can also be used as a simple
+		  archiving tool.</DD> 
+		<DT><B>DIE</B></DT> 
+		<DD>VA FileMan routine that edits data elements for a given file
+		  entry.</DD> 
+		<DT><B>DIK</B></DT> 
+		<DD>VA FileMan routine that re-indexes or deletes file entries.</DD> 
+		<DT><B>DIP</B></DT> 
+		<DD>VA FileMan routine that prints data.</DD> 
+		<DT><B>DIQ</B></DT> 
+		<DD>VA FileMan routine that displays a range of data elements.</DD> 
+		<DT><B>DIR</B></DT> 
+		<DD>VA FileMan's general purpose reader routine that can be used to issue
+		  a prompt, interactively read input, do syntax checking on input, issue error
+		  messages or help text, and return input in a processed form.</DD> 
+		<DT><B>DIWF</B></DT> 
+		<DD>VA FileMan routine that uses the contents of a word processing field
+		  as a target into which data will be inserted at print time. The data may come
+		  from another file or can be provided by the user interactively at the time of
+		  print. </DD> 
+		<DT><B>DIWP</B></DT> 
+		<DD>VA FileMan routine that formats and (optionally) outputs any group of
+		  text lines.</DD> 
+		<DT><B>FDA</B></DT> 
+		<DD>FileMan Data Array</DD> 
+		<DT><B>Global Variable</B></DT> 
+		<DD>A variable that is stored on disk.</DD> 
+		<DT><B><A NAME="hook">Hook</A></B></DT> 
+		<DD>A documented data dictionary attribute, input variable, or parameter
+		  in which an application developer can place M code that will be executed during
+		  a VA FileMan call. Also called
+		  <A HREF="#programmer_hook" CLASS="bodylink" TITLE="Programmer Hook">Programmer
+		  Hook</A>. </DD> 
+		<DT><B><A NAME="index">Index</A></B></DT> 
+		<DD>An ordered list used to speed retrieval of entries from a file based
+		  on a value in some field or fields. The term "simple index" refers to an index
+		  that stores the data for a single field; the term "compound index" refers to an
+		  index that stores the data for more than one field. Indexes are created and
+		  maintained via
+		  <A HREF="#cross_reference" CLASS="bodylink"
+			TITLE="cross-references">cross-references</A>. See also
+		  <A HREF="#UniquenessIndex" CLASS="bodylink" TITLE="Uniqueness Index">Uniqueness
+		  Index</A>.</DD> 
+		<DT><B>Initialization</B></DT> 
+		<DD>The process of setting variables in a program to their starting
+		  value.</DD> 
+		<DT><B>INPUT Transform</B></DT> 
+		<DD>An executable string of M code which is used to check the validity of
+		  input and to convert it into an internal form for storage.</DD> 
+		<DT><B><A NAME="key">Key</A></B></DT> 
+		<DD>A group of fields that, taken collectively, uniquely identifies a
+		  record in a file or subfile. All fields in a key must have values. The term
+		  "simple key" refers to keys that are composed of only one field; the term
+		  "compound key" refers to keys that are composed of more than one field. Keys
+		  are stored in the KEY file (#.31). See also
+		  <A HREF="#PrimaryKey" CLASS="bodylink" TITLE="Primary Key">Primary Key</A> and
+		  <A HREF="#SecondaryKey" CLASS="bodylink" TITLE="Secondary Key">Secondary
+		  Key</A>.</DD> 
+		<DT><B>Key Integrity</B></DT> 
+		<DD>When a KEY is defined for a file, FileMan enforces key integrity. All
+		  fields in a key must have values (must not be null) and those values, taken
+		  together, must be unique across all records in the file; that is, no two
+		  records in the file can have the same key. VA FileMan enforces key integrity
+		  whenever records are added or edited.</DD> 
+		<DT><B>Local Variable</B></DT> 
+		<DD>A variable that is stored in a local partition.</DD> 
+		<DT><B><A NAME="NewStyleCrossRef">New-style Cross-reference</A></B></DT> 
+		<DD>A Cross-reference that is stored in the INDEX file. New Style
+		  Cross-references can be more complex than traditional cross-references. They
+		  can create an index with more than one field value, with transformed field
+		  values, or with computed subscript values. They can be defined so that
+		  subscripts are displayed in inverse collation sequence during question-mark
+		  help or when using a Lister call (LIST^DIC). Firing of SET and KILL logic for
+		  the index can happen at the record level, rather than each time individual
+		  fields that make up the index are edited.See
+		  <A HREF="#cross_reference" CLASS="bodylink"
+			TITLE="Cross-reference">Cross-reference</A>.</DD> 
+		<DT><B>OUTPUT Transform</B></DT> 
+		<DD>An executable string of M code which converts internally stored data
+		  into a readable display.</DD> 
+		<DT><B><A NAME="PrimaryKey">Primary Key</A></B></DT> 
+		<DD>The Key chosen by the database designer to be VA FileMan's principal
+		  means of identifying records in the file. VA FileMan automatically displays the
+		  Primary Key during classic interactive lookup (^DIC) and uses the Primary Key
+		  to identify records brought in during a KIDS installation. Exactly one Key in a
+		  file or subfile must be designated the Primary Key. See
+		  <A HREF="#key" CLASS="bodylink" TITLE="Key">Key</A>. </DD> 
+		<DT><B><A NAME="programmer_hook">Programmer Hook</A></B></DT> 
+		<DD>A documented data dictionary attribute, input variable, or parameter
+		  in which an application developer can place M code that will be executed during
+		  a VA FileMan call. Also called <A HREF="#hook" CLASS="bodylink"
+		  TITLE="Hook">Hook</A>.</DD> 
+		<DT><B>Routine</B></DT> 
+		<DD>A set of M code that performs a process.</DD> 
+		<DT><B><A NAME="SecondaryKey">Secondary Key</A></B></DT> 
+		<DD>Like a Primary Key, fields that make up a Secondary Key must uniquely
+		  identify a single record on the file. Key integrity is enforced by FileMan for
+		  a Secondary Key, exactly the same as for a Primary Key. Secondary Key values,
+		  however, are not automatically displayed by FileMan during interactive lookup
+		  ^DIC. A file or subfile can have more than one Secondary Key. See
+		  <A HREF="#key" CLASS="bodylink" TITLE="Key">Key</A> and
+		  <A HREF="#PrimaryKey" CLASS="bodylink" TITLE="Primary Key">Primary
+		  Key</A>.</DD> 
+		<DT><B>Simple Index</B></DT> 
+		<DD>An index that stores the data for a single field. See
+		  <A HREF="#index" CLASS="bodylink" TITLE="Index">Index</A>.</DD> 
+		<DT><B><A NAME="SimpleKey">Simple Key</A></B></DT> 
+		<DD>A key that is composed of only one field. See
+		  <A HREF="#CompoundKey" CLASS="bodylink" TITLE="Compound Key">Compound
+		  Key</A>.</DD> 
+		<DT><B>Spooling</B></DT> 
+		<DD>Procedure by which programs and output can be temporarily stored
+		  until their turn to execute or print.</DD> 
+		<DT><B>Sub-routine</B></DT> 
+		<DD>A sequence of M code that performs a specific task, usually used more
+		  than once.</DD> 
+		<DT><B><A NAME="UniquenessIndex">Uniqueness Index</A></B></DT> 
+		<DD>An index associated with every key and used to enforce uniqueness of
+		  the key. Every field in the key must be a subscript on the Uniqueness Index and
+		  must have no transforms.</DD> 
+		<DT><B>Utility Routine</B></DT> 
+		<DD>A routine that performs a task that many programmers utilize.</DD> 
+		<DT><B>Variable</B></DT> 
+		<DD>A symbol representing a value that changes during the execution of a
+		  routine.</DD> 
+	 </DL>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- glossary.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

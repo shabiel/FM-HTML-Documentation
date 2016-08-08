@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Running an Init on Target System (12
+		of 16)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,running an init on target system,step 12">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Running an Init on Target System (12 of 16)</H4> 
+	 <H5>Installing Other Package Components</H5> 
+	 <P>Next, the init brings in the remaining components built into the init.
+		They are installed in the following order: </P> 
+	 <UL> 
+		<LI>Help Frames<BR><BR></LI> 
+		<LI>Bulletins<BR><BR></LI> 
+		<LI>PACKAGE file entry for the package being installed<BR><BR></LI> 
+		<LI>PACKAGE PARAMETER multiple from the ORDER PARAMETER file (an Order
+		  Entry file)<BR><BR></LI> 
+		<LI>Options<BR><BR></LI> 
+		<LI>Security Keys<BR><BR></LI> 
+		<LI>Functions<BR><BR></LI> 
+		<LI>Print Templates<BR><BR></LI> 
+		<LI>Sort Templates<BR><BR></LI> 
+		<LI>Input Templates<BR><BR></LI> 
+		<LI>Blocks associated with Screen Templates (Forms)<BR><BR></LI> 
+		<LI>Screen Templates (Forms) themselves </LI> 
+	 </UL> 
+	 <P>The init might contain some or all of these components. They consist of
+		entries that are placed into pre-existing files. Many of them are prefixed with
+		the package namespace. </P> 
+	 <P>There is special coding in DIFROM to bundle and install data sent from
+		the HELP FRAME, BULLETIN, OPTION, INPUT TEMPLATE, etc., files. For example,
+		DIFROM resolves pointers for these files. (It does not resolve pointers for
+		data sent for other files in an init.) To resolve pointers, DIFROM replaces, in
+		the init routines, a pointer to another file with the pointer's external value.
+		When the data is installed at the target site, the init routines use this
+		external value for a lookup in the B cross-reference of the pointed-to file.
+		When the corresponding entry number is found, the external value is replaced
+		with this entry number as the new pointer value. In this way, the values of
+		pointer fields are correct for the data brought in by the init. </P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_dif6l.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

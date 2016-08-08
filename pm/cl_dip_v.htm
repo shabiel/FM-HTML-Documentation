@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EN1^DIP Variables</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure & Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,en1^dip,dip,variables,dip variables">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EN1^DIP: Input Variables</H4> 
+	 <H5>Input Variables</H5> 
+	 <P><B><A NAME="input_l">L</A></B></P> 
+	 <P>(Required) A required variable which should be set to zero or some
+		string whose numeric evaluation is zero, e.g., "LIST DRUGS". If set to a text
+		string, the string is used to replace the word "SORT" in the "SORT BY:"
+		prompts, when FileMan asks the user for sort values: </P> 
+	 <PRE>    LIST DRUGS BY: NAME//</PRE> <HR> 
+	 <P><B><A NAME="input_dic">DIC</A></B></P> 
+	 <P>(Required) The open global root of the file in the usual format, e.g.,
+		"^DIZ(16540," or the file number.</P> <HR> 
+	 <P><B><A NAME="input_flds">FLDS</A></B></P> 
+	 <P>(Optional) The various fields to be printed. If this parameter is not
+		sent, the user will be prompted for fields to print. FLDS can contain the
+		following: </P> 
+	 <UL> 
+		<LI>The numbers or names of the fields to be printed, separated by
+		  commas. These fields are printed in the order that they are listed.
+		  <A HREF="../u1/pr_intro.htm#print_qualifiers" TARGET="_top"
+			TITLE="Print qualifiers" CLASS="bodylink">Print qualifiers</A> which determine
+		  column width, caption contents, and many other features of the output may be
+		  included exactly as they are when answering the "PRINT FIELD:" prompt. (See the
+		  "<A HREF="../u1/pr_frm.htm" TARGET="_top" TITLE="Print"
+		  CLASS="bodylink">Print</A>" chapter in the "VA FileMan Getting Started Manual"
+		  for details on print qualifiers.) For example: 
+		  <PRE>    FLDS=&quot;.01,.03,1;C20&quot;
+</PRE> 
+		  <P>If there are more fields than can fit on one string, FLDS can be
+			 subscripted (FLDS(1), FLDS(2), and so forth), but FLDS as a single-valued
+			 variable must exist. </P> <BR><BR></LI> 
+		<LI>The name of a PRINT template preceded by an open bracket ([) and
+		  followed by a close bracket (]). For example: 
+		  <PRE>    FLDS=&quot;[DEMO]&quot;</PRE> </LI> 
+	 </UL> <HR> 
+	 <P><B><A NAME="input_by">BY</A></B></P> 
+	 <P>(Optional) The fields by which the data is to be sorted. If BY is
+		undefined, the user is prompted for the sort conditions. You can sort by up to
+		seven fields; that is, you can have up to a 7-level sort. </P> 
+	 <P>You can set BY to: </P> 
+	 <UL> 
+		<LI>The numbers or names of the fields separated by commas.
+		  <A HREF="../u1/pr_intro.htm#sort_reference" TARGET="_top"
+			TITLE="Sort qualifiers" CLASS="bodylink">Sort qualifiers</A> which determine
+		  aspects of the sort and of the printout may be included exactly as they are
+		  when answering the "SORT FIELD:" prompt. For example: 
+		  <PRE>    BY=&quot;.01;C1,1&quot;
+</PRE> 
+		  <P>If one of the comma pieces of the BY variable is the @-sign
+			 character, the user will be asked for that SORT BY response. So if you want to
+			 sort by DIAGNOSIS but allow the user to order the sort within DIAGNOSIS, set
+			 BY="DIAGNOSIS,@". </P> <BR><BR></LI> 
+		<LI>The name of a SORT template preceded by an open bracket (<B>[</B>)
+		  and followed by a close bracket (<B>]</B>). For example: 
+		  <PRE>    BY=&quot;[DEMOSORT]&quot;</PRE> </LI> 
+	 </UL> 
+	 <P><B>NOTE:</B> You cannot use the name of a SORT template in the BY
+		variable if the BY(0) input variable has been set. If you want to create such
+		complex sorts, you can include the BY(0) information within the SORT template.
+		See the section
+		<A HREF="cl_dip_b.htm#StoringBY(0)Specs"
+		 TITLE="Storing BY(0) Specification in SORT Template" CLASS="bodylink">Storing
+		BY(0) Specifications in SORT Templates</A>, within the Details and Features
+		section:
+		<A HREF="cl_dip_b.htm#ControlSorts" TARGET="display"
+		 TITLE="Controlling Sorts with BY(0)" CLASS="bodylink">Controlling Sorts with
+		BY(0)</A>. &nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> 
+	 <UL> 
+		<LI>The name of a SEARCH template, preceded by an open bracket ([) and
+		  followed by a close bracket (]). The SEARCH template must have results stored
+		  in it. Only those records in the SEARCH template will print, and they will
+		  print in IEN order. For example: 
+		  <PRE>    BY=&quot;[DEMOSEARCH]&quot;</PRE> </LI> 
+	 </UL> 
+	 <P><B>NOTE:</B> If more than one field is included in the BY variable,
+		separate the fields with commas. The same comma-pieces will identify the field
+		in the FR and TO variables. If, for example, you wanted a sorted report of
+		entries with DOBs in 1960 and with ZIP CODEs in the 90000s, you could define
+		the variables by writing: </P> 
+	 <PRE>    BY=&quot;DOB,ZIP CODE&quot;
+    FR=&quot;01/01/60,90000&quot;
+    TO=&quot;12/31/60,99999&quot;</PRE> 
+	 <P>Since the delimiter of BY is a comma, the value placed in the variable
+		should not contain a comma. Therefore, if your field name contains a comma, use
+		the field number in the BY variable instead of its name. For the same reason,
+		if sort from or to values contain commas, the alternate
+		<A HREF="#input_fr_n" TITLE="FR(n)" CLASS="bodylink">FR(n)</A> and
+		<A HREF="#input_to_n" TITLE="TO(n)" CLASS="bodylink">TO(n)</A> input arrays
+		described below should be used instead of the FR and TO input variables. </P>
+	 <HR> 
+	 <P><B><A NAME="input_fr">FR</A></B></P> 
+	 <P>(Optional) The START WITH: values of the SORT BY fields. If FR is
+		undefined, the user will be asked the START WITH: question for each SORT BY
+		field. If FR is defined, it consists of one or more comma pieces, where the
+		piece position corresponds to the order of the sort field in the BY variable.
+		Each comma piece can be:</P> 
+	 <UL> 
+		<LI>The value from which the selection of entries will
+		  begin.<BR><BR></LI> 
+		<LI>Null. If a comma piece of FR is null, then the sort will start from
+		  the very beginning of the file for that field.<BR><BR></LI> 
+		<LI><B>?</B>. The question mark as one of the comma pieces causes the
+		  "START WITH:" prompt to be presented to the user for the corresponding SORT BY
+		  field.<BR><BR></LI> 
+		<LI><B>@</B>. The at-sign indicates that the sort should begin with null
+		  values, that is, with entries that have no data on file. If the corresponding
+		  piece of the TO variable or array also is set to <B>@</B>, then only entries
+		  with null values for this sort field will be selected during the sort. If TO
+		  does not contain <B>@</B>, then after the null values, the sort will start at
+		  the first non-null value and will go to the value indicated by TO.</LI> 
+	 </UL> 
+	 <P><B>NOTE:</B> If BY contains the name of a SORT template and if the
+		developer answered NO to the question SHOULD TEMPLATE USER BE ASKED 'FROM'-'TO'
+		RANGE... for a field at the time the template was defined, then the information
+		in the FR and TO variables is ignored for that field. Instead, the from/to
+		ranges stored in the sort template are used. </P> 
+	 <P>If you customize
+		<A HREF="cl_dip_b.htm#ControlSorts" TITLE="sorts using BY(0)"
+		 CLASS="bodylink">sorts using BY(0)</A>, see special note on FR in that section.
+		</P> <HR> 
+	 <P><B><A NAME="input_fr_n">FR(n)</A></B></P> 
+	 <P>(Optional) An alternate way to provide the START WITH: values of the
+		SORT BY fields. If FR is defined, it will override this array. The subscript n
+		corresponds to the comma piece in the BY variable (i.e., the sort by field
+		number). This alternate way of inputting the from and to values allows the use
+		of values containing commas, such as PATIENT NAMEs. Each nth entry in the array
+		corresponds to, and can have the same value as, the nth comma piece in the FR
+		variable. The only difference is that any nth entry, FR(n), can be undefined,
+		causing the START WITH: question to be asked for the nth SORT FIELD. </P> 
+	 <P>For example, if you were using the unsubscripted TO and FR variables to
+		do a sort on two fields, you might do as follows:</P> 
+	 <PRE>    S FR=&quot;A,01/01/95&quot;,TO=&quot;Zz,01/31/95&quot;</PRE> 
+	 <P>To set up the same sort using the subscripted forms of TO and FR, you
+		would set them up as follows: </P> 
+	 <PRE>    S FR(1)=&quot;A&quot;,FR(2)=&quot;01/01/95&quot;
+    S TO(1)=&quot;Zz&quot;,TO(2)=&quot;01/31/95&quot;</PRE> 
+	 <P><B>NOTE:</B> If you customize
+		<A HREF="cl_dip_b.htm#ControlSorts" TITLE="sorts using BY(0)"
+		 CLASS="bodylink">sorts using BY(0)</A>, see special note on FR in that section.
+		</P> <HR> 
+	 <P><B><A NAME="input_to">TO</A></B></P> 
+	 <P>(Optional) The GO TO: values of the SORT BY fields. Its characteristics
+		correspond to the FR variable. If undefined, the user will be asked the GO TO:
+		questions for each SORT BY field. If TO is defined, it consists of one or more
+		comma pieces. Each comma piece can be: </P> 
+	 <UL> 
+		<LI>The value at which the selection of entries will end.<BR><BR></LI> 
+		<LI>Null. If TO is null, then the sort will go from FR to the end of the
+		  file.<BR><BR></LI> 
+		<LI><B>?</B>. The question mark as one of the comma pieces causes the "GO
+		  TO:" prompt to be presented to the user for the corresponding SORT BY
+		  field.<BR><BR></LI> 
+		<LI><B>@</B>. The at-sign indicates that the sort should include null
+		  values, that is, entries that have no data on file. If the corresponding piece
+		  of the FR variable or array also is set to @, then only entries with null
+		  values for this sort field will be selected during the sort. If FR does not
+		  contain @, then after the null values, the sort will start at the FR value and
+		  include all other non-null values to the end of the file.</LI> 
+	 </UL> 
+	 <P><B>NOTE:</B> If BY contains the name of a SORT template and if the
+		developer answered NO to the question SHOULD TEMPLATE USER BE ASKED 'FROM'-'TO'
+		RANGE... for a field at the time the template was defined, then the information
+		in the FR and TO variables is ignored for that field. Instead, the from/to
+		ranges stored in the SORT template are used. </P> <HR> 
+	 <P><B><A NAME="input_to_n">TO(n)</A></B></P> 
+	 <P>(Optional) An alternate way to provide the GO TO: values of the SORT BY
+		fields. If TO is defined, it will override this array. The subscript "n"
+		corresponds to the comma piece in the BY variable. This alternate way of
+		inputting the from and to values allows the use of values containing commas,
+		such as PATIENT NAMEs. Each nth entry in the array corresponds to, and can have
+		the same value as, the nth comma piece in the TO variable. The only difference
+		is that any nth entry, TO(n), can be undefined, causing the GO TO: question to
+		be asked for the nth SORT BY field. </P> 
+	 <P>If you customize
+		<A HREF="cl_dip_b.htm#ControlSorts" TARGET="display" TITLE="sorts using BY(0)"
+		 CLASS="bodylink">sorts using BY(0)</A>, see special note on TO(n) in that
+		section.</P> <HR> 
+	 <P><B><A NAME="input_dhd">DHD</A></B></P> 
+	 <P>(Optional) The header desired for the output. DHD can be one of the
+		following: </P> 
+	 <UL> 
+		<LI><B>@</B> if header is not desired.<BR><BR></LI> 
+		<LI><B>@@</B> if header <B>and</B> formfeed are not desired.<BR><BR></LI>
+		
+		<LI>A literal which will be printed, as is, in the upper left hand corner
+		  of the printout. The date, page and field headings will be in their normal
+		  places.<BR><BR></LI> 
+		<LI>A line of M code which must begin with a write statement, e.g.,
+		  DHD="W ?0 D ^ZZHDR".<BR><BR></LI> 
+		<LI>A PRINT template name preceded by an open bracket (<B>[</B>) and
+		  followed by a close bracket (<B>]</B>). In this case, the template replaces all
+		  parts of the header that VA FileMan normally generates. <BR><BR></LI> 
+		<LI>Two PRINT templates separated by a minus sign. The first will be used
+		  as the header and the second will be used as the trailer. For example: 
+		  <PRE>    DHD=&quot;[HEADER]-[TRAILER]&quot;
+</PRE> </LI> 
+	 </UL> <HR> 
+	 <P><B><A NAME="input_diaskhd">DIASKHD</A></B></P> 
+	 <P>(Optional) If this variable is defined, the user will be prompted to
+		enter a header. Set it equal to null (""). If this variable is undefined, the
+		user will not have the opportunity to change the header on the print. </P> <HR>
+	 
+	 <P><B><A NAME="input_dipcrit">DIPCRIT</A></B></P> 
+	 <P>(Optional) If this variable is set to 1, the SORT criteria will print in
+		the header of the first page of the report. </P> <HR> 
+	 <P><B><A NAME="input_pg">PG</A></B></P> 
+	 <P>(Optional) Starting page number. If variable is undefined, page 1 will
+		be assumed. </P> <HR> 
+	 <P><B><A NAME="input_dhit">DHIT</A></B></P> 
+	 <P>(Optional) A string of M code which will be executed for every entry
+		after all the fields specified in FLDS have been printed. </P> <HR> 
+	 <P><B><A NAME="input_dioend">DIOEND</A></B></P> 
+	 <P>(Optional) A string of M code which is executed after the printout has
+		finished but before returning to the calling program. </P> <HR> 
+	 <P><B><A NAME="input_diobeg">DIOBEG</A></B></P> 
+	 <P>(Optional) A string of M code which is executed before the printout
+		starts. </P> <HR> 
+	 <P><B><A NAME="input_dcopies">DCOPIES</A></B></P> 
+	 <P>(Optional) If %ZIS chooses an SDP device, and if multiple copies are
+		desired, you can call for them by setting DCOPIES equal to the number (greater
+		than one) of copies desired. For more information about SDP devices, see the
+		"Kernel Systems Manual."</P> <HR> 
+	 <P><B><A NAME="input_iop">IOP</A></B></P> 
+	 <P>(Optional) EN1^DIP calls the ^%ZIS entry point to determine which device
+		output should go to. This requires user interaction unless you preanswer the
+		DEVICE prompt. You can do this by setting IOP equal to the name of the device
+		(as it is stored in the DEVICE file) to which the output should be directed.
+		You can also set IOP in any of the additional formats recognized by ^%ZIS to
+		specify the output device (see the "Kernel Systems Manual" for more information
+		on ^%ZIS and IOP).</P> 
+	 <P>If you need to call ^%ZIS beforehand to obtain the name of the device in
+		question from the user, call it with the %ZIS N flag set so that ^%ZIS doesn't
+		actually open the device. The name of the device is then returned in the ION
+		output variable. EN1^DIP will open and close the device you specify in IOP on
+		its own; don't open it yourself beforehand. </P> 
+	 <P>In addition to setting IOP equal to a device for printing, you can use
+		this variable (in conjunction with the DQTIME variable described immediately
+		below) to queue the printing of a report. This functionality is only available
+		if Kernel is present. Also, you must set up all of the input variables for
+		EN1^DIP so that the user is not asked any questions. For example, the BY, FR,
+		and TO variables must be defined. To establish queuing, IOP should equal
+		Q;output device. For example: </P> 
+	 <PRE>    S IOP=&quot;Q;MY PRINTER - NLQ&quot;
+</PRE> <HR> 
+	 <P><B><A NAME="input_dqtime">DQTIME</A></B></P> 
+	 <P>(Optional) If output is queued, this variable contains the time for
+		printing. You can set it equal to any value that %DT recognizes. For example:
+		</P> 
+	 <PRE>    S DQTIME=&quot;NOW&quot;</PRE> 
+	 <P>OR:</P> 
+	 <PRE>    S DQTIME=&quot;T@11PM&quot;</PRE> <HR> 
+	 <P><B><A NAME="input_dis_0">DIS(0)</A></B></P> 
+	 <P>(Optional) You can screen out certain entries so that they do not appear
+		on the output by setting the optional array DIS. The first subscript in this
+		array can be 0 (zero). This variable (as well as all the others) contains an
+		executable line of M code which includes an IF-statement. If the execution of
+		the IF sets $T to 1, then the entry will print. The internal number of the
+		entry being processed is in D0. </P> <HR> 
+	 <P><B><A NAME="input_dis_n">DIS(n)</A></B></P> 
+	 <P>(Optional) You can set other elements in the DIS array: DIS(1), DIS(2),
+		DIS(3), etc. The subscripts must be consecutive integers starting at 1. Again,
+		they must contain M code that sets $T. If many elements are defined, then
+		DIS(0) (if it exists) must be true and any one of the other elements in the
+		array must be true for the entry to print. </P> <HR> 
+	 <P><B><A NAME="input_disupno">DISUPNO</A></B></P> 
+	 <P>(Optional) If this variable is set to 1 and if no records are found
+		within the sort ranges specified for the print, the report header and the "No
+		Records to Print" message is not printed.</P> <HR> 
+	 <P><B><A NAME="input_distop">DISTOP</A></B></P> 
+	 <P>(Optional) If Kernel is present, by default, prints queued through the
+		EN1^DIP call can be stopped by the user with a TaskMan option. However, if this
+		variable is set to 0, users will not be able to stop their queued prints. </P> 
+	 <P>DISTOP can also be set equal to M code that will be executed once near
+		the start of a queued print. If the code sets $T to true, the user will be able
+		to stop the job; if $T is false, the user will not be able to. For example:</P>
+	 
+	 <PRE>
+    S DISTOP=&quot;I DUZ(0)=&quot;&quot;@&quot;&quot;&quot;
+</PRE> 
+	 <P>would mean that only those with programmer access could stop the print.
+		</P> <HR> 
+	 <P><B><A NAME="input_distop_c">DISTOP("C")</A></B></P> 
+	 <P>(Optional) If the user stops a queued print job by using TaskMan's
+		option, code in this optional variable will be executed before the output
+		device is closed. It might, for example, do clean up necessary because the job
+		did not run to completion.</P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dip_v.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

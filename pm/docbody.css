@@ -1,0 +1,6 @@
+@meta { Title: "FileMan Manuals"; }
+BODY { font-family: "Arial", "helv", "sans-serif" }
+H1 { font-size: xx-large }
+H2 { font-size: x-large }
+H3 { font-size: large }
+PRE { font-family: "Courier New", "Courier", "Fixedsys", "Terminal" }

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: $$GET^DDSVALF( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman api,screenman,api,calls,$$get^ddsvalf(),ddsvalf">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sm_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>$$GET^DDSVALF( )</H4> 
+	 <P>You can use this entry point only within a ScreenMan form, in all places
+		where M code can be placed on the form. </P> 
+	 <P>This extrinsic function retrieves data from a form-only field or a
+		computed field. </P> 
+	 <P>If, while a form is running, a call to GET^DDSVALF fails, ScreenMan
+		prints an error message in the Command Area. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+$$GET^DDSVALF(FIELD,BLOCK,PAGE,FLAGS,IENS)  
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The Field Order number, Caption, or Unique Name of the
+				form-only field. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>BLOCK</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required at the page and form levels) The Block Order or Block
+				Name. The default is the current block. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>PAGE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required at the form level) The Page Number or Page Name. The
+				default is the current page. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Controls whether the internal or external form is
+				returned, as shown below: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>I</B></TD> 
+		  <TD VALIGN="TOP">Return the <B>I</B>nternal form of the data. (Default)
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>E</B></TD> 
+		  <TD VALIGN="TOP">Return the <B>E</B>xternal form of the data. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IENS</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Required at the page and form levels) The standard IENS that
+				identifies the entry or subentry associated with the form-only field. The
+				default is the current entry or subentry. For a detailed description of IENS,
+				see "<A HREF="db_int3.htm"
+				TITLE="IENS - A New Way to Identify Entries and Subentries"
+				CLASS="bodylink">IENS - A New Way to Identify Entries and Subentries</A>" in
+				the "<A HREF="dba_frm.htm" TITLE="Database Server (DBS) API"
+				CLASS="bodylink">Database Server (DBS) API</A>" chapter. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1 </B> </P> 
+	 <P>Retrieve the value of a computed field called TOTAL on the current
+		block: </P> 
+	 <PRE>
+    <B>S nmspTOT=$$GET^DDSVALF(&quot;TOTAL&quot;)</B>
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>Retrieve the external form of a form-only date field with caption "DATE
+		OF BIRTH" on a block named "ZZBLOCK 1":</P> 
+	 <PRE>
+    <B>S nmspDATE=$$GET^DDSVALF(&quot;DATE OF BIRTH&quot;,&quot;ZZBLOCK 1&quot;,&quot;&quot;,&quot;E&quot;)</B>
+</PRE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sm_ugetf.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

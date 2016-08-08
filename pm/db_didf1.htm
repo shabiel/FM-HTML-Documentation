@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html><head><!--VHA OI System Design & Development--><!--Oakland OIFO--><!--Authored by Thom Blom and Michal Maunsell, 12/31/99--><!--Revised by Thom Blom, 6/20/01--> 
+	 
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan Programmer Manual: FIELD^DID( )</title><meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <meta name="keywords" content="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,field^did(),did">
+	 <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="0" bgcolor="white"><!--Table to lay out the page-->
+	 <table summary="This table is for formatting purposes only" border="0" cellpadding="6" cellspacing="0" height="65" width="100%"> 
+		<tbody><tr> 
+		  <td align="left" height="30" valign="middle"> <!--Title Banner (image)-->
+			 <p><img style="border: 0px solid ; width: 429px; height: 29px;" src="common/fileman_pm_heading.gif" alt="VA FileMan Getting Started HTML Manual">
+				<a href="#navskip"><img src="clr_pxl.gif" alt="[skip navigation]" border="0" height="1" width="25"></a> <br>
+				<br> </p> </td> 
+		  <td align="right" height="30" valign="middle"> 
+			 <p> </p></td> 
+		</tr> 
+	 </tbody></table> <!--Top Navigation Links-->
+	 <p></p> 
+	 <table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.html" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
+		  
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.html" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../u2/index.html" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">Database Server (DBS) API</a></h3>
+	 <hr class="hrstyle"> 
+	 <h4>FIELD^DID( ): DD Field Retriever</h4> 
+	 <p>This procedure retrieves the values of the specified field-level
+		attributes for the specified field. </p> 
+	 <h5>Format</h5> 
+	 <pre>FIELD^DID(FILE,FIELD,FLAGS,ATTRIBUTES,TARGET_ROOT,MSG_ROOT)<br></pre> 
+	 <h5>Input Parameters</h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b>FILE</b> </td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Required) File or subfile number. </p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>FIELD</b> </td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Required) Field name or number. </p> </td> 
+		</tr> 
+		<tr> 
+		  <td rowspan="3" valign="top"><b>FLAGS</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Optional) Flags to control processing. The possible values are:
+				</p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>N</b></td> 
+		  <td valign="top"><b>N</b>o entry in the target array is created if the
+			 attribute is null. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>Z</b></td> 
+		  <td valign="top">Word processing attributes include <b>Z</b>ero (0)
+			 nodes with text. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a name="FIELD_ATTRIBUTES">ATTRIBUTES</a></b></td> 
+		  <td colspan="2" valign="top">(Required) A list of attribute names
+			 separated by semicolons. Full attribute names must be used. Following are the
+			 attributes that can be requested: 
+			 <ul> 
+				<li>AUDIT</li> 
+				<li>AUDIT CONDITION </li> 
+				<li>COMPUTE ALGORITHM</li> 
+				<li>COMPUTED FIELDS USED</li> 
+				<li>DATE FIELD LAST EDITED</li> 
+				<li>DECIMAL DEFAULT</li> 
+				<li>DELETE ACCESS</li> 
+				<li>DESCRIPTION </li> 
+				<li>FIELD LENGTH </li> 
+				<li>GLOBAL SUBSCRIPT LOCATION</li> 
+				<li>HELP-PROMPT</li> 
+				<li>INPUT TRANSFORM </li> 
+				<li>LABEL </li> 
+				<li>MULTIPLE-VALUED</li> 
+				<li>OUTPUT TRANSFORM</li> 
+				<li>POINTER</li> 
+				<li>READ ACCESS </li> 
+				<li>SOURCE </li> 
+				<li>SPECIFIER</li> 
+				<li>TECHNICAL DESCRIPTION</li> 
+				<li>TITLE </li> 
+				<li>TYPE </li> 
+				<li>WRITE ACCESS</li> 
+				<li>XECUTABLE HELP<br><br>Alternatively, an "*" can be used in this Parameter to request ALL attributes.</li></ul> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>TARGET_ROOT</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Required) The closed root of the array that should receive the
+				attributes. </p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>MSG_ROOT</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Optional) The name of a closed root reference that is used to
+				pass error messages. If not passed, ^TMP("DIERR",$J) is used. </p> </td> 
+		</tr> 
+	 </tbody></table> 
+	 <h5>Output</h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b>TARGET_ROOT</b></td> 
+		  <td valign="top"> 
+			 <p>The array is subscripted by the attribute names. </p> </td> 
+		</tr> 
+	 </tbody></table> 
+	 <h5>Example</h5> 
+	 <pre>    &gt;<b>D FIELD^DID(999000,.01,"","LABEL;TYPE","TEST1")</b>
+
+    &gt;<b>ZW TEST1</b>
+    TEST1("LABEL")=NAME
+    TEST1("TYPE")=FREE TEXT
+</pre> 
+	 <h5>Error Codes Returned</h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b><a href="err_200.htm" title="Error 200" class="bodylink">200</a></b></td> 
+		  <td valign="top">There is an error in one of the variables passed.
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_202.htm" title="Error 202" class="bodylink">202</a></b></td> 
+		  <td valign="top">Missing or invalid input parameter. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_301.htm" title="Error 301" class="bodylink">301</a></b></td> 
+		  <td valign="top">Flags passed are unknown or incorrect. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_401.htm" title="Error 401" class="bodylink">401</a></b></td> 
+		  <td valign="top">The specified file or subfile does not exist. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_403.htm" title="Error 403" class="bodylink">403</a></b></td> 
+		  <td valign="top">The file lacks a Header Node. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_404.htm" title="Error 404" class="bodylink">404</a></b></td> 
+		  <td valign="top">The file Header Node lacks a file #. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_501.htm" title="Error 501" class="bodylink">501</a></b></td> 
+		  <td valign="top">The field name or number does not exist. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_505.htm" title="Error 505" class="bodylink">505</a></b></td> 
+		  <td valign="top">The field name passed is ambiguous. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_510.htm" title="Error 510" class="bodylink">510</a></b></td> 
+		  <td valign="top">The data type for the specified field cannot be
+			 determined. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_520.htm" title="Error 520" class="bodylink">520</a></b></td> 
+		  <td valign="top">An incorrect kind of field is being processed. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_537.htm" title="Error 537" class="bodylink">537</a></b></td> 
+		  <td valign="top">Field has a corrupted pointer definition. </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p></p> <hr class="hrstyle"> 
+	 <table summary="This table for layout purposes only" class="white" width="100%"> 
+		<tbody><tr> 
+		  <td colspan="2" align="center" valign="top">
+			 <!--Bottom Navigation Links-->
+			 <p align="center"><br>
+				<a href="http://www.va.gov/" title="Department of Veterans Affairs Home Page" class="bodylink" target="_top"><acronym title="Department of Veterans Affairs">
+				VA</acronym> Home Page</a> /
+				<a href="http://vaww.va.gov/vhacio/" title="Office of Information Home Page" class="bodylink" target="_top"><acronym title="Office of Information">OI</acronym> Home Page</a> /
+				<a href="http://vista.med.va.gov/" title="System Design and Development Home Page" class="bodylink" target="_top"><acronym title="System Design and Development">SD&amp;D</acronym>
+				Home Page</a> /
+				<a href="http://vista.med.va.gov/iis/site_map.html" title="Information Infrastructure Service Site Map" class="bodylink" target="_top">IIS Site Map</a> /
+				<a href="http://vista.med.va.gov/termsofuse.htm" title="System Design and Development Terms of Use Page" class="bodylink" target="_top">Terms of Use</a> /
+				<a href="http://www.va.gov/privacy/" class="bodylink" target="_top" title="Department of Veterans Affairs Privacy Policy"><acronym title="Department of Veterans Affairs"> VA</acronym> Privacy Policy</a></p> <!--Date content was reviewed or updated-->
+			 <p align="center"> Reviewed/Updated: June 20, 2001 <br><br>If you
+				have questions, need more information, or are having accessibility problems
+				with this website, please contact us by E-Mail:
+				<a href="mailto:VHAISFCVTECH@med.va.gov?subject=Web%20page%20comments%20from:%20/fileman/docs/pm/db_didf1.htm" title="Send mail to IIS Webmasters regarding this page" class="bodylink"><acronym title="Information Infrastructure Sevice">IIS</acronym> Webmasters</a>, Phone:
+				510-768-6800, or FAX: 510-768-6850.</p> 
+			 <p>&nbsp; </p></td> 
+		</tr> 
+	 </tbody></table> </body></html>

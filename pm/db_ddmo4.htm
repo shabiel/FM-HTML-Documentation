@@ -1,0 +1,602 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+	 <!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Susan Strack 7/12/02-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: CREIXN^DDMOD</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,CREIXN^DDMOD,filesec^ddmod,ddmod">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+     <style>
+<!--
+pre          { font-size: 10pt; font-family: Courier New }
+-->
+     </style>
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+  <H4>CREIXN^DDMOD: New-Style Cross-Reference Creator</H4> 
+	 <P>This procedure creates a new-style cross-reference definition in the
+     INDEX file (#.11). Optionally, it builds the data in the index (for Regular
+     cross-references) or executes the set logic (for MUMPS cross-references)
+     for all entries in the file. Compiled input templates that contain one or
+     more of the fields defined in the cross-reference are recompiled. If
+     cross-references on the file are compiled, they are recompiled.</P> 
+	 <P>One use of CREIXN^DDMOD is in the pre-install or post-install routine of
+     a KIDS (Kernel Installation and Distribution System) Build to create a
+     new-style cross-reference at the installing site.</P> 
+	 <P>See the API <a HREF="db_ddmod.htm" TITLE="DELIX^DDMOD" CLASS="bodylink">DELIX^DDMOD</a>
+     for information on the call to delete a new-style cross-reference
+     definition.</P> 
+  <p>See <a href="dt_dikcbld.htm" TITLE="^DIKCBLD" CLASS="bodylink">^DIKCBLD</a> for information on a programmer
+  mode utility that can be used to help create a routine that calls CREIXN^DDMOD.</p>
+	 <P></P> 
+	 <H5>Format</H5> 
+	 <PRE>CREIXN^DDMOD(.XREF,FLAGS,.RESULT,OUTPUT_ROOT,MSG_ROOT)</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD WIDTH="185" valign="top"><strong>.XREF</strong></TD> 
+		  <TD WIDTH="524" colspan="2" valign="top">(Required) This input array contains information about
+            the new-style cross-reference to be created. The elements in this
+            array are as follows:
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;FILE&quot;)
+            = The number of the file or subfile on which the index physically
+            resides. For whole-file indexes, this should be the file number of
+            the upper level file, not the subfile that contains the fields in
+            the index. For MUMPS cross-references that don't set an index,
+            XREF(&quot;FILE&quot;) should be the file that contains the fields
+            in the cross-reference. (Required)</p>
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;TYPE&quot;)
+            = &quot;R&quot; or &quot;REGULAR&quot; for regular indexes; or
+            &quot;MU&quot; or &quot;MUMPS&quot; for MUMPS-type cross-references.
+            (Required)</p>
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;NAME&quot;)
+            = The name of the cross-reference.</p>
+            <p style="margin-left:.5in">If XREF(&quot;NAME&quot;)
+            is not passed, CREIXN^DDMOD gets the next available name based on
+            the XREF(&quot;FILE&quot;) and XREF(&quot;USE&quot;). In most cases,
+            however, you should explicitly give your new cross-reference a name.</p><p style="margin-left:.5in">(Required if
+            XREF(&quot;USE&quot;) is not passed.)</p>
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;ROOT
+            FILE&quot;) = For whole-file indexes, the number of the file or
+            subfile that contains the fields in the cross-reference. This is the
+            subfile number, not the upper level file number where the index
+            physically resides. XREF(&quot;ROOT FILE&quot;) should only be set
+            for whole-file indexes. (Required for whole-file indexes.)</p>
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;SHORT
+            DESCR&quot;) = Short description of the cross-reference (Required)</p>
+            <p>XREF(&quot;DESCR&quot;,1) = Line 1 of the
+            cross-reference description.<br>
+            XREF(&quot;DESCR&quot;,n)
+            = Line n of the cross-reference description. (Optional)</p>
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;USE&quot;)
+            = &quot;LS&quot; or &quot;LOOKUP &amp; SORTING&quot; for indexes
+            used for both lookup and sorting; &quot;S&quot; or &quot;SORTING
+            ONLY&quot; for indexes used for sorting only; or &quot;A&quot; or
+            &quot;ACTION&quot; for MUMPS cross-reference that do not set an
+            index.</p>
+            <p style="margin-left:.5in">&quot;LS&quot;
+            (&quot;LOOKUP &amp; SORTING&quot;) – The cross-reference sets an
+            index and the index name must start with &quot;B&quot; or a letter
+            that alphabetically follows &quot;B&quot;. Calls to Classic FileMan
+            lookup (^DIC) or the Finder (FIND^DIC or $$FIND1^DIC) where the
+            index is not specified will include this index in the search. The
+            index will be available for use by the FileMan Sort and Print
+            (EN1^DIP).</p>
+            <p style="margin-left:.5in">&quot;S&quot;
+            (&quot;SORTING ONLY&quot;) – The cross-references sets an index,
+            and the index name must start with &quot;A&quot;. Calls to Classic
+            FileMan lookup (^DIC) or the Finder (FIND^DIC or $$FIND1^DIC) will
+            not use this index unless it is specified in the input parameters to
+            those calls. The index will be available for use by the FileMan Sort
+            and Print (EN1^DIP).</p>
+            <p style="margin-left:.5in">&quot;A&quot;
+            (&quot;ACTION&quot;) –This is used for MUMPS cross-references that
+            perform some action(s) other than building an index. The
+            cross-reference name must start with &quot;A&quot;.</p>
+            <p style="margin-left:.5in">If XREF(&quot;USE&quot;)
+            is not passed, CREIXN^DDMOD assumes a value based on the
+            cross-reference name and type. If the name starts with
+            &quot;A&quot;, XREF(&quot;USE&quot;) is assumed to be &quot;S&quot;
+            (Sorting Only) for Regular indexes, and &quot;A&quot; (Action) for
+            MUMPS cross-references. If the name doesn't start with an
+            &quot;A&quot;, XREF(&quot;USE&quot;) is assumed to be &quot;LS&quot;
+            (Lookup &amp; Sorting). Note that for clarity, however, it is
+            recommended that you explicitly set XREF(&quot;USE&quot;).</p>
+            <p style="margin-left:.5in">(Required if
+            XREF(&quot;NAME&quot;) is not passed.)</p>
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;EXECUTION&quot;)
+            = &quot;F&quot; or &quot;FIELD&quot; for field-level execution; or
+            &quot;R&quot; or &quot;RECORD&quot; for record-level execution.</p>
+            <p style="margin-left:.5in">This indicates whether
+            the cross-reference logic should be executed after a field in the
+            cross-reference changes, or only after all fields in a record are
+            updated in an editing session. The logic for most simple
+            (single-field) cross-references should be executed immediately after
+            the field changes, and so should have an Execution of &quot;F&quot;.
+            The logic for most compound (multi-field) cross-references should be
+            executed only&nbsp;once after a transaction on the entire record is
+            complete, and so should have an Execution of &quot;R&quot;.</p>
+            <p style="margin-left:.5in">(Optional) (Defaults
+            to &quot;F&quot; for simple cross-references, and &quot;R&quot; for
+            compound cross-references.)</p>
+            <p>XREF(&quot;ACTIVITY&quot;) = One or both of the
+            following codes:</p>
+            <p style="margin-left:53.85pt">I = Installing an
+            entry at a site<br>
+            R = Re-cross-referencing this index</p>
+            <p style="margin-left:.5in">If Activity contains
+            an &quot;I&quot;, FileMan fires the cross-references during a KIDS
+            installation. If Activity contains an &quot;R&quot;, FileMan fires
+            the cross-reference during a re-cross-referencing operation.</p>
+            <p style="margin-left:.5in">Note that FileMan
+            automatically fires cross-references during an edit, regardless of
+            Activity, although you can control whether a cross-reference is
+            fired by entering set and kill conditions.</p>
+            <p style="margin-left:.5in">Also, if you
+            explicitly select a cross-reference in an EN^DIK, EN1^DIK, or ENALL^DIK
+            call, or in the UTILITY FUNCTIONS/RE-INDEX FILE option on the VA
+            FileMan menu, that cross-reference will be fired whether or not its
+            Activity contains an &quot;R&quot;.</p>
+            <p style="margin-left:.5in">(Optional) (Defaults
+            to &quot;IR&quot;)</p>
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;SET
+            CONDITION&quot;) = MUMPS code that sets the variable X. The set
+            logic of the cross-reference is executed only if the set condition,
+            if present, sets X to Boolean true, according the M rules for
+            Boolean interpretation.</p>
+            <p style="margin-left:.5in">The MUMPS code can assume the DA array describes the
+            record to be cross-referenced, and that the X(order#) array contains
+            values after the transform for storage is applied, but before the
+            truncation to the maximum length. The variable X also equals X(order#) of the lowest order
+            number.</p>
+            <p style="margin-left:.5in">When fields that make up a cross-reference are edited and
+            the kill and set conditions are executed, the X1(order#) array
+            contains the old field values, and the X2(order#) array contains the
+            new field values. If a record is being added, and there is an
+            X1(order#) array element that corresponds to the .01 field, it is
+            set to null. When a record is deleted, all X2(order#) array elements
+            are null.</p>
+            <p style="margin-left:.5in">(Optional)</p>
+            <p style="margin-left:.5in;text-indent:-.5in">XREF(&quot;KILL
+            CONDITION&quot;) = MUMPS
+            code, that sets the variable X. The kill logic of the
+            cross-reference is executed only if the kill condition, if present,
+            sets X to Boolean true, according the M rules for Boolean
+            interpretation.</p>
+            <p style="margin-left:.5in">See XREF(&quot;SET CONDITION&quot;) above for a
+            description of the DA, X, X1, and X2 arrays that can be used in the
+            MUMPS code.</p>
+            <p style="margin-left:.5in">(Optional)</p>
+            <p>For MUMPS cross-references, you can also set
+            the following nodes in the XREF array. (For Regular Indexes, the set
+            and kill logic is determined automatically for you, and so these
+            nodes, if passed in, are ignored.) The code can also make use of the
+            DA, X, X1, and X2 arrays as described in XREF(&quot;SET
+            CONDITION&quot;) above.</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;SET&quot;)
+            = M code that FileMan should be executed when the values of fields
+            that make up the cross-reference are set or changed. (Optional)
+            (Defaults to &quot;Q&quot;)</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;KILL&quot;)
+            = M code that FileMan should be executed when the values of fields
+            that make up the cross-reference are changed or deleted. (Optional)
+            (Defaults to &quot;Q&quot;)</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;WHOLE
+            KILL&quot;) = M code that can be executed to remove an entire index
+            for all records in a file. When an entire fire is reindexed, FileMan
+            executes this code rather than looping through all the entries in
+            the file and executing the kill logic once for each entry.
+            (Optional)</p>
+            <p>Each value in the cross-reference is described
+            in the XREF(&quot;VAL&quot;,order#) portion of the XREF array. The
+            order numbers must be positive integers starting from 1, and
+            determine the order in which FileMan evaluates the cross-reference
+            values to place in the X(order#) array during cross-reference
+            execution.</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;VAL&quot;,order#)
+            = The field number (for field-type xref values); or M code that sets
+            X to the cross-reference value (for computed-type xref values). For
+            computed-type cross-reference values, the X(order#) array is
+            available for those cross-reference values with lower order numbers, and
+            the DA array describes the IEN of the current record. (Required)</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;VAL&quot;,order#,&quot;SUBSCRIPT&quot;)
+            = The subscript position number in the index, if this
+            cross-reference value is used as a subscript in the index. The first
+            subscript to the right of the index name is subscript number 1. All
+            subscripts must be consecutive integers starting from 1. (Optional)</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;VAL&quot;,order#,&quot;LENGTH&quot;)
+            = The maximum length of the cross-reference value FileMan should use
+            when storing the value as a subscript in the index. (Optional).</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;VAL&quot;,order#,&quot;COLLATION&quot;)
+            = &quot;F&quot; for &quot;forwards&quot;; &quot;B&quot; for
+            &quot;backwards&quot;. This indicates the direction FileMan's lookup
+            utilities should $ORDER through this subscript when entries are
+            returned or displayed to the user. (Optional) (Defaults to
+            &quot;F&quot;.)</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;VAL&quot;,order#,&quot;LOOKUP
+            PROMPT&quot;) = Text that becomes the prompt to the user when this
+            index is used for lookup, and a value is requested for this
+            subscript. (Optional)</p>
+            <p>For field-type cross-reference values only, the
+            following nodes can also be set:</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;VAL&quot;,order#,&quot;XFORM
+            FOR STORAGE&quot;) = M code that sets the variable X to a new value.
+            X is the only variable guaranteed to be defined and is equal to the
+            internal value of the field. The Transform for Storage can be used
+            to the transform the internal value of the field before it is stored
+            as a subscript in the index.</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;VAL&quot;,order#,&quot;XFORM
+            FOR LOOKUP&quot;) = M code that sets the variable X to a new value.
+            X is the only variable guaranteed to be defined and is equal to the
+            lookup value entered by the user. During lookup, if the lookup value
+            is not found in the index, FileMan executes the Transform for Lookup
+            code to transform the lookup value X and tries the lookup again.</p>
+            <p style="margin-left:1.0in;text-indent:-.5in">XREF(&quot;VAL&quot;,order#,&quot;XFORM FOR
+            DISPLAY&quot;) = M code that sets the variable X to a new value. X
+            is the only variable guaranteed to be defined and is set equal to
+            the value of the subscript of in the index. During lookup, if a
+            match or matches are made to the lookup value, the Transform for
+            Display code is executed before displaying the index value to the
+            user.</p>
+          </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="185"><strong>FLAGS</strong></TD> 
+		  <TD WIDTH="524" colspan="2" VALIGN="top">(Optional) Flags to control processing.
+            The possible values are: 
+          </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="185" VALIGN="top">&nbsp;</TD> 
+		  <TD WIDTH="32" VALIGN="top" align="center"> 
+             <strong>S</strong></TD> 
+		  <TD WIDTH="492" VALIGN="top"> 
+             For Regular indexes, <strong>S</strong>et the data in the index.
+             For MUMPS cross-references, execute the <strong>S</strong>et logic
+             for all entries in the file.</TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="185" VALIGN="top">&nbsp;</TD> 
+		  <TD WIDTH="32" align="center" VALIGN="top"> 
+             <strong>W</strong></TD> 
+		  <TD WIDTH="492" VALIGN="top"> 
+             <strong>W</strong>rite messages to the current device as the index
+             is created and cross-references and input templates are recompiled.</TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="185" valign="top"><strong>.RESULT</strong></TD> 
+		  <TD WIDTH="524" colspan="2" VALIGN="top"> 
+             (Optional) Local variable that receives the IEN of the entry that
+             was created in the INDEX file (#.11), if the call is successful,
+             and the Name of the new index. If the cross-reference could not be
+             created, a value of null (&quot;&quot;) is returned.
+             <pre style="margin-left:89.85pt;text-indent:-1.0in">RESULT = IEN in Index file ^ cross-reference name</pre>
+            <p>or</p>
+             <pre style="margin-left:89.85pt;text-indent:-1.0in">RESULT = &quot;&quot; if cross-reference could not be created.</pre>
+          </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="185" VALIGN="top"><strong>
+            OUTPUT_ROOT</strong></TD> 
+		  <TD WIDTH="524" colspan="2" VALIGN="top"> 
+             (Optional) The name of the array that should receive information
+             about input templates and cross-references that may have been
+             recompiled. See Output below. This must be a closed root, either
+             local or global.</TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="185" VALIGN="top"><strong>
+            MSG_ROOT</strong></TD> 
+		  <TD WIDTH="524" colspan="2" VALIGN="top"> 
+             (Optional) The name of the array that should receive any error
+             messages. This must be a closed root, either local or global. If
+             not passed, errors are returned descendent from ^TMP(&quot;DIERR&quot;,$J).</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only" height="158"> 
+		<TR> 
+		  <TD WIDTH="185" valign="top" height="116"><strong>RESULT</strong></TD> 
+		  <TD WIDTH="524" valign="top" height="116">
+            <p>See .RESULT under &quot;Input Parameters.&quot;</p>
+            <pre style="margin-left:89.85pt;text-indent:-1.0in">RESULT = IEN in INDEX file ^ cross-reference name</pre>
+            <p>or</p>
+            <pre style="margin-left:89.85pt;text-indent:-1.0in">RESULT = &quot;&quot; if cross-reference could not be created.</pre>
+          </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="185" height="30"><strong>OUTPUT_ROOT</strong></TD> 
+		  <TD WIDTH="524" VALIGN="top" height="30">See OUTPUT ROOT under
+            &quot;Input Parameters.&quot;
+            <p>If a field used in the index is used in any compiled input
+            templates, those input templates are recompiled. Information about
+            the recompiled input templates is stored descendant from
+            OUTPUT_ROOT(&quot;DIEZ&quot;):</p>
+            <pre style="margin-left:17.85pt">OUTPUT_ROOT(&quot;DIEZ&quot;,input template #) =
+   input template name ^ file # ^
+   compiled routine name</pre>
+            <p>If cross-references for the file are compiled, they are
+            recompiled, and the compiled routine name is stored in
+            OUTPUT_ROOT(&quot;DIKZ&quot;):</p>
+            <pre style="margin-left:17.85pt">OUTPUT_ROOT(&quot;DIKZ&quot;) = compiled routine name</pre>
+          </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><strong>Example 1</strong></P> 
+	 <P>In this example, a new-style compound &quot;C&quot; index is created on
+     File #16000. It contains two field-type cross-reference values, Fields #1
+     and #2, both of which are used as subscripts in the index. The
+     &quot;S&quot; flag indicates that the index should be built after its
+     definition is created, and the &quot;W&quot; flag indicates that messages
+     should be written to the current device as the index is created and built,
+     and as templates and cross-reference are recompiled.</P> 
+  <PRE>    ZZTEST  ;Test routine
+    EXAMP1  ;Create a Regular &quot;C&quot; compound index
+            S MYARRAY(&quot;FILE&quot;)=16000
+            S MYARRAY(&quot;NAME&quot;)=&quot;C&quot;
+            S MYARRAY(&quot;USE&quot;)=&quot;LS&quot;
+            S MYARRAY(&quot;TYPE&quot;)=&quot;R&quot;
+            S MYARRAY(&quot;SHORT DESCR&quot;)=&quot;Regular compound index on fields 1
+             and 2.&quot;
+            S MYARRAY(&quot;DESCR&quot;,1)=&quot;This cross-reference contains as subscripts
+             the values of&quot;
+            S MYARRAY(&quot;DESCR&quot;,2)=&quot;fields #1 and #2 in the file #16000.&quot;
+            S MYARRAY(&quot;VAL&quot;,1)=1
+            S MYARRAY(&quot;VAL&quot;,1,&quot;SUBSCRIPT&quot;)=1
+            S MYARRAY(&quot;VAL&quot;,2)=2
+            S MYARRAY(&quot;VAL&quot;,2,&quot;SUBSCRIPT&quot;)=2
+            D CREIXN^DDMOD(.MYARRAY,&quot;SW&quot;,.MYRESULT,&quot;MYOUT&quot;)
+            Q
+
+    &gt;<strong>D EXAMP1^ZZTEST</strong>
+
+    Cross-reference definition created.
+    Building index ...
+
+
+    Compiling ZZTEST Input Template of File 16000...
+    'ZZCT' ROUTINE FILED.
+    'ZZCT1' ROUTINE FILED.
+
+    Compiling Cross-Reference(s) 16000 of File 16000.
+
+    ...SORRY, HOLD ON...
+
+    'ZZCR1' ROUTINE FILED.
+    'ZZCR' ROUTINE FILED.
+
+    &gt;<strong>ZW MYRESULT</strong>
+    MYRESULT=214^C
+
+    &gt;<strong>ZW MYOUT</strong>
+    MYOUT(&quot;DIEZ&quot;,125)=ZZTEST^16000^ZZCT
+    MYOUT(&quot;DIKZ&quot;)=ZZCR
+</PRE> 
+  <p>The MYRESULT output variable indicates that the &quot;C&quot; index
+  definition was created with the internal entry number of 214 in the INDEX
+  file.<br>
+  <br>
+  The MYOUT output array indicates that one or both of the fields in the index
+  are also used in the compiled input template ZZTEST (#125), and that input
+  template was recompiled. Cross-references on File #16000 were also recompiled
+  into the ZZCR namespaced routines.<br>
+  <br>
+  The following is a data dictionary listing of the index that was created:</p>
+	 <PRE>    C (#214)    RECORD    REGULAR    IR    LOOKUP &amp; SORTING
+
+      Short Descr:  Regular compound index on fields 1 and 2.
+      Description:  This cross-reference contains as subscripts the values of
+                    fields #1 and #2 in the file #16000.
+
+        Set Logic:  S ^DIZ(16000,&quot;C&quot;,X(1),X(2),DA)=&quot;&quot;
+       Kill Logic:  K ^DIZ(16000,&quot;C&quot;,X(1),X(2),DA)
+       Whole Kill:  K ^DIZ(16000,&quot;C&quot;)
+
+             X(1):  AFIELD  (16000,1)  (Subscr 1)  (forwards)
+             X(2):  BFIELD  (16000,2)  (Subscr 2)  (forwards)</PRE> 
+	 <P><strong>Example 2</strong></P> 
+  <p class="MsoNormal">In this example, a new-style &quot;AC&quot; index is
+  created. It is a whole-file index based on fields in Subfile #16000.02, but
+  stored one level up, at the Subfile #16000.01 level. (One level above
+  #16000.01, is the top level of the file, which has file number 16000.) The
+  &quot;AC&quot; index contains two field-type cross-reference values, Fields
+  #.01 and #1, neither of which are used as subscripts in the index. The third
+  cross-reference value is computed and is the only subscript in the index. This
+  computed subscript consists of the first five characters of Field #.01, which
+  is the first cross-reference value, concatenated with Field #1, the second
+  cross-reference value.</p>
+  <p class="MsoNormal">The &quot;S&quot; flag in the CREIXN^DDMOD call indicates
+  that the index should be built after its definition is created.</p>
+	 <PRE>    ZZTEST  ;Test routine
+    EXAMP2  ;Create a whole-file &quot;AC&quot; index
+            S MYARRAY(&quot;FILE&quot;)=16000.01 ;the file on which the index resides
+            S MYARRAY(&quot;ROOT FILE&quot;)=16000.02 ;the file in which the fields in
+             the index are defined.
+            S MYARRAY(&quot;NAME&quot;)=&quot;AC&quot;
+            S MYARRAY(&quot;USE&quot;)=&quot;SORTING ONLY&quot;
+            S MYARRAY(&quot;TYPE&quot;)=&quot;REGULAR&quot;
+            S MYARRAY(&quot;SHORT DESCR&quot;)=&quot;Whole-file regular 'AC' index.&quot;
+            S MYARRAY(&quot;DESCR&quot;,1)=&quot;This index stores at the 16000.01 file
+             level values from fields&quot;
+            S MYARRAY(&quot;DESCR&quot;,2)=&quot;in subfile #16000.02.&quot;
+            ;
+            ;Cross-reference values 1 and 2 are field values
+            ;defined so that cross-reference value 3 can
+            ;reference their values via X(1) and X(2).
+            S MYARRAY(&quot;VAL&quot;,1)=.01
+            S MYARRAY(&quot;VAL&quot;,2)=1
+            ;
+            ;Cross-reference value 3 is a computed value
+            ;based on cross-reference values 1 (field #.01)
+            ;and 2 (field #1). It is used as a subscript in
+            ;the index.
+            S MYARRAY(&quot;VAL&quot;,3)=&quot;S X=$E(X(1),1,5)_X(2)&quot;
+            S MYARRAY(&quot;VAL&quot;,3,&quot;SUBSCRIPT&quot;)=1
+            ;
+            D CREIXN^DDMOD(.MYARRAY,&quot;S&quot;,.MYRESULT)
+            Q
+
+    &gt;<strong>D EXAMP2^ZZTEST</strong>
+
+    &gt;<strong>ZW MYRESULT</strong>
+    MYRESULT=216^AC</PRE> 
+  <p class="MsoNormal">The MYRESULT output variable indicates that the
+  &quot;AC&quot; index definition was created with the internal entry number of
+  216 in the INDEX file.<br>
+  <br>
+  The resulting data dictionary listing of the new index definition is as
+  follows:</p>
+	 <PRE>    AC (#216)    RECORD    REGULAR    IR    SORTING ONLY    WHOLE FILE
+          (#16000.01)
+
+    Short Descr:  Whole-file regular 'AC' index.
+    Description:  This index stores at the 16000.01 file level values from
+                  fields in subfile #16000.02.
+
+      Set Logic:  S ^DIZ(16000,DA(2),100,&quot;AC&quot;,X(3),DA(1),DA)=&quot;&quot;
+     Kill Logic:  K ^DIZ(16000,DA(2),100,&quot;AC&quot;,X(3),DA(1),DA)
+     Whole Kill:  K ^DIZ(16000,DA(2),100,&quot;AC&quot;)
+
+           X(1):  MULTIPLE NAME  (16000.02,.01)
+           X(2):  CODE  (16000.02,1)
+           X(3):  Computed Code: S X=$E(X(1),1,5)_X(2)
+                    (Subscr 1)  (forwards)</PRE> 
+	 <P><strong>Example 3</strong></P> 
+	 <P>In this example, a new-style MUMPS cross-reference is created with the
+     name &quot;AD&quot;. It has one cross-reference value, Field #1 in File
+     #16000. Whenever the value of Field #1 is deleted, the MUMPS
+     cross-reference files today's date into the DATE DELETED field (#2). When
+     the value of Field #1 changes from null to some non-null value, the MUMPS
+     cross-reference deletes the contents of DATE DELETED. Since this
+     cross-reference should not be executed during a reindexing operation or
+     during a KIDS install, the Activity is set to null.</P> 
+  <PRE>    ZZTEST  ;Test routine
+    EXAMP3  ;Create MUMPS cross-reference
+            S MYARRAY(&quot;FILE&quot;)=16012
+            S MYARRAY(&quot;NAME&quot;)=&quot;AD&quot;
+            S MYARRAY(&quot;USE&quot;)=&quot;ACTION&quot;
+            S MYARRAY(&quot;TYPE&quot;)=&quot;MUMPS&quot;
+            S MYARRAY(&quot;ACTIVITY&quot;)=&quot;&quot;
+            S MYARRAY(&quot;SHORT DESCR&quot;)=&quot;This MUMPS cross-reference updates
+             field #2 when field #1 is deleted.&quot;
+            S MYARRAY(&quot;DESCR&quot;,1)=&quot;The kill logic of this cross-reference
+             calls the Filer to stuff today's&quot;
+            S MYARRAY(&quot;DESCR&quot;,2)=&quot;date into field #2 whenever the value of
+             field #1 is deleted.&quot;
+            S MYARRAY(&quot;DESCR&quot;,3)=&quot;&quot;
+            S MYARRAY(&quot;DESCR&quot;,4)=&quot;The set logic calls the Filer to delete the
+             contents of field #2&quot;
+            S MYARRAY(&quot;DESCR&quot;,5)=&quot;when a value is placed into field #1.&quot;
+            ;
+            S MYARRAY(&quot;SET&quot;)=&quot;N ZZFDA,ZZMSG,DIERR
+             S ZZFDA(16012,DA_&quot;&quot;,&quot;&quot;,2)=&quot;&quot;&quot;&quot;
+             D FILE^DIE(&quot;&quot;&quot;&quot;,&quot;&quot;ZZFDA&quot;&quot;,&quot;&quot;ZZMSG&quot;&quot;)&quot;
+            S MYARRAY(&quot;SET CONDITION&quot;)=&quot;S X=X1(1)=&quot;&quot;&quot;&quot;&quot;
+            S MYARRAY(&quot;KILL&quot;)=&quot;N ZZFDA,ZZMSG,DIERR
+             S ZZFDA(16012,DA_&quot;&quot;,&quot;&quot;,2)=DT
+             D FILE^DIE(&quot;&quot;&quot;&quot;,&quot;&quot;ZZFDA&quot;&quot;,&quot;&quot;ZZMSG&quot;&quot;)&quot;
+            S MYARRAY(&quot;KILL CONDITION&quot;)=&quot;S X=X2(1)=&quot;&quot;&quot;&quot;&quot;
+            ;
+            S MYARRAY(&quot;VAL&quot;,1)=1
+            D CREIXN^DDMOD(.MYARRAY,&quot;W&quot;,.MYRESULT)
+            Q
+  
+    &gt;<strong>D EXAMP3^ZZTEST</strong>
+
+    Cross-reference definition created.
+  
+    &gt;<strong>ZW MYRESULT</strong>
+    MYRESULT=220^AD</PRE> 
+	 <P>The
+     MYRESULT output variable indicates that the &quot;AD&quot; cross-reference
+     definition was created with the internal entry number of 220 in the INDEX
+     file.<br>
+     <br>
+     The
+     new cross-reference definition is:</P>  
+  <PRE>   &nbsp;AD (#220)    FIELD    MUMPS        ACTION
+
+     Short Descr:  This MUMPS cross-reference updates field #2 when field #1 is
+                   deleted.
+     Description:  The kill logic of this cross-reference calls the Filer to
+                   stuff today's date into field #2 whenever the value of field
+                   #1 is deleted.
+
+                   The set logic calls the Filer to delete the contents of field
+                   #2 when a value is placed into field #1.
+
+       Set Logic:  N ZZFDA,ZZMSG,DIERR S ZZFDA(16012,DA_&quot;,&quot;,2)=&quot;&quot; D FILE^DIE(&quot;&quot;,
+                    &quot;ZZFDA&quot;,&quot;ZZMSG&quot;)
+   &nbsp;&nbsp;  &nbsp;Set Cond:  S X=X1(1)=&quot;&quot;
+      Kill Logic:  N ZZFDA,ZZMSG,DIERR S ZZFDA(16012,DA_&quot;,&quot;,2)=DT D FILE^DIE(&quot;&quot;,
+                    &quot;ZZFDA&quot;,&quot;ZZMSG&quot;)
+       Kill Cond:  S X=X2(1)=&quot;&quot;
+ 
+              X(1):  MYFIELD  (16012,1)</PRE> 
+	 <P><strong>Error Codes Returned</strong></P>  
+  <P> 
+     202&nbsp;&nbsp;&nbsp;&nbsp;   The specified parameter is missing or invalid.<br>
+     401&nbsp;&nbsp;&nbsp;&nbsp; The
+file does not exist.<br>
+     402&nbsp;&nbsp;&nbsp;&nbsp; The global root is missing or invalid. <br>
+     406&nbsp;&nbsp;&nbsp;&nbsp; The file has not .01 field definition. <br>
+     407&nbsp;&nbsp;&nbsp;&nbsp; A word-processing field is not a file. <br>
+     502&nbsp;&nbsp;&nbsp;&nbsp; The field has a corrupted definition. <br>
+     <br>
+     The New-Style Cross-Reference Creator may also return any error returned
+     by:<br>
+     <br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CHK^DIE<br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UPDATE^DIE<br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WP^DIE<br>
+  </P>  
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_ddmo4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Form Document Print Introduction
+		(^DIWF)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,^diwf,diwf">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Form Document Print Introduction (^DIWF)</H4> 
+	 <P>The entry points in ^DIWF are designed to use the contents of a word
+		processing field as a target document into which data can be inserted at print
+		time. The data may come from another VA FileMan file (the
+     &quot;source&quot; file) or be provided by the user
+		interactively at the time the document is printed. A file (the
+     &quot;document&quot; file or &quot;target&quot; file) containing a word
+		processing type field is first selected and then an entry from that file. The
+		word processing text in that entry is then used as a form with which to print
+		output from any other file. </P> 
+	 <P>The word processing text used will typically include
+		<A HREF="../u2/e3_intro.htm" TARGET="_top" TITLE="windows"
+		 CLASS="bodylink">windows</A> into which data from the source file automatically
+		gets inserted by DIWF. Word processing windows are expressions framed by
+     vertical bars (|). Thus, if a
+		word processing document contains |NAME| somewhere within it, DIWF will try to
+		pick the NAME field (if there is one) out of the source file. Any
+		non-multiple field label or computed expression can be used within a
+     |-window. </P> 
+ <p>If:</p>
+	 <OL> 
+		<LI>an expression within the |-window cannot be evaluated, and
+		  <BR><BR></LI> 
+		<LI>the output of DIWF is being sent to a different terminal than the one
+		  used to call up the output, </LI> 
+	 </OL> 
+	 <P>then the user will be asked to type in a value for the window, for each
+		data entry printed. Thus, the word processing text used as a target document
+		might include the window |SALUTATION|, where SALUTATION is not a valid field
+		name in the source file. When DIWF encounters this window, and fails to find
+		a SALUTATION field in the source file, it will ask the user to enter SALUTATION
+		text which then immediately gets incorporated into the output in place of that
+		window. </P>  
+	 <P><strong>NOTE:</strong> If there is a possibility that the output will be
+     queued, you must ensure that all windows can be evaluated, since in a
+     queued or tasked job, there can be no user interaction. </P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_diwf.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

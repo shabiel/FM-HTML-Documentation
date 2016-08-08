@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Internationalization and the Dialog
+		File</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dia_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIALOG File Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">DIALOG File</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Internationalization and the DIALOG File</H4> 
+	 <H5>Role of the VA FileMan DIALOG File in Internationalization</H5> 
+	 <P>The VA FileMan DIALOG file is used to store dialog that would normally
+		appear on a screen during interaction with a user. The DIALOG file becomes
+		especially important in assisting developer support for non-English speaking
+		users because it allows easy entry and retrieval of non-English dialog without
+		making any changes to code that is already using the DIALOG file.</P> 
+	 <H5>Use of the DIALOG File in Internationalization</H5> 
+	 <P>A system variable, DUZ(LANG), identifies to VA FileMan the language
+		currently in use. This system variable is set equal to a number that
+		corresponds to the ID NUMBER of an entry in the LANGUAGE file (see discussion
+		of the <A HREF="app_b_l.htm" TITLE="VA FileMan LANGUAGE file"
+		CLASS="bodylink">VA FileMan LANGUAGE file</A>). This number is also used as a
+		subscript for the TRANSLATION (LANGUAGE) multiple in which non-English text can
+		be stored. For users running Kernel V. 8.0 or later, this variable is set
+		automatically during signon. </P> 
+	 <P>For every entry needing translation in the DIALOG file, the developer
+		should populate the FOREIGN TEXT field for the desired language. When either of
+		the text retrieval routines, BLD^DIALOG or $$EZBLD^DIALOG, is called, if
+		DUZ("LANG") is greater than one (1), VA FileMan will look at the language
+		location specified by DUZ("LANG") to find the text. If text cannot be found at
+		that location, VA FileMan defaults to use the English equivalent from the TEXT
+		field. As with English text, parameters to be inserted into the text can be
+		passed to the call. </P> 
+	 <P>See also the programmer calls
+		<A HREF="db_dia_b.htm" TITLE="BLD^DIALOG" CLASS="bodylink">BLD^DIALOG</A> and
+		<A HREF="db_dia_e.htm" TITLE="$$EZBLD^DIALOG"
+		 CLASS="bodylink">$$EZBLD^DIALOG</A>.</P> 
+	 <H5>Creating Non-English Text in the DIALOG File</H5> 
+	 <P>Once an entry exists in the DIALOG file, developers may enter or edit
+		non-English equivalents for the TEXT field, using FileMan Enter/Edit. </P> 
+	 <H5>Example</H5> 
+	 <PRE>
+Select DIALOG: <B>10001 &lt;RET&gt;</B>  This is English text for a test message.
+.
+.
+.
+
+Select LANGUAGE: <B>?</B>
+ Answer with TRANSLATION LANGUAGE
+     You may enter a new TRANSLATION, if you wish
+     Enter the number or name for a non-English language.
+     English language cannot be selected.
+ Answer with LANGUAGE ID NUMBER, or NAME
+Choose from:
+   2      GERMAN
+   3      SPANISH
+   4      FRENCH
+   5      FINNISH
+   6      ITALIAN
+   10     ARABIC
+   11     RUSSIAN
+
+Select LANGUAGE: <B>2 &lt;RET&gt;</B>     GERMAN
+  Are you adding '2' as a new TRANSLATION (the 1ST for this DIALOG)? <B>y &lt;RET&gt;</B>  (Yes)
+  FOREIGN TEXT:
+ 1&gt;<B>Here is where we enter the non-English text. 
+</B>
+	 </PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- app_b_d.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

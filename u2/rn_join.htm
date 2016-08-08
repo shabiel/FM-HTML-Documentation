@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Join Extended
+		Pointer</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,relational navigation,relational,navigation,join extended pointer,join,extended pointer,pointer">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="rn_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Relational Navigation Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Relational Navigation</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Join Extended Pointer</H4> 
+	 <P>You can establish an extended pointer link even if there is no
+		pre-existing pointer relationship between the two files. You use a value from
+		one file to do a lookup in a second file. </P> 
+	 <P>Suppose you store in the PAY FACTOR file a list of factors for
+		calculating taxes. Each entry in this file corresponds to a different pay
+		scale. In the PERSONNEL file, you have a field called PAYSCALE. You want to
+		retrieve the value of a field DEDUCTION in the PAY FACTOR entry that equals the
+		PAYSCALE field for each entry in the PERSONNEL file. You can create a COMPUTED
+		field expression in the PERSONNEL file: </P> 
+	 <PRE>    'COMPUTED-FIELD' EXPRESSION: <B>PAYSCALE IN PAY FACTOR FILE:DEDUCTION</B></PRE> 
+	 <P><B>NOTE:</B> PAYSCALE was not defined as pointing to the PAY FACTOR
+		file. The link to that file is made by the COMPUTED field definition. PAYSCALE
+		could itself be a COMPUTED field. In this situation, the value of the PAYSCALE
+		field in the PERSONNEL file is used to do a normal lookup in the PAY FACTOR
+		file using all lookup type cross-references. </P> 
+	 <P>In database terminology, this extended pointer capability is similar to
+		a <B>JOIN</B> operation because you can specify at any time a new relationship
+		between two formerly unrelated files. Therefore, we call this type of pointing
+		the Join Extended Pointer. </P> 
+	 <H5>Limitations</H5> 
+	 <P>If the join expression matches more than one entry in the file being
+		joined, the first matching entry (by internal entry number) is returned as the
+		result of the join. Thus, if your join expression is likely to match more than
+		one entry, be aware that only the <I>first</I> matching entry is returned.</P> 
+	 <H5>Example</H5> 
+	 <P>You could find out if any entries in the PERSONNEL file could be matched
+		against the NAME field in the PATIENT file just by specifying the following
+		sort: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>OUTPUT FROM WHAT FILE: <B>PATIENT</B>
+
+SORT BY: <B>NAME IN PERSONNEL FILE</B></PRE> <HR> 
+	 <P>The expression at the "SORT BY:" prompt selects entries in the PERSONNEL
+		file where the value of the NAME field in the PATIENT file matches the
+		PERSONNEL file's .01 field. The PATIENT file's NAME field is being used as a
+		lookup in the PERSONNEL file. Since we are evaluating the .01 field of the
+		PERSONNEL file, the "<B>:element</B>" part of the extended pointer syntax is
+		unnecessary. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- rn_join.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

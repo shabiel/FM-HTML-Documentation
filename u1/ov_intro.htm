@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Getting Started HTML Manual: Overview/Basic
+		Terminology</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,overview,basic,terminology">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	 <P>&nbsp;</P> 
+ 
+	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ov_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u2/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			 CLASS="menubarlink">Advanced User Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Overview and Basic Terminology</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H5>Fields, Records, and Files</H5> 
+	 <P>A computer database such as VA FileMan organizes your data, storing it
+		in fields, records, and files, much as you might arrange and preserve
+		information on paper. </P> 
+	 <P>A <I>record</I> is a group of fields of data. Each record has a name
+		(e.g., a patient name for a patient record). You can use the record name to
+		recall the record for editing or for printing out. Records are also known as
+		file <I>entries</I>.</P> 
+	 <P>For example, a record for a patient might have various fields such as
+		NAME, AGE, ADMISSION DATE, etc. for a single patient. Each record for a patient
+		would contain the same set of fields (places to fill in information):</P> 
+	 <P ALIGN="CENTER"><IMG SRC="ov_in1.gif" WIDTH="560" HEIGHT="335"
+		ALT="Example of Several Records in a Patient File."> </P> 
+	 <P>Each <I>field</I> in a record functions just like a blank on a form.
+		When you're editing a record on a terminal, for each field, you'll find a
+		prompt that tells you what type of data to enter. </P> 
+	 <P>VA FileMan uses nine basic field types. These fields allow you to enter
+		only certain kinds of information, just as a blank on a form might require you
+		to enter only numbers. For example, a DATE OF BIRTH field could be set up to
+		record dates/times; a SOCIAL SECURITY NUMBER field could be set up to record a
+		nine-digit number; an ADDRESS field could be set up to hold the text of an
+		address. These three fields are different from one another because of the type
+		of data they store. </P> 
+	 <P>All of the records that contain like data are collected and stored in
+		the same <I>file</I>. For example, all patient records are stored in the
+		PATIENT file (#2) and all computer user records are stored in the NEW PERSON
+		file (#200). This way, to look up a patient, you know that the file to go to is
+		the PATIENT file. Also, to do a report on all patients, you would generate the
+		report from the PATIENT file. </P> <HR ALIGN="center" WIDTH="90%"> 
+	 <H5><A NAME="Database">Files and the Database</A></H5> 
+	 <P>The <I>database</I> contains all the data files on your computer system.
+		</P> 
+	 <P ALIGN="CENTER"><IMG SRC="ov_in2.gif" WIDTH="594" HEIGHT="572"
+		ALT="Example of Database Files."> </P> 
+	 <P><B>NOTE:</B> There are many more files than this in <ACRONYM
+		 TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
+     databases! </P> <HR ALIGN="center" WIDTH="90%"> 
+	 <H5><A NAME="Printing">Printing Records from Files</A></H5> 
+	 <P>One way of getting at the information stored in a database is to
+		generate reports that print out selected records. You don't have to print
+		<I>every</I> field in a record; you can just choose a subset of fields to print
+		out. Nor do you have to print <I>every</I> record in a file; there are ways to
+		limit and select what records to print out.</P> 
+	 <P>The following report displays four records, with one line of output per
+		record, from the HOSPITAL LOCATION file (#44): </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Internal Entry 
+  Number         Name        Title
+  -------------  ----------  -------------------
+  1              ICU         Intensive Care Unit 
+  2              CCU         Critical Care Unit 
+  5              OR          Operating Room
+  25             1EAST       Ward on 1 East 
+</PRE> <HR> 
+	 <P>Most applications that use VA FileMan provide a number of already-set-up
+		reports you can quickly choose and print out. In addition, there are options in
+		VA FileMan that allow you to generate your own reports. </P> 
+	 <P>This manual contains the following chapters on print records from the
+		database:</P> 
+	 <UL> 
+		<LI><A HREF="in_frm.htm" TARGET="_top" TITLE="Inquire"
+		  CLASS="bodylink">Inquire</A><BR><BR></LI> 
+		<LI><A HREF="pr_frm.htm" TARGET="_top" TITLE="Print"
+		  CLASS="bodylink">Print</A><BR><BR></LI> 
+		<LI><A HREF="sr_frm.htm" TARGET="_top" TITLE="Search"
+		  CLASS="bodylink">Search</A><BR><BR></LI> 
+		<LI><A HREF="Br_frm.htm" TARGET="_top" TITLE="The Browser"
+		  CLASS="bodylink">The Browser</A></LI> 
+	 </UL> <HR ALIGN="center" WIDTH="90%"> 
+	 <H5><A NAME="Adding">Adding and Editing Records</A></H5> 
+	 <P>As well as printing records from the database, you can <I>add</I> new
+		records and <I>edit</I> existing records. When you work on the computer system
+		with <ACRONYM
+		TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
+     applications (e.g., Laboratory) most of what you are doing is adding new
+		records and editing existing ones. For example, each new lab result would get
+		stored in a new record; when you make a status change it would be an edit to a
+		field or fields in a patient's existing record.</P> 
+	 <P>Since the bulk of the work you do on the computer system involves
+		working with records, the more you know about using the underlying database
+		system (VA FileMan), the easier it will be do all of your work on the computer
+		system.</P> 
+	 <P>This manual contains the following topics on how to edit information in
+		records:</P> 
+	 <UL> 
+		<LI><A HREF="e1_frm.htm" TARGET="_top" TITLE="VA FileMan Prompts"
+		  CLASS="bodylink">VA FileMan Prompts</A><BR><BR></LI> 
+		<LI><A HREF="he_frm.htm" TARGET="_top" TITLE="About Each Field Type"
+		  CLASS="bodylink">About Each Field Type</A><BR><BR></LI> 
+		<LI><A HREF="ad_frm.htm" TARGET="_top"
+		  TITLE="Adding and Deleting Records" CLASS="bodylink">Adding and Deleting
+		  Records</A><BR><BR></LI> 
+		<LI><A HREF="sm_frm.htm" TARGET="_top"
+		  TITLE="ScreenMan (editing via forms)" CLASS="bodylink">ScreenMan (editing via
+		  forms)</A><BR><BR></LI> 
+		<LI><A HREF="wp_swit.htm"
+		  TITLE="Choice of Word-processing Editors" CLASS="bodylink">Choice of
+		  Word-processing Editors</A><BR><BR></LI> 
+		<LI><A HREF="se_frm.htm" TARGET="_top"
+		  TITLE="Screen Editor (WORD-PROCESSING Fields)" CLASS="bodylink">Screen Editor
+		  (WORD-PROCESSING Fields)</A><BR><BR></LI> 
+		<LI><A HREF="le_frm.htm" TARGET="_top"
+		  TITLE="Line Editor (WORD-PROCESSING Fields)" CLASS="bodylink">Line Editor
+		  (WORD-PROCESSING Fields)</A> </LI> 
+	 </UL> <HR ALIGN="center" WIDTH="90%"> 
+	 <H5><A NAME="Laygo">LAYGO</A> File Access</H5> 
+	 <P>In <ACRONYM
+		 TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
+     applications, you not only display and edit existing records, but also add and
+		delete records from files. For example, you might need to add a new patient to
+		the PATIENT file. The access to add and delete records can be controlled,
+		however; each VA FileMan file can be set to either allow or not allow adding
+		and deleting of new records. </P> 
+	 <P>If a file allows records to be added or deleted, it is said to have
+		<I>LAYGO</I> (Learn-As-You-Go) access. To add or delete records, your user
+		account must also be set to allow LAYGO access to the file in question. For
+		example, there are certain conditions when you need to specify a particular
+		physician. At that point, you can enter a new physician name, rather than
+		choosing one that already is on file. If you are allowed to add new entries to
+		the file (i.e., you have LAYGO access), the new entry is added to a file of
+		physicians. </P> <HR ALIGN="center" WIDTH="90%"> 
+	 <H5><A NAME="Modes">Scrolling Mode vs. Screen Mode</A></H5> 
+	 <P>Many VA <ACRONYM
+		 TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
+     application packages have a <I>Scrolling Mode</I> interface. Scrolling Mode
+		works as follows: </P> 
+	 <OL> 
+		<LI>The computer puts a prompt on your screen.<BR><BR></LI> 
+		<LI>You enter a response to the prompt.<BR><BR></LI> 
+		<LI>The computer places another prompt on the screen, scrolling down one
+		  line. Previous prompts move up and eventually off of your screen.</LI> 
+	 </OL> 
+	 <P>In Scrolling Mode, prompting occurs in the same predetermined order, in
+		a sequence designed by the developer of the application. You enter, and the
+		computer stores, your responses one at a time. Unless you're familiar with a
+		few timesaving Scrolling Mode techniques, you have to step through each prompt
+		in a record before you can finish editing the record. </P> 
+	 <P>NOTE: For more information on editing records in Scrolling Mode, please
+		refer to the "<A HREF="e1_frm.htm" TARGET="_top" TITLE="VA FileMan Prompts"
+		CLASS="bodylink">VA FileMan Prompts</A>" chapter in this manual.</P> 
+	 <P>Recently developed <ACRONYM
+		TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
+     applications, on the other hand, often use a <I>Screen Mode</I> interface for
+		editing data. In the Screen Mode approach, each field occupies a fixed position
+		on the screen. You can see many data fields at once, and use simple key
+		combinations to edit data and move from field to field on a screen. You can
+		also move from one screen to another like turning through the pages of a book.
+		VA FileMan's screen-oriented data entry tool is called
+		<A HREF="sm_frm.htm" TARGET="_top" TITLE="ScreenMan"
+		 CLASS="bodylink">ScreenMan</A>.</P> 
+	 <P>In comparing Scrolling Mode with Screen Mode, an area in particular
+		where Screen Mode is much more convenient than Scrolling Mode is text editing.
+		VA FileMan's Scrolling Mode text editor is the
+		<A HREF="le_frm.htm" TARGET="_top" TITLE="Line Editor" CLASS="bodylink">Line
+		Editor</A>. A better choice for editing text is VA FileMan's Screen Mode
+		editor, the
+		<A HREF="se_frm.htm" TARGET="_top" TITLE="Screen Editor"
+		 CLASS="bodylink">Screen Editor</A>. </P>
+		 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle"> 
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

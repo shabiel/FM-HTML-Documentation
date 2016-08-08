@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Filegram Specifiers Option
+		</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,filegrams,specifiers option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fg_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Filegrams Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Filegrams</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Specifiers Option</H4> 
+	 <P>The filegram sender uses the Specifiers option to identify a particular
+		field in the file as a reference point to use when <I>installing</I> the
+		filegram. The value of this field in the filegram is compared to values in the
+		entries at the target site. The values <I>must</I> match for a filegram to be
+		installed. If the specifier has a unique value for every entry in the file and
+		is cross-referenced, that cross-reference is used to locate an entry. This
+		reduces the search time and increases accuracy. Specifiers can be compared to
+		identifiers: unlike identifiers, which are used for user interaction purposes,
+		specifiers are used for transaction purposes. Specifiers are optional.</P> 
+	 <P>The dialogue that follows creates a specifier in a sample PATIENT file:
+		</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select FILEGRAM OPTION: <B>5 &lt;RET&gt;</B>  SPECIFIERS
+
+OUTPUT FROM WHAT FILE: <B>PATIENT</B>
+
+Select FIELD: <B>3 &lt;RET&gt;</B>  SSN
+
+Want to make SSN a specifier?  NO// <B>YES</B>
+
+Is the value of this field unique for each entry?  NO// <B>YES</B></PRE> <HR> 
+	 <P>Answer YES only if you have a regular cross-reference on the field that
+		you are making a specifier. A field can be a specifier without being unique.
+		</P> 
+	 <P>If you answer YES, a dialogue similar to the following occurs: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select one of the following:
+
+  1 C  REGULAR
+
+If one of the above provides a direct look-up by SSN, please enter 
+its number or name: <B>1</B></PRE> <HR> 
+	 <P>To delete a specifier: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select FIELD: <B>3 &lt;RET&gt;</B>  SSN
+
+SSN is already a specifier.
+Do you want to delete it?  NO// <B>YES</B></PRE> <HR> 
+		 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fg_opt5.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

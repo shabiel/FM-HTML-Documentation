@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^DDS</TITLE><META NAME="subject"
+	 CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman api,screenman,api,calls,^dds,dds">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sm_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4><A NAME="^DDS">^DDS</A></H4> 
+	 <P>You can call this entry point directly from an M routine to invoke the
+		specified form.</P> 
+	 <P>This routine invokes a ScreenMan form attached to the specified file.
+		ScreenMan automatically uses incremental locks to lock all records accessed
+		during an editing session. </P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDSFILE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The number or global root of the Primary File of the
+				form. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DR</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The name of the form (an entry in the Form file)
+				enclosed in square brackets. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DA</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The record number of the file entry to display or edit.
+				If DA is null or undefined, the form must either contain no data dictionary
+				fields or have a Record Selection page, which is the first page ScreenMan
+				presents to the user and is where the user can select a record from the file.
+				(See "<A HREF="#Example2" TITLE="Example 2" CLASS="bodylink">Example 2</A>"
+				when a subfile is being accessed directly.) </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDSPAGE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The Page Number of the first page to display to the
+				user. If '$G(DDSPAGE), a page with a Page Number equal to 1 must exist on the
+				form and that is the first page ScreenMan presents to the user. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4"><B><A NAME="DDSPARM">DDSPARM</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) A string of alphabetic characters that control
+				ScreenMan's behavior are listed below: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>C</B></TD> 
+		  <TD VALIGN="TOP">Return the variable DDSCHANG=1 if ScreenMan detects
+			 that the user saved a <B>C</B>hange to the database. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>E</B></TD> 
+		  <TD VALIGN="TOP">Return <B>E</B>rror messages in ^TMP("DIERR",$J) and
+			 return DIERR if ScreenMan encounters problems when initially trying to load the
+			 form. If DDSPARM does not contain an E, ScreenMan prints messages directly on
+			 the screen, and returns the variable DIMSG equal to null. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>S</B></TD> 
+		  <TD VALIGN="TOP">Return the variable DDSSAVE=1 if the user pressed
+			 &lt;PF1&gt;S or &lt;PF1&gt;E, or entered an "Exit" or "<B>S</B>ave" command
+			 from the Command Line, whether or not any changes were actually made on the
+			 form. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" COLSPAN="3"> 
+			 <P>If ^DDS is used to display or edit data in a subfile directly, the
+				following variables must be set in addition to the variables listed above: </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDSFILE(1)</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Contains the subfile number or the global root of the
+				subfile. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DA(1) ... DA(n)</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>The DA array, where DA is the subrecord number at the deepest
+				level and DA(n) is the record number at the top level. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>All the input variables are returned unchanged by the ^DDS call.
+		DDSFILE(1) should be killed when the call is complete to avoid conflict with
+		subsequent ^DDS calls. </P> 
+	 <H5>Output Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDSCHANG</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>$G(DDSCHANG)=1, if the DDSPARM input variable to ^DDS contains a C
+				and ScreenMan detects that the user saved a change to the database. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DDSSAVE</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>$G(DDSSAVE)=1, if the DDSPARM input variable to ^DDS contains an S
+				and the user pressed &lt;PF1&gt;E or &lt;PF1&gt;S, or issued the "Save" or
+				"Exit" command from the Command Line. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIMSG</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>$D(DIMSG)&gt;0, if the form could not be loaded, and the DDSPARM
+				input variable to ^DDS does <B>not</B> contain an E. (See the description of
+				the <A HREF="#DDSPARM" TITLE="DDSPARM" CLASS="bodylink">DDSPARM</A> input
+				variable.) </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DTOUT</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>$D(DTOUT)&gt;0, if the user times out during the editing session.
+				</P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="DDS_Variable">The DDS Variable</A>&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+		HEIGHT="11"></H5> 
+	 <P>$D(DDS) can be checked within programming hooks such as Executable Help
+		and Input Transforms to determine whether the hook is being executed from
+		within a ScreenMan form. In that case, $D(DDS) evaluates to true.</P> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>Invoke the form EE FORM1 to edit the 15th entry in file #16500, as shown
+		below: </P> 
+	 <PRE>
+    &gt;<B>S DDSFILE=16500,DA=15,DR=&quot;[EE FORM1]&quot; D ^DDS</B>
+</PRE> 
+	 <P><B><A NAME="Example2">Example 2</A></B></P> 
+	 <P>As shown below, invoke the form EE FORM2 to edit the 31st subentry in
+		subfile #16100.01, for the 9th entry in file #16100; Page Number 11 is the
+		first page to present to the user; and have ScreenMan return DDSCHANG if it
+		detects a change to the database when the user exits: </P> 
+	 <PRE>
+    &gt;<B>S DDSFILE=16100,DDSFILE(1)=16100.01</B>
+    &gt;<B>S DA=31,DA(1)=9,DR=&quot;[EE FORM2]&quot;</B>
+    &gt;<B>S DDSPAGE=11,DDSPARM=&quot;C&quot;</B>
+    &gt;<B>D ^DDS</B>
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <P><B>NOTE:</B> Error codes are returned only if the DDSPARM input variable
+		to ^DDS contains an E. </P> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_201.htm" TITLE="Error 201"
+			 CLASS="bodylink">201</A></B></TD> 
+		  <TD VALIGN="TOP">The specified input variable is missing or invalid.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">One of the input variables is not properly specified.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_405.htm" TITLE="Error 405"
+			 CLASS="bodylink">405</A></B></TD> 
+		  <TD VALIGN="TOP">Entries in the file cannot be edited. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_810.htm" TITLE="Error 810"
+			 CLASS="bodylink">810</A></B></TD> 
+		  <TD VALIGN="TOP">At least one of the required ^%ZOSF nodes is missing.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_840.htm" TITLE="Error 840"
+			 CLASS="bodylink">840</A></B></TD> 
+		  <TD VALIGN="TOP">The Terminal Type file does not have an entry that
+			 matches IOST(0). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_842.htm" TITLE="Error 842"
+			 CLASS="bodylink">842</A></B></TD> 
+		  <TD VALIGN="TOP">At least one required piece of data in the Terminal
+			 Type file is null for the terminal type identified by IOST(0). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_845.htm" TITLE="Error 845"
+			 CLASS="bodylink">845</A></B></TD> 
+		  <TD VALIGN="TOP">A call to HOME^%ZIS returns $G(POP)&gt;0. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_3021.htm" TITLE="Error 3021"
+			 CLASS="bodylink">3021</A></B></TD> 
+		  <TD VALIGN="TOP">The specified form does not exist in the Form file, or
+			 DDSFILE is not the Primary File of the form. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_3022.htm" TITLE="Error 3022"
+			 CLASS="bodylink">3022</A></B></TD> 
+		  <TD VALIGN="TOP">The specified form contains no pages. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_3023.htm" TITLE="Error 3023"
+			 CLASS="bodylink">3023</A></B></TD> 
+		  <TD VALIGN="TOP">The form does not contain the specified page. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sm_dds.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

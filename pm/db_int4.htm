@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: FDAs - Format of Data Passed to and
+		from DBS</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,format of data passed to and from dbs,format">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4><A NAME="FDA">FDA: Format of Data Passed to and from VA
+		FileMan</A></H4> 
+	 <P>Data is passed to and from the DBS as values in the FileMan Data Array
+		(FDA). The FDA contains the file, internal entry numbers, and field information
+		in its subscripting scheme.</P> 
+	 <P>The format of the FDA is:</P> 
+	 <PRE>
+    FDA_ROOT(FILE#,&quot;IENS&quot;,FIELD#)=&quot;VALUE&quot;
+
+</PRE> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="12%"><B>FILE#</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The number of the file or subfile to which the data belongs. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>IENS</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>As explained in the "<A HREF="db_int3.htm" TARGET="display"
+				TITLE="IENS: To Identify Entries and Subentries" CLASS="bodylink">IENS: To
+				Identify Entries and Subentries</A>" topic, a comma-delimited string of entry
+				and subentry numbers. The IENS always ends with a comma. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD#</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The number of the field being accessed. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>VALUE</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The internal (and verified) or external (and unverified) value of
+				the field. The specific call that you are making along with the way certain
+				flags are set determines if the internal or external value is appropriate.</P> 
+			 <P> The values for word processing fields are stored in the FDA
+				differently. Instead of setting the node equal to the actual value, set it
+				equal to the root of an array (local or global) that holds the data. The word
+				processing data must be stored at nodes with positive numbers in the designated
+				array or at the 0-node descendent from those nodes. The subscripts need not be
+				integers. For example, if the value of an FDA node were "^TMP($J,"WP")", the
+				location of the word processing data could be:</P> 
+			 <PRE>    ^TMP($J,&quot;WP&quot;,1,0)=Line 1
+    ^TMP($J,&quot;WP&quot;,2,0)=Line 2
+    ...etc.
+</PRE> 
+			 <P> OR: </P> 
+			 <PRE>
+    ^TMP($J,&quot;WP&quot;,1)=Line 1
+    ^TMP($J,&quot;WP&quot;,2)=Line 2
+    ...etc.</PRE> 
+			 <P> For word processing data, the file and field numbers should
+				reflect the file (or subfile) and field of the word processing field, not the
+				subfile number of the pseudo-multiple where the word processing data is
+				actually stored. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Nodes in the FDA can be set in several ways. The Validator call (<A HREF="db_die_v.htm"
+		TITLE="VAL^DIE" CLASS="bodylink">VAL^DIE</A>) optionally creates nodes in an
+		FDA for valid user input. If the Validator is not being used, programmers can
+		use a call (<A HREF="db_dilf5.htm" TITLE="FDA^DILF"
+		CLASS="bodylink">FDA^DILF</A>) that creates an element in the FDA. Finally, the
+		application developer can set the nodes manually in the client application's
+		code. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_int4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

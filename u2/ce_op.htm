@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Operators in Computed
+		Expressions</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,computed expressions,computed,expressions,operators,boolean,unary,binary,parenthesis,parentheses,compund expressions,compound,examples">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ce_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Computed Exptressions Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Computed Expressions</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Operators in Computed Expressions</H4> 
+	 <P>Computed expressions can consist of a single
+		<A HREF="ce_el.htm" TITLE="element" CLASS="bodylink">element</A>. However,
+		often several elements are joined together using operators. Operators are
+		characters that perform some action on elements. </P> 
+	 <UL> 
+		<LI><A HREF="#Unary" TITLE="Unary Operators" CLASS="bodylink">Unary
+		  Operators</A><BR><BR></LI> 
+		<LI><A HREF="#Binary" TITLE="Binary Operators" CLASS="bodylink">Binary
+		  Operators</A><BR><BR></LI> 
+		<LI><A HREF="#Boolean" TITLE="Boolean Operators" CLASS="bodylink">Boolean
+		  Operators</A><BR><BR></LI> 
+		<LI><A HREF="#Parentheses" TITLE="Parentheses in Expressions"
+		  CLASS="bodylink">Parentheses in Expressions</A><BR><BR></LI> 
+		<LI><A HREF="#Example" TITLE="Example of a Compound Expression"
+		  CLASS="bodylink">Example of a Compound Expression</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="Unary">Unary Operators</A></H5> 
+	 <P>The simplest operators are the unary operators. They force a numeric
+		interpretation of the element that follows. They can also affect the sign of
+		the resulting number. The unary operators are: </P> 
+	 <TABLE BORDER="1" SUMMARY="Unary Operators Table (operator, description)"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Unary Operator</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>+</B></TD> 
+		  <TD VALIGN="TOP">Positive numeric interpretation (sign unchanged)</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>-</B></TD> 
+		  <TD VALIGN="TOP">Negative numeric interpretation (sign changed) </TD> 
+		</TR> 
+	 </TABLE> <HR> 
+	 <H5><A NAME="Binary">Binary Operators</A></H5> 
+	 <P>Another set of operators takes two elements, manipulates them, and
+		returns a result. These are called binary operators. You can use the following
+		binary operators in computed expressions: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Binary Operators Table (operator, description)"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Binary Operator</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>+</B></TD> 
+		  <TD VALIGN="TOP">Addition </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>-</B></TD> 
+		  <TD VALIGN="TOP">Subtraction </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>*</B></TD> 
+		  <TD VALIGN="TOP">Multiplication </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>/</B></TD> 
+		  <TD VALIGN="TOP">Division </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>\</B></TD> 
+		  <TD VALIGN="TOP">Integer (truncated) division (e.g., 13\2 = 6) </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>_</B></TD> 
+		  <TD VALIGN="TOP">Concatenation (e.g., "AB"_"CDE" = ABCDE) </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> <HR> 
+	 <H5><A NAME="Boolean">Boolean Operators</A></H5> 
+	 <P>A third set of operators makes a comparison between two elements and
+		returns a true or false value. These are known as Boolean operators. If the
+		outcome of a Boolean operation is true, the value one (1) is returned; if
+		false, zero (0) is returned. You can use these Boolean operators in computed
+		expressions: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Boolean Operators Table (operator, description)"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Boolean Operator</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>&gt;</B></TD> 
+		  <TD VALIGN="TOP">Greater than </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>&lt;</B></TD> 
+		  <TD VALIGN="TOP">Less than</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>=</B></TD> 
+		  <TD VALIGN="TOP">Equal to </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>]</B></TD> 
+		  <TD VALIGN="TOP">Follows (in alphabetical order) </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>[</B></TD> 
+		  <TD VALIGN="TOP">Contains (e.g., "AB"["A" is true; "A"["AB" is false)
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>!</B></TD> 
+		  <TD VALIGN="TOP">Or, either element is true [e.g., (2=3)!(5&lt;10) is
+			 true]</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>&amp;</B></TD> 
+		  <TD VALIGN="TOP">And, both elements are true [e.g., (2=3)&amp;(5&lt;10)
+			 is false]</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>An apostrophe (<B>'</B>) means negation or NOT. It can precede any of
+		the Boolean operators. Thus, <B>6'&gt;8</B> is read six is not greater than
+		eight, which is true (a one is returned). </P> <HR> 
+	 <H5><A NAME="Parentheses">Parentheses in Expressions</A></H5> 
+	 <P>In the absence of parentheses, the expression is evaluated strictly left
+		to right. One operator is not given precedence over another. Use parentheses to
+		control the order in which the operations of a computed expression are
+		performed. Expressions within parentheses are evaluated first. Thus
+		<B>3+4/2</B> is 3.5, whereas <B>3+(4/2)</B> is 5. </P> 
+	 <P>You can also use parentheses to ensure that the enclosed material is
+		treated as an expression when there might be some ambiguity. For example,
+		suppose you want to force a numeric interpretation of the SSN field. You need
+		to use the <B>+</B> <A HREF="#Unary" TITLE="unary operator"
+		CLASS="bodylink">unary operator</A>. However, the following will not yield the
+		desired result: </P> 
+	 <PRE>    SORT BY: <B>+SSN</B></PRE> 
+	 <P>Is the <B>+</B> the unary operator or the sort specifier (meaning that
+		you want to subtotal results by SSN)? In this case, it will be interpreted as
+		the sort specifier. However, if you put the expression in parentheses, the
+		<B>+</B> will definitely be interpreted as an operator: </P> 
+	 <PRE>    SORT BY: <B>(+SSN)</B></PRE> <HR> 
+	 <H5><A NAME="Example">Example of Compound Expression</A></H5> 
+	 <P>An example of a computed expression containing several elements and
+		operators is: </P> 
+	 <PRE>    &quot;Beds occupied: &quot;_(NUMBER OF BEDS*OCCUPANCY PERCENTAGE/100)</PRE> 
+	 <P>First, the part within the parentheses is evaluated. NUMBER OF BEDS and
+		OCCUPANCY PERCENTAGE are field names. Their contents are multiplied and the
+		result is divided by 100. That result is concatenated with the literal string
+		"Beds occupied: " giving a result like: </P> 
+	 <PRE>    Beds occupied: 484</PRE> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ce_op.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

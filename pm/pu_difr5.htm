@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DIFROM Special Considerations for
+		Order Entry</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,order entry and difrom,order entry">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Order Entry and DIFROM</H4> 
+	 <P>DIFROM for VA FileMan versions 18 and later has been customized to
+		support Order Entry. Order Entry inits must export records from the PROTOCOL
+		file (#101). This file contains pointers back to itself, similar to the OPTION
+		file (#19). Since DIFROM does not currently resolve these pointers, a joint
+		effort was made by Order Entry and FileMan developers to support Order Entry
+		inits that correctly install the protocols. (See Order Entry documentation for
+		details.) </P> 
+	 <P>Basically, the process involves the creation of a second set of
+		routines, similar to init routines, to export the Order Entry protocols and to
+		resolve the pointers in the PROTOCOL file. An Order Entry routine, ORVOM, is
+		run to create these routines. The resulting routines are named nmspONI*, the
+		ONIT routines. These routine are run at the target site after the init routines
+		to install the protocols. </P> 
+	 <P>The following considerations pertain to the creation of Order Entry
+		inits: </P> 
+	 <UL> 
+		<LI>Like regular inits, Order Entry inits can be created either based on
+		  an entry in the PACKAGE file (#9.4) or on the fly.<BR><BR></LI> 
+		<LI>Order Entry's file Order Parameters contains a multiple called
+		  PACKAGE PARAMETERS. This multiple controls the export and installation of
+		  entries from the PROTOCOL file. Thus, it is used like the PACKAGE file. To
+		  export entries from the PROTOCOL file in a sophisticated way, use the PACKAGE
+		  PARAMETERS instead of building the export on the fly. <BR> <BR> If the
+		  developer is going to use the PACKAGE PARAMETERS, there must be a PACKAGE file
+		  entry. Then, create an entry in the PACKAGE PARAMETERS multiple within the
+		  ORDER PARAMETERS file (#100.99). The .01 field of this multiple is a DINUMed
+		  pointer to the PACKAGE file entry. This implies that the namespace must be the
+		  same as that used for the init.<BR><BR></LI> 
+		<LI>Whether the Order Entry init is built from the PACKAGE PARAMETERS or
+		  on the fly, next run the ORVOM routine. The ORVOM routines look at the PACKAGE
+		  PARAMETERS (if they exist) or prompt the developer for the names of protocols
+		  to be sent. They build ONIT routines that are similar to inits but contain only
+		  PROTOCOL file entries. The code generated in these routines installs and
+		  resolves pointers on the PROTOCOL file entries. (The ORVOM routines are part of
+		  the Order Entry package and are maintained by the Order Entry developers. They
+		  were reviewed by the VA FileMan developers.)<BR><BR></LI> 
+		<LI>If the init is being built from an entry in the PACKAGE file, enter
+		  the namespaced ONIT routine into the POST-INITIALIZATION ROUTINE field in the
+		  PACKAGE file entry. It will be run automatically as a post-init. <BR> <BR> If
+		  the init is not being built from the PACKAGE file, the developer must tell the
+		  installers to run the ONIT routines manually AFTER they run the init
+		  routines.<BR><BR></LI> 
+		<LI>Now, build the actual init using DIFROM in a normal way as described
+		  above. </LI> 
+	 </UL> 
+	 <P>DIFROM has been modified for Order Entry to automatically pick up the
+		entry from the PACKAGE PARAMETERS multiple of the ORDER PARAMETERS file. When
+		the init is run any pointers back to the PROTOCOL file that are contained in
+		this entry are resolved. See the documentation on "<A
+		HREF="pu_difr6.htm" TITLE="running the init" CLASS="bodylink">Running an
+		Init</A>" for more information about resolving pointers during package
+		installation. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_difr5.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

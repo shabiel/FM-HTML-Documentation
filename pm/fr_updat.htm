@@ -1,0 +1,814 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: New Features and Functionality (V.
+		22.0)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,new features and functionality,functionality,features,updates,new">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0"> 
+      	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">New Features and Functionality in Version
+		22.0</A></H3> <HR CLASS="hrstyle"> 
+	 <P>The HTML version of the "VA FileMan Programmer Manual" contains the
+		documentation updates based on the new features and functionality introduced
+		with the release of VA FileMan Version 22.0 and any subsequent patches. This
+		Web page contains the following update information:</P> 
+	 <UL> 
+		<LI><A HREF="#post_release" CLASS="bodylink"
+		  TITLE="Updates following the release of VA FileMan V. 22.0">Updates following
+		  the release of VA FileMan V. 22.0</A><BR><BR></LI> 
+		<LI><A HREF="#release" CLASS="bodylink"
+		  TITLE="Updates introduced with the release of VA FileMan V. 22.0">Updates
+		  introduced with the release of VA FileMan V. 22.0</A><BR><BR></LI> 
+		<LI><A HREF="fr_updta.htm" CLASS="bodylink"
+		  TITLE="Previous Updates">Previous Updates</A> (pre-Version 22.0 and following
+		  the original release of VA FileMan Version 21.0 documentation in December of
+		  1994)</LI> 
+	 </UL> 
+	 <P><BR> </P> <HR COLOR="003399"> 
+	 <H3 ALIGN="CENTER"><FONT SIZE="3"><B><A NAME="post_release">Updates
+		Following the Release of VA FileMan V. 22.0</A></B></FONT></H3> 
+	 <P>The following table lists all significant patch updates, in reverse
+		chronological order.</P> 
+	 <TABLE WIDTH="100%" BORDER="1" CELLPADDING="5"
+	  SUMMARY="This table lists the updates following the release of VA FileMan V. 22.0 (date, description of update, and associated patch and/or version number)">
+		
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Date</B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>Description of Update</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Patch/Version Number</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">01/18/01</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated ScreenMan APIs </B><A HREF="sm_uget.htm"
+				CLASS="bodylink" TITLE="$$GET^DDSVAL">$$GET^DDSVAL</A> and
+				<A HREF="sm_uput.htm" CLASS="bodylink" TITLE="PUT^DDSVAL">PUT^DDSVAL</A>:</P> 
+			 <UL> 
+				<LI>Added text in initial description of each call regarding the
+				  storage of onscreen data in a temporary location before it is filed.</LI> 
+			 </UL></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Version 22.0</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">01/18/01</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Added, to Database Server (DBS) API chapter,</B> a new call:
+				<A HREF="db_ddmo3.htm" CLASS="bodylink"
+				 TITLE="FILESEC^DDMOD">FILESEC^DDMOD</A>, Set File Protection Security Codes.
+				</P></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DI*22*53</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">01/17/01</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Call</B>
+				<A HREF="cl_dir.htm" CLASS="bodylink" TITLE="^DIR">^DIR</A>: Reader</P> 
+			 <UL> 
+				<LI>Under Output Variables (Full Listing), added text to the
+				  section listing the values of <A HREF="cl_dir.htm#Y" TITLE="Y Variable">Y</A>
+				  when it times out.</LI> 
+			 </UL></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Version 22.0</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">01/17/01</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Call</B>
+				<A HREF="cl_dic.htm" CLASS="bodylink" TITLE="DIC">DIC</A>: Reader</P> 
+			 <UL> 
+				<LI>Under Input Variables, added text to clarify the description of
+				  Input Variable
+				  <A HREF="cl_dic.htm#InptVarX" CLASS="bodylink" TITLE="X Variable">X</A>.</LI> 
+			 </UL></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Version 22.0</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">1/16/01</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated "Database Server (DBS) API" </B>chapter,
+				"<B>Introduction</B>" section, <B>Contents of Arrays</B> section: </P> 
+			 <UL> 
+				<LI>Added text to clarify the description of the
+				  <A HREF="db_how3.htm#DIERR" CLASS="bodylink" TITLE="DIERR">DIERR</A>
+				  Array.</LI> 
+			 </UL></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Version 22.0</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">06/15/00</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Call</B>
+				<A HREF="cl_dicq.htm" CLASS="bodylink" TITLE="DQ^DICQ">DQ^DICQ</A>: Lookup</P> 
+			 <UL> 
+				<LI>Added the DIC("?PARAM",file#,"INDEX")=Index name input
+				  variable.<BR><BR></LI> 
+				<LI>Added the DIC("?PARAM",file#,"FROM",n)=value input
+				  variable.<BR><BR></LI> 
+				<LI>Added the DIC("?PARAM",file#,"PART",n)=value input
+				  variable.</LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>DI*22*3</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">06/15/00</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Call</B>
+				<A HREF="cl_dic.htm" CLASS="bodylink" TITLE="^DIC">^DIC</A>: Lookup</P> 
+			 <UL> 
+				<LI>Added the
+				  <A HREF="cl_dic.htm#DIC(?PARAM_file_INDEX)" CLASS="bodylink"
+					TITLE='DIC("?PARAM",file#,"INDEX")=Index name'>DIC("?PARAM",file#,"INDEX")=Index
+				  name</A> input variable.<BR><BR></LI> 
+				<LI>Added the
+				  <A HREF="cl_dic.htm#DIC(?PARAM_file_FROM)" CLASS="bodylink"
+					TITLE='DIC("?PARAM",file#,"FROM",n)=value'>DIC("?PARAM",file#,"FROM",n)=value</A>
+				  input variable.<BR><BR></LI> 
+				<LI>Added the
+				  <A HREF="cl_dic.htm#DIC(?PARAM_file_PART)" CLASS="bodylink"
+					TITLE='DIC("?PARAM",file#,"PART",n)=value'>DIC("?PARAM",file#,"PART",n)=value</A>
+				  input variable.</LI> 
+			 </UL> Also added new examples. </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>DI*22*3</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">06/15/00</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated DBS Call</B>
+				<A HREF="db_dic_l.htm" CLASS="bodylink" TITLE="LIST^DIC()">LIST^DIC()</A>:
+				Lister</P> 
+			 <UL> 
+				<LI>Updated the
+				  <A HREF="db_dic_l.htm#FROM" CLASS="bodylink" TITLE="FROM">FROM</A> input
+				  parameter.</LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>DI*22*3</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">05/09/00</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Added, to Import Tool API section,</B> new
+				<A HREF="ft_ddxp.htm" CLASS="bodylink" TITLE="Export Tool">Export Tool</A> API.
+				</P> 
+			 <P>Section is renamed Import and Export Tools.</P> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>DI*22*9</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">04/19/00</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Call</B>
+				<A HREF="cl_dic.htm" CLASS="bodylink" TITLE="^DIC">^DIC</A>: Lookup</P> 
+			 <UL> 
+				<LI>Added new flag for DIC(0):
+				  <A HREF="cl_dic.htm#U" CLASS="bodylink" TITLE="U Flag">U</A></LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Not previously documented</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">04/11/00</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Call</B>
+				<A HREF="cl_dt1.htm" CLASS="bodylink" TITLE="^%DT">^%DT</A>: Internal to
+				External Date</P> 
+			 <UL> 
+				<LI>Added new Input Variable: <B><A
+				  HREF="cl_dt1.htm#I_Input_Variable" CLASS="bodylink"
+				  TITLE="I Input Variable">I</A></B> </LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Not previously documented</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">03/14/00</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Call</B>
+				<A HREF="cl_dir.htm" CLASS="bodylink" TITLE="^DIR">^DIR</A>: Reader</P> 
+			 <UL> 
+				<LI>Added new character (<A HREF="cl_dir.htm#Piece_2_r">r</A>) to
+				  the Required Input Variables under the Subsequent Characters (optional)
+				  list</LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>DI*22*30</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">03/01/00</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated DBS Calls</B>,
+				<A HREF="db_dia_b.htm#NOTE" CLASS="bodylink"
+				 TITLE="BLD^DIALOG()">BLD^DIALOG()</A>,
+				<A HREF="db_dia_e.htm#NOTE-EZ" CLASS="bodylink"
+				 TITLE="$$EZBLD^DIALOG()">$$EZBLD^DIALOG()</A>, and
+				<A HREF="db_dia_m.htm#NOTE-M" CLASS="bodylink"
+				 TITLE="MSG^DIALOG()">MSG^DIALOG()</A></P> 
+			 <UL> 
+				<LI>Added NOTE regarding file numberspace in the DIALOG File.</LI> 
+			 </UL> 
+			 <P>In the
+				<A HREF="dia_intro.htm#numberspace" CLASS="bodylink" TITLE="DIALOG File">DIALOG
+				File</A> section, under Developer Tools, added additional information about
+				file numberspace.</P> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Version 22.0</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">12/06/99</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Call</B>
+				<A HREF="cl_die.htm" TARGET="display" CLASS="bodylink" TITLE="^DIE">^DIE</A>:
+				Edit Data</P> 
+			 <UL> 
+				<LI>Updated description of DR input variable under the heading
+				  <A HREF="cl_die.htm#StuffField" CLASS="bodylink"
+					TITLE="Stuff a Field Value (Validated)">Stuff a Field Value
+				  (Validated)</A><BR><BR></LI> 
+				<LI>Added new input variable:
+				  <A HREF="cl_die.htm#DIE(PTRIX)" CLASS="bodylink"
+					TITLE='DIE("PTRIX",f,p,t)=d'>DIE("PTRIX",f,p,t)=d</A></LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DI*22*4</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">11/26/99</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>Updated Classic Calls</B></P>
+			 <A HREF="cl_dic.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="Lookup/Add: ^DIC">Lookup/Add: ^DIC</A> 
+			 <UL> 
+				<LI>Added two new input variables: 
+				  <UL> 
+					 <LI><A HREF="cl_dic1b.htm#DIC(N)" CLASS="bodylink"
+						TITLE='DIC("?N",file#)=n'>DIC("?N",file#)=n</A><BR><BR></LI> 
+					 <LI><A HREF="cl_dic.htm#DIC(PTRIX)" CLASS="bodylink"
+						TITLE='DIC("PTRIX",from_file#,pointer_field#, to_file#)="^" '>DIC("PTRIX",from_file#,pointer_field#,
+						<BR> to_file#)="^" </A></LI> 
+				  </UL> </LI> 
+				<LI>Added new<A HREF="cl_dic.htm#T" CLASS="bodylink"
+				  TITLE=" T Flag"> T flag</A></LI> 
+			 </UL> 
+			 <P>
+				<A HREF="cl_dicix.htm" TARGET="display" CLASS="bodylink"
+				 TITLE="IX^DIC">IX^DIC</A> and
+				<A HREF="cl_dic1b.htm" TARGET="display" CLASS="bodylink"
+				 TITLE="MIX^DIC1">MIX^DIC1</A></P> 
+			 <UL> 
+				<LI>Added two new input variables: 
+				  <UL> 
+					 <LI>DIC("?N",file#)=n<BR><BR></LI> 
+					 <LI>DIC("PTRIX",from_file#,pointer_field#,<BR> to_file#)="^"
+						</LI> 
+				  </UL> <BR><BR></LI> 
+				<LI>Modified the D input variable</LI> 
+			 </UL> 
+			 <P><B>Updated DBS Calls</B></P>
+			 <A HREF="db_dicf.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="FIND^DIC">FIND^DIC</A> and
+			 <A HREF="db_dicf1.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="$$FIND1^DIC">$$FIND1^DIC</A> 
+			 <UL> 
+				<LI>Modified the INDEXES parameter<BR><BR></LI> 
+				<LI>Added a new example for FIND^DIC</LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DI*22*4</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">11/23/99</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>New DBS calls</B> added:</P> 
+			 <P><A HREF="db_ddmod.htm" TARGET="display" CLASS="bodylink"
+				TITLE="DELIX^DDMOD">DELIX^DDMOD</A> to delete a traditional cross-reference
+				definition from the data dictionary of a file, <BR> and</P> 
+			 <P><A HREF="db_ddmo2.htm" TARGET="display" CLASS="bodylink"
+				TITLE="DELIXN^DDMOD">DELIXN^DDMOD</A> to delete a new-style index definition
+				from the Index file</P> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DI*22*12</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">11/18/99</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Updated Classic Call</B>
+			 <A HREF="cl_dicn1.htm" CLASS="bodylink" TITLE="FILE^DICN">FILE^DICN</A>. 
+			 <UL> 
+				<LI>Expanded documentation of the "X" input variable.</LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Version 22.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">10/13/99</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Updated Classic Call</B>
+			 <A HREF="cl_dt1.htm" CLASS="bodylink" TITLE="^%DT">^%DT</A>: 
+			 <UL> 
+				<LI>Added new M flag for the %DT input variable.<BR><BR></LI> 
+				<LI>Updated description of M and X input variables; P, F, and X
+				  flags; and Y2K changes.</LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DI*22*14</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">09/28/99</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>Updated Classic Calls</B>
+			 <A HREF="cl_dik5.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="IXALL^DIK">IXALL^DIK</A> and
+			 <A HREF="cl_dik2.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="ENALL^DIK">ENALL^DIK</A> 
+			 <UL> 
+				<LI>Expanded documentation to include the fact that these calls
+				  update the third piece of the file header. </LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Version 22.0</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><BR> </P> 
+	 <H3 ALIGN="CENTER"><FONT SIZE="3"><B><A NAME="release">Updates/Changes
+		Introduced with VA FileMan V. 22.0</A></B></FONT></H3> 
+	 <P>The following table lists all significant updates introduced with VA
+		FileMan V. 22.0, by category. </P> 
+	 <TABLE WIDTH="100%" BORDER="1" CELLPADDING="5"
+	  SUMMARY="This table lists the updates introduced with the release of VA FileMan V. 22.0 (category and description of update)">
+		
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>Category</B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>Description of Update</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT" ROWSPAN="7"><B><A HREF="cla_frm.htm"
+			 TARGET="_top" CLASS="bodylink" TITLE="Classic VA FileMan API">Classic VA
+			 FileMan API</A></B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated Classic Call
+			 <A HREF="cl_dic.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="Lookup/Add: ^DIC">Lookup/Add: ^DIC</A> <BR> 
+			 <UL> 
+				<LI>for the input variables 
+				  <UL> 
+					 <LI>the
+						<A HREF="cl_dic.htm#B" CLASS="bodylink" TITLE="B Input Variable">B</A>,
+						<A HREF="cl_dic.htm#K" CLASS="bodylink" TITLE="K Input Variable">K</A>,
+						<A HREF="cl_dic.htm#S" CLASS="bodylink" TITLE="S Input Variable">S</A>, &amp;
+						<A HREF="cl_dic.htm#V" CLASS="bodylink" TITLE="V Input Variable">V</A>
+						flags<BR><BR></LI> 
+					 <LI>and
+						<A HREF="cl_dic.htm#InptVarX" CLASS="bodylink" TITLE="X Input Variable">X</A>,
+						<A HREF="cl_dic.htm#DIC(A)" CLASS="bodylink" TITLE='DIC("A")'>DIC("A")</A>,
+						<A HREF="cl_dic.htm#DIC(B)" CLASS="bodylink"
+						 TITLE='DIC("B") Input Variable'>DIC("B")</A>, &amp;
+						<A HREF="cl_dic.htm#DIC(V)" CLASS="bodylink"
+						 TITLE='DIC("V") Input Variable'>DIC("V")</A> </LI> 
+				  </UL><BR><BR> </LI> 
+				<LI>and the output variable
+				  <A HREF="cl_dic.htm#OutptVarX" CLASS="bodylink">X</A></LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="cl_dicn1.htm#FILEDICN" CLASS="bodylink"
+			  TITLE="Adding New Entries: FILE^DICN">Adding New Entries: FILE^DICN</A> <BR> 
+			 <UL> 
+				<LI>for the
+				  <A HREF="cl_dicn1.htm#dic_p" CLASS="bodylink" TITLE='DIC("P")'>DIC("P")</A> and
+				  <A HREF="cl_dicn1.htm#dic_dr" CLASS="bodylink" TITLE='DIC("DR")'>DIC("DR")</A>
+				  input variables<BR><BR></LI> 
+				<LI>added a new <A HREF="cl_dicn1.htm#x" CLASS="bodylink">X output
+				  variable</A></LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="cl_did.htm" CLASS="bodylink"
+			  TITLE="Data Dictionary Listing: EN^DID">Data Dictionary Listing: EN^DID</A>
+			 <BR> adding two new strings to the
+			 <A HREF="cl_did.htm#diformat" CLASS="bodylink" TITLE="DIFORMAT">DIFORMAT</A>
+			 input variable</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="cl_die.htm" CLASS="bodylink" TITLE="Edit Data: ^DIE">Edit Data:
+			 ^DIE</A> <BR> 
+			 <UL> 
+				<LI>for the <A HREF="cl_die.htm#dr" CLASS="bodylink"
+				  TITLE="DR">DR</A> input variable<BR><BR></LI> 
+				<LI>added information on
+				  <A HREF="cl_die.htm#indexes_keys" CLASS="bodylink"
+					TITLE="New Style Compound Indexes and Keys">New Style Compound Indexes and
+				  Keys</A></LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="cl_dip_b.htm" CLASS="bodylink" TITLE="Print Data: EN1^DIP">Print Data:
+			 EN1^DIP</A> the Controlling Sorts with BY(0) section, by adding two new topics
+			 to the "<A HREF="cl_dip_b.htm#DetailsandFeatures" CLASS="bodylink"
+			 TITLE="Details and Features">Details and Features</A>" section: 
+			 <UL> 
+				<LI><A HREF="cl_dip_b.htm#sorting_compound_index" CLASS="bodylink"
+				  TITLE="Sorting a Compound Cross-reference Defined in the INDEX file">Sorting a
+				  Compound Cross-reference Defined in the INDEX file</A><BR><BR></LI> 
+				<LI><A HREF="cl_dip_b.htm#StoringBY(0)Specs"
+				  CLASS="bodylink" TITLE="Storing BY(0) Specifications in Sort Templates">Storing
+				  BY(0) Specifications in Sort Templates</A></LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="cl_diwe.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="Text Editing: EN^DIWE">Text Editing: EN^DIWE</A> for the input
+			 variables: 
+			 <UL> 
+				<LI><A HREF="cl_diwe.htm#dwdisabl" CLASS="bodylink"
+				  TITLE="DWDISABL">DWDISABL</A><BR><BR></LI> 
+				<LI><A HREF="cl_diwe.htm#ddwflags" CLASS="bodylink"
+				  TITLE="DDWFLAGS">DDWFLAGS</A></LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="cl_dt1.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="Date and Time Input and Conversion: ^%DT">Date and Time Input and
+			 Conversion: ^%DT</A> for Y2K changes</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT" ROWSPAN="8"><B><A HREF="dba_frm.htm"
+			 TARGET="_top" CLASS="bodylink" TITLE="Database Server (DBS) API">Database
+			 Server (DBS) API</A></B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="db_didf3.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="FILE^DID(): File Retriever">FILE^DID(): File Retriever</A> by adding a
+			 new attribute:
+			 <A HREF="db_didf3.htm#RD_ACCESS" CLASS="bodylink" TITLE="RD ACCESS">RD
+			 ACCESS</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="db_die_f.htm" CLASS="bodylink" TITLE="FILE^DIE(): Filer">FILE^DIE():
+			 Filer</A> for the following: 
+			 <UL> 
+				<LI>Revised the
+				  <A HREF="db_die_f.htm#E" CLASS="bodylink" TITLE="E Flag">E</A> Flag in the
+				  <A HREF="db_die_f.htm#flags" CLASS="bodylink" TITLE="FLAGS">FLAGS</A> input
+				  parameter and added two new flags: 
+				  <UL> 
+					 <LI><A HREF="db_die_f.htm#T" CLASS="bodylink"
+						TITLE="T Flag">T</A><BR><BR></LI> 
+					 <LI><A HREF="db_die_f.htm#U" CLASS="bodylink"
+						TITLE="U Flag">U</A> </LI> 
+				  </UL> <BR><BR></LI> 
+				<LI>Updated the "<A HREF="db_die_f.htm#DetailsandFeatures"
+				  CLASS="bodylink" TITLE="Details and Features">Details and Features</A>"
+				  section, revising the "<A HREF="db_die_f.htm#cross-references" CLASS="bodylink"
+				  TITLE="Cross-references">Cross-references</A>" topic for New-style indexes</LI>
+				
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="db_dicf.htm" CLASS="bodylink" TITLE="FIND^DIC(): Finder">FIND^DIC():
+			 Finder</A>: 
+			 <UL> 
+				<LI>Updated the following input parameters: 
+				  <UL> 
+					 <LI><A HREF="db_dicf.htm#fields" CLASS="bodylink"
+						TITLE="FIELDS">FIELDS</A><BR><BR></LI> 
+					 <LI><A HREF="db_dicf.htm#flags" CLASS="bodylink"
+						TITLE="FLAGS">FLAGS</A> (including new
+						<A HREF="db_dicf.htm#B" CLASS="bodylink" TITLE="B Flag">B</A>,
+						<A HREF="db_dicf.htm#C" CLASS="bodylink" TITLE="C Flag">C</A>,
+						<A HREF="db_dicf.htm#K" CLASS="bodylink" TITLE="K Flag">K</A>,
+						<A HREF="db_dicf.htm#P" CLASS="bodylink" TITLE="P Flag">P</A>, and
+						<A HREF="db_dicf.htm#U" CLASS="bodylink" TITLE="U Flag">U</A> flags and a
+						revision to the <A HREF="db_dicf.htm#M" CLASS="bodylink" TITLE="M Flag">M</A>
+						and <A HREF="db_dicf.htm#O" CLASS="bodylink" TITLE="O Flag">O</A>
+						flags)<BR><BR></LI> 
+					 <LI><A HREF="db_dicf.htm#VALUE" CLASS="bodylink"
+						TITLE="[.]VALUE">[.]VALUE</A><BR><BR></LI> 
+					 <LI><A HREF="db_dicf.htm#INDEXES" CLASS="bodylink"
+						TITLE="INDEXES">INDEXES</A><BR><BR></LI> 
+					 <LI><A HREF="db_dicf.htm#SCREEN" CLASS="bodylink"
+						TITLE="[.]SCREEN">[.]SCREEN</A></LI> 
+				  </UL> <BR><BR></LI> 
+				<LI>In the Output section, updated
+				  <A HREF="db_dicf.htm#target_root" CLASS="bodylink"
+					TITLE="TARGET_ROOT">TARGET_ROOT</A>: 
+				  <UL> 
+					 <LI>Added the "<A HREF="db_dicf.htm#map_unpacked"
+						CLASS="bodylink" TITLE="Map Node for Unpacked Format">Map Node for Unpacked
+						Format</A>" topic in the
+						<A HREF="db_dicf.htm#StandardOutput" CLASS="bodylink"
+						 TITLE="Standard Output Format">Standard Output Format</A><BR><BR></LI> 
+					 <LI>Added the "<A HREF="db_dicf.htm#PackedOutput"
+						CLASS="bodylink" TITLE="Packed Output Format">Packed Output Format</A>" topic,
+						including the "<A HREF="db_dicf.htm#map_packed" CLASS="bodylink"
+						TITLE="Map Node for Unpacked Format">Map Node for Packed Format </A>"</LI> 
+				  </UL> <BR><BR></LI> 
+				<LI>Added new error codes
+				  <A HREF="err_206.htm" CLASS="bodylink" TITLE="Error 206">206</A>,
+				  <A HREF="err_207.htm" CLASS="bodylink" TITLE="Error 207">207</A>,
+				  <A HREF="err_8090.htm" CLASS="bodylink" TITLE="Error 8090">8090</A> and
+				  <A HREF="err_8095.htm" CLASS="bodylink" TITLE="Error 8095">8095</A> to the "<A
+				  HREF="db_dicf.htm#ErrorCodesReturned" CLASS="bodylink"
+				  TITLE="Error Codes Returned">Error Codes Returned</A>" section<BR><BR></LI> 
+				<LI>Updated the "<A HREF="db_dicf.htm#DetailsandFeatures"
+				  CLASS="bodylink" TITLE="Details and Features">Details and Features</A>"
+				  section, adding the "<A HREF="db_dicf.htm#lookup_index" CLASS="bodylink"
+				  TITLE="Lookup Index">Lookup Index</A>," "<A HREF="db_dicf.htm#lookup_transform"
+				  CLASS="bodylink" TITLE="Lookup Value Transforms List">Lookup Value Transforms
+				  List</A>," "<A HREF="db_dicf.htm#html" CLASS="bodylink"
+				  TITLE="HTML Encoding">HTML Encoding</A>," "<A HREF="db_dicf.htm#write"
+				  CLASS="bodylink" TITLE="WRITE ID Nodes">WRITE ID Nodes</A>," and "<A
+				  HREF="db_dicf.htm#repeating" CLASS="bodylink"
+				  TITLE="Repeating a Field in the Fields Parameter">Repeating a Field in the
+				  Fields Parameter</A>" topics, and revising the "<A
+				  HREF="db_dicf.htm#ScreensApplied" CLASS="bodylink"
+				  TITLE="Screens Applied">Screens Applied</A>," "<A
+				  HREF="db_dicf.htm#PartialMatches" CLASS="bodylink"
+				  TITLE="Partial Matches">Partial Matches</A>," "<A
+				  HREF="db_dicf.htm#Comma-piecing" CLASS="bodylink"
+				  TITLE="Comma-piecing">Comma-piecing</A>," and "<A
+				  HREF="db_dicf.htm#DataTypeTransforms" CLASS="bodylink"
+				  TITLE="Data Type Transforms">Data Type Transforms</A>" topics </LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="db_dicf1.htm" CLASS="bodylink"
+			  TITLE="$$FIND1^DIC( ): Finder (Single Record)">$$FIND1^DIC( ): Finder (Single
+			 Record)</A>: 
+			 <UL> 
+				<LI>Updated the following input parameters: 
+				  <UL> 
+					 <LI><A HREF="db_dicf1.htm#flags" CLASS="bodylink"
+						TITLE="FLAGS">FLAGS</A> (including new
+						<A HREF="db_dicf1.htm#B" CLASS="bodylink" TITLE="B Flag">B</A>,
+						<A HREF="db_dicf1.htm#C" CLASS="bodylink" TITLE="C Flag">C</A>,
+						<A HREF="db_dicf1.htm#K" CLASS="bodylink" TITLE="K Flag">K</A>,
+						<A HREF="db_dicf1.htm#U" CLASS="bodylink" TITLE="U Flag">U</A> flags and a
+						revision to the <A HREF="db_dicf1.htm#M" CLASS="bodylink" TITLE="M Flag">M</A>
+						and <A HREF="db_dicf1.htm#O" CLASS="bodylink" TITLE="O Flag">O</A>
+						flags).<BR><BR></LI> 
+					 <LI><A HREF="db_dicf1.htm#VALUE" CLASS="bodylink"
+						TITLE="[.] VALUE">[.] VALUE</A><BR><BR></LI> 
+					 <LI><A HREF="db_dicf1.htm#INDEXES" CLASS="bodylink"
+						TITLE="INDEXES">INDEXES</A><BR><BR></LI> 
+					 <LI><A HREF="db_dicf1.htm#SCREEN" CLASS="bodylink"
+						TITLE="[.]SCREEN">[.]SCREEN</A></LI> 
+				  </UL> <BR><BR></LI> 
+				<LI>Added new error codes
+				  <A HREF="err_8090.htm" CLASS="bodylink" TITLE="Error 8090">8090</A> and
+				  <A HREF="err_8095.htm" CLASS="bodylink" TITLE="Error 8095">8095</A> to the "<A
+				  HREF="db_dicf1.htm#errors" CLASS="bodylink" TITLE="Error Codes Returned">Error
+				  Codes Returned</A>" section.<BR><BR></LI> 
+				<LI>Updated the "<A HREF="db_dicf1.htm#DetailsandFeatures"
+				  CLASS="bodylink" TITLE="Details and Features">Details and Features</A>"
+				  section, adding the "<A HREF="db_dicf.htm#lookup_index" CLASS="bodylink"
+				  TITLE="Lookup Index">Lookup Index</A>" and "<A
+				  HREF="db_dicf1.htm#LookupValueTransformsList" CLASS="bodylink"
+				  TITLE="Lookup Value Transform List">Lookup Value Transforms List</A>"
+				  topics</LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="db_dic_l.htm" CLASS="bodylink" TITLE="LIST^DIC(): Lister">LIST^DIC():
+			 Lister</A>: 
+			 <UL> 
+				<LI>Updated the following input parameters: 
+				  <UL> 
+					 <LI><A HREF="db_dic_l.htm#fields" CLASS="bodylink"
+						TITLE="FIELDS">FIELDS</A><BR><BR></LI> 
+					 <LI><A HREF="db_dic_l.htm#flags" CLASS="bodylink"
+						TITLE="FLAGS">FLAGS</A> (including new
+						<A HREF="db_dic_l.htm#K" CLASS="bodylink" TITLE="K Flag">K</A>,
+						<A HREF="db_dic_l.htm#M" CLASS="bodylink" TITLE="M Flag">M</A>,
+						<A HREF="db_dic_l.htm#P" CLASS="bodylink" TITLE="P Flag">P</A>,
+						<A HREF="db_dic_l.htm#Q" CLASS="bodylink" TITLE="Q Flag">Q</A>, and
+						<A HREF="db_dic_l.htm#U" CLASS="bodylink" TITLE="U Flag">U</A> flags and
+						revised <A HREF="db_dic_l.htm#NUMBER" CLASS="bodylink"
+						TITLE="NUMBER">NUMBER</A> and
+						<A HREF="db_dic_l.htm#PART" CLASS="bodylink" TITLE="[.]PART">[.]PART</A>,
+						<A HREF="db_dic_l.htm#INDEX" CLASS="bodylink" TITLE="INDEX">INDEX</A>,
+						<A HREF="db_dic_l.htm#SCREEN" CLASS="bodylink" TITLE="[.]SCREEN">[.]SCREEN</A>,
+						and <A HREF="db_dic_l.htm#FROM" CLASS="bodylink" TITLE="[.]FROM">[.]FROM</A>)
+						</LI> 
+				  </UL> <BR><BR></LI> 
+				<LI>In the Output section, updated
+				  <A HREF="db_dic_l.htm#target_root_out" CLASS="bodylink"
+					TITLE="TARGET_ROOT">TARGET_ROOT</A>: 
+				  <UL> 
+					 <LI>Added the "<A HREF="db_dic_l.htm#map_unpacked"
+						CLASS="bodylink" TITLE="Map Node for Unpacked Format">Map Node for Unpacked
+						Format</A>" topic in the
+						<A HREF="db_dic_l.htm#StandardOutput" CLASS="bodylink"
+						 TITLE="Standard Output Format">Standard Output Format</A><BR><BR></LI> 
+					 <LI>Added the "<A HREF="db_dic_l.htm#map_packed"
+						CLASS="bodylink" TITLE="Map Node for Packed Format">Map Node for Packed Format
+						</A>" topic in the
+						<A HREF="db_dic_l.htm#PackedOutput" CLASS="bodylink"
+						 TITLE="Packed Output Format">Packed Output Format</A></LI> 
+				  </UL> <BR><BR></LI> 
+				<LI>Added new error codes
+				  <A HREF="err_206.htm" CLASS="bodylink" TITLE="Error 206">206</A> and
+				  <A HREF="err_207.htm" CLASS="bodylink" TITLE="Error 207">207</A> to the "<A
+				  HREF="db_dic_l.htm#errors" CLASS="bodylink" TITLE="Error Codes Returned">Error
+				  Codes Returned</A>" section<BR><BR></LI> 
+				<LI>Updated the "<A HREF="db_dic_l.htm#DetailsandFeatures"
+				  CLASS="bodylink" TITLE="Details and Features">Details and Features</A>"
+				  section, adding the "<A HREF="db_dic_l.htm#html" CLASS="bodylink"
+				  TITLE="HTML Encoding">HTML Encoding</A>," "<A HREF="db_dic_l.htm#write"
+				  CLASS="bodylink" TITLE="WRITE ID Nodes">WRITE ID Nodes</A>," and "<A
+				  HREF="db_dic_l.htm#from" CLASS="bodylink"
+				  TITLE="FROM parameter with Compound Indexes">FROM parameter with Compound
+				  Indexes</A>" topics</LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>New call</B> added:
+			 <A HREF="db_die_vals.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="VALS^DIE: Fields Validator">VALS^DIE: Fields Validator</A> <BR> to
+			 validate data for a group of fields and convert it to internal FileMan
+			 format</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>New call</B> added:
+			 <A HREF="db_die_kv.htm" CLASS="bodylink"
+			  TITLE="$$KEYVAL^DIE( ): Key Validator">$$KEYVAL^DIE( ): Key Validator</A> <BR>
+			 to verify that new values contained in the FDA do not produce an invalid key
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated
+			 <A HREF="db_die_u.htm" CLASS="bodylink"
+			  TITLE="UPDATE^DIE( ): Updater">UPDATE^DIE( ): Updater</A>: 
+			 <UL> 
+				<LI>Added the
+				  <A HREF="db_die_u.htm#K" CLASS="bodylink" TITLE="K Flag">K</A>and
+				  <A HREF="db_die_u.htm#U" CLASS="bodylink" TITLE="U Flag">U</A> Flags in the
+				  <A HREF="db_die_u.htm#flags" CLASS="bodylink" TITLE="FLAGS">FLAGS</A> input
+				  parameter<BR><BR></LI> 
+				<LI>Added new error codes
+				  <A HREF="err_352.htm" CLASS="bodylink" TITLE="Error 352">352</A>,
+				  <A HREF="err_740.htm" CLASS="bodylink" TITLE="Error 740">740</A>,
+				  <A HREF="err_742.htm" CLASS="bodylink" TITLE="Error 742">742</A>,
+				  <A HREF="err_744.htm" CLASS="bodylink" TITLE="Error 744">744</A>, and
+				  <A HREF="err_746.htm" CLASS="bodylink" TITLE="Error 746">746</A> to the "<A
+				  HREF="db_die_u.htm#errors" CLASS="bodylink" TITLE="Error Codes Returned">Error
+				  Codes Returned</A>" section<BR><BR></LI> 
+				<LI>Updated the "<A HREF="db_die_u.htm#DetailsandFeatures"
+				  CLASS="bodylink" TITLE="Details and Features">Details and Features</A>"
+				  section, revising the "<A HREF="db_die_u.htm#adding" CLASS="bodylink"
+				  TITLE="Adding">Adding</A>" topic and added the "<A
+				  HREF="db_die_u.htm#adding_identifiers_keys" CLASS="bodylink"
+				  TITLE="Adding -- Identifiers and Keys">Adding -- Identifiers and Keys</A>"
+				  topic</LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B><A HREF="sm_frm.htm" TARGET="_top"
+			 CLASS="bodylink" TITLE="ScreenMan API">ScreenMan API</A></B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated the ScreenMan callable routine,
+			 the <A HREF="sm_dds.htm#DDS" CLASS="bodylink" TITLE="^DDS">^DDS</A> utility by
+			 adding the
+			 <A HREF="sm_dds.htm#DDS_Variable" CLASS="bodylink" TITLE="DDS Variable">DDS
+			 Variable</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT" ROWSPAN="2"><B><A HREF="im_frm.htm"
+			 TARGET="_top" CLASS="bodylink" TITLE="Import Tool API">Import Tool
+			 API</A></B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Created an Introduction section for the
+			 new <A HREF="im_frm.htm" TARGET="_top" CLASS="bodylink">Import Tool API</A>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B>New call</B> added:
+			 <A HREF="ft_ddmpf.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="FILE^DDMP: Data Import">FILE^DDMP: Data Import</A> <BR> to import data
+			 from ASCII host files into FileMan file entries</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B><A HREF="afd_frm.htm" TARGET="_top"
+			 CLASS="bodylink" TITLE="Advanced File Definition">Advanced File
+			 Definition</A></B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">In the
+			 <A HREF="afd_7.htm#InputTransform" CLASS="bodylink"
+			  TITLE="INPUT Transform">INPUT Transform</A> segment, updated the "<A
+			 HREF="afd_7.htm#input_transform_verify" CLASS="bodylink"
+			 TITLE="INPUT Transforms and the Verify Fields Option">INPUT Transforms and the
+			 Verify Fields Option</A>" section</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B><A HREF="dia_frm.htm" TARGET="_top"
+			 CLASS="bodylink" TITLE="DIALOG File">DIALOG File</A></B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT">Updated the
+			 <A HREF="app_b_l.htm" CLASS="bodylink" TITLE="LANGUAGE file">LANGUAGE file</A>
+			 to reserve numbers for four new translation languages: Finnish (5), Italian
+			 (6), Arabic (10), and Russian (11)</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"><B><A HREF="err_frm.htm" TARGET="_top"
+			 CLASS="bodylink" TITLE="VA FileMan Error Codes">VA FileMan Error
+			 Codes</A></B></TD> 
+		  <TD VALIGN="TOP" ALIGN="LEFT"> 
+			 <P>Added the following new Error Codes:</P> 
+			 <TABLE BORDER="1" WIDTH="100%"> 
+				<TR> 
+				  <TD><A HREF="err_206.htm" CLASS="bodylink"
+					 TITLE="Error 206">206</A></TD> 
+				  <TD><A HREF="err_207.htm" CLASS="bodylink"
+					 TITLE="Error 207">207</A></TD> 
+				  <TD><A HREF="err_312.htm" CLASS="bodylink"
+					 TITLE="Error 312">312</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD><A HREF="err_352.htm" TARGET="display"
+					 CLASS="bodylink" TITLE="Error 352">352</A></TD> 
+				  <TD><A HREF="err_409.htm" CLASS="bodylink"
+					 TITLE="Error 409">409</A></TD> 
+				  <TD><A HREF="err_525.htm" CLASS="bodylink"
+					 TITLE="Error 525">525</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD><A HREF="err_740.htm" CLASS="bodylink"
+					 TITLE="Error 740">740</A></TD> 
+				  <TD><A HREF="err_742.htm" CLASS="bodylink"
+					 TITLE="Error 742">742</A></TD> 
+				  <TD><A HREF="err_744.htm" CLASS="bodylink"
+					 TITLE="Error 744">744</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD><A HREF="err_746.htm" CLASS="bodylink"
+					 TITLE="Error 746">746</A></TD> 
+				  <TD><A HREF="err_1820.htm" CLASS="bodylink"
+					 TITLE="Error 1820">1820</A></TD> 
+				  <TD><A HREF="err_1821.htm" CLASS="bodylink"
+					 TITLE="Error 1821">1821</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD><A HREF="err_1822.htm" CLASS="bodylink"
+					 TITLE="Error 1822">1822</A></TD> 
+				  <TD><A HREF="err_1833.htm" CLASS="bodylink"
+					 TITLE="Error 1833">1833</A></TD> 
+				  <TD><A HREF="err_1850.htm" CLASS="bodylink"
+					 TITLE="Error 1850">1850</A></TD> 
+				</TR> 
+				<TR> 
+				  <TD><A HREF="err_1870.htm" CLASS="bodylink"
+					 TITLE="Error 1870">1870</A></TD> 
+				  <TD><A HREF="err_8090.htm" CLASS="bodylink"
+					 TITLE="Error 8090">8090</A></TD> 
+				  <TD><A HREF="err_8095.htm" CLASS="bodylink"
+					 TITLE="Error 8095">8095</A></TD> 
+				</TR> 
+			 </TABLE> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fr_updat.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

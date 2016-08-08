@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Statistics</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,statistics,stats,histogram,scattergram,descriptive">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="st_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Statistics Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Statistics</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>How to Generate Statistics from Reports</H4> 
+	 <P>VA FileMan currently offers three types of statistical processing:</P> 
+	 <UL> 
+		<LI><A HREF="#descriptive" TITLE="Descriptive"
+		  CLASS="bodylink">Descriptive</A><BR><BR></LI> 
+		<LI><A HREF="#scattergram" TITLE="Scattergram"
+		  CLASS="bodylink">Scattergram</A><BR><BR></LI> 
+		<LI><A HREF="#histogram" TITLE="Histogram"
+		  CLASS="bodylink">Histogram</A></LI> 
+	 </UL> 
+	 <P>In each case, to generate statistics from reports, you use a two-step
+		process: </P> 
+	 <OL> 
+		<LI>Use the Print File Entries or Search File Entries options to generate
+		  a VA FileMan report. Do not queue the report. The entries you select in your
+		  report are the ones on which statistics will be generated; the way you use sort
+		  and print qualifiers in the report affects the way statistics will be
+		  generated, as discussed later in this chapter.<BR><BR></LI> 
+		<LI>Immediately after the report finishes, use the Statistics option on
+		  the VA FileMan menu to generate statistics.</LI> 
+	 </OL> 
+	 <P>The two-step process for each type of statistical output is described
+		below.</P> 
+	 <P><B>NOTE:</B> If you have statistical software on a personal computer,
+		you might want to consider using VA FileMan's
+		<A HREF="ei_frm.htm" TARGET="_top" TITLE="Export Tool" CLASS="bodylink">Export
+		Tool</A> as an alternative to VA FileMan's statistics options, especially if
+		the statistics options described in this chapter do not provide the statistical
+		analysis you need. With the Export Tool, you can export your data into a format
+		your personal computer statistical software can read and use all of that
+		software's capabilities to perform statistical analyses on VA FileMan data.
+		</P> <HR> 
+	 <H5><A NAME="descriptive">Descriptive Statistics</A></H5> 
+	 <P>The Descriptive Statistics routine creates a summary report of the
+		numeric information produced by the preceding print. The number of cases is
+		always shown. </P> 
+	 <P>To get descriptive statistics for fields printed out in a report, you
+		must associate one of the following qualifiers with fields in the print:</P> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	 SUMMARY="Descriptive Statistics Qualifiers Table (qualifier and description)"> 
+		<TR> 
+		  <TD WIDTH="20%"><B>Qualifier</B></TD> 
+		  <TD WIDTH="80%"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="20%"><B>#</B></TD> 
+		  <TD WIDTH="80%">Count, mean, standard deviation, minimum, and
+			 maximum</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>+</B></TD> 
+		  <TD>Count and mean</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>To obtain descriptive statistics:</P> 
+	 <OL> 
+		<LI>Print a report, and use the <B>#</B> or <B>+</B> print qualifiers on
+		  one or more fields.<BR><BR></LI> 
+		<LI>Immediately after the report completes, generate the Descriptive
+		  Statistics based on the report. </LI> 
+	 </OL> 
+	 <P><B>Initial Print</B></P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="st_1.gif" WIDTH="623" HEIGHT="167"
+		ALT="Example of a Dialogue with Print Qualifiers."></P> 
+	 <P></P> 
+	 <P><B>Generating the Descriptive Statistics </B></P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select OPTION: <B>OTHER OPTIONS</B>  
+Select OTHER OPTION: <B>STATISTICS</B>  
+Select STATISTICAL ROUTINE:  <B>DES</B>CRIPTIVE STATISTICS
+            User: WILLIAMS,BERNARD        2:51 PM  02/15/96
+
+                              DESCRIPTIVE STATISTICS
+	
+         N OF                       STANDARD
+         CASES          MEAN        DEVIATION        MINIMUM     MAXIMUM
+
+BUDGET   27       45845.1481       25685.8582      2589.0000    95200.0000
+COST     27       45914.1111       25796.2936      259.0000     96000.0000
+</PRE> <HR> 
+	 <H5><A NAME="scattergram">Scattergram</A></H5> 
+	 <P>If you subtotal by two fields (i.e., sub-subtotal) in a sort, you can
+		create Scattergrams for fields that were counted with <B>!</B>, <B>+</B>, or
+		<B>#</B> in the corresponding print. </P> 
+	 <P>Only numeric values are charted. The Scattergram is scaled to fit your
+		output device's row and column dimensions. Occurrences of more than nine points
+		in a single print position are marked by an asterisk ("<B>*</B>"). </P> 
+	 <P><B>Initial Print </B> </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="st_2.gif" WIDTH="618" HEIGHT="186"
+		ALT="Example of Dialogue Using Print Qulifiers in a Scattergram."> </P> 
+	 <P></P> 
+	 <P><B>Generating the Scattergram</B></P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="st_3.gif" WIDTH="618" HEIGHT="404"
+		ALT="Example of a Scattergram."> </P> 
+	 <P></P> <HR> 
+	 <H5><A NAME="histogram">Histogram</A></H5> 
+	 <P>If you subtotal by one or more fields in a sort, you can get Histograms
+		for the fields that are preceded by <B>#</B>, <B>!</B>, <B>&amp;</B>, or
+		<B>+</B> qualifiers in the corresponding print. The Histograms that you can
+		produce depend on which print qualifier is used: </P> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="Histogram Qualifiers Table (qualifier and description)"> 
+		<TR> 
+		  <TD WIDTH="20%"><B>Qualifier</B></TD> 
+		  <TD WIDTH="80%"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="20%"><B>!</B></TD> 
+		  <TD WIDTH="80%">Produces a Count Histogram </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>&amp;</B></TD> 
+		  <TD>Produces a Sum Histogram </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>+</B></TD> 
+		  <TD>Produces Count, Sum, and Mean Histograms </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>#</B></TD> 
+		  <TD>Produces Count, Sum, and Mean Histograms</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Here is an example of a using a subtotal in a print, and then producing
+		a Count Histogram: </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="st_4.gif" WIDTH="607" HEIGHT="497"
+		ALT="Example of the Dialogue Using Print Qualifiers for a Histogram."> </P> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- st_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

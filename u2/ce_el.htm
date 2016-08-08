@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Elements of Computed
+		Expressions</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,computed expressions,computed,expressions,elements">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ce_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Computed Exptressions Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Computed Expressions</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Elements of Computed Expressions</H4> 
+	 <P>You can use any of the following elements in constructing a computed
+		expression: </P> 
+	 <UL> 
+		<LI>A <B>field name within the current file</B> (e.g., RELIGION). The
+		  field name can be partially spelled (e.g., REL), if the partial spelling is
+		  unambiguous.<BR><BR></LI> 
+		<LI>A <B>field number</B>, preceded with <B>#</B> (e.g.,
+		  #3).<BR><BR></LI> 
+		<LI>A <B>literal number</B>. When used as part of a computed expression,
+		  do <I>not</I> use quotes (e.g., AGE AT ONSET+20). However, you <I>must</I> use
+		  quotes if the number will stand alone as a constant (e.g.,
+		  "3.14159265").<BR><BR></LI> 
+		<LI>A <B>literal text string</B>, in quotes (e.g., "HELLO").<BR><BR></LI>
+		
+		<LI>A validly formatted <B>date</B>, such as 20 JULY 1969, which is
+		  punctuated only by spaces. 
+		  <P> <B>NOTE:</B> Dashes in a computed expression are interpreted as
+			 minus signs. For example, 7-20-1969 would indicate subtraction and be evaluated
+			 as -1982.</P><BR><BR> </LI> 
+		<LI>The word <B>NUMBER</B> (or the name of the file followed by the word
+		  NUMBER, such as, PATIENT NUMBER). NUMBER will return the internal entry number
+		  of the entry in the file or subfile in question.<BR><BR></LI> 
+		<LI>The <B>name of a file followed by the name of a field in that
+		  file</B> (e.g., PATIENT NAME). Like PATIENT NUMBER, this syntax is helpful when
+		  it is unclear to which file or subfile an expression is referring. However,
+		  this syntax cannot obtain data from <B>another</B> file; NAME and PATIENT NAME
+		  will return the same data. To obtain data from another file, the extended
+		  pointer syntax must be used.<BR><BR></LI> 
+		<LI>A <B>VA FileMan function</B> -- e.g., [TODAY or MONTH(DATE OF
+		  BIRTH)]. Functions are discussed in the "<A HREF="fn_frm.htm" TARGET="_top"
+		  TITLE="VA FileMan Functions" CLASS="bodylink">VA FileMan Functions</A>"
+		  chapter.<BR><BR></LI> 
+		<LI>An <B>extended pointer reference</B> to fields in another file.
+		  Extended pointers and relational jumping are described in the "<A
+		  HREF="rn_frm.htm" TARGET="_top" TITLE="Relational Navigation"
+		  CLASS="bodylink">Relational Navigation</A>" chapter.</LI> 
+	 </UL>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ce_el.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Import/Export Foreign
+		Format Attributes Reference</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,foreign format file attributes reference,attributes">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>FOREIGN FORMAT File Attributes Reference</H4> 
+	 <P>The fiollowing fields in the FOREIGN FORMAT file correspond to
+		attributes of the formatted data that you wish to export or import:</P> 
+	 <TABLE BORDER="0" WIDTH="100%" CELLPADDING="3" CELLSPACING="3"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD ALIGN="CENTER" COLSPAN="2"><B>FOREIGN FORMAT Fields</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="50%"><A HREF="#Field_delimiter" TITLE="FIELD DELIMITER"
+			 CLASS="bodylink">FIELD DELIMITER</A></TD> 
+		  <TD WIDTH="50%"><A HREF="#Quote_non_numeric_fields"
+			 TITLE="QUOTE NON-NUMERIC FIELDS?" CLASS="bodylink">QUOTE NON-NUMERIC
+			 FIELDS?</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="#Send_last_field_delimiter"
+			 TITLE="SEND LAST FIELD DELIMITER?" CLASS="bodylink">SEND LAST FIELD
+			 DELIMITER?</A></TD> 
+		  <TD><A HREF="#Prompt_for_data_type"
+			 TITLE="PROMPT FOR DATA TYPE?" CLASS="bodylink">PROMPT FOR DATA TYPE?</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="#Record_delimiter" TITLE="RECORD DELIMITER"
+			 CLASS="bodylink">RECORD DELIMITER</A></TD> 
+		  <TD><A HREF="#Substitute_for_null" TITLE="SUBSTITUTE FOR NULL"
+			 CLASS="bodylink">SUBSTITUTE FOR NULL</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="#Record_length_fixed" TITLE="RECORD LENGTH FIXED?"
+			 CLASS="bodylink">RECORD LENGTH FIXED?</A></TD> 
+		  <TD><A HREF="#Date_format" TITLE="DATE FORMAT" CLASS="bodylink">DATE
+			 FORMAT</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="#Maximum_output_length" TITLE="MAXIMUM OUTPUT LENGTH"
+			 CLASS="bodylink">MAXIMUM OUTPUT LENGTH</A></TD> 
+		  <TD><A HREF="#File_header" TITLE="FILE HEADER" CLASS="bodylink">FILE
+			 HEADER</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="#Need_foreign_field_names"
+			 TITLE="NEED FOREIGN FIELD NAMES?" CLASS="bodylink">NEED FOREIGN FIELD
+			 NAMES?</A></TD> 
+		  <TD><A HREF="#File_trailer" TITLE="FILE TRAILER" CLASS="bodylink">FILE
+			 TRAILER</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>When <I>exporting</I> records, all fields in this file are used in the
+		export process. When <I>importing</I> records, only three fields are used in
+		the import process:</P> 
+	 <UL> 
+		<LI><A HREF="#Field_delimiter" TITLE="FIELD DELIMITER"
+		  CLASS="bodylink">FIELD DELIMITER</A><BR><BR></LI> 
+		<LI><A HREF="#Record_length_fixed" TITLE="RECORD LENGTH FIXED?"
+		  CLASS="bodylink">RECORD LENGTH FIXED?</A><BR><BR></LI> 
+		<LI><A HREF="#Quote_non_numeric_fields" TITLE="QUOTE NON-NUMERIC FIELDS?"
+		  CLASS="bodylink">QUOTE NON-NUMERIC FIELDS?</A></LI> 
+	 </UL> 
+	 <P>In this section, each format characteristic is described. Some
+		combinations of characteristics are unacceptable; these situations are
+		mentioned. </P> 
+	 <P>Also, some of the fields allow you to enter M code. Export-specific
+		variables you can use in this M code are described in the "<A HREF="#Variables"
+		TITLE="Variables Available for Programmer Use" CLASS="bodylink">Variables
+		Available for Programmer Use</A>" section.</P> 
+	 <P>To set up a FOREIGN FORMAT file entry, use the
+		<A HREF="ei_opt1.htm" TITLE="Define Foreign File Format Option"
+		 CLASS="bodylink">Define Foreign File Format Option</A>; to print out a format,
+		use the
+		<A HREF="ei_opt5.htm" TITLE="Print Format Documentation Option"
+		 CLASS="bodylink">Print Format Documentation Option</A>.</P> <HR> 
+	 <H5><A NAME="Field_delimiter">FIELD DELIMITER</A></H5> 
+	 <P>Many applications can import and export data, if the values of fields in
+		each record are separated by a known character or sequence of characters. The
+		application puts (or expects) data before the first delimiter into its first
+		field, between the first and second delimiter into the second field, and so on.
+		Therefore, the ability to specify and recognize these field delimiters is a
+		crucial aspect of many data exchanges. </P> 
+	 <P>The Import and Export Tools' FIELD DELIMITER fields allow you to specify
+		up to 15 characters to be placed between each field. You can directly enter any
+		string of characters except ones that begin with a number or consist of
+		characters that have special meaning when editing VA FileMan data (e.g.,
+		"<B>^</B>" or "<B>@</B>"). </P> 
+	 <P>If your field delimiter begins with one of these restricted characters
+		or consists of an unprintable control character (like <B>&lt;TAB&gt;</B>), you
+		can enter the ASCII-value of the delimiter. When entering the ASCII values,
+		always use three digits. Thus, <B>&lt;TAB&gt;</B> (ASCII 9) becomes "009" and
+		"<B>@</B>" (ASCII 64) becomes "064". You can enter up to four ASCII values. If
+		more than one is needed, separate the values with commas (e.g., "048,094").
+		</P> 
+	 <P>If you want the user to be prompted for a field delimiter at the time
+		the EXPORT template is being created, enter "ASK" in this field. </P> 
+	 <P><B>CAUTION:</B> Using unprintable control characters (ASCII values less
+		than 32) as delimiters may not have the effect you want. During either export
+		or import, often control characters are intercepted by terminal software,
+		communication programs, or network links; they may not be passed through
+		unaltered as regular printable characters usually are. For example, ASCII value
+		5 is interpreted by many terminals as a request for their Answerback Message.
+		Thus, putting "005" in the FIELD DELIMITER field might cause an Answerback
+		Message to be returned by your terminal instead of the ASCII value 5 being
+		inserted between field values. </P> 
+	 <P><B>NOTE:</B> The importing application will find the delimiting
+		character, if it occurs in the data. This will cause an incorrect determination
+		of the boundary between fields. For example, if a comma (<B>,</B>) is the field
+		delimiter and the data for a field was <B>Smith,John</B>, the importing
+		application would put <B>Smith</B> into the first field and <B>John</B> into
+		the second field. You can avoid this problem by specifying that data in
+		non-numeric fields be surrounded by quotes (e.g., <B>"Smith,John"</B>). Most
+		importing applications will ignore delimiters, if they occur within a quoted
+		string. See the discussion of "<A HREF="#Quote_non_numeric_fields"
+		TITLE="QUOTE NON-NUMERIC FIELDS?" CLASS="bodylink">QUOTE NON-NUMERIC
+		FIELDS?</A>" below. </P> <HR> 
+	 <H5><A NAME="Send_last_field_delimiter">SEND LAST FIELD DELIMITER?</A></H5>
+	 
+	 <P>Some importing applications expect a field delimiter following every
+		field, including the final field in a record. Other applications only expect
+		delimiters between fields; nothing follows the final field. This field allows
+		you to specify whether or not a field delimiter should be exported after the
+		last field. A YES answer will send the delimiter, a NO answer will not. </P> 
+	 <P>The contents of this field does <I>not</I> affect whether or not a
+		delimiter is sent after each <I>record</I>. </P> <HR> 
+	 <H5><A NAME="Record_delimiter">RECORD DELIMITER</A></H5> 
+	 <P>Applications that import delimited fields need to know when one record
+		ends and a new one begins. In most cases, records are separated by a carriage
+		return (or by a line feed and a carriage return). This is the same as pressing
+		the Enter/Return key at the end of a line. The Export Tool <I>automatically</I>
+		puts this separator after each record; every record begins on a new line of
+		output. You do <I>not</I> need to put the ASCII values for carriage return and
+		line feed in this field. </P> 
+	 <P>Some applications may also require that additional characters be placed
+		after each record. If this is the case, put those characters into the RECORD
+		DELIMITER field. The requirements for coding the field are the same as for the
+		<A HREF="#Field_delimiter" TITLE="FIELD DELIMITER" CLASS="bodylink">FIELD
+		DELIMITER</A> field. </P> <HR> 
+	 <H5><A NAME="Record_length_fixed">RECORD LENGTH FIXED?</A></H5> 
+	 <P>A second common way to import and export data (in addition to using
+		delimited data) is with fixed length records. In a fixed length record, each
+		field has a predetermined, constant data length. For example, a name field
+		might be 30 characters long. The name "Smith,John" is only 10 characters long;
+		thus, 20 spaces would be added to the field value to fill the required 30
+		characters. The next field's value would begin in the thirty-first column. </P>
+	 
+	 <P>If you want to import or export fixed length records, answer YES to this
+		field. At the time that the EXPORT template is created (or an import is done),
+		the user will be prompted for the length of each field in the target or source
+		file. </P> 
+	 <P>During export, in most cases data will be truncated when the length of a
+		field is reached. Thus, if a field contains 32 characters but the user-defined
+		length is 30, the last 2 characters will not be exported. However,
+		DATE/TIME-valued fields will always be exported in their entirety. For dates,
+		the user <I>must</I> indicate a data length at least as long as the exported
+		date, which is 11 characters for standard VA FileMan dates. </P> 
+	 <P><B>NOTE:</B> Fixed record lengths cannot be used in conjunction with
+		field delimited data. Also, the maximum record size <I>for exports for a fixed
+		length format is 255 characters</I>. There is <I>no limit on record length
+		during import</I>, however. </P> 
+	 <P><B>CAUTION:</B> Fixed length exports will succeed only if all fields are
+		exported on the same physical line. Therefore, the total of all the field
+		lengths must not be more than the value stored in the
+		<A HREF="#Maximum_output_length" TITLE="MAXIMUM OUTPUT LENGTH"
+		 CLASS="bodylink">MAXIMUM OUTPUT LENGTH</A> field. </P> <HR> 
+	 <H5><A NAME="Maximum_output_length">MAXIMUM OUTPUT LENGTH</A></H5> 
+	 <P>In many cases, data import will be much easier if an entire record is
+		contained on a single "line" of output. That is, there are no carriage returns
+		within a single record, only between records. (This is a requirement for a
+		successful fixed length export.) </P> 
+	 <P>In a regular VA FileMan print, the amount of data printed before a
+		carriage return is dependent on the type of device being used for output -- a
+		CRT screen would normally have 80 characters on a line, a printer 80 or 132.
+		For data export, however, the physical characteristics of the output device is
+		not controlling. Rather, the capabilities of the application importing data is
+		overriding. Therefore, you can use the MAXIMUM OUTPUT LENGTH field to specify
+		how long a physical record will be. For field delimited (as opposed to fixed
+		length) exports, this record length can be larger than the traditional M data
+		limit of 255 characters. </P> 
+	 <P>Put a number from 0 through 9999 into this field. The default record
+		length is 80. If you want the user to be prompted for a record length at the
+		time that an Export template is being created, put "0" (zero) into this field.
+		</P> 
+	 <P>Regardless of the length of the maximum record, a carriage return will
+		be written after each record is output. </P> 
+	 <P><B>NOTE:</B> The length of a record cannot exceed 255 characters when
+		using a fixed length format. </P> 
+	 <P><B>CAUTION:</B> When sending exports to a Host file on a DSM for OpenVMS
+		(e.g., VAX) system, you must add a parameter to the OPEN command, if any of
+		your exported records are longer than 512 characters. See the "<A
+		HREF="ei_opt4.htm" TITLE="Export Data" CLASS="bodylink">Export Data</A>"
+		section for details. </P> <HR> 
+	 <H5><A NAME="Need_foreign_field_names">NEED FOREIGN FIELD NAMES?</A></H5> 
+	 <P>If this field is answered YES, the user is prompted for a field name for
+		each exported field when the EXPORT template is created. The field names are
+		stored in the NAME OF FOREIGN FIELD field in the EXPORT FIELD Multiple in the
+		PRINT TEMPLATE file (#.4). See the discussion below of the
+		<A HREF="#File_header" TITLE="FILE HEADER" CLASS="bodylink">FILE HEADER</A>
+		field for one way to use this information. </P> <HR> 
+	 <H5><A NAME="Quote_non_numeric_fields">QUOTE NON-NUMERIC FIELDS?</A></H5> 
+	 <P>When <B><I>importing</I></B> data, VA FileMan will ignore the field
+		delimiter in a quoted string when this field is set to YES.</P> 
+	 <P>When <I><B>exporting</B></I> data, if you want all values that do not
+		belong to a NUMERIC DATA TYPE field to be surrounded by quotation marks, answer
+		YES to this field. </P> 
+	 <P>Many importing applications treat data within quotation marks (<B>"</B>)
+		in a special way. Sometimes such data is automatically considered to be text,
+		as opposed to numbers. Also, the importer may ignore the field delimiter
+		character, if it falls within a quoted string. Quoting a null value from a
+		non-numeric field will result in two double quotes (<B>""</B>) being
+		exported.</P> 
+	 <P>During export, the DATA TYPE of a field is automatically determined for
+		fields in the primary file and its Multiples. NUMERIC DATA TYPE fields are
+		considered NUMERIC. There may be other fields that you want treated as NUMERIC:
+		COMPUTED-type fields with numeric results, fields referenced by the extended
+		pointer syntax, replies to the "EXPORT FIELD:" prompt that are computed
+		expressions with numeric results. By default, these fields are assigned a FREE
+		TEXT DATA TYPE. If you want the user to choose the DATA TYPE when the EXPORT
+		template is created, answer YES to the
+		<A HREF="#Prompt_for_data_type" TITLE="PROMPT FOR DATA TYPE?"
+		CLASS="bodylink">PROMPT FOR DATA TYPE?</A> field. </P> 
+	 <P>If the Export Tool assigns a non-numeric DATA TYPE or if the user
+		chooses one of those DATA TYPEs, the field's values will be surrounded by
+		quotes when this field contains YES. </P> 
+	 <P><B>NOTE:</B> Do <I>not</I> set this field to YES if a fixed length
+		record is being exported or imported. </P> <HR> 
+	 <H5><A NAME="Prompt_for_data_type">PROMPT FOR DATA TYPE?</A></H5> 
+	 <P>The Export Tool will determine the DATA TYPE for fields in the primary
+		file and its Multiples based on their definition in the data dictionary. Other
+		fields are automatically assigned a DATA TYPE of FREE TEXT. If you want the
+		user to choose the DATA TYPE of each field when creating an EXPORT template,
+		answer YES to this field. The only DATA TYPEs recognized by the Export Tool are
+		FREE TEXT, NUMERIC, and DATE/TIME. </P> 
+	 <P>The DATA TYPE entered by the user controls whether or not the values
+		from that field will be surrounded by quotes if the
+		<A HREF="#Quote_non_numeric_fields" TITLE="QUOTE NON-NUMERIC FIELDS?"
+		CLASS="bodylink">QUOTE NON-NUMERIC FIELDS?</A> field is set to YES. The user
+		supplied DATA TYPE does <I>not</I> affect how numbers are exported; numeric
+		export is controlled by the DATA TYPE in the data dictionary only. </P> <HR> 
+	 <H5>SUBSTITUTE FOR NULL</H5> 
+	 <P>Numeric fields with no data (a "null" value) will result by default in
+		nothing being exported for that field. For fixed record length exports, this
+		should not be a problem. However, if your importing application uses spaces as
+		a delimiter, you may need a printable character to be exported for null-valued
+		numeric fields. If you want a character or characters (such as "<B>0</B>" or
+		"<B>.</B>") substituted for numeric nulls, put them into this field. Null
+		values for NUMERIC DATA TYPEs in the primary file (including its Multiples)
+		will have this character exported. If you want quotes (<B>''</B>) in your
+		substitute string, enter two quote marks (<B>""</B>) for each quote you want.
+		</P> 
+	 <P><B>NOTE:</B> Do not put anything in this field when defining a fixed
+		length format. </P> 
+	 <P><B>CAUTION:</B> There will be no substitution for null values if the
+		field being exported is not in the primary file; that is, if it is reached
+		using relational navigation. </P> <HR> 
+	 <H5><A NAME="Date_format">DATE FORMAT</A></H5> 
+	 <P>The native, or default, format for dates varies from application to
+		application. VA FileMan uses two formats: an internal, or storage, format
+		(YYYMMDD, where YYY is the year minus 1700) and an external, or default
+		display, format (MON DD,YYYY). When data from a DATE/TIME DATA TYPE field is
+		exported, it is in the external format. </P> 
+	 <P>Since the importing application may recognize a different format, you
+		can change the exported value by placing M code in this field (only those with
+		programmer access can enter code in this field.) When this M code is executed,
+		the local variable X will contain the date in VA FileMan <I>internal</I>
+		format. Your M code should result in the local variable Y containing the date
+		in the format you want exported. </P> 
+	 <P>If your format will be used with Kernel, it is recommended that you make
+		use of the date extrinsic functions provided by Kernel, if possible. See the
+		<I>Kernel Systems Manual</I> for details. </P> 
+	 <P>Data from fields with DATE/TIME DATA TYPEs in the primary file, its
+		Multiples, and pointed-to files is altered by the code in this field; date
+		values from other sources is not. There is another way to change the exported
+		output; you can use a VA FileMan function when selecting fields for export:</P>
+	 
+	 <PRE>  THEN EXPORT FIELD: <B>NUMDATE(DATE OF BIRTH)</B></PRE> 
+	 <P>The DATE FORMAT field will have no effect on that output. </P> <HR> 
+	 <H5><A NAME="File_header">FILE HEADER</A></H5> 
+	 <P>Some applications require special information to process the data in the
+		file that is imported. For example, the field names might be needed. Also, you
+		may want to put some special data into the file for identification or
+		documentation purposes. </P> 
+	 <P>The FILE HEADER field allows you to output information before the stream
+		of exported data. This field can contain either a literal string surrounded by
+		quotation marks (e.g., "Data for Lotus 1-2-3") or M code that, when executed,
+		will write the desired output. </P> 
+	 <P>You can put M code here only if you have programmer access. The local
+		variable DDXPXTNO, which equals the internal entry number in the PRINT TEMPLATE
+		file (#.4) of the EXPORT template being used for data output, is defined when
+		the code is executed. You can use this variable to access information about the
+		export. The DATA TYPE, length, and foreign field name are stored in the EXPORT
+		FIELD Multiple (#100). </P> 
+	 <P><B>NOTE:</B> See the data dictionary for the PRINT TEMPLATE file for
+		additional information.</P> <HR> 
+	 <H5><A NAME="File_trailer">FILE TRAILER</A></H5> 
+	 <P>You can use this field like the
+		<A HREF="#File_header" TITLE="FILE HEADER" CLASS="bodylink">FILE HEADER</A>
+		field. The literal or M code will be output after the exported data. </P> <HR> 
+	 <H5><A NAME="Variables">Variables Available for Programmer Use</A></H5> 
+	 <P>Some of the fields in the FOREIGN FORMAT file allow you to enter M code,
+		if you have programmer access. You may want to use data stored in the EXPORT
+		template entry at the time the export is performed. You may also want to access
+		information in the FOREIGN FORMAT file entry used for the export. </P> 
+	 <P>Two variables are available for use in the M code entered in FOREIGN
+		FORMAT file fields: </P> 
+	 <UL> 
+		<LI><B>DDXPXTNO --</B> The internal entry number of the EXPORT template
+		  in the PRINT TEMPLATE file.<BR><BR></LI> 
+		<LI><B>DDXPFFNO --</B> The internal entry number of the Foreign Format in
+		  the FOREIGN FORMAT file. </LI> 
+	 </UL> 
+	 <P>Consult the data dictionaries of the two files for fields that may
+		contain useful information about either the format or the specific export
+		itself. The EXPORT FIELD Multiple in the PRINT TEMPLATE file might be of
+		particular interest. This Multiple contains information about each field being
+		exported. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_sig.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

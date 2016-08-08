@@ -1,0 +1,14 @@
+body { background-color: #ffffff; }
+
+p,dl,ol,ul,li,dd,dt,table,body,td,th
+   {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+      font-size: 11pt;
+   }
+
+h1 {font-size: 18pt; font-weight: bold; font-family: "Comic Sans Ms", "Verdana", "Arial", "Helvetica", "sans-serif"}
+h2 {font-size: 14pt; font-weight: normal; font-family: "Comic Sans Ms", "Verdana", "Arial", "Helvetica", "sans-serif"}}
+h3 {font-size: 13pt; font-weight: normal; font-family: "Comic Sans Ms", "Verdana", "Arial", "Helvetica", "sans-serif"}}
+h4 {font-size: 12pt; font-weight: normal; font-family: "Comic Sans Ms", "Verdana", "Arial", "Helvetica", "sans-serif"}}
+
+pre { font-family: Courier New, Courier; 
+      font-size: 11pt }

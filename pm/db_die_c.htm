@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 6/20/01-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: CHK^DIE( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,chk^die(),die">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>CHK^DIE( ): Data Checker</H4> 
+	 <P>This procedure checks user-supplied data against the data dictionary
+		definition of a field. If the input data passes the validation, the internal
+		and, optionally, the external forms of the data are returned. In this respect,
+		CHK^DIE is the inverse of the $$EXTERNAL^DILFD call. </P> 
+	 <P>While this procedure indicates that a user's response is valid according
+		to a field's definition, it does not assure that a value can be filed in a
+		particular record. In order to verify that a value can be filed, use the
+		VAL^DIE or FILE^DIE calls (with the E flag). CHK^DIE does not have IENS as
+		input; it is ignorant of the state of the data. </P> 
+	 <P>Do not pass a VALUE of null or "@" to CHK^DIE. This procedure cannot
+		verify that deletion of values from the database is appropriate. Again, use
+		VAL^DIE or FILE^DIE (with E flag) for this purpose. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+CHK^DIE(FILE,FIELD,FLAGS,VALUE,.RESULT,MSG_ROOT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>FILE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) File or subfile number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Field number for which data is being validated. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. The possible values are:
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>H</B></TD> 
+		  <TD VALIGN="TOP"><B>H</B>elp (single "?") is returned if VALUE is not
+			 valid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>E</B></TD> 
+		  <TD VALIGN="TOP"><B>E</B>xternal value is returned in RESULT(0). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>VALUE</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Value to be validated, as entered by a user. VALUE can
+				take several forms depending on the data type involved, e.g., a partial,
+				unambiguous match for a pointer or any of the supported ways to input dates
+				(such as "TODAY" or "11/3/93"). </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>.RESULT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) Local variable that receives output from the call. If
+				VALUE is valid, the internal value is returned. If not valid, ^ is returned. If
+				the E flag is passed, external value is returned in RESULT(0). </P> 
+			 <P><B>NOTE:</B> This array is killed at the beginning of each call.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Root into which error, help, and message arrays are
+				put. If this parameter is not passed, these arrays are put into nodes
+				descendent from ^TMP. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Output</H5> 
+	 <P>See input parameters .RESULT and MSG_ROOT. </P> 
+	 <P>RESULT = internal value or ^ if the passed VALUE is not valid. </P> 
+	 <P>RESULT(0) = external value if the passed VALUE is valid and E flag is
+		present. </P> 
+	 <H5>Example</H5> 
+	 <P>In the following example, data for a date/time data type is being
+		checked. Note that the external form of the user's input, which was "T-180", is
+		passed. In this case, the value was acceptable, as shown below: </P> 
+	 <PRE>
+    &gt;<B>S FILE=16200,FIELD=201,FLAG=&quot;E&quot;,VALUE=&quot;T-180&quot;</B>
+    
+    &gt;<B>D CHK^DIE(FILE,FIELD,FLAG,VALUE,.RESULT)</B>
+    
+    &gt;<B>ZW RESULT</B>
+    RESULT=2930625
+    RESULT(0)=JUN 25,1993
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>In addition to errors that indicate that the input parameters are
+		invalid, the primary error code returned is: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_120.htm" TITLE="Error 120"
+			 CLASS="bodylink">120</A></B></TD> 
+		  <TD VALIGN="TOP">Error occurred during execution of a FileMan hook.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_701.htm" TITLE="Error 701"
+			 CLASS="bodylink">701</A></B></TD> 
+		  <TD VALIGN="TOP">Value is invalid.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Details and Features</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>What is checked</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>This call verifies that the VALUE passed is valid by passing it
+				through the field's INPUT transform. Also, if the field has any screens, those
+				screens must be passed. If the field is a pointer or variable pointer, this
+				call verifies that there is an unambiguous match (or partial match) for
+				VALUE.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Entry number caution </B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>No internal entry numbers are available when the INPUT transform
+				or screens for the field are executed. Therefore, the INPUT transform and
+				screens cannot reference any entry numbers using either the DA() array or the
+				D0, D1, D2, etc., variables. Likewise, Xecutable Help cannot reference an entry
+				number if the H flag is sent. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_die_c.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

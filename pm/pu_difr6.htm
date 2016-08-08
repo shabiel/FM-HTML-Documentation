@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DIFROM - Running an Init (1-16)
+		</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,running an init on target system table of contents (1-16)">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>DIFROM: Running an INIT (1-16)</H4> 
+	 <P> A package is installed on the target system by "running the init" for
+		the package. Here, the process for installing a package from inits is described
+		in the order in which it occurs.</P> 
+	 <OL> 
+		<LI><A HREF="pu_dif6a.htm" TITLE="Preliminary Steps"
+		  CLASS="bodylink">Preliminary Steps</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6b.htm" TITLE="Check of Version Number"
+		  CLASS="bodylink">Check of Version Number</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6c.htm"
+		  TITLE="Running Environment Check Routine (DIFROM and DIFQ Variables)"
+		  CLASS="bodylink">Running Environment Check Routine (DIFROM and DIFQ
+		  Variables)</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6d.htm"
+		  TITLE="Determining Install Status of DDs and Data" CLASS="bodylink">Determining
+		  Install Status of DDs and Data</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6e.htm"
+		  TITLE="Determining Install Status of Security Codes"
+		  CLASS="bodylink">Determining Install Status of Security Codes</A> <BR><BR></LI>
+		
+		<LI><A HREF="pu_dif6f.htm"
+		  TITLE="Determining Install Status of Other Package Components"
+		  CLASS="bodylink">Determining Install Status of Other Package
+		  Components</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6g.htm" TITLE="Starting the Update"
+		  CLASS="bodylink">Starting the Update</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6h.htm"
+		  TITLE="Running the Pre-init After User Commit Routine" CLASS="bodylink">Running
+		  the Pre-init After User Commit Routine</A> <BR><BR></LI> 
+		<LI><A HREF="pu_dif6i.htm" TITLE="Installing Data Dictionaries"
+		  CLASS="bodylink">Installing Data Dictionaries</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6j.htm" TITLE="Installing Data"
+		  CLASS="bodylink">Installing Data</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6k.htm" TITLE="Reindexing the Files"
+		  CLASS="bodylink">Reindexing the Files</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif6l.htm" TITLE="Installing Other Package Components"
+		  CLASS="bodylink">Installing Other Package Components</A><BR><BR></LI> 
+		<LI><A HREF="pu_difr7.htm" TITLE="General Processing"
+		  CLASS="bodylink">General Processing</A><BR><BR></LI> 
+		<LI><A HREF="pu_difr8.htm" TITLE="Special Processing"
+		  CLASS="bodylink">Special Processing</A><BR><BR></LI> 
+		<LI><A HREF="pu_difra.htm" TITLE="Running the Post-Initialization"
+		  CLASS="bodylink">Running the Post-Initialization</A><BR><BR></LI> 
+		<LI><A HREF="pu_difrb.htm"
+		  TITLE="Recording the Install on the Target System" CLASS="bodylink">Recording
+		  the Install on the Target System</A></LI> 
+	 </OL> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_difr6.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

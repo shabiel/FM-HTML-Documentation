@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: PUT^DDSVAL( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman api,screenman,api,calls,put^ddsval(),ddsval">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sm_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>PUT^DDSVAL( )</H4> 
+	 <P>You can use this entry point only within a ScreenMan form, in all places
+		where M code can be placed on the form. </P> 
+	 <P>This procedure stuffs data into a data dictionary field as part of
+		ScreenMan's transaction. The data passed to this procedure is filed in the
+		database only when the user explicitly saves changes. Until then, it is stored
+		in a temporary location.</P> 
+	 <P>If the specified field is a word processing field, the value passed to
+		the procedure is the closed root of the array that contains the text. </P> 
+	 <P>If the specified field is a multiple field, the value passed is the
+		subrecord first displayed to the user as a default at the multiple field. This
+		value is a default for selection and is not actually filed. </P> 
+	 <P>Values cannot be stuffed into computed fields. </P> 
+	 <P>If, while a form is running, a call to PUT^DDSVAL fails, ScreenMan
+		prints an error message in the Command Area. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+PUT^DDSVAL(FILE,[.]RECORD,FIELD,VALUE,.ERROR,FLAGS)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) The global root or number of the file or subfile. At
+				the field level, the local variable DIE contains the current global root. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>[.]RECORD</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) The internal entry number or an array of internal entry
+				numbers. This parameter has the same form as the DA array. At the field level,
+				the local array DA contains the current array of record numbers. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) The field name or number. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>VALUE</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) The value to stuff into the data dictionary field. If
+				<A HREF="#flags" TITLE="FLAGS" CLASS="bodylink">FLAGS</A> (described below)
+				does not contain an I, the value must be in the form of a valid, unambiguous
+				user response.</P> 
+			 <P>If FIELD is a word processing field, VALUE must be the closed root
+				of the array that contains the text. The subscripts of the nodes below the root
+				must be positive numbers, although they need not be integers, and there can be
+				gaps in the sequence. The text must be in these nodes or in the 0 node
+				descendent from these nodes.</P> 
+			 <P>If FIELD is a multiple field, VALUE determines the subrecord to
+				display to the user as a default for selection. It is not a value that is ever
+				filed. VALUE can be "FIRST", "LAST", or the specific internal entry number of
+				the subrecord to display. "FIRST" indicates that the subrecord with the lowest
+				internal entry number should be displayed and "LAST" indicates that the
+				subrecord with the highest internal entry number should be displayed. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>.ERROR</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) $D(ERROR)&gt;1, if the procedure call fails. </P> </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD ROWSPAN="5" VALIGN="TOP"><B><A NAME="flags">FLAGS</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>Indicates whether VALUE is in internal or external form, as shown
+				below: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>A</B></TD> 
+		  <TD VALIGN="TOP"><B>A</B>ppend new word processing text to the current
+			 text. This flag can be used only when stuffing text into a word processing
+			 field. If the A flag is not sent, the current word processing text is
+			 completely erased before the new text is added. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>I</B></TD> 
+		  <TD VALIGN="TOP">VALUE is in <B>I</B>nternal form; it is not validated.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>E</B></TD> 
+		  <TD VALIGN="TOP">VALUE is in <B>E</B>xternal form. (Default) </TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>The I and E flags have no effect when FIELD is a word processing
+				field. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>Stuff the value 2940801 into a date field #20. The value passed is in
+		internal form: </P> 
+	 <PRE>
+    <B>D PUT^DDSVAL(DIE,.DA,20,2940801,&quot;&quot;,&quot;I&quot;)</B>
+</PRE> 
+	 <P>No data validation is performed. </P> 
+	 <P><B>Example 2</B></P> 
+	 <P>Stuff word processing text from an array into a word processing field
+		named DESCRIPTION as shown below: </P> 
+	 <PRE>
+    <B>D PUT^DDSVAL(DIE,.DA,&quot;DESCRIPTION&quot;,&quot;^nmspWP(&quot;&quot;TEXT&quot;&quot;)&quot;)</B>
+</PRE> 
+	 <P>The array that contains the text looks like: </P> 
+	 <PRE>
+    ^nmspWP(&quot;TEXT&quot;,1,0)=Line 1
+    ^nmspWP(&quot;TEXT&quot;,2,0)=Line 2
+        ...etc.
+</PRE> 
+	 <P>OR: </P> 
+	 <PRE>
+    ^nmspWP(&quot;TEXT&quot;,1)=Line 1
+    ^nmspWP(&quot;TEXT&quot;,2)=Line 2
+        ...etc.
+</PRE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sm_uput.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

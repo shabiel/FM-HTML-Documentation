@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: LFA Check/Fix DD Structure
+		Option </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,list file attributes,attributes,data dictionary,dd,check/fix dd structure option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fa_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: List File Attributes Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">List File Attributes</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Check/Fix DD Structure Option</H4> 
+	 <P>In order to ensure that the internal structure of your files and
+		subfiles is consistent, use the Check/Fix DD Structure option from the Data
+		Dictionary Utilities submenu. You must have READ access to the files being
+		analyzed. In addition, you need DD access for this option to correct erroneous
+		nodes. </P> 
+	 <P>This utility looks at a file's identifiers, cross-references, POINTER TO
+		A FILE, VARIABLE-POINTER, and COMPUTED fields. If there are inconsistencies or
+		conflicts between the information in the data dictionary and the structure of
+		the file's global nodes, the Check/Fix DD Structure option will note them. </P>
+	 
+	 <P>If you want, the Check/Fix DD Structure option will correct
+		inconsistencies found in the data dictionary. The process will <B>not</B>
+		change any file structures; it only removes or corrects unnecessary or
+		incorrect DD nodes. Data is <B>not</B> affected. </P> 
+	 <P>The dialogue for running this option is simple. You specify the file or
+		files you want to check and indicate whether you want to delete incorrect
+		nodes. Then the progress of the checking is displayed followed by a report of
+		any discrepancies found or any changes made. For example: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select DATA DICTIONARY UTILITY OPTION: <B>CHECK/FIX DD STRUCTURE</B>
+
+Check the Data Dictionary.
+
+ START WITH WHAT FILE: <B>16033</B> 
+      GO TO WHAT FILE: <B>&lt;RET&gt;</B> 
+Remove erroneous nodes? NO// <B>YES
+</B>DEVICE: HOME// <B>&lt;RET&gt;</B>  DECSERVER
+
+Checking file # 16033
+     Checking 'ID' nodes for 'Q'.        
+     Checking 'IX' nodes.                 
+     Checking 'PT' nodes.
+     File: 16037 Field: .01 is not a pointer.
+          ^DD(16033,0,&quot;PT&quot;,16037,.01) was killed.
+     Checking FIELDs....                  
+   Checking subfile # 16033.04
+     Checking 'IX' nodes.         
+     Checking FIELDs...      
+   Checking subfile # 16033.42
+     Checking FIELDs.
+   Returning to subfile 16033.04.        
+   Returning to main file.......
+   Checking subfile # 16033.01
+     Checking 'IX' nodes.     
+     Checking FIELDs.         
+   Returning to main file.........</PRE> <HR> 
+	 <P>In the previous example, the check is being run on a single file.
+		Correction of erroneous nodes has been requested. An incorrect "PT" node was
+		found and deleted. </P> 
+	 <P><B>NOTE:</B> Subfiles are inspected, too. </P> 
+	 <P>Application developers might use this tool to clean up their files
+		before export. Site managers may find the reporting function useful for
+		checking a package's files after installation. Erroneous nodes found by this
+		option may be remnants of prior versions of the files; the current install may
+		not be to blame. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fa_chkdd.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

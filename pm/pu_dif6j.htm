@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Running an Init on Target System (10
+		of 16)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,running an init on target system,step 10">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Running an Init on Target System (10 of 16)</H4> 
+	 <H5>Installing Data</H5> 
+	 <P>Next, the init brings in data that was sent with the files.</P> 
+	 <P>Depending on the developer's specifications, incoming data either
+		overwrites or merges with data existing on the target system. In either case,
+		if an incoming entry or subentry doesn't exist on the current system, one will
+		be added. If an existing entry or subentry is found and if data is to be
+		overwritten, each field's value will be replaced with non-null incoming values.
+		Null values will not overwrite existing values. If data is to be merged, only
+		those fields with null values will be updated with incoming values. Hence, when
+		merging, new values will be added without altering any pre-existing ones. </P> 
+	 <P>Since the installation of data is dependent on whether or not an
+		incoming entry or subentry already exists on the target system, the init must
+		determine if they are the same. The process, described as follows, is repeated
+		for each incoming entry or subentry: </P> 
+	 <P></P> 
+	 <UL> 
+		<LI><B>Checking the B Cross-Reference or Zero Node </B> <BR><BR>The B
+		  cross-reference holds the entry's name (.01 field) along with the internal
+		  entry number. If a B cross-reference exists for the file, it is searched for an
+		  existing value that matches the incoming one. (The B cross-reference holds the
+		  name as a subscript.) The maximum length of subscripts is defined for each
+		  operating system and is stored in the MUMPS OPERATING SYSTEM file (#.7). The
+		  init uses this length, for example, 63 (default) or 99 as the limit of
+		  characters to compare.<BR><BR>Files occasionally lack a B cross-reference. In
+		  this case, the init examines the actual data (first piece of the entry's zero
+		  node) for a match of values.<BR><BR>If a match (either of the B cross-reference
+		  or of the first piece of the zero node) is not found, the incoming entry is
+		  considered new and is added to the file. If a match is found, additional checks
+		  (discussed below) are made to determine whether the entries may be
+		  associated.<BR><BR></LI> 
+		<LI><B>Using the Internal Entry Number to Verify a Match</B><BR><BR>Once
+		  a match of the .01 fields of the incoming and existing entries is found, the
+		  init determines whether the internal entry numbers of the two entries are
+		  related. If the file has a defined .001 field, internal entry number is a
+		  meaningful attribute of an entry. In this situation, when the name and internal
+		  entry numbers match, identifiers are checked to verify the match.<BR><BR>If the
+		  INPUT transform of the .01 field contains DINUM, it operates in the same way as
+		  a .001 field. In this case, the .01 field and the internal entry number must
+		  match for the entries to be considered the same.<BR><BR>After a match is
+		  established based on the <A NAME=".001/.01Fields">.001 field (or DINUMed .01
+		  field)</A>, the identifiers are checked. If the identifiers for the two entries
+		  are the same, the entries are considered the same. If the identifiers do not
+		  match, the new entry is not installed at all.<BR><BR></LI> 
+		<LI><B>Using Identifiers to Verify a Match</B><BR><BR>If the file is not
+		  referenced by number (i.e., .001 field does not exist) and there are duplicate
+		  B cross-references or entries in the file with duplicate .01 fields, the init
+		  cannot resolve the ambiguity without identifiers. A well-designed file uses one
+		  or more identifiers so that each entry is unique with respect to name and
+		  identifiers. If the file lacks identifiers and a .001 field, the init will
+		  associate the incoming entry with the first existing entry with a matching
+		  name.<BR><BR>If identifiers exist, the init gets the global location of the
+		  identifier (piece position) from the data dictionary and uses indirection to
+		  retrieve the identifier's value from the ^UTILITY storage global. This value is
+		  then compared with the existing entry's identifier value for a match. Only
+		  identifiers that have valid field numbers are used in this process.<BR><BR>The
+		  init matches identifiers in the same way it matches .01 fields. If the values
+		  of all the incoming identifiers match the existing ones, the two entries are
+		  considered to be the same. If the values don't match, the possibility of
+		  identity is rejected and the search continues. If none of the values for
+		  existing entries matches the incoming entry, the incoming entry is considered
+		  new and is added to the file. However, as mentioned above, if a
+		  <A HREF="#.001/.01Fields" TITLE=".001 field (or DINUMed .01 field)"
+			CLASS="bodylink">.001 field</A> exists or the .01 field is DINUMed, the entry
+		  is not installed if the identifiers differ. </LI> 
+	 </UL> 
+	 <P> Once the internal entry number on the target system for matching
+		entries is found, it is used to place the incoming data, either by merging with
+		or overwriting existing values.</P> 
+	 <P><B>NOTE:</B> No audit trail is kept of data brought in by an init even
+		if the audit flag is on for a field receiving data.</P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_dif6j.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

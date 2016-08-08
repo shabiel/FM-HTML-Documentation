@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Running DIFROM to Export Data (12 of
+		17)</TITLE><META NAME="subject"
+	 CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,running difrom to export data,export data,running difrom,step 12">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Running DIFROM to Export Data (12 of 17)</H4> 
+	 <H5>DIFROM Builds Routines Containing Data Dictionaries</H5> 
+	 <P>Next, DIFROM builds the routines containing the DDs, data, and file
+		security. To save space in the init routines, cross-references are not sent.
+		They are rebuilt when the inits are run on the target system. DDs are turned
+		into routines that hold parts of each data dictionary node on separate lines.
+		The global reference is listed on one line; its value is recorded on the next
+		line. Thus, for each node in the data dictionary there are two corresponding
+		lines in the init routine. </P> 
+	 <P>The routine lines that hold data dictionary information begin with two
+		semicolons. This format conforms to the VA programming standard for using $TEXT
+		to reference routine lines. When the data dictionaries are put into place
+		during the init process, the lines are referenced using indirection as follows:
+		</P> 
+	 <PRE>
+    ^DD(442,0)=&quot;value&quot;    becomes      ;;^DD(442,0)
+                                       ;;=&quot;value&quot;
+
+</PRE> 
+	 <P>If the "value" is too long to fit on a single line, it is divided
+		between two lines. The first "value" line starts with a tilde (<B>~</B>) and
+		the second with an equal sign (<B>=</B>). </P> 
+	 <P>If the installer chooses to update the data dictionaries, data
+		dictionary nodes on the target system are overwritten. This will bring in
+		newly-defined fields, including specifications for cross-references or
+		triggers. It will also replace existing field definitions (data dictionary
+		nodes) with incoming definitions. Thus, revisions of existing fields may occur.
+		However, the process will not alter nodes that exist on the target system but
+		that are not in the incoming data dictionary. For example, if a field has been
+		deleted from the source system's data dictionary, that field will not be
+		deleted on the recipient's system. Instead, a pre-init program can be used to
+		delete obsolete fields and obsolete data dictionary nodes. </P> 
+	 <P>If auditing is turned on at the sending site, the DD node indicating
+		that auditing should occur will be sent. In this situation, auditing will be
+		turned on at the installing site if the data dictionaries are updated. </P	 ><P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_dif4l.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

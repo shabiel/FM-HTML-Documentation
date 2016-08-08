@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Move Archived Data to
+		Permanent Storage Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,archiving,archive">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0"> 
+	 
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ar_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Archiving Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Archiving</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Move Archived Data to Permanent Storage</H4> 
+	 <P>Once you have written an archiving activity to temporary storage, you
+		can use the Move Archived Data to Permanent Storage option. If you choose an
+		archiving activity that has not yet been written to temporary storage, a
+		warning is issued. </P> 
+	 <P>This option will do several things not necessarily in the order listed
+		here. </P> 
+	 <OL> 
+		<LI>It will print an Archive Activity report which prints information
+		  from the ARCHIVAL ACTIVITY file (#1.11), such as the archiver (i.e., the person
+		  who selected this option), the archival activity number, an index of all
+		  archived entries, and the search criteria used during the Select Entries to
+		  Archive process, etc.<BR><BR></LI> 
+		<LI>It will build an index of all archived entries and write this index
+		  at the beginning of the archived file. An item in the index contains the .01
+		  value of the entry, along with all PRIMARY KEY and Identifier values for that
+		  entry. <BR> <BR> <B>NOTE:</B> The PRIMARY KEY is new with Version
+		  22.0&nbsp;<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+		  WIDTH="35" HEIGHT="11"><BR><BR></LI> 
+		<LI>It will prompt for Archive Device Label information. This information
+		  will usually represent some naming convention that Systems Managers use as
+		  physical label for devices such as tape. If using a disk file, the full disk
+		  file name will be presented as a default. This device label information along
+		  with the index printed on the Archive Activity report should be useful in
+		  locating an archived entry and the device to which it was
+		  archived.<BR><BR></LI> 
+		<LI>Lastly, this option will move archive data to permanent storage.
+		  Permanent storage is considered any sequential storage media like SDP, VMS
+		  file, magnetic tape, or disk data set.</LI> 
+	 </OL> 
+	 <P>You can send to more than one permanent storage location without having
+		to recreate the archiving activity. When the archived data is moved to
+		permanent storage, every line contained in the temporary storage word
+		processing field is simply read and then written to a sequential medium. </P> 
+	 <P>The status of your archiving activity after using this option is
+		ARCHIVED (PERMANENT). </P> 
+	 <P>In the example below, the archiving activity is identified by file name,
+		"CHANGE." It is going to be archived to the specified tape:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select ARCHIVE OPTION: <B>MOVE</B> ARCHIVED DATA TO PERMANENT STORAGE
+Select ARCHIVAL ACTIVITY: <B>CHANGE &lt;RET&gt;</B>       3 CHANGE  08-30-92     
+ARCHIVED(TEMPORARY)     SELECTOR:SMITH,J     ARCHIVING
+
+NOTE:  This option will 1) print an archive activity report to 
+specified PRINTER DEVICE and 2) will move archive data to permanent 
+storage to specified ARCHIVE STORAGE DEVICE.
+
+Select some type of SEQUENTIAL storage media, such as SDP, TAPE, or 
+DISK FILE (HFS) for archival storage.
+
+PRINTER DEVICE: <B>PRINTER</B>
+
+ARCHIVE STORAGE DEVICE: <B>MAGTAPE Parameter (&quot;CAVL&quot;:0:2048)</B>
+DO YOU WANT YOUR OUTPUT QUEUED?  NO// <B>YES</B>
+Requested Start Time:  NOW// <B>&lt;RET&gt;</B>
+
+ARCHIVE DEVICE LABEL:  ISC6V3$MUA0:ARCHIVE;083092;3// <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>If the archive storage device is tape, an archive device label is
+		generated for you, as depicted in the previous example. You can override this
+		label by entering your own device label information. </P> 
+	 <P>If you select an archive storage device that is non-sequential, a
+		warning is issued. You are given the option to continue the archiving process.
+		</P> 
+	 <P><B>CAUTION:</B> If you specify a device that can be overwritten (e.g.,
+		SDP) or that does <I>not</I> electronically store data (e.g., a printer), the
+		data will be <I>forever</I> irretrievable.</P> 
+	 <P>Depending on what devices are selected, and whether queueing was
+		requested for either device, different warnings will be issued informing the
+		user of either steps he need to take or steps that the program will take as a
+		result of the queueing request. </P> 
+	 <P>Here is an example of an archive activity report: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>ARCHIVE ACTIVITY REPORT                         AUG 30,1992  PAGE: 1
+--------------------------------------------------------------------
+ARCHIVAL ACTIVITY: 3
+ARCHIVE DEVICE LABEL INFORMATION:  ISC6V3$MUA0:ARCHIVE;083092;3
+PRIMARY ARCHIVED FILE: CHANGE (#16000)
+ARCHIVER: SMITH,J
+SEARCH CRITERIA: 
+     .01 LESS THAN 900
+ 
+
+INDEX INFORMATION: 
+ 
+NO.        VERSION          PROGRAMMER                 
+101        17.10            DOE,JANE
+102        17.32            DOE,JOHN
+103        17.35            DOE,JOHN
+330        17.09            DOE,JULIA
+ 
+*** PLEASE KEEP THIS FOR FUTURE REFERENCE ***</PRE>  
+	<P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ar_opt6.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

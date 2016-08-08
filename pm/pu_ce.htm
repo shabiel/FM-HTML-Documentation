@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: VA FileMan Functions</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,functions,creating functions,va fileman functions (creating),va fileman functions,fileman functions">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">VA FileMan Functions (Creating)</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>VA FileMan Functions (Creating)</H4> 
+	 <P>As mentioned in the "<A HREF="../u2/fn_frm.htm" TARGET="_top"
+		TITLE="VA FileMan Functions" CLASS="bodylink">VA FileMan Functions</A>" chapter
+		of the "<A HREF="../u2/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Advanced User HTML Manual" CLASS="bodylink">VA
+		FileMan Advanced User Manual</A>," as a programmer in FileMan you can create
+		your own computed-expression functions. In some ways, a function can be thought
+		of as an OUTPUT transform that can work on any field. For example, you may have
+		a preference for seeing many dates displayed as 20-7-69, rather than the JUL
+		20,1969 format that FileMan typically produces. Since this date is internally
+		stored in the form 2690720 (see the description of
+		<A HREF="cl_dt.htm" TITLE="%DT" CLASS="bodylink">%DT</A>), you could write a
+		line of code that took the internally stored format in the variable X and
+		transformed it using: </P> 
+	 <PRE>
+    +$E(X,6,7)_&quot;-&quot;_+$E(X,4,5)_&quot;-&quot;_$E(X,2,3)
+</PRE> 
+	 <H5>Function File Entries</H5> 
+	 <P>This is exactly what you are allowed to do when you edit the FUNCTION
+		file (#.5) using the Enter or Edit File Entries option. </P> 
+	 <P>To continue the above example, you could create a DASHDATE function
+		which could then be used by any user to display date-valued fields and
+		expressions in the DAY-MONTH-YEAR format as follows: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>ENTER AND EDIT FILES</B> 
+    INPUT TO WHAT FILE: <B>FUNCTION</B> 
+    EDIT WHICH ATTRIBUTE: ALL// <B>&lt;RET&gt; 
+</B>    Select COMPUTED-FIELD FUNCTION: <B>DASHDATE</B>
+      ARE YOU ADDING 'DASHDATE' AS A NEW COMPUTED-FIELD FUNCTION? <B>Y &lt;RET&gt;</B>  (YES)
+    MUMPS CODE: <B>S X=+$E(X,6,7)_&quot;-&quot;_+$E(X,4,5)_&quot;-&quot;_$E(X,2,3)</B> 
+    EXPLANATION: <B>PRINTS DATE IN &quot;DD-MM-YY&quot; FORMAT</B> 
+    DATE-VALUED: <B>NO</B> 
+    NUMBER OF ARGUMENTS: <B>1</B>
+    WORD-PROCESSING: <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P>Notice that the MUMPS CODE field contains code to transform the variable
+		X (the argument of the function) into a different X. If two arguments were
+		required for the function, the first would be found in the variable X1 and the
+		second in X. Although the new function being created here takes a date-valued
+		argument, it is not itself considered to be date-valued since it doesn't
+		produce values that look like the standard FileMan internal representation of a
+		date. If this function was only meaningful in a word processing context, you
+		would put a W at the "WORD-PROCESSING:" prompt. </P> 
+	 <P><B>NOTE:</B> If there is an output transform on a field, the function
+		code is applied to the field after it has been transformed. In most cases, if a
+		field has an output transform, you should therefore use the syntax
+		FUNCTION_NAME(INTERNAL(FIELD_NAME)), rather than FUNCTION_NAME(FIELD_NAME).</P>
+	 
+	 <P>A function can also be defined as taking no arguments. This is very
+		similar to the special variables in M like $I and $H. For example, you could
+		define a function like BELL as follows: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select COMPUTED-FIELD FUNCTION: <B>BELL</B> 
+       ARE YOU ADDING A NEW COMPUTED-FIELD FUNCTION? <B>Y &lt;RET&gt;</B>  (YES) 
+    MUMPS CODE: <B>SET X=$C(7) &lt;RET&gt;</B>
+    EXPLANATION: <B>CAUSES A 'BEEP' TO OCCUR ON OUTPUT</B>
+    DATE-VALUED: <B>NO
+</B>    NUMBER OF ARGUMENTS: <B>0</B> 
+    WORD-PROCESSING: <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P>Users could then embed "beeps" in output templates by entering: </P> 
+	 <PRE>
+    FIRST PRINT FIELD: <B>BELL</B>
+</PRE> 
+	 <P><B>NOTE:</B> No parentheses are shown for a function with no arguments.
+		</P> 
+	 <P>You can delete a function in the usual way by deleting the NAME of the
+		function. Such deletions do not harm any computed fields that already have been
+		created using the function. However, you may not edit the computed field unless
+		you remove reference to the deleted function. </P> 
+	 <P><B>WARNING:</B> Due to concatenation, do not use IF, FOR or QUIT
+		statements when defining functions. Also, any variables you introduce within a
+		function's code (but not X, X1, etc.) should be NEWed. </P> 
+	 <P>The Function file already contains several functions. Consult the "<A
+		HREF="../u2/fn_frm.htm" TARGET="_top" TITLE="VA FileMan Functions"
+		CLASS="bodylink">VA FileMan Functions</A>" chapter of the "<A
+		HREF="../u2/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Advanced User HTML Manual" CLASS="bodylink">VA
+		FileMan Advanced User Manual</A>" for a description of the functions exported
+		with VA FileMan. </P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_ce.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,13 @@
+body
+   {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+      background-color: #ffffff; 
+      font-size: 80%;
+   }
+
+td { background: #eeeeee; 
+     font-size: 80%;}
+th { background: #dddddd; 
+     font-size: 80%;}
+
+pre { font-family: Courier New, Courier; 
+      font-size: 120% }

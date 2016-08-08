@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Extract Tool Cancel Extract
+		Selection Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,extract tool,tools,extract,step 8,cancel extract selection option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Extract Tool Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Cancel Extract Selection Option (8 of 9)</H4> 
+	 <P>You can cancel an extract activity any time before the entries are
+		purged by using the Cancel Extract Selection option. If the extract activity
+		status is UPDATED DESTINATION FILE -- meaning the entries have already been
+		moved to the <A HREF="ex_dest.htm" TITLE="destination file"
+		CLASS="bodylink">destination file</A> -- you'll see a warning notice. At this
+		point, you can roll back or delete the new entries that were created while
+		using the
+		<A HREF="ex_opt6.htm" TITLE="Update Destination File" CLASS="bodylink">Update
+		Destination File</A> option. </P> 
+	 <P>After you have canceled an extract activity, VA FileMan deletes the
+		<A HREF="ex_aafl.htm" TITLE="ARCHIVAL ACTIVITY file" CLASS="bodylink">ARCHIVAL
+		ACTIVITY file</A> reference to the extract activity. In addition, you will once
+		again be able to gain access to all of those source entries that VA FileMan
+		locked during the update of your destination file. If you wish to extract data
+		without purging the source entries, cancel the extract activity to unlock the
+		selected entries in the
+		<A HREF="ex_src.htm" TITLE="source file" CLASS="bodylink">source file</A>. You
+		will encounter the following dialogue while canceling an extract activity: </P>
+	 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select EXTRACT OPTION: <B>CANCEL EXTRACT SELECTION</B>
+Select EXTRACT ACTIVITY: <B>CHANGE &lt;RET&gt;</B> 3 CHANGE 08-31-92 
+  UPDATED DESTINATION FILE      SELECTOR:SMITH,J EXTRACT
+
+Are you sure you want to CANCEL this EXTRACT ACTIVITY? NO// <B>??</B>
+    Enter YES to stop this activity and start again from the beginning.
+
+Are you sure you want to CANCEL this EXTRACT ACTIVITY?  NO// <B>YES</B>
+
+This extract activity has already updated the destination file.
+
+Delete the destination file entries created by this extract activity? NO// <B>??</B>
+
+     Enter YES to rollback the destination file to its state before 
+the update.
+
+Delete the destination file entries created by this extract 
+activity? NO// <B>&lt;RET&gt;</B>
+
+&gt;&gt;&gt; DONE &lt;&lt;&lt;</PRE> <HR> 
+	 <P>If you wish to cancel an extract selection so that you can start over,
+		enter YES at the "Delete the destination file entries..." prompt. Entering YES
+		prevents you from sending a duplicate set of entries to the destination file.
+		If, on the other hand, you simply want to cancel the extract selection,
+		pressing the Enter/Return key at the prompt unlocks the source entries and
+		retains the destination file entries. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ex_opt8.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

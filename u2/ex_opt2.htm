@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Extract Tool Add/Delete
+		Selected Entries Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,extract tool,tools,extract,step 2,add/delete selected entries option">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Extract Tool Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Add/Delete Selected Entries Option (2 of 9)</H4> 
+	 <P>When you wish to add entries to the extract activity or you wish to
+		delete an entry or entries, use the Add/Delete Selected Entries option. This
+		option provides an easy way to eliminate undesired entries or to add needed
+		ones to your list of entries to extract. Like the Inquire to File Entries
+		option, this option displays a selected entry and then asks if you wish to
+		delete or add the entry. If you modify the list, then the activity's status in
+		the <A HREF="ex_aafl.htm" TITLE="ARCHIVAL ACTIVITY file"
+		CLASS="bodylink">ARCHIVAL ACTIVITY file</A> changes from SELECTED to EDITED.
+		</P> 
+	 <P>You can only use this option to modify your list before the entries are
+		moved to the <A HREF="ex_dest.htm" TITLE="destination file"
+		CLASS="bodylink">destination file</A>. If you need to change the extract
+		activity list after the destination file is updated, you will need to cancel
+		the extract activity and start a new extract activity. </P> 
+	 <P>To use the Add/Delete Selected Entries option, select the extract
+		activity you wish to modify by entering the archival activity number, source
+		file number, or source file name. Then select the entry to be added or deleted.
+		The following dialogue depicts the sequence you will follow when adding an
+		entry to the extract activity: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select EXTRACT OPTION: <B>ADD/DELETE</B> SELECTED ENTRIES
+Select EXTRACT ACTIVITY: <B>?</B>
+  ANSWER WITH ARCHIVAL ACTIVITY ARCHIVE NUMBER, OR FILE
+CHOOSE FROM:
+  3    CHANGE  08-30-92  SELECTED     SELECTOR:SMITH,J
+       EXTRACT
+
+Select EXTRACT ACTIVITY: <B>3 &lt;RET&gt;</B>  08-30-92  SELECTED
+  SELECTOR:SMITH,J  EXTRACT
+
+Select CHANGE NO.: <B>330</B>
+NO.:  330                        VERSION:  17.09
+ PROGRAMMER:  DOE,JULIA          ROUTINE:  DIL2
+ DATE CHANGED:  OCT 24, 1995
+
+ADD this entry TO the EXTRACT SELECTION?  YES// <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P><B>NOTE:</B></P> 
+	 <UL> 
+		<LI>&middot; Entering two question marks ("<B>??</B>") at the "Select
+		  EXTRACT ACTIVITY:" prompt displays a list of file entries.<BR><BR></LI> 
+		<LI>The phrase "*on EXTRACT list*" appears next to those entries that are
+		  currently part of the extract activity.<BR><BR></LI> 
+		<LI>The question "DELETE this entry...?" appears whenever you select an
+		  entry that is currently on the extract list.<BR><BR></LI> 
+		<LI>"ADD this entry...?" appears whenever you select an entry that is not
+		  among the items on the list. </LI> 
+	 </UL> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ex_opt2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: $$EZBLD^DIALOG( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$ezbld^dialog(),dialog">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>$$EZBLD^DIALOG( ): DIALOG Extractor (Single Line)</H4> 
+	 <P>This extrinsic function returns the first line of text from an entry in
+		the DIALOG File. It can be used when the text entry is only one line and when
+		the output does not need to be put into an array. For example, use it to
+		extract a single word or short phrase to use as a text parameter to embed into
+		another DIALOG file entry. If the DIALOG entry has POST MESSAGE ACTION code,
+		this code is executed after the message has been built but before quitting.
+		</P> 
+	 <H5>Format</H5> 
+	 <PRE>
+$$EZBLD^DIALOG(DIALOG#,[.]TEXT_PARAM)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="22%"><B>DIALOG#</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Required) Record number from the DIALOG File for the text to be
+				returned. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>[.]TEXT_PARAM</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) Name of local array containing the parameter list for
+				those parameters that are to be incorporated into the resulting text. These
+				parameters should be in external, printable format. If there is only one
+				parameter in the list, it can be passed in a local variable or as a literal.
+				</P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>This extrinsic function returns the first line of text from a DIALOG
+		file entry. No output variables are returned. </P> 
+	 <P><B><A NAME="NOTE-EZ">NOTE:</A></B> If you wish to add entries to the
+		DIALOG file, you must use a numberspace assigned by the Database Administrator.
+		See the Developer Tools, Dialog File section in this manual for more
+		information. </P> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>To write a single line of text with no parameters, do the following:
+		</P> 
+	 <PRE>
+    &gt;<B>W $$EZBLD^DIALOG(110)</B>
+    The record is currently locked.
+
+
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>To write a single line of text with a single parameter passed as a
+		literal, do the following: </P> 
+	 <PRE>
+    &gt;<B>W $$EZBLD^DIALOG(201,&quot;PARAM&quot;)</B>
+    The input variable PARAM is missing or invalid.
+
+</PRE> 
+	 <P><B>Example 3</B></P> 
+	 <P>To write a single line of text with parameters in an input array, do the
+		following: </P> 
+	 <PRE>
+    &gt;<B>S TESTPAR(1)=&quot;PAR2&quot;</B>  
+    &gt;<B>W $$EZBLD^DIALOG(201,.TESTPAR)</B>
+    The input variable PAR2 is missing or invalid.
+
+
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>None</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dia_e.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 14, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

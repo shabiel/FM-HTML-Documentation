@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: System Management - Setting Up Alternate Editors</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,system management,mangement,system,setting up alternate editors,alternate editors,alternate,editors,setting up">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="pm_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: System Management Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">System Management</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Setting Up Alternate Editors</H4> 
+	 <P>VA FileMan supplies two editors, the Line and Screen Editors, for
+		entering and changing text in WORD-PROCESSING-type fields. Other editors can be
+		made available by using the ALTERNATE EDITOR file (#1.2). Entries in this file
+		specify the M code used to call the Alternate Editor and to restore the VA
+		FileMan environment after work in the editor is complete. </P> 
+	 <P>The user can choose an editor in two ways:</P> 
+	 <OL> 
+		<LI>The PREFERRED EDITOR field in the NEW PERSON file (#200) is a pointer
+		  to the ALTERNATE EDITOR file (#1.2). Any entry in the ALTERNATE EDITOR file can
+		  be selected as a Preferred Editor. Then, whenever a WORD-PROCESSING-type field
+		  is presented for editing, the user is automatically switched into this
+		  Preferred Editor.<BR><BR></LI> 
+		<LI>From the Line Editor, the user can switch to any of the editors in
+		  the ALTERNATE EDITOR file temporarily by using the Editor Change option on the
+		  UTILITIES submenu. After exiting the chosen editor, the user is returned to the
+		  Line Editor. </LI> 
+	 </OL> 
+	 <P><B>NOTE:</B> The "<A HREF="../u1/wp_swit.htm" TARGET="display"
+		TITLE="Choice of Word-processing Editors" CLASS="bodylink">Choice of
+		Word-processing Editors</A>" chapter of the "<A HREF="../u1/index.htm"
+		TARGET="_top" TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+		CLASS="bodylink">VA FileMan Getting Started Manual</A>" contains additional
+		information about selecting editors. </P> 
+	 <H5>ALTERNATE EDITOR File Entries</H5> 
+	 <P>The requirements of the ALTERNATE EDITOR file's fields are explained in
+		the following example of the creation of an entry in that file: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>ENTER OR EDIT FILE ENTRIES</B>  
+
+INPUT TO WHAT FILE: <B>ALTERNATE EDITOR &lt;RET&gt;</B>  (2 entries)
+EDIT WHICH FIELD: ALL// <B>&lt;RET&gt;</B>
+Select ALTERNATE EDITOR: <B>VMSEDT</B>
+  Are you adding 'VMSEDT' as a new ALTERNATE EDITOR (the 3RD)?  No// <B>YES &lt;RET&gt;</B>  (Yes)
+</PRE> <HR> 
+	 <P>An entry needs to be added to the ALTERNATE EDITOR file. The NAME of
+		every entry must begin with a unique character. This name is used to select the
+		editor.</P> 
+	 <P>The required ACTIVATION CODE FROM DIWE field contains M code that will
+		invoke the Alternate Editor. In this case, a routine supplied by Kernel that
+		invokes the VMS editor is called:</P> 
+	 <PRE>
+    ACTIVATION CODE FROM DIWE: <B>G ^XTEDTVXD</B>
+</PRE> 
+	 <P>Usually, this code will need to extract the word processing data from
+		the WORD-PROCESSING-type field, present it to the Alternate Editor, and return
+		the edited text to the WORD-PROCESSING-type field. DBS calls should be used to
+		retrieve and file the text. </P> 
+	 <P>For example, if the text to be edited were in Field #56 of File #1234
+		use the following Data Retriever call to extract the text for entry 789:</P> 
+	 <PRE>
+    S MYFDA="^TMP(""MYDATA"",$J)" D GETS^DIQ(1234,"789,",56,"",MYFDA)
+</PRE> 
+	 <P>The text returns in nodes descendent from ^TMP("MYDATA",$J,1234,
+		"789,",56).</P> 
+	 <P>After editing is complete, you can file the data from the same global
+		array by using the following commands:</P> 
+	 <PRE>
+    S MYFDA="^TMP(""MYDATA"")" D FILE^DIE("","MYFDA")
+</PRE> 
+	 <P><B>NOTE:</B> For more details of the use of these calls, please refer to
+		the descriptions of the
+		<A HREF="../pm/db_diqgs.htm" TARGET="display" TITLE="Data Receiver"
+		CLASS="bodylink">Data Retriever</A>,
+		<A HREF="../pm/db_die_f.htm" TARGET="display" TITLE="Filer"
+		CLASS="bodylink">Filer</A>, and
+		<A HREF="../pm/db_die_w.htm" TARGET="display" TITLE="Word Processing Filer"
+		CLASS="bodylink">Word Processing Filer</A> in the "<A HREF="../pm/dba_frm.htm"
+		TARGET="_top">Database Server (DBS) API</A>" chapter of the "<A
+		HREF="../pm/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Programmer HTML Manual" CLASS="bodylink">VA FileMan
+		Programmer Manual</A>."</P> 
+	 <P>This task of returning the data to the WORD-PROCESSING-type field can
+		also be accomplished by code in the RETURN TO CALLING EDITOR field (see below).
+		</P> 
+	 <P>If the editor uses any local M variables beginning with "<B>D</B>", they
+		should be NEWed to avoid problems upon return to VA FileMan. Also, avoid calls
+		to VA FileMan utilities in the fields that accept M code so that variables upon
+		which VA FileMan depends -- like <B>DA</B> and <B>D0</B> -- are not changed.
+		</P> 
+	 <P>The OK TO RUN TEST field contains code that checks to determine whether
+		it is OK to run the editor:</P> 
+	 <PRE>
+    OK TO RUN TEST: <B>I ^%ZOSF("OS")["VAX"&amp;(DUZ(0)["@")
+</B>
+</PRE> 
+	 <P>This field is optional; if nothing is entered, there are no restrictions
+		on the use of the editor. The code should set <B>$T</B> to true if it is OK to
+		proceed or to false if it is not. If the code returns <B>$T=false</B>, the user
+		will automatically return to the Line Editor. In this example, the environment
+		is being checked to ensure that the called editor is available and it is
+		verified that the user has the required VA FileMan Access Code. </P> 
+	 <P>M code entered into the optional RETURN TO CALLING EDITOR field can be
+		used to restore the environment needed by the Line Editor:</P> 
+	 <PRE>
+    RETURN TO CALLING EDITOR: <B>&lt;RET&gt;</B>
+</PRE> 
+	 <P>Since the user can switch editors at will, it is safest to restore the
+		text to its previous location in the global and to maintain the local symbol
+		table, as mentioned above. If these tasks are accomplished by code in the
+		ACTIVATION CODE FROM DIWE field or by the called routine, this field is
+		unnecessary. </P> 
+	 <P><B>NOTE:</B> The edited text <I>must</I> be restored; VA FileMan will
+		<I>not</I> move text back to the proper global location. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DESCRIPTION:
+      1&gt;The VMS editor.
+      2&gt; <B>&lt;RET&gt;</B>
+    EDIT Option: <B>&lt;RET&gt;</B>
+    Select ALTERNATE EDITOR: 
+</PRE> <HR> 
+	 <P>The definition of the Alternate Editor is complete. An editor's
+		developer should provide information needed to set up an ALTERNATE EDITOR file
+		entry. The local site manager has flexibility in setting up the editor. In
+		particular, the OK TO RUN TEST field can be used to enforce local policies
+		regarding access to editors. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pm_ae.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

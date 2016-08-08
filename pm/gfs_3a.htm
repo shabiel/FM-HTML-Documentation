@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Global File Structure - File
+		Characteristics Nodes </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,global file structure,global,file,file characteristics nodes,nodes">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="gfs_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Global File Structure Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Global File Structure</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Attribute Dictionary: File Characteristics Nodes</H4> 
+	 <P>Certain file characteristics are kept in the subtree descendent from
+		^DD(filenumber,0,. These characteristics with their subscripted location and
+		brief explanation are: </P> 
+	 <TABLE WIDTH="100%" SUMMARY="File Characteristics Nodes Table"
+	  TITLE="File Characteristics Nodes Table" CELLSPACING="3" CELLPADDING="3"> 
+		<TR> 
+		  <TD VALIGN="top"><B>Global Node</B></TD> 
+		  <TD VALIGN="top"><B>Meaning</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"ACT")</TD> 
+		  <TD VALIGN="top"><A HREF="#post_action" TITLE="Post-Action"
+			 CLASS="bodylink">Post-Action</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"DDA")</TD> 
+		  <TD VALIGN="top"><A HREF="#data_dictionary_audit"
+			 TITLE="Data Dictionary Audit" CLASS="bodylink">Data Dictionary Audit</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"DIC") </TD> 
+		  <TD VALIGN="top"><A HREF="#special_lookup"
+			 TITLE="Special Lookup" CLASS="bodylink">Special Lookup</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"ID",field)</TD> 
+		  <TD VALIGN="top"><A HREF="#field_identifiers" TITLE="Field identifiers"
+			 CLASS="bodylink">Field identifiers</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"ID","WRITE")</TD> 
+		  <TD VALIGN="top"><A HREF="#write_identifier" TITLE="Write identifiers"
+			 CLASS="bodylink">Write identifiers</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"IX",x-ref
+			 name,(sub)filenumber,field) </TD> 
+		  <TD VALIGN="top"><A HREF="#cross_references" TITLE="Cross-references"
+			 CLASS="bodylink">Cross-references</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"SCR")</TD> 
+		  <TD VALIGN="top"><A HREF="#Screens" TITLE="Screens"
+			 CLASS="bodylink">Screens</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"VR")</TD> 
+		  <TD VALIGN="top"><A HREF="#version_number"
+			 TITLE="Version Number" CLASS="bodylink">Version Number</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"VRPK")</TD> 
+		  <TD VALIGN="top"><A HREF="#distribution_package"
+			 TITLE="Distribution Package" CLASS="bodylink">Distribution Package</A></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">^DD(filenumber,0,"VRRV")</TD> 
+		  <TD VALIGN="top"><A HREF="#package_revision_data"
+			 TITLE="Package Revision Date" CLASS="bodylink">Package Revision Data</A></TD> 
+		</TR> 
+	 </TABLE> <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="post_action">Post-Action</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;ACT&quot;)
+</PRE> 
+	 <P>After an entry has been selected, some action can be taken to examine or
+		verify the selection. This executable code is stored at this global location.
+		If you decide that the entry should not be selected, set Y=-1. See the "<A
+		HREF="afd_frm.htm" TARGET="_top" TITLE="Advanced File Definition"
+		CLASS="bodylink">Advanced File Definition</A>" chapter. </P>
+	 <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="data_dictionary_audit">Data Dictionary Audit</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;DDA&quot;)</PRE> 
+	 <P>This node is set to "Y" if auditing is turned on for the data
+		dictionary. The node is either nonexistent, null, or set to "N" if data
+		dictionary auditing is not on.</P> <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="special_lookup">Special Lookup</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;DIC&quot;)
+</PRE> 
+	 <P>A special lookup program can be written to facilitate selection from a
+		particular file. If such a program is to be used, its name is stored at this
+		location. </P> 
+	 <P><B>NOTE:</B> The lookup program reference cannot be a labeled entry
+		point to a routine. The routine's name is stored without the up-arrow (^); it
+		cannot begin with DI. See the "<A HREF="afd_frm.htm" TARGET="_top"
+		TITLE="Advanced File Definition" CLASS="bodylink">Advanced File Definition</A>"
+		chapter. </P> <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="field_identifiers">Field Identifiers</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;ID&quot;,field)</PRE> 
+	 <P>Field Identifiers are defined using the FileMan
+		<A HREF="../u2/ut_id.htm" TARGET="_top" TITLE="Identifier"
+		CLASS="bodylink">Identifier</A> option. The value at the node is a WRITE
+		statement. If the identifier is to be used only to ask fields when a new entry
+		is added, then the statement will only write null; otherwise, it will contain
+		the code to write the external value of the field. An "I" is added to the
+		second piece of the File Header when you add a field identifier, (as described
+		in the "<A HREF="gfs_2b.htm" TITLE="File Header topic" CLASS="bodylink">File
+		Header</A>" topic). </P> 
+	 <P><B>NOTE:</B> WRITE statements in the FileMan-generated field identifier
+		nodes are <B>not</B> executed when VA FileMan is in silent mode. Since FileMan
+		generates the Field Identifier nodes, it knows their format. So in silent mode,
+		FileMan places what would have been Written into an array instead for use by
+		DBS calls. So Field Identifier nodes, although they contain WRITE statements,
+		are compatible with GUI applications (in contrast to
+		<A HREF="#write_identifier" TARGET="display" TITLE="Write Identifier"
+		CLASS="bodylink">Write Identifier</A> nodes). </P> <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="write_identifier">Write Identifiers</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;ID&quot;,&quot;ASTRING&quot;)
+    ^DD(filenumber,0,&quot;ID&quot;,&quot;W1&quot;)
+    ^DD(filenumber,0,&quot;ID&quot;,&quot;W2&quot;)
+    ^DD(filenumber,0,&quot;ID&quot;,&quot;WRITE1&quot;)</PRE> 
+	 <P>You can use M code to define addtional custom identifier text to be
+		displayed along with field identifiers. To do this, add "write identifier"
+		node(s) one level descendent from ^DD(filenumber,0,"ID"). The write identifier
+		nodes you add must be subscripted with strings that begin with an
+		<STRONG>uppercase alphabetic</STRONG> character. </P> 
+	 <P>Set the value of each write identifier node to the M code that will
+		produce the desired output. Write out your output using either the
+		<A HREF="cl_ddiol.htm" TITLE="EN^DDIOL" CLASS="bodylink">EN^DDIOL</A> entry
+		point (preferred) or the M WRITE command (not compatible with access to your
+		file by GUI applications). In your M code for each write identifier node, you
+		can refer to the following values which will be defined at the time the node is
+		executed: </P> 
+	 <TABLE CELLPADDING="3" CELLSPACING="3" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD WIDTH="25%"><STRONG>Y</STRONG></TD> 
+		  <TD>Current record number</TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%"><STRONG>Naked Reference</STRONG></TD> 
+		  <TD>Set to the 0-node of the entry</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Write identifiers are displayed after any field identifiers are
+		displayed. If there is more than one write identifier, they are displayed in
+		the collating order of the write identifier subscripts.</P> 
+	 <P>Since you must <B>hard-set</B> any "WRITE" nodes, you must also add an
+		"I" (if one isn't already there) to the second piece of the
+		<A HREF="gfs_2b.htm" TITLE="File Header" CLASS="bodylink">File Header</A>.</P>
+	 <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="cross_references">Cross-references</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;IX&quot;,x-ref name,(sub)filenumber,field)</PRE> 
+	 <P>For cross-references, this node is set equal to null. </P> 
+	 <P>In Version 22 of FileMan, a new INDEX file has been introduced as an
+		alternate way to define indexes on a file. The information is descendent from
+		^DD("IX". See a description under the "<A HREF="gfs_3e.htm" TARGET="target"
+		TITLE="INDEX FILE" CLASS="bodylink">INDEX FILE</A>" section.</P>
+	 <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="Screens">Screens</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;SCR&quot;)</PRE> 
+	 <P>If you want to screen access to entries in a file, set the screen code
+		into this node. The screen should be written like a screen put into the local
+		variable DIC("S") for an <A HREF="cl_dic.htm" TITLE="^DIC"
+		CLASS="bodylink">^DIC</A> call. The code in this node is executed for each
+		entry in the screened file. If $T=0 is returned when the node is executed, the
+		entry being screened is unavailable for lookups, prints, inquiries, searches,
+		or other actions.</P> 
+	 <P>In order for the screen in this global to be used, you must put a
+		<A HREF="gfs_2b.htm#LowerCase%22s%22" TITLE='lower-case "s"'
+		 CLASS="bodylink">lower-case "s"</A> into the second piece of the file's header
+		following the file number, (as described in the "<A HREF="gfs_2b.htm"
+		TITLE="File Header topic" CLASS="bodylink">File Header</A>" topic).</P>
+	 <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="version_number">Version Number</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;VR&quot;)</PRE> 
+	 <P>This node is created during an INIT built by the VA FileMan package
+		distribution routine (DIFROM) or an installation using the Kernel Installation
+		and Distribution System (KIDS). It contains the current version number for the
+		package that distributes this file. This node and the Distribution Package node
+		are updated for any file sent by a KIDS installation. The only time these nodes
+		are not updated is when a partial DD is sent. (For additional information, see
+		the KIDS section in the Kernel Systems Manual, beginning with V. 8.0.) </P>
+	 <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="distribution_package">Distribution Package</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;VRPK&quot;)</PRE> 
+	 <P>This node is created during an installation using the Kernel
+		Installation and Distribution System (KIDS). It contains the name of the
+		package that distributes this file. The only time this is not updated is when a
+		partial DD is sent. (For additional information, see the KIDS section in the
+		Kernel Systems Manual, beginning with V. 8.0.) </P> <HR SIZE="4" WIDTH="90%"> 
+	 <H5><A NAME="package_revision_data">Package Revision Data</A></H5> 
+	 <PRE>    ^DD(filenumber,0,&quot;VRRV&quot;)</PRE> 
+	 <P>This optional node, if present, is created during an installation using
+		the Kernel Installation and Distribution System (KIDS). The node is defined by
+		the developer who distributes the package. It may contain patch or other
+		package revision information used to designate the version of the file that is
+		installed at the site. Updating this node is done in the KIDS Post Install
+		Routine (formerly the POST-INIT with DIFROM/INITS) using
+		<A HREF="db_dlfd3.htm" TITLE="PRD^DILFD( )" CLASS="bodylink">PRD^DILFD()</A>.
+		(For additional information, see the KIDS section in the Kernel Systems Manual,
+		beginning with V. 8.0. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- gfs_3a.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

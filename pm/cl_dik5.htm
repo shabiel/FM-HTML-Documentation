@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: IXALL^DIK</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,ixall^dik,dik">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>IXALL^DIK: Reindex</H4> 
+	 <TABLE BORDER="1" CELLPADDING="2" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD COLSPAN="4"> 
+			 <P ALIGN="CENTER"><B>Reindexing Quick Reference</B></P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>Entry Point</B></TD> 
+		  <TD><B>Reindexes Entries</B></TD> 
+		  <TD><B>Reindexes Xrefs</B></TD> 
+		  <TD><B>Executes Logic</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="cl_dik3.htm" TITLE="EN^DIK"
+			 CLASS="bodylink">EN^DIK</A></TD> 
+		  <TD>1</TD> 
+		  <TD>Some or all for 1 field</TD> 
+		  <TD>KILL then SET</TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="cl_dik4.htm" TITLE="EN1^DIK"
+			 CLASS="bodylink">EN1^DIK</A></TD> 
+		  <TD>1</TD> 
+		  <TD>Some or all for 1 field</TD> 
+		  <TD>SET</TD> 
+		</TR> 
+		<TR> 
+		  <TD><a href="cl_dik8.htm" TITLE="EN2^DIK"
+			 CLASS="bodylink">EN2^DIK</a></TD> 
+		  <TD>1</TD> 
+		  <TD>Some or all for 1 field</TD> 
+		  <TD>KILL</TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="cl_dik2.htm" TITLE="ENALL^DIK"
+			 CLASS="bodylink">ENALL^DIK</A></TD> 
+		  <TD>All</TD> 
+		  <TD>Some or all for 1 field</TD> 
+		  <TD>SET</TD> 
+		</TR> 
+		<TR> 
+		  <TD><a href="cl_dik9.htm" TITLE="ENALL2^DIK"
+			 CLASS="bodylink">ENALL2^DIK</a></TD> 
+		  <TD>All</TD> 
+		  <TD>Some or all for 1 field</TD> 
+		  <TD>KILL</TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="cl_dik6.htm" TITLE="IX^DIK"
+			 CLASS="bodylink">IX^DIK</A></TD> 
+		  <TD>1</TD> 
+		  <TD>All</TD> 
+		  <TD>KILL then SET</TD> 
+		</TR> 
+		<TR> 
+		  <TD><A HREF="cl_dik7.htm" TITLE="IX1^DIK"
+			 CLASS="bodylink">IX1^DIK</A></TD> 
+		  <TD>1</TD> 
+		  <TD>All</TD> 
+		  <TD>SET</TD> 
+		</TR> 
+		<TR> 
+		  <TD><a href="cl_dik10.htm" TITLE="IX2^DIK"
+			 CLASS="bodylink">IX2^DIK</a></TD> 
+		  <TD>1</TD> 
+		  <TD>All</TD> 
+		  <TD>KILL</TD> 
+		</TR> 
+		<TR> 
+		  <TD>IXALL^DIK</TD> 
+		  <TD>All</TD> 
+		  <TD>All</TD> 
+		  <TD>SET</TD> 
+		</TR> 
+		<TR> 
+		  <TD><a href="cl_dik11.htm" TITLE="IXALL2^DIK"
+			 CLASS="bodylink">IXALL2^DIK</a></TD> 
+		  <TD>All</TD> 
+		  <TD>All</TD> 
+		  <TD>KILL</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>IXALL^DIK reindexes <B>all</B> cross-references for <B>all</B> entries
+		in a file. It only executes the SET logic. </P> 
+	 <P>Before reindexing, you should be familiar with the effects of all
+		relevant cross-references (including
+		<A HREF="../u2/ut_xref.htm" TARGET="_top" TITLE="bulletins"
+		 CLASS="bodylink">bulletins</A>,
+		<A HREF="tr_intro.htm" TITLE="triggers" CLASS="bodylink">triggers</A>, and
+		<A HREF="../u2/ut_xref.htm" TARGET="_top" TITLE="MUMPS-type"
+		 CLASS="bodylink">MUMPS-type</A>) that could be fired. </P> 
+ <P><B>NOTE:</B>&nbsp; IXALL^DIK, IXALL2^DIK, ENALL^DIK, ENALL2^DIK, and the Re-Index File option on the
+		Utility Functions menu set the 3<SUP>rd</SUP> piece of the 0 node of the file's
+		global root (the file header) to the last internal entry number used in the
+		file. They set the 4<SUP>th</SUP> piece to the total number of entries in the
+		file.</P> 
+	 <H5>Input Variable</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="15%"><B>DIK</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The global root of the file to be indexed. </P> 
+			 <PRE></PRE> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>A simple call to reindex the EMPLOYEE file would be: </P> 
+	 <PRE>    &gt;S DIK=&quot;^EMP(&quot; D IXALL^DIK
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>The reindexing of data dictionary #3 would be: </P> 
+	 <PRE>    &gt;S DA(1)=3,DIK=&quot;^DD(3,&quot; D IXALL^DIK
+	 </PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dik5.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

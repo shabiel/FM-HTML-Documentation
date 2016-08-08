@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Getting Started HTML Manual: Inquire</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,inquire">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	 <P>&nbsp;</P> 
+	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="in_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u2/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			 CLASS="menubarlink">Advanced User Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Displaying Information</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Inquire</H4> 
+	 <H5><A NAME="Introduction">Introduction</A></H5> 
+	 <P>Many reports that you print from applications are pre-designed; that is,
+		the selection of records, and the fields that print for each record are
+		pre-determined by the designer of the application. You simply choose the report
+		you would like to print from a menu option, choose an output device, and the
+		selected report prints. </P> 
+	 <P>You can also create your own reports, however, if you have either VA
+		FileMan's print options, or custom-designed application options that take
+		advantage of the same VA FileMan features. This chapter introduces one of VA
+		FileMan's print options, Inquire to File Entries. </P> 
+	 <P>There are two ways you'll have an opportunity to use VA FileMan's
+		inquiry capabilities: </P> 
+	 <UL> 
+		<LI>An option that has been set up already to allow you to inquire to
+		  entries from a particular file.<BR><BR></LI> 
+		<LI>VA FileMan's Inquire to File Entries option, which lets you inquire
+		  to any file to which you have access. </LI> 
+	 </UL> 
+	 <P>In either case, use of VA FileMan's inquire feature is very similar. In
+		most cases, the only difference is that with the Inquire to File Entries
+		option, you have to choose which file to inquire to. </P> <HR> 
+	 <H5><A NAME="Option">Inquire to File Entries Option</A></H5> 
+	 <P>The quickest way to display the data for one file entry or for a small
+		number of entries is to use the Inquire to File Entries option. This option
+		lets you choose a set of entries to display, and choose the fields that you
+		want to see for each entry. </P> 
+	 <P>For example:</P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG ALT="Example Using the Inquire fo File Option." BORDER="0" SRC="in_1.gif"
+		 WIDTH="624" HEIGHT="648"> </CENTER> 
+	 <P></P> <HR> 
+	 <H5><A NAME="Captioned">CAPTIONED Output</A></H5> 
+	 <P>Choosing CAPTIONED output can be very useful; it prints out <I>all</I>
+		fields (that contain data) for each entry in your report. Use it is a quick way
+		to select all the fields for each entry in your report. Otherwise you need to
+		select each field to print individually, from the list of fields available to
+		print in the file. Answering YES to use CAPTIONED output is the fastest way to
+		choose what fields to print. </P> 
+	 <P><B>The "Include COMPUTED Fields:" Prompt</B></P> 
+	 <P>When using CAPTIONED output, you can choose whether to include COMPUTED
+		fields, record numbers, both, or neither. The default is to display neither.
+		Enter two question marks for detailed Help about responding to this prompt.
+		</P> 
+	 <P><B><A NAME="audit_trail_prompt">The "DISPLAY AUDIT TRAIL?"
+		Prompt</A></B>&nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> 
+	 <P>If one or more of the fields have been audited, you will see this
+		additional question. If you answer YES, then you will see the changes that have
+		been recorded for the various fields in the AUDIT file (#1.1), along with the
+		current values of the fields.</P> <HR> 
+	 <H5><A NAME="Templates">SORT Templates</A></H5> 
+	 <P>When you choose several entries to display, you will be prompted with
+		the following:</P> 
+	 <PRE>  STORE THESE ENTRY ID's IN A TEMPLATE:</PRE> 
+	 <P>You can <I>save</I> your list of selected entries in a SORT template by
+		entering a template name at this prompt. Your list of entries is then saved in
+		a SORT template. You can then <I>reuse</I> the list of selected entries in the
+		template when you do additional printing from this file in the future. </P> 
+	 <P><B>NOTE:</B> For more information on using SORT templates, please refer
+		to the "<A HREF="pr_intro.htm#sort_templates"
+		TITLE="Saving Sort Criteria (SORT Templates)" CLASS="bodylink">Saving Sort
+		Criteria (SORT Templates)</A>" topic in the "<A HREF="pr_frm.htm" TARGET="_top"
+		TITLE="Print" CLASS="bodylink">Print</A>" chapter in this manual. </P> <HR> 
+	 <H5><A NAME="Print_fields">Choose Your Own Print Fields</A> <BR> <B>(Don't
+		use STANDARD CAPTIONED OUTPUT)</B></H5> 
+	 <P>To choose your own fields to output for each entry, answer NO to the
+		"STANDARD CAPTIONED OUTPUT?" prompt. You can then choose your own output
+		fields. For example, if you only need NAME, DATE OF BIRTH, and PROVIDER
+		information about a selected patient, you could request it, as shown in the
+		following example: </P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG SRC="in_2.gif" WIDTH="610" HEIGHT="300"
+		 ALT="Example of Choosing Your Own Print Fields."> </CENTER> 
+	 <P></P> 
+	 <P><B>NOTE:</B> For more information on customizing output print fields,
+		please refer to the "<A HREF="pr_frm.htm" TARGET="_top" TITLE="Print"
+		CLASS="bodylink">Print</A>" chapter in this manual. It provides detailed
+		information about the different choices you can make at the "PRINT FIELD:"
+		prompt to display your information in different ways. </P> <HR> 
+	 <H5><A NAME="Device">Choose Your Own Device </A> <BR> (Don't use STANDARD
+		CAPTIONED OUTPUT)</H5> 
+	 <P>If you enter YES at the "STANDARD CAPTIONED OUTPUT?" prompt, output is
+		sent to the HOME device, which ordinarily is the terminal you are using. To
+		send output to a printer, you need to answer NO at the "STANDARD CAPTIONED
+		OUTPUT?" prompt. This means you must
+		<A HREF="#Print_fields" TITLE="choose your own print fields"
+		CLASS="bodylink">choose your own print fields</A>, as described above. Doing
+		this allows you to select the output device, however. </P> 
+	 <P>If you answer NO to the "STANDARD CAPTIONED OUTPUT?" prompt, you can
+		still get CAPTIONED output, however. To do this, choose the CAPTIONED PRINT
+		template at the first "PRINT FIELD:" prompt, as shown below. </P> 
+	 <P>Enter a left bracket, "<B>[</B>", and the word CAPTIONED. CAPTIONED
+		OUTPUT from the template works exactly as if you had answered YES at the
+		"STANDARD CAPTIONED OUTPUT?" to request CAPTIONED OUTPUT. </P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG SRC="in_3.gif"
+		ALT="Example Choosing a Device and Getting Standard Captioned Ouput."
+		WIDTH="563" HEIGHT="210" BORDER="0"> </CENTER> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle"> 
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

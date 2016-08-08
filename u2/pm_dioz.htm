@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: System Management -
+		COMPILED ROUTINE File Cleanup - ENRLS^DIOZ </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,system management,mangement,system,compiled routine file cleanup,cleanup,compiled routine file,enrls^dioz,dioz,enrls">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="pm_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: System Management Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">System Management</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>COMPILED ROUTINE File Cleanup: ENRLS^DIOZ( )</H4> 
+	 <P>The COMPILED ROUTINE file (#.83) stores a list of numbers used to assign
+		names to compiled sort routines. When a compiled SORT template is used in a
+		print, the next available routine number is selected from the COMPILED ROUTINE
+		file. The routine name is then set to ^DISZ, concatenated with up to three
+		zeros and the number from the COMPILED ROUTINE file (e.g., if the number is
+		four, the routine name becomes ^DISZ0004). After the print finishes, the
+		routine number is released, and the routine is deleted. However, if the system
+		goes down, the number may not be released. This procedure allows the site
+		manager to release one or all numbers on the COMPILED ROUTINE file for reuse
+		and to delete the associated routine(s) from the system. </P> 
+	 <P><B>NOTE:</B> This procedure should never be included in application
+		code. It should only be run from the M programmer prompt. The routine should be
+		run only when the system is inactive to avoid inadvertently deleting a routine
+		that is in use.</P> 
+	 <H5>Format</H5> 
+	 <PRE>
+ENRLS^DIOZ(ROUTINE_IEN)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>ROUTINE_IEN</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>(Optional) Internal Entry Number of the compiled routine number to
+				be released. If passed as null or zero or if the parameter string is empty, all
+				the numbers in the file are released. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>There is no output from this routine. The routine simply sets a flag on
+		one or more entries in the COMPILED ROUTINE file (#.83), indicating that the
+		entry number is available for reuse. </P> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>To release routine number three for reuse and to delete routine
+		^DISZ0003, do the following: </P> 
+	 <PRE>
+    &gt;<B>D ENRLS^DIOZ(3)</B>
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>To release all routine numbers for reuse and to delete all of the
+		associated ^DISZnnnn routines for each routine number "nnnn," do the following:
+		</P> 
+	 <PRE>    &gt;<B>D ENRLS^DIOZ()</B>
+</PRE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pm_dioz.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: How to Import Data</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,how to import data">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>How to Import Data</H4> 
+	 <PRE></PRE> <HR> 
+	 <PRE>VA FileMan ...                      [DIUSER]
+      Other Options ...                [DIOTHER]
+          Import Data              [DDMP IMPORT]
+</PRE> <HR> 
+	 <P>The Import Tool lets you import records stored in an ASCII data file
+		into a VA FileMan file.</P> 
+	 <P>The Import Tool imports records from an ASCII data file by <I>adding</I>
+		them as new records to the VA FileMan file in question. Existing records in the
+		destination VA FileMan file are never edited or updated, and the Import Tool
+		does not prevent duplicate records from being added.</P> 
+	 <P>Importing data records from an ASCII file is a four-step process, as
+		described below.</P> 
+	 <H5><A NAME="generate_source_file">1. Generate ASCII Source File</A></H5> 
+	 <P>Generate your source file (from your non-VA FileMan application),
+		containing the records to be imported. Generate the file with one record per
+		line, with the fields in each record being set off using either the
+		<A HREF="ei_delim.htm" TITLE="Delimited" CLASS="bodylink">Delimited</A> or
+		<A HREF="ei_fixed.htm" TITLE="Fixed-length" CLASS="bodylink">Fixed-length</A>
+		method. The last record in the file must be terminated with the appropriate EOL
+		(end-of-line) character(s) for your operating system.</P> 
+	 <P>Once you generate your ASCII source file, you need to move it to a disk
+		that is accessible from the computer system running VA FileMan. Your IRM should
+		be able to assist you with this.</P> 
+	 <H5><A NAME="page_one">2. Specify Data Format, Source File, and Destination
+		File</A></H5> 
+	 <P>Invoke VA FileMan's Import Data option. It loads a two-page ScreenMan
+		form. On page one of the form, you need to specify the data format, source
+		file, and destination file for your import.</P> 
+	 <P><B>DATA FORMAT -- INTERNAL or EXTERNAL:</B> Specify if the incoming data
+		is in external form (the way VA FileMan would display it) or internal form (the
+		way VA FileMan would store it). Unless you are knowledgeable about how VA
+		FileMan stores data, you should choose EXTERNAL. Also, the incoming data is
+		only validated by VA FileMan if you choose EXTERNAL (validation prevents you
+		from putting invalid data into the file).</P> 
+	 <P><B>FOREIGN FORMAT:</B> Choose a Foreign Format entry whose settings
+		match the ASCII format for the incoming records. The only settings used from
+		the Foreign Format entry are Record Delimiter, Record Length Fixed?, and Quote
+		Non-numeric Fields?. Make sure the settings in the Foreign Format match the
+		format of your incoming data. Because some foreign applications export data in
+		a different format than they import it, a Foreign Format that works for export
+		may not have the appropriate settings for import.</P> 
+	 <P>As an alternative to specifying a Foreign Format entry, you can manually
+		specify the settings for your incoming data in the three provided fields: </P> 
+	 <OL> 
+		<LI>Is the data fixed length?<BR><BR></LI> 
+		<LI>If not, what is the field delimiter?<BR><BR></LI> 
+		<LI>Are fields quoted?</LI> 
+	 </OL> 
+	 <P><B>SOURCE FILE:</B> Enter the path and name of your source file (the
+		file containing the records to import).</P> 
+	 <P><B>VA FILEMAN FILE:</B> Specify the destination file for the imported
+		records.</P> 
+	 <P><B>FIELD SELECTION PAGE/IMPORT TEMPLATE:</B> This is where you match the
+		fields in the incoming records to the fields in the destination file. If you
+		don't have an existing IMPORT template that matches incoming to destination
+		fields, go to the Field Selection page and specify those fields individually
+		(see the "<A HREF="#fields" TITLE="Match Source to Destination Fields"
+		CLASS="bodylink">Match Source to Destination Fields</A>" topic below). </P> 
+	 <P>A completed page one of the form might look like:</P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG ALIGN="BOTTOM" SRC="ei_im2.gif" WIDTH="589"
+		HEIGHT="318" ALT="Example of a Data Import Form."></P> 
+	 <H5><A NAME="fields">3. Match Source to Destination Fields</A></H5> 
+	 <P>For your import, you need to match each field in the incoming record to
+		a field in the destination VA FileMan file. </P> 
+	 <P>Fields in the incoming record are imported in order, from left to right.
+		Thus, for each field in the incoming record, you specify the corresponding
+		destination field in the VA FileMan file, in the same order. The first VA
+		FileMan field you specify will be the destination for the first field in the
+		incoming record, the second will match the second field in the incoming record,
+		and so forth.</P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG ALIGN="BOTTOM" SRC="ei_im4.gif" WIDTH="589"
+		HEIGHT="318" ALT="Example of a Field Selection for Import Form."></P> 
+	 <P>Remember that you must include the
+		<A HREF="../u1/ad_intro.htm" TARGET="_top" TITLE=".01 field"
+		 CLASS="bodylink">.01 field</A>, and any fields that are required
+		<A HREF="ut_id.htm" TITLE="identifiers" CLASS="bodylink">identifiers</A> for
+		the top level of the file. The same is true for any Subfiles (Multiples).</P> 
+	 <P>If you specified a fixed-length (as opposed to delimited) data format
+		for the incoming records, you must enter not only the destination VA FileMan
+		field, but also the length for each corresponding incoming field.</P> 
+	 <P>Each time you enter a field at the "Field:" prompt, it's added to the
+		bottom of the list of fields displayed on the form. This shows you the
+		destination fields you've selected, and their order. If you make a mistake, you
+		can delete fields from the bottom of the list, one-by-one, by entering YES at
+		the "Delete last field selected?" prompt. To insert a field, delete back to the
+		insertion point, enter the new field, and then re-enter the deleted fields.</P>
+	 
+	 <P><B>NOTE:</B> There are special issues when importing data into fields in
+		Multiples (see the "<A HREF="ei_mult.htm#Importing"
+		TITLE="Special Considerations: Multiples" CLASS="bodylink">Special
+		Considerations: Multiples</A>" section).</P> 
+	 <P>You can save the information you specify on the Field Selection page in
+		an IMPORT template. This lets you reuse the field matching criteria you have
+		entered for subsequent imports that use the same file and fields, without
+		having to re-enter it. To save your field specifications as an IMPORT template,
+		answer YES to the "Do you want to store the selected fields in an Import
+		Template?" question, which you're asked after you exit the Import form (see "<A
+		HREF="#running" TITLE="Run the Import" CLASS="bodylink">Run the Import</A>"
+		below). Then, for future imports, simply enter the name of the IMPORT template
+		on Page 1 of the Import form. You can use any IMPORT template to which your VA
+		FileMan Access Code gives you access.</P> 
+	 <H5><A NAME="running">4. Run the Import</A></H5> 
+	 <P>Once you've set up your
+		<A HREF="#page_one" TITLE="data format, source file, and destination file"
+		 CLASS="bodylink">data format, source file, and destination file</A>, and
+		matched <A HREF="#fields" TITLE="source to destination fields"
+		CLASS="bodylink">source to destination fields</A>, exit the Import form (press
+		<B>&lt;PF1&gt;E</B>). After you exit the form, you're asked a series of
+		questions:</P> 
+	 <OL> 
+		<LI>Do you want to store the selected fields in an Import
+		  Template?<BR><BR></LI> 
+		<LI>Do you want to proceed with the import?<BR><BR></LI> 
+		<LI>Device for Import Results Report</LI> 
+	 </OL> 
+	 <P>Storing your file and field specifications in an IMPORT template lets
+		you do subsequent imports without having to re-enter all of the field
+		information.</P> 
+	 <P>If you proceed with the import, enter a device to which the Import
+		Results report should print. You can run the Import directly or queue it.</P> 
+	 <P>As the import proceeds, if an error occurs updating a field in a
+		particular record, the record won't be added, and an error message is added to
+		the Import Report saying what the problem was.</P> 
+	 <P>An example of the dialogue after exiting the Import form is shown
+		below:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Do you want to store the selected fields in an Import Template? <B>YES</B>
+
+    Name of Import Template: <B>ZZIMPORT</B>
+      Are you adding 'ZZIMPORT' as a new Import Template? <B>YES</B>
+
+    Do you want to proceed with the import? <B>YES</B>
+
+    Device for Import Results Report: HOME// <B>&lt;RET&gt;</B>  SYSTEM
+</PRE> <HR> 
+	 <P>Once the import finishes, you can review the Import Results report. It
+		lists:</P> 
+	 <UL> 
+		<LI>The criteria you chose for your import.<BR><BR></LI> 
+		<LI>Any records for which the import failed.<BR><BR></LI> 
+		<LI>The internal entry numbers of the first and last records
+		  imported.</LI> 
+	 </UL> 
+	 <P>Here's a sample <A NAME="Report">Import Results</A> report:</P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Log for VA FileMan Data Import              Page 1
+                         ==============================
+
+                     Import Initiated By: JOHN SMITH
+
+                             Source File: USER$:[SMITHJ]IMPORT.DAT
+                            Fixed Length: NO
+                            Delimited By: ,
+                      Text Values Quoted: NO
+                              Values Are: External
+
+        Primary FileMan Destination File: NEW PERSON
+
+Seq  Len  Field Name                      Subfile Name (if applicable)
+---  ---  ----------                      ----------------------------
+1    n/a  NAME
+2    n/a  STREET ADDRESS 1
+3    n/a  STREET ADDRESS 2
+4    n/a  STREET ADDRESS 3
+5    n/a  CITY
+6    n/a  STATE
+7    n/a  ZIP CODE
+
+
+                                  Error Report
+                                  ------------
+
+Record #4 Rejected:
+   The value 'Illlinois' for field STATE in file NEW PERSON is not valid.
+
+
+                               Summary of Import
+                               -----------------
+
+                     Total Records Read: 7
+                    Total Records Filed: 6
+                 Total Records Rejected: 1
+
+              IEN of First Record Filed: 209
+               IEN of Last Record Filed: 214
+
+                  Import Filing Started: Jul 16, 1996@08:24:36
+                Import Filing Completed: Jul 16, 1996@08:24:38
+                  Time of Import Filing: 0:00:02
+</PRE> <HR> 
+	 <P>In this example, six records were added, and one record was not added.
+		The record that was not added was the fourth record in the source file. It
+		failed due to the misspelled value "Illlinois" being rejected by the STATE
+		field in the NEW PERSON file (#200).</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_imp.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

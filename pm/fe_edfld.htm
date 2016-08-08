@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Kyle Clarke and Thom Blom, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Form Editor - Editing Field
+		Properties </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman,form editor,screenman form editor,editor,editing field properties">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fe_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Form Editor Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Form Editor</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Editing Field Properties</H4> 
+	 <P>To edit the properties of a field, select the field with
+		<B>&lt;SpaceBar&gt; or &lt;RET&gt;</B>, and press <B>&lt;PF4&gt;</B>. The Form
+		Editor invokes a ScreenMan form where the properties of the field can be
+		edited. </P> 
+	 <P>The specific form that is invoked depends on the type of the selected
+		field. For example, the form for editing data dictionary fields looks like
+		this: </P> 
+	 <P></P>
+	 <IMG SRC="fe_edfld.gif" ALIGN="BOTTOM" WIDTH="552" HEIGHT="203"
+	  ALT="Example of the Form for Editing Data Dictionary Fields."> 
+	 <P></P> 
+	 <P>When you enter a value at the "FIELD:" prompt for data dictionary
+		fields, the Form Editor automatically defines the Caption as the field's label.
+		If the field is a multiple field, the Form Editor adds the word "Select" before
+		the field's label. If the field is a word processing field, the Form Editor
+		adds the characters "(WP)" after the field's label. At the "CAPTION:" prompt,
+		you can accept the Form Editor's default, enter a new caption, or enter one of
+		the following: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Shortcuts at the CAPTION Prompt Table"
+	  TITLE="Shortcuts at the CAPTION Prompt"> 
+		<TR> 
+		  <TD COLSPAN="2" VALIGN="TOP"><B>Shortcuts at the CAPTION Prompt</B>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>To define the caption as</B></TD> 
+		  <TD VALIGN="TOP"><B>Enter at the CAPTION prompt</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Field label</TD> 
+		  <TD VALIGN="TOP">!L</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Field title</TD> 
+		  <TD VALIGN="TOP">!T</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Unique name of field</TD> 
+		  <TD VALIGN="TOP">!U</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Duplicated string</TD> 
+		  <TD VALIGN="TOP">!DUP(string,number of occurrences) For example,
+			 !DUP("-",79) </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>The "OTHER PARAMETERS:" prompt is followed by an ellipsis (<B>...</B>)
+		to indicate that this field leads to a new page. To view that page, navigate to
+		the Other Parameters field and press the Enter/Return key. A "pop-up" window
+		appears where you can edit additional properties of the field. </P> 
+	 <P></P>
+	 <IMG SRC="fe_edfl2.gif" ALIGN="BOTTOM" WIDTH="550" HEIGHT="205"
+	  ALT="Example of the Form Popup Window to Edit Additional Properties of a Field.">
+	 
+	 <P></P> 
+	 <P>To close the Other Parameters "pop-up" window, press
+		<B>&lt;PF1&gt;C</B>. To return to the Form Editor's Main Screen, press
+		<B>&lt;PF1&gt;E</B> to exit and save your changes, or press <B>&lt;PF1&gt;Q</B>
+		to quit the form without saving your changes. </P> 
+	 <H5>Editing Field Captions and Data Length</H5> 
+	 <P>As described above, you can press <B>&lt;PF4&gt;</B> to invoke a
+		ScreenMan form to edit the caption and data length of fields. You can also edit
+		these properties directly from the Form Editor's Main Screen. </P> 
+	 <P>To change the caption of a field, position the cursor over the caption,
+		and press <B>&lt;PF3&gt;</B>. You can then edit the caption with the same
+		editing keys available in ScreenMan's Field Editor. Press the Enter/Return key
+		when you are finished editing the caption. </P> 
+	 <P>To change the data length of a field, position the cursor over the data
+		portion of the field, and press <B>&lt;PF3&gt;</B>. You can then increase and
+		decrease the data length by pressing <B>&lt;ARROW RIGHT</B>&gt; and
+		<B>&lt;ARROW LEFT&gt;</B>. An indicator (L=n) at the lower right portion of the
+		Main Screen indicates the current data length. Press the Enter/Return key when
+		you are finished editing the data length. </P> 
+	 <H5>Reordering All Fields on a Block</H5> 
+	 <P>After creating and arranging all the fields on a block, you can quickly
+		make the Field Orders of all the fields equivalent to the tab order by doing
+		the following: </P> 
+	 <OL> 
+		<LI>Go to the Block Viewer Screen (<B>&lt;PF1&gt;V</B>)<BR><BR></LI> 
+		<LI>Select the block (<B>&lt;SpaceBar&gt; or &lt;RET&gt;</B> over the
+		  block name)<BR><BR></LI> 
+		<LI>Press <B>&lt;PF1&gt;O</B> </LI> 
+	 </OL> 
+	 <P>Remember that the Field Order is the order in which the elements on the
+		block are traversed when the user presses the Enter/Return key. The
+		<B>&lt;PF1&gt;O</B> key sequence reassigns Field Order numbers to all the
+		elements on the block, so that the Enter/Return key takes the user from field
+		to field in the same order as the Tab key (left to right, top to bottom).</P> 
+	 <P>Note that if you refer to fields by Field Order in places such as
+		Branching logic and Pre and Post Actions, reordering the fields on the block
+		could cause that code to refer to the wrong fields. You must then modify the
+		code to either reflect the new Field Order numbers, or refer to those fields by
+		Caption or Unique Name instead.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fe_edfld.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: File Utilities -
+		Cross-Reference a Field </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,file utilities,utilities,cross-reference a field or file,traditional,new-style,new style,cross-references,edit,create,delete">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ut_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: File Utilities Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">File Utilities</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Cross-Reference a Field or File</H4> 
+	 <UL> 
+		<LI><B>Traditional Cross-references:</B> 
+		  <UL> 
+			 <LI><A HREF="#Types" TITLE="Types of Traditional Cross-references"
+				CLASS="bodylink">Types of Traditional Cross-references</A><BR><BR></LI> 
+			 <LI><A HREF="#Edit" TITLE="Edit a Traditional Cross-reference"
+				CLASS="bodylink">Edit a Traditional Cross-reference</A><BR><BR></LI> 
+			 <LI><A HREF="#Create" TITLE="Create a Traditional Cross-reference"
+				CLASS="bodylink">Create a Traditional Cross-reference</A><BR><BR></LI> 
+			 <LI><A HREF="#Delete" TITLE="Delete a Traditional Cross-reference"
+				CLASS="bodylink">Delete a Traditional Cross-reference</A></LI> 
+		  </UL> <BR> <BR> </LI> 
+		<LI><B><A HREF="#new_style" TITLE="New-Style Cross-references"
+		  CLASS="bodylink">New-Style Cross-references</A>:&nbsp;<IMG SRC="new.gif"
+		  ALT="New/Updated with VA FileMan V. 22.0 with FM V. 22" WIDTH="35"
+		  HEIGHT="11"></B> 
+		  <UL> 
+			 <LI><A HREF="#edit_new" TITLE="Edit a New-Style Cross-reference"
+				CLASS="bodylink">Edit a New-Style Cross-reference</A><BR><BR></LI> 
+			 <LI><A HREF="#create_new" TITLE="Create a New-Style Cross-reference"
+				CLASS="bodylink">Create a New-Style Cross-reference</A><BR><BR></LI> 
+			 <LI><A HREF="#delete_new" TITLE="Delete a New-Style Cross-reference"
+				CLASS="bodylink">Delete a New-Style Cross-reference</A></LI> 
+		  </UL> </LI> 
+	 </UL> 
+	 <P>There are seven types of Traditional cross-references and two types of
+		New-Style cross-references available. Generally, a cross-reference in VA
+		FileMan specifies that some action is performed when the field's value is
+		entered, changed, or deleted. For several types of cross-references, the action
+		consists of putting the value into a list -- an index used when looking up an
+		entry or when sorting. The regular cross-reference is used for sorting and for
+		lookup; you can limit it to sorting only. The KWIC, mnemonic, and SOUNDEX
+		cross-references are also used for lookup. </P> 
+	 <P>You can sort a file on any field (except a WORD-PROCESSING-type field)
+		whether or not a cross-reference exists for the field. However, sorting is done
+		more quickly and efficiently if a regular cross-reference exists on the field.
+		</P> 
+	 <P>When a file is created, a Traditional cross-reference on the NAME (#.01)
+		field is automatically established. You can add or delete cross-references at
+		any time using the Cross-Reference a Field or File option of the Utility
+		Functions submenu. This option can also be used to enter a description of a
+		cross-reference and to prevent the cross-reference from being deleted. </P> 
+	 <P>You can create a cross-reference on a Multiple field, a Multiple's
+		subfields, or on any other field type except a WORD-PROCESSING-type field. For
+		example, the PATIENT file contains the AGE AT ONSET subfield in the DIAGNOSIS
+		Multiple. If you create a regular cross-reference for a field in a Multiple,
+		you can choose in what context the cross-reference will be used. You might want
+		to cross-reference the whole file by AGE AT ONSET (so that a report sorted by
+		AGE AT ONSET could be produced efficiently). Alternately, you might want to
+		cross-reference only an individual patient's diagnoses by onset age (so that a
+		lookup of diagnosis could be done using AGE AT ONSET). </P> <HR> 
+	 <H5><A NAME="Types">Types of Traditional Cross-references</A></H5> 
+	 <TABLE BORDER="1"
+	 SUMMARY="Types of Traditional Cross-references Table (cross-reference and description)">
+		
+		<TR> 
+		  <TD VALIGN="TOP"><B>Cross-reference Type</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>REGULAR</B></TD> 
+		  <TD VALIGN="TOP">The field value is sorted and stored in the
+			 cross-reference. The regular cross-reference is used for sorting. If you wish,
+			 it will be used when looking up entries also. The cross-reference that is
+			 automatically created on the NAME field (#.01 field) when a file is created is
+			 a regular cross-reference; this is the "B" cross-reference. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>KWIC</B></TD> 
+		  <TD VALIGN="TOP">Key Word in Context -- each word of three or more
+			 letters in the field value becomes a separate cross-reference. A space is
+			 considered the primary word separator. For example, KING LEAR can be looked up
+			 under either KING or LEAR. Uppercase or lowercase two letter words such as IN,
+			 AN, OR, and IS are <I>not</I> considered key text. The words THE, AND, THEN,
+			 FOR, FROM, OTHER, THAN, WITH, THEIR, SOME, and THIS (upper- or lowercase) are
+			 <I>not</I> considered key text. Quotation marks are also <I>not</I> considered
+			 key text. 
+			 <P>You can also specify that KWIC separates words at most punctuation
+				marks except quotation marks (e.g., KING-LEAR , KING/LEAR, etc., will be found
+				with LEAR). A list of punctuation marks is presented for your selection. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MNEMONIC</B></TD> 
+		  <TD VALIGN="TOP">The field's values are cross-referenced along with the
+			 NAME (#.01) field cross-reference (so that, for example, the MAIDEN NAME
+			 field's values are found along with NAME values in any lookup). Typically, the
+			 cross-reference on the NAME field is searched first when doing a lookup. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>MUMPS</B></TD> 
+		  <TD VALIGN="TOP">Those with programmer access can create special
+			 cross-references by putting M code into the SET and KILL logic of a
+			 cross-reference. You can use the M code entered to accomplish any task that
+			 must be done when the value in a field is entered, changed, or deleted. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>SOUNDEX</B></TD> 
+		  <TD VALIGN="TOP">The field's value is transformed into a four-character
+			 string representing its phonetic properties. That string becomes the
+			 cross-reference. For example, soundex transformation would access GONZALEZ,
+			 GONZELES, Gonzales, and Gonsalless as equivalents; entry of any one of these
+			 forms looks up all the others automatically. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TRIGGER</B></TD> 
+		  <TD VALIGN="TOP">Whenever the field is updated, a different field can
+			 be automatically updated at the same time. See the "<A HREF="../pm/tr_frm.htm"
+			 TARGET="_top" TITLE="Trigger Cross-references" CLASS="bodylink">Trigger
+			 Cross-references</A>" chapter of the "<A HREF="../pm/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual" CLASS="bodylink">VA FileMan
+			 Programmer Manual</A>" for more details. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>BULLETIN </B></TD> 
+		  <TD VALIGN="TOP">Whenever a field is updated, a MailMan message is sent
+			 notifying specified users that an update has occurred. The Bulletin
+			 cross-reference is only available when VA FileMan is installed with MailMan.
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> <HR> 
+	 <H5><A NAME="Edit">Edit a Traditional Cross-reference</A></H5> 
+	 <P>To edit a Traditional cross-reference, identify the field or subfield
+		you wish to edit. VA FileMan will display the type of cross-references on the
+		field and offer you the choices of Edit, Delete, or Create. Select Edit at this
+		prompt and you will have the opportunity to edit or add a No Deletion message
+		and to enter a description of the cross-reference. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS
+Select Utility Functions Option: <B>CRO</B>SS-REFERENCE A FIELD OR FILE
+
+What type of cross-reference (Traditional or New)? Traditional// <B>&lt;RET&gt;</B>
+
+MODIFY WHAT FILE: <B>TEST</B>
+
+Select FIELD: <B>.01 &lt;RET&gt;</B>  NAME
+
+CURRENT CROSS-REFERENCE IS REGULAR 'B' INDEX OF FILE
+
+Choose E (Edit)/D (Delete)/C (Create): <B>E</B>
+
+NO DELETION MESSAGE: <B>NO, DON'T DELETE THIS X-REF!</B></PRE> <HR> 
+	 <P>This FREE TEXT message indicates that the cross-reference <I>cannot</I>
+		be deleted. As long as a message is retained, the cross-reference cannot be
+		deleted. The user will see this message whenever an attempt is made to delete
+		the cross-reference. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DESCRIPTION:   
+1&gt;<B>Used for look-up on and sorting by name.</B>
+2&gt;<B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>The description appears in a standard DD listing. </P> 
+	 <P><B>NOTE:</B> It is important to describe cross-references that are
+		unusual or especially critical. Consider describing all MUMPS, trigger, and
+		bulletin cross-references.</P> <HR> 
+	 <H5><A NAME="Create">Create a Traditional Cross-reference</A></H5> 
+	 <P>If you'd like to create a Traditional cross-reference for a field,
+		proceed in the following manner: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS
+Select Utility Functions Option: <B>CRO</B>SS-REFERENCE A FIELD OR FILE
+
+What type of cross-reference (Traditional or New)? Traditional// <B>&lt;RET&gt;</B>
+
+MODIFY WHAT FILE: <B>TEST</B>
+
+Select FIELD: <B>1 &lt;RET&gt;</B>  DATE
+
+NO CURRENT CROSS-REFERENCE
+WANT TO CREATE A NEW CROSS-REFERENCE FOR THIS FIELD?  NO// <B>YES</B>
+
+CROSS-REFERENCE NUMBER:   1// <B>&lt;RET&gt;</B> 
+
+Select TYPE OF INDEXING:  REGULAR// <B>&lt;RET&gt;</B>  
+WANT CROSS-REFERENCE TO BE USED FOR LOOKUP AS WELL AS FOR SORTING?
+  YES// <B>&lt;RET&gt;</B>
+
+NO DELETION MESSAGE: <B>&lt;RET&gt;</B>
+DESCRIPTION:  
+1&gt;<B>Lookup and sorting can be done by date using this Regular</B>
+2&gt;<B>cross-reference.</B>
+3&gt;<B>&lt;RET&gt;</B></PRE> <HR> 
+	 <H5><A NAME="Delete">Delete a Traditional Cross-reference</A></H5> 
+	 <P>The following dialogue shows how to delete a Traditional
+		cross-reference: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS
+Select Utility Functions Option: <B>CRO</B>SS-REFERENCE A FIELD OR FILE
+
+What type of cross-reference (Traditional or New)? Traditional// <B>&lt;RET&gt;</B>
+
+MODIFY WHAT FILE: <B>TEST</B>
+
+Select FIELD: <B>1 &lt;RET&gt;</B>  DATE
+
+CURRENT CROSS-REFERENCE IS REGULAR 'C' INDEX OF FILE
+
+Choose E (Edit)/D (Delete)/C (Create): <B>D</B>
+Are you sure that you want to delete the CROSS-REFERENCE? NO// <B>YES &lt;RET&gt;</B>  ...OK</PRE> <HR> 
+	 <H5><A NAME="new_style">New-Style Cross-references</A>&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0 with FM V. 22"
+		WIDTH="35" HEIGHT="11"></H5> 
+	 <P>Two types of New-Style cross-references are available: Regular and
+		MUMPS. They are like their Traditional cross-reference counterparts, but
+		New-Style cross-references offer some unique advantages:</P> 
+	 <UL> 
+		<LI><B>Compound Cross-references --</B>You can create not only
+		  <B><I>simple cross-references</I></B> that are based on a single field, but
+		  <B><I>compound cross-references</I></B>, cross-references that are based on
+		  more than one field in a file. For example, in a regular New-Style "C" index
+		  you can store both the Name and ID Number of a record as subscripts in a single
+		  index: 
+		  <PRE>^DIZ(1000,"C","DOE,JANE","A56789",14) =
+^DIZ(1000,"C","SMITH,JOHN","D1234",5) =
+</PRE> In order to create this kind of index with a Traditional
+		  cross-reference, you would have to create two MUMPS-type cross-references, one
+		  on the NAME field and one on the ID Number field. New-Style cross-references
+		  allow you to define this compound cross-reference once as a regular index that
+		  VA FileMan can use for lookup and sorting. <BR> <BR> </LI> 
+		<LI><B>Field- or Record-Level Execution --</B>Since a Traditional
+		  cross-reference is defined on a particular field, the action associated with
+		  that cross-reference is performed whenever the field is edited. With New-Style
+		  cross-references, you can specify that the action associated with a
+		  cross-reference be performed only once after the entire record has been edited,
+		  typically at the end of the editing session. Record-level execution would
+		  normally be selected for compound cross-references. <BR> <BR> If the "C" index
+		  in the example above were defined using Traditional MUMPS-type
+		  cross-references, and both the NAME and ID Number fields were contained in a
+		  single INPUT template, the index would be updated when the NAME field was
+		  edited, and then again when the ID Number was edited. But if the
+		  cross-reference were defined as a New-Style compound index with record-level
+		  execution, the index would be updated only once after the entire record was
+		  edited, after changes to both the NAME and ID Number fields had been completed.
+		  <BR> <BR> </LI> 
+		<LI><B>Code to Kill the Entire Index --</B>This is code that VA FileMan
+		  can execute to remove an entire index from a file. This can make re-indexing a
+		  file much more efficient. To delete an index, VA FileMan can execute the
+		  <I>Kill Entire Index Code</I>, instead of looping through all the record in a
+		  file and removing each record's index one at a time. <BR> <BR> </LI> 
+		<LI><B>Activity --</B>New-Style cross-references can have an Activity of
+		  "<B>R</B>" and/or "<B>I</B>" to allow you to control whether the
+		  cross-reference should be fired during <B>R</B>eindexing and/or
+		  <B>I</B>nstallation (KIDS). If you call IX^DIK, IX1^DIK, or IXALL^DIK or if you
+		  select the Re-Index File option on VA FileMan's Utility Functions submenu to
+		  re-index all cross-references, only those New-Style cross-references that
+		  contain an "<B>R</B>" in Activity will be fired. <BR> <BR> If you explicitly
+		  select a cross-reference in an EN^DIK, EN1^DIK, or ENALL^DIK call or in the
+		  Re-Index File option on VA FileMan's Utility Functions submenu, that
+		  cross-reference is fired regardless of its Activity. Also, when a field is
+		  edited, VA FileMan ignores Activity and fires all cross-references on that
+		  field, though you can control whether a cross-reference is fired by entering
+		  SET and KILL Conditions. <BR> <BR> </LI> 
+		<LI><B>Collation --</B>You can specify forwards or backwards collation,
+		  the direction in which VA FileMan's lookup utilities loop through a subscript
+		  in an index when entries are returned or displayed to the user. This is
+		  especially useful for dates. Developers can store dates in their natural
+		  internal VA FileMan date format, and still display entries in the date index in
+		  reverse date order. <BR> <BR> </LI> 
+		<LI><B>Lookup Prompt --</B>Each subscript on an index in the new INDEX
+		  file can be assigned a LOOKUP PROMPT. This prompt will be used as the prompt
+		  for entry of the lookup value during classic VA FileMan lookup ^DIC calls. If
+		  not filled in, VA FileMan will default to use the name of the field for that
+		  subscript value, if there is one. <BR> <BR> </LI> 
+		<LI><B>Computed Values --</B>Those with programmer access can have any
+		  value in the cross-reference be computed; that is, the value is determined from
+		  M code that sets the variable X. <BR> <BR> </LI> 
+		<LI><B>Subscript Transforms --</B>Those with programmer access can define
+		  a <I>Transform for Storage</I> and a <I>Transform for Display</I> on subscripts
+		  in an index. The <I>Transform for Storage</I> is code that transforms the
+		  internal value of a field before it is stored as a subscript in the index. The
+		  <I>Transform for Display</I> is code that transforms the value stored in the
+		  index back to a form that can be displayed to the user. <BR> <BR> </LI> 
+		<LI><B>SET and KILL Conditions --</B>Those with programmer access can
+		  enter M code that specifies whether the SET or KILL logic is fired. The M code
+		  sets the variable X to Boolean true only if the logic should be executed. The
+		  "before" and "after" values are available in the X, X1, and X2 arrays (see the
+		  <A HREF="#array_table"
+			TITLE="Set and Kill Logic/Condition for X, X1, and X2 Arrays Table (array, value in KILL, value in SET)"
+			CLASS="bodylink">table</A> below). <BR> <BR> </LI> 
+		<LI><B>The X, X1, and X2 Arrays --</B>Those with programmer access can
+		  reference the X, X1, and X2 arrays in the SET and KILL logic and the SET and
+		  KILL conditions of New-Style cross-references. When a field is edited and the
+		  cross-reference logic is executed, the field's corresponding X1 array element
+		  contains the old value of the field, the X2 array element contains the new
+		  value of the field, and the X array element contains either the old or new
+		  value, depending on whether the SET logic, SET condition, KILL logic, or KILL
+		  condition is being executed: <BR><BR> 
+		  <TABLE WIDTH="100%" BORDER="1"
+		  SUMMARY="Set and Kill Logic/Condition for X, X1, and X2 Arrays Table (array, value in KILL, value in SET)">
+			 
+			 <TR> 
+				<TD><U><B><A NAME="array_table">Array</A></B></U></TD> 
+				<TD><U><B>Value in KILL Logic/KILL Condition</B></U></TD> 
+				<TD><U><B>Value in SET Logic/SET Condition</B></U></TD> 
+			 </TR> 
+			 <TR> 
+				<TD>X(order#)</TD> 
+				<TD>Old value</TD> 
+				<TD>New value</TD> 
+			 </TR> 
+			 <TR> 
+				<TD>X1(order#)</TD> 
+				<TD>Old value</TD> 
+				<TD>Old value</TD> 
+			 </TR> 
+			 <TR> 
+				<TD>X2(order#)</TD> 
+				<TD>New value</TD> 
+				<TD>New value</TD> 
+			 </TR> 
+		  </TABLE> 
+		  <P>The variables X, X1, and X2 always equal X(1), X1(1), and X2(1),
+			 respectively. </P> 
+		  <P>If an order number in the cross-reference refers to the .01 field,
+			 X1(order#) is set to null when the SET logic and SET condition are executed
+			 during record creation. Similarly, X2(order#) is set to null when the KILL
+			 logic or condition are executed during record deletion.</P> </LI> 
+		<LI><B>Key Support --</B>A regular New-Style index can be used as the
+		  Uniqueness Index for a key. VA FileMan ensures that all fields in a Uniqueness
+		  Index have values (are not null), and that those values, taken collectively,
+		  are unique across all records in the file. For more information on keys and how
+		  to create them, please see the "<A HREF="ut_key.htm" TITLE="Key Definition"
+		  CLASS="bodylink">Key Definition</A>" topic. </LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="edit_new">Edit a New-Style Cross-reference</A>&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0 with FM V. 22"
+		WIDTH="35" HEIGHT="11"></H5> 
+	 <P>To edit a New-Style cross-reference, identify the file or subfile you
+		wish to edit. VA FileMan will display the cross-references on the file and
+		offer you the choices of Edit, Delete, or Create:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS
+Select Utility Functions Option: <B>CRO</B>SS-REFERENCE A FIELD OR FILE
+
+What type of cross-reference (Traditional or New)? Traditional// <B>N</B>EW
+MODIFY WHAT FILE: <B>TEST</B>
+Select Subfile: <B>&lt;RET&gt;</B>
+
+Current Indexes on file #16026:
+  75     'COMP' index
+  85     'XR202' index
+  106    'H' index
+  116    'AC' index
+  141    'C' index
+
+Choose E (Edit)/D (Delete)/C (Create): <B>E</B>DIT
+
+Which Index do you wish to edit? <B>C</B></PRE> <HR> 
+	 <P><B>NOTE:</B> The numbers displayed to the left of each cross-reference
+		are the Internal Entry Number of the cross-reference stored in the INDEX
+		file.</P> 
+	 <P>You will then be taken into a ScreenMan form where you can edit the
+		properties of the New-Style cross-reference, as shown below:</P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG
+		ALT="ScreenMan Form when editing a New/Updated with VA FileMan V. 22.0-Style Cross-reference."
+		SRC="ut_1.gif" WIDTH="782" HEIGHT="410"> </CENTER> 
+	 <P></P> 
+	 <PRE></PRE> <HR> 
+	 <P><B>NOTE:</B> For additional help, enter a single question mark
+		("<B>?</B>") or two question marks ("<B>??</B>") at any prompt.</P> <HR> 
+	 <H5><A NAME="create_new">Create a New-Style Cross-reference</A>&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0 with FM V. 22"
+		WIDTH="35" HEIGHT="11"></H5> 
+	 <P>To create a New-Style cross-reference, proceed in the following manner:
+		</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS
+Select Utility Functions Option: <B>CRO</B>SS-REFERENCE A FIELD OR FILE
+
+What type of cross-reference (Traditional or New)? Traditional// <B>N</B>EW
+MODIFY WHAT FILE: <B>TEST</B>
+Select Subfile: <B>&lt;RET&gt;</B>
+
+Current Indexes on file #16026:
+  75     'COMP' index
+  85     'XR202' index
+  106    'H' index
+  116    'AC' index
+  141    'C' index
+
+Choose E (Edit)/D (Delete)/C (Create): <B>C</B>REATE
+Want to create a new Index for this file? No// <B>Y</B>ES
+
+Type of index: REGULAR// <B>&lt;RET&gt;</B>
+
+Want index to be used for Lookup &amp; Sorting
+  or Sorting Only: LOOKUP &amp; SORTING// <B>&lt;RET&gt;</B>
+
+Index Name: J// <B>&lt;RET&gt;</B>
+</PRE> <HR> 
+	 <P><B>NOTE:</B> The numbers displayed to the left of each cross-reference
+		are the Internal Entry Number of the cross-reference stored in the INDEX
+		file.</P> 
+	 <P>You will then be taken into a ScreenMan form where you can edit the
+		properties of the New-Style cross-reference, as shown below:</P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG SRC="ut_2.gif"
+		ALT="ScreenMan Form when creating a New/Updated with VA FileMan V. 22.0-Style cross-reference."
+		WIDTH="783" HEIGHT="411"> </CENTER> 
+	 <P></P> 
+	 <PRE></PRE> <HR> 
+	 <P><B>NOTE:</B> For additional help, enter a single question mark
+		("<B>?</B>") or two question marks ("<B>??</B>") at any prompt.</P> <HR> 
+	 <H5><A NAME="delete_new">Delete a New-Style Cross-reference</A>&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0 with FM V. 22"
+		WIDTH="35" HEIGHT="11"></H5> 
+	 <P>The following dialogue shows you how to delete a New-Style
+		cross-reference: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS
+Select Utility Functions Option: <B>CRO</B>SS-REFERENCE A FIELD OR FILE
+
+What type of cross-reference (Traditional or New)? Traditional// <B>N</B>EW
+MODIFY WHAT FILE: <B>TEST</B>
+Select Subfile: <B>&lt;RET&gt;</B>
+
+Current Indexes on file #16026:
+  75     'COMP' index
+  85     'XR202' index
+  106    'H' index
+  116    'AC' index
+  141    'C' index
+
+Choose E (Edit)/D (Delete)/C (Create): <B>D</B>ELETE
+
+Which Index do you wish to delete? <B>141 &lt;RET&gt;</B>  C
+Are you sure you want to delete the index definition? No// <B>Y</B>ES
+
+  Index definition deleted.
+
+Do you want to delete the data in the old index now? YES// <B>&lt;RET&gt;</B>
+  Removing old index ...  DONE!</PRE>  
+	<P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ut_xref.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

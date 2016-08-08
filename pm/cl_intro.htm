@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Classic FileMan Introduction</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,introduction">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Introduction</H4> 
+	 <P>Certain modules within VA FileMan are callable by other M routines. This
+		is true of these Classic FileMan routines which are referred to as "Callable
+		Routines" and are described in this chapter. </P> 
+	 <P>Database Server (DBS) calls are also callable by other M routines.
+		However, these "silent" calls differ from the Classic FileMan routines in that
+		they separate interaction with the database from interaction with the end-user.
+		In Classic FileMan's roll and scroll mode, interaction with the end-user was
+		closely tied to the code that actually changed the database, but, with
+		FileMan's DBS calls, no Writes to the current device are done. Interaction with
+		the user is managed by package developers from within their own code, calling
+		FileMan whenever interaction with the database is needed. These DBS calls are
+		described in the "<A HREF="dba_frm.htm" TARGET="_top"
+		TITLE="Database Server (DBS)" CLASS="bodylink">Database Server (DBS)</A>"
+		chapter in this manual. </P> 
+	 <P>When using both the Classic FM callable routines and the DBS calls, you
+		must keep in mind the variable-naming conventions listed below. If you have
+		local variables that you wish to preserve by a call to any of the routines
+		described here, you should be sure to give them multi-character names beginning
+		with letters other than D. </P> 
+	 <P>It is your responsibility, as a programmer, to clean up (kill)
+		documented input and output variables used in a FileMan call, when the call is
+		finished. The few situations in which your input variables are killed during
+		the FileMan call are mentioned in the following sections. </P> 
+	 <P>After making a programmer call, always check for failed calls. For
+		example, when using ^DIC for lookups, always check for the error condition Y=-1
+		before doing anything else; when using the reader, always check DUOUT, DIRUT,
+		and DTOUT before doing anything else. When a call provides a way to check for
+		error conditions, it means that there are some circumstances where the call
+		won't succeed! Checking for errors after such a call allows you to handle the
+		errors gracefully.</P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_intro.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

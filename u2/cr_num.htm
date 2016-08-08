@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: NUMBER (.001) Field
+		</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,Infrastructure and Security Services,Infrastructure Security Services,ISS,iis,vista,fileman,va fileman,user,advanced user manual,creating files and fields,files,fields,creating,editing,changing,modifying,deleting,number field,number,lookups">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cr_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Creating Files and Fields Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Creating Files and Fields</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>NUMBER (.001) Field</H4> 
+	 <P>All files have unique numbers associated with each of their entries.
+		Defining the NUMBER field allows you to use the Internal Entry Number (IEN,
+		also called the record number) as you would any other field. Usually, this
+		means that someone (like Herr Doktor Ludwig Koechel in the case of the MOZART
+		WORK file) has gone to the trouble of creating a numbering scheme for the
+		entries. If you wish to set up a file in which a unique Internal Entry Number
+		is always matched with each entry Name, you can do so by creating a field
+		numbered .001 for the file: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select FILE: <B>MOZART WORK</B> 
+Select FIELD: <B>.001</B> 
+  Are you adding a new FIELD? No// <B>YES &lt;RET&gt;</B>  (Yes) 
+LABEL: <B>KOECHEL NUMBER</B> 
+FIELD NUMBER: .001// <B>&lt;RET&gt;</B>
+ 
+DATA TYPE OF KOECHEL NUMBER: <B>NU</B>MERIC 
+INCLUSIVE LOWER BOUND: <B>1</B>
+INCLUSIVE UPPER BOUND: <B>626</B>
+IS THIS A DOLLAR AMOUNT (Y/N):  NO// <B>&lt;RET&gt;</B>
+MAXIMUM NUMBER OF FRACTIONAL DIGITS:  0// <B>&lt;RET&gt;</B>
+HELP PROMPT: Type a Number between 1 and 626, 0 Decimal Digits.
+         Replace <B>&lt;RET&gt;</B>
+DESCRIPTION:
+  1&gt; <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P>The previous dialogue is what would normally create a NUMERIC-valued
+		field. In this case, we are describing the file's PRIMARY KEY, or Internal
+		Entry Number.</P> 
+	 <P>Once such a .001 field is defined, you can create a new file entry that
+		might look like this: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select MOZART WORK: <B>EINE KLEINE NACHTMUSIK</B> 
+  Are you adding a new MOZART WORK? No// <B>YES &lt;RET&gt;</B>  (Yes) 
+KOECHEL NUMBER: <B>525</B></PRE> <HR> 
+	 <P><B>NOTE:</B> The PRIMARY KEY is new with Version 22.0&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+		HEIGHT="11"></P> 
+	 <P>More importantly, with a .001 field defined, an entry in the file can
+		always be looked up by the Internal Entry Number (IEN), irrespective of any
+		other cross-referencing that exists for the file. Thus: </P> 
+	 <PRE>    Select MOZART WORK: <B>525 &lt;RET&gt;</B>  EINE KLEINE NACHTMUSIK</PRE> 
+	 <P>Record Numbers must always be positive and canonic -- that is, they
+		<I>cannot</I> contain alpha suffixes, leading zeros, or trailing fractional
+		zeros. </P> 
+	 <H5>Forced Lookups Using Numbers</H5> 
+	 <P>Number-meaningful lookups can be forced by prefixing the numeric input
+		with the <B>`</B> (accent grave). If Richard Green's Internal Entry Number in
+		the PATIENT file is 355, he could be identified as follows: </P> 
+	 <PRE>    Select PATIENT NAME: <B>`355 &lt;RET&gt;</B> GREEN,RICHARD</PRE> 
+	 <P>Incidentally, the .001 field example (above) illustrates how using the
+		Modify File Attributes option can force a field to have a particular number
+		(.001 in this case). It is done just by entering the new Number first, and then
+		the new Label. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cr_num.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

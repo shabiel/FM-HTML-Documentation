@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 6/20/01-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EXPORT^DDXP - Data Export</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,import and export tools,import tools,export tools,import,export,api,export^ddxp,ddxp">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="im_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Import and Export Tools API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools API</A></H3><HR
+	 CLASS="hrstyle"> 
+	 <H4>EXPORT^DDXP: Data Export</H4> 
+	 <P>This procedure exports data from VA FileMan files into ASCII host files.
+		Each entry in a specified FileMan file is stored as a line of data in the host
+		file. </P> 
+	 <P>For additional information about the Import and Export Tools, see the
+		"<A HREF="../u2/ei_frm.htm" TARGET="_top"
+		TITLE="Import and Export Tools" CLASS="bodylink">Import and Export Tools</A>"
+		chapter of the "<A HREF="../u2/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Advanced User HTML Manual" CLASS="bodylink">VA
+		FileMan Advanced User Manual</A>."</P> 
+	 <H5>Format</H5> 
+	 <PRE>D EXPORT^DDXP(FILE,EXPORT_TEMPLATE,DELETE_FLAG,
+SORT_TEMPLATE,[.]FR,[.]TO,.DIS,[.]DISTOP,IOP,DQTIME)</PRE> 
+	 <H5>Input</H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>FILE</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Required) File number from the file where the data to be exported
+				is located. </P> 
+			 <P><B>NOTE:</B> A special case occurs when exporting data from file
+				number 1.1, the AUDIT file. In this case, FILE then becomes "1.1^&lt;file
+				number of the audited file&gt;". For example, if the audited data is associated
+				with the PATIENT file, then the string would look like: "1.1^2".</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>EXPORT_TEMPLATE</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Required) The name of the export template, <B>without</B> the
+				surrounding brackets "[]", that was created when the developer used the option:
+				CREATE EXPORT TEMPLATE. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" ROWSPAN="3" VALIGN="TOP"><B>DELETE_FLAG</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) Indicates whether or not the export template should be
+				deleted when exporting of the data is finished. </P> 
+			 <P>It has two possible values:</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD>0 (zero)</TD> 
+		  <TD> Do NOT delete the export template when the export has finished.
+			 Default.</TD> 
+		</TR> 
+		<TR> 
+		  <TD>1</TD> 
+		  <TD> DELETE the export template when the export has finished.</TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>SORT_TEMPLATE</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) The name of the sort template, <B>without</B> the
+				surrounding brackets "[]", that will be used for file sorting. If this
+				parameter is Null, then the user will see the standard FileMan Sort dialog.</P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>[.]FR</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) The START WITH: values of the SORT BY fields. If FR is
+				undefined, the user will be asked the START WITH: question for each SORT BY
+				field. If FR is defined, it consists of one or more comma pieces, where the
+				piece position corresponds to the order of the sort field in the BY variable.
+				</P> 
+			 <P>Passed by reference.</P> 
+			 <P>The details of this parameter are identical to those of the FR
+				input variable of the Classic FileMan print routine EN1^DIP. For additional
+				information, see that description.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>[.]TO</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) The GO TO: values of the SORT BY fields. Its
+				characteristics correspond to the FR variable. If undefined, the user will be
+				asked the GO TO: questions for each SORT BY field. If TO is defined, it
+				consists of one or more comma pieces.</P> 
+			 <P>Passed by reference.</P> 
+			 <P>The details of this parameter are identical to those of the TO
+				input variable of the Classic FileMan print routine EN1^DIP. For additional
+				information, see that description.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>.DIS</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) You can screen out certain entries so that they do not
+				appear on the output by setting the optional array DIS. The first subscript in
+				this array can be 0 (zero). This variable (as well as all the others) contains
+				an executable line of M code which includes an IF-statement. </P> 
+			 <P>Passed by reference.</P> 
+			 <P>The details of this parameter are identical to those of the DIS
+				(0) and DIS(n) input variables of the Classic FileMan print routine EN1^DIP.
+				For additional information, see that description.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>[.]DISTOP</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) If Kernel is present, by default prints queued through
+				the EN1^DIP call can be stopped by the user with a TaskMan option. However, if
+				this variable is set to 0, users will not be able to stop their queued
+				prints.</P> 
+			 <P>Passed by reference.</P> 
+			 <P>The details of this parameter are identical to those of the DISTOP
+				input variable of the Classic FileMan print routine EN1^DIP. For additional
+				information, see those descriptions.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>IOP</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) EXPORT^DDXP calls the ^%ZIS entry point to determine
+				which device output should go to. This requires user interaction unless you
+				pre-answer the DEVICE prompt. You can do this by setting IOP equal to the name
+				of the device (as it is stored in the DEVICE file) to which the output should
+				be directed.</P> 
+			 <P>Passed by reference.</P> 
+			 <P>The details of this parameter are identical to those of the IOP
+				input variable of the Classic FileMan print routine EN1^DIP. For additional
+				information, see that description.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="25%" VALIGN="TOP"><B>DQTIME</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) If output is queued, this variable contains the time
+				for printing. You can set it equal to any value that %DT recognizes.</P> 
+			 <P>Passed by reference.</P> 
+			 <P>The details of this parameter are identical to those of the DQTIME
+				input variable of the Classic FileMan print routine EN1^DIP. For additional
+				information, see that description.</P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Parameters</H5> 
+	 <P>None</P> 
+	 <H5>Examples</H5> 
+	 <P>See examples below for ways to use EXPORT^DDMP. </P> 
+	 <P>Note that in all examples, the DELETE_FLAG is null, i.e., 0 (zero).</P> 
+	 <P><B>Example 1</B></P> 
+	 <P>In this example, no sort template is provided and the user is asked sort
+		dialog.</P> 
+	 <PRE>    <B>D EXPORT^DDXP(2,&quot;ZZS0 SKIP TEST&quot;)</B>
+    SORT BY:  NAME//
+    START WITH NAME:  FIRST//
+    DEVICE:
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>In this example, a sort template is provided.</P> 
+	 <PRE>   <B> D EXPORT^DDXP(2,&quot;ZZS0 SKIP TEST&quot;,,&quot;ZZS0 TEXPORT #1&quot;)</B> 
+
+    *Previous selection: DATE ENTERED INTO FILE from Jan 1,1997 to Jun 4,1999 
+    START WITH DATE ENTERED INTO FILE: FIRST// 1/1/97  (JAN 01, 1997) 
+    GO TO DATE ENTERED INTO FILE: LAST// T  (JUN 07, 1999) 
+    DEVICE: 
+</PRE> 
+	 <P><B>Example 3</B></P> 
+	 <P>In this example, a sort template is provided and the FROM and TO values
+		are supplied.</P> 
+	 <PRE>    <B>S FR=&quot;1/1/97&quot; 
+    S TO=DT 
+    D EXPORT^DDXP(2,&quot;ZZS0 SKIP TEST&quot;,,&quot;ZZS0 TEXPORT #1&quot;,FR,TO) 
+    DEVICE: 
+</B></PRE> 
+	 <P><B>Example 4</B></P> 
+	 <P>This example shows the special case of the AUDIT file.</P> 
+	 <P>Because users may want to export information from the AUDIT file (1.1),
+		a special case has been created. All parameters that are to be passed remain
+		the same as abovve, EXCEPT for the FILE parameter. In this special case, the
+		format is as follows:</P> 
+	 <PRE>    FILE &quot;1.1^&lt;file number of audited file&gt;&quot;</PRE> 
+	 <P>Here is an example:</P> 
+	 <PRE><B>    D EXPORT^DDXP(&quot;1.1^16200&quot;,&quot;ZZSO&quot;,,&quot;ZZS0 AUDIT&quot;) </B>
+ 
+    Previous selection: DATE/TIME RECORDED from Jan 1,1997 to Dec 31,1997@24:00 
+    START WITH DATE/TIME RECORDED: FIRST// <B>1/1/97   (JAN 01, 1997)</B> 
+    GO TO DATE/TIME RECORDED: LAST// <B>12/31/97  (DEC 31, 1997@24:00)</B>  
+    DEVICE: 
+ 
+</PRE> 
+	 <P><B>Example 5</B></P> 
+	 <P>This example shows a sample sort template, export template, and
+		routine.</P> 
+	 <P>In this example, we want to use Microsoft Word Mail Merge to send a
+		brochure to the new patients who visited the Medical Center in the previous
+		month. For purposes of illustration we are going to assume the month was March
+		of 2000. </P> 
+	 <P><B>Sort Template Used:</B></P> 
+	 <PRE>    NAME: ZZSO NEW PATIENTS// 
+    READ ACCESS: @// 
+    WRITE ACCESS: @// 
+    SORT BY: ]NAME//   
+     * Previous selection: NAME not null 
+     START WITH NAME: FIRST// 
+      WITHIN NAME, SORT BY: DATE ENTERED INTO FILE  Replace   
+     * Previous selection: DATE ENTERED INTO FILE from Feb 1, 2000 to Feb 29,
+     2000 
+      START WITH DATE ENTERED INTO FILE: FIRST// <B>3/1/00</B>  (MAR 01, 2000) 
+      GO TO DATE ENTERED INTO FILE: LAST// <B>3/31/00</B>  (MAR 31, 2000) 
+        WITHIN DATE ENTERED INTO FILE, SORT BY: 
+     STORE IN 'SORT' TEMPLATE:    ZZSO NEW PATIENTS  
+          (Jun 17, 1999@05:14) User #9152 File #2    SORT 
+    DATA ALREADY STORED THERE....OK TO PURGE? NO// <B>YES</B> 
+     DESCRIPTION: 
+      1&gt;Get previous month's New Patients for mass marketing mailing.  
+     EDIT Option: 
+ 
+     SHOULD TEMPLATE USER BE ASKED 'FROM'-'TO' RANGE FOR 'DATE ENTERED INTO 
+     FILE'? NO// <B>YES</B> 
+</PRE> 
+	 <P><B>Export Template Used:</B></P> 
+	 <PRE>    NAME: ZZSO PATIENT ADDRESS X 
+     DATE CREATED: JUN 17, 1999@08:26 
+     READ ACCESS: @                        FILE: <B>PATIENT</B> 
+     USER #: 9152                          WRITE ACCESS: @ 
+     DATE LAST USED: MAR 01, 2000          TEMPLATE TYPE: <B>EXPORT</B> 
+    FIELD ORDER: 1                          DATA TYPE: FREE TEXT 
+    FIELD ORDER: 2                          DATA TYPE: FREE TEXT 
+    FIELD ORDER: 3                          DATA TYPE: FREE TEXT 
+    FIELD ORDER: 4                          DATA TYPE: FREE TEXT 
+    FIELD ORDER: 5                          DATA TYPE: FREE TEXT 
+     EXPORT FORMAT: EXCEL (COMMA)          SUB-HEADER SUPPRESSED: YES 
+    HEADER (c): @@ 
+    FIRST PRINT FIELD: W $C(34)// 
+    THEN PRINT FIELD: NAME;X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: W $C(44);X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: STREET ADDRESS [LINE 1];X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: W $C(44);X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: CITY;X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: W $C(44);X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: STATE;X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: W $C(44);X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: ZIP CODE;X// 
+    THEN PRINT FIELD: W $C(34);X// 
+    THEN PRINT FIELD: W $C(44);X// 
+    COMPILED (c): NO 
+
+</PRE> 
+	 <P><B>Example Routine and Output:</B></P> 
+	 <PRE>    ZZSONPAD -- 
+            ;SFISC/SO-Sample Export API Usage ;7:18 AM  1 APR 2000 
+           ;;1.0 
+           N %DT 
+           S %DT=&quot;AEPX&quot; 
+           S %DT(&quot;A&quot;)=&quot;Enter Beginning of previous Month: &quot; 
+           D ^%DT 
+           I Y&lt;1 Q 
+           S FR=&quot;,&quot;_$P(Y,&quot;.&quot;) 
+           S %DT=&quot;AEPX&quot; 
+           S %DT(&quot;A&quot;)=&quot;Enter End of previous Month: &quot; 
+           D ^%DT 
+           I Y&lt;1 Q 
+           S TO=&quot;,&quot;_$P(Y,&quot;.&quot;) 
+           K %DT 
+           D EXPORT^DDXP(2,&quot;ZZSO PATIENT ADDRESS X&quot;,,&quot;ZZSO NEW PATIENTS&quot;,FR,T 
+            O) 
+           Q FM22 &gt;D ^ZZSONPAD 
+ 
+
+    Enter Beginning of previous Month: 3/1/00  (MAR 01, 2000) Enter End of
+    previous Month: 3/31/00  (MAR 31, 2000) DEVICE:   Telnet terminal 
+    &quot;BIRD,TWEETY&quot;,&quot;123 TREE ST.&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;94521&quot;, 
+    &quot;BUNNY,BUGS&quot;,&quot;123 CARROT ST&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;90041&quot;, 
+    &quot;CAT,SYLVESTER&quot;,&quot;132 ANY ST&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;98765&quot;, 
+    &quot;DUCK,DAFFY&quot;,&quot;301 Howard St.&quot;,&quot;San Francisco&quot;,&quot;CALIFORNIA&quot;,&quot;94105&quot;, 
+    &quot;LASVEGAS,LEACH&quot;,&quot;111 LAS VEGAS BLVD.&quot;,&quot;LAS VEGAS&quot;,&quot;NEVADA&quot;,&quot;89101&quot;, 
+    &quot;RUNNER,ROAD&quot;,&quot;234 ROAD ST.&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;94077&quot;, 
+    &quot;SAM,YOSEMITE&quot;,&quot;234 YOSEMITE&quot;,&quot;SAN DIEGO&quot;,&quot;CALIFORNIA&quot;,&quot;98765&quot;, 
+
+</PRE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ft_ddxp.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

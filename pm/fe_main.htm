@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Form Editor Main
+		Screen</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman,form editor,screenman form editor,editor,main screen,main,screen">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fe_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Form Editor Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Form Editor</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>The Main Screen</H4> 
+	 <P>Below is an example of the Form Editor's <B>Main Screen</B>. </P> 
+	 <P>The <B>top</B> portion of the Main Screen is the <B>Work Area</B>. Here
+		you see field captions, as well as underscores representing data fields, for
+		fields that are defined on the blocks of the current page. Each of these items
+		is called a <B>screen element</B>. This area of the screen is the one that you
+		control when you display information to the user on a form. </P>
+	 <IMG SRC="fe_main.gif" ALT="Example of the Main Form Editor Screen."
+	 ALIGN="BOTTOM" WIDTH="571" HEIGHT="208"> 
+	 <P>The <B>bottom</B> portion of the screen contains status information,
+		such as the name and number of the file to which the form is attached, the name
+		of the form, and the number and name of the page you are currently editing. The
+		"Rn,Cn" at the lower right of the screen indicates the current row and column
+		position of the cursor. When a user runs a form, this portion of the screen is
+		occupied by ScreenMan's command area.</P> 
+	 <H5>Exiting, Quitting, Saving, and Obtaining Help</H5> 
+	 <P>You can exit from the Form Editor's Main Screen in one of two ways:</P> 
+	 <OL> 
+		<LI>Press &lt;PF1&gt;E to exit and save any changes you made to field
+		  captions, data lengths of fields, block names, and page, block, and field
+		  coordinates. These are the properties that are visible on the Form Editor
+		  screens.<BR><BR></LI> 
+		<LI>Press &lt;PF1&gt;Q to quit and discard the changes you made to those
+		  properties. </LI> 
+	 </OL> 
+	 <P>You can also save changes without leaving the Form Editor by pressing
+		&lt;PF1&gt;S. </P> 
+	 <P>Pressing &lt;PF1&gt;H accesses the Form Editor's online help screens.
+		</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="Exiting, Quitting, Saving, and Obtaining Help in the ScreenMan Form Editor Table"
+	  TITLE="Exiting, Quitting, Saving, and Obtaining Help"> 
+		<TR> 
+		  <TD COLSPAN="2" WIDTH="391"><B>General Key Sequences</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="247"><B>To</B></TD> 
+		  <TD WIDTH="144"><B>Press</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="247">Exit and save changes</TD> 
+		  <TD WIDTH="144">&lt;PF1&gt;E </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="247">Quit without saving changes</TD> 
+		  <TD WIDTH="144">&lt;PF1&gt;Q </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="247">Save without exiting</TD> 
+		  <TD WIDTH="144">&lt;PF1&gt;S </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="247">Bring up help screens</TD> 
+		  <TD WIDTH="144">&lt;PF1&gt;H </TD> 
+		</TR> 
+		<TR> 
+		  <TD WIDTH="247">Move to Block Viewer screen</TD> 
+		  <TD WIDTH="144">&lt;PF1&gt;V </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fe_main.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

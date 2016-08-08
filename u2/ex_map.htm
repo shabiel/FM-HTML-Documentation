@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Extract Tool Mapping
+		Information</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,extract tool,tools,extract,mapping information,mapping">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Extract Tool Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Mapping Information</H4> 
+	 <P>Mapping information identifies the relationship between the data in the
+		<A HREF="ex_src.htm" TITLE="source file" CLASS="bodylink">source file</A> and
+		the data in the <A HREF="ex_dest.htm" TITLE="destination file"
+		CLASS="bodylink">destination file</A>. When you create your EXTRACT template,
+		you will enter the name of the field in the source file and identify its
+		intended location in the destination file. You will need to ensure that the
+		Data Type of the field in the destination file is compatible with the Data Type
+		of the extract field. The compatibility of the Data Types is validated when the
+		fields are specified during template creation. </P> 
+	 <P>The following table recommends the Data Type to use, depending on the
+		Data Type of the extract field:</P> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="Data Type Recommendation Table (Data Type and destination field)"> 
+		<TR> 
+		  <TD><B>Data Type of Extract Field</B></TD> 
+		  <TD><B>Data Type of Destination Field</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD>DATE/TIME</TD> 
+		  <TD>1) DATE/TIME, internal form of data is moved. 
+			 <P>2) FREE TEXT, external form of data is moved.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD>NUMERIC</TD> 
+		  <TD>NUMERIC or FREE TEXT.</TD> 
+		</TR> 
+		<TR> 
+		  <TD>SET OF CODES</TD> 
+		  <TD>1) FREE TEXT, if external form of the SET OF CODES is moved. 
+			 <P>2) SET OF CODES, if internal form of the SET OF CODES is moved.
+				User must make sure the SET OF CODES fields are identical in both the source
+				file and the destination file data dictionaries.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD>FREE TEXT</TD> 
+		  <TD>FREE TEXT.</TD> 
+		</TR> 
+		<TR> 
+		  <TD>WORD-PROCESSING</TD> 
+		  <TD>WORD-PROCESSING.</TD> 
+		</TR> 
+		<TR> 
+		  <TD>COMPUTED</TD> 
+		  <TD>FREE TEXT, DATE/TIME, or NUMERIC. </TD> 
+		</TR> 
+		<TR> 
+		  <TD>POINTER TO A FILE</TD> 
+		  <TD>1) NUMERIC, if internal form of data is moved. 
+			 <P>2) Non-pointer field type (FREE TEXT, NUMERIC, or DATE/TIME), if
+				external form of data is moved. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD>VARIABLE-POINTER</TD> 
+		  <TD>1) Non-pointer field type, if external form of data is moved; (if
+			 the .01 fields of the pointed-to files have different Data Types, Data Type of
+			 destination field should be FREE TEXT). 
+			 <P>2) FREE TEXT, if internal form of data is moved. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD>MUMPS</TD> 
+		  <TD>MUMPS.</TD> 
+		</TR> 
+		<TR> 
+		  <TD>Multiples</TD> 
+		  <TD>Multiples.</TD> 
+		</TR> 
+		<TR> 
+		  <TD>Backward Pointers</TD> 
+		  <TD>Multiples. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Here are additional guidelines that you must follow while creating your
+		destination file: </P> 
+	 <UL> 
+		<LI>If you are extracting a <B>SET OF CODES</B>-type field and you are
+		  mapping it to a <B>FREE TEXT</B>-type field, use a maximum length of the same
+		  -- or greater than -- length as the longest external value in the SET OF CODES
+		  field. If you are mapping the SET OF CODES-type field to a SET OF CODES-type
+		  field, create the corresponding field in the destination file, using the same
+		  specifications as the extract field. <BR> <BR> </LI> 
+		<LI>If you are extracting <B>FREE TEXT</B>, <B>DATE/TIME</B>,
+		  <B>NUMERIC</B>, <B>WORD-PROCESSING</B>, or <B>MUMPS</B>Data Type fields, create
+		  the corresponding field in the destination file, using the same specifications
+		  as the extract field. <BR> <BR> </LI> 
+		<LI>If you are extracting a <B>Multiple</B>-type field, create the
+		  corresponding field in the
+		  <A HREF="ex_dest.htm" TITLE="destination file" CLASS="bodylink">destination
+		  file</A> as a Multiple-type field. Multiples in the
+		  <A HREF="ex_src.htm" TITLE="source file" CLASS="bodylink">source file</A> are
+		  moved to Multiples in the destination file, following the Data Type
+		  recommendations listed above. The structure of the Multiple in the destination
+		  file should be the same as that in the source file down to the lowest level
+		  Multiple that you extract. When extracting data in a Subfile, at least one
+		  field from every Multiple level above the Subfile must also be extracted. If
+		  you do not specify a field to extract at a higher level, the .01 field at that
+		  level will automatically be extracted. <BR> <BR> </LI> 
+		<LI>If you are extracting a <B>Backward Extended Pointer</B>-type field,
+		  create the corresponding field in the destination file as a Multiple. The
+		  Extract Tool resolves Backward Pointers. Thus, their values are moved to
+		  Multiples in the destination file. <BR> <BR> </LI> 
+		<LI>If the field you are extracting has an <B>OUTPUT transform</B>, make
+		  sure the <B>INPUT transform</B> of the destination field can receive the data
+		  in the format generated by the OUTPUT transform.</LI> 
+	 </UL>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ex_map.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

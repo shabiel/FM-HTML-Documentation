@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Example of a Call to the VA FileMan
+		DBS</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,example of a call to the va fileman dbs,example">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>Example of a Call to the VA FileMan DBS</H4> 
+	 <P>One of the DBS calls validates data. If the data is valid, the internal
+		representation of that data is returned. If the data is invalid, an up-arrow
+		(^) is returned along with various messages, optionally including the relevant
+		help text. The validate call looks like this (see the "<A HREF="db_die_v.htm"
+		TITLE="Validator documentation" CLASS="bodylink">Validator documentation</A>"
+		for details): </P> 
+	 <PRE>
+    VAL^DIE(FILE,IENS,FIELD,FLAGS,VALUE,.RESULT,FDA_ROOT,MSG_ROOT)
+</PRE> 
+	 <P>Your call might look like this: </P> 
+	 <PRE>
+    D VAL^DIE(999000,&quot;223,&quot;,4,&quot;H&quot;,&quot;AB&quot;,.MYANSWER,&quot;&quot;,&quot;MYMSGS(&quot;&quot;WIN3&quot;&quot;)&quot;)
+</PRE> 
+	 <P>If MYANSWER equaled "^" after the call, your MYMSGS("WIN3") array might
+		look like : </P> 
+	 <PRE>
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;)=1^1
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;,1)=701
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;,1,&quot;PARAM&quot;,0)=4
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;,1,&quot;PARAM&quot;,3)=&quot;AB&quot;
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;,1,&quot;PARAM&quot;,&quot;FIELD&quot;)=4
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;,1,&quot;PARAM&quot;,&quot;FILE&quot;)=999000
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;,1,&quot;PARAM&quot;,&quot;IENS&quot;)=&quot;223&quot;
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;,1,&quot;TEXT&quot;,1)=&quot;The value 'AB' for field ALPHA 
+      DATA in file TEST1 is not valid.&quot;
+    MYMSGS(&quot;WIN3&quot;,&quot;DIERR&quot;,&quot;E&quot;,701,1)=&quot;&quot;
+    MYMSGS(&quot;WIN3&quot;,&quot;DIHELP&quot;)=1
+    MYMSGS(&quot;WIN3&quot;,&quot;DIHELP,1)=&quot;Answer must be 3-30 characters in length.&quot;
+    MYMSGS(&quot;WIN3&quot;,&quot;DIMSG&quot;)=1
+    MYMSGS(&quot;WIN3&quot;,&quot;DIMSG&quot;,1)=&quot;Your input was 2 characters long.&quot;
+    MYMSGS(&quot;WIN3&quot;,&quot;DIMSG&quot;,2)=&quot;This is the wrong length.&quot;
+</PRE> 
+	 <P>The DIERR portion of this array indicates that error number 701 is being
+		reported. Documentation makes clear that this means that an input value was
+		invalid. The PARAM nodes (also documented) give the client application the
+		relevant file#, field#, IENS, and value. This information might be used by the
+		application in its error handling. The TEXT node contains the error message;
+		note that it is customized to include specifics of the current error. The
+		DIHELP node contains single-question-mark help for the field. The DIMSG nodes
+		contain a message generated by the INPUT transform via an EN^DDIOL call. (The
+		sample INPUT transform, discussed in the "
+		<A HREF="db_how3.htm#DIMSG" TITLE="DIMSG" CLASS="bodylink">DIMSG</A>" section,
+		produced this message.) </P> 
+	 <P>Now, the client application decides what (if anything) to show the user.
+		In a GUI environment, you might decide to put the error message along with any
+		text from the INPUT transform into a document gadget. A HELP button that could
+		be used by the user to display the help information might be added to the box.
+		FileMan's DBS has provided text; the client application is in complete control
+		regarding the use of this text. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_how6.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

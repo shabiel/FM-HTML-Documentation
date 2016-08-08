@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: FILE^DICN</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,file^dicn,dicn">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4><A NAME="FILE^DICN">FILE^DICN: Add</A></H4> 
+	 <P>This entry point adds a new entry to a file. The INPUT transform is
+		<B>not </B>used to validate the value being added as the .01 field of the new
+		entry. This call does not override the checks in the LAYGO nodes of the data
+		dictionary; they must still prove true for an entry to be added. </P> 
+	 <P>FILE^DICN can also be used to add subentries in multiples. See the "<A
+		HREF="cl_dic.htm#Subentries" TITLE="Adding New Subentries to a Multiple"
+		CLASS="bodylink">Adding New Subentries to a Multiple</A>" discussion in the
+		description of <A HREF="cl_dic.htm" TITLE="^DIC" CLASS="bodylink">^DIC</A>.
+		</P> 
+	 <H5>Variables to Kill</H5> 
+	 <TABLE BORDER="1" TITLE="This table is for formatting purposes only"
+	  SUMMARY="This table is for formatting purposes only" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DO</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If DO is set, then FileMan assumes that all of the variables
+				described as output in the call to DO^DIC1 have been set as well and that they
+				describe the file to which you wish to add a new record. If you're not sure,
+				then DO should be killed and the call will set it up for you based on the
+				global root in DIC. </P> 
+			 <P><B>NOTE:</B> This variable is D with the letter O, not zero. </P>
+			 </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" TITLE="This table is for formatting purposes only"
+	 SUMMARY="This table is for formatting purposes only" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DIC</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>The global root of the file. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4"><B>DIC(0)</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) A string of alphabetic characters which alter how DIC
+				responds. At a minimum this string must be set to null. The characters you can
+				include are:</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="15%"><B>E</B></TD> 
+		  <TD><B>E</B>cho back information. This tells DIC that you are in an
+			 interactive mode and are expecting to be able to receive input from the user.
+			 If there are identifiers when adding a new entry, for example, the user can
+			 edit them as the entry is added if the E flag is used.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>F</B></TD> 
+		  <TD> 
+			 <P>Prevents saving the entry number of the matched entry in the ^DISV
+				global. Ordinarily, the entry number is saved at ^DISV(DUZ,DIC). This allows
+				the user to do a subsequent lookup of the same entry simply by pressing the
+				space bar and the Enter/Return key. To avoid the time cost of setting this
+				global, include an F in DIC(0). </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Z</B></TD> 
+		  <TD><B>Z</B>ero node returned in Y(0) and external form in Y(0,0).</TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="dic_p">DIC("P")</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P><B>NOTE:</B> Beginning with Version 22.0 of VA FileMan, the
+				developer is no longer required to set DIC("P").</P> 
+			 <P>The only exception to this is for a few files that are not
+				structured like a normal VA FileMan file, where the first subscript of the data
+				is variable in order to allow several different "globals" to use the same DD.
+				An example of this is the VA FileMan Audit files where the first subscript is
+				the file number of the file being audited.
+				<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+				HEIGHT="11"></P> 
+			 <P>Used when adding subentries in multiples. See description in
+				<A HREF="cl_dic.htm" TITLE="^DIC section" CLASS="bodylink">^DIC section</A>.
+				</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DA</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>Array of entry numbers. See the
+				<A HREF="cl_dic.htm#Subentries" TITLE="Adding New Subentries to a Multiple"
+				CLASS="bodylink">Adding New Subentries to a Multiple</A> discussion in the
+				description of <A HREF="cl_dic.htm" TITLE="^DIC" CLASS="bodylink">^DIC</A>.</P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>X</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>The internal value of the .01 field, as it is to be added to the
+				file. The programmer is responsible for ensuring that all criteria described in
+				the INPUT transform have been met. That means that the value X must be in
+				internal format as it would be after executing the input transform. For
+				example, a date must be in FileMan internal format '2690302', not 'March 02,
+				1969'. Also, local variables set by the input transform code must be set. For
+				example, if the input transform sets DINUM, then DINUM must be set to the
+				record number at which the entry must be added. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DINUM</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Identifies the subscript at which the data is to be
+				stored, that is, the internal entry number of the new record, shown as follows.
+				(This means that DINUM must be a canonic number and that no data exists in the
+				global at that subscript location.) </P> 
+			 <PRE>    $D(@(DIC_DINUM_&quot;)&quot;))=0
+</PRE> 
+			 <P>If a record already exists at the DINUM internal entry number, no
+				new entry is made. The variable Y is returned equal -1. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="dic_dr">DIC("DR")</A></B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Used to input other data elements at the time of adding
+				the entry. If the user does not enter these elements, the entry will not be
+				added. The format of DIC("DR") is the same as the
+				<A HREF="cl_die.htm#dr"
+				TITLE="variable DR" CLASS="bodylink">variable DR</A> described under the
+				discussion of
+				<A HREF="cl_die.htm"
+				TARGET="display" TITLE="^DIE" CLASS="bodylink">^DIE</A>. </P> 
+			 <P>If there are any required Identifiers for the file or if there are
+				keys defined for the file (in the KEY file), and if DIC(0) does not contain an
+				E, then the identifier and key fields MUST be present in DIC("DR") in order for
+				the record to be added. If DIC(0) contains E, the user will be prompted to
+				enter the identifier and key fields whether or not they are in DIC("DR").
+				<IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+				HEIGHT="11"> </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variables</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="3" WIDTH="20%"><B>Y</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>DIC always returns the variable Y, which can be in one of the two
+				following values: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y=-1</B></TD> 
+		  <TD VALIGN="TOP">Indicates the lookup was unsuccessful; no new entry
+			 was added. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y=N^S^1</B></TD> 
+		  <TD VALIGN="TOP">N is the internal number of the entry in the file, S
+			 is the value of the .01 field for that entry, and the 1 indicates that this
+			 entry has just been added to the file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y(0)</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This variable is only set if DIC(0) contains a Z. When it is set,
+				it is equal to the entire zero node of the entry that was selected. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y(0,0)</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This variable is also only set if DIC(0) contains a Z. When it is
+				set, it is equal to the external form of the .01 field of the entry. </P> </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DTOUT</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This is only defined if DIC has timed-out waiting for input from
+				the user. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DUOUT</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This is only defined if the user entered an up-arrow. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="x">X</A></B><IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">The variable X will be returned unchanged
+			 from the input value.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dicn1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

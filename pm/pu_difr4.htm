@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Running DIFROM to Export Data
+		(1-17)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,difrom,running difrom to export data table of contents (1-17),export data">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="di_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIFROM Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">DIFROM</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Running DIFROM (1-17)</H4> 
+	 <P>Running DIFROM is an interactive process. Prompts are presented to which
+		the developer responds. The dialog is described in the topics that follow. In
+		addition, the internal workings of the DIFROM process are detailed. The
+		different parts of running DIFROM are shown in the order in which they occur.
+		</P> 
+	 <OL> 
+		<LI><A HREF="pu_dif4a.htm" TITLE="Starting DIFROM"
+		  CLASS="bodylink">Starting DIFROM</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4b.htm" TITLE="Preliminary Validations"
+		  CLASS="bodylink">Preliminary Validations</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4c.htm" TITLE="Package Identification"
+		  CLASS="bodylink">Package Identification</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4d.htm" TITLE="Identifying the Init Routines"
+		  CLASS="bodylink">Identifying the Init Routines</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4e.htm" TITLE="Specifications for Exported Files"
+		  CLASS="bodylink">Specifications for Exported Files</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4f.htm" TITLE="Entering Current Version Information"
+		  CLASS="bodylink">Entering Current Version Information</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4g.htm"
+		  TITLE="Including Templates (No Package File Entry)" CLASS="bodylink">Including
+		  Templates (No Package File Entry)</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4h.htm" TITLE="Including Other Package Components"
+		  CLASS="bodylink">Including Other Package Components</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4i.htm" TITLE="Exporting File Security"
+		  CLASS="bodylink">Exporting File Security</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4j.htm" TITLE="Specifying Routine Size"
+		  CLASS="bodylink">Specifying Routine Size</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4k.htm"
+		  TITLE="DIFROM Gathers Miscellaneous Package Components" CLASS="bodylink">DIFROM
+		  Gathers Miscellaneous Package Components</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4l.htm"
+		  TITLE="DIFROM Builds Routines Containing Data Dictionaries"
+		  CLASS="bodylink">DIFROM Builds Routines Containing Data
+		  Dictionaries</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4m.htm"
+		  TITLE="DIFROM Builds Routines Containing Data Values" CLASS="bodylink">DIFROM
+		  Builds Routines Containing Data Values</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4n.htm"
+		  TITLE="DIFROM Builds Routines Containing Security Access Codes"
+		  CLASS="bodylink">DIFROM Builds Routines Containing Security Access
+		  Codes</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4o.htm" TITLE="DIFROM Gathers Templates and Forms"
+		  CLASS="bodylink">DIFROM Gathers Templates and Forms</A><BR><BR></LI> 
+		<LI><A HREF="pu_dif4p.htm"
+		  TITLE="DIFROM Completes Building Routines of Package Components"
+		  CLASS="bodylink">DIFROM Completes Building Routines of Package
+		  Components<BR><BR></A></LI> 
+		<LI><A HREF="pu_dif4q.htm"
+		  TITLE="DIFROM Completes the Code that Runs the Init" CLASS="bodylink">DIFROM
+		  Completes the Code that Runs the Init</A> </LI> 
+	 </OL> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- pu_difr4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

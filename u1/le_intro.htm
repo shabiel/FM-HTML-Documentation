@@ -1,0 +1,509 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Getting Started HTML Manual: Line Editor</TITLE><META
+	 NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,line editor,editors">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	 <P>&nbsp;</P> 
+	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="le_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u2/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			 CLASS="menubarlink">Advanced User Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Word-processing Fields</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Line Editor</H4> 
+	 <H5><A NAME="Introduction">Introduction</A></H5> 
+	 <P>The Line Editor is a scrolling mode editor. It is the second of two
+		standard editors VA FileMan provides for editing WORD-PROCESSING-type fields.
+		The distinguishing characteristic of a Scrolling Mode editor is that you enter
+		your text one line at a time, and that you can only edit lines one at a time.
+		Because word processing in a scrolling mode interface can be cumbersome, you
+		may want to set your Preferred Editor to the
+		<A HREF="se_frm.htm" TARGET="_top" TITLE="Screen Editor"
+		 CLASS="bodylink">Screen Editor</A>. VA FileMan continues to provide the
+		Scrolling-Mode Line Editor, however, for those who prefer it.</P> 
+	 <P><B>NOTE:</B> To set your default editor, please refer to the "<A
+		HREF="wp_swit.htm" TITLE="Choice of Word Processing Editors"
+		CLASS="bodylink">Choice of Word-processing Editors</A>" chapter in this manual.
+		<BR> <BR> For most people, the
+		<A HREF="se_frm.htm" TARGET="_top" TITLE="Screen Editor"
+		 CLASS="bodylink">Screen Editor</A> should be your Preferred Editor for
+		WORD-PROCESSING fields.</P> 
+	 <P><B>Recognizing the Line Editor</B></P> 
+	 <P>When you edit a WORD-PROCESSING field, it's easy to see if VA FileMan
+		chooses the Line Editor as your editor. If the Line Editor is used, the last
+		nine lines of text (if there are that many) are displayed on the screen, with
+		numbered prompts at the start of each line. Also, after the text is listed, you
+		are prompted with "EDIT Option:". The "EDIT Option:" prompt is where you can
+		enter each Line Editor command to work with the text. </P> 
+	 <P>For example:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>HISTORY: 
+    1&gt;Owing to poverty in early youth, patient seems not to
+    2&gt;have had proper diet. Since achieving economic success,
+    3&gt;his diet has been adequate, but traces of original
+    4&gt;deficiency remain.
+    5&gt;
+  EDIT Option:</PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="Entering">How to Enter Text in the Line Editor</A></H5> 
+	 <P>If no text exists yet in a WORD-PROCESSING field that you're about to
+		edit, you'll see the field name followed by "<B>1&gt;</B>". This is the Line
+		Editor's prompt for entering word processing text. </P> 
+	 <P>For example:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select PATIENT FILE NAME: <B>WAGSTROM,RICHARD</B>  
+    Select DIAGNOSIS: ANGINA PECTORIS// <B>B-12 DEFICIENCY</B>
+    HISTORY:
+      1&gt;</PRE> <HR> 
+	 <P>You can now enter the text for Line 1 and press the Enter/Return key.
+		This brings you to a prompt "<B>2&gt;</B>" for Line 2, and so forth. Keep
+		adding lines until you are done; then, press the Enter/Return key on a blank
+		line to finish your edit, as shown below:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>HISTORY: 
+    1&gt;<B>Owing to poverty in early youth, patient seems not to&lt;RET&gt;</B>
+    2&gt;<B>have had proper diet. Since achieving economic success,&lt;RET&gt;</B>
+    3&gt;<B>his diet has been adequate, but traces of original&lt;RET&gt;</B>
+    4&gt;<B>deficiency remain.&lt;RET&gt;</B>
+    5&gt;<B>&lt;RET&gt;</B>
+  EDIT Option: <B>&lt;RET&gt;</B>
+
+  Select DIAGNOSIS:</PRE> <HR> 
+	 <P></P><HR> 
+	 <P></P> 
+	 <H5><A NAME="Revising">Revising Existing Text</A></H5> 
+	 <P>To revise the contents of the WORD-PROCESSING field, you need to call up
+		each individual line that you want to edit and then edit each line. Here is how
+		you can do this: </P> 
+	 <OL> 
+		<LI>At the "EDIT Option:" prompt, enter the letter "<B>E</B>" for Edit a
+		  Line (Replace __ With __).<BR><BR></LI> 
+		<LI>At the "Edit line:" prompt, enter the number of the line you need to
+		  revise.<BR><BR></LI> 
+		<LI>Now, beneath the "EDIT Option:" and "Edit line:" prompts, you'll see
+		  the line of text that you identified by number and you'll see the "Replace"
+		  prompt.<BR><BR></LI> 
+		<LI>Enter a string in the current line to be replaced.<BR><BR></LI> 
+		<LI>If the string you enter is found in the current line, you'll set the
+		  "With" prompt. Enter a string to replace the original string.<BR><BR></LI> 
+		<LI>The line is now updated, and you're asked for another string to
+		  replace. If you're done editing the line, simply press the Enter/Return
+		  key.</LI> 
+	 </OL> 
+	 <P><B>Shortcut: Enter Line Number to Edit at "EDIT Option:" Prompt</B></P> 
+	 <P>There's a shortcut to edit a particular line. At the "EDIT Option:"
+		prompt, instead of choosing the Edit a Line (Replace __ With __) option and
+		entering the line number, just enter the line number instead. You are taken
+		directly to the line you specify, and then given the "Replace" prompt to edit
+		the line: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>5 &lt;RET&gt;</B>
+    5&gt;was the time of the day that I wnet over to Building 8 and
+    Replace <B>wnet</B> With <B>went</B>  Replace <B>&lt;RET&gt;</B> 
+     was the time of the day that I went over to Building 8 and
+  Edit line: </PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="Replace">"Replace...With" Edits: Be Careful</A></H5> 
+	 <P>When editing individual lines, you make changes using the
+		"Replace...With" dialogue, where you enter an existing string in the line, and
+		a new string to replace it with. Be careful as you enter your responses to the
+		"Replace" and "With" prompts. Enter enough letters to ensure that the computer
+		replaces the desired string of characters. </P> 
+	 <P>Here's why this issue is so important. In one line, you may have two
+		identical words or you may have two identical sets of characters embedded.
+		Since the computer changes only the <B><I>first</I></B> occurrence of any
+		series of letters that you enter, review your line carefully before responding
+		to the "Replace" prompt. Then enter enough identifying characters to correct
+		<I>the specific word or characters</I> you wish to change. Let's look at an
+		<I><B>incorrect</B></I> entry to illustrate the point. </P> 
+	 <P>In the example that follows, you need to change the sentence in the
+		second line from "This example is sample" to the sentence "This example is
+		simple."</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>2 &lt;RET&gt;</B>
+    2&gt;This example is sample
+    Replace <B>ample</B> With <B>imple</B>  Replace <B>&lt;RET&gt;</B> 
+     This eximple is sample
+  Edit line: </PRE> <HR> 
+	 <P>As you can see from this example, VA FileMan replaced the
+		<I><B>first</B></I> occurrence of the "ample" characters. Thus, "example" was
+		changed to "eximple" rather than "sample" being changed to "simple" because the
+		word "example" came before the word "simple" in the sentence (i.e., it was the
+		first occurrence). Obviously, we should have replaced the whole word "sample"
+		with "simple" to avoid any confusion. </P> 
+	 <P><B>Shortcuts at the "Replace...With" Prompt</B></P> 
+	 <P>As with editing long field values, you can replace long strings of
+		characters by using ellipses. An ellipsis is three successive periods
+		("<B>...</B>"). When editing, you can replace longer strings of characters by
+		using an ellipsis at the "Replace" prompt. You can specify ranges of text to
+		replace for any line (just as with a long text field) with the ellipsis. </P> 
+	 <P>For example, to replace an entire line at a "Replace...With" prompt,
+		enter the ellipsis (three periods) at the "Replace" prompt. You are then able
+		to replace the entire default with what you entered at the "With" prompt: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>5 &lt;RET&gt;</B>
+    5&gt;care of the boxes.
+    Replace <B>...</B> With <B>care to replace the existing supplies.</B>  Replace <B>&lt;RET&gt;</B> 
+     care to replace the existing supplies.
+  Edit line: </PRE> <HR> 
+	 <P><B>"Replace..." Prompt Shortcuts</B></P> 
+	 <P>The table below lists valid shortcut you can use in the "Replace...With"
+		editor: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY='"Replace... With" Prompt Shortcuts Table'
+	  TITLE='"Replace... With" Prompt Shortcuts Table'> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Shortcut</B></TD> 
+		  <TD VALIGN="TOP"><B>Action</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>...</B></TD> 
+		  <TD VALIGN="TOP">Replaces everything. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>xxx...</B></TD> 
+		  <TD VALIGN="TOP">Replaces everything starting from the characters "xxx"
+			 to the end. <B>&lt;PF1&gt;E</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>...xxx</B></TD> 
+		  <TD VALIGN="TOP">Replaces everything from the beginning up to and
+			 including the characters "xxx." <B>&lt;PF1&gt;Q</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>xxx...yyy</B></TD> 
+		  <TD VALIGN="TOP">Replaces everything starting from "xxx" up to and
+			 including "yyy." <B>&lt;PF1&gt;A</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>end or END</B></TD> 
+		  <TD VALIGN="TOP">Appends what you enter at the "With" prompt to the end
+			 of the value. <B>&lt;PF1&gt;S</B></TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> <HR ALIGN="center" WIDTH="90%"> 
+	 <H4>Commands</H4> 
+	 <H5><A NAME="Available">Available Commands</A></H5> 
+	 <P>In the Line Editor, all commands are available at the "EDIT Option:"
+		prompt. To see a list of available commands, simply enter two question marks,
+		as shown below:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE><A NAME="edit_options">EDIT Option:</A> <B>??</B>
+       Choose, by first letter, a Word Processing Command from the following:
+            Add Lines to End of Text
+            Break a Line into Two
+            Change Every String to Another in a Range of Lines
+            Delete Line(s)
+            Edit a Line (Replace __  With __)
+            Insert Line(s) after an Existing Line
+            Join Line to the One Following
+            List a Range of Lines
+            Move Lines to New Location within Text
+            Print Lines as Formatted Output
+            Repeat Lines at a New Location
+            Search for a String
+            Transfer Lines From Another Document
+            Utility Sub-Menu
+            Y-Programmer Edit
+       or type a Line Number to edit that line.
+  EDIT Option: <B>U</B>tilities in Word-Processing
+  UTILITY Option: ??
+       Choose, by first letter, a Utility Command from the following:
+            Editor Change
+            File Transfer from Foreign CPU
+            Text-Terminator-String Change
+  UTILITY Option:
+</PRE> <HR> 
+	 <H5><A NAME="List">LIST: List the Message</A></H5> 
+	 <P>Assume that you've just entered four lines of text in a WORD-PROCESSING
+		field and would now like to review the entire text. After entering text on Line
+		4 ("<B>4&gt;</B>"), press the Enter/Return key. When prompted for Line 5 (
+		"<B>5&gt;</B>"), press the Enter/Return key again and you'll arrive at the
+		"EDIT Option:" prompt. Enter "<B>L</B>" (for List a Range of Lines option) and
+		choose the range of lines to list (in this case, Lines 1 to 4): </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>L &lt;RET&gt;</B> ist line: 1// <B>&lt;RET&gt;</B>  to: 4// <B>&lt;RET&gt;</B>
+    1&gt;Owing to poverty in early youth, patient seems not to
+    2&gt;have had proper diet. Since achieving economic success,
+    3&gt;his diet has been adequate, but traces of original
+    4&gt;deficiency remain.
+  EDIT Option: </PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="Add">ADD: Append More Text</A></H5> 
+	 <P>After listing lines of text (see "<A HREF="#List"
+		TITLE="See LIST: List the Message topic" CLASS="bodylink">LIST: List the
+		Message</A>" topic), suppose you need to add a few comments at the end of your
+		message. From the "EDIT Option:" prompt, enter "<B>A</B>" (for Add Lines to End
+		of Text option). You can now add additional lines: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>A &lt;RET&gt;</B> dd lines
+    6&gt; <B>Next appointment will be in three weeks.</B>
+    7&gt; <B>Regular appointments need to be set up.</B>
+    8&gt; <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="Join">JOIN: Combine Two Lines of Text</A></H5> 
+	 <P>Suppose you're at the "EDIT Option:" prompt. After briefly reviewing
+		your text, you've decided that Lines 4 and 5 ("<B>4&gt;</B>" and
+		"<B>5&gt;</B>") are too short. You can use the Join command (i.e., Join Line to
+		the One Following option) to join Line 4 to the next line: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>L &lt;RET&gt;</B> ist line: 2// <B>&lt;RET&gt; </B> to: 3// <B>&lt;RET&gt;</B> 
+    2&gt;left by
+    3&gt;the doorway.
+  EDIT Option: <B>J &lt;RET&gt;</B> oin line: <B>2 &lt;RET&gt;</B> 
+    2&gt;left by the doorway.
+  ..
+  EDIT Option: </PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="Insert">INSERT: Insert New Line(s) of Text Between Existing
+		Ones</A></H5> 
+	 <P>Suppose that you want to insert new lines of text in the middle of
+		existing text in a WORD-PROCESSING field. Using the
+		<A HREF="#Add" TITLE="Add Lines to End of Text" CLASS="bodylink">Add Lines to
+		End of Text</A> won't work, because that appends new text lines at the
+		<I>end</I> of the existing lines. Instead, you can use the Insert command
+		[i.e., Insert Line(s) after an Existing Line], to do this: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>L &lt;RET&gt;</B> ist line: 1// <B>&lt;RET&gt;</B>  to: 5// <B>&lt;RET&gt;</B> 
+    1&gt;The delivery people came, and left several packages
+    2&gt;by the doorway.
+    3&gt;We've got some work ahead of us now.
+  EDIT Option: <B>I &lt;RET&gt;</B> nsert after line: <B>2 &lt;RET&gt;</B>
+    3&gt; <B>&lt;RET&gt;</B> 
+    4&gt; <B>Finally, the order arrived! &lt;RET&gt;</B>
+    5&gt; <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="Delete">DELETE: Delete a Line or Lines</A></H5> 
+	 <P>Occasionally, you may need to delete lines of text in a WORD-PROCESSING
+		field. Use the Delete command [i.e., Delete Line(s) option] at the "EDIT
+		Option:" prompt to do this:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>D &lt;RET&gt;</B> elete from line: <B>5 &lt;RET&gt;</B> thru: 3// <B>6
+&lt;RET&gt;</B>
+  OK TO REMOVE 2 LINES? No// <B>Y &lt;RET&gt;</B>  (Yes).....
+    1&gt;The delivery people came, and left several packages
+    2&gt;by the doorway.
+    3&gt; 
+    4&gt;Finally, the order arrived!
+  EDIT Option: </PRE> <HR> 
+	 <P></P><HR> 
+	 <H4>Advanced Features</H4> 
+	 <P>Most of the features of the Line Editor are self-explanatory and simple
+		to use. However, a few require additional explanation, as follows in this
+		chapter. </P> 
+	 <P><B>NOTE:</B> To see a full list of the
+		<A HREF="#edit_options" TITLE='commands available at the "EDIT Option" prompt'
+		 CLASS="bodylink">commands available at the "EDIT Option:" prompt</A>, enter two
+		question marks ("<B>??</B>"). </P> 
+	 <H5><A NAME="Transfer">File Transfer (Use When Uploading ASCII
+		Text)</A></H5> 
+	 <P>The File Transfer from Foreign CPU option from the Utility Sub-Menu lets
+		you upload text from another system into your WORD-PROCESSING field text, using
+		an ASCII (<I>non-error</I>-correcting) transfer. For example, if you are
+		connected from a personal computer (PC), you can use your communication
+		software to send a text file. </P> 
+	 <P>The file to be transferred must be a text (pure ASCII) file. Most word
+		processing programs have a way of saving a document as text (i.e., without
+		special formatting information); check your word processor's manual. Also, you
+		need to know how to send a text file using your PC's communication software; if
+		you're not sure how, check your communications software manual. </P> 
+	 <P>To use the File Transfer from Foreign CPU option: </P> 
+	 <OL> 
+		<LI>Make sure the file you're transferring is a pure ASCII text
+		  file.<BR><BR></LI> 
+		<LI>While editing a WORD-PROCESSING field in the Line Editor, choose the
+		  Utility Sub-Menu option at the "EDIT Option:" prompt. Then choose the File
+		  Transfer from Foreign CPU option from the Utility menu.<BR><BR></LI> 
+		<LI>At the "MAXIMUM string length? : (3-245):" prompt, enter maximum
+		  string length for lines you are uploading.<BR><BR></LI> 
+		<LI>The Line Editor now waits up to 30 seconds for you to initiate an
+		  ASCII transfer of the file.<BR><BR></LI> 
+		<LI>Use your communications software to perform an ASCII upload of the
+		  file. All uploaded text is appended to the WORD-PROCESSING field that you are
+		  editing.<BR><BR></LI> 
+		<LI>Once you have finished uploading, it takes 30 seconds of inactivity
+		  until the transfer can complete. When done, and after 30 seconds of inactivity,
+		  the computer responds "FILE TRANSFER COMPLETE" and you are returned to the
+		  "EDIT Option:" prompt.</LI> 
+	 </OL> 
+	 <P>The same precautions apply for uploading large quantities of text to the
+		Line Editor as apply with the
+		<A HREF="se_frm.htm" TARGET="_top" TITLE="Screen Editor"
+		 CLASS="bodylink">Screen Editor</A>. In particular, if you need to upload large
+		quantities of text quickly, consider switching to an Alternate Editor such as
+		Kermit (if installed as an Alternate Editor by your site) which provides
+		<I>error</I>-correcting communications protocol. Unlike an ASCII transfer (used
+		with the File Transfer option), an error-correcting protocol such as Kermit can
+		transfer text and automatically compensate for any communications overflows,
+		without losing characters. </P> <HR> 
+	 <H5><A NAME="Terminator">Text-Terminator-String Change</A></H5> 
+	 <P> <B>(Use When Uploading Text with Blank Lines)</B></P> 
+	 <P>In the Line Editor, a blank line (null string) signals the end of data
+		entry (and returns you to the "EDIT Option:" prompt. Thus, if you plan to
+		<I>paste</I> or <I>upload</I> text into the Line Editor from a personal
+		computer, any blank lines in the uploaded text have the side effect of
+		signaling the end of data entry (prematurely). One way around this is to use
+		the
+		<A HREF="#Transfer" TITLE="File Transfer from Foreign CPU option"
+		 CLASS="bodylink">File Transfer from Foreign CPU option</A>. Another way around
+		this problem is to use the Text-Terminator-String Change option on the Utility
+		Sub-Menu. This lets you change the text terminator so that some character
+		string, rather than a blank line, is what is used to signal the end of data
+		entry. </P> 
+	 <P>You can change the text terminator to any string of between one and five
+		characters; question marks ("<B>?</B>") or up-arrows ("<B>^</B>") are
+		<I>not</I> allowed in the string. To finish editing a WORD-PROCESSING field and
+		get to the "EDIT Option:" prompt, simply enter your new text terminator string
+		instead of pressing the Enter/Return key on a blank line. You should choose a
+		text terminator that doesn't appear in your text: "end" would not be a good
+		choice, but "EnD" might be. </P> 
+	 <P>The new text terminator is <I>not permanent</I>; it remains only as long
+		as you are editing a particular WORD-PROCESSING field. You can change it back
+		to a null line by entering an at-sign ("<B>@</B>") at the "Text-Terminator:"
+		prompt. You can permanently change your default text terminator by changing it
+		in your user characteristics as described in the Kernel manuals. </P> <HR> 
+	 <H5><A NAME="Programmer">Programmer Edit (Edit Lines with M
+		Commands)</A></H5> 
+	 <P>The Y-Programmer Edit option (invoked by entering the letter <B>Y</B>)
+		is only available to users with programmer's access. You can enter a line of M
+		code that, line-by-line, reads in the current line in variable X and returns
+		the transformed line in variable Y. You can specify the range of lines to be
+		transformed by the M code you enter. </P> 
+	 <P>For example, to blank out all lines containing the words "Top Secret",
+		you could enter the following M code: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>Y</B>
+
+The text is in X and returned in Y
+Enter MUMPS xecute string to do transformation: <B>I X[&quot;Top Secret&quot; S
+Y=&quot; &quot;</B>
+</PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="Editor">Editor Change: Switch Editors</A></H5> 
+	 <P>The Editor Change option, on the Utility Sub-Menu, shows you a list of
+		the editors available for your use, if you enter two question marks
+		("<B>??</B>") at the "Select ALTERNATE EDITOR:" prompt. The editors include VA
+		FileMan's own editors (the Line Editor and Screen Editor) and any other editors
+		to which you have access. You choose the editor to use by entering its name.
+		When you exit your chosen editor, you return to the Line Editor's "EDIT
+		option:" prompt.</P> <HR> 
+	 <H5><A NAME="Text">Transfer Text</A> (from Another WORD-PROCESSING
+		Field)</H5> 
+	 <P>The Transfer Lines From Another Document option lets you copy text from
+		some other WORD-PROCESSING field into your current field. You need to specify
+		on which line of the current field to place the incoming text and identify the
+		source of the text. </P> 
+	 <P>To identify the source of the text, you need to use
+		<A HREF="../u2/rn_simp.htm" TARGET="display" TITLE="extended pointer syntax"
+		CLASS="bodylink">extended pointer syntax</A>, which is described in the "<A
+		HREF="../u2/rn_frm.htm" TARGET="_top" TITLE="Relational Navigation"
+		CLASS="bodylink">Relational Navigation</A>" chapter of the "VA FileMan Advanced
+		User Manual." The syntax lets you specify the particular field of a specific
+		entry in a specific file. Briefly, the syntax can be in one of the following
+		two forms: </P> 
+	 <P> &lt;expression&gt;:&lt;file&gt;:&lt;field&gt; </P> 
+	 <P> <B>OR</B> </P> 
+	 <P> &lt;expression&gt; IN &lt;file&gt; FILE:&lt;field&gt; </P> 
+	 <P>The <B>&lt;expression&gt;</B> or lookup value has several possible
+		forms. One way to refer to the field is by entry name. To retrieve text from
+		the WORD-PROCESSING PROGNOSIS field of the entry Angina Pectoris in a file
+		named DIAGNOSES, you could enter the following: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>EDIT Option: <B>T &lt;RET&gt; </B>ransfer incoming text after line: <B>1
+&lt;RET&gt;</B>
+  From what text: <B>? &lt;RET&gt;</B>
+
+       Select another entry in this file, OR
+       use relational syntax to pick up information from a word-
+       processing field in another file.
+       ex.  &quot;VALUE&quot;:FILE NAME:WORD PROCESSING FIELD NAME
+
+  Do you want the entire TEST list?
+  Enter Yes or No: <B>^</B>
+  From what text: <B>&quot;Angina Pectoris&quot;:DIAGNOSES:PROGNOSIS &lt;RET&gt;</B>
+  From line: <B>1 &lt;RET&gt;</B>  thru: <B>20 &lt;RET&gt;</B>
+  ARE YOU SURE? NO// <B>y &lt;RET&gt;</B>  (YES)... . .</PRE> <HR> 
+	 <P>Alternately, you can use the second syntax to retrieve the same field in
+		the same file entry: </P> 
+	 <P><IMG SRC="le_1.gif" WIDTH="580" HEIGHT="109"
+		ALT="Example of Transferring Text."> </P> 
+	 <P>The requested text is identified by the value of the .01 field in quotes
+		("Angina Pectoris"). Thus, in this example the <B>&lt;expression&gt;</B> is the
+		entry's name. You also specify which lines you want to transfer. If you enter a
+		single question mark ("<B>?</B>") at the "From line:" prompt, you can list the
+		current numbered lines in the WORD-PROCESSING field. You can then easily choose
+		the lines to be transferred. </P> 
+	 <P>If the field from which you are transferring text displays text without
+		wrapping, you'll receive the following message: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>WARNING!
+  The field you are transferring text from displays text without wrapping.
+  The field you are transferring text into may display text differently.
+
+  Do you want to continue?
+
+  Enter Yes or No:</PRE> <HR> 
+	 <P>Consider the possibility that the text transferred from the no-wrap
+		field may be unreadable, if the field you are transferring into does wrap text.
+		For example, a spreadsheet might lose the alignment of its columns. </P> 
+	 <P>If the transfer does not succeed, the message <B>&lt;no change&gt;</B>
+		is shown. The transfer might fail for several reasons: </P> 
+	 <UL> 
+		<LI>Incorrect syntax for the extended pointer.<BR><BR></LI> 
+		<LI>An attempted transfer from other than a WORD-PROCESSING DATA TYPE
+		  field.<BR><BR></LI> 
+		<LI>Lack of permission to read the file from which you are trying to
+		  extract text.</LI> 
+	 </UL> 
+	 <P>You must have READ ACCESS to transfer text from a file.</P> 
+	 <P>For details of the different types of file security, please refer to the
+		"<A HREF="../u2/ds_frm.htm" TARGET="_top" TITLE="Data Security"
+		CLASS="bodylink">Data Security</A>" chapter in the "<A HREF="../u2/index.htm"
+		TARGET="_top" TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+		CLASS="bodylink">VA FileMan Advanced User Manual</A>."</P>
+		
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle"> 
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Importing/Exporting To/From
+		Multiples</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,import and export tools,import,export,tools,multiples,exporting data from multiples">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ei_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Import and Export Tools Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Import and Export Tools</A></H3> <HR CLASS="hrstyle">
+	 
+	 <H4>Special Considerations: Multiples</H4> 
+	 <H5><A NAME="Exporting">Exporting Data From Multiples</A></H5> 
+	 <P><B>Data Flattening</B></P> 
+	 <P>Data exported from Multiples is "flattened;" that is, data at upper
+		levels is repeated for each subentry. For example, take the comma-delimited
+		export for a top level file's #.01 NAME field and a Subfile's #.01 DATE and #1
+		TYPE fields. The output for an entry with four subentries would look like:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>SMITH,01-JAN-95,SC
+    SMITH,24-JUN-95,NSC
+    SMITH,14-AUG-95,SC
+    SMITH,21-JUL-96,NSC</PRE> <HR> 
+	 <P><B>NOTE:</B> The top level .01 field is repeated for each Subfile
+		entry.</P> 
+	 <P><B>No More Than One Multiple at Any One File Level</B></P> 
+	 <P>You can't export <I>more than one</I> Multiple at <I>any one file
+		level</I>. You can export data from one Multiple and from Subfiles directly
+		descendent from that Multiple (as long as you never export more than one
+		Subfile at the same level). Suppose you're exporting data from a file with the
+		following structure: </P> 
+	 <P></P> 
+	 <P ALIGN="CENTER"><IMG SRC="EI_mult.gif" ALIGN="bottom" WIDTH="305"
+		HEIGHT="240" ALT="Example Showing Various Multiple Levels."> </P> 
+	 <P>In addition to fields in the Primary file, you can export from Subfile
+		1A <I>or</I> Subfile 2A, but not from both. Also, you can export from Subfile
+		2A, Subfile 2B-1, and Subfile 2C-1, but you could not additionally choose
+		fields in Subfile 2B-2. If you need data from Subfiles that are not directly
+		descendent from each other, you can do multiple exports and "join" the data
+		together in the importing application. </P> 
+	 <P><B>Sorting with Multiples</B></P> 
+	 <P>A special, automated sort is done to the data when Multiples are
+		exported; you <I>cannot</I> perform your own sort. When Subfiles are involved,
+		the Export Tool performs a special sort in order to format the data. Since the
+		Export Tool must do this customized sort, you cannot sort the data yourself. If
+		you need the data in a particular sequence, sort it in the importing
+		application. You can perform any search on the data that is necessary to choose
+		entries for export. </P> <HR> 
+	 <H5><A NAME="Importing">Importing Data Into Multiples</A></H5> 
+	 <P><B>Incoming Data Should Not be Flattened</B></P> 
+	 <P>The Import Tool expects that any data bound for a Multiple be contained
+		in the same import record (line of data) as the data for the top file level.
+		This is different from the output of the Export Tool, which "flattens" exported
+		data from Multiples into separate lines of output. </P> 
+	 <P>For example, consider a comma-delimited import of records, each
+		including a name plus four subentries. Each subentry contains a DATE and a
+		TYPE. The records will be imported into a file with a top-level #.01 NAME
+		field, and a Multiple with #.01 DATE and #1 TYPE fields. For this import, you
+		would choose the destination fields as follows:</P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG SRC="ei_mult2.gif" WIDTH="558" HEIGHT="350"
+		 ALT="Example of the Field Selection for Import Form."> </CENTER> 
+	 <P></P> 
+	 <P>A corresponding line of data to be imported for a record, containing
+		data for both the top-level record and its subentries, would look like:</P> 
+	 <PRE>    SMITH,01-JAN-95,SC,24-JUN-95,NSC,14-AUG-95,SC,21-JUL-96,NSC</PRE> 
+	 <P><B>NOTE:</B> You must file the same number of subentries in each record
+		you import.</P> 
+	 <P><B>Completeness of Subfile Entries</B></P> 
+	 <P>New subentries need to be added to every Subfile on a path to the lowest
+		level Subfiles. Your data must include values for the .01 field and all the
+		required identifiers for every Subfile (as well as for the top level of the
+		file). You can add more than one subentry in a particular Subfile. However, you
+		are restricted to the same set of fields for every entry in each Subfile.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ei_mult.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

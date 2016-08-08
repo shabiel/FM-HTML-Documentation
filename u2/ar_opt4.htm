@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Create Filegram Archiving
+		Template Option</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,archiving,archive">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ar_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Archiving Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Archiving</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Create Filegram Archiving Template</H4> 
+	 <P>The Create Filegram Archiving Template option creates a FILEGRAM-type
+		template, which is the template used in the Write Entries to Temporary Storage
+		option. A filegram is the tool used for extracting and transporting archived
+		data to temporary storage. (For further explanation, see the "<A
+		HREF="ar_opt5.htm" TITLE="Write Entries to Temporary Storage"
+		CLASS="bodylink">Write Entries to Temporary Storage</A>" section.)</P> 
+	 <P>You can create a new FILEGRAM-type template with this option or edit an
+		existing one created using the Filegram or Archiving options.</P> 
+	 <P><B>NOTE:</B> Only those fields defined in the FILEGRAM-type template,
+		the .01 field, and any PRIMARY KEY or Identifier fields will be archived to
+		permanent storage. <BR> <BR> The PRIMARY KEY is new with Version 22.0&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+		HEIGHT="11"></P> 
+	 <P>You create a FILEGRAM-type template just as you create a PRINT template,
+		except only valid field numbers or names can be entered. You cannot include
+		print qualifiers. You always get the "STORE FILEGRAM LOGIC IN TEMPLATE:"
+		prompt, no matter how many fields you identify. </P> 
+	 <P>FILEGRAM-type templates are stored in the PRINT TEMPLATE file (#.4), so
+		the FILEGRAM-type template is referred to as a PRINT template in the dialogue.
+		However, VA FileMan can distinguish between PRINT and FILEGRAM-type templates.
+		</P> 
+	 <P>If you want to edit an existing FILEGRAM-type template, identify it at
+		the "FIRST SEND FIELD:" prompt by entering "<B>[Filegram templatename</B>".
+		Otherwise, specify the fields you want included in the archive. (The .01 field
+		and the file's PRIMARY KEY and Identifier fields will always be sent.) In the
+		example that follows, all fields are being sent. </P> 
+	 <P><B>NOTE:</B> The PRIMARY KEY is new with Version 22.0&nbsp;<IMG
+		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+		HEIGHT="11"></P> 
+	 <P>Here is an example of creating a FILEGRAM-type template:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select ARCHIVE OPTION: <B>CREATE</B> FILEGRAM ARCHIVING TEMPLATE
+
+OUTPUT FROM WHAT FILE: <B>CHANGE</B>
+
+FIRST SEND CHANGE FIELD: <B>ALL</B>  
+Do you mean ALL the fields in the file? No// <B>Y &lt;RET&gt;</B>  (Yes)
+ THEN SEND CHANGE FIELD: <B>&lt;RET&gt;</B>
+
+STORE ARCHIVE LOGIC IN TEMPLATE: <B>CHANGE FILEGRAM</B>
+  Are you adding 'CHANGE FILEGRAM' as a new PRINT TEMPLATE?  No// <B>YES &lt;RET&gt;</B>  (Yes)</PRE>  
+	<P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ar_opt4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

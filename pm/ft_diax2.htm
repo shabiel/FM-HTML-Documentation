@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: EXTRACT^DIAXU</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,extract tool,extract,tool,api,extract^diaxu,diaxu">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ex_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Extract Tool API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Extract Tool API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>EXTRACT^DIAXU: Extract Data&nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></H4> 
+	 <P>EXTRACT^DIAXU is a new entry point. It is the preferred entry point for
+		extracting data records. The principal features introduced with this entry
+		point for extracting data are:</P> 
+	 <UL> 
+		<LI>More than one record can be extracted in a call.<BR><BR></LI> 
+		<LI>Subrecords can be extracted as individual transactions. Previously,
+		  an entire record including all subrecords had to be extracted as a single
+		  entity.<BR><BR></LI> 
+		<LI>DBS-style error reporting is used.</LI> 
+	 </UL> 
+	 <P>Like <A HREF="ft_diaxu.htm" TITLE="EN^DIAXU"
+		CLASS="bodylink">EN^DIAXU</A>, this entry point extracts data from the fields
+		specified in the EXTRACT template and places that data in an entry in a
+		destination file. You can optionally delete the source entry after the extract
+		process is completed.</P> 
+	 <H5>Format</H5> 
+	 <PRE>D EXTRACT^DIAXU(FILE,SOURCE,EXTRACT_TEMPLATE,FLAGS,.SCREENS,
+  .FILING_LEVEL,TARGET_ROOT,MSG_ROOT)</PRE> 
+	 <H5>Input</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="top" WIDTH="20%"><B>FILE</B></TD> 
+		  <TD VALIGN="top" COLSPAN="2">(Required) File number of source
+			 file.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>SOURCE</B></TD> 
+		  <TD VALIGN="top" COLSPAN="2">(Required) Can be 1 of 2 formats: 
+			 <UL> 
+				<LI>IEN: The record number of a single record, at the top level of
+				  the file, to extract.<BR><BR></LI> 
+				<LI>SEARCH template name: The name of a SEARCH template, in
+				  brackets, that contains SEARCH results (a list of record numbers). For example,
+				  
+				  <PRE>S SOURCE=&quot;[TEMPLATE_NAME]&quot; </PRE> </LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>EXTRACT_TEMPLATE </B></TD> 
+		  <TD VALIGN="top" COLSPAN="2">(Required) The name of the EXTRACT
+			 template, in brackets, containing what fields to move.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top" ROWSPAN="2"><B>FLAGS</B></TD> 
+		  <TD COLSPAN="2">(Optional) A string of characters to modify the
+			 behavior of the Extract tool. Permissible characters in the string are:</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top" WIDTH="10%"><B>D</B></TD> 
+		  <TD> 
+			 <P>Tells the extract tool to <B>D</B>elete source records if they
+				were moved successfully. Note that deletion is only done for entire (top-level)
+				records. Subrecords are not individually deleted, even if they are individually
+				extracted.</P> 
+			 <P><B>NOTE: </B>If the SOURCE parameter is set to a SEARCH template,
+				and you include a D in the FLAGS parameter, the record numbers of any
+				successfully extracted records are removed from the list of record numbers in
+				the SEARCH template. But if an error is encountered, the source record is not
+				deleted and the record number is not removed from the list of record numbers in
+				the SEARCH template.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>.SCREENS</B></TD> 
+		  <TD VALIGN="top" COLSPAN="2">(Optional) Local array containing
+			 screen(s) to apply to subrecords at various subrecord levels. The screens
+			 determine whether to move individual subrecords at a given level or not. The
+			 screens can be any valid M code that sets $TEST to 1 if the subrecord at a
+			 given level should be moved, or 0 if not. 
+			 <P>Set up nodes in this array subscripted by subfile# for each
+				subrecord level you want to screen. </P> 
+			 <P>For a list of the variables you can reference and change in the
+				screen, please refer to the SCREEN parameter description in the
+				<A HREF="db_dic_l.htm" TITLE="LIST^DIC" CLASS="bodylink">LIST^DIC</A> DBS call.
+				</P> 
+			 <P><B>Example:</B> </P> 
+			 <PRE>  S MYARRAY(999.01)=&quot;I $P(^(0),U,2)=&quot;&quot;Y&quot;&quot;&quot; </PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>.FILING_LEVEL</B></TD> 
+		  <TD COLSPAN="2">(Optional) Local array you can use to tell the Extract
+			 tool to file subrecords as <STRONG>individual</STRONG> transactions, at one or
+			 more subfile levels. The default filing mode is to file an
+			 <STRONG>entire</STRONG> record - including all subrecords - as a single
+			 transaction. 
+			 <P>You should consider using the FILING_LEVEL feature when extracting
+				records with <STRONG>many</STRONG> subrecords at a given subfile level. This
+				lets you restrict the scope of an extract transaction (every part of the
+				transaction must succeed or the entire transaction fails) to individual
+				subrecords rather than to a record <STRONG>and</STRONG> all of its subrecords.
+				</P> 
+			 <P>For example, suppose the records you are extracting have one
+				multiple field in particular in which there may be a thousand or more
+				subrecords for every record. The subfile level of this multiple is a very good
+				candidate to be filed individually: </P> 
+			 <UL> 
+				<LI><STRONG>Without</STRONG> filing individually, failure to
+				  successfully extract any <STRONG>one</STRONG> of a record's thousand subrecords
+				  will abort the extract for the top level record and <STRONG>all </STRONG>of its
+				  subrecords<STRONG> </STRONG>(no changes will be
+				  filed)<STRONG>.</STRONG><BR><BR></LI> 
+				<LI><STRONG>With</STRONG> filing individually, if any data in the
+				  subrecord causes an error, the subrecord will not be extracted, but the extract
+				  for the top level record and its other subrecords will continue. </LI> 
+			 </UL> 
+			 <P>Another drawback of filing a record and a large number of
+				subrecords as a single transaction is that a very large
+				<A HREF="db_int4.htm" TITLE="FDA array" CLASS="bodylink">FDA array</A> can be
+				created; this can be resource intensive and could exhaust scratch storage space
+				in ^TEMP. </P> 
+			 <P>To file subrecords at any given subfile level individually, set up
+				an array with a node subscripted by subfile# and pass the array by reference as
+				this parameter. You can set more than one subfile level to file individually,
+				by passing one node for each subfile level in the array. </P> 
+			 <P><B>Example:</B> </P> 
+			 <PRE>  S F_ARRAY(999.01)=&quot;&quot; </PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>TARGET_ROOT</B></TD> 
+		  <TD COLSPAN="2">(Optional) Array that should receive the results
+			 generated during the extract tool process. This must be a closed array
+			 reference and can be either local or global. If you specify your own array for
+			 results, make sure it's empty before calling EXTRACT^DIAXU. 
+			 <P>If you do not pass this parameter, the results are returned in
+				^TMP("DIAXU",$J). </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>MSG_ROOT</B></TD> 
+		  <TD COLSPAN="2">(Optional) Array that should receive error messages
+			 generated during the extract tool process. This must be a closed array
+			 reference and can be either local or global. If you specify your own array for
+			 error messages, be sure it's empty before calling EXTRACT^DIAXU. 
+			 <P>If you do not pass this parameter, error messages are returned in
+				^TMP("DIERR",$J). </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="top" WIDTH="20%"><B>DIERR</B></TD> 
+		  <TD VALIGN="top">This variable is returned if an error condition
+			 occurred. It contains two ^-pieces of information: 
+			 <OL> 
+				<LI>Number of errors generated during the call<BR><BR></LI> 
+				<LI>Total number of lines of the error messages</LI> 
+			 </OL> 
+			 <P>Associated error messages are stored, DBS-style, in MSG_ROOT. </P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>TARGET_ROOT</B></TD> 
+		  <TD>One "RESULT" node is returned for each record extracted (or
+			 attempted to be extracted). 
+			 <P>The format of the "RESULT" node(s) for a <B>successful</B> extract
+				is: </P> 
+			 <UL> 
+				<LI>TARGET_ROOT parameter passed 
+				  <P><TT>TARGET_ROOT("RESULT", source_file, source_ien) =
+					 destination_file_ien</TT></P> <BR><BR></LI> 
+				<LI>No TARGET_ROOT parameter passed 
+				  <P><TT>^TMP("DIAXU", $J, "RESULT", source_file, source_ien) =
+					 destination_file_ien</TT> </P> </LI> 
+			 </UL> 
+			 <P>The format of the "RESULT" node(s) for an <B>unsuccessful</B>
+				extract is: </P> 
+			 <UL> 
+				<LI>TARGET_ROOT parameter passed 
+				  <P><TT>TARGET_ROOT("RESULT", "ERR", source_file, source_ien) =
+					 error_list </TT></P> <BR><BR></LI> 
+				<LI>No TARGET_ROOT parameter passed 
+				  <P><TT>^TMP("DIAXU", $J, "RESULT", "ERR", source_file,
+					 source_ien) = error_list </TT></P> </LI> 
+			 </UL> 
+			 <P>The error list for an unsuccessful extract contains the error
+				numbers, each followed by a semicolon. For example, if a "RESULT" node is: </P>
+			 
+			 <P><TT>TARGET_ROOT("RESULT", "ERR", 16151, 6)=1;2;</TT></P> 
+			 <P>This means that errors 1 and 2 are caused by the extract of record
+				6. Errors one and two are returned in the MSG_ROOT array. </P> 
+			 <P>If the FILING_LEVEL parameter is being used such that subrecords
+				are being filed individually at some subfile levels, results (successful or
+				unsuccessful) are returned for <B>each</B> individual subrecord extracted, in
+				the same format as above, except that: </P> 
+			 <UL> 
+				<LI>"source_file" will be the subfile number<BR><BR></LI> 
+				<LI>"source_ien" will be the IENS string for the subfile
+				  entry<BR><BR></LI> 
+				<LI>"destination_file_ien" will be the IENS string for the
+				  destination subfile entry</LI> 
+			 </UL> 
+			 <P>If one or more subrecords extracted <B>unsuccessfully</B> using
+				the FILING_LEVEL parameter, a single error (1300) is returned for the top-level
+				record in a "RESULT","ERR" node, but this does not abort the extract. So in
+				this case a top-level extracted record can have both a "RESULT" node
+				(indicating success at the top level and the destination file ien) and a
+				"RESULT","ERR" node (indicating error[s] during subfile filing). </P> 
+			 <P>If the extract fails for any subrecord at some subfile level
+				<B>not</B> filed individually via the FILING_LEVEL parameter, a "RESULT","ERR"
+				node is returned for the top-level record, and the extract for the top-level
+				record aborts. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B>MSG_ROOT</B></TD> 
+		  <TD>Error messages are returned in MSG_ROOT("DIERR") (if the MSG_ROOT
+			 input parameter is passed) or ^TMP("DIERR",$J) (if no array is specified).
+			 Errors are returned in DBS-style format. 
+			 <P>For more information on the format of DBS-style error arrays, see
+				the "<A HREF="db_how3.htm#DIERR" TITLE="DIERR" CLASS="bodylink">DIERR</A>"
+				section of "<A HREF="db_how3.htm" TITLE="Contents of Arrays"
+				CLASS="bodylink">Contents of Arrays</A>" in the "<A HREF="db_how.htm"
+				TITLE="How to Use the Database Server" CLASS="bodylink">How to Use the Database
+				Server</A>" section. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>In this example, EXTRACT^DIAXU is called with a SEARCH template
+		containing a list of three record numbers to extract. Two records (#7 and #32)
+		are moved successfully and one record (#34) fails to be moved. As a result of
+		the error, the variable DIERR would be returned (set to "1^1"). The call might
+		look like:</P> 
+	 <PRE>  D EXTRACT^DIAXU(16151,&quot;[EXTRACT SEARCH]&quot;,&quot;[EXTRACT TEMPLATE]&quot;)</PRE> 
+	 <P>The results messages would be returned as follows:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>^TMP(&quot;DIAXU&quot;,627068728,&quot;RESULT&quot;,16151,7) = 1
+^TMP(&quot;DIAXU&quot;,627068728,&quot;RESULT&quot;,16151,32) = 13
+^TMP(&quot;DIAXU&quot;,627068728,&quot;RESULT&quot;,&quot;ERR&quot;,16151,34) = 1;</PRE> <HR> 
+	 <P>The error messages would be returned as follows:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>^TMP(&quot;DIERR&quot;,627068728,1) = 701
+^TMP(&quot;DIERR&quot;,627068728,1,&quot;PARAM&quot;,0) = 3
+^TMP(&quot;DIERR&quot;,627068728,1,&quot;PARAM&quot;,3) = NEWONE
+^TMP(&quot;DIERR&quot;,627068728,1,&quot;PARAM&quot;,&quot;FIELD&quot;) = .01
+^TMP(&quot;DIERR&quot;,627068728,1,&quot;PARAM&quot;,&quot;FILE&quot;) = 16299
+^TMP(&quot;DIERR&quot;,627068728,1,&quot;TEXT&quot;,1) = The value 'NEWONE' for
+   field NAME in file FTEXT EXTRACT is not valid.
+^TMP(&quot;DIERR&quot;,627068728,&quot;E&quot;,701,1) = </PRE> <HR> 
+	 <P><B>Example 2</B></P> 
+	 <P>Suppose that the call to EXTRACT^DIAXU is made using the FILING_LEVEL
+		array. This means that subrecords at some subfile levels are extracted
+		individually. Let's suppose only one record is being extracted (ien #5), and
+		two subrecords are extracted individually with the FILING_LEVEL array.
+		Subrecord #1 extracts successfully, and subrecord #2 fails. The results and
+		error messages would be returned as follows:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>^TMP(&quot;DIAXU&quot;,541074770,&quot;RESULT&quot;,662001,5) = 75                 (<I>record #5, success</I>)
+^TMP(&quot;DIAXU&quot;,541074770,&quot;RESULT&quot;,662001.1,&quot;1,5,&quot;) = 1,75,       (<I>subrecord #1, success</I>)
+^TMP(&quot;DIAXU&quot;,541074770,&quot;RESULT&quot;,&quot;ERR&quot;,662001,5) = 2            (<I>record #5, error 2
+from subrecord failure</I>)
+^TMP(&quot;DIAXU&quot;,541074770,&quot;RESULT&quot;,&quot;ERR&quot;,662001.1,&quot;2,5,&quot;) = 1;    (<I>subrecord
+#2, error 1</I>)
+^TMP(&quot;DIERR&quot;,541074770,1) = 330                                (<I>error 1</I>)
+^TMP(&quot;DIERR&quot;,541074770,1,&quot;PARAM&quot;,0) = 2                         
+^TMP(&quot;DIERR&quot;,541074770,1,&quot;PARAM&quot;,1) = 99
+^TMP(&quot;DIERR&quot;,541074770,1,&quot;PARAM&quot;,2) = pointer to File #200
+^TMP(&quot;DIERR&quot;,541074770,1,&quot;TEXT&quot;,1) = The value '99' is not 
+  a valid pointer to File #200.
+^TMP(&quot;DIERR&quot;,541074770,2) = 1300                                (<I>error 2</I>)
+^TMP(&quot;DIERR&quot;,541074770,2,&quot;PARAM&quot;,0) = 1
+^TMP(&quot;DIERR&quot;,541074770,2,&quot;PARAM&quot;,&quot;IEN&quot;) = 5 
+^TMP(&quot;DIERR&quot;,541074770,2,&quot;TEXT&quot;,1) = &quot;The entry encountered an err
+  or during subfile filing.
+^TMP(&quot;DIERR&quot;,541074770,&quot;E&quot;,330,1) =
+^TMP(&quot;DIERR&quot;,541074770,&quot;E&quot;,1300,2) = </PRE> <HR> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>This entry point calls
+		<A HREF="db_dicf1.htm" TITLE="$$FIND1^DIC" CLASS="bodylink">$$FIND1^DIC</A>,
+		<A HREF="db_dic_l.htm" TITLE="LIST^DIC" CLASS="bodylink">LIST^DIC</A>,
+		<A HREF="db_die_u.htm" TITLE="UPDATE^DIE" CLASS="bodylink">UPDATE^DIE</A>,
+		<A HREF="db_diqg1.htm" TITLE="$$GET1^DIQ" CLASS="bodylink">$$GET1^DIQ</A>, and
+		<A HREF="db_diqgs.htm" TITLE="GETS^DIQ" CLASS="bodylink">GETS^DIQ</A>; any
+		errors returned by these entry points can also be returned by
+		EXTRACT^DIAXU.</P> 
+	 <P>In addition, the following errors may be returned:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="top"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="top">An input parameter is missing or not valid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B><A HREF="err_601.htm" TITLE="Error 601"
+			 CLASS="bodylink">601</A></B></TD> 
+		  <TD VALIGN="top">The entry does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top"><B><A HREF="err_1300.htm" TITLE="Error 1300"
+			 CLASS="bodylink">1300</A></B></TD> 
+		  <TD VALIGN="top">The entry encountered an error during subfile
+			 filing.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ft_diax2.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

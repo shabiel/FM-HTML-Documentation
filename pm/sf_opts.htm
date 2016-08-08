@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Menu Options</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,menu options,menu,options">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>ScreenMan Menu Options</H4> 
+	 <P>The ScreenMan menu options are found on a submenu of the Other Options
+		menu: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>O</B>THER OPTIONS
+Select OTHER OPTION: <B>SC</B>REENMAN
+Select SCREENMAN OPTION: <B>?</B>
+ Answer with SCREENMAN OPTION NUMBER, or NAME
+Choose from:
+   1               <A HREF="#Edit/Create" TITLE="EDIT/CREATE A FORM" CLASS="bodylink">EDIT/CREATE A FORM</A>
+   2               <A HREF="#Run" TITLE="RUN A FORM" CLASS="bodylink">RUN A FORM</A>
+   3               <A HREF="#Delete" TITLE="DELETE A FORM" CLASS="bodylink">DELETE A FORM</A>
+   4               <A HREF="#Purge" TITLE="PURGE UNUSED BLOCKS" CLASS="bodylink">PURGE UNUSED BLOCKS</A>
+
+Select SCREENMAN OPTION: 
+
+</PRE> <HR> 
+	 <P>This section describes the four ScreenMan options. </P> 
+	 <H5><A NAME="Edit/Create">Edit/Create a Form</A></H5> 
+	 <P>The first option, Edit/Create a Form, invokes the Form Editor, the
+		screen-oriented utility for editing and building ScreenMan forms. The Form
+		Editor is described in detail in the "<A HREF="fe_frm.htm" TARGET="_top"
+		TITLE="ScreenMan Form Editor" CLASS="bodylink">ScreenMan Form Editor</A>"
+		chapter. </P> 
+	 <H5><A NAME="Run">Run a Form</A></H5> 
+	 <P>Instead of setting up input variables and making a call to ^DDS, you can
+		use the second option on the ScreenMan menu to run a form shown below: </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select SCREENMAN OPTION: <B>R</B>UN A FORM 
+
+MODIFY SCREEN TEMPLATE FOR WHAT FILE: <B>ZZEZ SCREENDOC</B> 
+
+
+Select FORM: <B>ZZEZ DOC</B>  ZZEZ DOC 
+
+Enter number of first page: 1// <B>&lt;RET&gt;  Select ZZEZ SCREENDOC NAME: <B>TURING,ALAN
+M.</B>          AL</B>
+</PRE> <HR> 
+	 <P>You are asked to select a file, a form, an initial page, and a record.
+		This option cannot run a form used to a edit a subfile directly. </P> 
+	 <H5><A NAME="Delete">Delete a Form</A></H5> 
+	 <P>You can use the third option on the ScreenMan menu, shown below, to
+		delete a form from the Form file, and any or all of the blocks used on that
+		form from the BLOCK file. </P> 
+	 <PRE>
+</PRE> <HR> 
+	 <PRE>Select SCREENMAN OPTION: <B>D</B>ELETE A FORM   
+
+MODIFY SCREEN TEMPLATE FOR WHAT FILE: <B>ZZEZ SCREENDOC</B>
+
+
+Select FORM to delete: <B>ZZTEST DOC</B>  ZZTEST DOC
+                         #55      02/16/91  User #14    File #16500
+
+</PRE> <HR> 
+	 <P>Once you've selected a file and form to delete, a short report is
+		printed that lists all blocks used on the form, as illustrated below: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>BLOCKS USED ON FORM &quot;ZZTEST DOC&quot; (IEN #55) 
+Internal                                  Used on
+Entry Number   Block Name                 Other Forms?   Deletable?
+------------   ----------                 ------------   ----------
+178            ZZTEST DOC HDR1                NO            YES
+179            ZZTEST DOC1                    NO            YES
+180            ZZTEST DOC2                    NO            YES
+181            ZZTEST DOC3                    NO            YES
+182            ZZTEST DOC HDR3                NO            YES
+
+</PRE> <HR> 
+	 <P>The first column lists the internal entry numbers of the blocks used on
+		the form, and the second column lists the names of the blocks. The last two
+		columns indicate whether the blocks are used on other forms and whether you can
+		delete those blocks from the BLOCK file. Only those blocks that are not used on
+		other forms can be deleted. </P> 
+	 <P>You are then asked whether you want to delete the blocks used on the
+		form from the BLOCK file. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Delete all deletable blocks used on form ZZTEST DOC
+from the BLOCK file (Y/N)? YES// <B>?</B>
+
+  Enter 'Y' to delete blocks used on form
+    ZZTEST DOC from the BLOCK file.
+    (Only blocks not used on other forms can be deleted.) 
+
+  Enter 'N' to delete the form but not the blocks.
+ 
+Delete all deletable blocks used on form ZZTEST DOC
+from the BLOCK file (Y/N)? YES//<B>&lt;RET&gt;</B>
+
+</PRE> <HR> 
+	 <P>If you answer "NO," the form will be deleted from the Form file, but
+		none of the blocks used on the form will be deleted. Note that if you choose
+		not to delete a block, and that block is not used on any form, the only way to
+		delete the block is to run the Purge Unused Blocks option described below. </P>
+	 
+	 <P>If you answer "YES," you are asked whether you want to delete those
+		blocks without confirmation. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Delete blocks without prompting (Y/N)? NO// <B>?</B>
+
+  Enter 'Y' to delete blocks from the BLOCK file
+    without confirmation. 
+
+  Enter 'N' to confirm each delete.
+
+Delete blocks without prompting (Y/N)? NO//
+
+</PRE> <HR> 
+	 <P>If you answer "YES," all blocks used on the form that are not used on
+		any form will be deleted. If you answer "NO," you will be prompted before any
+		block is deleted. This gives you a chance to delete only specific blocks. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Continue (Y/N)? NO// <B>YES</B>
+
+Deleting form ZZTEST DOC (IEN #55) ... 
+
+ZZTEST DOC HDR1               Delete (Y/N)? NO// <B>Y</B>ES
+ZZTEST DOC1                   Delete (Y/N)? NO// <B>Y</B>ES
+ZZTEST DOC2                   Delete (Y/N)? NO// <B>Y</B>ES
+ZZTEST DOC3                   Delete (Y/N)? NO// <B>Y</B>ES
+ZZTEST DOC HDR3               Delete (Y/N)? NO// <B>Y</B>ES 
+
+DONE!
+</PRE> <HR> 
+	 <H5><A NAME="Purge">Purge Unused Blocks</A></H5> 
+	 <P>You can use the fourth option on the ScreenMan menu to delete any or all
+		of the unused blocks from the BLOCK file that are associated with a specific
+		file. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>O</B>THER OPTIONS  
+Select OTHER OPTION: <B>SC</B>REENMAN  
+Select SCREENMAN OPTION: <B>P</B>URGE UNUSED BLOCKS   
+
+PURGE UNUSED BLOCKS FROM WHAT FILE: <B>ZZEZ SCREENDOC</B>
+
+</PRE> <HR> 
+	 <P>Once you've selected a file, a short report is printed that lists the
+		blocks that aren't used on any forms. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>UNUSED BLOCKS ASSOCIATED WITH FILE ZZEZ SCREENDOC (#16500) 
+
+Internal
+Entry Number   Block Name
+------------   ----------
+72             ZZZEE EDIT3
+178            ZZTEST DOC1
+179            ZZTEST DOC2
+180            ZZTEST DOC3
+181            ZZTEST DOC HDR3
+
+</PRE> <HR> 
+	 <P>You are then asked whether to delete the blocks without confirmation:
+		</P> 
+	 <PRE>    Delete all unused blocks without prompting (Y/N)? NO// <B>&lt;RET&gt;</B></PRE> 
+	 <P>If you answer "YES," all unused block are deleted. If you answer "NO,"
+		you will be prompted before any block is deleted. This gives you a chance to
+		delete only specific blocks. </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Continue (Y/N)? NO// <B>Y</B>ES 
+
+ZZZEE EDIT3                   Delete (Y/N)? NO// <B>Y</B>ES
+ZZTEST DOC1                   Delete (Y/N)? NO// <B>Y</B>ES
+ZZTEST DOC2                   Delete (Y/N)? NO// <B>Y</B>ES
+ZZTEST DOC3                   Delete (Y/N)? NO// <B>Y</B>ES
+ZZTEST DOC HDR3               Delete (Y/N)? NO// <B>Y</B>ES 
+
+DONE!
+
+</PRE> <HR> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sf_opts.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

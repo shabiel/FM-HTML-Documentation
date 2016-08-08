@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: File Utilities - Output
+		Transform</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,file utilities,utilities,output transform,transform,output">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ut_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: File Utilities Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">File Utilities</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>OUTPUT Transform</H4> 
+	 <P>Sometimes, you might want to display a field differently from the way in
+		which it is stored. For example, a Social Security Number can be entered and
+		stored as nine digits, but you may want it to always be displayed with
+		punctuating hyphens. The Output Transform option allows you to make this kind
+		of specification by associating with any field a computed expression that
+		operates on the value of that field</P> 
+	 <P><B>NOTE:</B> For details about using M code in an OUTPUT transform, see
+		the "<A HREF="../pm/afd_8.htm" TARGET="_top" TITLE="OUTPUT Transform"
+		CLASS="bodylink">OUTPUT Transform</A>" topic in the "<A
+		HREF="../pm/afd_frm.htm" TARGET="_top" TITLE="Advanced File Definition"
+		CLASS="bodylink">Advanced File Definition</A>" chapters in the "Developer
+		Tools" section of the "<A HREF="../pm/index.htm" TARGET="_top"
+		TITLE="VA FileMan V. 22.0 Programmer HTML Manual" CLASS="bodylink">VA FileMan
+		Programmer Manual</A>."</P> 
+	 <P>In the dialogue that follows, you'll encounter the responses that you
+		would enter if you want your SSN field to always appear with inserted dashes.
+		</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select OPTION: <B>UTI</B>LITIES 
+
+Select UTILITY OPTION: <B>OUT</B>PUT TRANSFORM 
+
+MODIFY WHAT FILE: <B>PATIENT</B>
+Select FIELD: <B>SSN</B> 
+SSN OUTPUT TRANSFORM: <B>$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,9)</B> </PRE> <HR> 
+	 <P><B>REMEMBER:</B></P> 
+	 <UL> 
+		<LI>The transform does <I>not</I> apply when you are inputting data --
+		  thus, don't enter the dashes when using the Enter or Edit File Entries
+		  option.<BR><BR></LI> 
+		<LI>To retrieve the internal, stored value of a field that has an OUTPUT
+		  transform, you can refer to the INTERNAL(SSN) function.<BR><BR></LI> 
+		<LI>The internal form of the date is automatically invoked when you are
+		  sorting by a DATE/TIME valued field. </LI> 
+	 </UL> 
+		 <!-- hh.org -->
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ut_out.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Susan Strack, 7/08/02-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: VALS^DIE( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,vals^die(),die">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>VALS^DIE( ): Fields Validator &nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></H4> 
+	 <P>The Fields Validator procedure validates data for a group of fields and
+		converts valid data to internal VA FileMan format. It is intended for use with
+		a set of fields that comprise a logical record; fields from more than one file
+		can be validated by a single call. By default, the integrity of any keys
+		affected by the new values is checked. </P> 
+	 <P>The Fields Validator performs the same checks performed by
+		<A HREF="db_die_v.htm" TITLE="VAL^DIE" CLASS="bodylink">VAL^DIE</A> (see for
+		details).</P> 
+	 <H5>Format </H5> 
+	 <PRE>VALS^DIE(FLAGS,FDA_EXT_ROOT,FDA_INT_ROOT,MSG_ROOT)</PRE> 
+	 <H5>Input Parameters </H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" ROWSPAN="4"><B>FLAGS </B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. The possible values are:
+				</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><b>K</b></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>If the file has a Primary Key, this flag indicates that the
+             Primary Key fields, not the .01 field, are to be used for lookup in
+             the Finding and LAYGO/Finding nodes of the FDA. Without this flag,
+             VALS^DIE assumes that you want to file the fields in the Primary
+             Key, rather than use them for lookup, and performs the uniqueness
+             check. This flag is equivalent to the &quot;K&quot; flag in the
+             Updater (UPDATE^DIE).</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>R</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>R</B>ecords identified by IENSs in the FDA_EXT are verified to
+				exist and to be editable. (Same as R flag for VAL^DIE.) </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>U</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Don't perform key validation. Without this flag, the data in the
+				FDA is checked to ensure that no duplicate keys are created and that key field
+				values are not deleted.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>FDA_EXT_ROOT</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The root of a standard FDA. This array should contain
+				the external values that you want to validate. This is the input array. See the
+				"<A HREF="db_how.htm" TITLE="Database Server Introduction"
+				CLASS="bodylink">Database Server Introduction</A>" for details of the structure
+				of the <A HREF="db_int4.htm" TITLE="FDA" CLASS="bodylink">FDA</A>. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A
+			 NAME="FDA_INT_ROOT">FDA_INT_ROOT</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Required) The root of a standard FDA. This FDA is the output
+				array, and upon return is set equal to the internal values of each validated
+				field. If a field fails validation, its value is set to an up-arrow (^).
+				(<B>NOTE:</B> If a field is valid, the corresponding node in the output array
+				is set to the internal value, not an up-arrow (^), even if that field violates
+				key integrity.) See the "<A HREF="db_how.htm"
+				TITLE="Database Server Introduction" CLASS="bodylink">Database Server
+				Introduction</A>" for details of the structure of the
+				<A HREF="db_int4.htm" TITLE="FDA" CLASS="bodylink">FDA</A></P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>MSG_ROOT</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) The root of an array (local or global) into which error
+				messages are returned. If this parameter is not included, error messages are
+				returned in the default array: ^TMP("DIERR",$J). </P></TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Output</H5> 
+	 <P>See the description of the
+		<A HREF="#FDA_INT_ROOT" TITLE="FDA_INT_ROOT" CLASS="bodylink">FDA_INT_ROOT</A>
+		for an explanation of how internal values are returned to the client
+		application. </P> 
+	 <P>If an error occurs in any of the validations, the DIERR variable will be
+		set and appropriate error messages will be returned.</P> 
+	 <H5>Examples</H5> 
+	 <OL> 
+		<LI>This simple example validates and converts the values for two fields:
+		  
+		  <PRE>&gt;<B>S MYFDA(&quot;EXT&quot;,16997,&quot;1,&quot;,1)=&quot;SOME TEXT&quot;</B>
+
+&gt;<B>S MYFDA(&quot;EXT&quot;,16997,&quot;1,&quot;,2)=&quot;JAN 1, 1996&quot;</B>
+
+&gt;<B>D VALS^DIE(&quot;&quot;,&quot;MYFDA(&quot;&quot;EXT&quot;&quot;)&quot;,&quot;MYFDA(&quot;&quot;INT&quot;&quot;)&quot;)
+</B>
+&gt;<B>W $G(DIERR)</B>
+
+&gt;<B>ZW MYFDA(&quot;INT&quot;)</B>
+MYFDA(&quot;INT&quot;,16997,&quot;1,&quot;,1)=SOME TEXT
+MYFDA(&quot;INT&quot;,16997,&quot;1,&quot;,2)=2960101
+</PRE> <BR><BR></LI> 
+		<LI>This example reports that one of the values does not pass validation.
+		  Note that the value for the invalid field equals ^ in MYFDAINT. 
+		  <PRE>&gt;<B>S MYFDA(&quot;EXT&quot;,16997,&quot;1,&quot;,1)=&quot;SOME TEXT&quot;</B>
+
+&gt;<B>S MYFDA(&quot;EXT&quot;,16997,&quot;1,&quot;,2)=&quot;JAN 1, 6&quot;</B>
+
+&gt;<B>D VALS^DIE(&quot;&quot;,&quot;MYFDA(&quot;&quot;EXT&quot;&quot;)&quot;,&quot;MYFDA(&quot;&quot;INT&quot;&quot;)&quot;)
+</B>
+&gt;<B>W DIERR</B>
+1^1
+&gt;<B>D ^%G</B>
+
+Global ^<B>TMP(&quot;DIERR&quot;,$J</B>
+        TMP(&quot;DIERR&quot;,$J
+^TMP(&quot;DIERR&quot;,610279233,1) = 701
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,0) = 4
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,3) = JAN 1, 6
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,&quot;FIELD&quot;) = 2
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,&quot;FILE&quot;) = 16997
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,&quot;IENS&quot;) = 1,
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;TEXT&quot;,1) = The value 'JAN 1,
+6' for field REVERSE DATE FIELD IN KEY in file ZZD
+KEYTEST is not valid.
+^TMP(&quot;DIERR&quot;,610279233,&quot;E&quot;,701,1) =
+Global ^
+
+&gt;<B>ZW MYFDA(&quot;INT&quot;)</B>
+MYFDA(&quot;INT&quot;,16997,&quot;1,&quot;,1)=SOME TEXT
+MYFDA(&quot;INT&quot;,16997,&quot;1,&quot;,2)=^
+</PRE> <BR><BR></LI> 
+		<LI> In this example, the values pass field validation, but an error is
+		  returned because they fail the requested key integrity check. 
+		  <PRE>&gt;<B>K MYFDA</B>
+
+&gt;<B>S MYFDA(&quot;EXT&quot;,16997,&quot;1,&quot;,1)=&quot;TEXT INTO SECOND&quot;</B>
+
+&gt;<B>S MYFDA(&quot;EXT&quot;,16997,&quot;1,&quot;,2)=&quot;MAR 4, 1996&quot;</B>
+
+&gt;<B>D VALS^DIE(&quot;U&quot;,&quot;MYFDA(&quot;&quot;EXT&quot;&quot;)&quot;,&quot;MYFDA(&quot;&quot;INT&quot;&quot;)&quot;)
+</B>
+&gt;<B>W $G(DIERR)</B>
+1^1
+&gt;<B>D ^%G</B>
+
+Global ^<B>TMP(&quot;DIERR&quot;,$J</B>
+        TMP(&quot;DIERR&quot;,$J
+^TMP(&quot;DIERR&quot;,610279233,1) = 740
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,0) = 3
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,&quot;FILE&quot;) = 16997
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,&quot;IENS&quot;) = 13,
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;PARAM&quot;,&quot;KEY&quot;) = 34
+^TMP(&quot;DIERR&quot;,610279233,1,&quot;TEXT&quot;,1) = New values are invalid 
+because they create a duplicate Key 'C' for the ZZD KEYTEST file.
+^TMP(&quot;DIERR&quot;,610279233,&quot;E&quot;,740,1) = 
+Global ^
+
+&gt;<B>ZW MYFDA(&quot;INT&quot;)</B>
+MYFDA(&quot;INT&quot;,16997,&quot;1,&quot;,1)=TEXT INTO SECOND
+MYFDA(&quot;INT&quot;,16997,&quot;1,&quot;,2)=2960304
+</PRE> </LI> 
+	 </OL> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>In addition to codes indicating that the input parameters are incorrect
+		and that the file, field, or entry does not exist, primary error messages
+		include:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_120.htm" TITLE="Error 120"
+			 CLASS="bodylink">120</A></B></TD> 
+		  <TD VALIGN="TOP">Error occurred during execution of a FileMan hook.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_299.htm" TITLE="Error 299"
+			 CLASS="bodylink">299</A></B></TD> 
+		  <TD VALIGN="TOP">Ambiguous value. (Variable Pointer data type only.)
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_405.htm" TITLE="Error 405"
+			 CLASS="bodylink">405</A></B></TD> 
+		  <TD VALIGN="TOP">The file is uneditable. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_520.htm" TITLE="Error 520"
+			 CLASS="bodylink">520</A></B></TD> 
+		  <TD VALIGN="TOP">The field's data type or INPUT transform is
+			 inappropriate. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_602.htm" TITLE="Error 602"
+			 CLASS="bodylink">602</A></B></TD> 
+		  <TD VALIGN="TOP">The entry cannot be edited. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_701.htm" TITLE="Error 701"
+			 CLASS="bodylink">701</A></B></TD> 
+		  <TD VALIGN="TOP">Value is invalid.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_710.htm" TITLE="Error 710"
+			 CLASS="bodylink">710</A></B></TD> 
+		  <TD VALIGN="TOP">The field is uneditable. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_712.htm" TITLE="Error 712"
+			 CLASS="bodylink">712</A></B></TD> 
+		  <TD VALIGN="TOP">An inappropriate deletion of a field's value is being
+			 attempted. </TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_740.htm" TITLE="Error 740" CLASS="bodylink">740</A>
+			 </B></TD> 
+		  <TD>A duplicate key is produced by a field's new value.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_742.htm" TITLE="Error 742"
+			 CLASS="bodylink">742</A></B></TD> 
+		  <TD>A value for a field in a key is being deleted.</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B><A HREF="err_744.htm" TITLE="Error 744"
+			 CLASS="bodylink">744</A></B></TD> 
+		  <TD>Not all fields in a key have a value.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_1610.htm" TITLE="Error 1610"
+			 CLASS="bodylink">1610</A></B></TD> 
+		  <TD VALIGN="TOP">Help was improperly requested. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Details and Features</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Key Integrity Validation</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Unless the U flag is passed, the internal values produced by the
+				validation of the values passed in the FDA_EXT are checked to make sure that no
+				key's integrity is violated. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_die_vals.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

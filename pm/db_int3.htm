@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: IENS - How to Specify Entries and
+		Subentries for the DBS </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,how to specify entries and subentries for the dbs,entries,subentries">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>IENS: To Identify Entries and Subentries</H4> 
+	 <P>The way to represent internal entry numbers for entries in the database
+		is by a structure called an Internal Entry Number String (IENS). It is
+		FileMan's way of representing the internal entry numbers for an entry in all of
+		the DBS calls. </P> 
+	 <P>An IENS is a comma-delimited list of internal entry numbers beginning
+		with the lowest level subentry and ending with the top-level entry number.
+		Regardless of how many levels exist, a "," is appended to the end. For example,
+		to specify subentry 2 in a multiple for entry 250, IENS would equal "2,250,".
+		The corresponding values for the DA() array would be DA=2 and DA(1)=250 (or
+		D0=250 and D1=2). If you were referencing the top level of the file, the IENS
+		would be "250,"; DA=250 or D0=250. There are calls that can be used to
+		construct an IENS from a DA() array and a DA() array from an IENS-see
+		descriptions of <A HREF="db_dilf3.htm" TITLE="DA^DILF"
+		CLASS="bodylink">DA^DILF</A> and
+		<A HREF="db_dilf6.htm" TITLE="$$IENS^DILF" CLASS="bodylink">$$IENS^DILF</A>.
+		</P> 
+	 <P>In the simplest case, each comma-piece of the IENS is a number that
+		directly and uniquely identifies an entry in a file or subfile. However,
+		sometimes the client application does not know the entry number. For example,
+		often the entry number is unknown when a call to the Updater is being made. In
+		other situations, the client application wants the DBS to find a record and
+		then file data in it; the entry number is unimportant to the client. In order
+		to accommodate these circumstances, certain placeholders can be used in the
+		IENS if the particular DBS call supports their use. The extended IENSs (those
+		including a placeholder) are not accepted for all DBS calls. The calls that
+		accept the extended IENSs are identified in the call's documentation. </P> 
+	 <P>The placeholder consists of a one- or two-character code identifying how
+		you want the entry number derived, followed by a positive integer. The integer
+		uniquely identifies the record involved in different nodes of the FileMan Data
+		Array (FDA), as described below. The codes are: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>Placeholder Code</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>+</B></TD> 
+		  <TD VALIGN="TOP">Add a new entry or subentry. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>?</B></TD> 
+		  <TD VALIGN="TOP">Find an entry or subentry and use it for filing. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="100"><B>?+</B></TD> 
+		  <TD VALIGN="TOP">Find an entry or subentry; if one does not exist, add
+			 it (LAYGO). </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Thus, if you wanted to find an entry and then to add a new subentry into
+		that entry, your IENS might look like: "+2,?1,". Every time you referenced that
+		top-level entry in your FDA, you would use "?1"; every time you referenced that
+		particular subentry, you would use "+2". A second new subentry might be "+3",
+		and so on. See the descriptions of the
+		<A HREF="db_die_u.htm" TITLE="Updater" CLASS="bodylink">Updater</A> and
+		<A HREF="db_dicf.htm" TITLE="Finder" CLASS="bodylink">Finder</A> calls for more
+		information about using the entry number placeholders. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_int3.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 14, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

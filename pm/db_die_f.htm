@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: FILE^DIE( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,file^die(),die">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>FILE^DIE( ): Filer</H4> 
+	 <P>This procedure: </P> 
+	 <UL> 
+		<LI>Puts validated data that is in internal FileMan format into the
+		  database. </LI> 
+	 </UL> 
+	 <P>OR:</P> 
+	 <UL> 
+		<LI>Validates data that is in external (user-provided) format, converts
+		  it to internal FileMan format, and files valid data into the database. </LI> 
+	 </UL> 
+	 <P>If the data to be filed is in external format, you can specify that
+		nothing will be filed unless the values for every field being filed are valid.
+		(Use the <A HREF="#T" TITLE="T flag" CLASS="bodylink">T</A> and
+		<A HREF="#E" TITLE="E flag" CLASS="bodylink">E flags</A>). </P> 
+	 <P>Uniqueness and completeness of keys are enforced (unless the
+		<A HREF="#U" TITLE="U flag" CLASS="bodylink">U flag</A> is used). This check is
+		performed on values passed in both internal and external formats. </P> 
+	 <P>The associated functions of firing cross-references and of performing
+		data audits are also performed.</P> 
+	 <P><B>NOTE: </B>The Filer only files data into existing entries and
+		subentries. To add new entries or subentries, use the
+		<A HREF="db_die_u.htm" TITLE="UPDATE^DIE" CLASS="bodylink">UPDATE^DIE</A> call.
+		</P> 
+	 <H5>Format</H5> 
+	 <PRE>FILE^DIE(flags,fda_root,msg_root)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD ROWSPAN="6" ALIGN="LEFT" VALIGN="TOP"><B><A NAME="flags">FLAGS</A>
+			 </B></TD> 
+		  <TD COLSPAN="2" ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>(Optional) Flags to control processing. The possible values are:
+				</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="E">E</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
+			 HEIGHT="11"><B>E</B>xternal values are processed. If this flag is set, the
+			 values in the FDA must be in the format input by the user. The value is
+			 validated and filed if it is valid. 
+			 <P>If the flag is not set, values must be in internal format and must
+				be valid; no validation or transformation is done by the Filer, but key
+				integrity is enforced.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>K </B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>Loc<B>K</B>ing is done by the Filer. (See discussion of
+				<A HREF="#Locking" TITLE="Locking" CLASS="bodylink">Locking</A>.) </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>S</B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><B>S</B>ave FDA. If this flag is not set and there were no errors
+				during the filing process, the FDA is deleted. If this flag is set, the array
+				is never deleted. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="T">T</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+				WIDTH="35" HEIGHT="11"> <B>T</B>ransaction is either completely filed or
+				nothing is filed. If you use the &quot;T&quot; flag, you must
+             also pass the &quot;E&quot; flag, and pass values in external
+             format. If any value is invalid, nothing is filed, and the error
+				array will specify which fields were invalid.</P> 
+			 <P>Without this flag, valid values are filed and only the invalid
+				ones are not. </P> 
+			 <P>If neither the T nor the U flag is` sent, simple keys are checked
+				as they are encountered in the FDA. Compound keys are checked only after the
+				entire record is filed. If the key is invalid, changes to fields making up that
+				key are backed out.</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A NAME="U">U</A></B></TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"> 
+			 <P><IMG SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+				WIDTH="35" HEIGHT="11"> Don't enforce key <B>U</B>niqueness or completeness.
+				Without the U flag, the values in the FDA are checked to ensure that the
+				integrity of any key in which an included field participates is not violated.
+				</P> 
+			 <P>(<B>CAUTION:</B> If this flag is used, the FILE^DIE call may
+				result in records that contain null key fields or records with duplicate keys.
+				It is the programmer's responsibility to ensure that the database is not left
+				in a state in which the integrity of keys is violated.)</P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>fda_root</B></TD> 
+		  <TD COLSPAN="2" ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>(Required) The root of the FDA that contains the data to file. The
+				array can be a local or global one. The root is the closed array reference to
+				be used with subscript indirection not the traditional FileMan root. See the
+				"<A HREF="db_how.htm" TITLE="Database Server Introduction"
+				CLASS="bodylink">Database Server Introduction</A>" for details of the structure
+				of the <A HREF="db_int4.htm" TITLE="FDA" CLASS="bodylink">FDA</A>. </P></TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>msg_root</B></TD> 
+		  <TD COLSPAN="2" ALIGN="LEFT" VALIGN="TOP"> 
+			 <P>(Optional) The root of an array (local or global) into which error
+				messages are returned. If this parameter is not included, error messages are
+				returned in the default array-^TMP("DIERR",$J). </P></TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Output</H5> 
+	 <P>Ordinarily the "output" of this call is the updating of the database.
+		Error messages and information supplied via EN^DDIOL are returned in the
+		standard array in ^TMP or in the array specified by msg_root. </P> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>This call returns error messages in many circumstances. Most of the
+		messages report bad input parameters or input to a file, field, or record that
+		does not exist. Primary user-oriented codes include: </P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_110.htm" TITLE="Error 110"
+			 CLASS="bodylink">110</A> </B></TD> 
+		  <TD VALIGN="TOP">Record is locked.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_120.htm" TITLE="Error 120"
+			 CLASS="bodylink">120</A></B></TD> 
+		  <TD VALIGN="TOP">Error occurred during execution of a FileMan hook.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_701.htm" TITLE="Error 701"
+			 CLASS="bodylink">701</A></B></TD> 
+		  <TD VALIGN="TOP">Input data was invalid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_712.htm" TITLE="Error 712"
+			 CLASS="bodylink">712</A></B></TD> 
+		  <TD VALIGN="TOP">Deletion was attempted but not allowed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_740.htm" TITLE="Error 740"
+			 CLASS="bodylink">740</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"> </TD> 
+		  <TD VALIGN="TOP">New values are invalid because they would create a
+			 duplicate key.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_742.htm" TITLE="Error 742"
+			 CLASS="bodylink">742</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP">Deletion was attempted on a key field.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_744.htm" TITLE="Error 744"
+			 CLASS="bodylink">744</A></B>&nbsp;<IMG SRC="new.gif"
+			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
+		  <TD VALIGN="TOP">A key field was not assigned a value.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5><A NAME="DetailsandFeatures">Details and Features</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Security</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The Filer does not check user access when filing. This check must
+				be done by the client application. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Deleting data</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>You can delete the value in a field by setting the value for the
+				field equal to null or "<B>@</B>". </P> 
+			 <P>This works for word processing fields, too. Instead of setting the
+				value for the field equal to the root of the array where the new word
+				processing text is to be found, set it equal to null or "@". </P> 
+			 <P><B>NOTE:</B> When the
+				<A HREF="#E" TITLE="E (external) flag" CLASS="bodylink">E (external) flag</A>
+				is used, you can't delete the field value if the field is either Required or
+				Uneditable. Without the E flag, deletion occurs in both cases. When key
+				integrity is checked (the <A HREF="#U" TITLE="U flag" CLASS="bodylink">U
+				flag</A> is not used), you can't delete the value of a key field whether the E
+				flag is used or not. </P> 
+			 <P>You can delete an entire entry or subentry by setting the value of
+				the .01 field to "@" or null. In this case, it does not matter whether the the
+				.01 field is Required, Uneditable, or a key field. </P> 
+			 <P>The Filer never asks for confirmation of the deletion. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Scope of a Single Filer Call</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Data passed to the Filer should comprise one logical record. Thus,
+				the data can consist of values for fields in the primary file and its multiples
+				and in related files. ("Navigation" to other files is handled by the calling
+				application, not by the Filer.) </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A
+			 NAME="cross-references">Cross-references</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>New style indexes that have an execution value of RECORD are fired
+				once after all the data for a single record or subrecord is filed.&nbsp;<IMG
+				SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0"
+				WIDTH="35" HEIGHT="11"></P> 
+			 <P>All other cross-references (and data audits) are fired as the data
+				is filed, that is, on a field-by-field basis. </P> 
+			 <P>Any possible conflict between the cross-reference and updated data
+				must be noted by the client application and resolved by modifying the
+				cross-reference. The most common situation in which conflicts can arise is when
+				a cross-reference (most frequently a trigger or MUMPS cross-reference) has been
+				used to provide information to the user while data is being edited. Default
+				values which are dependent on the values of other fields being edited can be
+				provided in this way. These "user interface" cross-references are fired by the
+				Filer with the rest of the cross-references after the data editing is complete.
+				Thus, they cannot have their desired effect of providing the user with
+				information during the editing session. However, they may have the undesired
+				effect of overwriting user-entered values. This type of cross-reference must be
+				removed from the DD as part of the preparation for using the DBS. Also, if the
+				functionality provided by these cross-references is still desirable during the
+				editing session, the client application will need to provide it.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="Locking">Locking</A></B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If requested, the Filer incrementally locks records and subrecords
+				before beginning to file any data. If a lock on any record fails, no filing is
+				done and an error message is returned to the calling program. </P> 
+			 <P>It is recommended that locking be done outside of the Filer by the
+				client application. There are several reasons for this: </P> 
+			 <UL> 
+				<LI>It may be frustrating to the user to edit a screen's worth of
+				  data and then to have the SAVE fail because the necessary lock could not be
+				  obtained.<BR><BR></LI> 
+				<LI>Data successfully validated may become invalid before it is
+				  filed.<BR><BR></LI> 
+				<LI>The client application can more selectively determine which
+				  records to lock. Of necessity, the Filer locks all entries and subentries
+				  referenced in the FDA passed to it. In many instances, this is more than is
+				  actually required.<BR><BR></LI> 
+				<LI>Locking inside the Filer requires additional processing that
+				  slows the filing action down. </LI> 
+			 </UL> 
+			 <P>However, there are situations in which it is appropriate for the
+				Filer to do the locking; for example, if only a single file is involved and the
+				source of the data is not an interactive editing session. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_die_f.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html>
+<head>
+<!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 12/03/02--><!--Edited March 2007, Hardhats.org-->
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <title>VA FileMan Programmer Manual: $$GET1^DIQ( )</title>
+  <meta name="subject"
+ content="VA FileMan V. 22.0 Programmer HTML Manual">
+  <meta name="keywords"
+ content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$get1^diq(),diq">
+  <link rel="StyleSheet" type="text/css" href="programmer.css">
+</head>
+<body topmargin="0" bgcolor="white">
+<br>
+<img src="common/fileman_pm_heading.gif"
+ alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0"
+ height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle"
+ summary="This table is for formatting purposes only" valign="TOP"
+ border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+  <tbody>
+    <tr>
+      <td class="menubartext" align="left" height="1" valign="bottom"
+ width="10%">Contents:</td>
+      <td align="left" height="1" valign="bottom" width="7%"> <a
+ href="index.htm" target="_top"
+ title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+ class="menubarlink">Main</a> </td>
+      <td align="left" height="1" valign="bottom" width="17%"><a
+ href="dba_frm.htm" target="_top" class="menubarlink"
+ title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
+      <td class="menubartext" align="left" height="1" valign="bottom"
+ width="10%">See Also: </td>
+      <td align="left" height="1" valign="bottom" width="28%"><a
+ href="../u1/index.htm" target="_top"
+ title="VA FileMan V. 22.0 Getting Started HTML Manual"
+ class="menubarlink">Getting Started Manual</a></td>
+      <td colspan="4" align="left" height="1" valign="bottom"
+ width="28%"> <a href="../u2/index.htm" target="_top"
+ title="VA FileMan V. 22.0 Advanced User HTML Manual"
+ class="menubarlink">Advanced User Manual</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">Database Server (DBS) API</a></h3>
+<hr class="hrstyle">
+<h4>$$GET1^DIQ( ): Single Data Retriever</h4>
+<p>This extrinsic function retrieves data from a single field in a
+file. </p>
+<p>Data may be retrieved from any field, including computed or word
+processing fields, and fields specified using relational syntax. A
+basic call does not require that any local variables be present and the
+symbol table is not changed by this utility. However, computed
+expressions may require certain variables to be present and can change
+the symbol table because the data retriever does execute Data
+Dictionary nodes. </p>
+<p>The text for word processing fields is returned in a target array.
+If data exists for word processing fields, this function returns the
+resolved TARGET_ROOT. Otherwise null is returned. </p>
+<h5>Format</h5>
+<pre>$$GET1^DIQ(FILE,IENS,FIELD,FLAGS,TARGET_ROOT,MSG_ROOT)<br></pre>
+<h5>Input Parameters</h5>
+<table summary="This table is for formatting purposes only" border="1"
+ width="100%">
+  <tbody>
+    <tr>
+      <td valign="top"><b>FILE</b></td>
+      <td colspan="2" valign="top">
+      <p>(Required) A file number or subfile number. </p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>IENS</b></td>
+      <td colspan="2" valign="top">
+      <p>(Required) Standard IENS indicating internal entry numbers. </p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>FIELD</b></td>
+      <td colspan="2" valign="top"> (Required) Field number, or field
+name, or <b>On-the-fly
+Computed Expression</b> for the FILE.<img src="new.gif" alt="NEW"
+ style="border: 0px solid ; width: 35px; height: 11px;"> </td>
+    </tr>
+    <tr>
+      <td rowspan="4" valign="top"><b>FLAGS </b></td>
+      <td colspan="2" valign="top">
+      <p>(Optional) Flags to control processing. The possible values
+are: </p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>I</b></td>
+      <td valign="top"><b>I</b>nternal format is returned. (The default
+is external.) </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Z</b></td>
+      <td valign="top"><b>Z</b>ero node included for word processing
+fields on target array. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>A#</b></td>
+      <td valign="top"><b>A</b>udit Trail is used to retrieve the value
+of 'FIELD' at a particular point in time.<img src="new.gif" alt="NEW"
+ style="border: 0px solid ; width: 35px; height: 11px;">
+      <br>
+# is a date/time in FileMan internal format (e.g., 3021015.8). The
+value retrieved is the (audited) value of the field as of that
+date/time. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>TARGET_ROOT</b></td>
+      <td colspan="2" valign="top">
+      <p>(Required for word processing fields only) The root of an
+array into which word processing text is copied. </p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><b>MSG_ROOT</b></td>
+      <td colspan="2" valign="top">
+      <p>(Optional) Closed root into which the error message arrays are
+put. If this parameter is not passed, the arrays are put into nodes
+descendent from ^TMP. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5>Examples</h5>
+<p><b>Example 1</b></p>
+<p>Following is an example of retrieving the value from the .01 field
+of Record #1 in File #999000: </p>
+<pre>    &gt;<b>W $$GET1^DIQ(999000,"1,",.01)</b>
+    DOE,JOHN
+</pre>
+<p><b>Example 2</b></p>
+<p>Following is an example of retrieving the internally-formatted value
+from the SEX field of Record #1 in File #999000: </p>
+<pre>    &gt;<b>S X=$$GET1^DIQ(999000,"1,","SEX","I")</b>    <br><br>    &gt;<b>W X</b>
+    M
+</pre>
+<p><b>Example 3</b></p>
+<p>Use the SUBTYPE pointer field in file 3.5 to navigate to the
+Terminal type file and retrieve the DESCRIPTION field as follows: </p>
+<pre>    &gt;<b>S X=$$GET1^DIQ(3.5,"55,","SUBTYPE:DESCRIPTION")</b>    <br><br>    &gt;<b>W X</b>
+    WYSE 85
+</pre>
+<p><b>Example 4</b></p>
+<p>Following is an example of retrieving the contents of a word
+processing field and storing the text in the target array, WP: </p>
+<pre>    &gt;<b>S X=$$GET1^DIQ(999000,"1,",12,"","WP")</b>    <br><br>    &gt;<b>ZW</b>    <br><br>    WP(1)=THIS WP LINE 1<br>    WP(2)=WP LINE2<br>    WP(3)=AND SO ON <br>    X=WP<br></pre>
+<p><b>Example 5</b></p>
+<p>Retrieve the contents of a word processing field, storing the text
+in the target array, WP. The format parameter "Z" means the target
+array is formatted like the nodes of a FileMan Word Processing field.
+If no data exists, WP is equal to null as follows: </p>
+<pre>    &gt;<b>S WP=$$GET1^DIQ(999000,1,12,"Z","WP")  ZW WP</b>
+    
+    WP=WP
+    WP(1,0)=THIS WP LINE 1
+    WP(2,0)=WP LINE2
+    WP(3,0)=AND SO ON</pre>
+<p><b>Example 6</b></p>
+<p>Following is an example of retrieving data from a subfile. Here's a
+partial record entry, number 323, in ^DIZ(999000: </p>
+<pre>    ^DIZ(999000,323...<br>         .<br>         .<br>    ^DIZ(999000,323,4,2,1,0) = ^999000.163^1^1<br>    ^DIZ(999000,323,4,2,1,1,0) = XXX2M3F.01^XXX2M3F1^XXX2M3F2<br>    ^DIZ(999000,323,4,2,1,"B","XXX2M3F.01",1) =<br>    ^DIZ(999000,323,4,"B","XXX1",1) =<br>    ^DIZ(999000,323,4,"B","XXX2",2) =<br>    <br>    &gt;<b>S IENS="1,2,323,"</b>    <br><br>    &gt;<b>W $$GET1^DIQ(999000.163,IENS,2)</b>
+    XXX2M3F2</pre>
+<p><b>Example 7</b>
+</p>
+<p>Retrieve the value of the .01 field of record #1 in file 999000 as
+of
+1 January, 2000.&nbsp; Suppose that Auditing has been turned on for
+that
+field, and that early in 2000, an incorrect spelling of "DOE,JOHN" had
+been corrected:
+</p>
+<pre>&nbsp;&nbsp;&nbsp; &gt;<b>W $$GET1^DIQ(999000,"1,",.01,"A3000000")<img
+ src="new.gif" alt="NEW" height="11" width="35">
+</b>&nbsp;&nbsp;&nbsp; DORE,JOHN<br></pre>
+<h5>Error Codes Returned</h5>
+<table summary="This table is for formatting purposes only" border="1"
+ width="100%">
+  <tbody>
+    <tr>
+      <td valign="top"><b><a href="err_200.htm" title="Error 200"
+ class="bodylink">200</a></b></td>
+      <td valign="top">There is an error in one of the variables
+passed. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_202.htm" title="Error 202"
+ class="bodylink">202</a></b></td>
+      <td valign="top">Missing or invalid input parameter. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_301.htm" title="Error 301"
+ class="bodylink">301</a></b></td>
+      <td valign="top">Flags passed are unknown or incorrect. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_309.htm" title="Error 309"
+ class="bodylink">309</a></b></td>
+      <td valign="top">Either the root of the multiple or the necessary
+entry numbers are missing. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_348.htm" title="Error 348"
+ class="bodylink">348</a></b></td>
+      <td valign="top">The passed value points to a file that does not
+exist or lacks a Header Node. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_401.htm" title="Error 401"
+ class="bodylink">401</a></b></td>
+      <td valign="top">The specified file or subfile does not exist. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_403.htm" title="Error 403"
+ class="bodylink">403</a></b></td>
+      <td valign="top">The file lacks a Header Node. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_404.htm" title="Error 404"
+ class="bodylink">404</a></b></td>
+      <td valign="top">The file Header Node lacks a file #. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_501.htm" title="Error 501"
+ class="bodylink">501</a></b></td>
+      <td valign="top">The field name or number does not exist. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_505.htm" title="Error 505"
+ class="bodylink">505</a></b></td>
+      <td valign="top">The field name passed is ambiguous. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_510.htm" title="Error 510"
+ class="bodylink">510</a></b></td>
+      <td valign="top">The data type for the specified field cannot be
+determined. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_520.htm" title="Error 520"
+ class="bodylink">520</a></b></td>
+      <td valign="top">An incorrect kind of field is being processed. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_537.htm" title="Error 537"
+ class="bodylink">537</a></b></td>
+      <td valign="top">Field has a corrupted pointer definition. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_601.htm" title="Error 601"
+ class="bodylink">601</a></b></td>
+      <td valign="top">The entry does not exist. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_603.htm" title="Error 603"
+ class="bodylink">603</a></b></td>
+      <td valign="top">A specific entry in a specific file lacks a
+value for a required field. </td>
+    </tr>
+    <tr>
+      <td valign="top"><b><a href="err_648.htm" title="Error 648"
+ class="bodylink">648</a></b></td>
+      <td valign="top">The value points to a file that does not exist
+or lacks a Header Node. </td>
+    </tr>
+  </tbody>
+</table>
+<p></p>
+<p>&nbsp;</p>
+<hr class="hrstyle"><!-- db_diqg1.htm -->
+<p align="center">Reviewed/Updated: March 10, 2007</p>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^DIPZ</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,^dipz,dipz">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>^DIPZ: PRINT Template Compilation</H4> 
+	 <P>PRINT templates can be compiled into M routines just as INPUT templates
+		can be. The purpose of this DIPZ code generation is simply to improve overall
+		system throughput. </P> 
+	 <P>Only regular PRINT templates can be compiled. You cannot compile
+		FILEGRAM, EXTRACT, Selected Fields for Export, or EXPORT templates that are
+		also stored in the PRINT template file. </P> 
+	 <P>Call the ^DIPZ routine and specify the maximum routine size, the name of
+		the PRINT template to be used, the name of the M routine to be created, and the
+		margin width to be used for output (typically 80 or 132). If you specify the
+		routine name XXX and if more code is generated than can fit into that one
+		routine, overflow routines (XXX1, XXX2, etc.) will be created. Routine XXX may
+		call XXX1, XXX2, etc.</P> 
+	 <P>Once DIPZ has been used to create a hard-coded output routine, that
+		routine is usually invoked automatically by VA FileMan within the Print File
+		Entries and Search File Entries options and when called at EN1^DIP whenever the
+		corresponding PRINT template is used. The compiled routines are not used if a
+		user-specified output margin width is less than the compiled margin. Also, if
+		the template is used with ranked sorting (i.e., the ! sort qualifier is used),
+		the compiled version is not used. </P> 
+	 <P>As with compiled INPUT templates, as soon as data dictionary definitions
+		of fields used in the PRINT template are changed, the hard-core routine(s)
+		is/(are) compiled immediately. </P> 
+	 <H5>Invoking Compiled PRINT Templates</H5> 
+	 <P>A DIPZ-compiled M routine may be called by any program that passes to it
+		the variables DT, DUZ, IOSL (screen length), U (^), and D0 (the entry number to
+		be displayed). Additionally, the variable DXS must be killed before calling the
+		routine and after returning from it. The compiled routine writes out its report
+		for that single entry. However, routines compiled from templates that include
+		statistical totals cannot be called in this way.</P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dipz1.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Data Types in Computed
+		Expressions</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,computed expressions,computed,expressions,set of codes,pointer to a file,variable pointer,date/time,word-processing,word processing,data types">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ce_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Computed Exptressions Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Computed Expressions</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Data Types in Computed Expressions</H4> 
+	 <P>When you are working with file data in computed expressions, you must
+		consider the appropriateness of the DATA TYPE of the field for the operation or
+		function you are using. Here are some notes regarding Data Types and computed
+		expressions: </P> 
+	 <UL> 
+		<LI><A HREF="#Various"
+		  TITLE="SET OF CODES, POINTER TO A FILE, and VARIABLE POINTER Data Types"
+		  CLASS="bodylink">SET OF CODES, POINTER TO A FILE, and VARIABLE-POINTER Data
+		  Types</A><BR><BR></LI> 
+		<LI><A HREF="#Date_time" TITLE="DATE/TIME Data Type"
+		  CLASS="bodylink">DATE/TIME Data Type</A><BR><BR></LI> 
+		<LI><A HREF="#wp" TITLE="WORD-PROCESSING Data Type"
+		  CLASS="bodylink">WORD-PROCESSING Data Type</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="Various">SET OF CODES, POINTER TO A FILE, and VARIABLE-POINTER
+		Data Types</A></H5> 
+	 <P>These Data Types are manipulated using the external representations,
+		<I>not</I> the internal ones. (The internal value can be accessed using the
+		INTERNAL function.)</P> <HR> 
+	 <H5><A NAME="Date_time">DATE/TIME Data Type</A></H5> 
+	 <P> The DATE/TIME Data Type usually yields results based on the internal
+		value of the field when used in a computed expression. For example, the
+		computed expression "DATE OF BIRTH: "_DOB, where DOB is a field with a
+		DATE/TIME Data Type, yields "DATE OF BIRTH: 2910713", where 2910713 is the
+		internal representation of the date.</P> 
+	 <P> Often, you do not want the internal representation of the date to be
+		used for output. There are alternatives. Continuing with concatenation as an
+		example, you can concatenate a caption with the output of a function (e.g.,
+		"DATE OF BIRTH: "_NUMDATE(DOB) yields "DATE OF BIRTH: 07/13/91"). When using
+		the Print File Entries option, you can separately identify the caption like
+		this: </P> 
+	 <PRE>    FIRST PRINT FIELD: <B>&quot;DATE OF BIRTH: &quot;</B>
+    THEN PRINT FIELD: <B>DOB;X</B></PRE> 
+	 <P>Since DOB was not entered as part of a computed expression, it will
+		produce output in VA FileMan's external date format: "DATE OF BIRTH: JUL 13,
+		1991".</P> 
+	 <P>You can perform certain arithmetic operations with DATE/TIME Data Types
+		that directly yield useful results: </P> 
+	 <UL> 
+		<LI>If you subtract a DATE/TIME Data Type from another DATE/TIME Data
+		  Type, the result is the number of days the two differ.<BR><BR></LI> 
+		<LI>If you add a number to or subtract a number from a DATE/TIME-valued
+		  field, the result is a new date. For example, if the DOB field has the value
+		  JUL 20, 1969, then the value of the computed expression DOB+30 is AUG 19, 1969.
+		  </LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="wp">WORD-PROCESSING Data Type</A></H5> 
+	 <P>WORD-PROCESSING Data Type fields can be manipulated only with the
+		contains ("<B>[</B>") operator (e.g., a valid computed expression within the
+		DIAGNOSIS Multiple of our sample PATIENT file is: HISTORY["poverty"). This
+		Boolean expression is true, if the DIAGNOSIS in question has HISTORY text that
+		contains the string "poverty". </P> 
+	 <P>Also, you <I>cannot concatenate</I> WORD-PROCESSING-type fields with
+		other values using the concatenation ("<B>_</B>") operator.</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ce_dt.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

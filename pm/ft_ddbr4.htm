@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: DOCLIST^DDBR</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,browser,api,doclist^ddbr,ddbr">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="br_frm.htm" TARGET="_top" CLASS="nmenubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Browser API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Browser API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>DOCLIST^DDBR</H4> 
+	 <P>This procedure call allows passing more than one document to the Browser
+		facility. It enables the user to use the Browser to navigate through multiple
+		documents stored in sequential local or global arrays. </P> 
+	 <P>A list of documents is passed by value as an array root. The array is
+		subscripted by the document title and must be set equal to the document's
+		location, in a closed root format. The Browser automatically builds the
+		"Current List" and displays the first document to the screen. When you select
+		the <A HREF="#switch" TITLE="Switch function" CLASS="bodylink">"S"witch
+		function</A> to switch to another document, the rest of the documents are
+		presented as a "Current List." A flag is also available to "R"estrict selection
+		to the "Current List" and prevent selecting FileMan word processing fields in
+		other files. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+DOCLIST^DDBR(SOURCE_ARRAY,FLAGS,TOP,BOTTOM)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>SOURCE_ARRAY</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Required) Source array in a closed root format, passed by value
+				which is subscripted by document titles and set to the source array of the
+				document in a closed root format. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="2"><B>FLAGS</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) Flag(s) to control processing: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="5%"><B>R</B></TD> 
+		  <TD><B>R</B>estrict Switching to other documents not in current list.
+			 Otherwise, Switch (&lt;PF1&gt;S) function is active and users can look at other
+			 FileMan word processing field entries. 
+			 <P></P> See
+			 <A HREF="#switch" TITLE="Switch function" CLASS="bodylink">Switch function</A>
+			 in the "<A HREF="#details_and_features" TITLE="Details and Features"
+			 CLASS="bodylink">Details and Features</A>" section. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TOP</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) A number representing the location of the title bar of
+				the Browser screen. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>BOTTOM</B></TD> 
+		  <TD COLSPAN="2"> 
+			 <P>(Optional) A number representing the location of the status bar of
+				the Browser screen. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output</H5> 
+	 <P>A successful call enables the user to employ VA FileMan's Browser to
+		view and navigate through multiple documents stored in a sequential local or
+		global array. </P> 
+	 <H5>Example</H5> 
+	 <P>In this example there are three documents. </P> 
+	 <P>Document 1, in ^TMP($J,"DOC",1), looks like: </P> 
+	 <PRE>    ^TMP($J,&quot;DOC&quot;,1,1)=Line 1 Document 1
+    ^TMP($J,&quot;DOC&quot;,1,2)=Line 2 Document 1
+    	.
+    	.
+    	.
+    ^TMP($J,&quot;DOC&quot;,2,1)=Line 1 Document 2
+    ^TMP($J,&quot;DOC&quot;,2,2)=Line 2 Document 2
+    	.
+	    .
+	    .
+    ^TMP($J,&quot;DOC&quot;,3,1)=Line 1 Document 3
+    ^TMP($J,&quot;DOC&quot;,3,2)=Line 2 Document 3
+</PRE> 
+	 <P>and so on... </P> 
+	 <P>Building the document list array looks like: </P> 
+	 <PRE>    &gt;<B>S ^TMP($J,&quot;LIST&quot;,&quot;DOCUMENT 1&quot;)=&quot;^TMP($J,&quot;&quot;DOC&quot;&quot;,1)&quot;</B>
+    &gt;<B>S ^TMP($J,&quot;LIST&quot;,&quot;DOCUMENT 2&quot;)=&quot;^TMP($J,&quot;&quot;DOC&quot;&quot;,2)&quot;</B>
+    &gt;<B>S ^TMP($J,&quot;LIST&quot;,&quot;DOCUMENT 3&quot;)=&quot;^TMP($J,&quot;&quot;DOC&quot;&quot;,3)&quot;</B>
+</PRE> 
+	 <P>Making a procedure call with Switching restricted to only this list
+		looks like: </P> 
+	 <PRE>
+    &gt;<B>D DOCLIST^DDBR(&quot;^TMP($J,&quot;&quot;LIST&quot;&quot;)&quot;,&quot;R&quot;)</B>
+</PRE> 
+	 <H5>Error Codes Returned</H5> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_200.htm" TITLE="Error 200"
+			 CLASS="bodylink">200</A></B></TD> 
+		  <TD VALIGN="TOP">Invalid field.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
+			 CLASS="bodylink">202</A></B></TD> 
+		  <TD VALIGN="TOP">Invalid parameter.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_309.htm" TITLE="Error 309"
+			 CLASS="bodylink">309</A></B></TD> 
+		  <TD VALIGN="TOP">Multiple field. Invalid file and IENS. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
+			 CLASS="bodylink">401</A></B></TD> 
+		  <TD VALIGN="TOP">Data Dictionary reference for file and field not
+			 valid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_501.htm" TITLE="Error 501"
+			 CLASS="bodylink">501</A></B></TD> 
+		  <TD VALIGN="TOP">Extended reference invalid. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_510.htm" TITLE="Error 510"
+			 CLASS="bodylink">510</A></B></TD> 
+		  <TD VALIGN="TOP">Invalid type in data dictionary. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_601.htm" TITLE="Error 601"
+			 CLASS="bodylink">601</A></B></TD> 
+		  <TD VALIGN="TOP">Record entry does not exist. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_602.htm" TITLE="Error 602"
+			 CLASS="bodylink">602</A></B></TD> 
+		  <TD VALIGN="TOP">Record unavailable.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A HREF="err_842.htm" TITLE="Error 842"
+			 CLASS="bodylink">842</A></B></TD> 
+		  <TD VALIGN="TOP">Device/Terminal type set up issues. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><B>NOTE:</B> For additional information about Browser error messages,
+		see the "<A HREF="db_how2.htm" TITLE="How Information is Returned"
+		CLASS="bodylink">How Information is Returned</A>" and "<A HREF="db_how3.htm"
+		TITLE="Contents of Arrays" CLASS="bodylink">Contents of Arrays</A>" sections in
+		the "<A HREF="dba_frm.htm" TITLE="DataBase Server (DBS) API" CLASS="bodylink"
+		TARGET="_top">DataBase Server (DBS) API</A>" chapter. </P> 
+	 <H5><A NAME="details_and_features">Details and Features</A></H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="switch">Switch Function</A></B></TD> 
+		  <TD> 
+			 <P>Switch allows the user to view more than one document. When using
+				the Switch (&lt;PF1&gt;S) function in the Browser to select other FileMan word
+				processing fields, it is important to note that browsing is done directly on
+				the actual record text. Users can only access word processing fields in FileMan
+				files to which they have Read access. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ft_ddbr4.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,431 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Previous Updates (V. 21.0)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,previous updates,updates">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+ 	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Previous Updates</A></H3> <HR CLASS="hrstyle"> 
+	 <P>The HTML version of the "VA FileMan Programmer Manual" contains
+		documentation updates since the original release of VA FileMan Version 21.0
+		documentation in December of 1994 (including new functionality introduced by
+		patches). This page lists all significant updates, in reverse chronological
+		order. For specific updates based on the release of VA FileMan Version 22.0 and
+		any subsequent patches, see the "<A HREF="fr_updat.htm" CLASS="bodylink">New
+		Features and Functionality in Version 22.0</A>" topic in this manual.</P> 
+	 <TABLE BORDER="1"
+	  SUMMARY="This table lists the previous updates preceding the release of VA FileMan V. 22.0 (date, description of update, and associated patch and/or version number)"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM"><B>Date</B></TD> 
+		  <TD VALIGN="TOP"><B>Description of Update</B></TD> 
+		  <TD VALIGN="top"><B>Patch/Version Number</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">06/26/98</TD> 
+		  <TD VALIGN="TOP">Redid the format and layout of the manual to improve
+			 usability: 
+			 <UL> 
+				<LI>Went from three to two frames - a simpler design.<BR><BR></LI> 
+				<LI>Removed all javascript that 'auto-synched' the frames. The
+				  javascript auto-synching made the back button almost useless by stacking too
+				  many pages in the "back" buffer.<BR><BR></LI> 
+				<LI>Added Contents link in chapter headers so you can return to
+				  contents easily after loading a chapter.<BR><BR></LI> 
+				<LI>Added Contents link on every topic page so that if page is
+				  reached on its own (outside of frameset) you can still get to the
+				  Contents.<BR><BR></LI> 
+				<LI>Used cascading style sheet to apply a uniform style to all
+				  pages, for users of Internet Explorer 4x and greater, and Netscape 4x and
+				  greater.<BR><BR></LI> 
+				<LI>The style sheets use the designed-for-Web-readability
+				  <A HREF="http://www.microsoft.com/typography/Web/fonts/verdana/default.htm"
+					TARGET="new_win" CLASS="bodylink" TITLE="Verdana font">Verdana</A> font (<A
+				  HREF="http://www.microsoft.com/typography/fontpack/default.htm"
+				  TARGET="new_win" CLASS="bodylink" TITLE="Verdana font download">download</A>
+				  it!). If not present on the system, falls back to Arial, Helvetica or Sans
+				  Serif.</LI> 
+			 </UL> </TD> 
+		  <TD VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" COLSPAN="3"> 
+			 <P ALIGN="center">8/29/96: "Programmer Manual" recombined, from
+				previously split <BR> two manuals: "Developer's Guide" and "APIs Manual."</P>
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">03/09/98</TD> 
+		  <TD VALIGN="TOP">Updated
+			 <A HREF="cl_dir.htm#dd" CLASS="bodylink" TITLE="DD type ^DIR calls">DD type
+			 ^DIR calls</A> documentation.</TD> 
+		  <TD VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">02/02/98</TD> 
+		  <TD VALIGN="TOP">Updated
+			 <A HREF="cl_dt1.htm" CLASS="bodylink" TITLE="^%DT">^%DT</A> for Year 2000
+			 (Y2K)changes</TD> 
+		  <TD VALIGN="TOP">DI*21*44, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">04/15/97</TD> 
+		  <TD VALIGN="TOP"><A HREF="cl_dim.htm" CLASS="bodylink"
+			 TITLE="^DIM">^DIM</A> now checks against the 1995 M ANSI Standard.</TD> 
+		  <TD VALIGN="TOP">DI*21*28, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">04/03/97</TD> 
+		  <TD>Changed title page, introduction, and preface to reflect <ACRONYM
+			  TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
+            in place of DHCP.</TD> 
+		  <TD VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">02/10/97</TD> 
+		  <TD VALIGN="TOP">Added description of new DIR("L") input parameter for
+			 <A HREF="cl_dir.htm" CLASS="bodylink" TITLE="^DIR">^DIR</A>.</TD> 
+		  <TD VALIGN="TOP">DI*21*24, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">01/15/97</TD> 
+		  <TD>Changed the table of contents to let you choose whether to list
+			 Classic and DBS APIs alphabetically or categorically.</TD> 
+		  <TD VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">12/19/96</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Revised descriptions of the six classic
+			 reindexing entry points:
+			 <A HREF="cl_dik3.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="EN^DIK">EN^DIK</A>,
+			 <A HREF="cl_dik4.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="EN1^DIK">EN1^DIK</A>,
+			 <A HREF="cl_dik2.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="ENALL^DIK">ENALL^DIK</A>,
+			 <A HREF="cl_dik6.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="IX^DIK">IX^DIK</A>,
+			 <A HREF="cl_dik7.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="IX1^DIK">IX1^DIK</A>, and
+			 <A HREF="cl_dik5.htm" TARGET="display" CLASS="bodylink"
+			  TITLE="IXALL^DIK">IXALL^DIK</A>.</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">12/18/96</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Revised the descriptions of
+			 <A HREF="cl_die.htm"
+			  CLASS="bodylink" TITLE="^DIE">^DIE</A> and
+			 <A HREF="cl_dik1.htm" CLASS="bodylink" TITLE="^DIK">^DIK</A>.</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">12/16/96</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><A HREF="db_dia_b.htm" CLASS="bodylink"
+			 TITLE="BLD^DIALOG">BLD^DIALOG</A> description updated.</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD>12/12/96</TD> 
+		  <TD>Add a new flag (B) to
+			 <A HREF="cl_dic.htm" CLASS="bodylink" TITLE="^DIC">^DIC</A>.</TD> 
+		  <TD>DI*21*29, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">12/02/96</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Some minor, long-standing updates were
+			 made to several documents.</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">11/26/96</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">A group of long-standing (but minor)
+			 updates was made, including: 
+			 <UL> 
+				<LI>Revised advice in the DBS "<A HREF="db_how5.htm"
+				  CLASS="bodylink" TITLE="Cleaning Up Output Arrays">Cleaning Up Output
+				  Arrays</A>" section<BR><BR></LI> 
+				<LI>More information on deleting field values with the DR string in
+				  <A HREF="cl_die.htm"
+					CLASS="bodylink" TITLE="^DIE">^DIE</A><BR><BR></LI> 
+				<LI>More information on how to set up the DA array to edit
+				  multiples in
+				  <A HREF="cl_die.htm"
+					CLASS="bodylink" TITLE="^DIE">^DIE</A></LI> 
+			 </UL> </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">10/16/96</TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">The documentation for
+			 <A HREF="cl_dip.htm" CLASS="bodylink" TITLE="EN1^DIP">EN1^DIP</A> has been
+			 revised; it is now split into three separate documents to make the information
+			 more manageable: 
+			 <UL> 
+				<LI>One document contains the full descriptions of input and output
+				  variables <BR><BR></LI> 
+				<LI>One document contains all information on the BY(0)
+				  feature<BR><BR></LI> 
+				<LI>One document contains all other information on the call.</LI> 
+			 </UL> In addition, some of the descriptions for the BY(0) and other
+			 sorting features were revised. </TD> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">DI*21*26, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">10/08/96</TD> 
+		  <TD VALIGN="top">Added an example to
+			 <A HREF="cl_ddiol.htm" CLASS="bodylink" TITLE="EN^DDIOL">EN^DDIOL</A> for
+			 converting a Write Identifier from using WRITE statements to using
+			 EN^DDIOL.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">10/03/96</TD> 
+		  <TD>Description for the new
+			 <A HREF="ft_ddmpf.htm" CLASS="bodylink" TITLE="FILE^DDMP">FILE^DDMP</A> Import
+			 Tool entry point added, in anticipation of the release of the Import Tool
+			 patch.</TD> 
+		  <TD VALIGN="top">DI*21*30, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">10/02/96</TD> 
+		  <TD VALIGN="top">Created a new "tabs" style top frame for the manual
+			 set. Eliminated the bottom frame also - less frames (3 vs. 4 before) should
+			 mean quicker loading.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">09/24/96</TD> 
+		  <TD VALIGN="top">All files now get their "last updated" date directly
+			 from the file's time/date stamp, via the javascript document.lastModified
+			 property. Also, the "framesynching" javascript function will no longer cause an
+			 error if a page is loaded on its own, outside of the context of the frameset
+			 for this manual. 
+			 <P>All cross-manual links (between API and U1 manual, for example)
+				now use "../" syntax to change directories (instead of a full "http:..." path),
+				so the cross-manual links should work, even if the manuals are downloaded to
+				and installed on a PC. </P> </TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">09/24/96</TD> 
+		  <TD VALIGN="top">Added "RD ACCESS" to the list of file attributes that
+			 can be returned by the <A HREF="db_didf3.htm" CLASS="bodylink"
+			 TITLE="FILE^DID">FILE^DID</A> and
+			 <A HREF="db_didf4.htm" CLASS="bodylink" TITLE="FILELST^DID">FILELST^DID</A>
+			 calls.</TD> 
+		  <TD VALIGN="top">DI*21*25, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">09/23/96</TD> 
+		  <TD VALIGN="top">Updated the description of
+			 <A HREF="afd_7.htm" CLASS="bodylink" TITLE="INPUT Transforms">INPUT
+			 Transforms</A>. In particular, mentioned the ability introduced by patch
+			 DI*21*8 to detect when the INPUT Transform is being executed by the
+			 <A HREF="../u2/ut_ver.htm" TARGET="_top" CLASS="bodylink"
+			 TITLE="Verify Fields">Verify Fields</A> option (and execute or avoid executing
+			 any part of the INPUT transform if this is the case).</TD> 
+		  <TD VALIGN="top">DI*21*8, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">09/13/96</TD> 
+		  <TD VALIGN="top">Redid the cross-manual links and javascript so that if
+			 the documentation set is downloaded to a PC, the cross-manual links, within the
+			 4-frame frameset, will all work appropriately.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">09/05/96</TD> 
+		  <TD>Added a "Search" text box to the bottom frame; Pete Rontey set it
+			 up so it only searches the FileMan docs directory. So there's a cross-manual
+			 search capability now for FileMan manuals. Thanks, Pete! Thanks, Vadim for the
+			 idea.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD COLSPAN="3"> 
+			 <P ALIGN="center">8/29/96: <I>Programmer Manual</I> split into <BR>
+				two manuals: <I>Developer's Guide</I> and <I>APIs Manual</I>. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD>08/27/96</TD> 
+		  <TD>Descriptions updated for the N and O flags for
+			 <A HREF="cl_dic.htm" CLASS="bodylink" TITLE="^DIC">^DIC</A>.</TD> 
+		  <TD>(none)</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">08/--/96</TD> 
+		  <TD>Descriptions for
+			 <A HREF="ft_diaxu.htm" CLASS="bodylink" TITLE="EN^DIAXU">EN^DIAXU</A> and the
+			 new <A HREF="ft_diax2.htm" CLASS="bodylink"
+			 TITLE="EXTRACT^DIAXU">EXTRACT^DIAXU</A> updated/added, in anticipation of the
+			 release of patched Extract Tool entry points.</TD> 
+		  <TD VALIGN="top">DI*21*8, Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">07/15/96</TD> 
+		  <TD VALIGN="top">Updated
+			 <A HREF="db_dia_m.htm" CLASS="bodylink" TITLE="MSG^DIALOG">MSG^DIALOG</A>'s
+			 TEXT_WIDTH input parameter description.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">07/15/96</TD> 
+		  <TD VALIGN="top">Added following note to
+			 <A HREF="cl_dip.htm" CLASS="bodylink" TITLE="EN1^DIP">EN1^DIP</A>: "If you are
+			 using both the BY and BY(0) input variables, don't set BY to the name of a
+			 template; errors could result."</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">06/18/96</TD> 
+		  <TD VALIGN="top">Added DIC array of input parameters to descriptions of
+			 <A HREF="cl_dicix.htm" CLASS="bodylink" TITLE="IX^DIC">IX^DIC</A> and
+			 <A HREF="cl_dic1b.htm" CLASS="bodylink" TITLE="MIX^DIC1">MIX^DIC1</A>.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">06/07/96</TD> 
+		  <TD VALIGN="top">Minor updates to
+			 <A HREF="db_didf1.htm" CLASS="bodylink" TITLE="FIELD^DID">FIELD^DID</A>,
+			 <A HREF="sm_dds.htm" CLASS="bodylink" TITLE="^DDS">^DDS</A>, and
+			 <A HREF="sm_uputf.htm" CLASS="bodylink" TITLE="PUT^DDSVALF">PUT^DDSVALF</A>
+			 entry point descriptions. Minor reorganization of "<A HREF="gfs_intro.htm"
+			 TARGET="display" CLASS="bodylink" TITLE="Global File Structure">Global File
+			 Structure</A>" chapter.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">06/4/96</TD> 
+		  <TD VALIGN="top">Updated the description of IOP input variable in
+			 <A HREF="cl_dip.htm" CLASS="bodylink" TITLE="EN1^DIP">EN1^DIP</A> entry
+			 point.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">05/30/96</TD> 
+		  <TD VALIGN="top">Reorganized the "<A HREF="di_frm.htm" TARGET="_top"
+			 CLASS="bodylink" TITLE="DIFROM">DIFROM</A>" chapter.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">05/13/96</TD> 
+		  <TD VALIGN="top">Added a paragraph on error checking to the
+			 <A HREF="cl_intro.htm" CLASS="bodylink"
+			  TITLE="Classic FileMan Callable Routines">Classic FileMan Callable Routines</A>
+			 introduction.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">05/13/96</TD> 
+		  <TD VALIGN="top">Minor updates to descriptions of the N flag in
+			 <A HREF="cl_dic.htm" CLASS="bodylink" TITLE="^DIC">^DIC</A>, and the A flag in
+			 <A HREF="db_dicf.htm" CLASS="bodylink" TITLE="FIND^DIC">FIND^DIC</A> and
+			 <A HREF="db_dicf1.htm" CLASS="bodylink" TITLE="$$FIND1^DIC">$$FIND1^DIC</A>.
+			 Minor updates to descriptions of
+			 <A HREF="db_dilf5.htm" CLASS="bodylink" TITLE="FDA^DILF">FDA^DILF</A>,
+			 <A HREF="db_die_w.htm" CLASS="bodylink" TITLE="WP^DIE">WP^DIE</A>, and the
+			 <A HREF="db_int4.htm" CLASS="bodylink" TITLE="FDA">FDA</A>.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD>05/10/96</TD> 
+		  <TD><A HREF="gfs_3a.htm" CLASS="bodylink"
+			 TITLE="File Characteristics Nodes">File Characteristics Nodes</A> listing
+			 reorganized, and Data Dictionary Audit node added to list.</TD> 
+		  <TD VALIGN="TOP">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">05/10/96</TD> 
+		  <TD><A HREF="cl_dicn1.htm" CLASS="bodylink"
+			 TITLE="FILE^DICN">FILE^DICN</A> entry point description updated to limit the
+			 DIC(0) input flags to E and Z only. </TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">50/10/96</TD> 
+		  <TD><A HREF="cl_dir.htm" CLASS="bodylink" TITLE="^DIR entry point">^DIR
+			 entry point</A> updated to say that the DIR("S") input variable (a screen) can
+			 be used with list/range reads. Also describes the behavior of list/range reads
+			 when both the C flag and a screen are used.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">04/26/96</TD> 
+		  <TD>Added map file (index.map) to zipped download file
+			 (fm21pm.zip).</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">04/26/96</TD> 
+		  <TD>Updated "feedback" contact statements at the bottom of all pages in
+			 the manual.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">03/20/96</TD> 
+		  <TD>Corrected the coordinates for the client-side imagemap table of
+			 contents (indexcli.htm), including updating the zip file (fm21pm.zip).</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">03/07/96</TD> 
+		  <TD>New "<A HREF="fr_zip.htm" CLASS="bodylink"
+			 TITLE="Download a Zipped Version of This Manual">Download a Zipped Version of
+			 This Manual</A>" page.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="top">02/26/96</TD> 
+		  <TD><A HREF="cl_diwp1.htm" CLASS="bodylink" TITLE="^DIWP">^DIWP</A> and
+			 <A HREF="cl_diwp2.htm" CLASS="bodylink" TITLE="^DIWW">^DIWW</A> entry point
+			 descriptions revised.</TD> 
+		  <TD VALIGN="top">Version 21.0</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fr_updta.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

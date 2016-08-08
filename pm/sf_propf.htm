@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Form Properties</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,form properties,properties,property,">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Form Properties</H4> 
+	 <UL> 
+		<LI><A HREF="#Form_name" TITLE="Form Name" CLASS="bodylink">Form
+		  Name</A><BR><BR></LI> 
+		<LI><A HREF="#Title" TITLE="Title"
+		  CLASS="bodylink">Title</A><BR><BR></LI> 
+		<LI><A HREF="#Pre_post_action" TITLE="Pre Action and Post Action"
+		  CLASS="bodylink">Pre Action and Post Action</A><BR><BR></LI> 
+		<LI><A HREF="#Data_validation" TITLE="Data Validation"
+		  CLASS="bodylink">Data Validation</A><BR><BR></LI> 
+		<LI><A HREF="#Post_save" TITLE="Post Save" CLASS="bodylink">Post
+		  Save</A><BR><BR></LI> 
+		<LI><A HREF="#Record_selection_page" TITLE="Record Selection Page"
+		  CLASS="bodylink">Record Selection Page</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="Form_name">Form Name</A></H5> 
+	 <P>(Required) This is the .01 field of the FORM file (#.403). Form Names
+		should be namespaced. </P> <HR> 
+	 <H5><A NAME="Title">Title</A></H5> 
+	 <P>The Title property can be used by the form designer to help identify a
+		form. It is cross-referenced and need not be unique. ScreenMan does not
+		automatically display the Title to the user, but the form designer can choose
+		to create a caption-only field that displays the Title to the user. </P> <HR> 
+	 <H5><A NAME="Pre_post_action">Pre Action and Post Action</A></H5> 
+	 <P>The Pre Action property is M code that is executed when the form is
+		first invoked, before any of the pages are loaded and displayed. The Post
+		Action property is M code that is executed before ScreenMan returns to the
+		calling application. </P> <HR> 
+	 <H5><A NAME="Data_validation">Data Validation</A></H5> 
+	 <P>This is M code that is executed when the user attempts to save changes
+		to the form. If the code sets DDSERROR, the user is unable to save changes. If
+		the code sets DDSBR, the user is taken to the specified field. </P> 
+	 <P>In addition to $$GET^DDSVAL, PUT^DDSVAL, $$GET^DDSVALF, PUT^DDSVALF, and
+		HLP^DDSUTL, you can use MSG^DDSUTL to print on a separate screen messages to
+		the user about the validity of the data. </P> <HR> 
+	 <H5><A NAME="Post_save">Post Save</A></H5> 
+	 <P>This is M code that is executed when the user saves changes. It is
+		executed only if all data is valid, and after all data has been filed. </P>
+	 <HR> 
+	 <H5><A NAME="Record_selection_page">Record Selection Page</A></H5> 
+	 <P>If you define a Record Selection Page, the user can select another entry
+		in the file, and, if LAYGO is allowed, add another entry into the file without
+		exiting the form. The Record Selection Page should be a pop-up page, and the
+		first field on that page is a pointer-type form-only field. The file specified
+		in the Qualifiers property of the form-only field should be the Primary File of
+		the form. The Record Selection Page property should be set equal to the Page
+		Number of the Record Selection Page. </P> 
+	 <P>The user can open the Record Selection Page by pressing
+		<B>&lt;PF1&gt;L</B>. After the user selects a record and closes the Record
+		Selection Page, the data for the selected record is displayed. </P> <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sf_propf.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

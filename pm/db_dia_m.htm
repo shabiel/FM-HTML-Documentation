@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: MSG^DIALOG( )</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,msg^dialog(),dialog">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+	 <HR CLASS="hrstyle"> 
+	 <H4>MSG^DIALOG( ): Output Generator</H4> 
+	 <P>This procedure takes text from one of the FileMan dialog arrays (for
+		errors, help text, or other text) or from a similarly structured local array,
+		writes it and/or moves it into a simple local array. </P> 
+	 <P>The subscripting of these arrays will tell the developer whether the
+		dialog is a "Help" message, an "Error" message, or other dialog, such as a
+		prompt. Different combinations of these messages may be returned from the DBS
+		calls. In addition, error messages will be returned whenever an error occurs,
+		either in the way the call was made or in attempting to interact with the
+		database. </P> 
+	 <P>With the DBS calls, it becomes the job of the developer to display
+		dialog to the end user as needed, perhaps in a GUI box or in the bottom portion
+		of a screen-oriented form. The developer can also save error messages in a
+		file. </P> 
+	 <P> </P> 
+	 <P>MSG^DIALOG is designed to make it easier for the developer to use the
+		dialog arrays. The developer can use MSG^DIALOG to do simple formatting of the
+		dialog and to either write dialog to the current device or to move the dialog
+		to a simple local array for further processing. </P> 
+	 <H5>Format</H5> 
+	 <PRE>
+MSG^DIALOG(FLAGS,.OUTPUT_ARRAY,TEXT_WIDTH,LEFT_MARGIN,INPUT_ROOT)
+</PRE> 
+	 <H5>Input Parameters</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="9"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Flags to control processing. If none of the text-type
+				flags (E, H or M) is entered, the routine behaves as if E were entered. If no
+				flags are entered, it behaves as if FLAGS contained WE. The possible values
+				are: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>A</B></TD> 
+		  <TD VALIGN="TOP">Local <B>A</B>rray specified by the second parameter
+			 receives the text. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>W</B></TD> 
+		  <TD VALIGN="TOP"><B>W</B>rites the text to the current device. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>S</B></TD> 
+		  <TD VALIGN="TOP"><B>S</B>aves the ^TMP or other designated input array
+			 (does not kill the array). </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>E</B></TD> 
+		  <TD VALIGN="TOP"><B>E</B>rror array text is processed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>H</B></TD> 
+		  <TD VALIGN="TOP"><B>H</B>elp array text is processed. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>M</B></TD> 
+		  <TD VALIGN="TOP"><B>M</B>essage array text (other text) is processed.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>B</B></TD> 
+		  <TD VALIGN="TOP"><B>B</B>lank lines are suppressed between error
+			 messages. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>T</B></TD> 
+		  <TD VALIGN="TOP">Return <B>T</B>otal number of lines in the top level
+			 node of the local array specified by the second parameter. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>.OUTPUT_ARRAY</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) This parameter contains the name of the local array to
+				which the text is to be written. If FLAGS contains an A, this parameter must be
+				sent. Otherwise, the parameter is ignored. Note that the output array is killed
+				before the text is added, not appended to what is already there. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>TEXT_WIDTH</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Maximum line length for formatting text. If specified,
+				the text is broken into lines of this length when writing to the current device
+				or when moving the text to the OUTPUT_ARRAY. Lines are not "joined" to fill out
+				to this width.</P> 
+			 <P>If you don't specify TEXT_WIDTH:</P> 
+			 <UL> 
+				<LI>Text that is displayed on the current device is formated to a
+				  line length of IOM-5 if IOM is defined, or to 75 characters
+				  otherwise.<BR><BR></LI> 
+				<LI>Text written to an OUTPUT_ARRAY is not reformatted.</LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>LEFT_MARGIN</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Left margin for writing text. If sent, the text is
+				lined up in a column starting at this column number. Otherwise, the text is
+				lined up with the left margin (column 0). This parameter has no effect on text
+				sent to an array (A flag). </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>INPUT_ROOT</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Closed root of local input array in which text resides.
+				If the text resides in a local array, this parameter must be sent. The last
+				non-variable subscript of the local array must describe the type of text it
+				contains, as the ^TMP global normally does ("DIERR" for errors, "DIHELP" for
+				help text, or "DIMSG" for other text). </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P> </P> 
+	 <H5>Output</H5> 
+	 <P>If W is passed in the FLAGS parameter, the text is written to the
+		current device. If A is passed in the FLAGS parameter, the text is written to
+		the local array whose name is specified in the second parameter. The format of
+		that array is: </P> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	 WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>ARRAY</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Total number of lines (only returned if the T flag is passed in
+				the FLAGS parameter). </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>ARRAY(n)</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>A line of formatted text (n=sequential integer starting with
+				1).</P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>If FLAGS does NOT contain S, then the input array and associated local
+		variables (DIMSG, DIHELP, DIERR) are killed. </P> 
+	 <P><B><A NAME="NOTE-M">NOTE:</A></B> If you wish to add entries to the
+		DIALOG file, you must use a numberspace assigned by the Database Administrator.
+		See the Developer Tools, Dialog File section in this manual for more
+		information. </P> 
+	 <H5>Examples</H5> 
+	 <P><B>Example 1</B></P> 
+	 <P>In this first example, we want to write the error text to the current
+		device and kill the input array. Notice that because no flags are sent to the
+		call, the default flags for Write Error message (WE) are assumed. Thus, the
+		call will write the single error message "The record is currently locked," from
+		the "DIERR" portion of the ^TMP global. It will also kill ^TMP("DIERR",$J) and
+		the local variable DIERR as follows: </P> 
+	 <PRE>
+    ^TMP(&quot;DIERR&quot;,698526778,1) = 110
+    ^TMP(&quot;DIERR&quot;,698526778,1,&quot;TEXT&quot;,1) = The record is currently
+        locked.
+    ^TMP(&quot;DIERR&quot;,698526778,&quot;E&quot;,110,1) = 
+
+    ^TMP(&quot;DIHELP&quot;,698526778,1) = This number will be used to determine
+        how large to make the generated
+    ^TMP(&quot;DIHELP&quot;,698526778,2) = compiled PRINT TEMPLATE routines.  The
+        size must be a number greater
+    ^TMP(&quot;DIHELP&quot;,698526778,3) = than 2400, the larger the better, up
+        to the maximum routine size for
+    ^TMP(&quot;DIHELP&quot;,698526778,4) = your operating system.
+
+    ^TMP(&quot;DIMSG&quot;,698526778,1) = Records from list on ZZMYARRAY SEARCH
+        template.
+
+</PRE> 
+	 <P>Then, write the error text to the current device and kill the input
+		array: </P> 
+	 <PRE>
+    &gt;<B>D MSG^DIALOG()</B>
+    The record is currently locked.
+
+</PRE> 
+	 <P><B>Example 2</B></P> 
+	 <P>In this example, we want to write the help text from the "DIHELP"
+		subscripted portion of the ^TMP global, both to the current device and to the
+		local 'MYARRAY' array. In addition, we want to format each line to 50 as
+		follows: </P> 
+	 <PRE>
+    &gt;<B>D MSG^DIALOG(&quot;HAW&quot;,.MYARRAY,50,5)</B>
+
+</PRE> 
+	 <P>This number will be used to determine how large to make the generated
+		compiled PRINT template routines. The size must be a number greater than 2400,
+		the larger the better, up to the maximum routine size for your operating
+		system. </P> 
+	 <PRE>
+    &gt;<B>ZW MYARRAY</B>
+    MYARRAY(1)=This number will be used to determine how large to
+    MYARRAY(2)=make the generated
+    MYARRAY(3)=compiled PRINT TEMPLATE routines.  The size must
+    MYARRAY(4)=be a number greater
+    MYARRAY(5)=than 2400, the larger the better, up to the
+    MYARRAY(6)=maximum routine size for
+    MYARRAY(7)=your operating system.
+
+
+</PRE> 
+	 <P><B>Example 3</B></P> 
+	 <P>In the third example, help text was returned from a DBS call in a local
+		array. This was done because the developer specified to the DBS call that
+		dialog was to be returned in its own local array rather than in the ^TMP
+		global. Suppose our local array looks like this: </P> 
+	 <PRE>
+    MYHELP(&quot;DIHELP&quot;,1)=This number will be used to determine how large
+        to make the generated
+    MYHELP(&quot;DIHELP&quot;,2)=compiled PRINT TEMPLATE routines.  The size must
+        be a number greater
+    MYHELP(&quot;DIHELP&quot;,3)=than 2400, the larger the better, up to the
+        maximum routine size for
+    MYHELP(&quot;DIHELP&quot;,4)=your operating system.
+
+</PRE> 
+	 <P>If the developer wishes to write the text to the current device and to
+		preserve the 'MYHELP' local array, the call and the results will look like
+		this: </P> 
+	 <PRE>
+    &gt;<B>D MSG^DIALOG(&quot;WSH&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;MYHELP&quot;)</B>
+</PRE> 
+	 <P>This number will be used to determine how large to make the generated
+		compiled PRINT template routines. The size must be a number greater than 2400,
+		the larger the better, up to the maximum routine size for your operating
+		system. </P> 
+	 <H5>Error Codes Returned</H5> 
+	 <P>None</P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- db_dia_m.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 14, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

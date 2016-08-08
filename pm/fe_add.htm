@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ScreenMan Form Editor - Adding Pages,
+		Blocks, and Fields </TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman,form editor,screenman form editor,editor,adding pages,adding blocks,adding fields">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fe_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Form Editor Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan Form Editor</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Adding Pages, Blocks, and Fields</H4> 
+	 <UL> 
+		<LI><A HREF="#pages" TITLE="Adding Pages (<PF2>P)"
+		  CLASS="bodylink">Adding Pages (<B>&lt;PF2&gt;P</B>)</A><BR><BR></LI> 
+		<LI><A HREF="#blocks" TITLE="Adding Blocks (<PF2>B)"
+		  CLASS="bodylink">Adding Blocks (<B>&lt;PF2&gt;B</B>)</A><BR><BR></LI> 
+		<LI><A HREF="#fields" TITLE="Adding Fields (<PF2>F)"
+		  CLASS="bodylink">Adding Fields (<B>&lt;PF2&gt;F</B>)</A></LI> 
+	 </UL> <HR> 
+	 <H5><A NAME="pages">Adding Pages</A></H5> 
+	 <P>To add a new page to the form, press <B>&lt;PF2&gt;P</B>. The Form
+		Editor asks you to enter the page number of the new page: </P>
+	 <IMG SRC="fe_add1.gif" ALIGN="BOTTOM" WIDTH="176" HEIGHT="41"
+	  ALT='Example Form Editor of Dialogue, "New/Updated with VA FileMan V. 22.0 PAGE NUMBER:".'>
+	 
+	 <P>Here you must enter a page number that hasn't yet been used on the form.
+		(Press <B>&lt;PF1&gt;Q</B> to close this "pop-up" page and abort adding a new
+		page.) Once you've selected a new page number, the Form Editor asks: </P>
+	 <IMG SRC="fe_add2.gif" ALIGN="BOTTOM" WIDTH="289" HEIGHT="58"
+	  ALT='Example of Form Editor Dialogue: "Are you adding Page n as a New/Updated with VA FileMan V. 22.0 page on this form?".'>
+	 
+	 <P>If you answer YES, the Form Editor invokes a ScreenMan form in which you
+		can edit the properties of the new page. (See "<A HREF="fe_edp.htm"
+		TITLE="Editing Page Properties" CLASS="bodylink">Editing Page Properties</A>.")
+		</P> <HR> 
+	 <H5><A NAME="blocks">Adding Blocks</A></H5> 
+	 <P>To add a new block to the current page, move the cursor to the location
+		on the page where you want the upper left corner of the block positioned, and
+		press <B>&lt;PF2&gt;B</B>. The Form Editor asks you for the name of the block
+		you want to add to the current page: </P> 
+	 <PRE>    Select NEW BLOCK NAME:</PRE> 
+	 <P>Here, you can either select an existing block from the BLOCK file, or
+		enter the name of a new block. If you enter the name of a new block (e.g.,
+		ZZTEST BLOCK 1), the Form Editor asks you whether you wish to add the block to
+		the BLOCK file: </P> 
+	 <PRE>    ARE YOU ADDING 'ZZTEST BLOCK 1' AS A NEW BLOCK (THE 36TH)?</PRE> 
+	 <P>and whether you want to add the block to the current page of the form:
+		</P> 
+	 <PRE>    Are you adding ZZTEST BLOCK 1 as a new block on this page?</PRE> 
+	 <P>If you answer YES to these questions, the Form Editor invokes a
+		ScreenMan form where you can edit the properties of the new block. (See "<A
+		HREF="fe_edb.htm" TITLE="Editing Block Properties" CLASS="bodylink">Editing
+		Block Properties</A>.") </P> 
+	 <P><B>Header Blocks</B></P> 
+	 <P>For backward compatibility, the Form Editor displays and allows you to
+		edit the properties of header blocks already defined on the form. It does not,
+		however, provide a way to add header blocks to a form, since display-type
+		blocks provide the same functionality as header blocks. Instead of creating a
+		header block on a page, you can create a display-type block with a coordinate
+		of "1,1" relative to the page. </P> <HR> 
+	 <H5><A NAME="fields">Adding Fields</A></H5> 
+	 <P>To add fields to a block on the current page of the form, you must be on
+		the Form Editor's Main Screen. If you are currently on the Block Viewer Screen,
+		press <B>&lt;PF1&gt;V</B> to return to the Main Screen. Before you can add
+		fields, at least one block must be defined on the current page. </P> 
+	 <P>To add a field, move the cursor to the desired location of the new field
+		and press <B>&lt;PF2&gt;F</B>. The Form Editor presents the following dialog:
+		</P>
+	 <IMG SRC="fe_add3.gif" ALIGN="BOTTOM" WIDTH="275" HEIGHT="50"
+	 ALT='Example of Form Editor Dialogue: "Select BLOCK, FIELD ORDER, FIELD TYPE".'>
+	 
+	 <P>(To close this "pop-up" page and abort adding a new field, press
+		<B>&lt;PF1&gt;Q</B>.) </P> 
+	 <P>You can change any of the default answers the Form Editor provides. The
+		Form Editor asks you to select a block on which to add the new field. You can
+		select only those blocks that are defined on the current page. The Form Editor
+		also asks you for the Field Order number and the Field Type of the new field.
+		</P> 
+	 <P>Once you have filled in all the information in this "pop-up" page, press
+		<B>&lt;PF1&gt;E</B>. The Form Editor adds the new field to the block, and
+		invokes a form where you can edit the properties of the field just created.
+		(See "<A HREF="fe_edfld.htm" TITLE="Editing Field Properties"
+		CLASS="bodylink">Editing Field Properties</A>.") </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- fe_add.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
+

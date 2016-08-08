@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: PRINT^DDS (Print ScreenMan
+		Form)</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman api,screenman,api,calls,print^dds,dds,print form,print">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sm_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>PRINT^DDS</H4> 
+	 <P>You can use this entry point to print a form. PRINT^DDS prints the
+		properties of the form and the properties of all the blocks used on that form.
+		</P> 
+	 <PRE>
+&gt;<B>D PRINT^DDS</B> 
+ 
+Select FORM: <B>ZZSAMPLE</B>        (Nov 16, 1994)   User #3   File 16201
+ 
+Start each page of the form on a new page? Yes// <B>NO</B> 
+DEVICE: HOME// <B>;;9999</B>  DECSERVER
+ 
+FORM LISTING - ZZSAMPLE (#38)
+FILE: ZZTEST (#16201)                NOV 16, 1994  13:29    PAGE 1
+------------------------------------------------------------------
+         PRIMARY FILE: 16201                   READ ACCESS: @
+         DATE CREATED: NOV 16, 1994@08:24     WRITE ACCESS: @
+       DATE LAST USED: NOV 16, 1994@08:25          CREATOR: 3
+ 
+Page    Page
+Number  Properties
+------  ----------
+1       Page 1
+ 
+PAGE COORDINATE:        1,1
+ 
+Block  Block
+Order  Properties (Form File)
+-----  ----------------------
+1      ZZSAMPLE (#104)
+ 
+TYPE OF BLOCK:          EDIT
+BLOCK COORDINATE:       1,1
+
+Block Properties (Block File)
+-----------------------------
+DATA DICTIONARY NUMBER: 16201
+
+Field  Field
+Order  Properties
+-----  ----------
+1      FIELD TYPE:            DATA DICTIONARY FIELD
+       CAPTION:               NAME
+       FIELD:                 .01
+       CAPTION COORDINATE:    1,1
+       DATA COORDINATE:       1,7
+       DATA LENGTH:           30
+ 
+2      FIELD TYPE:            DATA DICTIONARY FIELD
+       CAPTION:               SET
+       FIELD:                 1
+       CAPTION COORDINATE:    2,2
+       DATA COORDINATE:       2,7
+       DATA LENGTH:           10
+
+</PRE> 
+	 <P></P>	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- sm_pprin.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

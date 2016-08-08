@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Considerations Before
+		Archiving</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,archiving,archive">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0"> 
+	 
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ar_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Archiving Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Archiving</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Considerations Before Archiving</H4> 
+	 <P>The following summarizes some of the important items to note regarding
+		the archiving facility. Consider them before you begin archiving:</P> 
+	 <UL> 
+		<LI>We strongly encourage you to have a current backup of your files
+		  before archiving.<BR><BR></LI> 
+		<LI>Archiving is not user-specific. In other words, archiving is attached
+		  to a file not a user. For your own protection, please be aware that someone
+		  other than yourself can complete or change an existing archiving activity.
+		  <BR><BR></LI> 
+		<LI>Data from logical and physical files can be archived, but only the
+		  data from the physical (primary) file can be purged (removed).<BR><BR></LI> 
+		<LI>VA FileMan must be able to collect and print the data (using the
+		  search criteria) before you can create an archiving activity. That is, the
+		  Select Entries to Archive option must be run to completion such that the
+		  selected entries are printed (and can thus be stored in the ^DIBT SORT TEMPLATE
+		  global).<BR><BR></LI> 
+		<LI>If you plan to keep a hard copy of the printed entries for future
+		  reference, design your PRINT template to facilitate review. You do not need to
+		  print all of the fields' values that will be archived, but you may want to
+		  include those that, in combination, will uniquely identify the entry. Save the
+		  PRINT template for future use when archiving. <BR><BR></LI> 
+		<LI>When the archived entries are written to temporary storage, the
+		  corresponding original entry disappears from the user's view. (A new node,
+		  subscripted with -9, is added to the original entry so that it will be bypassed
+		  by the usual VA FileMan calls.)<BR><BR></LI> 
+		<LI>If data to be archived is contained in a Multiple field, then the
+		  entire entry must be archived. You cannot archive a subentry by
+		  itself.<BR><BR></LI> 
+		<LI>A FILEGRAM-type template is the only template type allowed in the
+		  Write Entries to Temporary Storage option.<BR><BR></LI> 
+		<LI>You cannot have more than one archiving activity on a file at a
+		  time.<BR><BR></LI> 
+		<LI>Data selected for archiving can be permanently saved to any
+		  <B>sequential</B> storage media, for example: SDP, a VMS file, magnetic tape,
+		  or a removable disk pack.<BR><BR></LI> 
+		<LI>Depending on the number of entries involved, be prepared for the
+		  search (the Select Entries to Archive option) and write (the Write Entries to
+		  Temporary Storage option) processes to be time-consuming.<BR><BR></LI> 
+		<LI>A brief history of who performed the various archive steps and when
+		  they were accomplished is saved in the
+		  <A HREF="ar_aa.htm" TITLE="ARCHIVAL ACTIVITY file" CLASS="bodylink">ARCHIVAL
+		  ACTIVITY file</A>.<BR><BR></LI> 
+		<LI>You can cancel your archiving process, by using the Cancel Archival
+		  Selection option, at any time before the Purge Stored Entries option is
+		  used.<BR><BR></LI> 
+		<LI>The Find Archived Entries option can be used to verify that the
+		  archive medium contains all the information intended to be
+		  archived.<BR><BR></LI> 
+		<LI>The Purge Stored Entries option completely deletes data from the file
+		  being archived and from the
+		  <A HREF="ar_aa.htm" CLASS="bodylink" TITLE="ARCHIVAL ACTIVITY file">ARCHIVAL
+		  ACTIVITY file</A>.<BR><BR></LI> 
+		<LI>You cannot purge archived entries until you have moved selected
+		  entries to permanent storage. Thus, you need not worry about losing entries
+		  before they're archived.<BR><BR></LI> 
+		<LI>You cannot start a second archive from a file until you purge or
+		  cancel the existing archiving activity on that file. </LI> 
+	 </UL>	 <P>&nbsp;</P> 
+<HR CLASS="hrstyle">
+	 <!-- ar_prel.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

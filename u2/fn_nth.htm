@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+
+
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: nTH VA FileMan
+		Function</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,va fileman functions,functions,nth">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fn_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: VA FileMan Functions Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">VA FileMan Functions</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>nTH</H4> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP">Format:</TD> 
+		  <TD VALIGN="TOP">The syntax of this function is different because the
+			 function's name is defined by the user. The name is a number followed by an
+			 ordinal number suffix. 
+			 <OL> 
+				<LI>nTH(fname)<BR><BR></LI> 
+				<LI>nTH(fname:field)</LI> 
+			 </OL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Parameters:</TD> 
+		  <TD VALIGN="TOP"> 
+			 <OL> 
+				<LI>In the first format, <B>fname</B> is the name of a file or of a
+				  Multiple in your current file.<BR><BR></LI> 
+				<LI>In the second format: <BR><BR> 
+				  <UL> 
+					 <LI><B>fname</B> is the name of your current file or
+						Multiple.<BR><BR></LI> 
+					 <LI><B>field</B> is the name of a field (or a field number
+						preceded by <B>#</B>) in <B>fname</B>.</LI> 
+				  </UL> </LI> 
+			 </OL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Use:</TD> 
+		  <TD VALIGN="TOP">This function returns the n<SUP>th</SUP> entry in a
+			 file or in a Multiple identified by <B>fname</B>. If the second format is used,
+			 the value of the specified <B>field</B> associated with the nth entry in
+			 <B>fname</B> is returned. The n<SUP>th</SUP> entry is determined by the
+			 internal entry number; the function does not analyze the values of the entries.
+			 When used with the second format, the nth subentry with a non-null value is
+			 returned.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Examples:</TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>2ND(DIAGNOSIS)=&gt; Angina Pectoris [the second entry in the
+				DIAGNOSIS Multiple]</P> 
+			 <P>10TH(ADMISSION:ADMISSION DATE)=&gt; JAN 2,1990 [ADMISSION DATE
+				associated with the tenth ADMISSION]</P> </TD> 
+		</TR> 
+	 </TABLE>
+	 	 <P>&nbsp;</P> 
+<HR CLASS="hrstyle">
+	 <!-- fn_nth.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

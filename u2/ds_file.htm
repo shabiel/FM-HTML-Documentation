@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Security at the File
+		Level</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,data security,data,security">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ds_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Data Security Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Data Security</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Security at the File Level</H4> 
+	 <P>There are two methods of controlling access to files:</P> 
+	 <UL> 
+		<LI><A HREF="#access_code" TITLE="Access Code Security on Files"
+		  CLASS="bodylink">Access Code Security on Files</A><BR><BR></LI> 
+		<LI><A HREF="#FAS"
+		  TITLE="File Access Security (Formerly Part 3 of Kernel)" CLASS="bodylink">File
+		  Access Security (Formerly Part 3 of Kernel)</A></LI> 
+	 </UL> 
+	 <P> On a particular system only one method is in effect at a particular
+		time. If File Access Security has been installed, it controls file-level
+		security. Otherwise, access is controlled by Access Codes. Obviously, if you
+		are using VA FileMan without Kernel, only Access Code security is possible.
+		</P> <HR> 
+	 <H5><A NAME="access_code">Access Code Security on Files</A></H5> 
+	 <P>The Access Code is a string of characters that correspond to functional
+		data access categories. For example,<B> <I>A</I></B> might correspond to
+		entry/editing of Administrative Data, a lower case <I><B>a</B></I> might
+		correspond to viewing of Administrative data, <I><B>F</B></I> might correspond
+		to entering or editing of Fiscal data, and <I><B>f</B></I> to viewing of Fiscal
+		data. </P> 
+	 <P>Typically, you go through a password-checking signon process before
+		using VA FileMan. During signon, you are identified by the system and your
+		Access Code is set. For example, it might be equal to <I><B>Aaf</B></I>, if you
+		are identified as someone entitled to view and change Administrative data, but
+		only to view (search and print) Fiscal data. If you lack any such security
+		clearance, the default value of the Access Code entry is simply null. </P> 
+	 <P>These Access Codes are used to control access to files in six different
+		ways: </P> 
+	 <TABLE BORDER="1"
+	  SUMMARY="Access Code Controls Table (control and description)" WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Access Code</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="read">READ</A></B></TD> 
+		  <TD VALIGN="TOP">Controls use of the file by Print File Entries, Search
+			 File Entries, Inquire to File Entries, Statistics, List File Attributes, and
+			 Transfer File Entries (transfer-from file) options. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="write">WRITE</A></B></TD> 
+		  <TD VALIGN="TOP">Controls use of Enter or Edit File Entries and
+			 Transfer File Entries (transfer-to file) options. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="delete">DELETE</A></B></TD> 
+		  <TD VALIGN="TOP">Controls deletion of an entire entry in the Enter or
+			 Edit File Entries or the Transfer Entries options. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="laygo">LAYGO</A></B></TD> 
+		  <TD VALIGN="TOP">Controls creating a new entry within the Enter or Edit
+			 File Entries option. You must have LAYGO as well as WRITE access to a file to
+			 add new entries. Additionally, you must have WRITE access on the field level to
+			 all required identifiers. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="dd">DD</A></B></TD> 
+		  <TD VALIGN="TOP">Controls use of the Modify File Attributes and Utility
+			 Functions (Data Dictionary) options.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="audit">AUDIT</A></B></TD> 
+		  <TD VALIGN="TOP">Controls the setting of auditing characteristics and
+			 the deletion of audit trails. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>All these controls are based on the value of the Access Code. When you
+		access a file, under any of these options, you will not be allowed to access
+		any file that is protected unless your current Access Code either equals an
+		at-sign ("<B>@</B>") or contains at least one character in common with the
+		protection code string of the file. The at-sign ("<B>@</B>") is generally
+		reserved for use by programmers; it gives programmer access. </P> 
+	 <P>Any new file that you create with a code string in your Access Code will
+		automatically be given READ, WRITE, DELETE, LAYGO, and AUDIT Access Codes equal
+		to that code string. To change these codes later, use the Edit File option of
+		the Utility Functions submenu. Be sure when doing so that your own Access Code
+		contains the codes you want to add or equals the at-sign ("<B>@</B>").</P> <HR>
+	 
+	 <H5><A NAME="FAS">File Access Security (Formerly Part 3 of Kernel)</A></H5>
+	 
+	 <P>VA FileMan also has the ability to perform a lookup into a user's record
+		and see if a specific file has been assigned. If your Systems Manager has run
+		the special conversion to have access controlled by the ACCESSIBLE FILE
+		Multiple in the NEW PERSON file (#200), then access to a file is not based on
+		an Access Code. Rather, a lookup is done in your record to see if you are
+		allowed access to the file in question. If your VA FileMan Access Code is the
+		at-sign ("<B>@</B>"), you will be allowed access to all files, even if this
+		special conversion has been performed. </P> 
+	 <P>Access to files is granted to you by the Systems Manager who uses
+		Kernel's File Access Security system. (See the Kernel manuals for detailed
+		information about File Access Security.) </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ds_file.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

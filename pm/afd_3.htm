@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Assigning Sub-Dictionary
+		Numbers</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="afd_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Advanced File Definition Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Advanced File Definition</A></H3> 
+	 <H4>Assigning Sub-dictionary Numbers</H4> <HR CLASS="hrstyle"> 
+	 <P>The "<A HREF="gfs_frm.htm" TARGET="_top" TITLE="Global File Structure"
+		CLASS="bodylink">Global File Structure</A>" chapter points out that data
+		specifications for subfields of a multiple are kept in a subsidiary data
+		dictionary. Such a sub-dictionary is stored in the global
+		^DD(sub-dictionary_number), where sub-dictionary_number is a number with a
+		fractional portion. For example, the specifications for the RESPONSES multiple
+		of File 100, the ORDER file, are stored in ^DD(100.045). Normally, when a new
+		multiple-valued field is created, VA FileMan automatically assigns the
+		fractional sub-dictionary number. The programmer, however, is allowed to choose
+		the desired number. </P> 
+	 <P>When creating a new Multiple Field, (Modify File Attributes option), if
+		you are a programmer, you are asked in a "pop-up" window for the global
+		subscript at which to store the data element being defined. Under this question
+		is the SUB-DICTIONARY question. The RESPONSES multiple in File #100 would have
+		been defined like this: </P> 
+	 <P ALIGN="CENTER"><IMG SRC="Mulloc.jpg"
+		ALT="Example of Creating a New/Updated with VA FileMan V. 22.0  Multiple (Global Subscript)."
+		WIDTH="640" HEIGHT="455"></P> 
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- afd_3.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

@@ -1,0 +1,396 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Getting Started HTML Manual: Search</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,search">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	 <P>&nbsp;</P> 
+
+	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="sr_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u2/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			 CLASS="menubarlink">Advanced User Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Displaying Information</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Search</H4> 
+	 <H5><A NAME="Introduction">Introduction</A></H5> 
+	 <P>When you print reports, you can print a subset of the total number of
+		file entries, if you sort your output. For example, by sorting on a file's DATE
+		field, you could sort for entries from October 1<SUP>st</SUP> to October
+		15<SUP>th</SUP>, and only print entries whose DATE field falls in that sort
+		range. </P> 
+	 <P>Selecting a subset of entries by sorting works well if the subset of
+		entries you would like to print can be isolated based on a contiguous sort
+		range. However, what if you would like a different set of entries (e.g., only
+		entries whose DATE field is equal to either September 1<SUP>st</SUP>, October
+		1<SUP>st</SUP>, or November 1<SUP>st</SUP>)? You cannot do this with a sort
+		range, because the sort range that includes September 1<SUP>st</SUP> and
+		November 1<SUP>st</SUP> would include every entry between the two dates. </P> 
+	 <P>When you use VA FileMan's search capabilities, you have much more
+		control over what entries you select from a file for printing.</P> <HR> 
+	 <H5><A NAME="How">How to Search</A></H5> 
+	 <P>As with VA FileMan's print capabilities, there are two methods in which
+		you can use VA FileMan's search features: </P> 
+	 <UL> 
+		<LI>An option that has been set up already to allow you to search a
+		  particular file.<BR><BR></LI> 
+		<LI>VA FileMan's Search File Entries option, which lets you perform a
+		  search on any file to which you have access. </LI> 
+	 </UL> 
+	 <P>In either case, use of VA FileMan's search features is very similar. In
+		most cases, the only difference is that with the Search File Entries option,
+		you have to choose which file to search. </P> 
+	 <P>The steps in searching are: </P> 
+	 <OL> 
+		<LI>Enter the search conditions (truth tests) to perform on each
+		  entry.<BR><BR></LI> 
+		<LI>Specify how the search conditions should be combined (link them
+		  together with logical <B>ANDs</B> &amp; <B>ORs</B>) to select
+		  records.<BR><BR></LI> 
+		<LI>Format your output (i.e., choose the sort order and print
+		  fields).</LI> 
+	 </OL> 
+	 <P></P><HR> 
+	 <H4 ALIGN="LEFT">Search Steps</H4> 
+	 <H5><A NAME="Step_1">1. Enter Conditions</A></H5> 
+	 <P>First, you must enter one or more search conditions to test each entry.
+		For each condition you choose a field in the entry and a condition to compare
+		the field against. </P> 
+	 <P>For example, you could check if an entry's DATE field is NULL, GREATER
+		THAN 10/1/96, or EQUALS 10/1/96.</P> 
+	 <P><B>Search Condition Tests</B></P> 
+	 <P>The following table lists the six possible search conditions against
+		which you can test entries. It also includes the symbol that represents the
+		condition (if any), for what field types the condition can be used, and the
+		description/arguments of each condition:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="Search Condition Tests Table" TITLE="Search Condition Tests Table"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Condition</B></TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER"><B>Symbol</B></TD> 
+		  <TD VALIGN="TOP"><B>For Field Types</B> </TD> 
+		  <TD VALIGN="TOP"><B>Description/Arguments</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">NULL</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER">(none)</TD> 
+		  <TD VALIGN="TOP">All except WORD-PROCESSING. </TD> 
+		  <TD VALIGN="TOP">NULL returns true if the field in question is empty
+			 (null). No argument is required. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">CONTAINS</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER"><B>[</B></TD> 
+		  <TD VALIGN="TOP">NUMERIC, FREE TEXT, WORD-PROCESSING, MUMPS, SET OF
+			 CODES, and COMPUTED fields. </TD> 
+		  <TD VALIGN="TOP">Enter a character string that should be contained in
+			 matching entry fields. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">MATCHES</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER">(none)</TD> 
+		  <TD VALIGN="TOP">NUMERIC, FREE TEXT, MUMPS, COMPUTED, and DATE/TIME
+			 fields. </TD> 
+		  <TD VALIGN="TOP">Enter a MUMPS pattern match. The pattern must be valid
+			 for the MUMPS pattern match operator.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">LESS THAN</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER"><B>&lt;</B></TD> 
+		  <TD VALIGN="TOP">NUMERIC, COMPUTED, SET OF CODES, FREE TEXT, and
+			 DATE/TIME fields. </TD> 
+		  <TD VALIGN="TOP">Enter a value that a matching entry field should be
+			 less than. Non-NUMERIC fields are evaluated as if they were numbers. Thus,
+			 strings beginning with alpha characters are evaluated as zero. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">EQUALS </TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER"><B>=</B></TD> 
+		  <TD VALIGN="TOP">All data except WORD-PROCESSING. </TD> 
+		  <TD VALIGN="TOP">Enter a value to which a matching entry field should
+			 be equal. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">GREATER THAN </TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER"><B>&gt;</B></TD> 
+		  <TD VALIGN="TOP">NUMERIC, COMPUTED, SET OF CODES, FREE TEXT, and
+			 DATE/TIME fields. </TD> 
+		  <TD VALIGN="TOP">Enter a value to which a matching entry field should
+			 be less than. Non-NUMERIC fields are evaluated as if they were numbers. Thus,
+			 strings beginning with alpha characters are evaluated as zero. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> 
+	 <P>When you start your search, VA FileMan asks you to enter a field, a
+		condition, and a value to which the field is compared. </P> 
+	 <P>For example, to create a search condition that would find all entries
+		whose DATE ACCESS CODE LAST CHANGED field contains a date older than 120 days
+		in the past, you would enter the following:</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>-A- SEARCH FOR FIELD: <B>DATE ACCESS CODE LAST CHANGED</B>
+   -A- CONDITION: <B>LESS THAN</B>
+   -A- GREATER THAN: <B>T-120 &lt;RET&gt;</B>  (Jun 20, 1995)</PRE> <HR> 
+	 <P><B>NOTE:</B> Each prompt above begins with "<B>-A-</B>"; what you've
+		entered becomes search condition "A."</P> 
+	 <P>Once you enter your first search condition, you can enter additional
+		search conditions, if you wish. VA FileMan assigns the letter "A" to the first
+		search condition, "B" to the second search condition (if any), "C" to the
+		third, and so on.. <BR> <BR> Here is an example of entering two truth tests:
+		</P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>-A- SEARCH FOR FIELD: <B>DATE ACCESS CODE LAST CHANGED</B>
+   -A- CONDITION: <B>LESS THAN</B>
+   -A- GREATER THAN: <B>T-120 &lt;RET&gt;</B>  (Jun 20, 1995)
+
+  -B- SEARCH FOR FIELD: <B>ACCESS CODE</B>
+  -B- CONDITION: <B>'NULL</B> 
+
+  -C- SEARCH FOR FIELD: <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <P></P><HR> 
+	 <H5><A NAME="Step_2">2. Combine Conditions</A></H5> 
+	 <P>After defining a series of conditions (A, B, etc.), you combine the
+		conditions to yield the complete test that an entry must satisfy to be selected
+		in the search. The complete test is a logical combination of tests A, B, etc.,
+		using <B>AND</B>, <B>OR</B>, and <B>NOT</B>. </P> 
+	 <P><B>Operators for Combining Search Conditions</B></P> 
+	 <P>The following table lists the possible operators to combine search
+		conditions:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	 SUMMARY="Operators for Combining Search Conditions Table"
+	 TITLE="Operators for Combining Search Conditions Table"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Condition</B></TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER"><B>Symbol</B></TD> 
+		  <TD VALIGN="TOP"><B>Description</B></TD> 
+		  <TD VALIGN="TOP"><B>Example</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">AND</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER"><B>&amp;</B></TD> 
+		  <TD VALIGN="TOP">For truth test to be true, the conditions on both
+			 sides of the <B>AND</B> operator must be true. The "<B>&amp;</B>" symbol can be
+			 omitted (i.e., AB is the same as A&amp;B). </TD> 
+		  <TD VALIGN="TOP"><B>A&amp;B</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">NOT</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER"><B>'</B> or <B>-</B></TD> 
+		  <TD VALIGN="TOP">For truth test to be true, the condition following NOT
+			 (i.e., apostrophe, "<B>'</B>" or dash "<B>-</B>") must be false. If <B>A</B> is
+			 false, <B>'A</B> evaluates to true. </TD> 
+		  <TD VALIGN="TOP"><B>'A</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">OR</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER">Enter on new line.</TD> 
+		  <TD VALIGN="TOP">For truth test to be true, only one of the conditions
+			 that are combined with <B>OR</B> needs to be true. If <B>A</B> is true and
+			 <B>B</B> is false, <B>A OR B</B> evaluates to true. </TD> 
+		  <TD VALIGN="TOP"> 
+			 <PRE>IF: <B>A &lt;RET&gt;</B>
+OR: <B>B &lt;RET&gt;</B></PRE> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P></P> 
+	 <P>For example, if you just want to find all entries for which search
+		condition A is true, you would enter: </P> 
+	 <PRE>  -B- SEARCH FOR FIELD: <B>&lt;RET&gt;</B>
+   IF: <B>A</B>
+   OR: <B>&lt;RET&gt;</B></PRE> 
+	 <P>A more complicated search might have a number of search conditions
+		(e.g., A, B, C, and D). Thus, for example, to find all entries which either: 1)
+		satisfy both truth tests A and B, or 2) do not satisfy truth test C, but
+		satisfy truth test D, you could combine search conditions as follows:</P> 
+	 <PRE>  -E- SEARCH FOR FIELD: <B>&lt;RET&gt;</B>
+   IF: <B>A&amp;B</B>
+   OR: <B>'C&amp;D</B>
+   OR: <B>&lt;RET&gt;</B></PRE> 
+	 <P>In the example above, the logic says "if A and B, or if not C (but D)".
+		</P> <HR> 
+	 <H5><A NAME="Step_3">3. Format Output</A></H5> 
+	 <P>The remaining steps to finish your search are to choose your sorting
+		criteria (same as with printing) and to choose the fields to print for each
+		matched entry (also the same as with the printing). </P> 
+	 <P>A complete search (entering search conditions, combining search
+		conditions, and finishing the search) is shown below: </P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG SRC="sr_1.gif" WIDTH="603" HEIGHT="583"
+		ALT="Example of a Completed Search."> </CENTER> 
+	 <P></P> 
+	 <P>The previous search found two entries that matched the search conditions
+		(i.e., DATE ACCESS CODE LAST CHANGED greater than 2/2/99 and ACCESS CODE
+		<I>not</I> null).</P> <HR> 
+	 <H4 ALIGN="LEFT">Details and Features</H4> 
+	 <H5><A NAME="Sorting">Sorting and Searching</A></H5> 
+	 <P>As you may recall from the "<A HREF="pr_intro.htm"
+		TITLE="How to Print Reports from Files" CLASS="bodylink">How to Print Reports
+		from Files</A>" chapter in this manual, you can print a subset of entries from
+		a file by sorting (i.e., printing only those entries that fall between a
+		sort-from value and a sort-to value). Searches also select a subset of entries
+		from a file, although with more flexibility than with sorting.</P> 
+	 <P>When you print your output from a search, you are also given a chance to
+		sort the output. This means that while searching selects a subset of entries to
+		print, through sorting you can further restrict that subset of entries that is
+		going to print. How does sorting affect the output of the searches? </P> 
+	 <P>The answer is that VA FileMan uses <I>both</I> your search and sort
+		order to select entries. You enter the search criteria before you enter the
+		sort order. However, the selection of entries indicated in the sort ("START
+		WITH &#133; GO TO" dialogue) sorting is done first, after which the search
+		conditions are applied to all remaining entries to determine the final set of
+		matching entries. </P> <HR> 
+	 <H5><A NAME="Templates">SEARCH Templates</A></H5> 
+	 <P>You can save the results of your search in a SEARCH template. Doing this
+		allows you to: </P> 
+	 <UL> 
+		<LI>Reuse your search criteria to perform another search.<BR><BR></LI> 
+		<LI>Reuse your search results (the list of entries selected as a result
+		  of both the search and the sort order). </LI> 
+	 </UL> 
+	 <P>This is because SEARCH templates store both your search criteria and
+		also the list of entries that is found in your search. </P> 
+	 <P><B>Creating SEARCH Templates</B></P> 
+	 <P>The place to save your search criteria and results in a SEARCH template
+		is right after you specify your search conditions. At this point, you are
+		prompted: </P> 
+	 <PRE>  STORE RESULTS OF SEARCH IN TEMPLATE:</PRE> 
+	 <P>You can create a template at this prompt. Because SEARCH templates are
+		stored in the same file as SORT templates (the SORT TEMPLATE file, #.401), you
+		can't give a SEARCH template the same name as a SORT template. To avoid
+		creating a SEARCH template, just press the Enter/Return key at this prompt.
+		Usually, only the creator of a SEARCH template can use it. </P> 
+	 <P><B>Reusing Search Criteria Stored in a SEARCH Template</B></P> 
+	 <P>Whenever you do a search, you can reuse the search criteria (i.e., your
+		combined search conditions) stored in a SEARCH template. To do this, enter the
+		bracketed SEARCH template name at the first "SEARCH FOR FIELD:" prompt: </P> 
+	 <PRE>  -A- SEARCH FOR FIELD: <B>[RESEARCH 1]</B></PRE> 
+	 <P>A new search will be performed with the recalled search criteria. </P> 
+	 <P><B>Reusing Search Results in Another Search</B></P> 
+	 <P>Whenever you do a search, you can recall the results of a previous
+		search (the list of entries found in the search) at the "SORT BY:" prompt. In
+		this case, the new search is done against the entries in the SEARCH template,
+		rather than the entire file. Answer the "SORT BY:" prompt with the bracketed
+		SEARCH template name: </P> 
+	 <PRE>  SORT BY:  NAME// <B>[RESEARCH 1]</B></PRE> 
+	 <P><B>Reusing Search Results in a Print</B></P> 
+	 <P>When doing VA FileMan prints, you can also recall the results of a
+		previous search at the "SORT BY:" prompt. In this case, the entries saved in
+		the SEARCH template are the ones printed in the report. This is handy if you do
+		a search, collect a group of entries, and then want to print several different
+		reports based on the same set of entries. </P> <HR> 
+	 <H5><A NAME="Internal_External">Internal vs. External Field Values for
+		Search Conditions</A></H5> 
+	 <UL> 
+		<LI>For all SET OF CODES field types, you must use external values for
+		  the search conditions.<BR><BR></LI> 
+		<LI>For DATE/TIME field types, you can enter internal or external values
+		  for the search conditions.<BR><BR></LI> 
+		<LI>For other DATA TYPEs (NUMERIC, COMPUTED, and FREE TEXT), there is no
+		  difference between internal and external value.<BR><BR></LI> 
+		<LI>For POINTER TO A FILE or VARIABLE-POINTER fields, the sort is based
+		  on the field type of the .01 field of the pointed-to file. </LI> 
+	 </UL> 
+	 <P></P> <HR> 
+	 <H5><A NAME="Matches">Print Number of Matches Found </A></H5> 
+	 <P>If you only want to print the number of matches found, without printing
+		any of the matched entries, answer the "FIRST PRINT FIELD:" prompt by simply
+		pressing the Enter/Return key. </P> <HR> 
+	 <H5><A NAME="Multiples">Searching Multiples</A></H5> 
+	 <P>Searching on multiple-valued fields, like the DIAGNOSIS field in the
+		PATIENT file, is a special situation. You must specify whether a truth test is
+		to be considered met if <I>at least one</I> of the subentries for an entry
+		passes the test or if <I>all</I> the subentries must pass the test. </P> 
+	 <P>When truth tests contain a negative (contains an apostrophe "<B>'</B>"),
+		you can even specify that an entry with <I>no</I> subentries should
+		automatically pass the test. </P> 
+	 <P>Suppose, for example, that you want to search for all patients who were
+		born before 1900 and who <I>don't</I> have a DIAGNOSIS containing the word
+		ANGINA: </P> 
+	 <P></P> 
+	 <CENTER>
+		<IMG SRC="sr_2.gif" WIDTH="634" HEIGHT="492"
+		ALT="Example of Searching Multiples Using Truth Tests."> </CENTER> 
+	 <P></P> 
+	 <P>Another ambiguity about searches of multiple fields is how to interpret
+		two separate truth tests on the same subfield. </P> 
+	 <P>For example, if you are searching for DIAGNOSIS containing ANGINA and
+		also for DIAGNOSIS containing PECTORIS, do you want to find: </P> 
+	 <UL> 
+		<LI>Only those patients who have ANGINA and PECTORIS in the <I>same</I>
+		  diagnosis name?<BR><BR></LI> 
+		<LI>Patients who might have one diagnosis containing ANGINA and a
+		  <I>different</I> diagnosis containing PECTORIS?</LI> 
+	 </UL> 
+	 <P>Whenever you combine two truth tests (e.g., A and B) pertaining to the
+		same multiple-valued field, you are prompted with the following: </P> 
+	 <PRE>CONDITION -A- WILL APPLY TO THE SAME MULTIPLE AS CONDITION -B-   
+OK? YES//</PRE> 
+	 <P>In this example, a YES answer means that ANGINA and PECTORIS must be
+		found in the <I>same</I> DIAGNOSIS. If you answer NO, you can specify how A and
+		B will apply: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>DO YOU WANT THIS SEARCH SPECIFICATION TO BE CONSIDERED TRUE FOR CONDITION -A-
+ 
+        1) WHEN AT LEAST ONE OF THE 'DIAGNOSIS' MULTIPLES SATISFIES IT
+ 
+        2) WHEN ALL OF THE 'DIAGNOSIS' MULTIPLES SATISFY IT
+ 
+    CHOOSE 1-2: 1// <B>2</B>
+
+DO YOU WANT THIS SEARCH SPECIFICATION TO BE CONSIDERED TRUE FOR CONDITION -B-
+
+        1) WHEN AT LEAST ONE OF THE 'DIAGNOSIS' MULTIPLES SATISFIES IT
+  
+        2) WHEN ALL OF THE 'DIAGNOSIS' MULTIPLES SATISFY IT
+ 
+    CHOOSE 1-2: 1// <B>&lt;RET&gt;</B>
+ </PRE> <HR> 
+	 <P>In this case, all the diagnoses would need to satisfy the A condition,
+		but only one (or more) would need to satisfy the B condition. </P> 
+	 <P><B>NOTE:</B> Applying search tests to fields in a multiple selects
+		entries at the top level of the file. VA FileMan's searching features cannot be
+		used to select specific subentries. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle"> 
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

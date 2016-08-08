@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Screened Pointers and Set of
+		Codes</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="afd_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Advanced File Definition Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Advanced File Definition</A></H3> 
+	 <H4>Screened Pointers and Set of Codes</H4> <HR CLASS="hrstyle"> 
+	 <P>A programmer modifying a <B>pointer</B> data type field will be asked:
+		</P> 
+	 <PRE>    SHOULD POINTER ENTRIES BE SCREENED? NO// <B>Y  </B>(YES)
+
+</PRE> 
+	 <P>Answering YES allows entry of a line of M code. The variable DIC("S") is
+		set equal to this code. The code is used in the DIC lookup routine to screen
+		out certain entries in the pointed-to file. (See the description of
+		<A HREF="cl_dic.htm" TARGET="display" TITLE="^DIC" CLASS="bodylink">^DIC</A>
+		for details about the use of DIC("S"); especially in regard to the naked
+		indicator.) For example, the following trick could be used to make sure that
+		all providers being pointed to from a Surgery file had an S code in some
+		auxiliary field: </P> 
+	 <PRE>    SCREEN:  S DIC(&quot;S&quot;)=&quot;I $D(^(1)),$P(^(1),U,5)[&quot;&quot;S&quot;&quot;&quot;
+
+</PRE> 
+	 <P>Each pointed-to file defined for a variable pointer field can be
+		screened in a similar way. </P> 
+	 <P>Also, the programmer can put a screen on a <B>set of codes</B> type data
+		field. After the set values have been described, the user is asked: </P> 
+	 <PRE>    SHOULD SET ENTRIES BE SCREENED?  NO//
+
+</PRE> 
+	 <P>Again, answering YES allows entry of a line of M code. This code should
+		set the variable DIC("S") which is applied to the selection of the member of
+		the set. When this DIC("S") is executed, the variable, Y, contains the internal
+		value of the member of the set. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- afd_6.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

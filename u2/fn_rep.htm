@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: REPLACE VA FileMan
+		Function</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,va fileman functions,functions,replace">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY BGCOLOR="white" TOPMARGIN="0">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="fn_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: VA FileMan Functions Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">VA FileMan Functions</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>REPLACE</H4> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP">Format:</TD> 
+		  <TD VALIGN="TOP">REPLACE(string,oldstring,newstring)</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Parameters:</TD> 
+		  <TD VALIGN="TOP"> 
+			 <P><B>string</B> is the string expression that will be changed.</P> 
+			 <P><B>oldstring</B> is a string expression containing the
+				character(s) in <B>string</B> that will be replaced.</P> 
+			 <P><B>newstring</B> is a string expression containing the
+				character(s) that will replace those in <B>oldstring</B>.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Use:</TD> 
+		  <TD VALIGN="TOP">This function returns the input <B>string</B> with all
+			 occurrences of the <B>oldstring</B> changed to the <B>newstring</B>. The
+			 <B>oldstring</B> and <B>newstring</B> can be any length. They do not have to be
+			 equal in length.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">Examples:</TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>REPLACE("abracadabra","ab","*")=&gt; *racad*ra </P> 
+			 <P>REPLACE("Name is: XXX","XXX",NAME)=&gt; Name is: SMITH,AL</P>
+			 </TD> 
+		</TR> 
+	 </TABLE>	 <P>&nbsp;</P> 
+<HR CLASS="hrstyle">
+	 <!-- fn_rep.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

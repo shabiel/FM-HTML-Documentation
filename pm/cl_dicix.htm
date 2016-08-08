@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: IX^DIC</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,ix^dic,dic">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>IX^DIC: Lookup/Add</H4> 
+	 <P>This entry point is similar to
+		<A HREF="cl_dic.htm" TITLE="^DIC" CLASS="bodylink">^DIC</A> and
+		<A HREF="cl_dic1b.htm" TITLE="MIX^DIC1" CLASS="bodylink">MIX^DIC1</A>, except
+		for the way it uses cross-references to do lookup. The three entry points
+		perform lookups as follows:</P> 
+	 <TABLE BORDER="1" WIDTH="100%"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD VALIGN="TOP" ALIGN="LEFT" WIDTH="20%"><B><A
+			 HREF="cl_dic.htm" TITLE="^DIC" CLASS="bodylink">^DIC</A></B></TD> 
+		  <TD>Starts with the B cross-reference, or uses only the B
+			 cross-reference [unless K is passed in DIC(0)].</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>IX^DIC</B></TD> 
+		  <TD>Starts with the cross-reference you specify, or uses only the
+			 cross-reference you specify.</TD> 
+		</TR> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B><A HREF="cl_dic1b.htm"
+			 TITLE="MIX^DIC1" CLASS="bodylink">MIX^DIC1</A></B></TD> 
+		  <TD>Uses the set of cross-references you specify.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Input Variables (Required)</H5> 
+	 <P><B>NOTE:</B> All of the input variables described in
+		<A HREF="cl_dic.htm" TARGET="display" TITLE="^DIC" CLASS="bodylink">^DIC</A>
+		can be used in the IX^DIC call. The following variables are required.</P> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DIC</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The global root of the file, e.g., ^DIZ(16000.1,. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIC(0)</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The lookup parameters as previously described for
+				<A HREF="cl_dic.htm" TITLE="^DIC" CLASS="bodylink">^DIC</A>. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>D</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>The cross-reference in which to start looking. If DIC(0) contains
+				<A HREF="cl_dic.htm#M" TITLE="M Value" CLASS="bodylink">M</A>, then DIC will
+				continue the search on all other lookup cross-references, in alphabetical
+				order. If it does not, then the lookup is only on the single cross-reference.
+				This variable is KILLed by VA FileMan; it is UNDEFined when the IX^DIC call is
+				complete. </P> 
+			 <P>If DIC(0) contains "L", (i.e., user will be allowed to add a new
+				entry to the file), then either a) D should be set to "B" or b) D should be set
+				to an index that alphabetically comes before "B" and DIC(0) should contain "M"
+				or c) D should contain the name of a compound index.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>X</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>If DIC(0) does not contain an
+				<A HREF="cl_dic.htm#A" TITLE="A Value" CLASS="bodylink">A</A>, then the
+				variable X must be defined equal to the value you want to look up. </P> 
+			 <P>If the lookup index is compound (i.e., has more than one data
+				subscript), then X can be an array X(n) where "n" represents the position in
+				the subscript. For example, if X(2) is passed in, it will be used as the lookup
+				value to match to the entries in the second subscript of the index. If only the
+				lookup value X is passed, it will be assumed to be the lookup value for the
+				first subscript in the index, X(1).&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Input Variables (Optional)</H5> 
+	 <P>All of the
+		<A HREF="cl_dic.htm" TARGET="display" TITLE="^DIC" CLASS="bodylink">^DIC</A>
+		input variables can be used in the IX^DIC call. The variables below are
+		optional.</P> 
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only"> 
+		<TR> 
+		  <TD WIDTH="167"><B>DIC("A"), <BR> DIC("B"),<BR> DIC("DR"),<BR>
+			 DIC("P"),<BR> DIC("PTRIX",f,p,t)=d DIC("S"),<BR> DIC("V"),<BR> DIC("W")</B><BR>
+			 <B>DIC("?N",file#)=n</B></TD> 
+		  <TD VALIGN="TOP" WIDTH="422">This set of input variables affects the
+			 behavior of lookup as described for
+			 <A HREF="cl_dic.htm" TITLE="^DIC" CLASS="bodylink">^DIC</A>.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="4" WIDTH="20%"><B>Y</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>DIC always returns the variable Y. The variable Y is returned in
+				one of these three formats: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y=-1</B></TD> 
+		  <TD VALIGN="TOP">The lookup was unsuccessful. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y=<A NAME="NandS">N^S</A></B></TD> 
+		  <TD VALIGN="TOP">N is the Internal Entry Number of the entry in the
+			 file and S is the value of the .01 field for that entry. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y=N^S^1</B></TD> 
+		  <TD VALIGN="TOP"><A HREF="#NandS" CLASS="bodylink">N and S</A> are
+			 defined as above and the 1 indicates that this entry has just been added to the
+			 file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y(0)</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This variable is only set if DIC(0) contains a
+				<A HREF="cl_dic.htm#Z" TITLE="Z Value" CLASS="bodylink">Z</A>. When the
+				variable is set, it is equal to the entire zero node of the entry that was
+				selected. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Y(0,0)</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This variable also is only set if DIC(0) contains a
+				<A HREF="cl_dic.htm#Z" TITLE="Z Value" CLASS="bodylink">Z</A>. When the
+				variable is set, it is equal to the external form of the .01 field of the
+				entry. </P> 
+			 <P>The following are examples of returned Y variables based on a call
+				to the EMPLOYEE file stored in ^EMP(:</P> 
+			 <PRE>    S DIC=&quot;^EMP(&quot;,DIC(0)=&quot;QEZ&quot;,X=&quot;SMITH&quot;
+    D ^DIC
+</PRE> 
+			 <P>Returned are:</P> 
+			 <PRE>    Y      = &quot;7^SMITH,SAM&quot;
+    Y(0)   = &quot;SMITH,SAM^M^2231109^2
+    Y(0,0) = &quot;SMITH,SAM&quot;
+	</PRE> 
+			 <P>If the lookup had been done on a file whose .01 field points to
+				the EMPLOYEE file, the returned variables might look like this:</P> 
+			 <PRE>    Y      = &quot;32^7&quot;  [ Entry #32 in this file and #7 in 
+                       EMPLOYEE file.]
+    Y(0)   = &quot;7^RX 2354^ON HOLD&quot;
+    Y(0,0) = &quot;SMITH,SAM&quot;  [.01 field of entry 7 in 
+                           EMPLOYEE file]
+</PRE> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>X</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>Contains the value of the field where the match occurred. </P> 
+			 <P>If the lookup index is compound (i.e., has more than one data
+				subscript), and if DIC(0) contains an A so that the user is prompted for lookup
+				values, then X will be output as an array X(n) where "n" represents the
+				position in the subscript and will contain the values from the index on which
+				the entry was found. Thus, X(2) would contain the value of the second subscript
+				in the index. If possible, the entries will be output in their external format
+				(i.e., if the subscript is not computed and doesn't have a transform). If the
+				entry is not found on an index (for example, when lookup is done with X=" "
+				[the space-bar return feature]), then X and X(1) will contain the user input,
+				but the rest of the X array will be undefined.&nbsp;<IMG SRC="new.gif"
+				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DTOUT</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This is only defined if DIC has timed-out waiting for input from
+				the user. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DUOUT</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>This is only defined if the user entered an up-arrow. </P> </TD> 
+		</TR> 
+	 </TABLE>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_dicix.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

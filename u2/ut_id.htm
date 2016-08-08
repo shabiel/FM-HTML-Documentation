@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/27/03-->
+<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
+	 CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: File Utilities -
+		Identifier</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,file utilities,utilities,identifier">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="2">
+	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="ut_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: File Utilities Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../pm/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
+			  CLASS="menubarlink">Programmer Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">File Utilities</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Identifier</H4> 
+	 <P><B>NOTE:</B> If you want to uniquely identify an entry in your file by a
+		combination of fields, and to force that uniqueness, then you will most likely
+		want to create a KEY on your file, rather than using Identifier fields (which
+		don't force the uniqueness).If a field is part of the PRIMARY KEY for a file,
+		then it should <I>not</I> be marked as an Identifier as well. <BR> <BR> See the
+		"<A HREF="ut_key.htm" CLASS="bodylink" TITLE="Key Definition">Key
+		Definition</A>" topic for details. &nbsp;<IMG SRC="new.gif"
+		ALT="New with FM V. 22" WIDTH="35" HEIGHT="11"></P> 
+	 <P>An identifier is a designation you can give to a field that you want
+		permanently associated with the .01 field (NAME) of a file. The SSN field of
+		our PATIENT file example has been defined as an identifier field. Each time a
+		patient's entry is referenced, the SSN will be displayed to help positively
+		identify the entry. When a new entry is added to the file, the user will be
+		asked to provide the SSN. </P> 
+	 <P>A field that is not multiple-valued can be specified as an identifier
+		for a file simply by using the Identifier option in the Utility Functions. </P>
+	 
+	 <P>A multiple-valued field <I>cannot</I> be designated as an identifier,
+		however, a subfield of that multiple-valued field <I>can</I> be designated as
+		an identifier for the multiple. The DIAGNOSIS field in the PATIENT file cannot,
+		for example, be designated as an identifier, but its subfield AGE AT ONSET can
+		be designated as an identifier of DIAGNOSIS. This feature is discussed in more
+		detail later in this section.</P> 
+	 <P>These are the steps for setting up the sample SSN field as an
+		identifier: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>MODIFY WHAT FILE: <B>PATIENT</B>
+Select FIELD: <B>SSN</B>
+Want to make 'SSN' an identifier? NO// <B>Y &lt;RET&gt;</B>  (YES) 
+Want to display SSN whenever a lookup is done
+     on an entry in the 'PATIENT' file?  YES // <B>&lt;RET&gt;</B>  (YES)</PRE> <HR> 
+	 <P>Here, the positive answer to the last question causes the patient's SSN
+		value to show up whenever a lookup on a patient is done. For example: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select PATIENT NAME: <B>DOE</B> 
+    1  DOE,JANE    323223333 
+    2  DOE,JANET   414114444
+CHOOSE 1-2:</PRE> <HR> 
+	 <P>An identifier field will not be asked if its WRITE access security does
+		not match the VA FileMan access code of the user. If the identifier field has
+		been specified (in the Modify File Attributes option) as a required field, the
+		user must type a valid answer to its prompt when it is asked as an identifier;
+		otherwise, the entry just created is deleted. </P> 
+	 <P>Using the up-arrow key ("<B>^</B>") for jumping is not allowed for
+		identifier fields in the Enter or Edit File Entries option when adding a new
+		entry. If you attempt to use the up-arrow key in a field designated as an
+		identifier in an edit session, the entry just created is deleted. Since the SSN
+		field in our example is mandatory and an identifier, this ensures that every
+		patient in our PATIENT file will have an SSN recorded. </P> 
+	 <P>As mentioned above, you could make the AGE AT ONSET subfield an
+		identifier for the multiple DIAGNOSIS field as follows: </P> 
+	 <PRE></PRE> <HR> 
+	 <PRE>Select UTILITY OPTION: <B>IDEN</B>TIFIER
+Select FIELD: <B>DIAG</B>NOSIS     (multiple)
+Select DIAGNOSIS SUB-FIELD: <B>AGE AT ONSET </B>
+Want to make 'AGE AT ONSET' an Identifier? NO//  <B>Y &lt;RET&gt;</B>  (YES) 
+Want to display AGE AT ONSET whenever a lookup is done 
+     on an entry in the 'DIAGNOSIS' file? YES// <B>N &lt;RET&gt;</B>  (NO)</PRE> <HR> 
+	 <P>As a result of this dialogue, every time a new DIAGNOSIS for a patient
+		is entered, the AGE AT ONSET would be asked. The AGE AT ONSET would not,
+		however, be automatically displayed at subsequent DIAGNOSIS lookups. </P> 
+	 <P>To drop a field's status as an identifier, simply return to the
+		Identifier option, select the field, and answer YES to the question: </P> 
+	 <PRE>    Field is already an Identifier; want to delete it?  NO// <B>Y</B>
+</PRE> 
+		 <!-- hh.org -->
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- ut_id.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

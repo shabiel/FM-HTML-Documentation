@@ -1,0 +1,598 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Thom Blom, 06/30/03-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: ^DIE</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,classic fileman api,api,classic,calls,^die,die">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="cla_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Classic VA FileMan API Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Classic VA FileMan API</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>^DIE: Edit Data</H4> 
+	 <P>This routine handles input of selected data elements for a given file
+		entry. You should use ^DIE only to edit <I>existing</I> records. </P> 
+	 <P><B>NOTE:</B> When you call the DIE routine, it does not lock the record;
+		you must do that yourself. See the discussion of
+		<A HREF="#Locking" TITLE="locking" CLASS="bodylink">locking</A> below. </P> 
+	 <P>To allow the user to interactively choose the fields to edit, use the
+		<A HREF="cl_dib.htm" TITLE="EN^DIB"
+		 CLASS="bodylink">EN^DIB</A> entry point instead.</P> 
+	 <H5>Input Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DIE</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) The global root of the file in the form ^GLOBAL( or
+				^GLOBAL(#, or the number of the file. </P> 
+			 <P>If you are editing a subfile, set DIE to the full global root
+				leading to the subfile entry, including all intervening subscripts and the
+				terminating comma, up to but not including the IEN of the subfile entry to
+				edit.</P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DA</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) If you are editing an entry at the <B>top level</B> of
+				a file, set DA to the internal entry number of the file entry to be edited.</P>
+			 
+			 <P>If you are editing an entry in a <B>subfile</B>, set up DA as an
+				array, where DA=entry number in the subfile to edit, DA(1) is the entry number
+				at the next higher file level,...DA(n) is the entry number at the file's top
+				level. See the section below on
+				<A HREF="#Subfile" TITLE="Editing a Subfile Directly" CLASS="bodylink">Editing
+				a Subfile Directly</A> for more information. </P> 
+			 <P><B>NOTE:</B> The variable DA is killed if an entry is deleted
+				within DIE. This can happen if the user answers with the @-sign when editing
+				the entry's .01 field. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A NAME="dr">DR</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Required) A string specifying which data fields are asked for the
+				given entry. The fields specified by DR are asked <I>whether or not VA FileMan
+				Write access security protection has been assigned</I> to the fields.</P> 
+			 <P>You can include the following in the DR-string:</P> 
+			 <UL> 
+				<LI><B>Field number</B>: The internal number of a field in a
+				  file.<BR><BR></LI> 
+				<LI><B>Field with Default Value</B>: A field number followed by //
+				  (two slashes), followed by a <I>default value</I>. You can make a field with no
+				  current data value default to a particular data value you specify. For example,
+				  if there is a file entry stored descendent from ^FILE(777), and field #27 for
+				  this file is DATE OF ADMISSION, and you want the user to see: 
+				  <PRE>    DATE OF ADMISSION: TODAY//</PRE> then the calling program should be: 
+				  <PRE>    S DR="27//TODAY",DIE="^FILE(",DA=777
+    D ^DIE</PRE> If the user just presses the Enter/Return key when seeing
+				  the prompt, DIE acts as though the user typed in the word TODAY. <BR><BR></LI> 
+				<LI><B><A NAME="StuffField">Stuff a Field Value
+				  (Validated)</A></B>: A field number followed by /// (three slashes), followed
+				  by a value. The value should be the <I>external</I> form of the field's value,
+				  that is, the format that would be acceptable as a user's response. The value is
+				  <I>automatically inserted</I> into the database after passing through the INPUT
+				  transform. For example: 
+				  <PRE>    S DR="27///TODAY",DIE="^FILE(",DA=777
+    D ^DIE
+</PRE> The user sees no prompts, and the current date is
+				  automatically stuffed into field #27 of entry #777, <I>even if other data
+				  previously existed</I> there. <BR> <BR> In the course of writing a routine, you
+				  may want to pass the value contained in a variable to DIE and automatically
+				  insert the value into a field. In that case, you would write: <BR> 
+				  <PRE>    S DR="27///^S X=VAR"</PRE> 
+				  <P>You can also use the three-slash stuff to automatically add or
+					 select an entry in a multiple. For example, if field #60 is a multiple field,
+					 and you write:</P> 
+				  <PRE>    S DR="60///TODAY"</PRE> 
+				  <P> the entry in the subfile corresponding to TODAY would be
+					 selected or added if it didn't already exist. Note, however, that if TODAY
+					 didn't already exist in the file, but couldn't be added (because LAYGO wasn't
+					 allowed, for example), or if more than one TODAY entry already existed in the
+					 file (that is, the lookup value was ambiguous), ^DIE will prompt the user to
+					 select an entry in the subfile. If you wish to add entries or edit existing
+					 entries non-interactively, consider using UPDATE^DIE and FILE^DIE instead. </P>
+				  <BR><BR></LI> 
+				<LI><B>Stuff a Field Value (Unvalidated)</B>: A field number
+				  followed by //// (four slashes), followed by a value. The value is
+				  <I>automatically inserted without validation</I> into the database. For
+				  example: 
+				  <PRE>    S DR="27////2570120",DIE="^FILE(",DA=777
+    D ^DIE</PRE> The user sees no prompts, and the value 2570120 is put
+				  into field 27 without going through the INPUT transform. When using this form,
+				  the data after the four slashes must already be in its internally stored form.
+				  <I>This cannot be used for .01 fields due to the differences between DIE and
+				  DIC. </I> 
+				  <BLOCKQUOTE><B>NOTE:</B> Key uniqueness is not enforced when a
+					 4-slash stuff is used.&nbsp;<IMG SRC="new.gif"
+					 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11">
+					 </BLOCKQUOTE><BR><BR></LI> 
+				<LI><B>Field Value Deletion</B>: A field number followed by three
+				  or four slashes (/// or ////) and an @-sign. This <I>automatically deletes the
+				  field value</I>. For example: 
+				  <PRE>    S DR="27///@"</PRE> 
+				  <P>The user does not see any prompts, and the value for field #27
+					 is deleted. </P> 
+				  <P><B>NOTE:</B> You cannot use this method to delete the value of
+					 a required field, an uneditable field, a key field, or a field the user does
+					 not have Delete access to. </P> <BR><BR></LI> 
+				<LI><B>Field Number Range</B>: A range of field numbers, in the
+				  form M:N, where M is the first and N the last number of the <I>inclusive
+				  range</I>. All fields whose numbers lie within this range are asked.
+				  <BR><BR></LI> 
+				<LI><B>Placeholder for Branching</B>: A placeholder like @1. See
+				  the discussion of <A HREF="#Branching" TITLE="branching"
+				  CLASS="bodylink">branching</A> below. <BR><BR></LI> 
+				<LI><B>M Code</B>: A line of M code. <BR><BR></LI> 
+				<LI><B>Combination</B>: A sequence of any of the above types,
+				  separated by semicolons. If field numbers .01, 1, 2, 4, 10, 11, 12, 13, 14, 15,
+				  and 101 exist for the file stored in ^FILE, and you want to have fields 4, .01,
+				  10 through 15, and 101 asked in that order for entry number 777, you simply
+				  write: 
+				  <PRE>    S DIE="^FILE(",DA=777,DR="4;.01;10:15;101"
+    D ^DIE
+</PRE> <B>NOTE:</B> The DR-string contains the semicolon
+				  delimiter to specify field numbers and the colon to specify a range of fields.
+				  This prevents these two characters from being used as defaults. They can,
+				  however, be placed in a variable which is then used as the default instead of a
+				  literal, for example: 
+				  <PRE>    S DR="27///^S X=VAR"</PRE> <BR><BR></LI> 
+				<LI><B>INPUT template</B>: An INPUT template name, preceded by an
+				  open bracket ([) and followed by a closed bracket (]). All the fields in that
+				  template are asked. </LI> 
+			 </UL> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" ROWSPAN="5" WIDTH="20%"><B>DIE("NO^")</B></TD> 
+		  <TD VALIGN="TOP" COLSPAN="2"> 
+			 <P>(Optional) Controls the use of the ^ in an edit session. If this
+				variable does not exist, unrestricted use of the ^ for
+				<A HREF="../u1/e1_intro.htm#jumping" TARGET="_top" TITLE="jumping"
+				 CLASS="bodylink">jumping</A> and
+				<A HREF="../u1/e1_intro.htm#up-arrow" TARGET="_top" TITLE="exiting"
+				 CLASS="bodylink">exiting</A> is allowed.</P> 
+			 <P>The variable may be set to one of the following: </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>"OUTOK"</B> </TD> 
+		  <TD VALIGN="TOP">Allows exiting and prevents all jumping.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>"BACK"</B></TD> 
+		  <TD VALIGN="TOP">Allows jumping back to a previously edited field and
+			 does not allow exiting. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>"BACKOUTOK"</B> </TD> 
+		  <TD VALIGN="TOP">Allows jumping back to a previously edited field and
+			 allows exiting. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>"Other value"</B> </TD> 
+		  <TD VALIGN="TOP">Prevents all jumping and does not allow exiting. </TD>
+		  
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B><A
+			 NAME="DIE(PTRIX)">DIE("PTRIX",f,p,t)=d</A></B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P><B>DIE("PTRIX",f,p,t)=d</B> where </P> 
+			 <P><B>f </B>=the from (pointing) file number, </P> 
+			 <P><B>p </B>=the pointer field number,</P> 
+			 <P><B>t </B>=the pointed-to file number, and </P> 
+			 <P><B>d </B>=an up-arrow (^) delimited list of index names</P> 
+			 <P>This optional input array allows you to control how lookups are
+				done on both multiple and non-multiple pointer and variable pointer fields.
+				Each node in this array is set to a list of index names, separated by up-arrows
+				(^). When the user edits a pointer or variable pointer field, only those
+				indexes in the list are used when searching the pointed-to file for matches to
+				the lookup value.</P> 
+			 <P>For example, if your input template contains a field #5 on file
+				#16100 that is a pointer to the NEW PERSON file (#200), and you want the lookup
+				on the NEW PERSON file to be by name ("B" index), or by the first letter of the
+				last name concatenated with the last 4 digits of the social security number
+				("BS5" index), you would set the following node before the ^DIE call: </P> 
+			 <PRE>    DIE("PTRIX",16100,5,200)="B^BS"</PRE> 
+			 <P>Note that if you allow records to be added to the pointed-to file,
+				you should include a "B" in the list of indexes, since when ^DIE adds an entry,
+				it assumes the .01 field for the new entry is the lookup value. However, the
+				"B" index would not need to be included if the first index in the "PTRIX" node
+				is a compound index whose first subscript is the .01 field. </P> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>DIDEL</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"> 
+			 <P>(Optional) Overrides the Delete access on a file or subfile. Set
+				DIDEL equal to the number of the file before calling DIE to allow the user to
+				delete an entire entry from that file, even if the user does not normally have
+				the ability to delete. This variable does not override the "DEL"-nodes
+				described in the
+				<A HREF="gfs_3c.htm" TITLE="Other Field Definition Nodes"
+				 CLASS="bodylink">Other Field Definition Nodes</A> of the Global File Structure
+				section. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Output Variables</H5> 
+	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
+	  WIDTH="100%"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>DTOUT</B></TD> 
+		  <TD VALIGN="TOP"> 
+			 <P>Is set when a time-out has occurred.</P> 
+			 <P><B>NOTE:</B> DA, DIE, DR, DIE("NO^"), and DIDEL are not killed by
+				DIE; however, the variable DA is killed if the entry is deleted within DIE.
+				This can happen if the user answers with an @-sign when editing the entry's .01
+				field. </P> </TD> 
+		</TR> 
+	 </TABLE> 
+	 <H5>Details and Features of Data Editing</H5> 
+	 <UL> 
+		<LI><A HREF="#Locking" TITLE="Locking"
+		  CLASS="bodylink">Locking</A><BR><BR></LI> 
+		<LI><A HREF="#Edit_qualifiers" TITLE="Edit Qualifiers"
+		  CLASS="bodylink">Edit Qualifiers</A><BR><BR></LI> 
+		<LI><A HREF="#Branching" TITLE="Branching"
+		  CLASS="bodylink">Branching</A><BR><BR></LI> 
+		<LI><A HREF="#Specific_fields"
+		  TITLE="Specific Fields in Multiples" CLASS="bodylink">Specific Fields in
+		  Multiples</A><BR><BR></LI> 
+		<LI><A HREF="#Continuation" TITLE="Continuation DR-Strings"
+		  CLASS="bodylink">Continuation DR-Strings</A><BR><BR></LI> 
+		<LI><A HREF="#Detecting" TITLE="Detecting Up-Arrow Exits"
+		  CLASS="bodylink">Detecting Up-Arrow Exits</A><BR><BR></LI> 
+		<LI><A HREF="#Subfile" TITLE="Editing a Subfile Directly"
+		  CLASS="bodylink">Editing a Subfile Directly</A><BR><BR></LI> 
+		<LI><A HREF="#Screening" TITLE="Screening Variable Pointers"
+		  CLASS="bodylink">Screening Variable Pointers</A><BR><BR></LI> 
+		<LI><A HREF="#Filing" TITLE="Filing"
+		  CLASS="bodylink">Filing</A><BR><BR></LI> 
+		<LI><A HREF="#indexes_keys" TITLE="New Style Compound Indexes and Keys"
+		  CLASS="bodylink">New Style Compound Indexes and Keys</A></LI> 
+	 </UL> 
+	 <P></P> <HR> 
+	 <P><B><A NAME="Locking">Locking</A></B></P> 
+	 <P>If you want to ensure that two users cannot edit an entry at the same
+		time, lock the entry. It is recommended that you use incremental locks. Here is
+		a simple example of using incremental locks to lock an entry before editing and
+		to remove the lock after:</P> 
+	 <PRE>    S DIE="^FILE(",DA=777,DR="[EDIT]"
+    L +^FILE(777):0 I $T D ^DIE L -^FILE(777) Q
+    W !?5,"Another user is editing this entry." Q</PRE> 
+	 <P><B>NOTE:</B> The DIE call itself does <I>no</I> locking. </P> <HR> 
+	 <P><B><A NAME="Edit_qualifiers">Edit Qualifiers</A></B></P> 
+	 <P>In the DR string, you can use
+		<A HREF="../u2/e3_intro.htm#edit_reference" TARGET="_top"
+		TITLE="edit qualifiers" CLASS="bodylink">edit qualifiers</A> (described in the
+		"VA FileMan Advanced User Manual") in conjunction with the fields you specify.
+		The possible qualifiers are T, DUP, REQ, and text literal strings in quotes.
+		</P> 
+	 <P>In interactive mode, users can combine qualifiers with fields by using
+		semicolon separators. But, in DR-strings, semicolons are already used to
+		delimit individual fields, so you must use a different syntax for DR.
+		Basically, leave out the semicolon and the unnecessary characters. Using field
+		#3 as an example, the syntax for edit qualifiers in DR-strings is: </P> 
+	 <TABLE BORDER="1" SUMMARY="Interactive vs. DR-string Syntax Table"
+	 TITLE="Interactive vs. DR-string Syntax Table"> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Interactive Syntax</B></TD> 
+		  <TD VALIGN="TOP"><B>Syntax for DR-string</B> </TD> 
+		  <TD VALIGN="TOP"><B>Explanation</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>3;T</B></TD> 
+		  <TD VALIGN="TOP">3T </TD> 
+		  <TD VALIGN="TOP">The T follows the field number immediately. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>3;"xxx"</B></TD> 
+		  <TD VALIGN="TOP">3xxx</TD> 
+		  <TD VALIGN="TOP">The quotes are removed from the literal and it follows
+			 the field number immediately. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>3;DUP</B></TD> 
+		  <TD VALIGN="TOP">3d </TD> 
+		  <TD VALIGN="TOP">The D becomes lowercase and the UP is dropped. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>3;REQ</B></TD> 
+		  <TD VALIGN="TOP">3R </TD> 
+		  <TD VALIGN="TOP">The EQ is dropped and the uppercase R follows
+			 immediately. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>You can combine specifiers as long as you separate them with tildes
+		(<B>~</B>). For example, if you want to require a response to field #3, and
+		issue the title rather than the prompt, put 3R~T in the DR-string. </P> <HR> 
+	 <P><B><A NAME="Branching">Branching</A></B></P> 
+	 <P>You can include <B>branching logic</B> within DR. To do this, insert an
+		executable M statement in one of the semicolon-pieces of DR. The M code is
+		executed when this piece of DR is encountered by the DIE routine. </P> 
+	 <P>If the M code sets the variable Y, DIE jumps to the field whose number
+		(or label) matches Y. (The field must be specified elsewhere within the DR
+		variable.) Y may look like a placeholder, e.g., <B>@</B>1. If Y is set to zero
+		or the null string, DIE exits. If Y is killed, or never set, no branching
+		occurs. </P> 
+	 <P>The M code can calculate Y based on X, which equals the internal value
+		of the field previously asked for (as specified by the previous semicolon-piece
+		of DR). Take the example below and suppose that you do not want the user to be
+		asked for field .01 if the answer to field 4 was YES, you would write the
+		following: </P> 
+	 <PRE>    S DIE="^FILE(",DA=777
+    S DR="4;I X=""YES"" S Y=10;.01;10:15;101"
+    D ^DIE
+</PRE> 
+	 <P><B>NOTE:</B> The ability to
+		<A HREF="../u1/e1_intro.htm#jumping" TARGET="_top"
+		TITLE="up-arrow jump" CLASS="bodylink">up-arrow jump</A> to specific fields
+		does not take into account previous branching logic. You must ensure that such
+		movements are safe. </P> <HR> 
+	 <P><B><A NAME="Specific_fields">Specific Fields in Multiples</A></B></P> 
+	 <P>When you include the field number of a multiple in a DR-string, all the
+		subfields of the multiple are asked. However, suppose you want to edit only
+		selected subfields in the multiple. To do this, set DR in the usual manner and
+		in addition set a subscripted value of DR equal to the subfields to edit.
+		Subscript the additional DR node by file level and then by the multiple's
+		subfile number.</P> 
+	 <P>For example, if field #15 is a multiple and the subfile number for the
+		multiple is 16001.02 and you want the user to be prompted only for subfields
+		.01 and 7, do the following: </P> 
+	 <PRE>    S DR=".01;15;6;8"
+    S DR(2,16001.02)=".01;7"
+</PRE> 
+	 <P>where the first subscript, 2, means the second level of the file and the
+		second subscript is the subfile number of the multiple field (#15). </P> <HR> 
+	 <P><B><A NAME="Continuation">Continuation DR-Strings</A></B></P> 
+	 <P>If there are more than 245 characters in a DR-string, you can set
+		continuation strings by defining the DR-array at the third subscript level.
+		These subscripts should be sequential integers starting at 1. For example, the
+		first continuation node of DR(2,16001.02) would be DR(2,16000.02,1); the second
+		would be DR(2,16001.02,2), and so on. </P> <HR> 
+	 <P><B><A NAME="Detecting">Detecting Up-Arrow Exits</A></B></P> 
+	 <P>You can determine, upon return from DIE, whether the user exited the
+		routine by typing an up-arrow. If the user did so, the subscripted variable Y
+		is defined; if all questions were asked and answered in normal sequence, $D(Y)
+		is zero. </P> <HR> 
+	 <P><B><A NAME="Subfile">Editing a Subfile Directly</A></B></P> 
+	 <P>You can call ^DIE to directly edit an entry in a subfile; you can
+		descend into as many subfiles as you need to. Set the DIE input variable to the
+		full global root leading to the subfile entry, including all intervening
+		subscripts and the terminating comma, up to - but not including - the IEN of
+		the subfile entry to edit. Then set an array element for each file and subfile
+		level in the DA input variable, where DA=entry number in the subfile to edit,
+		DA(1) is the entry number at the next higher file level,...DA(n) is the entry
+		number at the file's top level. </P> 
+	 <P>For example, suppose that the data in subfile 16000.02 is stored
+		descendent from subscript 20 and you are going to edit entry number 777,
+		subentry number 1; you would write the following: </P> 
+	 <PRE>    S DIE="^FILE(777,20," ; global root of subfile
+    S DA(1)=777 ; entry number in file
+    S DA=1 ; entry number in subfile
+    S DR="3;7" ; fields in subfile to edit
+    D ^DIE
+</PRE> 
+	 <P><B>NOTE:</B> The internal number of the entry into the file appears in
+		the variable DIE and appears as the value of DA(1). When doing this, it is
+		necessary that the subfile descriptor node be defined. In this example, it
+		would be:</P> 
+	 <P><TT> ^FILE(777,20,0)="^16000.02^last number entered^number of
+		entries"</TT></P> 
+	 <P>See also the discussion of "<A
+		HREF="cl_dic.htm#Subentries"
+		TITLE="Adding New Subentries to a Multiple" CLASS="bodylink">Adding New
+		Subentries to a Multiple</A>" in the "<A HREF="cl_dic.htm"
+		TITLE="DIC section" CLASS="bodylink">DIC section</A>" of the Classic VA FileMan
+		APIs. </P> <HR> 
+	 <P><B><A NAME="Screening">Screening Variable Pointers</A></B></P> 
+	 <P>A variable pointer field can point to entries in more than one file. You
+		can restrict the user's ability to input entries to certain files by setting
+		the DIC("V") variable in a DR-string or in an INPUT template. It screens files
+		from the user. Set DIC("V") equal to a line of M code that returns a truth
+		value when executed. The code is executed after someone enters data into a
+		variable pointer field. If the code tests false, the user's input is rejected;
+		FileMan responds with <B>??</B> and a "beep."</P> 
+	 <P>The code setting the DIC("V") variable can be put into a DR-string or
+		into an INPUT template. It is <B>not</B> a separate input variable for ^DIE or
+		^DIC. It should be set immediately before the variable pointer field is edited
+		and it should be killed immediately after the field is edited.</P> 
+	 <P>When the user enters a value at a variable pointer field's prompt, VA
+		FileMan determines in which file that entry is found. The variable Y(0) is set
+		equal to information for that file from the data dictionary definition of the
+		variable pointer field. You can use Y(0) in the code set into the DIC("V")
+		variable. Y(0) contains the following: </P> 
+	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="Y(0) Piece Contents Table"
+	  TITLE="Y(0) Piece Contents Table"> 
+		<TR> 
+		  <TD VALIGN="TOP" WIDTH="20%"><B>^-Piece</B> </TD> 
+		  <TD COLSPAN="2" VALIGN="TOP"><B>Contents</B> </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Piece 1</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">File number of the pointed-to file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Piece 2</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Message defined for the pointed-to file.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Piece 3</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Order defined for the pointed-to file.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Piece 4</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">Prefix defined for the pointed-to file.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Piece 5</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">y/n indicating if a screen is set up for
+			 the pointed-to file. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP"><B>Piece 6</B></TD> 
+		  <TD COLSPAN="2" VALIGN="TOP">y/n indicating if the user can add new
+			 entries to the pointed to file. </TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>All of this information was defined when that file was entered as one of
+		the possibilities for the variable pointer field.</P> 
+	 <P>For example, suppose field #5 is a variable pointer pointing to files
+		1000, 2000, and 3000. If you only want the user to be able to enter values from
+		files 1000 or 3000, you could set up your INPUT template like this:</P> 
+	 <PRE>    THEN EDIT FIELD: ^S DIC("V")="I +Y(0)=1000!(+Y(0)=3000)"
+    THEN EDIT FIELD: 5
+    THEN EDIT FIELD: ^K DIC("V")
+</PRE> <HR> 
+	 <P><B><A NAME="Filing">Filing</A></B></P> 
+	 <P>DIE files data when any one of the following conditions is
+		encountered:</P> 
+	 <UL> 
+		<LI>The field entered or edited is cross-referenced<BR><BR></LI> 
+		<LI>A change of level occurs, i.e., either DIE must descend into a
+		  multiple or ascend to the level above <BR><BR></LI> 
+		<LI>Navigation to another file occurs<BR><BR></LI> 
+		<LI>M code is encountered in one of the semicolon-pieces of the DR-string
+		  or in a template<BR><BR></LI> 
+		<LI>$S becomes less than 2000<BR><BR></LI> 
+		<LI>The user up-arrows to a field<BR><BR></LI> 
+		<LI>The end of the DR-string or INPUT template is reached<BR><BR></LI> 
+		<LI>Templates are compiled and the execution is transferred from one
+		  routine to the next </LI> 
+	 </UL> 
+	 <P><B><A NAME="indexes_keys" TARGET="display">New Style Compound Indexes
+		and Keys</A></B>&nbsp;<IMG SRC="new.gif"
+		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> 
+	 <P>^DIE traditionally fires cross-references when the field on which the
+		cross-reference is defined is edited. New-style cross-references that have an
+		execution of "RECORD" (hereafter referred to as record-level indexes) are fired
+		once at the end of the ^DIE call, after all the semicolon pieces of the DR
+		string have been processed. </P> 
+	 <P>When record-level uniqueness indexes are fired, the corresponding keys
+		(hereafter called record-level keys) are checked to ensure that they are
+		unique. If edits to a field in a key result in a duplicate key, then changes to
+		that field are backed out and an error message is presented to the user. </P> 
+	 <P>You can set the variable DIEFIRE in any of the semicolon-pieces of DR to
+		instruct VA FileMan to fire the record-level indexes at that point and validate
+		the corresponding record-level keys. You can also control what FileMan does if
+		any of the record-level keys is invalid. </P> 
+	 <TABLE WIDTH="100%" SUMMARY="DIEFIRE Actions Table"
+	  TITLE="DIEFIRE Actions Table"> 
+		<TR> 
+		  <TD><B>DIEFIRE contains:</B></TD> 
+		  <TD><B>Action:</B></TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>M</B></TD> 
+		  <TD>Print error message to user</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>L</B></TD> 
+		  <TD>Return the DIEBADK array (see example immediately below)</TD> 
+		</TR> 
+		<TR> 
+		  <TD><B>R</B></TD> 
+		  <TD>Restore invalid key fields to their pre-edited values</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>If DIEFIRE contains an L and a key is invalid, the DIEBADK array is set
+		as follows: </P> 
+	 <PRE>DIEBADK(rFile#,key#,file#,IENS,field#,"O") = the original value of the field
+DIEBADK(rFile#,key#,file#,IENS,field#,"N") = the new (invalid) value of the field
+</PRE> 
+	 <P>where,</P> 
+	 <TABLE SUMMARY="This table is formatting purposes only." WIDTH="100%"> 
+		<TR> 
+		  <TD ALIGN="LEFT" VALIGN="TOP">rFile#</TD> 
+		  <TD WIDTH="5%" VALIGN="TOP" ALIGN="CENTER">=</TD> 
+		  <TD>the <B>root file</B> of the <B>uniqueness index</B> of the key.
+			 This is the file or subfile number of the fields that make up the key. </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">key#</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER">=</TD> 
+		  <TD>the internal entry number of the key in the KEY file.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">file#</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER">=</TD> 
+		  <TD>the <B>file</B> of the <B>uniqueness index</B> of the key. This is
+			 the file or subfile where the <B>uniqueness index</B> resides. For whole file
+			 indexes, this is a file or subfile at a higher level than <B>root file</B>.
+			 </TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">IENS</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER">=</TD> 
+		  <TD>the IENS of the record that - with the edits - would have a
+			 non-unique key.</TD> 
+		</TR> 
+		<TR> 
+		  <TD VALIGN="TOP">field#</TD> 
+		  <TD VALIGN="TOP" ALIGN="CENTER">=</TD> 
+		  <TD>the field number of the field being edited.</TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>If any of the Keys is invalid, VA FileMan sets the variable X to the
+		string "BADKEY", which can be checked by M code in the subsequent
+		semicolon-piece of the DR string. The variable X and the local array DIEBADK
+		are available for use only in the semicolon piece immediately following the
+		piece where the DIEFIRE was set.</P> 
+	 <P>For example: </P> 
+	 <PRE>S DIE="^FILE(",DA=777 
+S DR="@1;.01;.02;S DIEFIRE=""R"";I X=""BADKEY"" 
+         S Y=""@1"";1;2" 
+D ^DIE</PRE> 
+	 <P> Here, the .01 and .02 fields make up a key to the file. After prompting
+		the user for the value of the .02, DIEFIRE is set to force VA FileMan to fire
+		the record-level indexes and validate the key. If the key turns out to be
+		invalid, FileMan sets X equal to "BADKEY" and, since DIEFIRE equals R, restores
+		the fields to their pre-edited values. In the next semicolon-piece, we check if
+		X equals "BADKEY" and, if so, branch the user back to the placeholder @1. </P> 
+	 <P></P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- cl_die.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

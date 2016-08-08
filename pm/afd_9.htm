@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 11/26/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Special Lookup Programs</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0">
+  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="afd_frm.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Advanced File Definition Chapter TOC"
+			 CLASS="menubarlink">Chapter</A></TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Advanced File Definition</A></H3> 
+	 <H4>Special Lookup Programs</H4> <HR CLASS="hrstyle"> 
+	 <P>At times you may need to write a lookup program to respond to unique
+		characteristics of a file. The Edit File option on the Utility Functions
+		submenu allows you to tell VA FileMan what this program is. The information is
+		stored at ^DD(filenumber,0,"DIC"). The routine's name cannot begin with DI.
+		These programs must respond to all the variables that ^DIC does (see the
+		description of <A HREF="cl_dic.htm" CLASS="bodylink">^DIC</A> for additional
+		information). The calls to <A HREF="cl_dic1a.htm" CLASS="bodylink">DO^DIC1</A>,
+		<A HREF="cl_dicq.htm" CLASS="bodylink">DQ^DICQ</A>, and
+		<A HREF="cl_dicn1.htm" CLASS="bodylink">FILE^DICN</A> may be quite useful to
+		maintain FileMan compatibility. You can tell FileMan to ignore these special
+		programs by including an I in DIC(0). </P> 
+	 <P><B>NOTE:</B> Only the <A HREF="cl_dic.htm" CLASS="bodylink">^DIC</A>
+		call honors the special lookup routines. Those calls that allow the user to
+		specify the indexes (<A HREF="cl_dicix.htm" CLASS="bodylink">IX^DIC</A> and
+		<A HREF="cl_dic1b.htm" CLASS="bodylink">MIX^DIC1</A>), and the Data Base Server
+		calls (<A HREF="db_dicf.htm" CLASS="bodylink">FIND^DIC</A>,
+		<A HREF="db_dicf1.htm" CLASS="bodylink">$$FIND1^DIC</A>, and
+		<A HREF="db_die_u.htm" CLASS="bodylink">UPDATE^DIE</A>) all ignore the Special
+		Lookup Program.</P> 
+	 <!-- P>For assistance with special lookups, it is suggested that you contact
+		the VA FileMan developers. </P -->
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- afd_9.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>

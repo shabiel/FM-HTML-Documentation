@@ -1,0 +1,17 @@
+body { background-color: #ffffff; }
+
+p,dl,ol,ul,li,dd,dt,table,body,td,th
+   {  font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+      font-size: 11pt;
+   }
+
+h1 {font-size: 16pt;}
+h2 {font-size: 14pt;}
+h3 {font-size: 13pt;}
+h4 {font-size: 12pt;}
+
+td { background: #eeeeee }
+th { background: #dddddd } 
+
+pre { font-family: Courier New, Courier; 
+      font-size: 11pt }

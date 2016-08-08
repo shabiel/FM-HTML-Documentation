@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
+<!--Revised by Strack Susan, 12/03/02-->
+<!--Edited March 2007, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <TITLE>VA FileMan Programmer Manual: Reading the Attribute Dictionary - An
+		Example</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,global file structure,global,file,attribute dictionary example,attribute,dictionary,example">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP"> 
+		<TR> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="gfs_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Global File Structure Chapter TOC">Chapter</A></TD>
+		  
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD> 
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD> 
+		</TR> 
+	 </TABLE><!-- Content -->
+	 <H3><A NAME="navskip">Global File Structure</A></H3> <HR CLASS="hrstyle"> 
+	 <H4>Attribute Dictionary: How to Read, an Example</H4> 
+	 <P> Each attribute dictionary is stored descendent from a positive-valued,
+		first-level subscript of this global. Each attribute dictionary, in itself, is
+		also in the form of a file and thus consists of entries, cross-references,
+		descriptor, and a reference to the data dictionary of the attribute of
+		attributes (^DD(0)). </P> 
+	 <P>Following are the ^DD nodes associated with our sample EMPLOYEE file:
+		</P> 
+	 <PRE>
+    ^DD(3,.01,0)=&quot;NAME^FR^^0;1^I X'?1A.AP1&quot;,&quot;.AP K X&quot;
+    ^DD(3,.01,.1)=&quot;EMPLOYEE NAME&quot;
+    ^DD(3,.01,1,0)=&quot;^.1^1^1&quot;
+    ^DD(3,.01,1,1,0)=&quot;3^B&quot;
+    ^DD(3,.01,1,1,1)=&quot;S ^EMP(&quot;B&quot;,$E(X,1,30),DA)=&quot;&quot;&quot;
+    ^DD(3,.01,1,1,2)=&quot;K ^EMP(&quot;B&quot;,$E(X,1,30),DA)&quot;
+    ^DD(3,.01,3)=&quot;NAME MUST BE 3-30 CHARACTERS, IN THE FORMAT LAST,FIRST&quot;
+    ^DD(3,1,0)=&quot;SEX^RS^M:MALE;F:FEMALE^0;2^Q&quot;
+    ^DD(3,2,0)=&quot;DOB^D^^0;3^S %DT=&quot;EX&quot; D ^%DT S X=Y I X&lt;1400000 K X&quot;
+    ^DD(3,2,.1)=&quot;DATE OF BIRTH&quot;
+    ^DD(3,3,0)=&quot;DEPARTMENT^P13'^DIZ(13,^0;4^Q&quot;
+</PRE> 
+	 <P>Their meaning can be translated to: </P> 
+	 <P>The first field is NAME (full title: EMPLOYEE NAME). It is free text
+		data which must start with at least one alpha followed by other alpha and
+		punctuation characters and contains a comma. It is always required from the
+		user and is stored in subscript 0, ^-piece 1 of each employee's entry. If the
+		user types a question (?) when asked for the NAME, the user will see: </P> 
+	 <PRE>    NAME MUST BE 3-30 CHARACTERS, IN THE FORMAT LAST,FIRST
+</PRE> 
+	 <P>The EMPLOYEE file is cross-referenced by NAME so every time a name is
+		changed, the corresponding subscript under ^EMP("B") is also changed. DA will
+		always be the internal number of the employee when the cross-referencing code
+		is executed. If a second cross-reference for NAME existed (for example, a
+		trigger), it would be descendent from: </P> 
+	 <PRE>    ^DD(3,.01,1,2
+</PRE> 
+	 <P>The second field is SEX. It is stored as either M or F in the second
+		^-piece position of subscript 0 of each EMPLOYEE file entry. The user is
+		required to respond and can type MALE instead of M, and FEMALE instead of F.
+		The user will see the two choices displayed if a ? is typed when asked for SEX.
+		</P> 
+	 <P>The third field is DOB (full title: DATE OF BIRTH). It is not required.
+		If entered, it must be in the format of a date after 1840. It is stored in the
+		third ^- piece of subscript 0 of the EMPLOYEE file entry. </P> 
+	 <P>The fourth field is DEPARTMENT; it is not required. It is a pointer to
+		file number 13 and adding new entries (LAYGO) to the DEPARTMENT file from the
+		EMPLOYEE file is NOT allowed as indicated by the apostrophe (<B>'</B>) after
+		the number 13. It is stored in the fourth ^-piece of subscript zero of the
+		EMPLOYEE file entry. The internal value of the Employee's department in the
+		DEPARTMENT file is stored in this location. The data of the DEPARTMENT file can
+		be found in ^DIZ(13,. </P> 
+	 <P>Suppose there is also a multi-valued field, SKILL. A multiple-valued
+		field is described by a separate data dictionary. FileMan creates this new data
+		dictionary descendent from a non-integer subscript of ^DD. In the case of the
+		EMPLOYEE file described by ^DD(3), it would store subsidiary data dictionaries
+		in ^DD(3.01), ^DD(3.02), etc. The subsidiary data dictionary for the
+		multiple-valued SKILL field could look like this: </P> 
+	 <PRE>    ^DD(3.01,0)=&quot;SKILL subfield^^1^2&quot;
+    ^DD(3.01,.01,0)=&quot;SKILL^MF^^0;1^K:$L(X)&gt;30!($L(X)&lt;3) X&quot;
+    ^DD(3.01,.01,3)=&quot;ANSWER MUST BE FROM 3 TO 30 CHARACTERS IN LENGTH&quot;
+</PRE> 
+	 <P>The only new element here is the M in the second ^-piece of
+		^DD(3.01,.01,0). This is the flag corresponding to the 'YES' answer to the
+		question: </P> 
+	 <PRE>    HAVING ENTERED OR EDITED ONE SKILL, SHOULD USER BE ASKED 
+	ANOTHER?
+</PRE> 
+	 <P>If you answer 'YES' to this question, each time the user enters data,
+		the "Select SKILL:" prompt will be repeated until the user enters a null
+		response. There will also be an entry corresponding to SKILL in the principal
+		EMPLOYEE file's data dictionary as follows: </P> 
+	 <PRE>    ^DD(3,4,0)=&quot;SKILL^3.01A^^SX;0&quot;
+</PRE> 
+	 <P>The 3.01 points to the subsidiary data dictionary of that number; it
+		says that, to find the data descriptors of SKILL (and all fields pertaining to
+		SKILL), we must look in ^DD(3.01). The A indicates that every time the user
+		enters a new SKILL, it will be automatically added to the file and the user
+		will not be asked: </P> 
+	 <PRE>    ARE YOU ADDING A NEW SKILL?
+</PRE> 
+	 <P>The SX;0 in the fourth ^-piece tells us the entire SKILL subfile will be
+		stored descendent from the SX subscript in each employee's record. </P>
+	 <P>&nbsp;</P> 
+	 <HR CLASS="hrstyle">
+	 <!-- gfs_3d.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P>&nbsp;</P> 
+
+  </BODY>
+</HTML>
