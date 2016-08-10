@@ -2,7 +2,7 @@
 
 
 # Screenman Enhancements
-## Use of Mouse in Screenman Forms
+## Use of Mouse in Screenman Forms (DONE)
 To use your mouse with Screenman forms, your terminal emulator needs to be able
 to receive ANSI standard control sequences to turn the mouse on and off. Set up
 your terminal emulator so that the keyboard emulation is in “VT100+ mode.” Once
