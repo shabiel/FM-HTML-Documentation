@@ -561,6 +561,75 @@
 		  Sign-on" and changing your terminal type).<BR><BR></LI>
 		<LI>Your system manager.</LI>
 	 </UL>
+   <h3>Changing Screenman Colors</h3>
+   <p><span class="badge">22.2</span>Starting with Fileman 22.2, you are not
+     limited to black and white for colors. You can customize colors as follows:
+     (You will notice that this uses the Kernel Parameter system; as such, you
+     cannot do this if the Kernel isn't installed.)</p>
+     <pre>
+Select OPTION: OTHER OPTIONS
+Select OTHER OPTION: SCREENMAN
+Select SCREENMAN OPTION: ?
+    Answer with SCREENMAN OPTION NUMBER, or NAME
+   Choose from:
+   1            EDIT/CREATE A FORM
+   2            RUN A FORM
+   3            DELETE A FORM
+   4            PURGE UNUSED BLOCKS
+   5            PRINT A FORM
+   6            CUSTOMIZE COLORS
+   7            CLONE A FORM
+
+Select SCREENMAN OPTION: 6  CUSTOMIZE COLORS
+
+COLORS FOR SCREENMAN PRESENTATION may be set for the following:
+
+     1   User          USR    [choose from NEW PERSON]
+     2   System        SYS    [HELIOPOLIS.SMH101.COM]
+
+Enter selection: 2  System   HELIOPOLIS.SMH101.COM
+
+ Setting COLORS FOR SCREENMAN PRESENTATION  for System: HELIOPOLIS.SMH101.COM
+Select FUNCTIONALITY: ?
+
+
+There are currently no entries for FUNCTIONALITY.
+
+
+     Select one of the following:
+
+          1         REQUIRED CAPTION FG
+          2         DATA FG
+          3         CLICKABLE AREA FG
+          4         REQUIRED CAPTION BG
+          5         DATA BG
+          6         CLICK AREA BG
+
+Select FUNCTIONALITY: 5  DATA BG
+Are you adding DATA BG as a new FUNCTIONALITY? Yes//   YES
+
+FUNCTIONALITY: DATA BG//    DATA BG
+COLOR: ?
+
+Enter the Screen Color.
+
+     Select one of the following:
+
+          30        BLACK
+          31        RED
+          32        GREEN
+          33        YELLOW
+          34        BLUE
+          35        MAGENTA
+          36        CYAN
+          37        WHITE
+
+COLOR: 33  YELLOW
+Select FUNCTIONALITY:
+     </pre>
+     Here's the result of that change.
+     <img alt="Screenman with yellow" src="./fm_screenman_color.png" />
+   <p>In the parameter shown above, FG and BG stand for foreground or background.</p>
 	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
