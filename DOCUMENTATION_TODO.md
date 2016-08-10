@@ -28,7 +28,7 @@ http://www.hardhats.org/fileman/pm/fe_invok.htm
 Multiples within a single Screenman page can now be more than one line deep.
 http://www.hardhats.org/fileman/pm/sf_repbl.htm
 
-## Custom Colors Option
+## Custom Colors Option (DONE)
 The “Customize Colors” suboption within Screenman allows selection of ANSI
 colors for all Screenman presentations, on a parameterized basis (user,
 institution, etc.) using Kernel parameters.
