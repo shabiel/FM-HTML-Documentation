@@ -39,7 +39,7 @@ Editing a Screenman word­processing page ends with two empty lines, so that
 "F1­E" is not required to leave the page.
 http://www.hardhats.org/fileman/u1/se_intro.htm#Exiting_Saving
 
-## Indication of Word-processing Data
+## Indication of Word-processing Data (DONE)
 A + now indicates in a Screenman form whether a word­processing field already
 contains data. http://www.hardhats.org/fileman/u1/sm_intro.htm#Wp
 
