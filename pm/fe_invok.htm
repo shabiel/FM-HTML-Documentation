@@ -1,18 +1,18 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
+<HTML>
   <HEAD>
 <!--VHA OI Health Systems Design & Development (HSD&D)-->
 <!--Oakland OIFO-->
 <!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
 <!--Revised by Strack Susan, 12/03/02-->
 <!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; utf-8">
 	 <TITLE>VA FileMan Programmer Manual: ScreenMan Form Editor -
 		Invoking</TITLE>
 	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
 	 <META NAME="keywords"
 	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman,form editor,screenman form editor,editor,invoking">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css">
   </HEAD>
 	<BODY TOPMARGIN="0" BGCOLOR="white">
   	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
@@ -23,37 +23,37 @@
 	<P>&nbsp;</P>
 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
 	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
+	  VALIGN="TOP">
+		<TR>
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
+			CLASS="menubartext">Contents:</TD>
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
 			 <A HREF="index.htm" TARGET="_top"
 			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
+			  CLASS="menubarlink">Main</A> </TD>
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
 			 HREF="fe_frm.htm" TARGET="_top" CLASS="menubarlink"
 			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Form Editor Chapter TOC">Chapter</A></TD>
-		  
+
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
+			CLASS="menubartext">See Also: </TD>
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
 			 HREF="../u1/index.htm" TARGET="_top"
 			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+			 CLASS="menubarlink">Getting Started Manual</A></TD>
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
 			 <A HREF="../u2/index.htm" TARGET="_top"
 			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
+			  CLASS="menubarlink">Advanced User Manual</A></TD>
+		</TR>
 	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">ScreenMan Form Editor</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Invoking the Form Editor</H4> 
+	 <H3><A NAME="navskip">ScreenMan Form Editor</A></H3> <HR CLASS="hrstyle">
+	 <H4>Invoking the Form Editor</H4>
 	 <P>To invoke the Form Editor, perform the following steps from the VA
-		FileMan menu: </P> 
-	 <PRE></PRE> <HR> 
-	 <PRE>Select OPTION: <B>O</B>THER OPTIONS  
-Select OTHER OPTION: <B>SC</B>REENMAN  
+		FileMan menu: </P>
+	 <PRE></PRE> <HR>
+	 <PRE>Select OPTION: <B>O</B>THER OPTIONS
+Select OTHER OPTION: <B>SC</B>REENMAN
 Select SCREENMAN OPTION: <B>?</B>
  Answer with SCREENMAN OPTION NUMBER, or NAME
 Choose from:
@@ -63,25 +63,35 @@ Choose from:
    4               PURGE UNUSED BLOCKS
 
 Select SCREENMAN OPTION: <B>E</B>DIT/CREATE A FORM
- 
-</PRE> <HR> 
-	 <P></P> 
-	 <P>You are asked to select a file: </P> 
-	 <PRE>    EDIT/CREATE FORM FOR WHAT FILE:  </PRE> 
-	 <P>and a form: </P> 
-	 <PRE>    Select FORM:</PRE> 
+
+</PRE> <HR>
+	 <P></P>
+	 <P>You are asked to select a file: </P>
+	 <PRE>    EDIT/CREATE FORM FOR WHAT FILE:  </PRE>
+	 <P>and a form: </P>
+	 <PRE>    Select FORM:</PRE>
 	 <P>At the "Select FORM:" prompt, you can either select an existing form to
-		edit or create a new form by entering a new form name. </P> 
+		edit or create a new form by entering a new form name. </P>
 	 <P>If you create a new form, the Form Editor automatically creates one page
 		on that form. The new page is given a Page Number of 1, a Page Name of "Page
-		1", and a Page Coordinate of "1,1". </P> 
+		1", and a Page Coordinate of "1,1". </P>
+   <p><span class="badge">22.2</span>In Fileman 22.2, a new feature is that Fileman
+     can automatically set up for you a record selection page, if you respond
+     'yes' to the following question.
+     <pre>
+       Do you want your Form to begin with a display of all entries, for selection? <b>YES</b>
+     </pre>
+   <p><span class="badge">22.2</span>With this feature, the user can select an
+   entry by scrolling up or down. The initial position can be set to be the user’s
+   last selection, rather than first, last, or new.</p>
+   <p><span class="warn">TODO</span>Document how to set initial position.</p>
 	 <P><B>NOTE:</B> You can also use the programmer mode utility
 		<A HREF="sm_pddgf.htm" TITLE="^DDGF" CLASS="bodylink">^DDGF</A> to invoke the
-		Form Editor.</P>	 <P>&nbsp;</P> 
+		Form Editor.</P>	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- fe_invok.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
+	 <P ALIGN="CENTER">Reviewed/Updated: August 10, 2016</P>
+	 <P>&nbsp;</P>
 
   </BODY>
 </HTML>

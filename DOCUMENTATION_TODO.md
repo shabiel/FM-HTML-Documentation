@@ -7,14 +7,14 @@ To use your mouse with Screenman forms, your terminal emulator needs to be able
 to receive ANSI standard control sequences to turn the mouse on and off. Set up
 your terminal emulator so that the keyboard emulation is in “VT100+ mode.” Once
 you are in a Screenman form, click the mouse at the command line or any of the
-fields in the form. 
+fields in the form.
 http://www.hardhats.org/fileman/u1/sm_intro.htm#Screen
 
 If you do not want Screenman to recognize mouse clicks, use the Kernel
 parameter (created by running ^DINIT) that is named “DI SCREENMAN NO MOUSE”.
 http://www.hardhats.org/fileman/pm/sm_intro.htm
 
-## Record Selection as a Full Screenman Page
+## Record Selection as a Full Screenman Page (DONE)
 The Screenman Record Selection page can now be a full Screenman page using a
 computed multiple pointer, so that the user can select an entry by scrolling up
 or down. This new feature lets forms contain embedded lookups.
@@ -24,7 +24,7 @@ want your Form to begin with a display of all entries, for selection,” answer
 than first, last, or new.
 http://www.hardhats.org/fileman/pm/fe_invok.htm
 
-## Expanded Multiples
+## Expanded Multiples (DONE)
 Multiples within a single Screenman page can now be more than one line deep.
 http://www.hardhats.org/fileman/pm/sf_repbl.htm
 
@@ -51,7 +51,7 @@ http://www.hardhats.org/fileman/u1/sm_intro.htm#Multiples
 # Internationalization
 ## Fileman is Translation-ready
 All hard­coded display strings in File Manager have been converted to the
-Fileman Dialog framework, so translation can be table­driven. 
+Fileman Dialog framework, so translation can be table­driven.
 
 ## New Entries in Dialog File (.84)
 Many new entries have been added to the Dialog file to handle all end­user
@@ -59,7 +59,7 @@ interactions.
 
 ## Many New Languages in File .85
 The Language File (.85) can now be extended by running it to include all ISO
-639 standard languages. 
+639 standard languages.
 http://www.hardhats.org/fileman/pm/app_b_l.htm
 
 ## New Dialog Framework for Data Dictionary Elements
@@ -74,7 +74,7 @@ For example, to enter Spanish: DO SPANISH^DIALOGZ or DO LANG^DIALOGZ(3).
 ## Consistent Date Formatting
 Formatting of date output is now consistently done throughout all the end­ user
 routines. Changing the global node ^DD(“DD”) will change the way all Fileman
-dates are output. Re­running ^DINIT will not change this node. 
+dates are output. Re­running ^DINIT will not change this node.
 http://www.hardhats.org/fileman/pm/app_b_l.htm
 
 ## International Date Input
@@ -97,7 +97,7 @@ A fourth Data Dictionary utility (“find pointers into a file”) checks all fi
 with pointers into a given File. The utility gives 4 kinds of output (here
 using Patient file (2) as an example):
 ```
-1 One particular PATIENT Entry 
+1 One particular PATIENT Entry
 2 All PATIENT Entries
 3 Non-existent PATIENT Entries
 4 Entries from a PATIENT Searc
@@ -111,7 +111,7 @@ http://www.hardhats.org/fileman/u2/au_dd.htm
 
 ## Showing Past Changes to Data Dictionary
 The “Show Past Changes to DDs” auditing sub­option shows all DD changes since a
-certain date. 
+certain date.
 http://www.hardhats.org/fileman/u2/au_dd.htm#Reviewing
 
 ## Showing Changes by a Specific User
@@ -142,7 +142,7 @@ http://www.hardhats.org/fileman/u2/ut_ver.htm
 ## New Verify Pointers Option
 The Verify Fields option has been converted into a new Verify Data menu, which
 contains Verify Fields and a new Verify Pointers option. Verify Pointers will
-find and report dangling and badly defined pointers. 
+find and report dangling and badly defined pointers.
 
 ## Input and Output Transform mirroring
 If a field’s contents fail the Input Transform, and an Output Transform exists
@@ -159,7 +159,7 @@ If a user's language is set to a non-English language, and if a translation of
 a field label exists for that language, then Verify Fields output displays the
 translated field label.
 
-## Bug fixes 
+## Bug fixes
 A bug was fixed to suppress the accidental echo of dates in the Verify Fields output.
 
 # Comparing Data and Data Dictionaries across Environments
@@ -181,7 +181,7 @@ Fileman now supports longer screens.
 ### Printing Multiples in Sorted Order
 Until now, when printing sorted records, any subentries within those records
 were displayed unsorted, in order by internal entry number. A new B print
-specifier will ensure that subentries are displayed in order. 
+specifier will ensure that subentries are displayed in order.
 http://www.hardhats.org/fileman/u1/pr_intro.htm#print_qualifiers
 
 ### Enhanced Control of Input Templates
@@ -236,7 +236,7 @@ initial execution (Remedy ticket #447336).
 
 # Installation and Distribution Changes
 DIFROM: Keys and New-style Indexes
-DIFROM has been extended to be able to transport keys and new­style indexes 
+DIFROM has been extended to be able to transport keys and new­style indexes
 http://www.hardhats.org/fileman/pm/di_intro.htm
 
 # DINIT: Virgin Install
@@ -259,7 +259,7 @@ Duplicate index names are no longer allowed.
 Fileman uppercasing code in DILIBF is now User Language aware. Previously it worked only for English only.
 
 ## DIFROM Maximum Routine Size
-DIFROM didn't use ^DD(“ROU”) to determine the maximum routine size, but rather had it hard­coded to 9999. 
+DIFROM didn't use ^DD(“ROU”) to determine the maximum routine size, but rather had it hard­coded to 9999.
 http://www.hardhats.org/fileman/pm/pu_dif4j.htm
 
 ## DIFROM Routine size calculation
@@ -279,4 +279,3 @@ The replace prompt only supported input up to 245 characters long. Now it suppor
 
 ## Reverse collation on Complex New Style Indexes when doing partial matches
 Previously, a compound new style index configured to sort in reverse order still sorted in forward order upon partial matches even when it sorted in reverse when listing entries using “??”. Now, it will correctly sort in reverse order when displaying partial matches.
-
