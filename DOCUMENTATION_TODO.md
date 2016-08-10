@@ -43,7 +43,7 @@ http://www.hardhats.org/fileman/u1/se_intro.htm#Exiting_Saving
 A + now indicates in a Screenman form whether a word­processing field already
 contains data. http://www.hardhats.org/fileman/u1/sm_intro.htm#Wp
 
-## Screen Print
+## Screen Print (DONE)
 “F1­P” allows printing of the screen (including all multiples).
 http://www.hardhats.org/fileman/u1/sm_intro.htm#Fields
 http://www.hardhats.org/fileman/u1/sm_intro.htm#Multiples
