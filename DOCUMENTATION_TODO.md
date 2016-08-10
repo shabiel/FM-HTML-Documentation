@@ -34,7 +34,7 @@ colors for all Screenman presentations, on a parameterized basis (user,
 institution, etc.) using Kernel parameters.
 http://www.hardhats.org/fileman/u1/sm_intro.htm
 
-## Quick Exit from Word Processing Pages
+## Quick Exit from Word Processing Pages (DONE)
 Editing a Screenman word­processing page ends with two empty lines, so that
 "F1­E" is not required to leave the page.
 http://www.hardhats.org/fileman/u1/se_intro.htm#Exiting_Saving
