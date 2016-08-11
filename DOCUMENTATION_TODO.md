@@ -172,8 +172,8 @@ control.
 ## User Interface Changes
 ### Select Prompt: Extended Selection by IEN
 Lookup enhancement: if the .01 field of the file being selected from is a
-pointer to another file, you can use a double accent grave (``) to pick a
-pointed­to entry by its IEN.
+pointer to another file, you can use a double accent grave (\`\`) to pick a
+pointed­ to entry by its IEN.
 
 ### Allow Terminal Emulators Deeper Than 24 Lines
 Fileman now supports longer screens.
@@ -198,16 +198,23 @@ http://www.hardhats.org/fileman/u1/br_intro.htm#command_keystroke
 # API Changes
 ## Enhancements to FIND^DIC and LIST^DIC
 Third argument (fields) can now be a computed expression, not just a field.
+TODO: Examples.
+(DONE for now)
 http://www.hardhats.org/fileman/pm/db_dic_l.htm
 http://www.hardhats.org/fileman/pm/db_dicf.htm
 
+(DONE)
 New E flag returns the complete list of matches even if errors are encountered during the generation of the results.  
 http://www.hardhats.org/fileman/pm/db_dic_l.htm
 http://www.hardhats.org/fileman/pm/db_dicf.htm
 
+(DONE)
 Eighth parameter (index) of LIST^DIC can now be either a sort template or a field or a computed expression, if the new X flag is included. http://www.hardhats.org/fileman/pm/db_dic_l.htm
 
-U flag on ^DIC and Q flag on LIST^DIC and FIND^DIC and partial numeric matches on pointer values
+U flag on ^DIC
+(DONE)
+Q flag on LIST^DIC
+Q flag on FIND^DIC and partial numeric matches on pointer values
 Previously, using the U flag on ^DIC and the Q flag on DBS DIC calls caused numeric matches on pointer fields to be partially matched a la text matches. Now, partial numeric matches are not allowed in these circumstances.
 
 ## New API to Create Sort Templates Silently
