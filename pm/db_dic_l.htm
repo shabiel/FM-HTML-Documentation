@@ -123,8 +123,59 @@ IDENTIFIER,TARGET_ROOT,MSG_ROOT)
 					 it is returned multiple times in packed output, but only once in unpacked
 					 output, since the field number is one of the subscripts of the unpacked
 					 output.</P> </LI>
-        <li><span class="badge">22.2</span><b>Computed Expression:</b> This specifier causes the Finder to return
-          the result of a computed expression. </li>
+        <li><span class="badge">22.2</span><b>Computed Expression:</b> This specifier causes the Lister to return
+          the result of a computed expression. The returned nodes will be subscripted under C1, C2 etc.</li>
+          <pre>
+D LIST^DIC(.81,,"LOWERCASE(NAME);NAME")
+GTM>ZWRITE ^TMP("DILIST",$J,*)
+^TMP("DILIST",13159,0)="11^*^0^"
+^TMP("DILIST",13159,0,"MAP")="C1^C2"
+^TMP("DILIST",13159,1,1)="COMPUTED"
+^TMP("DILIST",13159,1,2)="DATE/TIME"
+^TMP("DILIST",13159,1,3)="FREE TEXT"
+^TMP("DILIST",13159,1,4)="MULTIPLE"
+^TMP("DILIST",13159,1,5)="MUMPS"
+^TMP("DILIST",13159,1,6)="NUMERIC"
+^TMP("DILIST",13159,1,7)="POINTER TO A FILE"
+^TMP("DILIST",13159,1,8)="RESERVED FOR FILEMAN"
+^TMP("DILIST",13159,1,9)="SET OF CODES"
+^TMP("DILIST",13159,1,10)="VARIABLE-POINTER"
+^TMP("DILIST",13159,1,11)="WORD-PROCESSING"
+^TMP("DILIST",13159,2,1)=6
+^TMP("DILIST",13159,2,2)=1
+^TMP("DILIST",13159,2,3)=4
+^TMP("DILIST",13159,2,4)=10
+^TMP("DILIST",13159,2,5)=9
+^TMP("DILIST",13159,2,6)=2
+^TMP("DILIST",13159,2,7)=7
+^TMP("DILIST",13159,2,8)=99
+^TMP("DILIST",13159,2,9)=3
+^TMP("DILIST",13159,2,10)=8
+^TMP("DILIST",13159,2,11)=5
+^TMP("DILIST",13159,"ID",1,"C1",1)="Computed"
+^TMP("DILIST",13159,"ID",1,"C2",1)="COMPUTED"
+^TMP("DILIST",13159,"ID",2,"C1",1)="Date/Time"
+^TMP("DILIST",13159,"ID",2,"C2",1)="DATE/TIME"
+^TMP("DILIST",13159,"ID",3,"C1",1)="Free Text"
+^TMP("DILIST",13159,"ID",3,"C2",1)="FREE TEXT"
+^TMP("DILIST",13159,"ID",4,"C1",1)="Multiple"
+^TMP("DILIST",13159,"ID",4,"C2",1)="MULTIPLE"
+^TMP("DILIST",13159,"ID",5,"C1",1)="Mumps"
+^TMP("DILIST",13159,"ID",5,"C2",1)="MUMPS"
+^TMP("DILIST",13159,"ID",6,"C1",1)="Numeric"
+^TMP("DILIST",13159,"ID",6,"C2",1)="NUMERIC"
+^TMP("DILIST",13159,"ID",7,"C1",1)="Pointer To A File"
+^TMP("DILIST",13159,"ID",7,"C2",1)="POINTER TO A FILE"
+^TMP("DILIST",13159,"ID",8,"C1",1)="Reserved For Fileman"
+^TMP("DILIST",13159,"ID",8,"C2",1)="RESERVED FOR FILEMAN"
+^TMP("DILIST",13159,"ID",9,"C1",1)="Set Of Codes"
+^TMP("DILIST",13159,"ID",9,"C2",1)="SET OF CODES"
+^TMP("DILIST",13159,"ID",10,"C1",1)="Variable-Pointer"
+^TMP("DILIST",13159,"ID",10,"C2",1)="VARIABLE-POINTER"
+^TMP("DILIST",13159,"ID",11,"C1",1)="Word-Processing"
+^TMP("DILIST",13159,"ID",11,"C2",1)="WORD-PROCESSING"
+
+          </pre>
           <p><b>REF:</b> For more information on computed expression syntax, see
             the <a href="../u2/ce_frm.htm">Computed Expressions</a> section in
             the VA FileMan Advanced User Manual.</p>

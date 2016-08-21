@@ -118,7 +118,16 @@ IDENTIFIER,TARGET_ROOT,MSG_ROOT)
 					 the value from the index entry will always be returned, rather than its
 					 corresponding external field value.</P> </LI>
         <li><span class="badge">22.2</span><b>Computed Expression:</b> This specifier causes the Finder to return
-          the result of a computed expression. </li>
+          the result of a computed expression. The returned nodes will be subscripted under C1, C2 etc.</li>
+          <pre>
+D FIND^DIC(.81,,"LOWERCASE(NAME)",,"RESE") ZWRITE ^TMP("DILIST",$J,*)
+^TMP("DILIST",14382,0)="1^*^0^"
+^TMP("DILIST",14382,0,"MAP")="C1"
+^TMP("DILIST",14382,1,1)="RESERVED FOR FILEMAN"
+^TMP("DILIST",14382,2,1)=99
+^TMP("DILIST",14382,"ID",1,"C1",1)="Reserved For Fileman"
+
+          </pre>
           <p><b>REF:</b> For more information on computed expression syntax, see
             the <a href="../u2/ce_frm.htm">Computed Expressions</a> section in
             the VA FileMan Advanced User Manual.</p>
