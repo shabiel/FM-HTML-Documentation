@@ -51,7 +51,7 @@ http://www.hardhats.org/fileman/u1/sm_intro.htm#Multiples
 # Internationalization
 ## Fileman is Translation-ready
 All hard­coded display strings in File Manager have been converted to the
-Fileman Dialog framework, so translation can be table­driven.
+Fileman Dialog framework, so translation can be table ­driven.
 
 ## New Entries in Dialog File (.84)
 Many new entries have been added to the Dialog file to handle all end­user
@@ -216,7 +216,7 @@ Q flag on LIST^DIC
 Q flag on FIND^DIC and partial numeric matches on pointer values
 Previously, using the U flag on ^DIC and the Q flag on DBS DIC calls caused numeric matches on pointer fields to be partially matched a la text matches. Now, partial numeric matches are not allowed in these circumstances.
 
-## New API to Create Sort Templates Silently
+## New API to Create Sort Templates Silently (DONE)
 BUILDNEW^DIBTED will silently create a sort template.
 http://www.hardhats.org/fileman/pm/db_intro.htm
 

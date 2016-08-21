@@ -99,3 +99,12 @@ pre {
 	width: 93%;
   background-color: #efeff5;
 	}
+.parameters
+{
+  border-collapse: collapse;
+}
+.parameters>tbody>tr>td
+{
+  border: 1px solid black;
+  margin: 0;
+}
