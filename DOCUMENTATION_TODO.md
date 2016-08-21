@@ -196,10 +196,9 @@ You can now print the text being browsed using F1­F1­P.
 http://www.hardhats.org/fileman/u1/br_intro.htm#command_keystroke
 
 # API Changes
-## Enhancements to FIND^DIC and LIST^DIC
+## Enhancements to FIND^DIC and LIST^DIC (DONE)
 Third argument (fields) can now be a computed expression, not just a field.
-TODO: Examples.
-(DONE for now)
+(DONE)
 http://www.hardhats.org/fileman/pm/db_dic_l.htm
 http://www.hardhats.org/fileman/pm/db_dicf.htm
 
