@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="subject" content="VA Fileman v. 22.0 Programmer HTML manual">
+    <meta name="keywords"
+    content="information infrastructure service,iis,infrastructure and security services,infrastructure security services,iss,vista,fileman,va fileman,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+    <meta name="authors" content="Sam Habiel">
+    <title>LANG^DIALOGZ: File Modification for Multiple Languages</title>
+    <link rel="stylesheet" type="text/css" href="programmer.css">
+  </head>
+  <body>
+    <br><img src="common/fileman_pm_heading.gif" border="0" width="429" height="29"
+  alt="va fileman v. 22.0 programmer manual banner">
+  <br>
+  <hr align="left" width="429">
+<table border="0" width="100%" cellspacing="0" cellpadding="3"
+    class="tdstyle" summary="this table is for formatting purposes only">
+    <tr>
+      <td valign="bottom" align="left" height="1" width="10%"
+      class="menubartext">Contents:</td>
+      <td valign="bottom" align="left" height="1" width="7%">
+       <a href="index.htm" target="_top"
+        title="va fileman v. 22.0 programmer html manual: main table of contents"
+        class="menubarlink">Main</a> </td>
+      <td valign="bottom" align="left" height="1" width="17%"><a
+       href="afd_frm.htm" target="_top"
+       title="va fileman v. 22.0 programmer html manual: advanced file definition chapter toc"
+       class="menubarlink">Chapter</a></td>
+      <td align="left" valign="bottom" height="1" width="10%"
+      class="menubartext">See Also: </td>
+      <td align="left" valign="bottom" height="1" width="28%"><a
+       href="../u1/index.htm" target="_top"
+       title="va fileman v. 22.0 getting started html manual"
+       class="menubarlink">Getting Started Manual</a></td>
+      <td valign="bottom" align="left" height="1" colspan="4" width="28%">
+       <a href="../u2/index.htm" target="_top"
+        title="va fileman v. 22.0 advanced user html manual"
+        class="menubarlink">Advanced User Manual</a></td>
+    </tr>
+   </table>
+   <!-- content -->
+   <h3>LANG^DIALOGZ: File Modification for Multiple Languages</h3>
+   <p>This entry point is invoked from the Programmer Prompt to modify the user
+   dialogue to show file components in a language different than the one used to
+   define the file. It is part of the ongoing initiative to internationalize
+   FileMan.</p>
+   <p>Among the items that you can translate are:</p>
+   <ul>
+       <li>File name</li>
+       <li>Field name</li>
+       <li>Help text for a field</li>
+       <li>External value of Set of Codes fields</li>
+   </ul>
+   <p>You can see the translated values using the Standard output of the List
+   File Attributes option.</p>
+   <h4>Format</h4>
+   <pre>LANG^DIALOZ(LangNum)</pre>
+   <table class="parameters">
+       <tr>
+           <td>LangNum:</td>
+           <td>
+           (Required) The ID NUMBER (.001) from the Language file of the
+           Language you want to translate.
+           </td>
+       </tr>
+   </table>
+  <p>The sample dialogue below illustrates the addition of French language
+  translations to some items in a file. The examples below do not include
+  possible translations of any of the VA FileMan prompts.</p>
+  <p>During this session, the following fields are translated:</p>
+  <ul>
+      <li>Name of the file</li>
+      <li>Name of two fields</li>
+      <li>Help text for one field</li>
+      <li>External values of a set of codes for the other field</li>
+  </ul>
+  <p>Note the syntax for entering the translated set of codes: the external values
+  in order, separated by a semicolon.</p>
+  <pre>
+&gt;<strong>D LANG^DIALOGZ(4) &lt;Enter&gt;</strong>   ;4 is ID NUMBER of French in Language File (#.85)
+Modify what File: <strong>ZZD TEST FILE1 &lt;Enter&gt;</strong>(3 entries) FRENCH translation of ZZD
+TEST FILE1: <strong>ZZD FICHIER DE TEST</strong>
+Select FIELD: <strong>NAME</strong>
+FRENCH translation of NAME: <strong>NOM </strong>
+Current NAME Field Help Prompt:
+  NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+FRENCH translation of Prompt:<strong>NOM EST 3-30 CARACTERES, PAS NUMERIC NI
+COMMENCEMENT AVEC DES SIGNES DE PONCTUATION.</strong>
+  Select FIELD: YES/NO
+  FRENCH translation of YES/NO: <strong>OUI/NON</strong>
+  Current SET values: <strong>Y:Yes;N:No;U:Unknown</strong>
+  FRENCH translation of SET values: <strong>?</strong>
+  YOU MUST ENTER 3 EXTERNAL VALUES, SEPARATED BY SEMICOLONS(;).
+  FRENCH translation of SET values: <strong>Oui;Non;Inconnu</strong>
+  Select FIELD:<strong>&lt;Enter&gt;</strong></pre>
+  <p>The user sees the translated values when the value of DUZ(“LANG”) is set
+  and the ID NUMBER of a language for which the translations are performed. In
+  the examples in the figure below, DUZ(“LANG”)=4.</p>
+  <p>The complete integration of the translated values is a work in progress. The
+  sample below is an editing dialogue showing how the translated values
+  are used. Comments are added in callouts to illustrate interesting aspects of
+  the current state of the translation program.</p>
+  <img src="./dialogz_result1.png" width="400" alt="Enter/Edit Example" />
+  <img src="./dialogz_result2.png" width="400" alt="Enter/Edit Example Continued" />
+  <!-- end of content -->
+  <p>During the Print File Entries dialogue, you must use the untranslated
+  values for the File and Field names. However, the output shows translated File
+  and Field names as well as translated External values for sets of codes.</p>
+  <small>Note: The internal values of the set of codes field remain as
+      originally defined.</small>
+  <img src="./dialogz_result3.png" width="400" alt="Print Example" />
+  <p>DIALOGZ places the translations as shown below.</p>
+  <pre>
+^DIC(filenumber,”ALANG”,LangNum,  --  Contains the Translation of the file name
+caption for the indicated language.
+^DD(filenumber,FieldNum,.008,LangNum  --  Contains the Translation of the field
+name caption for the indicated language.))</pre>
+   <hr class="hrstyle" />
+   <footer>Reviewed/Updated: August 21 2016</footer>
+  </body>
+</html>
