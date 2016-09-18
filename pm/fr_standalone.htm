@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="subject" content="VA Fileman v. 22.0 Programmer HTML manual">
+    <meta name="keywords"
+    content="information infrastructure service,iis,infrastructure and security services,infrastructure security services,iss,vista,fileman,va fileman,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+    <meta name="authors" value="Sam Habiel">
+    <title>VA FileMan Programmer Manual: BUILDNEW^DIBTED</title>
+    <link rel="stylesheet" type="text/css" href="programmer.css">
+  </head>
+  <body topmargin="0">
+    <br><img src="common/fileman_pm_heading.gif" border="0" width="429" height="29"
+  alt="va fileman v. 22.0 programmer manual banner">
+  <br>
+  <hr align="left" width="429" color="blue">
+<table border="0" width="100%" cellspacing="0" cellpadding="3"
+    class="tdstyle" summary="this table is for formatting purposes only" height="1"
+    valign="top">
+    <tr>
+      <td valign="bottom" align="left" height="1" width="10%"
+      class="menubartext">Contents:</td>
+      <td valign="bottom" align="left" height="1" width="7%">
+       <a href="index.htm" target="_top"
+        title="va fileman v. 22.0 programmer html manual: main table of contents"
+        class="menubarlink">Main</a> </td>
+      <td valign="bottom" align="left" height="1" width="17%"><a
+       href="afd_frm.htm" target="_top"
+       title="va fileman v. 22.0 programmer html manual: advanced file definition chapter toc"
+       class="menubarlink">Chapter</a></td>
+      <td align="left" valign="bottom" height="1" width="10%"
+      class="menubartext">See Also: </td>
+      <td align="left" valign="bottom" height="1" width="28%"><a
+       href="../u1/index.htm" target="_top"
+       title="va fileman v. 22.0 getting started html manual"
+       class="menubarlink">Getting Started Manual</a></td>
+      <td valign="bottom" align="left" height="1" colspan="4" width="28%">
+       <a href="../u2/index.htm" target="_top"
+        title="va fileman v. 22.0 advanced user html manual"
+        class="menubarlink">Advanced User Manual</a></td>
+    </tr>
+   </table>
+   <!-- content -->
+	 <H3><A NAME="navskip"><span class="badge">22.2</span>Standalone Fileman</A></H3>
+   <HR CLASS="hrstyle">
+     <p>As of version 22.2, Fileman can now be run stand-alone without Kernel.
+       This was accomplished by removing all references to ^%ZOSF and replacing
+       them with new references to the MUMPS OPERATING SYSTEM file (#.7).
+       The standalone version of Fileman can be obtained at <a href="http://flap.vistaexpertise.net">http://flap.vistaexpertise.net</a>.
+       The install instructions can be found there as well.</p>
+       <blockquote>The version referenced at this link is a couple years old
+         as of the time of this writing. It's missing various bug fixes made
+         since then. Hopefully there will be a new version that includes these
+         fixes (SMH).
+       </blockquote>
+     <p>
+     VA FileMan is designed to be used either with Kernel or as a standalone
+     application running under a variety of implementations of ANSI standard M.
+     If VA FileMan is used without Kernel, the basic DBMS features of VA FileMan
+     all work as described in the manuals. However, there are some features
+     (e.g., bulletin-type cross references, print queuing, and Filegrams) that
+     do not work without portions of Kernel. Whenever Kernel is needed to
+     support a particular VA FileMan feature, that fact is mentioned in the
+     manuals.</p>
+     <p>The installation of VA FileMan 22.0 is not integrated with the
+     installation of Kernel. The VA FileMan Installation Guide contains
+     instructions on how to install VA FileMan, both for standalone sites and
+     for sites running Kernel.<p>
+     <blockquote>REF: For specific information regarding standalone VA FileMan
+       (i.e., device handling, setting IO variables, and setting up a minimal
+       NEW PERSON file [#200]), see the “FileMan System Management” topic in the
+      VA FileMan Advanced User Manual.
+    </blockquote>
+   <!-- end of content -->
+   <hr class="hrstyle">
+   <footer>Reviewed/Updated: August 21 2016</footer>
+  </body>
+</html>
