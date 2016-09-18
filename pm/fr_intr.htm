@@ -1,16 +1,16 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD> 
+<HTML>
+  <HEAD>
 <!--VHA OI Health Systems Design & Development (HSD&D)-->
 <!--Oakland OIFO-->
 <!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
 <!--Revised by Strack Susan, 12/02/02-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
 	 <TITLE>VA FileMan Programmer Manual: Introduction</TITLE><META
 	 NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
 	 <META NAME="keywords"
 	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,introduction">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css">
   </HEAD>
 	<BODY TOPMARGIN="0" BGCOLOR="white">
   	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
@@ -21,57 +21,111 @@
 	<P>&nbsp;</P>
 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
 	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
+	  VALIGN="TOP">
+		<TR>
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
+			CLASS="menubartext">Contents:</TD>
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
 			 <A HREF="index.htm" TARGET="_top"
 			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"></TD> 
+			  CLASS="menubarlink">Main</A> </TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"></TD>
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
+			CLASS="menubartext">See Also: </TD>
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
 			 HREF="../u1/index.htm" TARGET="_top"
 			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
+			 CLASS="menubarlink">Getting Started Manual</A></TD>
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
 			 <A HREF="../u2/index.htm" TARGET="_top"
 			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
-	 </TABLE> 
+			  CLASS="menubarlink">Advanced User Manual</A></TD>
+		</TR>
+	 </TABLE>
 	 <!-- Content -->
-	 <H3><A NAME="navskip">Introduction</A></H3> <HR CLASS="hrstyle"> 
-	 <H5>What is VA FileMan?</H5> 
-	 <P>VA FileMan creates and maintains a database management system that
-		includes features such as: </P> 
-	 <UL> 
-		<LI>A report writer<BR><BR></LI> 
-		<LI>A data dictionary manager<BR><BR></LI> 
-		<LI>Scrolling and screen-oriented data entry<BR><BR></LI> 
-		<LI>Text editors<BR><BR></LI> 
-		<LI>Programming utilities<BR><BR></LI> 
-		<LI>Tools for sending data to other systems<BR><BR></LI> 
-		<LI>File archiving</LI> 
-	 </UL> 
-	 <P>VA FileMan can be used as a standalone database, as a set of interactive
-		or "silent" routines, or as a set of application utilities; in all modes, it is
-		used to define, enter, and retrieve information from a set of computer-stored
-		files, each of which is described by a data dictionary.</P> 
-	 <P>VA FileMan is a public domain software package that is developed and
-		maintained by the Department of Veterans Affairs. It is widely used by VA
-		medical centers and in clinical, administrative, and business settings in this
-		country and abroad.</P> 
-	 <P>The VA FileMan Development Team encourages you to send to them questions
-		and comments about the completeness and accuracy of this manual and suggestions
-		for its improvement.</P>
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
+	 <H3><A NAME="navskip">Introduction</A></H3>
+  <HR CLASS="hrstyle">
+    <H5>What is VA FileMan?</H5>
+   <P>VA FileMan creates and maintains a database management
+	 system that includes features such as: </P>
+  <UL>
+    <LI>A report writer<BR><BR></LI>
+    <LI>A data dictionary manager<BR><BR></LI>
+    <LI>Scrolling and screen-oriented data entry<BR><BR></LI>
+    <LI>Text editors<BR><BR></LI>
+	  <LI>Programming utilities<BR><BR></LI>
+    <LI>Tools for sending data to other systems<BR><BR></LI>
+    <LI>File archiving</LI>
+  </UL>
+   <P>VA FileMan can be used as a standalone database, as a set of interactive
+   or "silent" routines, or as a set of application utilities; in all modes, it
+   is used to define, enter, and retrieve information from a set of
+   computer-stored files, each of which is described by a data dictionary.</P>
+   <P>VA FileMan is a public domain software package that is developed and
+   maintained by the Department of Veterans Affairs. It is widely used by VA
+   medical centers and in clinical, administrative, and business settings in
+   this country and abroad.</P>  <P>The VA FileMan Development Team encourages
+   you to send to them questions and comments about the completeness and
+   accuracy of this manual and suggestions for its improvement.</P>
+  <H5>Functional Description</H5>
+  <p>VA FileMan
+	 functions as a Database Management System (DBS) with powerful Application
+	 Program Interfaces (APIs) and provides useful utilities for application
+	 developers. VA FileMan can be used as a database management system for data
+	 entry and output and its DBS calls are used in application packages with
+	 tools like Filegrams, auditing, archiving, and statistics.</p>
+  <ul>
+	 <li><strong>Database Management System (DBS)</strong>&mdash;As a database
+	 management system (DBS), VA FileMan supports the entering, editing, printing,
+	 searching, inquiring, transferring, cross- referencing, triggering, and
+	 verifying of information. It includes special functions to create new files,
+	 modify an existing file, delete entire files, reindex files, and create or
+	 edit templates.</li>
+   <li><strong>Application Program Interfaces (APIs)</strong>&mdash; As an
+   application program interface (API), the Database Server routines manage
+   interactions between the application software and the database management
+   system “silently” (i.e., without writing to the current device). Package
+   developers use DBS calls to update the database in a non-interactive mode.
+   Information needed by the VA FileMan routines is passed through parameters
+   rather than through interactive dialogue with the user. Information to be
+   displayed to the user is passed by VA FileMan back to the calling routine in
+   arrays. This separation of data access from user interaction makes possible
+   the construction of alternative front-ends to the VA FileMan database (e.g.,
+   a windowed Graphical User Interface [GUI]).</li>
+	 <li><strong>Utilities</strong>&mdash;As a set of utilities, VA FileMan
+	 provides tools like the Filegram, which is a tool that moves file records
+	 from one computer to another; archiving, which is a tool that stores data
+	 onto an offline storage medium; auditing, which is a tool that tracks changes
+	 to data in a field or to the file’s structure (the data dictionary); and
+	 statistics, which is a tool that accumulates totals and subtotals of
+	 individual fields.</li>
+  </ul>
+    <p> VA FileMan has several levels of users, ranging from a data entry person
+    who enters, edits, inquires, or prints information, to a software
+    application developer or Information Resource Management (IRM) staff member
+    who uses all of its database management system features and utilities. </p>
+    <p>
+      Developers should consider this manual the list of VA FileMan-supported
+      (“documented”) routines and Application Program Interface (API) calls
+      eligible for developer use. These routines and APIs provide the following
+      (to list a few):
+      <ul>
+        <li>File lookup and reindexing</li>
+        <li>Data edit, print, display, and retrieval</li>
+        <li>Filegrams</li>
+        <li>File entry deletion</li>
+        <li>A reader program</li>
+        <li>Data dictionary deletion</li>
+        <li>Word-processing</li>
+        <li>Conversion of date and time values</li>
+        <li>Software package export</li>
+        <li>Linked option processing</li>
+      </ul>
+    </p>
+  <P>&nbsp;</P>
+  <HR CLASS="hrstyle">
 	 <!-- fr_intr.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
-
+	 <P ALIGN="CENTER">Reviewed/Updated: September 18, 2016</P>
+	 <P>&nbsp;</P>
   </BODY>
 </HTML>
