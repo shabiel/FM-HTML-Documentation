@@ -62,12 +62,12 @@ The Language File (.85) can now be extended by running it to include all ISO
 639 standard languages.
 http://www.hardhats.org/fileman/pm/app_b_l.htm
 
-## New Dialog Framework for Data Dictionary Elements
+## New Dialog Framework for Data Dictionary Elements (DONE)
 File names, field labels, set values, and help messages can be entered into the
 ^DD schema for any of the languages listed in File .85.
 http://www.hardhats.org/fileman/pm/app_b_l.htm
 
-## New Entry Points to Help Translate DD Elements
+## New Entry Points to Help Translate DD Elements (DONE)
 New direct­mode tools have been created to help translate DD elements.
 For example, to enter Spanish: DO SPANISH^DIALOGZ or DO LANG^DIALOGZ(3).
 
@@ -233,14 +233,14 @@ http://www.hardhats.org/fileman/u2/ut_unedt.htm
 Maximum Field Length is now an independent field attribute, not just a
 side­effect of the code contained in the field’s Input Transform.
 
-## Override of Character Limit in Globals
+## Override of Character Limit in Globals (DONE)
 ^DD(“STRING_LIMIT”), if set, overrides the standard 255­character limit throughout File Manager.
 
 ## Set Cross-references as Non-re-runnable
 Cross­references can be defined so that they are never refired after their
 initial execution (Remedy ticket #447336).
 
-# Installation and Distribution Changes
+# Installation and Distribution Changes (DONE)
 DIFROM: Keys and New-style Indexes
 DIFROM has been extended to be able to transport keys and new­style indexes
 http://www.hardhats.org/fileman/pm/di_intro.htm
@@ -264,14 +264,14 @@ Duplicate index names are no longer allowed.
 ## Uppercasing
 Fileman uppercasing code in DILIBF is now User Language aware. Previously it worked only for English only.
 
-## DIFROM Maximum Routine Size
+## DIFROM Maximum Routine Size (DONE)
 DIFROM didn't use ^DD(“ROU”) to determine the maximum routine size, but rather had it hard­coded to 9999.
 http://www.hardhats.org/fileman/pm/pu_dif4j.htm
 
-## DIFROM Routine size calculation
+## DIFROM Routine size calculation (DONE)
 DIFROM didn't correctly count the size of routines it created making routines larger than the maximum size.
 
-## Browser display routines didn't work on Cache
+## Browser display routines didn't work on Cache (NOT SR in Fileman)
 DR^DDBRU didn't work on Cache due to the way %RSEL works on Cache.
 
 ## Maximum routine size did not get set with the first installation of Fileman.
@@ -280,8 +280,8 @@ The node ^DD(“ROU”) does not get initialized when installing Fileman for the
 ## Browser now works without Kernel
 The Fileman Browser now works without the device file and can be invoked from Fileman directly.
 
-## Replace/With Maximum Length
+## Replace/With Maximum Length (DONE)
 The replace prompt only supported input up to 245 characters long. Now it supports any length up to ^DD(“STRING_LIMIT”)
 
-## Reverse collation on Complex New Style Indexes when doing partial matches
+## Reverse collation on Complex New Style Indexes when doing partial matches (Bug fix only--don't add to manual)
 Previously, a compound new style index configured to sort in reverse order still sorted in forward order upon partial matches even when it sorted in reverse when listing entries using “??”. Now, it will correctly sort in reverse order when displaying partial matches.
