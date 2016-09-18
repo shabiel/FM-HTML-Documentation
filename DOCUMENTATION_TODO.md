@@ -245,17 +245,17 @@ DIFROM: Keys and New-style Indexes
 DIFROM has been extended to be able to transport keys and new­style indexes
 http://www.hardhats.org/fileman/pm/di_intro.htm
 
-# DINIT: Virgin Install
+# DINIT: Virgin Install (DONE)
 Fileman has been changed to restore its ability to run correctly without any of
 the rest of VISTA being installed.
 http://www.hardhats.org/fileman/u2/pm_dinit.htm
 
 # Bug Fixes
-## Computed Expressions: Multiple Contains with Word-processing Fields
+## Computed Expressions: Multiple Contains with Word-processing Fields (bug fix)
 
 The computed expression (WP1["GREEN")!(WP2["GREEN") is now correctly handled (where WP1 and WP2 are names of Word­processing fields).
 
-## Lookup: Input Value Longer Than 30 Characters
+## Lookup: Input Value Longer Than 30 Characters (bug fix)
 Lookups with input values longer than 30 characters now work correctly.
 
 ## Cross-reference a Field or File: Duplicate Index Names
@@ -274,7 +274,7 @@ DIFROM didn't correctly count the size of routines it created making routines la
 ## Browser display routines didn't work on Cache (NOT SR in Fileman)
 DR^DDBRU didn't work on Cache due to the way %RSEL works on Cache.
 
-## Maximum routine size did not get set with the first installation of Fileman.
+## Maximum routine size did not get set with the first installation of Fileman. (Bug fix only)
 The node ^DD(“ROU”) does not get initialized when installing Fileman for the first time.
 
 ## Browser now works without Kernel
