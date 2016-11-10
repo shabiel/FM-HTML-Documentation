@@ -1,340 +1,278 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/27/03-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Auditing a Data Field
-		</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,auditing,audit,data filed,field,audit a data field,tracking,trail">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
-  </HEAD> 
-  <BODY BGCOLOR="white" TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="au_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Auditing Chapter TOC">Chapter</A></TD>
-		  
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">Auditing</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Auditing a Data Field</H4> 
-	 <UL> 
-		<LI><A HREF="#Overview" TITLE="Overview"
-		  CLASS="bodylink">Overview</A><BR><BR></LI> 
-		<LI><A HREF="#Setting" TITLE="Setting a Data Field Audit"
-		  CLASS="bodylink">Setting a Data Field Audit</A><BR><BR></LI> 
-		<LI><A HREF="#Turning" TITLE="Turning Data Field Audit On/Off"
-		  CLASS="bodylink">Turning Data Field Audit On/Off</A><BR><BR></LI> 
-		<LI><A HREF="#Reviewing" TITLE="Reviewing the Data Field Audit Trail"
-		  CLASS="bodylink">Reviewing the Data Field Audit Trail</A><BR><BR></LI> 
-		<LI><A HREF="#Tracking" TITLE="Tracking Data Field Audits"
-		  CLASS="bodylink">Tracking Data Field Audits</A><BR><BR></LI> 
-		<LI><A HREF="#Purging" TITLE="Purging a Data Field Audit Trail"
-		  CLASS="bodylink">Purging a Data Field Audit Trail</A></LI> 
-	 </UL> <HR> 
-	 <H5><A NAME="Overview">Overview</A></H5> 
-	 <P> The Enter or Edit File Entries option is used to add, change, or delete
-		data values. For example, an admission clerk might use the Enter or Edit File
-		Entries option to enter a Date of Birth of&nbsp; 'JAN 20, 1949' for patient
-		Richard Green. Later, a nurse could use the same option to change the value to
-		'JAN 20, 1950'. You might like to know who made the successive changes and
-		when; the data field audit capability is designed to record this information.
-		</P> 
-	 <P>When changes like the ones mentioned above are made to an audited field,
-		the date and time the change was made, the user's name, and the old and new
-		data values are stored in the AUDIT file (#1.1). In other words, starting an
-		audit on a data field provides an ongoing chronological list of who made what
-		changes to data values of fields you are auditing.</P> <HR> 
-	 <H5><A NAME="Setting">Setting a Data Field Audit</A></H5> 
-	 <P> To begin auditing data changes in a field, use the Modify File
-		Attributes option, choose the file and fields that should be audited and answer
-		YES or EDITED to the "AUDIT:" prompt. The possible responses to the "AUDIT:"
-		prompt are: </P> 
-	 <TABLE BORDER="1" WIDTH="100%"
-	 SUMMARY="Setting a Data Field Audit Table (field audit responce, description)">
-		
-		<TR> 
-		  <TD VALIGN="TOP"><B>Response</B></TD> 
-		  <TD VALIGN="TOP"><B>Description</B></TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>YES, ALWAYS</B></TD> 
-		  <TD VALIGN="TOP">Indicates the audit will occur when data is initially
-			 entered, changed or deleted. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>EDITED OR DELETED</B></TD> 
-		  <TD VALIGN="TOP">Means that the audit only occurs when changes are made
-			 or values deleted (<I>not</I> when the data is initially entered). </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>NO</B></TD> 
-		  <TD VALIGN="TOP">Turns the audit off. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>@</B></TD> 
-		  <TD VALIGN="TOP">Deletes the current audit status (effectively turning
-			 audit off), not the field. </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P>The following example initiates a Data Field audit on the DATE OF BIRTH
-		field of the PATIENT file (#2). Only changes to pre-existing data will be
-		recorded: </P> <HR> 
-	 <PRE>Select OPTION: <B>MOD</B>IFY FILE ATTRIBUTES
-DO YOU WANT TO USER THE SCREEN-MODE VERSION? Yes// <B>N &lt;RET&gt;</B>  (No)
+<html><head>
+<!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/27/03--><!--Edited March 2007, Hardhats.org-->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan V. 22.0 Advanced User Manual: Auditing a Data
+Field</title>
 
-MODIFY WHAT FILE: <B>PATIENT</B>
-
-Select FIELD: <B>DATE OF BIRTH</B>
-LABEL: <B>&lt;RET&gt;</B>
-TITLE: <B>&lt;RET&gt;</B>
-AUDIT: <B>EDITED &lt;RET&gt;</B>  EDITED OR DELETED
-<B>.</B>
-<B>.</B>
-<B>.</B></PRE> <HR> 
-	 <P>If you have programmer access, you are also presented with the "AUDIT
-		CONDITION:" prompt. Here, you can restrict the data entries that will be
-		audited. Enter a line of M code that must evaluate true or false. If it
-		evaluates true, an audit record of the value change is made. Otherwise, no
-		auditing is done for that data entry. (See the "<A HREF="../pm/afd_frm.htm"
-		TARGET="_top" TITLE="Advanced File Definition" CLASS="bodylink">Advanced File
-		Definition</A>" chapter in the "<A HREF="../pm/index.htm" TARGET="_top"
-		TITLE="VA FileMan V. 22.0 Programmer HTML Manual" CLASS="bodylink">VA FileMan
-		Programmer Manual</A>" for more information on the audit condition.) </P> 
-	 <P><B>NOTE:</B> If auditing is not turned on for the field with a YES or
-		EDITED answer to the "AUDIT:" prompt, the field will not be audited, even if
-		code is entered at the "AUDIT CONDITION:" prompt. </P> 
-	 <P>Fields with a Data Type of COMPUTED or WORD-PROCESSING cannot be
-		audited. </P> 
-	 <P>In order to initiate an audit of data fields or of a data dictionary,
-		you must have AUDIT access to the files you want to audit. (See the "<A
-		HREF="ds_frm.htm" TARGET="_top" TITLE="Data Security" CLASS="bodylink">Data
-		Security</A>" chapter for more information about AUDIT access.) </P> <HR> 
-	 <H5><A NAME="Turning">Turning Data Field Audit On/Off</A></H5> 
-	 <P>Users who do not have the Modify File Attributes option (DD access) to
-		files can be given the Turn Data Audit On/Off option. This option is found on
-		VA FileMan's Auditing submenu. It is used to begin or end an audit trail for
-		fields. The user must have AUDIT access to the file to set data audits. No
-		other access is necessary. The Turn Data Audit On/Off option is called DIAUDIT
-		TURN ON/OFF; it can be granted to users with Kernel's menu management options.
-		No other attributes in the field definition can be affected by use of this
-		option. </P> 
-	 <P>Use of Turn Data Audit On/Off is very similar to using the Modify File
-		Attributes option: </P> <HR> 
-	 <PRE>Select OPTION: <B>OTHER</B> OPTIONS  
-Select OTHER OPTION: <B>AUDITING</B>
-Select AUDITING OPTION: <B>TURN</B> DATA AUDIT ON/OFF
-AUDIT FROM WHAT FILE: <B>PATIENT</B>
-Select FIELD: <B>DATE OF BIRTH</B>
-AUDIT: <B>EDITED</B> OR DELETED</PRE> <HR> 
-	 <P>To end the audit trail, simply re-enter the Turn Data Audit On/Off
-		option and turn the audit off by entering NO at the "AUDIT:" prompt: </P> <HR> 
-	 <PRE>AUDIT:  EDITED OR DELETED// <B>NO &lt;RET&gt;</B>  NO</PRE> <HR> 
-	 <H5><A NAME="Reviewing">Reviewing the Data Field Audit Trail</A></H5> 
-	 <P><STRONG>1. CAPTIONED output with audit trail</STRONG></P> 
-	 <P>There are a number of different ways to retrieve audit
-		information.&nbsp; The simplest is to examine all the audited past values for a
-		particular entry, or a set of entries.&nbsp; Let's say we are reviewing Patient
-		entries in the PATIENT file.&nbsp; Using either the Inquire to File Entries or
-		the Print File Entries options, we specify the [CAPTIONED] output.&nbsp; If the
-		file has audited data on record, we will be asked whether we want to see the
-		audit trail on the patient(s) displayed. </P> 
-	 <P>Suppose the PATIENT file has been edited so that patient 'Green' was
-		first assigned a DOB of 1/20/49, but that subsequently this DOB was changed to
-		1/20/50. </P> <HR> 
-	 <PRE>Select OPTION: <B>INQ</B>UIRE TO FILE ENTRIES&nbsp;
-
-OUTPUT FROM WHAT FILE: <B>PATIENT</B>&nbsp;&nbsp;
-Select PATIENT: <B>GREEN,RICHARD
-</B>ANOTHER ONE: 
-STANDARD CAPTIONED OUTPUT? Yes//&nbsp;<B>&lt;RET&gt;</B> (Yes)
-Include COMPUTED fields:&nbsp; (N/Y/R/B): NO//&nbsp;<B>&lt;RET&gt;</B> - No record number (IEN), no Computed
-&nbsp;Fields
-DISPLAY AUDIT TRAIL? No// <B>YES</B>
-
-NAME: GREEN, RICHARD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DOB: JAN 20, 1950
-&nbsp;&nbsp;&nbsp; Changed from &quot;JAN 20, 1949&quot; on Mar 15, 2001@16:48:53 by User #16
-&nbsp;&nbsp;&nbsp; Created on Mar 13, 2001@19:41:36 by User #330</PRE> <HR> 
-	 <P><STRONG>2. Computed-Field FUNCTIONS for retrieving audit
-		changes</STRONG></P> 
-	 <P>Three powerful new FUNCTIONS now allow retrieval of audit data.&nbsp; As
+<meta name="subject" content="VA FileMan V. 22.0 Advanced User HTML Manual">
+<meta name="keywords" content="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,auditing,audit,data filed,field,audit a data field,tracking,trail">
+<link rel="StyleSheet" type="text/css" href="user.css">
+</head>
+<body topmargin="0" style="background-color: white;">
+<br>
+<img src="common/fileman_au_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="au_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Advanced User HTML Manual: Auditing Chapter TOC">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">Auditing</a></h3>
+<hr class="hrstyle">
+<h4><big><big>Auditing a Data Field</big></big></h4>
+<ul>
+<li><a href="#Overview" title="Overview" class="bodylink">Overview</a><br>
+<br>
+</li>
+<li><a href="#Setting" title="Setting a Data Field Audit" class="bodylink">Setting
+a Data Field Audit</a><br>
+<br>
+</li>
+<li><a href="#Turning" title="Turning Data Field Audit On/Off" class="bodylink">Turning
+Data Field Audit On/Off</a><br>
+<br>
+</li>
+<li><a href="#Reviewing" title="Reviewing the Data Field Audit Trail" class="bodylink">Reviewing
+the Data Field Audit Trail</a><br>
+<br>
+</li>
+<li><a href="#Tracking" title="Tracking Data Field Audits" class="bodylink">Tracking
+Data Field Audits</a><br>
+<br>
+</li>
+<li><a href="#Purging" title="Purging a Data Field Audit Trail" class="bodylink">Purging
+a Data Field Audit Trail</a></li>
+</ul>
+<hr>
+<h5><big><big><a name="Overview">Overview</a></big></big></h5>
+<p> The "ENTER OR EDIT FILE ENTRIES" option is used to add,
+change,
+or delete data values. For example, an admission clerk might use the
+Enter or Edit File Entries option to enter a Date of Birth of&nbsp;
+'JAN 20, 1949' for patient Richard Green. Later, a nurse could use the
+same option to change the value to 'JAN 20, 1950'. You might like to
+know who made the successive changes and when; the data field audit
+capability is designed to record this information. </p>
+<p>When changes like the ones mentioned above are made to an
+audited field, the date and time the change was made, the user's name,
+and the old and new data values are stored in the AUDIT file (#1.1). In
+other words, starting an audit on a data field provides an ongoing
+chronological list of who made what changes to data values of fields
+you are auditing.</p>
+<hr>
+<h5><big><big><a name="Setting">Setting
+a Data Field Audit</a></big></big></h5>
+<p> To begin auditing data changes in a field, use the Modify
+File Attributes option, choose the file and fields that should be
+audited and answer YES or EDITED to the "AUDIT:" prompt. The possible
+responses to the "AUDIT:" prompt are: </p>
+<table summary="Setting a Data Field Audit Table (field audit responce, description)" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Response</b></td>
+<td valign="top"><b>Description</b></td>
+</tr>
+<tr>
+<td valign="top"><b>YES, ALWAYS</b></td>
+<td valign="top">Indicates the audit will occur when
+data is initially entered, changed or deleted. </td>
+</tr>
+<tr>
+<td valign="top"><b>EDITED OR DELETED</b></td>
+<td valign="top">Means that the audit only occurs
+when changes are made or values deleted (<i>not</i> when
+the data is initially entered). </td>
+</tr>
+<tr>
+<td valign="top"><b>NO</b></td>
+<td valign="top">Turns the audit off. </td>
+</tr>
+<tr>
+<td valign="top"><b>@</b></td>
+<td valign="top">Deletes the current audit status
+(effectively turning audit off), not the field. </td>
+</tr>
+</tbody>
+</table>
+<p>The following example initiates a Data Field audit on the DATE
+OF BIRTH field of the PATIENT file (#2). Only changes to pre-existing
+data will be recorded: </p>
+<hr>
+<pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES<br>DO YOU WANT TO USER THE SCREEN-MODE VERSION? Yes// <b>N &lt;RET&gt;</b> (No)<br><br>MODIFY WHAT FILE: <b>PATIENT</b><br>Select FIELD: <b>DATE OF BIRTH</b><br>LABEL: <b>&lt;RET&gt;</b><br>TITLE: <b>&lt;RET&gt;</b><br>AUDIT: <b>EDITED &lt;RET&gt;</b> EDITED OR DELETED<br><b>.</b><br><b>.</b><br><b>.</b></pre>
+<hr>
+<p>If you have programmer access, you are also presented with the
+"AUDIT CONDITION:" prompt. Here, you can restrict the data entries that
+will be audited. Enter a line of M code that must evaluate true or
+false. If it evaluates true, an audit record of the value change is
+made. Otherwise, no auditing is done for that data entry. (See the "<a href="../pm/afd_frm.htm" target="_top" title="Advanced File Definition" class="bodylink">Advanced
+File Definition</a>" chapter in the "<a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="bodylink">VA FileMan Programmer Manual</a>" for
+more information on the audit condition.) </p>
+<p><b>NOTE:</b> If auditing is not turned on for the
+field with a YES or EDITED answer to the "AUDIT:" prompt, the field
+will not be audited, even if code is entered at the "AUDIT CONDITION:"
+prompt. </p>
+<p><span class="badge"></span><img style="width: 60px; height: 30px;" alt="" src="22.gif">Fields
+with
+a Data Type of COMPUTED&nbsp;cannot be audited, but all other types
+of fields, including WORD-PROCESSING fields, are auditable..
+</p>
+<p>In order to initiate an audit of data fields or of a data
+dictionary, you must have AUDIT access to the files you want to audit.
+(See the "<a href="ds_frm.htm" target="_top" title="Data Security" class="bodylink">Data Security</a>"
+chapter for more information about AUDIT access.) </p>
+<hr>
+<h5><big><big><a name="Turning">Turning
+Data Field Audit On/Off</a></big></big></h5>
+<p>Users who do not have the Modify File Attributes option (DD
+access) to files can be given the Turn Data Audit On/Off option. This
+option is found on VA FileMan's Auditing submenu. It is used to begin
+or end an audit trail for fields. The user must have AUDIT access to
+the file to set data audits. No other access is necessary. The Turn
+Data Audit On/Off option is called DIAUDIT TURN ON/OFF; it can be
+granted to users with Kernel's menu management options. No other
+attributes in the field definition can be affected by use of this
+option. </p>
+<p>Use of Turn Data Audit On/Off is very similar to using the
+Modify File Attributes option: </p>
+<hr>
+<pre>Select OPTION: <b>OTHER</b> OPTIONS <br>Select OTHER OPTION: <b>AUDITING</b><br>Select AUDITING OPTION: <b>TURN</b> DATA AUDIT ON/OFF<br>AUDIT FROM WHAT FILE: <b>PATIENT</b><br>Select FIELD: <b>DATE OF BIRTH</b><br>AUDIT: <b>EDITED</b> OR DELETED</pre>
+<hr>
+<p>To end the audit trail, simply re-enter the Turn Data Audit
+On/Off option and turn the audit off by entering NO at the "AUDIT:"
+prompt: </p>
+<hr>
+<pre>AUDIT: EDITED OR DELETED// <b>NO &lt;RET&gt;</b> NO</pre>
+<hr>
+<h5><big><big><a name="Reviewing">Reviewing
+the Data Field
+Audit Trail</a></big></big></h5>
+<p><strong>1. CAPTIONED output with audit trail</strong></p>
+<p>There are a number of different ways to retrieve audit
+information.&nbsp; The simplest is to examine all the audited past
+values for a particular entry, or a set of entries.&nbsp; Let's say
+we are reviewing Patient entries in the PATIENT file.&nbsp; Using
+either the Inquire to File Entries or the Print File Entries options,
+we specify the [CAPTIONED] output.&nbsp; If the file has audited
+data on record, we will be asked whether we want to see the audit trail
+on the patient(s) displayed. </p>
+<p>Suppose the PATIENT file has been edited so that patient
+'Green' was first assigned a DOB of 1/20/49, but that subsequently this
+DOB was changed to 1/20/50. </p>
+<hr>
+<pre>Select OPTION: <b>INQ</b>UIRE TO FILE ENTRIES&nbsp;<br><br>OUTPUT FROM WHAT FILE: <b>PATIENT</b>&nbsp;&nbsp;<br>Select PATIENT: <b>GREEN,RICHARD<br></b>ANOTHER ONE: <br><br>STANDARD CAPTIONED OUTPUT? Yes//&nbsp;<b>&lt;RET&gt;</b> (Yes)<br>Include COMPUTED fields:&nbsp; (N/Y/R/B): NO//&nbsp;<b>&lt;RET&gt;</b><br> - No record number (IEN), no Computed<br>&nbsp;Fields<br>DISPLAY AUDIT TRAIL? No// <br><b>YES</b><br>NAME: GREEN, RICHARD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DOB: JAN 20, 1950<br><br>&nbsp;&nbsp;&nbsp; Changed from "JAN 20, 1949" on Mar 15, 2001@16:48:53 by User #16<br><br>&nbsp;&nbsp;&nbsp; Created on Mar 13, 2001@19:41:36 by User #330</pre>
+<hr>
+<p><strong><img style="width: 60px; height: 30px;" alt="" src="22.gif"></strong></p>
+<p><strong>2. Showing Changes by a Specific User</strong></p>
+<p>We may want to look at the audit trail by user rather than by
+entry.
+&nbsp; &#8220;MONITOR A USER&#8221; is now the second auditing option. It shows
+every entry in a specified audited file touched by a given
+user.&nbsp;</p>
+Suppose we want to see all entries in File 2 that have been seen by a
+given User since the beginning of 2016.<br>
+<br>
+<hr>
+<pre>Select AUDIT OPTION:&nbsp;&nbsp;&nbsp; MONITOR A USER<br><br>Select a USER who has signed on to this system:&nbsp;&nbsp;&nbsp;TIMSON,GEORGE&nbsp;&nbsp;&nbsp;&nbsp; GFT&nbsp;<br><br>Select AUDITED File: PATIENT<br><br>START WITH DATE: FIRST// 1 1&nbsp; (JAN 01, 2016)<br><br><br>PATIENT RECORDS ACCESSED BY TIMSON,GEORGE (DUZ=1)&nbsp; SINCE JAN 1,2016&nbsp;&nbsp;&nbsp;&nbsp; Page 1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EARLIEST ACCESS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LATEST ACCESS<br>--------------------------------------------------------------------------------<br>AMUFNI,THRHFGMH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>4-26-79&nbsp;&nbsp; CLI666465289&nbsp;&nbsp; Female<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APR 22,2016@09:02:19<br>GV,XGS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>5-13-62&nbsp;&nbsp; CLI666315991&nbsp;&nbsp; Female<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JAN 28,2016@12:08:35&nbsp;&nbsp;&nbsp;&nbsp; APR 17,2016@09:39:23<br>SIPOUOSH,INPNN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>8-4-33&nbsp;&nbsp;&nbsp; CLI666352931&nbsp;&nbsp;Male<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JAN 9,2016@09:38:23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APR 17,2016@12:00:57<br>...<br>...<br><br><br><hr><big style="font-weight: bold;"><br></big></pre><p><strong>3. Computed-Field FUNCTIONS for retrieving audit
+		changes</strong></p> 
+	 <p>Three powerful&nbsp;FUNCTIONS now allow retrieval of audit data.&nbsp; As
 		with all Computed Expressions, use of these Functions is in the context of a
-		given entry in a given (audited) file.&nbsp; <BR>&nbsp;&nbsp;&nbsp;
-		<B>PRIORVALUE(Field_name)</B> returns values of the 'Field_name' field that
-		existed before a change was made. <BR>&nbsp;&nbsp;&nbsp;
-		<B>PRIORDATE(Field_name)</B> returns the corresponding date/time at which a
-		change to the field value was made. <BR>&nbsp;&nbsp;&nbsp;
-		<B>PRIORUSER(Field_name)</B> returns the corresponding user number ('DUZ') who
-		made the change to the field value.</P> 
-	 <P>Each of these Functions is multi-valued, since the Field value for the
+		given entry in a given (audited) file.&nbsp; <br>&nbsp;&nbsp;&nbsp;
+		<b>PRIORVALUE(Field_name)</b> returns values of the 'Field_name' field that
+		existed before a change was made. <br>&nbsp;&nbsp;&nbsp;
+		<b>PRIORDATE(Field_name)</b> returns the corresponding date/time at which a
+		change to the field value was made. <br>&nbsp;&nbsp;&nbsp;
+		<b>PRIORUSER(Field_name)</b> returns the corresponding user number ('DUZ') who
+		made the change to the field value.</p> 
+	 <p>Each of these Functions is multi-valued, since the Field value for the
 		entry may have been changed more than once in the past. The Functions "1ST",
 		"2ND", "LAST", "COUNT" can be used with these multiples.&nbsp; Thus, the
-		Computed Expression <B>COUNT(PRIORVALUE(NAME))&gt;4</B> means "the NAME on this
+		Computed Expression <b>COUNT(PRIORVALUE(NAME))&gt;4</b> means "the NAME on this
 		entry has been changed more than four times in the past".&nbsp; To find any
-		entry whose NAME <U>used to contain</U> "CLINTON", search for&nbsp;&nbsp;&nbsp;
-		<B>PRIORVALUE(NAME)["CLINTON"]</B>. </P> <HR> 
-	 <P><STRONG>3. The AUDIT File</STRONG></P> 
-	 <P>A more specialized way to examine audits is to query the AUDIT file
+		entry whose NAME <u>used to contain</u> "CLINTON", search for&nbsp;&nbsp;&nbsp;
+		<b>PRIORVALUE(NAME)["CLINTON"]</b>. </p> <hr> 
+	 <p><strong>4. The AUDIT File</strong></p> 
+	 <p>A more specialized way to examine audits is to query the AUDIT file
 		(#1.1) to obtain audit information. The set of all past audited events for a
 		given FileMan file is itself a FileMan file, which can be queried or printed.
 		The entries are identified first by their internal entry number in the AUDIT
 		file, then by the internal entry number of the edited entry from the file being
 		audited, and finally by the date/time of the audited event. Suppose
-		'GREEN,RICHARD' is the 355th entry in the PATIENT file.</P> <HR> 
-	 <PRE>OUTPUT FROM WHAT FILE: PATIENT// <B>1.1 &lt;RET&gt; </B> AUDIT
-AUDIT FROM WHAT FILE: PATIENT//&nbsp;<B>&lt;RET&gt;</B>
-Select PATIENT AUDIT: <B>1 &lt;RET&gt;</B>&nbsp;&nbsp;&nbsp;&nbsp; 355&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3-15-2001@16:48:53
-ANOTHER ONE:&nbsp;&nbsp;
-STANDARD CAPTIONED OUTPUT? YES//&nbsp;<B>&lt;RET&gt;</B> (YES)&nbsp;
-DISPLAY COMPUTED FIELDS? NO// <B>Y &lt;RET&gt;</B> (YES)</PRE> <HR> 
-	 <P> Responding with YES at the "DISPLAY COMPUTED FIELDS? NO//" prompt shows
+		'GREEN,RICHARD' is the 355th entry in the PATIENT file.</p> <hr> 
+	 OUTPUT FROM WHAT FILE: PATIENT// <b>1.1 &lt;RET&gt; </b> AUDIT<br>AUDIT FROM WHAT FILE: PATIENT//&nbsp;<b></b><br>&nbsp;elect PATIENT AUDIT: <b>1&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp; 355&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3-15-2001@16:48:53<br>ANOTHER ONE:&nbsp;&nbsp;<br>STANDARD CAPTIONED OUTPUT? YES//&nbsp;<b></b> (YES)&nbsp;<br>DISPLAY COMPUTED FIELDS? NO// <b>Y </b>(YES) <hr> 
+	 <p> Responding with YES at the "DISPLAY COMPUTED FIELDS? NO//" prompt shows
 		the AUDIT file's COMPUTED fields: ENTRY NAME, FIELD NAME, OLD VALUE, and NEW
-		VALUE. A NO response will <I>not</I> show these fields.</P> 
-	 <P>The following output is produced:</P> <HR> 
-	 <PRE>NUMBER: 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        INTERNAL ENTRY NUMBER: 355
-  DATE/TIME RECORDED: JAN 06, 2003@12:42:08&nbsp;
-  FIELD NUMBER: 2&nbsp;&nbsp;&nbsp;              USER: PHARMACY,TECH
-  OLD INTERNAL VALUE: 2490120     DATATYPE OF OLD VALUE: Da
-  NEW INTERNAL VALUE: 2500120     DATATYPE OF NEW VALUE: Da  
-  ENTRY NAME (c):&nbsp;GREEN,RICHARD   FIELD NAME (c): DATE
-  OLD VALUE (c): JAN 06, 2003     NEW VALUE (c): FEB 03, 2003</PRE> <HR> 
-	 <P> If you deleted Green's DATE OF BIRTH, the corresponding entry in File
+		VALUE. A NO response will <i>not</i> show these fields.</p> 
+	 <p>The following output is produced:</p> <hr> 
+	 NUMBER:
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+INTERNAL ENTRY NUMBER: 355<br>  DATE/TIME RECORDED: JAN 06, 2003@12:42:08&nbsp;<br>  FIELD NUMBER: 2&nbsp;&nbsp;&nbsp;              USER: PHARMACY,TECH<br>  OLD INTERNAL VALUE: 2490120     DATATYPE OF OLD VALUE: Da<br>  NEW INTERNAL VALUE: 2500120     DATATYPE OF NEW VALUE: Da  <br>  ENTRY NAME (c):&nbsp;GREEN,RICHARD   FIELD NAME (c): DATE<br>  OLD VALUE (c): JAN 06, 2003     NEW VALUE (c): FEB 03, 2003 <hr> 
+	 <p> If you deleted Green's DATE OF BIRTH, the corresponding entry in File
 		#1.1 would show the NEW VALUE as &lt;deleted&gt;. If the entire entry for Green
 		were deleted, there would be no value for the ENTRY NAME field in any of the
 		audit listings for that entry.&nbsp; The last audit entry would show
-		&lt;deleted&gt; for the NEW VALUE of the DATE OF BIRTH field.</P> 
-	 <P>Since the entries in the Audit file can be sorted just as flexibly as
+		&lt;deleted&gt; for the NEW VALUE of the DATE OF BIRTH field.</p> 
+	 <p>Since the entries in the Audit file can be sorted just as flexibly as
 		those in any other FileMan file, you could easily, for example, search for all
-		audits that occurred between a range of DATE/TIME RECORDED values.</P> <HR> 
-	 <P><STRONG><A NAME="Tracking">Tracking Data Field Audits</A></STRONG></P> 
-	 <P>Use the Fields Being Audited option to list the audited fields from a
+		audits that occurred between a range of DATE/TIME RECORDED values.</p> <hr> 
+	 <p><big><strong><a name="Tracking">Tracking Data Field Audits</a></strong></big></p> 
+	 <p>Use the Fields Being Audited option to list the audited fields from a
 		file or a specified range of files. After selecting the Fields Being Audited
 		option, give a file (or a range) at the "START WITH WHAT FILE:" and "GO TO WHAT
 		FILE:" prompts. You receive a report with the file number, field number, field
-		name, type of field being audited, and the type of audit being performed.</P> 
-	 <P>The listing below shows all fields flagged for auditing in a file
-		range:</P> <HR> 
-	 <PRE>AUDITED FIELDS                   JAN 20, 2002   10:10   PAGE 1
- 
-FILE       NUMBER       LABEL            TYPE        AUDIT
----------------------------------------------------------------------
-
-16        2             DOB               DATE/TIME  YES, ALWAYS
-40.5      10            LOCATION          POINTER    EDITED OR DELETED
-1036      1             SEX               SET        EDITED OR DELETED
-1036      7             SSN               FREE TEXT  YES, ALWAYS</PRE> <HR> 
-	 <P><STRONG><A NAME="Purging">Purging a Data Field Audit
-		Trail</A></STRONG></P> 
-	 <P>Use the Purge Data Audits option to purge the audit trail. It will purge
+		name, type of field being audited, and the type of audit being performed.</p> 
+	 <p>The listing below shows all fields flagged for auditing in a file
+		range:</p> <hr> 
+	 AUDITED FIELDS                   JAN 20, 2002   10:10   PAGE 1<br> <br>FILE       NUMBER       LABEL            TYPE        AUDIT<br>---------------------------------------------------------------------<br><br>16        2             DOB               DATE/TIME  YES, ALWAYS<br>40.5      10            LOCATION          POINTER    EDITED OR DELETED<br>1036      1             SEX               SET        EDITED OR DELETED<br>1036      7             SSN               FREE TEXT  YES, ALWAYS <hr> 
+	 <p><big><strong><a name="Purging">Purging a Data Field Audit
+		Trail</a></strong></big></p> 
+	 <p>Use the Purge Data Audits option to purge the audit trail. It will purge
 		the records used for auditing data fields for a specified file. Purging audit
-		trails is not an automatic feature; it must be done manually.</P> 
-	 <P>You should either 1) turn auditing off on the files you're purging while
+		trails is not an automatic feature; it must be done manually.</p> 
+	 <p>You should either 1) turn auditing off on the files you're purging while
 		you're doing the purge, or 2) leave auditing on but purge the file when not
 		many users are on the system. If you purge when auditing is on and people are
 		using the file in question, it is possible that you might end up with
-		incomplete audit records on the audited file. </P> 
-	 <P><B>NOTE:</B> Purged audit records cannot be recovered! </P> 
-	 <P>The following dialogue illustrates purging <I>selected</I> records from
-		the audit trail: </P> <HR> 
-	 <PRE>Select OPTION: <B>OTHER</B> 
-Select OTHER OPTION: <B>AUDITING</B>
-Select AUDIT OPTION: <B>PURGE DATA AUDITS</B>
-AUDIT FROM WHAT FILE: <B>PATIENT</B>
-DO YOU WANT TO PURGE ALL DATA AUDIT RECORDS?  NO// <B>&lt;RET&gt;</B></PRE> <HR> 
-	 <P>Answering NO to the "DO YOU WANT TO PURGE ALL DATA AUDIT RECORDS? NO//"
-		prompt allows you to specify which entries to purge.</P> <HR> 
-	 <PRE>PURGE AUDIT RECORDS BY: INTERNAL ENTRY NUMBER// <B>??</B>
-
-Choose from:
+		incomplete audit records on the audited file. </p> 
+	 <p><b>NOTE:</b> Purged audit records cannot be recovered! </p> 
+	 <p>The following dialogue illustrates purging <i>selected</i> records from
+		the audit trail: </p> <hr> 
+	 Select OPTION: <b>OTHER</b> <br>Select OTHER OPTION: <b>AUDITING</b>
+<br>Select AUDIT OPTION: <b>PURGE DATA AUDITS</b>
+<br>AUDIT FROM WHAT FILE: <b>PATIENT</b>
+<br>DO YOU WANT TO PURGE ALL DATA AUDIT RECORDS?  NO//&nbsp;<b></b> <hr> 
+	 <p>Answering NO to the&nbsp;</p><p>&nbsp; "DO YOU WANT TO PURGE ALL DATA AUDIT RECORDS? NO//"&nbsp;</p><p>prompt allows you to specify which entries to purge.</p> <hr> 
+	 PURGE AUDIT RECORDS BY: INTERNAL ENTRY NUMBER// <b>??</b><br>&nbsp;Choose from:
    .001         NUMBER
-   .01          INTERNAL ENTRY NUMBER
-   .02          DATE/TIME RECORDED
-   .03          FIELD NUMBER
-   .04          USER
-   .05          RECORD ADDED
-   1            ENTRY NAME
-   1.1          FIELD NAME
-   2            OLD VALUE
-   2.1          OLD INTERNAL VALUE
-   2.2          DATATYPE OF OLD VALUE
-   3            NEW VALUE
-   3.1          NEW INTERNAL VALUE
-   3.2          DATATYPE OF NEW VALUE
-   4.1          MENU OPTION USED
-   4.2          PROTOCOL or OPTION USED
-    
-         TYPE '-' IN FRONT OF NUMERIC-VALUED FIELD TO SORT FROM HI TO LO
-         TYPE '+' IN FRONT OF FIELD NAME TO GET SUBTOTALS BY THAT FIELD,
-            '#' TO PAGE-FEED ON EACH FIELD VALUE,  '!' TO GET RANKING NUMBER,
-            '@' TO SUPPRESS SUB-HEADER,   ']' TO FORCE SAVING SORT TEMPLATE
-         TYPE ';TXT' AFTER FREE-TEXT FIELDS TO SORT NUMBERS AS TEXT
-         TYPE [TEMPLATE NAME] IN BRACKETS TO SORT BY PREVIOUS SEARCH RESULTS
-         TYPE 'BY(0)' TO DEFINE RECORD SELECTION AND SORT ORDER</PRE> 
-	 <P>You can specify which records to purge by referencing any field in the
+   <br>.01          INTERNAL ENTRY NUMBER
+   <br>.02          DATE/TIME RECORDED
+   <br>.03          FIELD NUMBER
+   <br>.04          USER
+   <br>.05          RECORD ADDED<br>..... 
+	 <p>You can specify which records to purge by referencing any field in the
 		AUDIT file. You can select the records by using the same criteria available at
-		the "SORT BY:" prompt. See the "<A HREF="../u1/pr_intro.htm#specifying_sort"
-		TARGET="_top" TITLE="Print: How to Print Reports from Files"
-		CLASS="bodylink">Print: How to Print Reports from Files</A>" chapter of the "<A
-		HREF="../u1/index.htm" TARGET="_top"
-		TITLE="VA FileMan V. 22.0 Getting Started HTML Manual" CLASS="bodylink">VA
-		FileMan Getting Started Manual</A>" for more details. </P> <HR> 
-	 <PRE>PURGE AUDIT RECORDS BY: INTERNAL ENTRY NUMBER// <B>USER</B>
-START WITH USER:  FIRST// <B>CHIEFTAIN</B>
-GO TO USER: LAST// <B>CHIEFTAIN</B> 
-  WITHIN USER, PURGE AUDIT RECORDS BY: <B>&lt;RET&gt;</B>
-
-DEVICE: <B>&lt;RET&gt;</B>
-
-...HMMMM, LET ME PUT YOU ON 'HOLD' FOR A SECOND...
+		the "SORT BY:" prompt. See the "<a href="../u1/pr_intro.htm#specifying_sort" target="_top" title="Print: How to Print Reports from Files" class="bodylink">Print: How to Print Reports from Files</a>" chapter of the "<a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="bodylink">VA
+		FileMan Getting Started Manual</a>" for more details. </p> <hr> 
+	 PURGE AUDIT RECORDS BY: INTERNAL ENTRY NUMBER// <b>USER</b>
+<br>START WITH USER:  FIRST// <b>CHIEFTAIN</b>
+<br>GO TO USER: LAST// <b>CHIEFTAIN</b> <br>  WITHIN USER, PURGE AUDIT RECORDS BY:<br>DEVICE:......
 
 
- PURGE OF AUDIT DATA:  PATIENT      FEB 21, 2002   13:26    PAGE 1
- ------------------------------------------------------------------
-
- 4 RECORDS PURGED.</PRE> <HR> 
-	 <P>The following dialogue purges <I>all</I> records from the PATIENT file's
-		audit trail: </P> <HR> 
-	 <PRE>AUDIT FROM WHAT FILE: <B>PATIENT</B>
-DO YOU WANT TO PURGE ALL DATA AUDIT RECORDS?  NO// <B>YES</B> 
-ARE YOU SURE?  NO// <B>YES</B> 
-
-DELETED</PRE>
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
-	 <!-- au_field.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
-
-  </BODY>
-</HTML>
+ <br><br>PURGE OF AUDIT DATA:  PATIENT      FEB 21, 2002   13:26    PAGE 1<br>&nbsp;------------------------------------------------------------------<br><br>&nbsp;4 RECORDS PURGED. <hr> 
+	 <p>The following dialogue purges <i>all</i> records from the PATIENT file's
+		audit trail: </p> <hr> 
+	 AUDIT FROM WHAT FILE: <b>PATIENT</b>
+DO YOU WANT TO PURGE ALL DATA AUDIT RECORDS?  NO// <b>YES</b> <br>ARE YOU SURE?  NO// <b>YES</b> <br><br>DELETED
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
+	 <p align="center">Reviewed/Updated: October 2016</p>
+	 <p>&nbsp;</p>
+</body></html>

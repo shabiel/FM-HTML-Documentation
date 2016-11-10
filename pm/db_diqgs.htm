@@ -1,368 +1,232 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Strack Susan, 12/02/02-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: GETS^DIQ( )</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$gets^diq(),diq">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
-  </HEAD>
-	<BODY TOPMARGIN="0" BGCOLOR="white">
-	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 12/02/02-->
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan Programmer Manual: GETS^DIQ( )</title><meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$gets^diq(),diq">
+	 <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+ 
+  <body topmargin="0" bgcolor="white">
+	<br><img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
 		  
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../u2/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
-	 <HR CLASS="hrstyle"> 
-	 <H4>GETS^DIQ( ): Data Retriever</H4> 
-	 <P>This procedure retrieves one or more fields of data from a record or
-		sub-record(s) and places the values in a target array. </P> 
-	 <H5>Format</H5> 
-	 <PRE>
-GETS^DIQ(FILE,IENS,FIELD,FLAGS,TARGET_ROOT,MSG_ROOT)
-</PRE> 
-	 <H5>Input Parameters</H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>FILE</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Required) File or subfile number. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>IENS</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Required) Standard IENS indicating internal entry numbers. </P>
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Required) Can be one of the following: </P> 
-			 <UL> 
-				<LI>A single field number<BR><BR></LI> 
-				<LI>A list of field numbers, separated by semicolons<BR><BR></LI> 
-				<LI>A range of field numbers, in the form M:N, where M and N are
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">Database Server (DBS) API</a></h3>
+	 <hr class="hrstyle"> 
+	 <h4>GETS^DIQ( ): Data Retriever</h4> 
+	 <p>This procedure retrieves one or more fields of data from a record or
+		sub-record(s) and places the values in a target array. </p> 
+	 <h5>Format</h5> 
+	 <pre>GETS^DIQ(FILE,IENS,FIELD,FLAGS,TARGET_ROOT,MSG_ROOT)<br></pre> 
+	 <h5>Input Parameters</h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b>FILE</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Required) File or subfile number. </p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>IENS</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Required) Standard IENS indicating internal entry numbers. </p>
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>FIELD</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Required) Can be one of the following: </p> 
+			 <ul> 
+				<li>A single field number<br><br></li> 
+				<li>A list of field numbers, separated by semicolons<br><br></li> 
+				<li>A range of field numbers, in the form M:N, where M and N are
 				  the end points of the inclusive range. All field numbers within this range are
-				  retrieved.<BR><BR></LI> 
-				<LI>* for all fields at the top level (no sub-multiple
-				  record).<BR><BR></LI> 
-				<LI>** for all fields including all fields and data in sub-multiple
-				  fields.<BR><BR></LI> 
-				<LI>Field number of a multiple followed by an * to indicate all
-				  fields and records in the sub-multiple for that field. </LI> 
-			 </UL> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" ROWSPAN="7"><B>FLAGS</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Optional) Flags to control processing. The possible values are:
-				</P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>E</B></TD> 
-		  <TD VALIGN="TOP">Returns <B>E</B>xternal values in nodes ending with
-			 "E". </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>I</B></TD> 
-		  <TD VALIGN="TOP">Returns <B>I</B>nternal values in nodes ending with
-			 "I". (Otherwise, external is returned). </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>N</B></TD> 
-		  <TD VALIGN="TOP">Does not return <B>N</B>ull values. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>R</B></TD> 
-		  <TD VALIGN="TOP"><B>R</B>esolves field numbers to field names in target
-			 array subscripts. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Z</B></TD> 
-		  <TD VALIGN="TOP">Word processing fields include <B>Z</B>ero nodes.
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><b>A#</b></TD> 
-		  <TD VALIGN="TOP"><b>A</b>udit Trail is used to retrieve the value of
-            'FIELD' at a particular point in time.<img SRC="new.gif" ALT="NEW" BORDER=0 width="35" height="11">
+				  retrieved.<br><br></li> 
+				<li>* for all fields at the top level (no sub-multiple
+				  record).<br><br></li> 
+				<li>** for all fields including all fields and data in sub-multiple
+				  fields.<br><br></li> 
+				<li>Field number of a multiple followed by an * to indicate all
+				  fields and records in the sub-multiple for that field. </li> 
+			 </ul> </td> 
+		</tr> 
+		<tr> 
+		  <td rowspan="7" valign="top"><b>FLAGS</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Optional) Flags to control processing. The possible values are:
+				</p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>E</b></td> 
+		  <td valign="top">Returns <b>E</b>xternal values in nodes ending with
+			 "E". </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>I</b></td> 
+		  <td valign="top">Returns <b>I</b>nternal values in nodes ending with
+			 "I". (Otherwise, external is returned). </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>N</b></td> 
+		  <td valign="top">Does not return <b>N</b>ull values. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>R</b></td> 
+		  <td valign="top"><b>R</b>esolves field numbers to field names in target
+			 array subscripts. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>Z</b></td> 
+		  <td valign="top">Word processing fields include <b>Z</b>ero nodes.
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>A#</b></td> 
+		  <td valign="top"><b>A</b>udit Trail is used to retrieve the value of
+            'FIELD' at a particular point in time.
 		<br># is a date/time in FileMan internal format (e.g., 3021015.08). The
 		values retrieved are the (audited) values of the field(s) as of that date/time.
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>TARGET_ROOT</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Required) The name of a closed root reference. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Optional) The name of a closed root reference that is used to
-				pass error messages. </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P> </P> 
-	 <H5>Output</H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>TARGET_ROOT</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>The output array is in the FDA format, i.e.,
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>TARGET_ROOT</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Required) The name of a closed root reference. </p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>MSG_ROOT</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Optional) The name of a closed root reference that is used to
+				pass error messages. </p> </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p> </p> 
+	 <h5>Output</h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b>TARGET_ROOT</b></td> 
+		  <td valign="top"> 
+			 <p>The output array is in the FDA format, i.e.,
 				TARGET_ROOT(FILE,IENS,FIELD)=DATA. WP fields have data descendent from the
-				field nodes in the output array. </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P> </P> 
-	 <H5>Examples</H5> 
-	 <P><B>Example 1</B></P>  
-	 <P>Retrieve the values of all fields for a record. </P> 
-	 <PRE>
-    &gt;<B>D GETS^DIQ(999000,&quot;1,&quot;,&quot;**&quot;,&quot;&quot;,&quot;ARRAY&quot;)
-</B>    
-    &gt;<B>ZW
-</B>    ARRAY(999000,&quot;1,&quot;,.01)=TEST1
-    ARRAY(999000,&quot;1,&quot;,1)=OCT 01, 1992
-    ARRAY(999000,&quot;1,&quot;,2)=YES
-    ARRAY(999000,&quot;1,&quot;,3)=1
-    ARRAY(999000,&quot;1,&quot;,4)=DTM-PC
-    ARRAY(999000,&quot;1,&quot;,5)=SUPPORTED
-    ARRAY(999000,&quot;1,&quot;,6)=S Y=&quot;SET Y=TO THIS&quot;
-    ARRAY(999000,&quot;1,&quot;,8)=AUDIT,Z
-    ARRAY(999000,&quot;1,&quot;,9)=ACCESS,Z
-    ARRAY(999000,&quot;1,&quot;,10)=GRP,Z
-    ARRAY(999000,&quot;1,&quot;,11)=DESCRIP,Z
-    ARRAY(999000,&quot;1,&quot;,12)=ARRAY(999000,&quot;1,&quot;,12)
-    ARRAY(999000,&quot;1,&quot;,12,1)=THIS WP LINE 1
-    ARRAY(999000,&quot;1,&quot;,12,2)=WP LINE2
-    ARRAY(999000,&quot;1,&quot;,12,3)=AND SO ON
-    ARRAY(999000,&quot;1,&quot;,13)=LASTNAME,FIRST
-    ARRAY(999000.07,&quot;1,1,&quot;,.01)=TEST1 ONE
-    ARRAY(999000.07,&quot;1,1,&quot;,1)=
-    ARRAY(999000.07,&quot;2,1,&quot;,.01)=TEST1 TWO
-    ARRAY(999000.07,&quot;2,1,&quot;,1)=
-    ARRAY(999000.07,&quot;3,1,&quot;,.01)=TEST1 THREE
-    ARRAY(999000.07,&quot;3,1,&quot;,1)=
-    ARRAY(999000.07,&quot;4,1,&quot;,.01)=TEST1 FOUR
-    ARRAY(999000.07,&quot;4,1,&quot;,1)=MUMPS
-
-</PRE> 
-	 <P><B>Example 2</B></P> 
-	 <P>Retrieve the values of all fields for a record, excluding multiples.
-		</P> 
-	 <PRE>
-    &gt;<B>D GETS^DIQ(999000,&quot;1,&quot;,&quot;*&quot;,&quot;&quot;,&quot;ARRAY1&quot;)
-</B>    
-    &gt;<B>ZW
-</B>    ARRAY1(999000,&quot;1,&quot;,.01)=TEST1
-    ARRAY1(999000,&quot;1,&quot;,1)=OCT 01, 1992
-    ARRAY1(999000,&quot;1,&quot;,2)=YES
-    ARRAY1(999000,&quot;1,&quot;,3)=1
-    ARRAY1(999000,&quot;1,&quot;,4)=DTM-PC
-    ARRAY1(999000,&quot;1,&quot;,5)=SUPPORTED
-    ARRAY1(999000,&quot;1,&quot;,6)=S Y=&quot;SET Y=TO THIS&quot;
-    ARRAY1(999000,&quot;1,&quot;,8)=AUDIT,Z
-    ARRAY1(999000,&quot;1,&quot;,9)=ACCESS,Z
-    ARRAY1(999000,&quot;1,&quot;,10)=GRP,Z
-    ARRAY1(999000,&quot;1,&quot;,11)=DESCRIP,Z
-    ARRAY1(999000,&quot;1,&quot;,12)=ARRAY(999000,&quot;1,&quot;,12)
-    ARRAY1(999000,&quot;1,&quot;,12,1)=THIS WP LINE 1
-    ARRAY1(999000,&quot;1,&quot;,12,2)=WP LINE2
-    ARRAY1(999000,&quot;1,&quot;,12,3)=AND SO ON
-    ARRAY1(999000,&quot;1,&quot;,13)=LASTNAME,FIRST
-
-</PRE> 
-	 <P><B>Example 3</B></P> 
-	 <P>Retrieve both internal and external values of three specific fields for
-		a record. </P> 
-	 <PRE>
-    &gt;<B>D GETS^DIQ(999000,&quot;1,&quot;,&quot;.01;3;5&quot;,&quot;IE&quot;,&quot;ARRAY3&quot;)
-</B>    
-    &gt;<B>ZW
-</B>    ARRAY3(999000,&quot;1,&quot;,.01,&quot;E&quot;)=TEST1
-    ARRAY3(999000,&quot;1,&quot;,.01,&quot;I&quot;)=TEST1
-    ARRAY3(999000,&quot;1,&quot;,3,&quot;E&quot;)=1
-    ARRAY3(999000,&quot;1,&quot;,3,&quot;I&quot;)=1
-    ARRAY3(999000,&quot;1,&quot;,5,&quot;E&quot;)=SUPPORTED
-    ARRAY3(999000,&quot;1,&quot;,5,&quot;I&quot;)=
-
-</PRE> 
-	 <P><B>Example 4</B></P> 
-	 <P>Retrieve both internal and external values for a range of fields in a
-		record. </P> 
-	 <PRE>
-    &gt;<B>D GETS^DIQ(999000,&quot;1,&quot;,&quot;.01:6&quot;,&quot;IE&quot;,&quot;ARRAY4&quot;)</B> 
-    
-    &gt;<B>ZW
-</B>    ARRAY4(999000,&quot;1,&quot;,.01,&quot;E&quot;)=TEST1
-    ARRAY4(999000,&quot;1,&quot;,.01,&quot;I&quot;)=TEST1
-    ARRAY4(999000,&quot;1,&quot;,1,&quot;E&quot;)=OCT 01, 1992
-    ARRAY4(999000,&quot;1,&quot;,1,&quot;I&quot;)=2921001
-    ARRAY4(999000,&quot;1,&quot;,2,&quot;E&quot;)=NO
-    ARRAY4(999000,&quot;1,&quot;,2,&quot;I&quot;)=0
-    ARRAY4(999000,&quot;1,&quot;,3,&quot;E&quot;)=66
-    ARRAY4(999000,&quot;1,&quot;,3,&quot;I&quot;)=66
-    ARRAY4(999000,&quot;1,&quot;,4,&quot;E&quot;)=DTM-PC
-    ARRAY4(999000,&quot;1,&quot;,4,&quot;I&quot;)=9
-    ARRAY4(999000,&quot;1,&quot;,5,&quot;E&quot;)=SUPPORTED
-    ARRAY4(999000,&quot;1,&quot;,5,&quot;I&quot;)=
-    ARRAY4(999000,&quot;1,&quot;,6,&quot;E&quot;)=S Y=&quot;SET Y=TO THIS&quot; 
-    ARRAY4(999000,&quot;1,&quot;,6,&quot;I&quot;)=S Y=&quot;SET Y=TO THIS&quot; 
-
-
-</PRE> 
-	 <P><B>Example 5</B></P>  
-	 <P>Retrieve the values of five specific fields, including all of the values
-		of a multiple field. </P> 
-	 <PRE>
-    &gt;<B>D GETS^DIQ(999000,&quot;1,&quot;,&quot;.01;3;7*;11;13&quot;,&quot;&quot;,&quot;ARRAY5&quot;)
-</B>    
-    &gt;<B>ZW
-</B>    ARRAY5(999000,&quot;1,&quot;,.01)=TEST1
-    ARRAY5(999000,&quot;1,&quot;,3)=1
-    ARRAY5(999000,&quot;1,&quot;,11)=DESCRIP,Z
-    ARRAY5(999000,&quot;1,&quot;,13)=LASTNAME,FIRST
-    ARRAY5(999000.07,&quot;1,1,&quot;,.01)=TEST1 ONE
-    ARRAY5(999000.07,&quot;1,1,&quot;,1)=
-    ARRAY5(999000.07,&quot;2,1,&quot;,.01)=TEST1 TWO
-    ARRAY5(999000.07,&quot;2,1,&quot;,1)=
-    ARRAY5(999000.07,&quot;3,1,&quot;,.01)=TEST1 THREE
-    ARRAY5(999000.07,&quot;3,1,&quot;,1)=
-    ARRAY5(999000.07,&quot;4,1,&quot;,.01)=TEST1 FOUR
-    ARRAY5(999000.07,&quot;4,1,&quot;,1)=MUMPS 0S
-
-</PRE> 
-	 <H5>Error Codes Returned</H5> 
-	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_200.htm" TITLE="Error 200"
-			 CLASS="bodylink">200</A></B></TD> 
-		  <TD VALIGN="TOP">There is an error in one of the variables passed.
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
-			 CLASS="bodylink">202</A></B></TD> 
-		  <TD VALIGN="TOP">Missing or invalid input parameter. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_301.htm" TITLE="Error 301"
-			 CLASS="bodylink">301</A></B></TD> 
-		  <TD VALIGN="TOP">Flags passed are unknown or incorrect. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_309.htm" TITLE="Error 309"
-			 CLASS="bodylink">309</A></B></TD> 
-		  <TD VALIGN="TOP">Either the root of the multiple or the necessary entry
-			 numbers are missing. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_348.htm" TITLE="Error 348"
-			 CLASS="bodylink">348</A></B></TD> 
-		  <TD VALIGN="TOP">The passed value points to a file that does not exist
-			 or lacks a Header Node. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
-			 CLASS="bodylink">401</A></B></TD> 
-		  <TD VALIGN="TOP">The specified file or subfile does not exist. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_403.htm" TITLE="Error 403"
-			 CLASS="bodylink">403</A></B></TD> 
-		  <TD VALIGN="TOP">The file lacks a Header Node. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_404.htm" TITLE="Error 404"
-			 CLASS="bodylink">404</A></B></TD> 
-		  <TD VALIGN="TOP">The file Header Node lacks a file #. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_501.htm" TITLE="Error 501"
-			 CLASS="bodylink">501</A></B></TD> 
-		  <TD VALIGN="TOP">The field name or number does not exist. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_505.htm" TITLE="Error 505"
-			 CLASS="bodylink">505</A></B></TD> 
-		  <TD VALIGN="TOP">The field name passed is ambiguous. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_510.htm" TITLE="Error 510"
-			 CLASS="bodylink">510</A></B></TD> 
-		  <TD VALIGN="TOP">The data type for the specified field cannot be
-			 determined. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_520.htm" TITLE="Error 520"
-			 CLASS="bodylink">520</A></B></TD> 
-		  <TD VALIGN="TOP">An incorrect kind of field is being processed. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_537.htm" TITLE="Error 537"
-			 CLASS="bodylink">537</A></B></TD> 
-		  <TD VALIGN="TOP">Field has a corrupted pointer definition. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_601.htm" TITLE="Error 601"
-			 CLASS="bodylink">601</A></B></TD> 
-		  <TD VALIGN="TOP">The entry does not exist. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_603.htm" TITLE="Error 603"
-			 CLASS="bodylink">603</A></B></TD> 
-		  <TD VALIGN="TOP">A specific entry in a specific file lacks a value for
-			 a required field. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_648.htm" TITLE="Error 648"
-			 CLASS="bodylink">648</A></B></TD> 
-		  <TD VALIGN="TOP">The value points to a file that does not exist or
-			 lacks a Header Node. </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P>
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
+				field nodes in the output array. </p> </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p> </p> 
+	 <h5>Examples</h5> 
+	 <p><b>Example 1</b></p>  
+	 <p>Retrieve the values of all fields for a record. </p> 
+	 <pre>    &gt;<b>D GETS^DIQ(999000,"1,","**","","ARRAY")<br></b>    <br>    &gt;<b>ZW<br></b>    ARRAY(999000,"1,",.01)=TEST1<br>    ARRAY(999000,"1,",1)=OCT 01, 1992<br>    ARRAY(999000,"1,",2)=YES<br>    ARRAY(999000,"1,",3)=1<br>    ARRAY(999000,"1,",4)=DTM-PC<br>    ARRAY(999000,"1,",5)=SUPPORTED<br>    ARRAY(999000,"1,",6)=S Y="SET Y=TO THIS"<br>    ARRAY(999000,"1,",8)=AUDIT,Z<br>    ARRAY(999000,"1,",9)=ACCESS,Z<br>    ARRAY(999000,"1,",10)=GRP,Z<br>    ARRAY(999000,"1,",11)=DESCRIP,Z<br>    ARRAY(999000,"1,",12)=ARRAY(999000,"1,",12)<br>    ARRAY(999000,"1,",12,1)=THIS WP LINE 1<br>    ARRAY(999000,"1,",12,2)=WP LINE2<br>    ARRAY(999000,"1,",12,3)=AND SO ON<br>    ARRAY(999000,"1,",13)=LASTNAME,FIRST<br>    ARRAY(999000.07,"1,1,",.01)=TEST1 ONE<br>    ARRAY(999000.07,"1,1,",1)=<br>    ARRAY(999000.07,"2,1,",.01)=TEST1 TWO<br>    ARRAY(999000.07,"2,1,",1)=<br>    ARRAY(999000.07,"3,1,",.01)=TEST1 THREE<br>    ARRAY(999000.07,"3,1,",1)=<br>    ARRAY(999000.07,"4,1,",.01)=TEST1 FOUR<br>    ARRAY(999000.07,"4,1,",1)=MUMPS<br><br></pre> 
+	 <p><b>Example 2</b></p> 
+	 <p>Retrieve the values of all fields for a record, excluding multiples.
+		</p> 
+	 <pre>    &gt;<b>D GETS^DIQ(999000,"1,","*","","ARRAY1")<br></b>    <br>    &gt;<b>ZW<br></b>    ARRAY1(999000,"1,",.01)=TEST1<br>    ARRAY1(999000,"1,",1)=OCT 01, 1992<br>    ARRAY1(999000,"1,",2)=YES<br>    ARRAY1(999000,"1,",3)=1<br>    ARRAY1(999000,"1,",4)=DTM-PC<br>    ARRAY1(999000,"1,",5)=SUPPORTED<br>    ARRAY1(999000,"1,",6)=S Y="SET Y=TO THIS"<br>    ARRAY1(999000,"1,",8)=AUDIT,Z<br>    ARRAY1(999000,"1,",9)=ACCESS,Z<br>    ARRAY1(999000,"1,",10)=GRP,Z<br>    ARRAY1(999000,"1,",11)=DESCRIP,Z<br>    ARRAY1(999000,"1,",12)=ARRAY(999000,"1,",12)<br>    ARRAY1(999000,"1,",12,1)=THIS WP LINE 1<br>    ARRAY1(999000,"1,",12,2)=WP LINE2<br>    ARRAY1(999000,"1,",12,3)=AND SO ON<br>    ARRAY1(999000,"1,",13)=LASTNAME,FIRST<br><br></pre> 
+	 <p><b>Example 3</b></p> 
+	 <p>Retrieve both internal and external values of three specific fields for
+		a record. </p> 
+	 <pre>    &gt;<b>D GETS^DIQ(999000,"1,",".01;3;5","IE","ARRAY3")<br></b>    <br>    &gt;<b>ZW<br></b>    ARRAY3(999000,"1,",.01,"E")=TEST1<br>    ARRAY3(999000,"1,",.01,"I")=TEST1<br>    ARRAY3(999000,"1,",3,"E")=1<br>    ARRAY3(999000,"1,",3,"I")=1<br>    ARRAY3(999000,"1,",5,"E")=SUPPORTED<br>    ARRAY3(999000,"1,",5,"I")=<br><br></pre> 
+	 <p><b>Example 4</b></p> 
+	 <p>Retrieve both internal and external values for a range of fields in a
+		record. </p> 
+	 <pre>    &gt;<b>D GETS^DIQ(999000,"1,",".01:6","IE","ARRAY4")</b> <br>    <br>    &gt;<b>ZW<br></b>    ARRAY4(999000,"1,",.01,"E")=TEST1<br>    ARRAY4(999000,"1,",.01,"I")=TEST1<br>    ARRAY4(999000,"1,",1,"E")=OCT 01, 1992<br>    ARRAY4(999000,"1,",1,"I")=2921001<br>    ARRAY4(999000,"1,",2,"E")=NO<br>    ARRAY4(999000,"1,",2,"I")=0<br>    ARRAY4(999000,"1,",3,"E")=66<br>    ARRAY4(999000,"1,",3,"I")=66<br>    ARRAY4(999000,"1,",4,"E")=DTM-PC<br>    ARRAY4(999000,"1,",4,"I")=9<br>    ARRAY4(999000,"1,",5,"E")=SUPPORTED<br>    ARRAY4(999000,"1,",5,"I")=<br>    ARRAY4(999000,"1,",6,"E")=S Y="SET Y=TO THIS" <br>    ARRAY4(999000,"1,",6,"I")=S Y="SET Y=TO THIS" <br><br><br></pre> 
+	 <p><b>Example 5</b></p>  
+	 <p>Retrieve the values of five specific fields, including all of the values
+		of a multiple field. </p> 
+	 <pre>    &gt;<b>D GETS^DIQ(999000,"1,",".01;3;7*;11;13","","ARRAY5")<br></b>    <br>    &gt;<b>ZW<br></b>    ARRAY5(999000,"1,",.01)=TEST1<br>    ARRAY5(999000,"1,",3)=1<br>    ARRAY5(999000,"1,",11)=DESCRIP,Z<br>    ARRAY5(999000,"1,",13)=LASTNAME,FIRST<br>    ARRAY5(999000.07,"1,1,",.01)=TEST1 ONE<br>    ARRAY5(999000.07,"1,1,",1)=<br>    ARRAY5(999000.07,"2,1,",.01)=TEST1 TWO<br>    ARRAY5(999000.07,"2,1,",1)=<br>    ARRAY5(999000.07,"3,1,",.01)=TEST1 THREE<br>    ARRAY5(999000.07,"3,1,",1)=<br>    ARRAY5(999000.07,"4,1,",.01)=TEST1 FOUR<br>    ARRAY5(999000.07,"4,1,",1)=MUMPS 0S<br><br></pre> 
+	 <h5>Error Codes Returned</h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b><a href="err_200.htm" title="Error 200" class="bodylink">200</a></b></td> 
+		  <td valign="top">There is an error in one of the variables passed.
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_202.htm" title="Error 202" class="bodylink">202</a></b></td> 
+		  <td valign="top">Missing or invalid input parameter. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_301.htm" title="Error 301" class="bodylink">301</a></b></td> 
+		  <td valign="top">Flags passed are unknown or incorrect. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_309.htm" title="Error 309" class="bodylink">309</a></b></td> 
+		  <td valign="top">Either the root of the multiple or the necessary entry
+			 numbers are missing. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_348.htm" title="Error 348" class="bodylink">348</a></b></td> 
+		  <td valign="top">The passed value points to a file that does not exist
+			 or lacks a Header Node. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_401.htm" title="Error 401" class="bodylink">401</a></b></td> 
+		  <td valign="top">The specified file or subfile does not exist. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_403.htm" title="Error 403" class="bodylink">403</a></b></td> 
+		  <td valign="top">The file lacks a Header Node. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_404.htm" title="Error 404" class="bodylink">404</a></b></td> 
+		  <td valign="top">The file Header Node lacks a file #. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_501.htm" title="Error 501" class="bodylink">501</a></b></td> 
+		  <td valign="top">The field name or number does not exist. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_505.htm" title="Error 505" class="bodylink">505</a></b></td> 
+		  <td valign="top">The field name passed is ambiguous. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_510.htm" title="Error 510" class="bodylink">510</a></b></td> 
+		  <td valign="top">The data type for the specified field cannot be
+			 determined. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_520.htm" title="Error 520" class="bodylink">520</a></b></td> 
+		  <td valign="top">An incorrect kind of field is being processed. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_537.htm" title="Error 537" class="bodylink">537</a></b></td> 
+		  <td valign="top">Field has a corrupted pointer definition. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_601.htm" title="Error 601" class="bodylink">601</a></b></td> 
+		  <td valign="top">The entry does not exist. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_603.htm" title="Error 603" class="bodylink">603</a></b></td> 
+		  <td valign="top">A specific entry in a specific file lacks a value for
+			 a required field. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_648.htm" title="Error 648" class="bodylink">648</a></b></td> 
+		  <td valign="top">The value points to a file that does not exist or
+			 lacks a Header Node. </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p></p>
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
 	 <!-- db_diqgs.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
-	 <P>&nbsp;</P> 
+	 <p align="center">Reviewed/Updated: October 2016</p>
+	 <p>&nbsp;</p> 
 
-  </BODY>
-</HTML>
+  </body></html>

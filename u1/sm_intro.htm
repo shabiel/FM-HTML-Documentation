@@ -1,647 +1,641 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML>
-  <HEAD>
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/30/03--><!--Edited March 2007, Hardhats.org-->
 
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/30/03-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
-	 <TITLE>VA FileMan Getting Started HTML Manual: ScreenMan</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,screenman,screen">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css">
-  </HEAD>
-  <BODY TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	 <P>&nbsp;</P>
-	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP">
-		<TR>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="sm_frm.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC"
-			 CLASS="menubarlink">Chapter</A></TD>
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD>
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u2/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			 CLASS="menubarlink">Advanced User Manual</A></TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD>
-		</TR>
-	 </TABLE>
-	 <!-- Content -->
-	 <H3><A NAME="navskip">Editing Records</A></H3> <HR CLASS="hrstyle">
-	 <H4>ScreenMan</H4>
-	 <H5><A NAME="Introduction">Introduction</A></H5>
-	 <P>ScreenMan is VA FileMan's <I>screen-oriented</I> data entry tool. It is
-		an alternative to the Scrolling Mode approach. With ScreenMan, data is entered
-		in <I>forms</I>. Each form field occupies a fixed position on the screen
-		(instead of scrolling off!). You can see many data fields at once, and use
-		simple key combinations to edit data and move from field to field on a screen.
-		You can also move from one screen to another like turning through the pages of
-		a book. </P>
-	 <P><B>Similarities with Scrolling Mode Editing</B></P>
-	 <UL>
-		<LI>You can change a field's value by entering a different value or
-		  delete a field's value by entering the at-sign ("<B>@</B>").<BR><BR></LI>
-		<LI>You can enter one or two question marks to call up a list of
-		  acceptable responses and other help. If you enter a value deemed unacceptable,
-		  ScreenMan displays a message explaining what type of information should be
-		  entered.<BR><BR></LI>
-		<LI>If you wish, you can jump from the current field to any other field
-		  in your current screen. With your cursor resting at any field's prompt, simply
-		  enter an up-arrow ("<B>^</B>") and then the name of the field. </LI>
-	 </UL>
-	 <P><B>Differences from Scrolling Mode Editing</B></P>
-	 <UL>
-		<LI>In Scrolling Mode, you must enter and store your response to one
-		  field prompt before you can continue to the next field. In Screen Mode, you can
-		  move the cursor from field prompt to field prompt without entering or storing
-		  any responses.<BR><BR></LI>
-		<LI>In Scrolling Mode, your data values or responses to field prompts are
-		  stored one at a time, as you move from prompt to prompt. In Screen Mode, your
-		  responses to most prompts are stored only when you exit the form.</LI>
-    <li><span class="badge">22.2</span>The “Customize Colors” suboption within ScreenMan allows selection of
-      ANSI colors for all ScreenMan presentations, on a parameterized basis
-      (user, institution, etc.) using Kernel parameters.</li>
-    <li><span class="badge">22.2</span>The ScreenMan Record Selection page can now be a full ScreenMan page
-      using a computed multiple pointer so that the user can select an entry
-      by scrolling up or down. This new feature lets forms contain embedded
-      lookups.</li>
-    <li><span class="badge">22.2</span>You can set this up automatically when you create a form. At the query
-      “Do you want you’re Form to begin with a display of all entries, for
-      selection,” answer “Yes.” The initial position can be set to be the user’s
-      last selection, rather than first, last, or new.</li>
-    <li><span class="badge">22.2</span>ScreenMan does support the use of a mouse for emulators that support
-        ANSI standard control sequences to turn the mouse on and off. However,
-        the Department of Veterans Affairs has elected to turn this feature off
-        due to support complications with Attachmate Reflection. In order for
-        ScreenMan to recognize mouse clicks, the parameter DI SCREENMAN NO MOUSE
-        needs to be established for SYSTEM and set to “Yes”.</li>
-	 </UL>
-	 <P><B>NOTE:</B> For a detailed explanation on <I>creating</I> ScreenMan
-		forms, please refer to the "ScreenMan Tutorial for Developers Manual" --
-		available in both Adobe Acrobat PDF and HTML formats on the
-		<A HREF="http://www.va.gov/vdl/application.asp?appid=5" TARGET="_top"
-		 TITLE="VDL" CLASS="bodylink">VDL</A>.</P> <HR>
-	 <H5><A NAME="Screen"> The ScreenMan Screen</A></H5>
-	 <P></P>
-	 <CENTER>
-		<IMG SRC="sm_1.gif" ALT="Example of the ScreenMan Screen." WIDTH="624"
-		 HEIGHT="429" BORDER="0"> </CENTER>
-	 <P></P>
-	 <P>Fields are usually composed of a <I>data element</I> and a
-		<I>caption</I>. ScreenMan displays data elements in high intensity (boldface)
-		and other text in regular intensity. Text that identifies a data element is
-		called a <I>caption</I> and is usually followed by a colon ("<B>:</B>"). A
-		caption and its associated data element are together called a <I>field</I>.
-		Captions of <I>required</I> fields are underlined; to save any changes you make
-		on the form, required fields <I>must</I> contain data. </P>
-	 <P><B>NOTE:</B> ScreenMan highlights captions for required fields with an
-		underline. However, on some terminals or depending on your terminal emulator
-		software and your personal preferences, the form of the highlight can vary
-		(e.g., some emulators will highlight required fields in a different color, with
-		an underline, or both). <BR> <BR> Specifically, on Qume 102 and Wyse 75
-		terminals, captions for required fields display in boldface, not underlined.
-		Also, the edit window is displayed with an underline extending from the last
-		character of the existing data to the right edge of the edit window. FileMan
-    supports longer than 24 line screens for those using terminal emulators.</P>
-  <HR>
-	 <H5><A NAME="Fields">How to Navigate Between Fields</A></H5>
-	 <P>There are a number of ways you can move the cursor from field to field
-		on a form (i.e., navigate). This is to provide you with as much flexibility as
-		possible so that you can work quickly and efficiently with forms.</P>
-	 <P>You can use the keystrokes listed in the following table to move the
-		cursor to various fields located on a ScreenMan form:</P>
-	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="ScreenMan Field Navigation Table"
-	  TITLE="ScreenMan Field Navigation Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>To</B></TD>
-		  <TD VALIGN="TOP"><B>Press</B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to the next field (to right or below). </TD>
-		  <TD VALIGN="TOP"><B>&lt;Tab&gt;</B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to the previous field (to left or above). </TD>
-		  <TD VALIGN="TOP"><B>&lt;PF4&gt;</B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to the field above.</TD>
-		  <TD VALIGN="TOP"><B>&lt;ArrowUp&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to the field below.</TD>
-		  <TD VALIGN="TOP"><B>&lt;ArrowDown&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to the next field in the pre-defined edit
-			 sequence. </TD>
-		  <TD VALIGN="TOP"><B>&lt;RET&gt;</B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Edit a WORD-PROCESSING field.</TD>
-		  <TD VALIGN="TOP">At field, press <B>&lt;RET&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Select a Subrecord in a Multiple.</TD>
-		  <TD VALIGN="TOP">At field, press <B>&lt;RET&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to the next block on current page.</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;PF4&gt;</B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Jump to a specific field.</TD>
-		  <TD VALIGN="TOP"><B>^</B> followed by Caption of field and<B>
-			 &lt;RET&gt; </B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Jump to the Command Line.</TD>
-		  <TD VALIGN="TOP"><B>^&lt;RET&gt;</B> </TD>
-		</TR>
-	 </TABLE>
-	 <P></P> <HR>
-	 <H5><A NAME="Pages">How to Navigate Between Pages</A></H5>
-	 <P>Many ScreenMan forms have more than one <I>page</I> (i.e., there are
-		additional screens besides the first one on the form) with additional fields
-		that you can edit.</P>
-	 <P>You can use the keystrokes listed in the following table to move between
-		pages on a ScreenMan form:</P>
-	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="ScreenMan Page Navigation Table"
-	  TITLE="ScreenMan Page Navigation Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>To</B></TD>
-		  <TD VALIGN="TOP"><B>Press</B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to next page</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;ArrowDown&gt;</B> or <BR>
-			 <B>&lt;PageDown&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to previous page</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;ArrowUp&gt;</B> or <BR>
-			 <B>&lt;PageUp&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to a page you specify</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;P</B> </TD>
-		</TR>
-	 </TABLE>
-	 <P></P> <HR>
-	 <H5><A NAME="Saving">Saving and Exiting</A></H5>
-	 <P>To SAVE or EXIT the form, you need to reach ScreenMan's command line.
-		It's reachable from any ScreenMan screen. To reach the command line, do any one
-		of the following: </P>
-	 <UL>
-		<LI>Enter an up-arrow ("<B>^</B>") at any field prompt.<BR><BR></LI>
-		<LI>Press <B>&lt;RET&gt;</B>, <B>&lt;Tab&gt;</B>, or <B>&lt;PF4&gt;</B>
-		  to move from field to field until you reach the command line.<BR><BR></LI>
-		<LI>Press <B>&lt;ArrowDown&gt;</B> or <B>&lt;ArrowUp&gt;</B> to move the
-		  cursor from field to field downwards or upwards, until you reach the command
-		  line. </LI>
-	 </UL>
-	 <P>Then you can enter SAVE or EXIT at the
-		<A HREF="#Command" TITLE="Command Line Options" CLASS="bodylink">command
-		line</A> (see below).</P> <HR>
-	 <H5><A NAME="Command">Command Line Options</A> (SAVE, EXIT, etc.)</H5>
-	 <P>From the Command Line, you can issue the commands to perform various
-		functions while in ScreenMan. You can also use a shortcut key sequence to
-		perform the same function without having to enter it on the command line.</P>
-	 <P><B>Shortcut Keys</B></P>
-	 <P>The following table illustrates the command line options and the
-		corresponding shortcut responses when entering data in a ScreenMan form:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="ScreenMan Command Options and Shortcut Keys Table"
-	  TITLE="ScreenMan Command Options and Shortcut Keys Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Command Line Option</B></TD>
-		  <TD VALIGN="TOP"><B>Shortcut</B> </TD>
-		  <TD VALIGN="TOP"><B>Description</B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="20%"><A NAME="exit">EXIT</A></TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;E</B></TD>
-		  <TD VALIGN="TOP">Exits the form. If you have made any changes,
-			 ScreenMan asks if you want to save them before exiting. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP"><A NAME="save">SAVE</A></TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;S</B></TD>
-		  <TD VALIGN="TOP">Saves your changes without exiting the form. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP"><A NAME="refresh">REFRESH</A></TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;R</B></TD>
-		  <TD VALIGN="TOP">Repaints the page(s) on the screen, in case, for some
-			 reason, the information displayed on the screen has become corrupted. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP"><A NAME="next_page">NEXT PAGE</A></TD>
-		  <TD VALIGN="TOP"><NOBR><B>&lt;PF1&gt;&lt;ArrowDown&gt;</B> or</NOBR>
-			 <BR> <B>&lt;PageDown&gt;</B> </TD>
-		  <TD VALIGN="TOP">(Available only on multi-page forms.) Goes to the next
-			 page of the form. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP"><A NAME="close">CLOSE</A></TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;C</B></TD>
-		  <TD VALIGN="TOP">(Available only on "pop-up" pages.) Closes the current
-			 page and returns you to the parent page. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP"><A NAME="quit">(none)</A></TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;Q</B></TD>
-		  <TD VALIGN="TOP">Quit the form, discarding changes. </TD>
-		</TR>
-	 </TABLE>
-	 <P></P>
-	 <P><B>NOTE:</B> On a "pop-up" page, your only Command Line options are
-		CLOSE and REFRESH. </P> <HR>
-	 <H5><A NAME="Fields_Edit">How to Edit Fields</A></H5>
-	 <P>The following charts list the key sequences for ScreenMan's Field
-		Editor, the editor that allows you to edit data fields on a ScreenMan Form.
-		</P>
-	 <P ALIGN="LEFT"><B>Cursor Movement</B></P>
-	 <P>The following table illustrates the keystrokes you use to move the
-		cursor while in a ScreenMan form:</P>
-	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="ScreenMan Cursor Movement Table"
-	 TITLE="ScreenMan Cursor Movement Table">
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>To Move</B></TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>Press</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Right one character</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;ArrowRight&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Left one character</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;ArrowLeft&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Right one word</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;Ctrl-L&gt;</B> or
-			 <B>&lt;PF1&gt;&lt;Space&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Left one word</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;Ctrl-J&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Right edge of window</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;PF1&gt;&lt;ArrowRight&gt;</B> </TD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>VA FileMan Getting Started HTML Manual: ScreenMan</title>
 
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Left edge of window</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;PF1&gt;&lt;ArrowLeft&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">End of field</TD>
-		  <TD VALIGN="TOP"
-		  WIDTH="50%"><B>&lt;PF1&gt;&lt;PF1&gt;&lt;ArrowRight&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Beginning of field</TD>
-		  <TD VALIGN="TOP"
-		  WIDTH="50%"><B>&lt;PF1&gt;&lt;PF1&gt;&lt;ArrowLeft&gt;</B> </TD>
-		</TR>
-	 </TABLE>
-	 <P></P>
-	 <P ALIGN="LEFT"><B>Deletion</B></P>
-	 <P>The following table illustrates the keystrokes you use to delete
-		characters while in a ScreenMan form:</P>
-	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="ScreenMan Deletion Commands Table"
-	 TITLE="ScreenMan Deletion Commands Table">
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>To Delete</B></TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>Press</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Character under cursor</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;PF2&gt;</B> or
-			 <B>&lt;Delete&gt;</B> or <B>&lt;Remove&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Character left of cursor</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;Backspace&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">From cursor to end of word</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;Ctrl-W&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">From cursor to end of field</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;PF1&gt;&lt;PF2&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Delete entire field / Restore last edit / Restore
-			 default </TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;PF1&gt;D</B> or
-			 <B>&lt;Ctrl-U&gt;</B></TD>
-		</TR>
-	 </TABLE>
-	 <P></P>
-	 <P ALIGN="LEFT"><B>Modes</B></P>
-	 <P>The following table illustrates the keystrokes you use to switch modes
-		while in a ScreenMan form:</P>
-	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="ScreenMan Modes Table"
-	 TITLE="ScreenMan Modes Table">
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>To Switch to</B></TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>Press</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Insert/Replace mode</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;PF3&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP" WIDTH="50%">Zoom editor (edit long fields)</TD>
-		  <TD VALIGN="TOP" WIDTH="50%"><B>&lt;PF1&gt;Z</B> </TD>
-		</TR>
-	 </TABLE>
-	 <P></P>
-	 <P>If the first key you press upon navigating to a field is a printable
-		character, the Field Editor assumes you want to replace any existing default
-		and replaces the entire field with the character just typed. To just edit the
-		existing field value, first press an editing key, such as
-		<B>&lt;ArrowLeft&gt;</B> or <B>&lt;ArrowRight&gt;</B>. </P> <HR>
-	 <H5><A NAME="Long">Long Fields (and the Zoom Editor)</A></H5>
-	 <P>The actual contents of a field being edited can extend beyond the
-		confines of the visible field on a ScreenMan form. As you use the
-		<B>&lt;ArrowLeft&gt;</B> and <B>&lt;ArrowRight&gt;</B> keys at the left and
-		right edges of the window, you can scroll left or right to display one end or
-		the other of the field. </P>
-	 <P>To see and edit the entire contents of a long field at once, press
-		<B>&lt;PF1&gt;Z</B> to invoke the Zoom Editor. This opens an area up at the
-		bottom of the screen, providing you as much space as you need to both see and
-		edit the entire long field.</P> <HR>
-	 <H5><A NAME="Wp">Word-processing Fields</A></H5>
-	 <P>To edit or display a WORD-PROCESSING field, press the Enter/Return key
-		at the WORD-PROCESSING field. This clears the screen and passes control to your
-		Preferred Editor to edit the field. If you do not have a Preferred Editor, the
-		Screen Editor is used. When you exit the editor, you return to the ScreenMan
-		screen. </P>
-    <p><span class="badge">22.2</span>WORD-PROCESSING fields in the screenman form
-      will contain a '+' if there is text already in the field.</p>
-    </form>
-	 <P><B>NOTE:</B> To set your Preferred Editor, please refer to the "<A
-		HREF="wp_swit.htm" TITLE="Choice of Word-processing Editors"
-		CLASS="bodylink">Choice of Word-processing Editors</A>" chapter in this
-		manual.</P>
-	 <P><B>NOTE:</B> If the WORD-PROCESSING field is uneditable or appears in a
-		display block, you can view the contents of the field with an editor. However,
-		if you edit the text, your changes will <I>not</I> be filed in the permanent
-		database, even if you tell the editor to save the changes.</P> <HR>
-	 <H5><A NAME="Multiples">Multiples</A></H5>
-	 <P>You can easily spot a Multiple field. It usually begins with the word
-		"Select" (as in "Select ADDRESS" or "Select ADMISSION DATE"). There are two
-		ways Multiples can be displayed on a form: </P>
-	 <UL>
-		<LI>The Multiple is linked to a "pop-up" subpage, which contains the
-		  subfields of the Multiple.<BR><BR></LI>
-		<LI>The Multiple is displayed in a repeating block -- several Subrecords
-		  can be displayed simultaneously on a page, much like a scrolling list.</LI>
-	 </UL>
-	 <P><B>Multiples Linked to "Pop-Up" Subpages</B></P>
-	 <P>A Multiple field can appear on a page and be linked to a regular or
-		"pop-up" subpage. When you navigate to the Multiple field, select a Subrecord,
-		and press the Enter/Return key, you are taken to the subpage, which contains
-		the fields within the Multiple.</P>
-	 <P>In the following illustration, the Multiple is the field with the
-		caption "Select EMPLOYMENT HISTORY:". When you enter "FEB 1,1950" at this
-		field, you are taken into a "pop-up" subpage, where you can edit the fields for
-		that particular Subrecord.</P>
-	 <P></P>
-	 <P ALIGN="CENTER"><IMG SRC="sm_2.gif" WIDTH="595" HEIGHT="379"
-		ALT="Example of a ScreenMan Popup Subpage."> </P>
-	 <P></P>
-	 <P><B>Exiting a Subpage</B></P>
-	 <P>While in a subpage, your only Command Line options are
-		<A HREF="#close" TITLE="CLOSE" CLASS="bodylink">CLOSE</A> and
-		<A HREF="#refresh" TITLE="REFRESH" CLASS="bodylink">REFRESH</A>. You cannot
-		<A HREF="#exit" TITLE="EXIT" CLASS="bodylink">EXIT</A>,
-		<A HREF="#quit" TITLE="Quit" CLASS="bodylink">Quit</A>, or
-		<A HREF="#save" TITLE="SAVE" CLASS="bodylink">SAVE</A> until you return to the
-		parent page. You can return to the parent page by pressing <B>&lt;PF1&gt;C</B>
-		or issuing the <A HREF="#close" TITLE="CLOSE" CLASS="bodylink">CLOSE</A>
-		command at the Command Line. From there, you can select another Subrecord to
-		edit or navigate to another field.</P>
-	 <P><B>Deleting an Entry in a Multiple</B></P>
-	 <P>If a default Subrecord is displayed at a Multiple field, you can delete
-		that Subrecord by entering an at-sign ("<B>@</B>") at the Multiple field. You
-		can also delete a specific Subrecord by selecting that Subrecord and going into
-		the subpage, and entering an at-sign ("<B>@</B>") at the .01 field. </P>
-	 <P><B>NOTE:</B> Deletions of Subrecords are immediate and permanent even if
-		you quit the form without saving, deleted Subrecords are not restored to the
-		database.</P>
-	 <P><B>Adding a New Entry to a Multiple</B></P>
-	 <P>You can respond to a Multiple field in one of two ways: </P>
-	 <UL>
-		<LI>Accept the field's default answer.<BR><BR></LI>
-		<LI>Enter a new item: an employee's second address, for example, or
-		  another admission date for the same patient. </LI>
-	 </UL>
-	 <P>Sometimes, you may need to enter a new entry in a Multiple. To do this,
-		enter the new value for the new entry in the Multiple's .01 field. If you have
-		LAYGO access (permission to add new entries), you'll be asked if you want to
-		add the entry to the Multiple. To change your mind about adding the item, enter
-		NO. If you enter YES, though, ScreenMan opens either a "pop-up" page or a new
-		window, allowing you to enter additional information for the new Multiple
-		entry. </P>
-	 <P><B>Multiples in Repeating Blocks</B></P>
-	 <P>Subrecords in a Multiple can be displayed in another way. Rather than
-		just the name of single entry in the Multiple being displayed on the current
-		page, you may also see Multiples where several Subrecords are displayed
-		simultaneously on the page. Each Subrecord occupies one line on the screen, in
-		a scrolling list. This is called a repeating block. Instead of leading to a
-		"pop-up" page, you are able to edit all visible fields in the Multiple as they
-		are displayed. </P>
-	 <P>For example:</P>
-	 <P></P>
-	 <P ALIGN="CENTER"><IMG SRC="sm_3.gif" WIDTH="594" HEIGHT="340"
-		ALT="Example of a Multiple Subrecord Displayed in ScreenMan."> </P>
-	 <P></P>
-	 <P>You can always navigate to a blank line below the end of the list. At
-		this blank line, you can add a new Subrecord if LAYGO is allowed, or jump to an
-		existing Subrecord by entering its name. </P>
-	 <P><B>Navigational Keys for Repeating Blocks</B></P>
-	 <P>The following table illustrates the keystrokes you use to navigate while
-		in a Repeating Block in a ScreenMan form:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	 SUMMARY="ScreenMan Navigational Keys for Repeating Blocks"
-	 TITLE="ScreenMan Navigational Keys for Repeating Blocks">
-		<TR>
-		  <TD VALIGN="TOP"><B>To</B></TD>
-		  <TD VALIGN="TOP"><B>Press</B></TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Scroll through the list</TD>
-		  <TD VALIGN="TOP"><B>&lt;ArrowUp&gt;</B> and <BR>
-			 <B>&lt;ArrowDown&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Page down through the list</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;ArrowDown&gt;</B> or
-			 <B>&lt;PageDown&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Page up through the list</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;ArrowUp&gt;</B> or
-			 <B>&lt;PageUp&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Jump to the blank line at end of list</TD>
-		  <TD VALIGN="TOP"><B>^&lt;RET&gt;</B> in a non-blank line </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Jump to the Command line</TD>
-		  <TD VALIGN="TOP"><B>^&lt;RET&gt;</B> at the end of the list </TD>
-		</TR>
-	 </TABLE>
-	 <P></P> <HR>
-	 <H5><A NAME="Filed">How to File Edits</A></H5>
-	 <P>In general, the database is unaffected while you edit a record in a
-		ScreenMan form. Changes are filed only at your request, when you
-		<A HREF="#save" TITLE="SAVE" CLASS="bodylink">SAVE</A> or
-		<A HREF="#exit" TITLE="EXIT" CLASS="bodylink">EXIT</A>. </P>
-	 <P>Before filing, ScreenMan checks that: </P>
-	 <UL>
-		<LI>Required fields on all pages that can be accessed via the next and
-		  previous page links have values, even if you have not accessed those pages
-		  during the editing session.<BR><BR></LI>
-		<LI>If you have accessed any subpages, required fields in those subpages
-		  must also have values. </LI>
-	 </UL>
-	 <P>If any required field is empty, you cannot file any data changes. When
-		you attempt to file, ScreenMan displays a list of those fields that require
-		values. </P>
-	 <P>The <B>&lt;PF1&gt;Q</B> key sequence allows you to
-		<A HREF="#quit" TITLE="Quit" CLASS="bodylink">quit</A> the form without saving
-		changes. Filing does not occur if you time out. </P>
-	 <P><B>NOTE:</B> There is one situation in which a change to the database is
-		made immediately: when you delete an entry from a file or subfile. When you
-		attempt to delete an entry, ScreenMan issues a warning that deletions are
-		immediate and permanent. Even if you
-		<A HREF="#quit" TITLE="Quit" CLASS="bodylink">quit</A> the form without
-		<A HREF="#save" TITLE="Saving" CLASS="bodylink">saving</A> your changes, the
-		entry is not restored to the database.</P> <HR>
-	 <H5><A NAME="Troubleshooting">Troubleshooting</A></H5>
-	 <P>While screen displays offer many advantages, they also require that the
-		software can correctly identify the type of terminal being used or emulated. An
-		incorrect identification may produce unreadable and unusable screens. To exit
-		such a screen, enter <B>^&lt;RET&gt;^&lt;RET&gt;</B>. </P>
-	 <P>If you continue to find the screens are unreadable, check the following
-		sources for troubleshooting information: </P>
-	 <UL>
-		<LI>"<A HREF="../u2/pm_frm.htm" TARGET="_top" TITLE="System Management"
-		  CLASS="bodylink">System Management</A>" chapter of the "VA FileMan Advanced
-		  User Manual" (e.g., the "<A HREF="../u2/pm_dev.htm" TARGET="display"
-		  TITLE="Device Handling for Standalone VA FileMan" CLASS="bodylink">Device
-		  Handling for Standalone VA FileMan</A>" topic).<BR><BR></LI>
-		<LI>"Kernel Systems Manual" (look for information on "Device Type at
-		  Sign-on" and changing your terminal type).<BR><BR></LI>
-		<LI>Your system manager.</LI>
-	 </UL>
-   <h3>Printing a Screenman Form</h3>
-   <p><span class="badge">22.2</span>If you type <b>&lt;PF1&gt;P</b>, you will
-     be prompted with a device prompt to print the data in the form. Note that
-     this will also print all multiples, whether they are visible on the current
-     screen or not.</p>
-   <h3>Changing Screenman Colors</h3>
-   <p><span class="badge">22.2</span>Starting with Fileman 22.2, you are not
-     limited to black and white for colors. You can customize colors as follows:
-     (You will notice that this uses the Kernel Parameter system; as such, you
-     cannot do this if the Kernel isn't installed.)</p>
-     <pre>
-Select OPTION: OTHER OPTIONS
-Select OTHER OPTION: SCREENMAN
-Select SCREENMAN OPTION: ?
-    Answer with SCREENMAN OPTION NUMBER, or NAME
-   Choose from:
-   1            EDIT/CREATE A FORM
-   2            RUN A FORM
-   3            DELETE A FORM
-   4            PURGE UNUSED BLOCKS
-   5            PRINT A FORM
-   6            CUSTOMIZE COLORS
-   7            CLONE A FORM
+<meta name="subject" content="VA FileMan V. 22.0 Getting Started HTML Manual">
+<meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,screenman,screen">
+<link rel="StyleSheet" type="text/css" href="getting_started.css"></head>
+<body topmargin="0">
+<br>
+<img src="common/fileman_gs_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="sm_frm.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC" class="menubarlink">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">Editing Records</a></h3>
+<hr class="hrstyle">
+<h4>ScreenMan</h4>
+<h5><big><a name="Introduction">Introduction</a></big></h5>
+<p>ScreenMan is VA FileMan's <i>screen-oriented</i>
+data entry tool. It is an alternative to the Scrolling Mode approach.
+With ScreenMan, data is entered in <i>forms</i>. Each form
+field occupies a fixed position on the screen (instead of scrolling
+off!). You can see many data fields at once, and use simple key
+combinations to edit data and move from field to field on a screen. You
+can also move from one screen to another like turning through the pages
+of a book. </p>
+<p><b>Similarities with Scrolling Mode Editing</b></p>
+<ul>
+<li>You can change a field's value by entering a different
+value or delete a field's value by entering the at-sign ("<b>@</b>").<br>
+<br>
+</li>
+<li>You can enter one or two question marks to call up a list
+of acceptable responses and other help. If you enter a value deemed
+unacceptable, ScreenMan displays a message explaining what type of
+information should be entered.<br>
+<br>
+</li>
+<li>If you wish, you can jump from the current field to any
+other field in your current screen. With your cursor resting at any
+field's prompt, simply enter an up-arrow ("<b>^</b>") and
+then the name of the field. </li>
+</ul>
+<p><b>Differences from Scrolling Mode Editing</b></p>
+<ul>
+<li>In Scrolling Mode, you must enter and store your response
+to one field prompt before you can continue to the next field. In
+Screen Mode, you can move the cursor from field prompt to field prompt
+without entering or storing any responses.<br>
+<br>
+</li>
+<li>In Scrolling Mode, your data values or responses to field
+prompts are stored one at a time, as you move from prompt to prompt. In
+Screen Mode, your responses to most prompts are stored only when you
+exit the form.</li>
+<li><img style="width: 60px; height: 30px;" alt="" src="22.gif">The
+“Customize Colors” suboption within ScreenMan allows selection of ANSI
+colors for all ScreenMan presentations, on a parameterized basis (user,
+institution, etc.) using Kernel parameters.</li>
+<li><img style="width: 60px; height: 30px;" alt="" src="22.gif">The
+ScreenMan Record Selection page can now be a full ScreenMan page, so
+that the user can select an entry by
+scrolling up or down.&nbsp;</li>
+<li><img style="width: 60px; height: 30px;" alt="" src="22.gif">
+You can
+set this up automatically when you create a form. At the query “Do you
+want you’re Form to begin with a display of all entries, for
+selection,” answer “Yes.” The initial position can be set to be the
+user’s last selection, rather than first, last, or new.</li>
+<li><img style="width: 60px; height: 30px;" alt="" src="22.gif">
+ScreenMan
+does support the use of a mouse for emulators that support ANSI
+standard control sequences to turn the mouse on and off. However, the
+Department of Veterans Affairs has elected to turn this feature off due
+to support complications with Attachmate Reflection.</li>
+</ul>
+<p><b>NOTE:</b> For a detailed explanation on <i>creating</i>
+ScreenMan forms, please refer to the "ScreenMan Tutorial for Developers
+Manual".</p>
+<hr>
+<h5><big><a name="Screen"> The ScreenMan Screen</a></big></h5>
+<p></p>
+<center> <img src="sm_1.gif" alt="Example of the ScreenMan Screen." border="0" height="429" width="624"> </center>
+<p></p>
+<p>Fields are usually composed of a <i>data element</i>
+and a <i>caption</i>. ScreenMan displays data elements in
+high intensity (boldface) and other text in regular intensity. Text
+that identifies a data element is called a <i>caption</i>
+and is usually followed by a colon ("<b>:</b>"). A caption
+and its associated data element are together called a <i>field</i>.
+Captions of <i>required</i> fields are underlined; to save
+any changes you make on the form, required fields <i>must</i>
+contain data. </p>
+<p><b>NOTE:</b> ScreenMan highlights captions for
+required fields with an underline. However, on some terminals or
+depending on your terminal emulator software and your personal
+preferences, the form of the highlight can vary (e.g., some emulators
+will highlight required fields in a different color, with an underline,
+or both). <br>
+<br>
+Specifically, on Qume 102 and Wyse 75 terminals, captions for required
+fields display in boldface, not underlined. Also, the edit window is
+displayed with an underline extending from the last character of the
+existing data to the right edge of the edit window. FileMan supports
+longer than 24 line screens for those using terminal emulators.</p>
+<hr>
+<h5><a name="Fields">How to Navigate Between Fields</a></h5>
+<p>There are a number of ways you can move the cursor from field
+to field on a form (i.e., navigate). This is to provide you with as
+much flexibility as possible so that you can work quickly and
+efficiently with forms.</p>
+<p>You can use the keystrokes listed in the following table to
+move the cursor to various fields located on a ScreenMan form:</p>
+<table summary="ScreenMan Field Navigation Table" title="ScreenMan Field Navigation Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>To</b></td>
+<td valign="top"><b>Press</b></td>
+</tr>
+<tr>
+<td valign="top">Move to the next field (to right or
+below). </td>
+<td valign="top"><b>&lt;Tab&gt;</b></td>
+</tr>
+<tr>
+<td valign="top">Move to the previous field (to left
+or above). </td>
+<td valign="top"><b>&lt;PF4&gt;</b></td>
+</tr>
+<tr>
+<td valign="top">Move to the field above.</td>
+<td valign="top"><b>&lt;ArrowUp&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Move to the field below.</td>
+<td valign="top"><b>&lt;ArrowDown&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Move to the next field in the
+pre-defined edit sequence. </td>
+<td valign="top"><b>&lt;RET&gt;</b></td>
+</tr>
+<tr>
+<td valign="top">Edit a WORD-PROCESSING field.</td>
+<td valign="top">At field, press <b>&lt;RET&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Select a Subrecord in a Multiple.</td>
+<td valign="top">At field, press <b>&lt;RET&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Move to the next block on current
+page.</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;PF4&gt;</b></td>
+</tr>
+<tr>
+<td valign="top">Jump to a specific field.</td>
+<td valign="top"><b>^</b> followed by
+Caption of field and<b> &lt;RET&gt; </b></td>
+</tr>
+<tr>
+<td valign="top">Jump to the Command Line.</td>
+<td valign="top"><b>^&lt;RET&gt;</b>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<hr>
+<h5><big><a name="Pages">How to Navigate Between Pages</a></big></h5>
+<p>Many ScreenMan forms have more than one <i>page</i>
+(i.e., there are additional screens besides the first one on the form)
+with additional fields that you can edit.</p>
+<p>You can use the keystrokes listed in the following table to
+move between pages on a ScreenMan form:</p>
+<table summary="ScreenMan Page Navigation Table" title="ScreenMan Page Navigation Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>To</b></td>
+<td valign="top"><b>Press</b></td>
+</tr>
+<tr>
+<td valign="top">Move to next page</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;ArrowDown&gt;</b>
+or <br>
+<b>&lt;PageDown&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Move to previous page</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;ArrowUp&gt;</b>
+or <br>
+<b>&lt;PageUp&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Move to a page you specify</td>
+<td valign="top"><b>&lt;PF1&gt;P</b>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<hr>
+<h5><big><a name="Saving">Saving and Exiting</a></big></h5>
+<p>To SAVE or EXIT the form, you need to reach ScreenMan's
+command line. It's reachable from any ScreenMan screen. To reach the
+command line, do any one of the following: </p>
+<ul>
+<li>Enter an up-arrow ("<b>^</b>") at any field
+prompt.<br>
+<br>
+</li>
+<li>Press <b>&lt;RET&gt;</b>, <b>&lt;Tab&gt;</b>,
+or <b>&lt;PF4&gt;</b> to move from field to field
+until you reach the command line.<br>
+<br>
+</li>
+<li>Press <b>&lt;ArrowDown&gt;</b> or <b>&lt;ArrowUp&gt;</b>
+to move the cursor from field to field downwards or upwards, until you
+reach the command line. </li>
+</ul>
+<p>Then you can enter SAVE or EXIT at the <a href="#Command" title="Command Line Options" class="bodylink">command
+line</a> (see below).</p>
+<hr>
+<h5><big><a name="Command">Command Line Options</a>
+(SAVE, EXIT, etc.)</big></h5>
+<p>From the Command Line, you can issue the commands to perform
+various functions while in ScreenMan. You can also use a shortcut key
+sequence to perform the same function without having to enter it on the
+command line.</p>
+<p><b>Shortcut Keys</b></p>
+<p>The following table illustrates the command line options and
+the corresponding shortcut responses when entering data in a ScreenMan
+form:</p>
+<table summary="ScreenMan Command Options and Shortcut Keys Table" title="ScreenMan Command Options and Shortcut Keys Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Command Line Option</b></td>
+<td valign="top"><b>Shortcut</b> </td>
+<td valign="top"><b>Description</b></td>
+</tr>
+<tr>
+<td valign="top" width="20%"><a name="exit">EXIT</a></td>
+<td valign="top"><b>&lt;PF1&gt;E</b></td>
+<td valign="top">Exits the form. If you have made
+any changes, ScreenMan asks if you want to save them before exiting. </td>
+</tr>
+<tr>
+<td valign="top"><a name="save">SAVE</a></td>
+<td valign="top"><b>&lt;PF1&gt;S</b></td>
+<td valign="top">Saves your changes without exiting
+the form. </td>
+</tr>
+<tr>
+<td valign="top"><a name="refresh">REFRESH</a></td>
+<td valign="top"><b>&lt;PF1&gt;R</b></td>
+<td valign="top">Repaints the page(s) on the screen,
+in case, for some reason, the information displayed on the screen has
+become corrupted. </td>
+</tr>
+<tr>
+<td valign="top"><a name="next_page">NEXT
+PAGE</a></td>
+<td valign="top"><nobr><b>&lt;PF1&gt;&lt;ArrowDown&gt;</b>
+or</nobr> <br>
+<b>&lt;PageDown&gt;</b> </td>
+<td valign="top">(Available only on multi-page
+forms.) Goes to the next page of the form. </td>
+</tr>
+<tr>
+<td valign="top"><a name="close">CLOSE</a></td>
+<td valign="top"><b>&lt;PF1&gt;C</b></td>
+<td valign="top">(Available only on "pop-up" pages.)
+Closes the current page and returns you to the parent page. </td>
+</tr>
+<tr><td><img style="width: 60px; height: 30px;" alt="" src="22.gif">PRINT</td><td><span style="font-weight: bold;">&lt;PF1&gt;P</span></td><td><img style="width: 60px; height: 30px;" alt="" src="22.gif">Print the entire screen (including all multiples) to an auxiliary device.</td></tr><tr>
+<td valign="top"><a name="quit">(none)</a></td>
+<td valign="top"><b>&lt;PF1&gt;Q</b></td>
+<td valign="top">Quit the form, discarding changes. </td>
+</tr>
 
-Select SCREENMAN OPTION: 6  CUSTOMIZE COLORS
-
-COLORS FOR SCREENMAN PRESENTATION may be set for the following:
-
-     1   User          USR    [choose from NEW PERSON]
-     2   System        SYS    [HELIOPOLIS.SMH101.COM]
-
-Enter selection: 2  System   HELIOPOLIS.SMH101.COM
-
- Setting COLORS FOR SCREENMAN PRESENTATION  for System: HELIOPOLIS.SMH101.COM
-Select FUNCTIONALITY: ?
-
-
-There are currently no entries for FUNCTIONALITY.
-
-
-     Select one of the following:
-
-          1         REQUIRED CAPTION FG
-          2         DATA FG
-          3         CLICKABLE AREA FG
-          4         REQUIRED CAPTION BG
-          5         DATA BG
-          6         CLICK AREA BG
-
-Select FUNCTIONALITY: 5  DATA BG
-Are you adding DATA BG as a new FUNCTIONALITY? Yes//   YES
-
-FUNCTIONALITY: DATA BG//    DATA BG
-COLOR: ?
-
-Enter the Screen Color.
-
-     Select one of the following:
-
-          30        BLACK
-          31        RED
-          32        GREEN
-          33        YELLOW
-          34        BLUE
-          35        MAGENTA
-          36        CYAN
-          37        WHITE
-
-COLOR: 33  YELLOW
-Select FUNCTIONALITY:
-     </pre>
-     Here's the result of that change.
-     <img alt="Screenman with yellow" src="./fm_screenman_color.png" />
-   <p>In the parameter shown above, FG and BG stand for foreground or background.</p>
-	 <P>&nbsp;</P>
-	 <HR CLASS="hrstyle">
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P>
-
-  </BODY>
-</HTML>
+</tbody>
+</table>
+<p></p>
+<p><b>NOTE:</b> On a "pop-up" page, your only Command
+Line options are CLOSE and REFRESH. </p>
+<hr>
+<h5><big><a name="Fields_Edit">How to Edit Fields</a></big></h5>
+<p>The following charts list the key sequences for ScreenMan's
+Field Editor, the editor that allows you to edit data fields on a
+ScreenMan Form. </p>
+<p align="left"><b>Cursor Movement</b></p>
+<p>The following table illustrates the keystrokes you use to move
+the cursor while in a ScreenMan form:</p>
+<table summary="ScreenMan Cursor Movement Table" title="ScreenMan Cursor Movement Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top" width="50%"><b>To Move</b></td>
+<td valign="top" width="50%"><b>Press</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Right one
+character</td>
+<td valign="top" width="50%"><b>&lt;ArrowRight&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Left one
+character</td>
+<td valign="top" width="50%"><b>&lt;ArrowLeft&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Right one word</td>
+<td valign="top" width="50%"><b>&lt;Ctrl-L&gt;</b>
+or <b>&lt;PF1&gt;&lt;Space&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top" width="50%">Left one word</td>
+<td valign="top" width="50%"><b>&lt;Ctrl-J&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Right edge of
+window</td>
+<td valign="top" width="50%"><b>&lt;PF1&gt;&lt;ArrowRight&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Left edge of
+window</td>
+<td valign="top" width="50%"><b>&lt;PF1&gt;&lt;ArrowLeft&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">End of field</td>
+<td valign="top" width="50%"><b>&lt;PF1&gt;&lt;PF1&gt;&lt;ArrowRight&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Beginning of
+field</td>
+<td valign="top" width="50%"><b>&lt;PF1&gt;&lt;PF1&gt;&lt;ArrowLeft&gt;</b>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p align="left"><b>Deletion</b></p>
+<p>The following table illustrates the keystrokes you use to
+delete characters while in a ScreenMan form:</p>
+<table summary="ScreenMan Deletion Commands Table" title="ScreenMan Deletion Commands Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top" width="50%"><b>To
+Delete</b></td>
+<td valign="top" width="50%"><b>Press</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Character under
+cursor</td>
+<td valign="top" width="50%"><b>&lt;PF2&gt;</b>
+or <b>&lt;Delete&gt;</b> or <b>&lt;Remove&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Character left of cursor</td>
+<td valign="top" width="50%"><b>&lt;Backspace&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">From cursor to end of word</td>
+<td valign="top" width="50%"><b>&lt;Ctrl-W&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">From cursor to end of field</td>
+<td valign="top" width="50%"><b>&lt;PF1&gt;&lt;PF2&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Delete entire field / Restore last
+edit / Restore default </td>
+<td valign="top" width="50%"><b>&lt;PF1&gt;D</b>
+or <b>&lt;Ctrl-U&gt;</b></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p align="left"><b>Modes</b></p>
+<p>The following table illustrates the keystrokes you use to
+switch modes while in a ScreenMan form:</p>
+<table summary="ScreenMan Modes Table" title="ScreenMan Modes Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top" width="50%"><b>To
+Switch to</b></td>
+<td valign="top" width="50%"><b>Press</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Insert/Replace
+mode</td>
+<td valign="top" width="50%"><b>&lt;PF3&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">Zoom editor
+(edit long fields)</td>
+<td valign="top" width="50%"><b>&lt;PF1&gt;Z</b>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>If the first key you press upon navigating to a field is a
+printable character, the Field Editor assumes you want to replace any
+existing default and replaces the entire field with the character just
+typed. To just edit the existing field value, first press an editing
+key, such as <b>&lt;ArrowLeft&gt;</b> or <b>&lt;ArrowRight&gt;</b>.
+</p>
+<hr>
+<h5><big><a name="Long">Long Fields (and the Zoom Editor)</a></big></h5>
+<p>The actual contents of a field being edited can extend beyond
+the confines of the visible field on a ScreenMan form. As you use the <b>&lt;ArrowLeft&gt;</b>
+and <b>&lt;ArrowRight&gt;</b> keys at the left and
+right edges of the window, you can scroll left or right to display one
+end or the other of the field. </p>
+<p>To see and edit the entire contents of a long field at once,
+press <b>&lt;PF1&gt;Z</b> to invoke the Zoom
+Editor. This opens an area up at the bottom of the screen, providing
+you as much space as you need to both see and edit the entire long
+field.</p>
+<hr>
+<h5><big><a name="Wp">Word-processing Fields</a></big></h5>
+<p>To
+edit or display a WORD-PROCESSING field, press the Enter/Return key at
+the WORD-PROCESSING field. This clears the screen and passes control to
+your Preferred Editor to edit the field. If you do not have a Preferred
+Editor, the Screen Editor is used. When you exit the editor, you return
+to the ScreenMan screen.&nbsp;</p><p> <img style="width: 60px; height: 30px;" alt="" src="22.gif">
+If
+the field contains data (one or
+more
+lines), you will see a "+" at the point where the cursor stops by the
+Word-Processing field's caption. </p>
+<p><b>NOTE:</b> To set your Preferred Editor, please
+refer to the "<a href="wp_swit.htm" title="Choice of Word-processing Editors" class="bodylink">Choice
+of Word-processing Editors</a>" chapter in this manual.</p>
+<p><b>NOTE:</b> If the WORD-PROCESSING field is
+uneditable or appears in a display block, you can view the contents of
+the field with an editor. However, if you edit the text, your changes
+will <i>not</i> be filed in the permanent database, even
+if you tell the editor to save the changes.</p>
+<hr>
+<h5><big><a name="Multiples">Multiples</a></big></h5>
+<p>You can easily spot a Multiple field. It usually begins with
+the word "Select" (as in "Select ADDRESS" or "Select ADMISSION DATE").
+There are two ways Multiples can be displayed on a form: </p>
+<ul>
+<li>The Multiple is linked to a "pop-up" subpage, which
+contains the subfields of the Multiple.<br>
+<br>
+</li>
+<li>The Multiple is displayed in a repeating block -- several
+Subrecords can be displayed simultaneously on a page, much like a
+scrolling list.</li>
+</ul>
+<p><b>Multiples Linked to "Pop-Up" Subpages</b></p>
+<p>A Multiple field can appear on a page and be linked to a
+regular or "pop-up" subpage. When you navigate to the Multiple field,
+select a Subrecord, and press the Enter/Return key, you are taken to
+the subpage, which contains the fields within the Multiple.</p>
+<p>In the following illustration, the Multiple is the field with
+the caption "Select EMPLOYMENT HISTORY:". When you enter "FEB 1,1950"
+at this field, you are taken into a "pop-up" subpage, where you can
+edit the fields for that particular Subrecord.</p>
+<p></p>
+<p align="center"><img src="sm_2.gif" alt="Example of a ScreenMan Popup Subpage." height="379" width="595"> </p>
+<p></p>
+<p><b>Exiting a Subpage</b></p>
+<p>While in a subpage, your only Command Line options are <a href="#close" title="CLOSE" class="bodylink">CLOSE</a>
+and <a href="#refresh" title="REFRESH" class="bodylink">REFRESH</a>. You cannot <a href="#exit" title="EXIT" class="bodylink">EXIT</a>,
+<a href="#quit" title="Quit" class="bodylink">Quit</a>,
+or <a href="#save" title="SAVE" class="bodylink">SAVE</a>
+until you return to the parent page. You can return to the parent page
+by pressing <b>&lt;PF1&gt;C</b> or issuing the <a href="#close" title="CLOSE" class="bodylink">CLOSE</a>
+command at the Command Line. From there, you can select another
+Subrecord to edit or navigate to another field.</p>
+<p><b>Deleting an Entry in a Multiple</b></p>
+<p>If a default Subrecord is displayed at a Multiple field, you
+can delete that Subrecord by entering an at-sign ("<b>@</b>")
+at the Multiple field. You can also delete a specific Subrecord by
+selecting that Subrecord and going into the subpage, and entering an
+at-sign ("<b>@</b>") at the .01 field. </p>
+<p><b>NOTE:</b> Deletions of Subrecords are immediate
+and permanent even if you quit the form without saving, deleted
+Subrecords are not restored to the database.</p>
+<p><b>Adding a New Entry to a Multiple</b></p>
+<p>You can respond to a Multiple field in one of two ways: </p>
+<ul>
+<li>Accept the field's default answer.<br>
+<br>
+</li>
+<li>Enter a new item: an employee's second address, for
+example, or another admission date for the same patient. </li>
+</ul>
+<p>Sometimes, you may need to enter a new entry in a Multiple. To
+do this, enter the new value for the new entry in the Multiple's .01
+field. If you have LAYGO access (permission to add new entries), you'll
+be asked if you want to add the entry to the Multiple. To change your
+mind about adding the item, enter NO. If you enter YES, though,
+ScreenMan opens either a "pop-up" page or a new window, allowing you to
+enter additional information for the new Multiple entry. </p>
+<p><b>Multiples in Repeating Blocks</b></p>
+<p>Subrecords in a Multiple can be displayed in another way.
+Rather than just the name of single entry in the Multiple being
+displayed on the current page, you may also see Multiples where several
+Subrecords are displayed simultaneously on the page. Each Subrecord
+occupies one line on the screen, in a scrolling list. This is called a
+repeating block. Instead of leading to a "pop-up" page, you are able to
+edit all visible fields in the Multiple as they are displayed. </p>
+<p>For example:</p>
+<p></p>
+<p align="center"><img src="sm_3.gif" alt="Example of a Multiple Subrecord Displayed in ScreenMan." height="340" width="594"> </p>
+<p></p>
+<p>You can always navigate to a blank line below the end of the
+list. At this blank line, you can add a new Subrecord if LAYGO is
+allowed, or jump to an existing Subrecord by entering its name. </p>
+<p><b>Navigational Keys for Repeating Blocks</b></p>
+<p>The following table illustrates the keystrokes you use to
+navigate while in a Repeating Block in a ScreenMan form:</p>
+<table summary="ScreenMan Navigational Keys for Repeating Blocks" title="ScreenMan Navigational Keys for Repeating Blocks" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>To</b></td>
+<td valign="top"><b>Press</b></td>
+</tr>
+<tr>
+<td valign="top">Scroll through the list</td>
+<td valign="top"><b>&lt;ArrowUp&gt;</b>
+and <br>
+<b>&lt;ArrowDown&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Page down through the list</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;ArrowDown&gt;</b>
+or <b>&lt;PageDown&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Page up through the list</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;ArrowUp&gt;</b>
+or <b>&lt;PageUp&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Jump to the blank line at end of
+list</td>
+<td valign="top"><b>^&lt;RET&gt;</b>
+in a non-blank line </td>
+</tr>
+<tr>
+<td valign="top">Jump to the Command line</td>
+<td valign="top"><b>^&lt;RET&gt;</b>
+at the end of the list </td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<hr>
+<h5><big><big><a name="Filed">How to File Edits</a></big></big></h5>
+<p>In general, the database is unaffected while you edit a record
+in a ScreenMan form. Changes are filed only at your request, when you <a href="#save" title="SAVE" class="bodylink">SAVE</a>
+or <a href="#exit" title="EXIT" class="bodylink">EXIT</a>.
+</p>
+<p>Before filing, ScreenMan checks that: </p>
+<ul>
+<li>Required fields on all pages that can be accessed via the
+next and previous page links have values, even if you have not accessed
+those pages during the editing session.<br>
+<br>
+</li>
+<li>If you have accessed any subpages, required fields in those
+subpages must also have values. </li>
+</ul>
+<p>If any required field is empty, you cannot file any data
+changes. When you attempt to file, ScreenMan displays a list of those
+fields that require values. </p>
+<p>The <b>&lt;PF1&gt;Q</b> key sequence
+allows you to <a href="#quit" title="Quit" class="bodylink">quit</a> the form without saving
+changes. Filing does not occur if you time out. </p>
+<p><b>NOTE:</b> There is one situation in which a
+change to the database is made immediately: when you delete an entry
+from a file or subfile. When you attempt to delete an entry, ScreenMan
+issues a warning that deletions are immediate and permanent. Even if
+you <a href="#quit" title="Quit" class="bodylink">quit</a>
+the form without <a href="#save" title="Saving" class="bodylink">saving</a> your changes, the entry is
+not restored to the database.</p>
+<hr>
+<h5><big><big><a name="Troubleshooting">Troubleshooting</a></big></big></h5>
+<p>While screen displays offer many advantages, they also require
+that the software can correctly identify the type of terminal being
+used or emulated. An incorrect identification may produce unreadable
+and unusable screens. To exit such a screen, enter <b>^&lt;RET&gt;^&lt;RET&gt;</b>.
+</p>
+<p>If you continue to find the screens are unreadable, check the
+following sources for troubleshooting information: </p>
+<ul>
+<li>"<a href="../u2/pm_frm.htm" target="_top" title="System Management" class="bodylink">System
+Management</a>" chapter of the "VA FileMan Advanced User Manual"
+(e.g., the "<a href="../u2/pm_dev.htm" target="display" title="Device Handling for Standalone VA FileMan" class="bodylink">Device Handling for Standalone VA FileMan</a>"
+topic).<br>
+<br>
+</li>
+<li>"Kernel Systems Manual" (look for information on "Device
+Type at Sign-on" and changing your terminal type).<br>
+<br>
+</li>
+<li>Your system manager.</li>
+</ul>
+<p>&nbsp;</p>
+<hr class="hrstyle">
+<p align="center">Reviewed/Updated: October 2016</p>
+<p>&nbsp;</p>
+</body></html>

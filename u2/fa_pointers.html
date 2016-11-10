@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/27/03--><!--Edited March 2007, Hardhats.org-->
+
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan V. 22.0 Advanced User Manual: LFA Check/Fix DD Structure Option</title><meta name="subject" content="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <meta name="keywords" content="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,list file attributes,attributes,data dictionary,dd,check/fix dd structure option">
+	 <link rel="StyleSheet" type="text/css" href="user.css"></head>
+<body topmargin="0" bgcolor="white">
+
+	<br><img src="common/fileman_au_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<a name="navskip"></a><br>
+	<p>&nbsp;</p>
+	<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="fa_frm.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: List File Attributes Chapter TOC" class="menubarlink">Chapter</a></td> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content --><hr class="hrstyle"> 
+	 <h4><img style="width: 60px; height: 30px;" alt="" src="22.gif"><big>Find Pointers into a File Option</big></h4><span style="font-size: 11pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;">A
+new fourth Data Dictionary utility&nbsp; checks all files with pointers
+into a given File. The utility
+gives 4 kinds of output, as shown in the following example. &nbsp;Note
+that POINTER-type fields, VARIABLE-POINTER-type fields, and COMPUTED
+POINTER fields are all checked. </span><pre></pre> <hr> 
+	 <pre>SeSelect DATA DICTIONARY UTILITY OPTION:    FIND POINTERS INTO A FILE<br><br>THIS UTILITY TRIES TO FIND ALL ENTRIES IN ALL FILES POINTING TO A CERTAIN FILE<br><br><br>Select FILE:<span style="font-weight: bold;"> 2 </span> PATIENT<br><br>     Select one of the following:<br><br>          1         One particular PATIENT Entry<br>          2         All PATIENT Entries<br>          3         Non-existent PATIENT Entries<br>          4         Entries from a PATIENT Search Template<br><br>Find pointers to: All PATIENT Entries//<span style="font-weight: bold;"> 1 </span> One particular PATIENT Entry<br>Find pointers to <span style="font-weight: bold;">TIMSON,GEORGE   </span>   8-25-40  1234567   Male<br>DEVICE: ...<br><br><br><br>***PATIENT: TIMSON,GEORGE***<br>FILE 52 (PRESCRIPTION)<br>         `1           2                           PATIENT<br>         `2           345                         PATIENT<br>FILE 55 (PHARMACY PATIENT)<br>         `1           TIMSON,GEORGE               NAME<br>FILE 100 (ORDER)<br>         `1           1                           OBJECT OF ORDER<br>         `3           3                           OBJECT OF ORDER<br>         `4           4                           OBJECT OF ORDER<br>         `5           5                           OBJECT OF ORDER<br>         `6           6                           OBJECT OF ORDER<br>         `41          41                          OBJECT OF ORDER<br>FILE 120.5 (GMRV VITAL MEASUREMENT)<br>         `96          MAR 1,2005@16:04            PATIENT<br>         `97          MAR 1,2005@16:04            PATIENT<br>         `98          MAR 1,2005@16:04            PATIENT<br>         `99          DEC 21,2005@16:08           PATIENT<br>         `100         DEC 21,2005@16:08           PATIENT<br>         `101         DEC 21,2005@16:08           PATIENT<br>         `102         DEC 21,2005@16:08           PATIENT<br>         `103         DEC 21,2005@16:08           PATIENT<br>         `177         JAN 17,2006@13:11           PATIENT<br>         `178         JAN 17,2006@13:11           PATIENT<br>         `232         FEB 22,2006@16:07:36        PATIENT<br>         `233         FEB 22,2006@16:07:36        PATIENT<br>         `234         FEB 22,2006@16:07:36        PATIENT<br>         `235         FEB 22,2006@16:07:36        PATIENT<br>         `236         FEB 22,2006@16:07:36        PATIENT<br>         `237         FEB 22,2006@16:07:36        PATIENT<br>         `238         FEB 22,2006@16:07:36        PATIENT<br>         `239         FEB 22,2006@16:08:29        PATIENT<br>         `461         SEP 22,2006@15:04:54        PATIENT<br>         `462         SEP 22,2006@15:04:54        PATIENT<br>         `463         SEP 22,2006@15:04:54        PATIENT<br>         `464         SEP 22,2006@15:04:54        PATIENT<br>         `465         SEP 22,2006@15:04:54        PATIENT<br>         `466         SEP 22,2006@15:04:54        PATIENT<br>         `467         SEP 22,2006@15:04:54        PATIENT<br>FILE 120.8 (PATIENT ALLERGIES)<br>         `3           TIMSON,GEORGE               PATIENT<br>         `15          TIMSON,GEORGE               PATIENT<br>         `28          TIMSON,GEORGE               PATIENT<br>FILE 120.85 (ADVERSE REACTION REPORTING)<br>         `1           SEP 22,2006@15:00           PATIENT<br>FILE 120.86 (ADVERSE REACTION ASSESSMENT)<br>         `1           TIMSON,GEORGE               NAME<br>FILE 123 (REQUEST/CONSULTATION)<br>         `10          APR 24,2006@11:01           PATIENT NAME<br>.....<br></pre> <hr><p>In this example we see that the patient chosen (TIMSON) has two PRESCRIPTIONS in File 52, six ORDERs in File 100, etc.</p><p>Warning: on a large database, this utility can take a long time to run to completion.</p><p>Application developers might use this tool to clean up their files
+		before export. Site managers may find the reporting function useful for
+		checking a package's files after installation. &nbsp;Note that choice 3 will showing all <span style="font-style: italic;">dangling</span> pointers to the PATIENT File in ALL Files. &nbsp; </p>
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
+	 <!-- fa_chkdd.htm -->
+	 <p align="center">Reviewed/Updated: October 2016</p>
+	 <p>&nbsp;</p> 
+
+  </body></html>

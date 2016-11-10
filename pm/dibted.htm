@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 12/03/02--><!--Edited March 2007, Hardhats.org-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Programmer Manual: FILESEC^DDMOD</title>
+
+<meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+<meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,filesec^ddmod,ddmod">
+<link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="0" style="background-color: white;">
+<br>
+<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">Database Server (DBS) API</a></h3>
+<hr class="hrstyle">
+<h4><span style="font-size: 11pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;"><img style="width: 60px; height: 30px;" alt="" src="22.gif">BUILDNEW^DIBTED:
+Create a new SORT Template</span></h4>
+<p>This entry point will silently create a sort template.</p>
+<br>
+<h5><font size="+1">Format</font><span style="font-family: monospace;"></span></h5>
+<h5><span style="font-family: monospace;"></span>
+<span style="font-size: 11pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;">DO
+BUILDNEW^DIBTED(OUT,FILE,ARRAY,NAME) </span></h5>
+<h5><font size="+1">Input Parameters</font></h5>
+<table summary="This table is for formatting purposes only" border="1" width="100%">
+<tbody>
+<tr><td style="font-weight: bold;">OUT</td><td>(Required)&nbsp;Call-by-reference variable for return value.</td></tr><tr>
+<td width="185"><b>FILE</b></td>
+<td width="524">(Required) File number.&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="185"><b>ARRAY</b></td>
+<td width="524">
+<p>(Required) Closed-root name of a numbered array of text that
+looks like the dialog used to build a SORT TEMPLATE, as in the FileMan
+<a href="../u2/ut_templ.htm#sortfields">TEMPLATE EDIT</a> Option.</p>
+
+</td>
+</tr>
+<tr>
+<td width="185"><b>NAME</b></td>
+<td width="524">
+<p>(Optional) The name of the new SORT TEMPLATE being created.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h5><font size="+1">Output</font></h5>
+<p>The internal number of the SORT TEMPLATE created in File .401,
+concatenated with its NAME, as in the return value "Y" from ^DIC. &nbsp;</p><p> -1 if error.</p>
+<h5></h5>
+<p><b>Example</b></p><p>Create a SORT TEMPLATE named 'ZZTEST' that will sort the PTF file &nbsp;(File 45) by STATUS and within STATUS by PATIENT.</p>
+<p>GFT(1)="SORT BY: @STATUS"<br>GFT(2)="From: 0" <br>GFT(3)="To: 1"<br>GFT(4)=" Do NOT ask range of values
+"<br>GFT(5)="&nbsp; &nbsp;WITHIN STATUS, SORT BY: PATIENT"<br>GFT(6)="&nbsp; &nbsp;From: "<br>GFT(7)="&nbsp; &nbsp;To:"</p><pre>. . . .<big><big><br>DO BUILDNEW^DIBTED(.GFTOUT,45,"GFT","ZZTEST")<br><br>GFTOUT=7889^ZZTEST^1</big></big><br><br></pre>
+<pre><br></pre>
+<h5>Error Codes Returned</h5>
+<table summary="This table is for formatting purposes only" border="1" width="100%">
+<tbody>
+<tr>
+<td width="71"><span style="text-decoration: underline;"><span style="font-weight: bold;"></span></span>-1</td>
+<td width="0">LINE n OF TEMPLATE COULD NOT BE
+PROCESSED</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>&nbsp;</p>
+<hr class="hrstyle"><!-- db_ddmo3.htm -->
+<p align="center">Reviewed/Updated: October 2016</p>
+</body></html>

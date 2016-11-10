@@ -1,579 +1,476 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 6/20/01-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: UPDATE^DIE( )</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure & Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,update^die(),die">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
-  </HEAD>
-	<BODY TOPMARGIN="0" BGCOLOR="white">
-	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 6/20/01-->
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan Programmer Manual: UPDATE^DIE( )</title><meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure &amp; Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,update^die(),die">
+	 <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+ 
+  <body topmargin="0" bgcolor="white">
+	<br><img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
 		  
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../u2/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
-	 <HR CLASS="hrstyle"> 
-	 <H4>UPDATE^DIE( ): Updater</H4> 
-	 <P>This procedure adds new entries in files or subfiles. The caller uses a
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">Database Server (DBS) API</a></h3>
+	 <hr class="hrstyle"> 
+	 <h4>UPDATE^DIE( ): Updater</h4> 
+	 <p>This procedure adds new entries in files or subfiles. The caller uses a
 		standard FDA structure to specify the field values of the new entries. The
 		caller should restrict each Updater call to one logical entry, possibly made up
 		of multiple physical entries. The record numbers for the new entries are
 		returned in an array; the caller may assign their own record numbers to new
 		entries by presetting the array. Any appropriate indexing and auditing
-		automatically occurs for the new record. </P> 
-	 <P>Although the Updater can safely add entries to top-level files and to
+		automatically occurs for the new record. </p> 
+	 <p>Although the Updater can safely add entries to top-level files and to
 		subfiles within those same new entries, there is one caution. If the subfile
 		contains an INPUT transform that assumes the existence of the parent record,
 		the developer should make two separate Updater calls, first to add the parents,
-		then to add the children. </P> 
-	 <P>This procedure includes some elementary filing capabilities to permit
+		then to add the children. </p> 
+	 <p>This procedure includes some elementary filing capabilities to permit
 		the adding of required identifiers and key values at the time new records are
 		created. It also includes elementary finding capabilities to facilitate the
 		identification of top-level entries to which subentries are being added. For
 		full filing and finding capabilities beyond the scope of adding new records,
-		programmers should use the Filer (<A HREF="db_die_f.htm"
-		TITLE="FILE^DIE" CLASS="bodylink">FILE^DIE</A>) or Finder (<A
-		HREF="db_dicf.htm" TITLE="FIND^DIC" CLASS="bodylink">FIND^DIC</A>). If you are
+		programmers should use the Filer (<a href="db_die_f.htm" title="FILE^DIE" class="bodylink">FILE^DIE</a>) or Finder (<a href="db_dicf.htm" title="FIND^DIC" class="bodylink">FIND^DIC</a>). If you are
 		filing data in existing records and you know the record numbers, use the Filer
-		instead of the Updater. </P> 
-	 <H5>Format</H5> 
-	 <PRE>UPDATE^DIE(FLAGS,FDA_ROOT,IEN_ROOT,MSG_ROOT)
-</PRE> 
-	 <H5>Input Parameters</H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD ROWSPAN="5" VALIGN="TOP"><B><A NAME="flags">FLAGS</A></B> </TD> 
-		  <TD COLSPAN="2" VALIGN="TOP"> 
-			 <P>(Optional) Flags to control processing. The possible values are:
-				</P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="E">E</A></B></TD> 
-		  <TD VALIGN="TOP"><B>E</B>xternal values are processed. If this flag is
+		instead of the Updater. </p> 
+	 <h5>Format</h5> 
+	 <pre>UPDATE^DIE(FLAGS,FDA_ROOT,IEN_ROOT,MSG_ROOT)<br></pre> 
+	 <h5>Input Parameters</h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td rowspan="5" valign="top"><b><a name="flags">FLAGS</a></b> </td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Optional) Flags to control processing. The possible values are:
+				</p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a name="E">E</a></b></td> 
+		  <td valign="top"><b>E</b>xternal values are processed. If this flag is
 			 set, the values in the FDA must be in the format input by the user. The Updater
 			 validates all values and converts them to internal format. Invalid values
 			 cancel the entire transaction. 
-			 <P></P> If the flag is not set, values must be in internal format and
-			 must be valid. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="K">K</A></B>&nbsp;<IMG SRC="new.gif"
-			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
-		  <TD VALIGN="TOP">If a file has a primary key, the primary <B>K</B>ey
+			 <p></p> If the flag is not set, values must be in internal format and
+			 must be valid. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a name="K">K</a></b>&nbsp;</td> 
+		  <td valign="top">If a file has a primary key, the primary <b>K</b>ey
 			 fields, not the .01 field, are used for lookup for Finding and LAYGO Finding
-			 nodes.</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>S</B></TD> 
-		  <TD VALIGN="TOP">The Updater <B>S</B>aves the FDA instead of killing it
-			 at the end. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="U">U</A></B>&nbsp;<IMG SRC="new.gif"
-			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
-		  <TD VALIGN="TOP">Don't check key integrity. (<B>CAUTION:</B> If this
+			 nodes.</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>S</b></td> 
+		  <td valign="top">The Updater <b>S</b>aves the FDA instead of killing it
+			 at the end. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a name="U">U</a></b>&nbsp;</td> 
+		  <td valign="top">Don't check key integrity. (<b>CAUTION:</b> If this
 			 flag is used, the UPDATE^DIE call may result in records that contain null key
 			 fields or records with duplicate keys. It is the programmer's responsibility to
 			 ensure that the database is not left in a state in which the integrity of keys
-			 is violated.)</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>FDA_ROOT</B></TD> 
-		  <TD COLSPAN="2" VALIGN="TOP"> 
-			 <P>(Required) The name of the root of a VA FileMan Data Array, which
+			 is violated.)</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>FDA_ROOT</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Required) The name of the root of a VA FileMan Data Array, which
 				describes the entries to add to the database. The Updater accepts Adding Nodes,
-				Filing Nodes, Finding Nodes, and LAYGO Finding Nodes in its FDAs. See "<A
-				HREF="#DetailsandFeatures" TITLE="Details and Features"
-				CLASS="bodylink">Details and Features</A>" in this section for a description of
-				the format of the array named by the FDA parameter. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>IEN_ROOT</B></TD> 
-		  <TD COLSPAN="2" VALIGN="TOP"> 
-			 <P>(Optional) The name of the Internal Entry Number Array (or IEN
-				Array). This should be a closed root. This array has two functions: </P> 
-			 <P><B>1) Requesting Record Numbers for New Entries </B></P> 
-			 <P>The application can set nodes in the IEN Array to direct the
+				Filing Nodes, Finding Nodes, and LAYGO Finding Nodes in its FDAs. See "<a href="#DetailsandFeatures" title="Details and Features" class="bodylink">Details and Features</a>" in this section for a description of
+				the format of the array named by the FDA parameter. </p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>IEN_ROOT</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Optional) The name of the Internal Entry Number Array (or IEN
+				Array). This should be a closed root. This array has two functions: </p> 
+			 <p><b>1) Requesting Record Numbers for New Entries </b></p> 
+			 <p>The application can set nodes in the IEN Array to direct the
 				Updater to use specific record numbers for specific new records. These nodes
 				should have a single subscript equal to the sequence number in the IENS
-				subscript of the FDA entry and a value equal to the desired record number. </P>
+				subscript of the FDA entry and a value equal to the desired record number. </p>
 			 
-			 <P>For example, if the application sets the IEN_ROOT parameter to
+			 <p>For example, if the application sets the IEN_ROOT parameter to
 				ORIEN, and sets ORIEN(1)=1701, the Updater will try to assign record number
-				1701 to the new record denoted by the "+1" value in the FDA subscripts. </P> 
-			 <P>This feature also affects LAYGO Finding nodes. When these nodes
+				1701 to the new record denoted by the "+1" value in the FDA subscripts. </p> 
+			 <p>This feature also affects LAYGO Finding nodes. When these nodes
 				result in adding a new record, the Updater will check the IEN Array to see if
 				the application wants to place the new record at a specific record number. When
 				LAYGO Finding nodes result in a successful lookup, the IEN Array node passed in
-				by the application is changed to the record number of the record found. </P> 
-			 <P>If the application sets an entry in the IEN Array for a Finding
+				by the application is changed to the record number of the record found. </p> 
+			 <p>If the application sets an entry in the IEN Array for a Finding
 				node, the Updater will ignore it (actually, it will overwrite it when it finds
-				the record number for that node). </P> 
-			 <P>This feature is meaningless for Filing nodes since they have no
-				sequence numbers. </P> 
-			 <P>Unlike FDA_ROOT, IEN_ROOT is optional, both partially and as a
+				the record number for that node). </p> 
+			 <p>This feature is meaningless for Filing nodes since they have no
+				sequence numbers. </p> 
+			 <p>Unlike FDA_ROOT, IEN_ROOT is optional, both partially and as a
 				whole. The Updater will pick the next available record numbers for any new
 				records not listed by sequence number in the IEN Array. If the IEN Array is
 				empty or if the IEN_ROOT is not passed, the Updater will pick all the new
-				record numbers. </P> 
-			 <P><B>2) Locating Feedback on What the Updater Did </B></P> 
-			 <P>As the Updater decodes and processes the sequence numbers, it
+				record numbers. </p> 
+			 <p><b>2) Locating Feedback on What the Updater Did </b></p> 
+			 <p>As the Updater decodes and processes the sequence numbers, it
 				gradually converts them into genuine record numbers (see Output). The IEN Array
 				named by the IEN_ROOT parameter is where this feedback will be given. Those
 				sequence numbers not already assigned by the application will be filled in by
-				the Updater (or sometimes replaced, in the case of LAYGO Finding nodes). </P>
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
-		  <TD COLSPAN="2" VALIGN="TOP"> 
-			 <P>(Optional) The array that should receive any error messages. This
+				the Updater (or sometimes replaced, in the case of LAYGO Finding nodes). </p>
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>MSG_ROOT</b></td> 
+		  <td colspan="2" valign="top"> 
+			 <p>(Optional) The array that should receive any error messages. This
 				must be a closed array reference and can be either local or global. For
 				example, if MSG_ROOT equals "OROUT(42)", any errors generated appear in
-				OROUT(42,"DIERR"). </P> 
-			 <P>If the MSG_ROOT is not passed, errors are returned descendent from
-				^TMP("DIERR",$J). </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <H5>Output</H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="IENarray">IEN Array</A></B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>As the Updater assigns record numbers to the records described in
+				OROUT(42,"DIERR"). </p> 
+			 <p>If the MSG_ROOT is not passed, errors are returned descendent from
+				^TMP("DIERR",$J). </p> </td> 
+		</tr> 
+	 </tbody></table> 
+	 <h5>Output</h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b><a name="IENarray">IEN Array</a></b></td> 
+		  <td valign="top"> 
+			 <p>As the Updater assigns record numbers to the records described in
 				the FDA, it sets up nodes in the IEN Array to indicate how it decoded the
-				sequence numbers. See "<A HREF="#DetailsandFeatures"
-				TITLE="Details and Features" CLASS="bodylink">Details and Features</A>" for
+				sequence numbers. See "<a href="#DetailsandFeatures" title="Details and Features" class="bodylink">Details and Features</a>" for
 				more information on
-				<A HREF="#SequenceNumbers" TITLE="sequence numbers" CLASS="bodylink">sequence
-				numbers</A>. This lets the application find out what was done with the various
-				nodes in the FDA. </P> 
-			 <P>The meaning of IEN Array entries varies depending on the type of
+				<a href="#SequenceNumbers" title="sequence numbers" class="bodylink">sequence
+				numbers</a>. This lets the application find out what was done with the various
+				nodes in the FDA. </p> 
+			 <p>The meaning of IEN Array entries varies depending on the type of
 				node the sequence number came from. For example, the significance of an IEN
 				Array entry of ORIEN(3) = 1701 depends on which type of node in the FDA the
-				sequence number 3 came from. </P> 
-			 <P>For Adding Node sequence numbers, the value in the IEN Array
+				sequence number 3 came from. </p> 
+			 <p>For Adding Node sequence numbers, the value in the IEN Array
 				indicates the record number of the new record. If our example came from an
 				Adding Node, such as FDA(19,"+3,",.01) ="ZTMDQ", it means the new record was
-				assigned the record number 1701. </P> 
-			 <P>For Finding Node sequence numbers, the value indicates at which
+				assigned the record number 1701. </p> 
+			 <p>For Finding Node sequence numbers, the value indicates at which
 				record number the value was found. If our example came from a Finding Node,
 				such as FDA(19,"?3,",.01) ="ZTMDQ", it means a call to $$FIND1^DIC found record
-				number 1701 based on a lookup value of "ZTMDQ". </P> 
-			 <P>For LAYGO Finding sequence numbers, an extra zero-node equal to ?
+				number 1701 based on a lookup value of "ZTMDQ". </p> 
+			 <p>For LAYGO Finding sequence numbers, an extra zero-node equal to ?
 				or + identifies whether the entry was found (?) or added (+). If our example
 				came from a LAYGO Finding Node, such as FDA(19,"?+3,",.01)="ZTMDQ", an extra
 				node of ORIEN(3,0)="?" means ZTMDQ was found, whereas ORIEN(3,0)="+" means it
-				was added. </P> 
-			 <P>By the time the Updater finishes processing an FDA, every sequence
+				was added. </p> 
+			 <p>By the time the Updater finishes processing an FDA, every sequence
 				number will be listed with a value in the IEN Array (some set by the
 				application as input for new record numbers and the rest set by the Updater).
-				</P> 
-			 <P>If the IEN_ROOT parameter was not passed, the IEN Array is not
-				returned. </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P> 
-	 <H5>Example</H5> 
-	 <P>The following example illustrates the use of this call to create a new
+				</p> 
+			 <p>If the IEN_ROOT parameter was not passed, the IEN Array is not
+				returned. </p> </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p></p> 
+	 <h5>Example</h5> 
+	 <p>The following example illustrates the use of this call to create a new
 		record in a top-level file. In this case, a new option is being added at a
 		specified record number. Notice the triggered 9 on the 0-node and the triggered
-		"U" node: </P> 
-	 <PRE>    &gt;<B>S FDA(42,19,&quot;+1,&quot;,.01)=&quot;ZZ FDA TEST NAME&quot;
-</B>    
-    &gt;<B>S FDA(42,19,&quot;+1,&quot;,1)=&quot;ZZ Toad Test Menu Text&quot;
-</B>    
-    &gt;<B>S FDAIEN(1)=2067642283
-</B>    
-    &gt;<B>D UPDATE^DIE(&quot;&quot;,&quot;FDA(42)&quot;,&quot;FDAIEN&quot;)
-</B>    
-    &gt;<B>D ^%G
-</B>    
-    Global ^<B>DIC(19,2067642283 
-</B>        DIC(19,2067642283
-    ^DIC(19,2067642283,0) = ZZ FDA TEST NAME^ZZ Toad Test Menu Text^^^9
-    ^DIC(19,2067642283,&quot;U&quot;) = ZZ FDA TEST MENU TEXT 
-</PRE> 
-	 <H5><A NAME="errors">Error Codes Returned </A></H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_110.htm" TITLE="Error 110"
-			 CLASS="bodylink">110</A></B></TD> 
-		  <TD VALIGN="TOP">The record is currently locked. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_111.htm" TITLE="Error 111"
-			 CLASS="bodylink">111</A></B></TD> 
-		  <TD VALIGN="TOP">The File Header Node is currently locked. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_120.htm" TITLE="Error 120"
-			 CLASS="bodylink">120</A></B></TD> 
-		  <TD VALIGN="TOP">Error occurred during execution of a VA FileMan hook.
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_202.htm" TITLE="Error 202"
-			 CLASS="bodylink">202</A></B></TD> 
-		  <TD VALIGN="TOP">An input parameter is missing or not valid. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_205.htm" TITLE="Error 205"
-			 CLASS="bodylink">205</A></B></TD> 
-		  <TD VALIGN="TOP">The File and IENS represent different subfile levels.
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_301.htm" TITLE="Error 301"
-			 CLASS="bodylink">301</A></B></TD> 
-		  <TD VALIGN="TOP">The passed flags are unknown or inconsistent. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_302.htm" TITLE="Error 302"
-			 CLASS="bodylink">302</A></B></TD> 
-		  <TD VALIGN="TOP">Entry already exists. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_304.htm" TITLE="Error 304"
-			 CLASS="bodylink">304</A></B></TD> 
-		  <TD VALIGN="TOP">The IENS lacks a final comma. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_307.htm" TITLE="Error 307"
-			 CLASS="bodylink">307</A></B></TD> 
-		  <TD VALIGN="TOP">The IENS has an empty comma-piece. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_308.htm" TITLE="Error 308"
-			 CLASS="bodylink">308</A></B></TD> 
-		  <TD VALIGN="TOP">The IENS is syntactically incorrect. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_310.htm" TITLE="Error 310"
-			 CLASS="bodylink">310</A></B></TD> 
-		  <TD VALIGN="TOP">The IENS conflicts with the rest of the FDA. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_311.htm" TITLE="Error 311"
-			 CLASS="bodylink">311</A></B></TD> 
-		  <TD VALIGN="TOP">The new record lacks some required identifiers. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_330.htm" TITLE="Error 330"
-			 CLASS="bodylink">330</A></B></TD> 
-		  <TD VALIGN="TOP">The value is not valid. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_351.htm" TITLE="Error 351"
-			 CLASS="bodylink">351</A></B></TD> 
-		  <TD VALIGN="TOP">FDA Node has a bad IENS. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_352.htm" TITLE="Error 352"
-			 CLASS="bodylink">352</A></B>&nbsp;<IMG SRC="new.gif"
-			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
-		  <TD VALIGN="TOP">The new record lacks a .01 field.</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_401.htm" TITLE="Error 401"
-			 CLASS="bodylink">401</A></B></TD> 
-		  <TD VALIGN="TOP">The file does not exist. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_402.htm" TITLE="Error 402"
-			 CLASS="bodylink">402</A></B></TD> 
-		  <TD VALIGN="TOP">The global root is missing or not valid. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_403.htm" TITLE="Error 403"
-			 CLASS="bodylink">403</A></B></TD> 
-		  <TD VALIGN="TOP">The file lacks a header node. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_405.htm" TITLE="Error 405"
-			 CLASS="bodylink">405</A></B></TD> 
-		  <TD VALIGN="TOP">Entries in file cannot be edited. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_406.htm" TITLE="Error 406"
-			 CLASS="bodylink">406</A></B></TD> 
-		  <TD VALIGN="TOP">The file has no .01 field definition. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_407.htm" TITLE="Error 407"
-			 CLASS="bodylink">407</A></B></TD> 
-		  <TD VALIGN="TOP">A word-processing field is not a file. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_408.htm" TITLE="Error 408"
-			 CLASS="bodylink">408</A></B></TD> 
-		  <TD VALIGN="TOP">The file lacks a name. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_501.htm" TITLE="Error 501"
-			 CLASS="bodylink">501</A></B></TD> 
-		  <TD VALIGN="TOP">The file does not contain that field. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_502.htm" TITLE="Error 502"
-			 CLASS="bodylink">502</A></B></TD> 
-		  <TD VALIGN="TOP">The field has a corrupted definition. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_510.htm" TITLE="Error 510"
-			 CLASS="bodylink">510</A></B></TD> 
-		  <TD VALIGN="TOP">The data type cannot be determined. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_520.htm" TITLE="Error 520"
-			 CLASS="bodylink">520</A></B></TD> 
-		  <TD VALIGN="TOP">That kind of field cannot be processed by this
-			 utility. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_601.htm" TITLE="Error 601"
-			 CLASS="bodylink">601</A></B></TD> 
-		  <TD VALIGN="TOP">The entry does not exist. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_602.htm" TITLE="Error 602"
-			 CLASS="bodylink">602</A></B></TD> 
-		  <TD VALIGN="TOP">The entry is not available for editing. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_603.htm" TITLE="Error 603"
-			 CLASS="bodylink">603</A></B></TD> 
-		  <TD VALIGN="TOP">The entry lacks a required field. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_630.htm" TITLE="Error 630"
-			 CLASS="bodylink">630</A></B></TD> 
-		  <TD VALIGN="TOP">The field value is not valid. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_701.htm" TITLE="Error 701"
-			 CLASS="bodylink">701</A></B></TD> 
-		  <TD VALIGN="TOP">The value is not valid for that field. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_703.htm" TITLE="Error 703"
-			 CLASS="bodylink">703</A></B></TD> 
-		  <TD VALIGN="TOP">The value cannot be found in the file. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_712.htm" TITLE="Error 712"
-			 CLASS="bodylink">712</A></B></TD> 
-		  <TD VALIGN="TOP">The value in that field cannot be deleted. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_730.htm" TITLE="Error 730"
-			 CLASS="bodylink">730</A></B></TD> 
-		  <TD VALIGN="TOP">The value is not valid according to the DD definition.
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_740.htm" TITLE="Error 740"
-			 CLASS="bodylink">740</A></B>&nbsp;<IMG SRC="new.gif"
-			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
-		  <TD VALIGN="TOP">New values are invalid because they would create a
-			 duplicate key.</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_742.htm" TITLE="Error 742"
-			 CLASS="bodylink">742</A></B>&nbsp;<IMG SRC="new.gif"
-			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
-		  <TD VALIGN="TOP">Deletion was attempted on a key field.</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_744.htm" TITLE="Error 744"
-			 CLASS="bodylink">744</A></B>&nbsp;<IMG SRC="new.gif"
-			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
-		  <TD VALIGN="TOP">A key field was not assigned a value.</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A HREF="err_746.htm" TITLE="Error 746"
-			 CLASS="bodylink">746</A></B>&nbsp;<IMG SRC="new.gif"
-			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
-		  <TD VALIGN="TOP">The K flag was used, but no primary key fields were
-			 provided in the FDA for Finding and LAYGO Finding nodes.</TD> 
-		</TR> 
-	 </TABLE> 
-	 <P>The Updater may also return any error returned by: </P> 
-	 <UL> 
-		<LI><A HREF="db_dicf1.htm" TITLE="$$FIND1^DIC"
-		  CLASS="bodylink">$$FIND1^DIC</A><BR><BR></LI> 
-		<LI><A HREF="db_die_f.htm" TITLE="FILE^DIE" CLASS="bodylink">FILE^DIE</A>
-		  </LI> 
-	 </UL> 
-	 <H5><A NAME="DetailsandFeatures">Details and Features</A></H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="adding">Adding</A></B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>Adding Nodes let applications create new entries in a file. In the
+		"U" node: </p> 
+	 <pre>    &gt;<b>S FDA(42,19,"+1,",.01)="ZZ FDA TEST NAME"<br></b>    <br>    &gt;<b>S FDA(42,19,"+1,",1)="ZZ Toad Test Menu Text"<br></b>    <br>    &gt;<b>S FDAIEN(1)=2067642283<br></b>    <br>    &gt;<b>D UPDATE^DIE("","FDA(42)","FDAIEN")<br></b>    <br>    &gt;<b>D ^%G<br></b>    <br>    Global ^<b>DIC(19,2067642283 <br></b>        DIC(19,2067642283<br>    ^DIC(19,2067642283,0) = ZZ FDA TEST NAME^ZZ Toad Test Menu Text^^^9<br>    ^DIC(19,2067642283,"U") = ZZ FDA TEST MENU TEXT <br></pre> 
+	 <h5><a name="errors">Error Codes Returned </a></h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b><a href="err_110.htm" title="Error 110" class="bodylink">110</a></b></td> 
+		  <td valign="top">The record is currently locked. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_111.htm" title="Error 111" class="bodylink">111</a></b></td> 
+		  <td valign="top">The File Header Node is currently locked. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_120.htm" title="Error 120" class="bodylink">120</a></b></td> 
+		  <td valign="top">Error occurred during execution of a VA FileMan hook.
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_202.htm" title="Error 202" class="bodylink">202</a></b></td> 
+		  <td valign="top">An input parameter is missing or not valid. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_205.htm" title="Error 205" class="bodylink">205</a></b></td> 
+		  <td valign="top">The File and IENS represent different subfile levels.
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_301.htm" title="Error 301" class="bodylink">301</a></b></td> 
+		  <td valign="top">The passed flags are unknown or inconsistent. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_302.htm" title="Error 302" class="bodylink">302</a></b></td> 
+		  <td valign="top">Entry already exists. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_304.htm" title="Error 304" class="bodylink">304</a></b></td> 
+		  <td valign="top">The IENS lacks a final comma. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_307.htm" title="Error 307" class="bodylink">307</a></b></td> 
+		  <td valign="top">The IENS has an empty comma-piece. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_308.htm" title="Error 308" class="bodylink">308</a></b></td> 
+		  <td valign="top">The IENS is syntactically incorrect. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_310.htm" title="Error 310" class="bodylink">310</a></b></td> 
+		  <td valign="top">The IENS conflicts with the rest of the FDA. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_311.htm" title="Error 311" class="bodylink">311</a></b></td> 
+		  <td valign="top">The new record lacks some required identifiers. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_330.htm" title="Error 330" class="bodylink">330</a></b></td> 
+		  <td valign="top">The value is not valid. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_351.htm" title="Error 351" class="bodylink">351</a></b></td> 
+		  <td valign="top">FDA Node has a bad IENS. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_352.htm" title="Error 352" class="bodylink">352</a></b>&nbsp;</td> 
+		  <td valign="top">The new record lacks a .01 field.</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_401.htm" title="Error 401" class="bodylink">401</a></b></td> 
+		  <td valign="top">The file does not exist. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_402.htm" title="Error 402" class="bodylink">402</a></b></td> 
+		  <td valign="top">The global root is missing or not valid. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_403.htm" title="Error 403" class="bodylink">403</a></b></td> 
+		  <td valign="top">The file lacks a header node. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_405.htm" title="Error 405" class="bodylink">405</a></b></td> 
+		  <td valign="top">Entries in file cannot be edited. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_406.htm" title="Error 406" class="bodylink">406</a></b></td> 
+		  <td valign="top">The file has no .01 field definition. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_407.htm" title="Error 407" class="bodylink">407</a></b></td> 
+		  <td valign="top">A word-processing field is not a file. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_408.htm" title="Error 408" class="bodylink">408</a></b></td> 
+		  <td valign="top">The file lacks a name. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_501.htm" title="Error 501" class="bodylink">501</a></b></td> 
+		  <td valign="top">The file does not contain that field. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_502.htm" title="Error 502" class="bodylink">502</a></b></td> 
+		  <td valign="top">The field has a corrupted definition. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_510.htm" title="Error 510" class="bodylink">510</a></b></td> 
+		  <td valign="top">The data type cannot be determined. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_520.htm" title="Error 520" class="bodylink">520</a></b></td> 
+		  <td valign="top">That kind of field cannot be processed by this
+			 utility. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_601.htm" title="Error 601" class="bodylink">601</a></b></td> 
+		  <td valign="top">The entry does not exist. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_602.htm" title="Error 602" class="bodylink">602</a></b></td> 
+		  <td valign="top">The entry is not available for editing. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_603.htm" title="Error 603" class="bodylink">603</a></b></td> 
+		  <td valign="top">The entry lacks a required field. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_630.htm" title="Error 630" class="bodylink">630</a></b></td> 
+		  <td valign="top">The field value is not valid. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_701.htm" title="Error 701" class="bodylink">701</a></b></td> 
+		  <td valign="top">The value is not valid for that field. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_703.htm" title="Error 703" class="bodylink">703</a></b></td> 
+		  <td valign="top">The value cannot be found in the file. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_712.htm" title="Error 712" class="bodylink">712</a></b></td> 
+		  <td valign="top">The value in that field cannot be deleted. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_730.htm" title="Error 730" class="bodylink">730</a></b></td> 
+		  <td valign="top">The value is not valid according to the DD definition.
+			 </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_740.htm" title="Error 740" class="bodylink">740</a></b>&nbsp;</td> 
+		  <td valign="top">New values are invalid because they would create a
+			 duplicate key.</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_742.htm" title="Error 742" class="bodylink">742</a></b>&nbsp;</td> 
+		  <td valign="top">Deletion was attempted on a key field.</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_744.htm" title="Error 744" class="bodylink">744</a></b>&nbsp;</td> 
+		  <td valign="top">A key field was not assigned a value.</td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a href="err_746.htm" title="Error 746" class="bodylink">746</a></b>&nbsp;</td> 
+		  <td valign="top">The K flag was used, but no primary key fields were
+			 provided in the FDA for Finding and LAYGO Finding nodes.</td> 
+		</tr> 
+	 </tbody></table> 
+	 <p>The Updater may also return any error returned by: </p> 
+	 <ul> 
+		<li><a href="db_dicf1.htm" title="$$FIND1^DIC" class="bodylink">$$FIND1^DIC</a><br><br></li> 
+		<li><a href="db_die_f.htm" title="FILE^DIE" class="bodylink">FILE^DIE</a>
+		  </li> 
+	 </ul> 
+	 <h5><a name="DetailsandFeatures">Details and Features</a></h5> 
+	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top"><b><a name="adding">Adding</a></b></td> 
+		  <td valign="top"> 
+			 <p>Adding Nodes let applications create new entries in a file. In the
 				place of the actual IENS subscript for the new record in the FDA array, the
 				application instead uses a unique value consisting of a + followed by a
-				positive number.</P> 
-			 <P>"+#" will ALWAYS add without regard to duplication. </P> 
-			 <P>Thus, for example, an FDA of "FDA(42)" might be accompanied by the
-				following array: </P> 
-			 <PRE>    FDA(42,19,&quot;+1,&quot;,.01)=&quot;NAME OF OPTION&quot;
-    FDA(42,19,&quot;+1,&quot;,1)=&quot;MENU TEXT OF NEW OPTION&quot;    
-    FDA(42,19.01,&quot;+2,+1,&quot;,.01)=45 
-    FDA(42,19.01,&quot;+2,+1,&quot;,2)=&quot;TM&quot; 
-    FDA(42,19.01,&quot;+3,+1,&quot;,.01)=408  </PRE> 
-			 <P>The FDA_ROOT value directs the Updater to the FDA(42) array, whose
+				positive number.</p> 
+			 <p>"+#" will ALWAYS add without regard to duplication. </p> 
+			 <p>Thus, for example, an FDA of "FDA(42)" might be accompanied by the
+				following array: </p> 
+			 <pre>    FDA(42,19,"+1,",.01)="NAME OF OPTION"<br>    FDA(42,19,"+1,",1)="MENU TEXT OF NEW OPTION"    <br>    FDA(42,19.01,"+2,+1,",.01)=45 <br>    FDA(42,19.01,"+2,+1,",2)="TM" <br>    FDA(42,19.01,"+3,+1,",.01)=408  </pre> 
+			 <p>The FDA_ROOT value directs the Updater to the FDA(42) array, whose
 				format instructs the Updater to add one new entry to the Option file and two
-				new entries to the Menu multiple of that entry. </P> 
-			 <P><B>NOTE:</B> The sequence number for each new entry to be added to
-				a file or subfile must be unique throughout the FDA.&nbsp;<IMG SRC="new.gif"
-				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="adding_identifiers_keys">Adding --
-			 Identifiers and Keys</A></B>&nbsp;<IMG SRC="new.gif"
-			 ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>The FDA for a new record MUST include the .01 field, all of the
-				<B>required</B> identifiers, and all key fields. If any of these needed fields
+				new entries to the Menu multiple of that entry. </p> 
+			 <p><b>NOTE:</b> The sequence number for each new entry to be added to
+				a file or subfile must be unique throughout the FDA.&nbsp;</p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a name="adding_identifiers_keys">Adding --
+			 Identifiers and Keys</a></b>&nbsp;</td> 
+		  <td valign="top"> 
+			 <p>The FDA for a new record MUST include the .01 field, all of the
+				<b>required</b> identifiers, and all key fields. If any of these needed fields
 				is missing, the entire FDA transaction fails; none of the entries is added if
-				any one lacks required data.</P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Filing</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>Filing Nodes let the application file new data under existing
+				any one lacks required data.</p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>Filing</b></td> 
+		  <td valign="top"> 
+			 <p>Filing Nodes let the application file new data under existing
 				entries. This may be necessary to complete a logical record addition. Any FDA
 				node whose IENS subscript consists solely of record numbers and commas is
 				considered a Filing Node. If you know all of the record numbers, (that is, if
 				all of the nodes in your FDA are Filing Nodes), you should use the Filer
-				instead of the Updater to file the data. </P> 
-			 <P>For example, FDA(42,19,"408,",1)="NEW MENU TEXT" instructs the
+				instead of the Updater to file the data. </p> 
+			 <p>For example, FDA(42,19,"408,",1)="NEW MENU TEXT" instructs the
 				Updater to update field 1 of record 408, so no actual record creation takes
-				place as a result of this node.</P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="Finding">Finding</A></B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>Finding Nodes let applications work with existing entries for
+				place as a result of this node.</p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a name="Finding">Finding</a></b></td> 
+		  <td valign="top"> 
+			 <p>Finding Nodes let applications work with existing entries for
 				which the application does not yet have a record number. Instead of +#, the
 				application uses the notation ?# to stand in for an unknown record number. The
-				sequence number that follows the ? must be unique throughout the FDA. </P> 
-			 <P>Every FDA of this type must include an FDA node for the .01 field,
-				or, if the <A HREF="#K" TITLE="K flag" CLASS="bodylink">K flag</A> is passed,
+				sequence number that follows the ? must be unique throughout the FDA. </p> 
+			 <p>Every FDA of this type must include an FDA node for the .01 field,
+				or, if the <a href="#K" title="K flag" class="bodylink">K flag</a> is passed,
 				nodes for at least one field in the primary key. The value of this FDA node is
 				used to perform a lookup on the file. It must match only one entry in that
 				file; ambiguity or failure to find a match is an error condition. The record
-				number found will then be used for this FDA entry.&nbsp;<IMG SRC="new.gif"
-				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> 
-			 <P>For example the following FDA adds a new menu item to the ZTMMGR
-				menu and changes the menu's text: </P> 
-			 <PRE>    FDA(42,19,&quot;?1,&quot;,.01)=&quot;ZTMMGR&quot; 
-    FDA(42,19,&quot;?1,&quot;,1)=&quot;New Menu Text&quot;
-    FDA(42,19.01,&quot;+2,?1,&quot;,.01)=45 
-    FDA(42,19.01,&quot;+2,?1,&quot;,2)=&quot;TM&quot;</PRE> 
-			 <P>In this example, the Updater first uses the value ZTMMGR in a
+				number found will then be used for this FDA entry.&nbsp;</p> 
+			 <p>For example the following FDA adds a new menu item to the ZTMMGR
+				menu and changes the menu's text: </p> 
+			 <pre>    FDA(42,19,"?1,",.01)="ZTMMGR" <br>    FDA(42,19,"?1,",1)="New Menu Text"<br>    FDA(42,19.01,"+2,?1,",.01)=45 <br>    FDA(42,19.01,"+2,?1,",2)="TM"</pre> 
+			 <p>In this example, the Updater first uses the value ZTMMGR in a
 				lookup to find the record number that replaces ?1. It then adds a new entry to
 				subfile 19.01 under that entry, and changes the menu text of the option to "New
 				Menu Text". The first node shown is a Finding Node that specifies the value of
 				the .01 field to be used for lookup. The next node specifies a new value for
 				field 1, the menu's text. The last two nodes are Adding Nodes that specify the
-				values for fields .01 and 2 of the new menu item. </P> 
-			 <P>When the <A HREF="#E" TITLE="E flag" CLASS="bodylink">E flag</A>
+				values for fields .01 and 2 of the new menu item. </p> 
+			 <p>When the <a href="#E" title="E flag" class="bodylink">E flag</a>
 				is used, the .01 Finding node can equal any valid input value for the Lookup.
 				For example, to pick based on a set of codes where WA stands for WASHINGTON,
-				when using the E flag, you may enter WASH. </P> 
-			 <P>However, when the E flag is NOT used, the .01 Finding node must
+				when using the E flag, you may enter WASH. </p> 
+			 <p>However, when the E flag is NOT used, the .01 Finding node must
 				equal an internal value, though the special lookup values -- space-bar and
 				accent grave (`) concatenated with the IEN -- will still work.. So for example,
 				a .01 Finding node equal to WASH would return an error in the above scenario if
 				the E flag were not passed. To succeed, the .01 Finding node would need to
-				equal WA, the internal value. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>LAYGO Finding</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>LAYGO Finding Nodes let the application refer to entries that may
+				equal WA, the internal value. </p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b>LAYGO Finding</b></td> 
+		  <td valign="top"> 
+			 <p>LAYGO Finding Nodes let the application refer to entries that may
 				or may not already exist. If they do exist, the Updater finds and uses their
 				record numbers. If not, the Updater adds the entries. The IENS notation used to
 				stand in for these entries is ?+#. # is a unique positive number which acts as
 				a placeholder until an actual internal entry number can be produced by the
-				Updater. </P> 
-			 <P>For example, this call expects to find the option ZTMMGR, but adds
-				it if it's missing: </P> 
-			 <PRE>    FDA(42,19,&quot;?+1,&quot;,.01)=&quot;ZTMMGR&quot;
-    FDA(42,19.01,&quot;+2,?+1,&quot;,.01)=45 
-    FDA(42,19.01,&quot;+2,?+1,&quot;,2)=&quot;TM&quot;</PRE> 
-			 <P>The <A HREF="#IENarray" TITLE="IEN Array node"
-				CLASS="bodylink">IEN Array node</A> for this entry includes an extra zero node
+				Updater. </p> 
+			 <p>For example, this call expects to find the option ZTMMGR, but adds
+				it if it's missing: </p> 
+			 <pre>    FDA(42,19,"?+1,",.01)="ZTMMGR"<br>    FDA(42,19.01,"+2,?+1,",.01)=45 <br>    FDA(42,19.01,"+2,?+1,",2)="TM"</pre> 
+			 <p>The <a href="#IENarray" title="IEN Array node" class="bodylink">IEN Array node</a> for this entry includes an extra zero node
 				equal to ? or + to identify whether the entry was found or added. For example,
 				if the entry for the previous example was found, the IEN Array node for this
-				FDA might look like this:</P> 
-			 <PRE>    IEN(1)=388
-    IEN(1,0)=&quot;?&quot;
-    IEN(2)=9 </PRE> 
-			 <P>All LAYGO Finding Nodes are processed in order after Finding Nodes
-				and before other kinds of nodes. </P> 
-			 <P>Like Finding Nodes, .01 LAYGO Finding Nodes must match the format
+				FDA might look like this:</p> 
+			 <pre>    IEN(1)=388<br>    IEN(1,0)="?"<br>    IEN(2)=9 </pre> 
+			 <p>All LAYGO Finding Nodes are processed in order after Finding Nodes
+				and before other kinds of nodes. </p> 
+			 <p>Like Finding Nodes, .01 LAYGO Finding Nodes must match the format
 				of the overall call: external if the E flag has been passed, internal if not.
-				See the "<A HREF="#Finding" TITLE="Finding" CLASS="bodylink">Finding</A>"
-				section for details. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="SequenceNumbers">Sequence
-			 Numbers</A></B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>A positive number which acts as a <A
-				NAME="placeholder">placeholder</A> to identify a record until an actual
+				See the "<a href="#Finding" title="Finding" class="bodylink">Finding</a>"
+				section for details. </p> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top"><b><a name="SequenceNumbers">Sequence
+			 Numbers</a></b></td> 
+		  <td valign="top"> 
+			 <p>A positive number which acts as a <a name="placeholder">placeholder</a> to identify a record until an actual
 				internal entry number can be created or found by the Updater. This positive
 				number must be unique throughout the FDA array. For example, if "+1," is used
-				in an FDA, you cannot also use "?1," or "?+1".</P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P>
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
+				in an FDA, you cannot also use "?1," or "?+1".</p> </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p></p>
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
 	 <!-- db_die_u.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
-	 <P>&nbsp;</P> 
+	 <p align="center">Reviewed/Updated: March 10, 2007</p>
+	 <p>&nbsp;</p> 
 
-  </BODY>
-</HTML>
+  </body></html>

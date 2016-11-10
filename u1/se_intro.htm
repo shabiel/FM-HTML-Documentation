@@ -1,472 +1,526 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML>
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/30/03-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
-	 <TITLE>VA FileMan Getting Started HTML Manual: Screen Editor</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,editor,screen editor">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css">
-  </HEAD>
-  <BODY TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	 <P>&nbsp;</P>
-	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP">
-		<TR>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="se_frm.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC"
-			 CLASS="menubarlink">Chapter</A></TD>
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD>
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u2/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			 CLASS="menubarlink">Advanced User Manual</A></TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD>
-		</TR>
-	 </TABLE>
-	 <!-- Content -->
-	 <H3><A NAME="navskip">Word-processing Fields</A></H3> <HR CLASS="hrstyle">
-	 <H4>Screen Editor</H4>
-	 <H5><A NAME="Introduction">Introduction</A></H5>
-	 <P>To edit the contents of WORD-PROCESSING-type fields in files, you need
-		to use a word processing editor. VA FileMan provides two standard editors: the
-		Screen Editor and the
-		<A HREF="le_frm.htm" TARGET="_top" TITLE="Line Editor" CLASS="bodylink">Line
-		Editor</A>. The Screen Editor provides flexibility and freedom not provided by
-		the <A HREF="le_frm.htm" TARGET="_top" TITLE="Line Editor"
-		CLASS="bodylink">Line Editor</A>. The Screen Editor provides such features as
-		full-screen editing, automatic text wrapping, and search-and-replace. In most
-		cases you would want your default editor to be the Screen Editor.</P>
-	 <P><B>NOTE:</B> To set your default editor, please refer to the "<A
-		HREF="wp_swit.htm" TITLE="Choice of Word-processing Editors"
-		CLASS="bodylink">Choice of Word-processing Editors</A>" chapter in this manual.
-		<BR> <BR> For most people, the Screen Editor should be your Preferred Editor
-		for WORD-PROCESSING fields.</P>
-	 <P>If you enter <B>&lt;PF1&gt;H</B> at any time in the Screen Editor, you
-		can get online Help that lists all the available commands.</P>
-	 <P>At any time, while entering text using the Screen Editor, you can select
-		a command. For example, at any time you can change your left margin, move to a
-		different screen, save your document, or get online Help. To invoke most
-		commands, you need to enter only two keystrokes: the <B>&lt;PF1&gt;</B> key and
-		a character key, such as <B>D</B> for delete line.</P>
-	 <P>You'll usually find the <B>&lt;PF&gt;</B> keys at the right-hand side of
-		your terminal keyboard, along with the numeric keypad. If you're using a
-		personal computer rather than a computer terminal, the <B>&lt;PF&gt;</B> keys
-		are mostly likely re-mapped to another set of keys (consult your IRM to find
-		out to what keys the <B>&lt;PF1&gt;</B> through <B>&lt;PF4&gt;</B> are
-		re-mapped). </P> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Main_screen">Main Screen</A></H5>
-	 <P>The Screen Editor display consists of a status bar at the top and a
-		ruler at the bottom. Between the two status bars is the area where you create
-		and edit text: </P>
-	 <P ALIGN="CENTER"><IMG SRC="wp_1.gif"
-		ALT="Example of a WORD-PROCESSING Field in the Screen Editor." WIDTH="624"
-		HEIGHT="486" BORDER="0"> </P> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Entering_text">Entering Text</A></H5>
-	 <P>When using the Screen Editor, you type your text as you normally would.
-		As you type, the Screen Editor automatically wraps lines of text to fit within
-		the left and right margins. There is no need to press the Enter/Return key at
-		the end of each line. The Screen Editor accepts any printable characters as
-		keyboard input. However, it cannot be used to edit text that contains control
-		characters. </P> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Commands">Entering Commands</A></H5>
-	 <P>Editor commands are invoked using keyboard command sequences. The Screen
-		Editor makes use of the <B>&lt;PF&gt;</B> keys, the cursor keypad, and, if
-		available on the keyboard, the edit keypad to perform its editing functions.
-		</P> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Cursor">Cursor Movement (Navigation)</A></H5>
-	 <P>The following table illustrates the keystrokes you use to navigate while
-		in the Screen Editor:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="Screen Editor Cursor Movement (Navigation) Table"
-	  TITLE="Screen Editor Cursor Movement (Navigation) Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Action</B></TD>
-		  <TD VALIGN="TOP"><B>Key Sequence</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move one column left or right</TD>
-		  <TD VALIGN="TOP"><B>&lt;ArrowLeft&gt;</B> or <B>&lt;ArrowRight&gt;</B>
-			 </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move one line up or down</TD>
-		  <TD VALIGN="TOP"><B>&lt;ArrowUp&gt;</B> or <B>&lt;ArrowDown&gt;</B>
-			 </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move one word left or right</TD>
-		  <TD VALIGN="TOP"><B>&lt;Ctrl-J&gt;</B> or <B>&lt;Ctrl-L&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to next tab stop to the right</TD>
-		  <TD VALIGN="TOP"><B>&lt;Tab&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move cursor left or right one screen </TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;ArrowLeft&gt;</B> or
-			 <B>&lt;PF1&gt;&lt;ArrowRight&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move cursor to beginning or end of line</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;PF1&gt;&lt;ArrowLeft&gt;</B> or <BR>
-			 <B>&lt;PF1&gt;&lt;PF1&gt;&lt;ArrowRight&gt;</B> <BR> OR: <B>&lt;Find&gt;</B> or
-			 <B>&lt;Select&gt;</B> <BR> OR: <B>&lt;Home&gt;</B> or <B>&lt;End&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move cursor one screen up or down</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;ArrowUp&gt;</B> or
-			 <B>&lt;PF1&gt;&lt;ArrowDown&gt;</B>
-			 <P>OR: <B>&lt;PrevScreen&gt;</B> or <B>&lt;NextScreen&gt;</B> </P>
-			 <P>OR: <B>&lt;Page Up&gt;</B> or <B>&lt;Page Down&gt;</B> </P> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move to top or bottom of document</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;T</B> or <B>&lt;PF1&gt;B</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Go to a specific screen, line, or column.</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;G</B></TD>
-		</TR>
-	 </TABLE>
-	 <P>You can <I>move forward quickly across a line</I> by pressing the Tab
-		key (<B>&lt;Tab&gt;</B>). The Tab key in the Screen Editor does not insert
-		anything into the text. The Tab key is for navigation only and simply moves the
-		cursor to the next tab stop to the right. Another way to move across a line,
-		either forward or backward, is to move a word at a time, using
-		<B>&lt;Ctrl-J&gt;</B> or <B>&lt;Ctrl-L&gt;</B>. </P>
-	 <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Exiting_Saving">Saving and Exiting</A></H5>
-	 <P>The following table illustrates the keystrokes you use to exit and/or
-		save text while in the Screen Editor:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="Screen Editor Saving and Exiting Table"
-	  TITLE="Screen Editor Saving and Exiting Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Action</B></TD>
-		  <TD VALIGN="TOP"><B>Key Sequence</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Exit and save text</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;E</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Quit without saving</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;Q</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Exit, save, and switch editors</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;A</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Save without exiting</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;S</B> </TD>
-		</TR>
-	 </TABLE>
-	 <P>If your editing session ends unexpectedly because of hardware failure or
-		another reason that prevents normal exiting, any changes you've made in the
-		current WORD-PROCESSING field <I>are not</I> saved. On the other hand, if you
-		time out when editing text, your changes <I>are</I> saved.</P>
-  <p><span class="badge">22.2</span>As of Fileman 22.2, if you press enter twice
-    without any text in a word processing field that was opened from Screenman,
-    the text is saved and you are returned to the screen form. This alleviates
-    the need to press PF1-E to save the text in the word processing field. </p>
-	 <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Finding">Finding Text</A></H5>
-	 <P>The following table illustrates the keystrokes you use to find text
-		while in the Screen Editor:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	 SUMMARY="Screen Editor Finding Text Commands Table"
-	 TITLE="Screen Editor Finding Text Commands Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Action</B></TD>
-		  <TD VALIGN="TOP"><B>Key Sequence</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Find text <BR> (<I>not</I> case sensitive)</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;F</B> <BR> Brings up a "Find" dialogue
-			 (see
-			 <A HREF="#find_dialogue" TITLE="Sample Screen Editor Finding Text Image"
-			 CLASS="bodylink">picture</A> below). To search for text downward, enter the
-			 text to find and press the Enter/Return key. To search for text upward, enter
-			 the text to find and press <B>&lt;ArrowUp&gt;</B>. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Find next occurrence of text</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;N</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Find/Replace text</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;P</B> </TD>
-		</TR>
-	 </TABLE>
-	 <P></P>
-	 <P><A NAME="find_dialogue"><IMG SRC="wp_2.gif" WIDTH="603" HEIGHT="51"
-		ALT="Example of the Find Dialogue Box in the Screen Editor."></A></P>
-	 <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Formatting">Formatting Paragraphs</A></H5>
-	 <P>The following table illustrates the keystrokes you use to format
-		paragraphs while in the Screen Editor:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	 SUMMARY="Screen Editor Formatting Paragraphs Commands Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Action</B></TD>
-		  <TD VALIGN="TOP"><B>Key Sequence</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Join and/or break the current line and next line </TD>
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/30/03--><!--Edited March 2007, Hardhats.org-->
 
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;J</B> <BR> Make sure Wrap mode is on
-			 before joining or breaking lines (Toggle Wrap mode with <B>&lt;PF2&gt;</B>).
-			 </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Reformat paragraph <BR> </TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;R</B> <BR> Joins and/or breaks all lines
-			 between current line and next <I>blank</I> line, to create a word-wrapped
-			 paragraph. Make sure Wrap mode is on first (Toggle with <B>&lt;PF2&gt;</B>).
-			 <BR> <BR> <B>NOTE:</B> The reformat paragraph command is very useful! </TD>
-		</TR>
-	 </TABLE> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Cutting_Pasting">Cutting and Pasting</A></H5>
-	 <P>The following table illustrates the keystrokes you use to cut and paste
-		text while in the Screen Editor:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	 SUMMARY="Screen Editor Cutting and Pasting Commands Table"
-	 TITLE="Screen Editor Cutting and Pasting Commands Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Action</B></TD>
-		  <TD VALIGN="TOP"><B>Key Sequence</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Select/Mark text</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;M</B> <BR> Position the cursor at the
-			 beginning of the text you wish to select and press <B>&lt;PF1&gt;M</B>. Move
-			 the cursor to the end of the text you want and press <B>&lt;PF1&gt;M</B> again.
-			 The selected text is highlighted in reverse video. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Deselect/Unmark text </TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;PF1&gt;M</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Delete selected text </TD>
-		  <TD VALIGN="TOP"><B>&lt;Delete&gt;</B> or <B>&lt;Backspace&gt;</B> on
-			 selected text </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Cut and save to buffer</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;X</B> on selected text </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Copy and save to buffer</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;C</B> on selected text </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Paste from buffer</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;V</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Move text to another location</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;X</B> at new location </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Copy text to another location</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;C</B> at new location </TD>
-		</TR>
-	 </TABLE>
-	 <P><B>To <I>move or copy</I> selected text to another location: </B></P>
-	 <OL>
-		<LI>Select the text (use <B>&lt;PF1&gt;M</B>).<BR><BR></LI>
-		<LI>Place the <I>cursor at the new location</I>.<BR><BR></LI>
-		<LI>Press <B>&lt;PF1&gt;X</B> (move text) or <B>&lt;PF1&gt;C</B> (copy
-		  text). </LI>
-	 </OL>
-	 <P><BR> </P>
-	 <P><B>To <I>save</I> text to the buffer so that you can paste one or more
-		times: </B></P>
-	 <OL>
-		<LI>Select the text (use <B>&lt;PF1&gt;M</B>).<BR><BR></LI>
-		<LI>With the <I>cursor on the selected text</I>, press
-		  <B>&lt;PF1&gt;X</B> (cut text to buffer) or <B>&lt;PF1&gt;C</B> (copy text to
-		  buffer). </LI>
-	 </OL>
-	 <P><BR> </P>
-	 <P><B>To <I>paste</I> text from the buffer: </B></P>
-	 <OL>
-		<LI>Move the cursor to the location you want to paste the
-		  text.<BR><BR></LI>
-		<LI>Press <B>&lt;PF1&gt;V</B>.</LI>
-	 </OL> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Deleting">Deleting</A></H5>
-	 <P>The following table illustrates the keystrokes you use to delete text
-		while in the Screen Editor:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	 SUMMARY="Screen Editor Deletion Commands Table"
-	 TITLE="Screen Editor Deletion Commands Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Action</B></TD>
-		  <TD VALIGN="TOP"><B>Key Sequence</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Character before cursor</TD>
-		  <TD VALIGN="TOP"><B>&lt;Backspace&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Character at cursor</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF4&gt;</B> or <B>&lt;Remove&gt;</B> or
-			 <B>&lt;Delete&gt;</B>
-			 <P>(which key depends on your terminal and keyboard type) </P> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Word at cursor</TD>
-		  <TD VALIGN="TOP"><B>&lt;Ctrl-W&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">From cursor to end of line</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;PF2&gt;</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Entire line</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;D</B></TD>
-		</TR>
-	 </TABLE> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H5><A NAME="Settings_Modes">Settings/Modes</A></H5>
-	 <P>The following table illustrates the keystrokes you use to change
-		settings and mode while in the Screen Editor:</P>
-	 <TABLE BORDER="1" WIDTH="100%"
-	 SUMMARY="Screen Editor Setting Modes Commands Table"
-	 TITLE="Screen Editor Setting Modes Commands Table">
-		<TR>
-		  <TD WIDTH="240"><B>Action</B></TD>
-		  <TD WIDTH="384"><B>Key Sequence</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Wrap/No Wrap mode toggle</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF2&gt;</B> <BR> If wrap is off, left and right
-			 margin settings are ignored.</TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Insert/Replace mode toggle</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF3&gt;</B> or <B>&lt;Insert Here&gt;</B> or
-			 <B>&lt;Insert&gt;</B> <BR> Determines whether new characters are inserted
-			 before existing text, or instead overwrite existing text. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Set/Clear tab stop</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;Tab&gt;</B> <BR> Change from default
-			 tab stops is effective for current session only. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Set left margin</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;Comma&gt;</B> <BR> Move cursor to
-			 desired left margin position first. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Set right margin</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;&lt;Period&gt;</B> <BR> Move cursor to
-			 desired right margin position first. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Status line toggle (on or off)</TD>
-		  <TD VALIGN="TOP"><B>&lt;PF1&gt;?</B> </TD>
-		</TR>
-	 </TABLE> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H4><A NAME="Troubleshooting">Troubleshooting</A></H4>
-	 <H5><A NAME="troubleshooting_1">Terminal Type Setting</A></H5>
-	 <P>The Screen Editor is designed for use on all terminal types known in the
-		Kernel computing environment. It is very important that your terminal type be
-		correctly identified to VA FileMan. Refer to the Kernel manuals for more
-		information about how terminal types are identified. Since the
-		<B>&lt;PF&gt;</B> keys are used in the Screen Editor, those keys should not be
-		reprogrammed. </P>
-	 <H5><A NAME="troubleshooting_2">&lt;PF&gt; Keys Not Working: How to
-		Exit</A></H5>
-	 <P>If your <B>&lt;PF&gt;</B> keys do not work in the Screen Editor, your
-		terminal type is probably set incorrectly. Before you can correct the setting,
-		you need to make an emergency exit from the editor by using one of the
-		following keystroke combinations: </P>
-	 <UL>
-		<LI>Press <B>&lt;Esc&gt;OPQ</B> (if your keyboard has an Escape
-		  key).<BR><BR></LI>
-		<LI>Press <B>&lt;Ctrl-[&gt;OPQ</B> (if your keyboard does not have an
-		  Escape key).<BR><BR></LI>
-		<LI>Press <B>&lt;Ctrl-A&gt;@&lt;RET&gt;Q</B> (if neither of the above
-		  methods work). </LI>
-	 </UL>
-	 <P><B>NOTE:</B> You <I>must</I> enter all letters in the above key
-		sequences in <I>uppercase</I>. </P> <HR ALIGN="CENTER" WIDTH="90%">
-	 <H4>Screen Editor and Personal Computers</H4>
-	 <H5><A NAME="Pasting">Pasting and Uploading</A></H5>
-	 <P>If you are accessing your hospital computer system from a personal
-		computer (PC), you can <I>paste</I> text from an application on the PC into the
-		Screen Editor, and also <I>upload</I> files into the Screen Editor. There are
-		some issues to be aware of when pasting text or uploading files into the Screen
-		Editor. </P>
-	 <H5><A NAME="pasting_1">Symbol Characters</A></H5>
-	 <P>Extended ASCII characters (typically "symbol" characters) cannot be
-		stored in WORD-PROCESSING fields. Examples of such characters include "smart
-		quote" characters, bullets, and symbols. Such characters, when encountered, are
-		stripped or replaced with a <B>space</B>, <B>'</B>, <B>"</B>, or <B>*</B>, as
-		appropriate. To avoid problems uploading these types of characters, you should:
-		</P>
-	 <UL>
-		<LI>Turn off "smart quotes" in your word processor on your personal
-		  computer.<BR><BR></LI>
-		<LI>Avoid using bullets.<BR><BR></LI>
-		<LI>Avoid using symbols in your text such as: &frac14;, &frac12;, and
-		  &ordm;. </LI>
-	 </UL>
-	 <H5><A NAME="pasting_2">Files: Save as Text</A></H5>
-	 <P>If you are uploading an entire word processing document (as opposed to
-		pasting), save it first as a "Text Only with Line Breaks" (or similar) file
-		type in your personal computer word processor. </P>
-	 <H5><A NAME="pasting_3">Wrap Vs. No Wrap</A></H5>
-	 <P>If your source document contains a carriage return at the end of every
-		line, turn WRAP off in the Screen Editor before you paste or upload by pressing
-		<B>&lt;PF2&gt;</B>. Turn it back on once the paste or upload is completed. If
-		your source document contains a carriage return at the end of each paragraph
-		only, however, leave WRAP on in the Screen Editor.</P>
-	 <H5><A NAME="pasting_4">Avoiding Lost Characters</A></H5>
-	 <P>If the host computer system can't keep up with the your text upload,
-		characters can get "lost." This can be a factor if you upload large quantities
-		of text or characters. This character loss can occur because pastes and ASCII
-		uploads don't use <I>error</I>-correcting communications protocols. </P>
-	 <P>If you notice characters getting lost, one way to solve this is to
-		adjust the "character pacing" (or similar) setting in your terminal emulation
-		program. This can slow down the transfer of text such that characters no longer
-		get lost due to communications overload. </P>
-	 <P>If you need to paste or upload large quantities of text, consider
-		switching to an Alternate Editor such as Kermit that uses an
-		<I>error</I>-correcting communications protocol. This automatically compensates
-		for communications overflows, preventing the loss of characters during text
-		transfer. To use Kermit, it must be installed as an Alternate Editor at your
-		site.</P>
-	 <P>&nbsp;</P>
-	 <HR CLASS="hrstyle">
-	 <P ALIGN="CENTER">Reviewed/Updated: 10 August 2016</P>
-	 <P>&nbsp;</P>
-  </BODY>
-</HTML>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Getting Started HTML Manual: Screen Editor</title>
+
+<meta name="subject" content="VA FileMan V. 22.0 Getting Started HTML Manual">
+<meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,editor,screen editor">
+<link rel="StyleSheet" type="text/css" href="getting_started.css"></head>
+<body topmargin="0">
+<br>
+<img src="common/fileman_gs_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="se_frm.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC" class="menubarlink">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">Word-processing Fields</a></h3>
+<hr class="hrstyle">
+<h4>Screen Editor</h4>
+<h5><a name="Introduction">Introduction</a></h5>
+<p>To edit the contents of WORD-PROCESSING-type fields in files,
+you need to use a word processing editor. VA FileMan provides two
+standard editors: the Screen Editor and the <a href="le_frm.htm" target="_top" title="Line Editor" class="bodylink">Line
+Editor</a>. The Screen Editor provides flexibility and freedom
+not provided by the <a href="le_frm.htm" target="_top" title="Line Editor" class="bodylink">Line Editor</a>.
+The Screen Editor provides such features as full-screen editing,
+automatic text wrapping, and search-and-replace. In most cases you
+would want your default editor to be the Screen Editor.</p>
+<p><b>NOTE:</b> To set your default editor, please
+refer to the "<a href="wp_swit.htm" title="Choice of Word-processing Editors" class="bodylink">Choice
+of Word-processing Editors</a>" chapter in this manual. <br>
+<br>
+For most people, the Screen Editor should be your Preferred Editor for
+WORD-PROCESSING fields.</p>
+<p>If you enter <b>&lt;PF1&gt;H</b> at any
+time in the Screen Editor, you can get online Help that lists all the
+available commands.</p>
+<p>At any time, while entering text using the Screen Editor, you
+can select a command. For example, at any time you can change your left
+margin, move to a different screen, save your document, or get online
+Help. To invoke most commands, you need to enter only two keystrokes:
+the <b>&lt;PF1&gt;</b> key and a character key,
+such as <b>D</b> for delete line.</p>
+<p>You'll usually find the <b>&lt;PF&gt;</b>
+keys at the right-hand side of your terminal keyboard, along with the
+numeric keypad. If you're using a personal computer rather than a
+computer terminal, the <b>&lt;PF&gt;</b> keys are
+mostly likely re-mapped to another set of keys (consult your IRM to
+find out to what keys the <b>&lt;PF1&gt;</b>
+through <b>&lt;PF4&gt;</b> are re-mapped). </p>
+<hr align="center" width="90%">
+<h5><a name="Main_screen">Main Screen</a></h5>
+<p>The Screen Editor display consists of a status bar at the top
+and a ruler at the bottom. Between the two status bars is the area
+where you create and edit text: </p>
+<p align="center"><img src="wp_1.gif" alt="Example of a WORD-PROCESSING Field in the Screen Editor." border="0" height="486" width="624"> </p>
+<hr align="center" width="90%">
+<h5><a name="Entering_text">Entering Text</a></h5>
+<p>When using the Screen Editor, you type your text as you
+normally would. As you type, the Screen Editor automatically wraps
+lines of text to fit within the left and right margins. There is no
+need to press the Enter/Return key at the end of each line. The Screen
+Editor accepts any printable characters as keyboard input. However, it
+cannot be used to edit text that contains control characters. </p>
+<hr align="center" width="90%">
+<h5><a name="Commands">Entering Commands</a></h5>
+<p>Editor commands are invoked using keyboard command sequences.
+The Screen Editor makes use of the <b>&lt;PF&gt;</b>
+keys, the cursor keypad, and, if available on the keyboard, the edit
+keypad to perform its editing functions. </p>
+<hr align="center" width="90%">
+<h5><a name="Cursor">Cursor Movement (Navigation)</a></h5>
+<p>The following table illustrates the keystrokes you use to
+navigate while in the Screen Editor:</p>
+<table summary="Screen Editor Cursor Movement (Navigation) Table" title="Screen Editor Cursor Movement (Navigation) Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Action</b></td>
+<td valign="top"><b>Key Sequence</b> </td>
+</tr>
+<tr>
+<td valign="top">Move one column left or right</td>
+<td valign="top"><b>&lt;ArrowLeft&gt;</b>
+or <b>&lt;ArrowRight&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Move one line up or down</td>
+<td valign="top"><b>&lt;ArrowUp&gt;</b>
+or <b>&lt;ArrowDown&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Move one word left or right</td>
+<td valign="top"><b>&lt;Ctrl-J&gt;</b>
+or <b>&lt;Ctrl-L&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Move to next tab stop to the right</td>
+<td valign="top"><b>&lt;Tab&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Move cursor left or right one
+screen </td>
+<td valign="top"><b>&lt;PF1&gt;&lt;ArrowLeft&gt;</b>
+or <b>&lt;PF1&gt;&lt;ArrowRight&gt;</b> </td>
+</tr>
+<tr>
+<td valign="top">Move cursor to beginning or end of
+line</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;PF1&gt;&lt;ArrowLeft&gt;</b>
+or <br>
+<b>&lt;PF1&gt;&lt;PF1&gt;&lt;ArrowRight&gt;</b>
+<br>
+OR: <b>&lt;Find&gt;</b> or <b>&lt;Select&gt;</b>
+<br>
+OR: <b>&lt;Home&gt;</b> or <b>&lt;End&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Move cursor one screen up or down</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;ArrowUp&gt;</b>
+or <b>&lt;PF1&gt;&lt;ArrowDown&gt;</b>
+<p>OR: <b>&lt;PrevScreen&gt;</b> or <b>&lt;NextScreen&gt;</b>
+</p>
+<p>OR: <b>&lt;Page Up&gt;</b> or <b>&lt;Page
+Down&gt;</b> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">Move to top or bottom of document</td>
+<td valign="top"><b>&lt;PF1&gt;T</b>
+or <b>&lt;PF1&gt;B</b> </td>
+</tr>
+<tr>
+<td valign="top">Go to a specific screen, line, or
+column.</td>
+<td valign="top"><b>&lt;PF1&gt;G</b></td>
+</tr>
+</tbody>
+</table>
+<p>You can <i>move forward quickly across a line</i>
+by pressing the Tab key (<b>&lt;Tab&gt;</b>). The
+Tab key in the Screen Editor does not insert anything into the text.
+The Tab key is for navigation only and simply moves the cursor to the
+next tab stop to the right. Another way to move across a line, either
+forward or backward, is to move a word at a time, using <b>&lt;Ctrl-J&gt;</b>
+or <b>&lt;Ctrl-L&gt;</b>. </p>
+<hr align="center" width="90%">
+<h5><a name="Exiting_Saving">Saving and Exiting</a></h5>
+<p>The following table illustrates the keystrokes you use to exit
+and/or save text while in the Screen Editor:</p>
+<table summary="Screen Editor Saving and Exiting Table" title="Screen Editor Saving and Exiting Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Action</b></td>
+<td valign="top"><b>Key Sequence</b> </td>
+</tr>
+<tr>
+<td valign="top">Exit and save text</td>
+<td valign="top"><b>&lt;PF1&gt;E
+&nbsp; &nbsp; or &nbsp; &nbsp; &nbsp; <img style="width: 60px; height: 30px;" alt="" src="22.gif">End the document with two successive &lt;RETURN&gt;s</b> </td>
+</tr>
+<tr>
+<td valign="top">Quit without saving</td>
+<td valign="top"><b>&lt;PF1&gt;Q</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Exit, save, and switch editors</td>
+<td valign="top"><b>&lt;PF1&gt;A</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Save without exiting</td>
+<td valign="top"><b>&lt;PF1&gt;S</b>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If your editing session ends unexpectedly because of hardware
+failure or another reason that prevents normal exiting, any changes
+you've made in the current WORD-PROCESSING field <i>are not</i>
+saved. On the other hand, if you time out when editing text, your
+changes <i>are</i> saved.</p>
+<hr align="center" width="90%">
+<h5><a name="Finding">Finding Text</a></h5>
+<p>The following table illustrates the keystrokes you use to find
+text while in the Screen Editor:</p>
+<table summary="Screen Editor Finding Text Commands Table" title="Screen Editor Finding Text Commands Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Action</b></td>
+<td valign="top"><b>Key Sequence</b> </td>
+</tr>
+<tr>
+<td valign="top">Find text <br>
+(<i>not</i> case sensitive)</td>
+<td valign="top"><b>&lt;PF1&gt;F</b>
+<br>
+Brings up a "Find" dialogue (see <a href="#find_dialogue" title="Sample Screen Editor Finding Text Image" class="bodylink">picture</a>
+below). To search for text downward, enter the text to find and press
+the Enter/Return key. To search for text upward, enter the text to find
+and press <b>&lt;ArrowUp&gt;</b>. </td>
+</tr>
+<tr>
+<td valign="top">Find next occurrence of text</td>
+<td valign="top"><b>&lt;PF1&gt;N</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Find/Replace text</td>
+<td valign="top"><b>&lt;PF1&gt;P</b>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p><a name="find_dialogue"><img src="wp_2.gif" alt="Example of the Find Dialogue Box in the Screen Editor." height="51" width="603"></a></p>
+<hr align="center" width="90%">
+<h5><a name="Formatting">Formatting Paragraphs</a></h5>
+<p>The following table illustrates the keystrokes you use to
+format paragraphs while in the Screen Editor:</p>
+<table summary="Screen Editor Formatting Paragraphs Commands Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Action</b></td>
+<td valign="top"><b>Key Sequence</b> </td>
+</tr>
+<tr>
+<td valign="top">Join and/or break the current line
+and next line </td>
+<td valign="top"><b>&lt;PF1&gt;J</b>
+<br>
+Make sure Wrap mode is on before joining or breaking lines (Toggle Wrap
+mode with <b>&lt;PF2&gt;</b>). </td>
+</tr>
+<tr>
+<td valign="top">Reformat paragraph <br>
+</td>
+<td valign="top"><b>&lt;PF1&gt;R</b>
+<br>
+Joins and/or breaks all lines between current line and next <i>blank</i>
+line, to create a word-wrapped paragraph. Make sure Wrap mode is on
+first (Toggle with <b>&lt;PF2&gt;</b>). <br>
+<br>
+<b>NOTE:</b> The reformat paragraph command is very
+useful! </td>
+</tr>
+</tbody>
+</table>
+<hr align="center" width="90%">
+<h5><a name="Cutting_Pasting">Cutting and Pasting</a></h5>
+<p>The following table illustrates the keystrokes you use to cut
+and paste text while in the Screen Editor:</p>
+<table summary="Screen Editor Cutting and Pasting Commands Table" title="Screen Editor Cutting and Pasting Commands Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Action</b></td>
+<td valign="top"><b>Key Sequence</b> </td>
+</tr>
+<tr>
+<td valign="top">Select/Mark text</td>
+<td valign="top"><b>&lt;PF1&gt;M</b>
+<br>
+Position the cursor at the beginning of the text you wish to select and
+press <b>&lt;PF1&gt;M</b>. Move the cursor to the
+end of the text you want and press <b>&lt;PF1&gt;M</b>
+again. The selected text is highlighted in reverse video. </td>
+</tr>
+<tr>
+<td valign="top">Deselect/Unmark text </td>
+<td valign="top"><b>&lt;PF1&gt;&lt;PF1&gt;M</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Delete selected text </td>
+<td valign="top"><b>&lt;Delete&gt;</b>
+or <b>&lt;Backspace&gt;</b> on selected text </td>
+</tr>
+<tr>
+<td valign="top">Cut and save to buffer</td>
+<td valign="top"><b>&lt;PF1&gt;X</b>
+on selected text </td>
+</tr>
+<tr>
+<td valign="top">Copy and save to buffer</td>
+<td valign="top"><b>&lt;PF1&gt;C</b>
+on selected text </td>
+</tr>
+<tr>
+<td valign="top">Paste from buffer</td>
+<td valign="top"><b>&lt;PF1&gt;V</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Move text to another location</td>
+<td valign="top"><b>&lt;PF1&gt;X</b>
+at new location </td>
+</tr>
+<tr>
+<td valign="top">Copy text to another location</td>
+<td valign="top"><b>&lt;PF1&gt;C</b>
+at new location </td>
+</tr>
+</tbody>
+</table>
+<p><b>To <i>move or copy</i> selected text to
+another location: </b></p>
+<ol>
+<li>Select the text (use <b>&lt;PF1&gt;M</b>).<br>
+<br>
+</li>
+<li>Place the <i>cursor at the new location</i>.<br>
+<br>
+</li>
+<li>Press <b>&lt;PF1&gt;X</b> (move text)
+or <b>&lt;PF1&gt;C</b> (copy text). </li>
+</ol>
+<p><br>
+</p>
+<p><b>To <i>save</i> text to the buffer so
+that you can paste one or more times: </b></p>
+<ol>
+<li>Select the text (use <b>&lt;PF1&gt;M</b>).<br>
+<br>
+</li>
+<li>With the <i>cursor on the selected text</i>,
+press <b>&lt;PF1&gt;X</b> (cut text to buffer) or <b>&lt;PF1&gt;C</b>
+(copy text to buffer). </li>
+</ol>
+<p><br>
+</p>
+<p><b>To <i>paste</i> text from the buffer: </b></p>
+<ol>
+<li>Move the cursor to the location you want to paste the text.<br>
+<br>
+</li>
+<li>Press <b>&lt;PF1&gt;V</b>.</li>
+</ol>
+<hr align="center" width="90%">
+<h5><a name="Deleting">Deleting</a></h5>
+<p>The following table illustrates the keystrokes you use to
+delete text while in the Screen Editor:</p>
+<table summary="Screen Editor Deletion Commands Table" title="Screen Editor Deletion Commands Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Action</b></td>
+<td valign="top"><b>Key Sequence</b> </td>
+</tr>
+<tr>
+<td valign="top">Character before cursor</td>
+<td valign="top"><b>&lt;Backspace&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Character at cursor</td>
+<td valign="top"><b>&lt;PF4&gt;</b>
+or <b>&lt;Remove&gt;</b> or <b>&lt;Delete&gt;</b>
+<p>(which key depends on your terminal and keyboard type) </p>
+</td>
+</tr>
+<tr>
+<td valign="top">Word at cursor</td>
+<td valign="top"><b>&lt;Ctrl-W&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">From cursor to end of line</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;PF2&gt;</b>
+</td>
+</tr>
+<tr>
+<td valign="top">Entire line</td>
+<td valign="top"><b>&lt;PF1&gt;D</b></td>
+</tr>
+</tbody>
+</table>
+<hr align="center" width="90%">
+<h5><a name="Settings_Modes">Settings/Modes</a></h5>
+<p>The following table illustrates the keystrokes you use to
+change settings and mode while in the Screen Editor:</p>
+<table summary="Screen Editor Setting Modes Commands Table" title="Screen Editor Setting Modes Commands Table" border="1" width="100%">
+<tbody>
+<tr>
+<td width="240"><b>Action</b></td>
+<td width="384"><b>Key Sequence</b> </td>
+</tr>
+<tr>
+<td valign="top">Wrap/No Wrap mode toggle</td>
+<td valign="top"><b>&lt;PF2&gt;</b>
+<br>
+If wrap is off, left and right margin settings are ignored.</td>
+</tr>
+<tr>
+<td valign="top">Insert/Replace mode toggle</td>
+<td valign="top"><b>&lt;PF3&gt;</b>
+or <b>&lt;Insert Here&gt;</b> or <b>&lt;Insert&gt;</b>
+<br>
+Determines whether new characters are inserted before existing text, or
+instead overwrite existing text. </td>
+</tr>
+<tr>
+<td valign="top">Set/Clear tab stop</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;Tab&gt;</b>
+<br>
+Change from default tab stops is effective for current session only. </td>
+</tr>
+<tr>
+<td valign="top">Set left margin</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;Comma&gt;</b>
+<br>
+Move cursor to desired left margin position first. </td>
+</tr>
+<tr>
+<td valign="top">Set right margin</td>
+<td valign="top"><b>&lt;PF1&gt;&lt;Period&gt;</b>
+<br>
+Move cursor to desired right margin position first. </td>
+</tr>
+<tr>
+<td valign="top">Status line toggle (on or off)</td>
+<td valign="top"><b>&lt;PF1&gt;?</b>
+</td>
+</tr>
+</tbody>
+</table>
+<hr align="center" width="90%">
+<h4><a name="Troubleshooting">Troubleshooting</a></h4>
+<h5><a name="troubleshooting_1">Terminal Type Setting</a></h5>
+<p>The Screen Editor is designed for use on all terminal types
+known in the Kernel computing environment. It is very important that
+your terminal type be correctly identified to VA FileMan. Refer to the
+Kernel manuals for more information about how terminal types are
+identified. Since the <b>&lt;PF&gt;</b> keys are
+used in the Screen Editor, those keys should not be reprogrammed. </p>
+<h5><a name="troubleshooting_2">&lt;PF&gt;
+Keys Not Working: How to Exit</a></h5>
+<p>If your <b>&lt;PF&gt;</b> keys do not
+work in the Screen Editor, your terminal type is probably set
+incorrectly. Before you can correct the setting, you need to make an
+emergency exit from the editor by using one of the following keystroke
+combinations: </p>
+<ul>
+<li>Press <b>&lt;Esc&gt;OPQ</b> (if your
+keyboard has an Escape key).<br>
+<br>
+</li>
+<li>Press <b>&lt;Ctrl-[&gt;OPQ</b> (if
+your keyboard does not have an Escape key).<br>
+<br>
+</li>
+<li>Press <b>&lt;Ctrl-A&gt;@&lt;RET&gt;Q</b>
+(if neither of the above methods work). </li>
+</ul>
+<p><b>NOTE:</b> You <i>must</i> enter
+all letters in the above key sequences in <i>uppercase</i>.
+</p>
+<hr align="center" width="90%">
+<h4>Screen Editor and Personal Computers</h4>
+<h5><a name="Pasting">Pasting and Uploading</a></h5>
+<p>If you are accessing your hospital computer system from a
+personal computer (PC), you can <i>paste</i> text from an
+application on the PC into the Screen Editor, and also <i>upload</i>
+files into the Screen Editor. There are some issues to be aware of when
+pasting text or uploading files into the Screen Editor. </p>
+<h5><a name="pasting_1">Symbol Characters</a></h5>
+<p>Extended ASCII characters (typically "symbol" characters)
+cannot be stored in WORD-PROCESSING fields. Examples of such characters
+include "smart quote" characters, bullets, and symbols. Such
+characters, when encountered, are stripped or replaced with a <b>space</b>,
+<b>'</b>, <b>"</b>, or <b>*</b>,
+as appropriate. To avoid problems uploading these types of characters,
+you should: </p>
+<ul>
+<li>Turn off "smart quotes" in your word processor on your
+personal computer.<br>
+<br>
+</li>
+<li>Avoid using bullets.<br>
+<br>
+</li>
+<li>Avoid using symbols in your text such as: ¼, ½, and º. </li>
+</ul>
+<h5><a name="pasting_2">Files: Save as Text</a></h5>
+<p>If you are uploading an entire word processing document (as
+opposed to pasting), save it first as a "Text Only with Line Breaks"
+(or similar) file type in your personal computer word processor. </p>
+<h5><a name="pasting_3">Wrap Vs. No Wrap</a></h5>
+<p>If your source document contains a carriage return at the end
+of every line, turn WRAP off in the Screen Editor before you paste or
+upload by pressing <b>&lt;PF2&gt;</b>. Turn it
+back on once the paste or upload is completed. If your source document
+contains a carriage return at the end of each paragraph only, however,
+leave WRAP on in the Screen Editor.</p>
+<h5><a name="pasting_4">Avoiding Lost Characters</a></h5>
+<p>If the host computer system can't keep up with the your text
+upload, characters can get "lost." This can be a factor if you upload
+large quantities of text or characters. This character loss can occur
+because pastes and ASCII uploads don't use <i>error</i>-correcting
+communications protocols. </p>
+<p>If you notice characters getting lost, one way to solve this
+is to adjust the "character pacing" (or similar) setting in your
+terminal emulation program. This can slow down the transfer of text
+such that characters no longer get lost due to communications overload.
+</p>
+<p>If you need to paste or upload large quantities of text,
+consider switching to an Alternate Editor such as Kermit that uses an <i>error</i>-correcting
+communications protocol. This automatically compensates for
+communications overflows, preventing the loss of characters during text
+transfer. To use Kermit, it must be installed as an Alternate Editor at
+your site.</p>
+<p>&nbsp;</p>
+<hr class="hrstyle">
+<p align="center">Reviewed/Updated: October 2016</p>
+<p>&nbsp;</p>
+</body></html>

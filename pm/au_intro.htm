@@ -1,73 +1,51 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by George Timson, 4/3/2002-->
-<!--Revised by Strack Susan, 11/26/02-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: Auditing API</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,auditing">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
-  </HEAD>
-	<BODY TOPMARGIN="0" BGCOLOR="white">
-  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="br_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Browser API Chapter TOC">Chapter</A></TD>
-		  
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../u2/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
-	 </TABLE> 
-	 <!-- Content -->
-	 <H3><A NAME="navskip">Auditing API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Auditing Introduction</H4> 
-	 <P>Auditing allows VA FileMan users and programmers to look back through
-the dimension of time at prior values in any file.  Auditing is not just a tool that enhances quality control and system security.
-It also allows the easy retrieval of 'old' values like "address", "maiden
-     name,&quot; and so on.
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by George Timson, 4/3/2002--><!--Revised by Strack Susan, 11/26/02--><!--Edited March 2007, Hardhats.org-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Programmer Manual: Auditing API</title>
+
+<meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+<meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,auditing">
+<link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="0" style="background-color: white;">
+<br>
+<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="br_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Browser API Chapter TOC">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">Auditing API</a></h3>
+<hr class="hrstyle">
+<h4>Auditing Introduction</h4>
+<p>Auditing allows VA FileMan users and programmers to look back
+through
+the dimension of time at prior values in any file. Auditing is not just
+a tool that enhances quality control and system security.
+It also allows the easy retrieval of 'old' values like "address",
+"maiden name," and so on.
 Also, for the purpose of synchronizing databases remote from
-one another, it is particularly valuable to be able to determine, via the audit trail, which entries in 
-which files have been changed within a range of time.</P> 
-	 <P>VA FileMan provides a set of entry points so that you can include
-     auditing
-		functionality in your applications.</P> 
-	 <P>For more information about Auditing, see the "<A
-		HREF="../u2/au_frm.htm" TARGET="_top" TITLE="Auditing: VA FileMan V. 22.0 Advanced User HTML Manual"
-		CLASS="bodylink">Auditing</A>" chapter of "VA FileMan Advanced User
-		Manual."</P> <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
-	 <!-- au_intro.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
-	 <P>&nbsp;</P> 
-
-  </BODY>
-</HTML>
-
+one another, it is particularly valuable to be able to determine, via
+the audit trail, which entries in which files have been changed within
+a range of time.</p>
+<p>VA FileMan provides a set of entry points so that you can
+include auditing functionality in your applications.</p>
+<h4><img style="width: 60px; height: 30px;" alt="" src="22.gif"><big><span style="font-weight: normal;">Fileman now can do more than record </span><span style="font-style: italic; font-weight: normal;">changed</span><span style="font-weight: normal;"> data --
+audits for added, modified, or deleted fields. Now it can also record </span><span style="font-style: italic; font-weight: normal;">access to a
+specific entry in a file</span>.</big>
+</h4><p>For more information about Auditing, see the "<a href="../u2/au_frm.htm" target="_top" title="Auditing: VA FileMan V. 22.0 Advanced User HTML Manual" class="bodylink">Auditing</a>" chapter of "VA FileMan
+Advanced User Manual."</p>
+<p>&nbsp;</p>
+<hr class="hrstyle"><!-- au_intro.htm -->
+<p align="center">Reviewed/Updated: October 2016</p>
+<p>&nbsp;</p>
+</body></html>

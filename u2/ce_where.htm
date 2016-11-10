@@ -1,179 +1,197 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
+<html><head>
+<!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/27/03--><!--Edited March 2007, Hardhats.org-->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan V. 22.0 Advanced User Manual: On-the-Fly
+Computed Expressions</title>
 
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/27/03-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: On-the-Fly Computed
-		Expressions</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,computed expressions,computed,expressions,on-the-fly, on the fly, word-processing windows,windows,word processing,stuffing,output transforms,transforms">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
-  </HEAD> 
-  <BODY BGCOLOR="white" TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="ce_frm.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Computed Exptressions Chapter TOC"
-			 CLASS="menubarlink">Chapter</A></TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">Computed Expressions</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Where to Use Computed Expressions "On-the-Fly"</H4> 
-	 <P><B>"On-the-Fly" Computed Expressions</B> </P> 
-	 <P>In addition to permanently storing a computed expression in a data
-		dictionary, there are several places within VA FileMan's dialogue where you can
-		use a computed expression "<B>on-the-fly</B>:"</P> 
-	 <UL> 
-		<LI><A HREF="#Print" TITLE='"PRINT FIELD:" Prompt'
-		  CLASS="bodylink">"PRINT FIELD:" Prompt</A><BR><BR></LI> 
-		<LI><A HREF="#Search" TITLE='"SEARCH FOR FIELD:" Prompt'
-		  CLASS="bodylink">"SEARCH FOR FIELD:" Prompt</A><BR><BR></LI> 
-		<LI><A HREF="#Sort" TITLE='"SORT BY:" Prompt' CLASS="bodylink">"SORT BY:"
-		  Prompt</A><BR><BR></LI> 
-		<LI><A HREF="#Default" TITLE="Field Value Stuffing"
-		  CLASS="bodylink">Field Value Stuffing</A><BR><BR></LI> 
-		<LI><A HREF="#Output" TITLE="OUTPUT Transforms" CLASS="bodylink">OUTPUT
-		  Transforms</A><BR><BR></LI> 
-		<LI><A HREF="#Wp" TITLE="Word-processing Windows (| | )"
-		  CLASS="bodylink">Word-processing Windows (<B>| |</B>)</A></LI> 
-	 </UL> <HR> 
-	 <H5><A NAME="Print">"PRINT FIELD:" Prompt</A></H5> 
-	 <P>Whenever, you are within the Print or Search File Entries options, you
-		are asked:</P> 
-	 <PRE>    FIRST PRINT FIELD:</PRE> 
-	 <P> OR </P> 
-	 <PRE>    THEN PRINT FIELD:</PRE> 
-	 <P>You can answer with a computed expression. For example: </P> 
-	 <PRE>    FIRST PRINT FIELD: <B>SEX_&quot; &quot;_RELIGION;&quot;&quot;;L33</B></PRE> 
-	 <P>This computed expression will return the contents of the SEX and
-		RELIGION fields separated by a space. Notice that you can follow the computed
-		expression with print qualifiers: <B>;""</B> to suppress the column heading and
-		<B>;L33</B> to indicate that the COMPUTED field length can be 33 characters
-		long. </P> 
-	 <P>A user with programmer access can also enter M code at this prompt. The
-		M code must have a WRITE statement for anything that is to be written to the
-		report.</P> <HR> 
-	 <H5><A NAME="Search">"SEARCH FOR FIELD:" Prompt</A></H5> 
-	 <P>In the Search File Entries option, you can answer the</P> 
-	 <PRE>    SEARCH FOR FIELD:</PRE> 
-	 <P>prompt with a computed expression. </P> 
-	 <P>If the expression is Boolean (i.e., its value is either true or false),
-		you won't be asked the condition of the search, because the computed expression
-		itself specifies that condition. </P> 
-	 <P>A user with programmer access can also enter M code at this prompt. The
-		M code must set the variable X to whatever is to be compared against the search
-		value.</P> <HR> 
-	 <H5><A NAME="Sort">"SORT BY:" Prompt</A></H5> 
-	 <P>In Print or Search File Entries options, you can answer the</P> 
-	 <PRE>    SORT BY:</PRE> 
-	 <P>prompt with a computed expression. If you use a Boolean computed
-		expression, you won't be asked for the "START WITH" parameters. </P> 
-	 <P>A user with programmer access can also enter M code at this prompt. The
-		M code must set the variable X to the sort value.</P> 
-	 <P>Thus, if you want to print a list of the names of all patients who are
-		Baptists, you could enter: </P> 
-	 <PRE></PRE> <HR> 
-	 <PRE>Select OPTION: <B>PR</B>INT FILE ENTRIES 
+<meta name="subject" content="VA FileMan V. 22.0 Advanced User HTML Manual">
+<meta name="keywords" content="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,computed expressions,computed,expressions,on-the-fly, on the fly, word-processing windows,windows,word processing,stuffing,output transforms,transforms">
+<link rel="StyleSheet" type="text/css" href="user.css">
+</head>
+ 
+  <body topmargin="0" style="background-color: white;">
+<br>
+<img src="common/fileman_au_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="ce_frm.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Computed Exptressions Chapter TOC" class="menubarlink">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">Computed Expressions</a></h3>
+<hr class="hrstyle">
+<h4>Where to Use Computed Expressions "On-the-Fly"</h4>
+<p><b>"On-the-Fly" Computed Expressions</b> </p>
+<p>In addition to permanently storing a computed expression in a
+data dictionary, there are several places within VA FileMan's dialogue
+where you can use a computed expression "<b>on-the-fly</b>:"</p>
+<ul>
+<li><a href="#Print" title="&quot;PRINT FIELD:&quot; Prompt" class="bodylink">"PRINT FIELD:" Prompt</a><br>
+<br>
+</li>
+<li><a href="#Search" title="&quot;SEARCH FOR FIELD:&quot; Prompt" class="bodylink">"SEARCH
+FOR FIELD:" Prompt</a><br>
+<br>
+</li>
+<li><a href="#Sort" title="&quot;SORT BY:&quot; Prompt" class="bodylink">"SORT BY:" Prompt</a><br>
+<br>
+</li>
+<li><a href="#Sort"><img style="border: 0px solid ; width: 60px; height: 30px;" alt="" src="22.gif"></a><a href="#Sort" title="&quot;SORT BY:&quot; Prompt" class="bodylink">"Start with" and "Go to" SORT values</a><br>
+<br>
+</li>
 
-OUTPUT FROM WHAT FILE: <B>PATIENT</B>  
-SORT BY: <B>RELIGION=&quot;BAPTIST&quot; </B>
-   WITHIN RELIGION=&quot;BAPTIST&quot;, SORT BY: <B>&lt;RET&gt;</B>
-FIRST PRINT FIELD: <B>NAME</B> </PRE> <HR> 
-	 <P>This is a common way to select certain records for printing. </P> <HR> 
-	 <H5><A NAME="Default">Field Value Stuffing</A></H5> 
-	 <P>In the Enter or Edit File Entries option, you can follow the <B>//</B>
-		or <B>///</B> specifiers with computed expressions. The expression is evaluated
-		for the entry you are inputting and used as a
-		<A HREF="e3_intro.htm#defaults_variable" TITLE="variable stuff"
-		CLASS="bodylink">variable stuff</A> value. </P> 
-	 <P>Suppose you want to put the current contents of a patient's NEXT OF KIN
-		field into the BENEFICIARY field, with a notation that this value is
-		UNVERIFIED, for all patients who don't have a value in the BENEFICIARY field.
-		The dialogue would look like this: </P> 
-	 <PRE></PRE> <HR> 
-	 <PRE>Select OPTION: <B>ENT</B>ER OR EDIT FILE ENTRIES
-INPUT TO WHAT FILE: <B>PATIENT</B> 
-EDIT WHICH FIELD: <B>BENEFICIARY///NEXT OF KIN_&quot; (UNVERIFIED)&quot;</B>
-THEN EDIT FIELD: <B>&lt;RET&gt;</B>
-
-Select PATIENT NAME: <B>^LOOP</B> 
-    EDIT ENTRIES BY: <B>BENEFICIARY=&quot;&quot;</B> 
- WITHIN BENEFICIARY=&quot;&quot;, EDIT ENTRIES BY: <B>&lt;RET&gt;</B></PRE> <HR> 
-	 <P>This example uses two "on the fly" expressions: one in answer to the
-		"EDIT ENTRIES BY:" prompt (which is essentially a SORT BY for
-		<A HREF="e3_intro.htm#looping" TITLE="looping" CLASS="bodylink">looping</A>)
-		and one as the forced default value for the BENEFICIARY input field. </P> 
-	 <P>BENEFICIARY="" is a Boolean (True/False) computed expression that means
-		"The BENEFICIARY value equals null."</P> 
-	 <P>After the previous dialogue, the names of such patients would be printed
-		out, and their BENEFICIARY value would automatically be set equal to their NEXT
-		OF KIN field value, concatenated with a space followed by "(UNVERIFIED)." </P>
-	 <HR> 
-	 <H5><A NAME="Output">OUTPUT Transforms</A></H5> 
-	 <P>OUTPUT transforms change the way a field is displayed when printed.
-		Frequently, the OUTPUT transform will contain a computed expression that alters
-		the data stored internally in the field. A simple OUTPUT transform that
-		converts the internally stored date into MM/DD/YY format is: </P> 
-	 <PRE>    DATE OF BIRTH OUTPUT TRANSFORM: <B>NUMDATE(DATE OF BIRTH)</B></PRE> 
-	 <P>If an OUTPUT transform is applied to a field, the result of the
-		transform will be used if that field is used in another computed expression.
-		For example, if DATE OF BIRTH is used in a PRINT template, the "transformed"
-		value will be output:</P> 
-	 <PRE>    THEN PRINT FIELD: <B>NAME_&quot;'S BIRTHDAY: &quot;_DATE OF BIRTH</B></PRE> 
-	 <P>The result of this computed expression would be similar to: </P> 
-	 <PRE>    JOHN DOE'S BIRTHDAY: 03/07/42</PRE> <HR> 
-	 <H5><A NAME="Wp">Word-processing Windows (| |)</A></H5> 
-	 <P>When entering text into a field with a WORD-PROCESSING Data Type, you
-		can insert a computed expression within a <B>|Window|</B>. This expression will
-		be evaluated at the time the WORD-PROCESSING-type field is printed. If the
-		expression is meaningful, its value will replace the <B>|Window|</B> in the
-		printed output. </P> 
-	 <P>For example, you could embed within the text of the HISTORY
-		WORD-PROCESSING-type field a <B>|Window|</B> containing a COMPUTED field
-		expression: </P> 
-	 <PRE>    HISTORY:  
-    1&gt; <B>PATIENT IS A |SEX_&quot; &quot;_RELIGION| WHO HAS NO</B>
-    2&gt; <B>APPARENT PROBLEMS.</B></PRE> 
-	 <P>When this field is printed for a patient who has a SEX value of MALE and
-		a RELIGION value of CATHOLIC, the output would look like: </P> 
-	 <PRE>    PATIENT IS A MALE CATHOLIC WHO HAS NO 
-    APPARENT PROBLEMS.</PRE> 
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
-	 <!-- ce_where.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
-
-  </BODY>
-</HTML>
+<li><a href="#Default" title="Field Value Stuffing" class="bodylink">Field Value Stuffing</a><br>
+<br>
+</li>
+<li><a href="#Output" title="OUTPUT Transforms" class="bodylink">OUTPUT Transforms</a><br>
+<br>
+</li>
+<li><a href="#Wp" title="Word-processing Windows (| | )" class="bodylink">Word-processing
+Windows (<b>| |</b>)</a></li>
+</ul>
+<hr>
+<h5><big><big><a name="Print">"PRINT
+FIELD:" Prompt</a></big></big></h5>
+<p>Whenever, you are within the Print or Search File Entries
+options, you are asked:</p>
+<pre> FIRST PRINT FIELD:</pre>
+<p> OR </p>
+<pre> THEN PRINT FIELD:</pre>
+<p>You can answer with a computed expression. For example: </p>
+<pre> FIRST PRINT FIELD: <b>SEX_" "_RELIGION;"";L33</b></pre>
+<p>This computed expression will return the contents of the SEX
+and RELIGION fields separated by a space. Notice that you can follow
+the computed expression with print qualifiers: <b>;""</b>
+to suppress the column heading and <b>;L33</b> to indicate
+that the COMPUTED field length can be 33 characters long. </p>
+<p>A user with programmer access can also enter M code at this
+prompt. The M code must have a WRITE statement for anything that is to
+be written to the report.</p>
+<hr>
+<h5><big><big><a name="Search">"SEARCH
+FOR FIELD:" Prompt</a></big></big></h5>
+<p>In the Search File Entries option, you can answer the</p>
+<pre> SEARCH FOR FIELD:</pre>
+<p>prompt with a computed expression. </p>
+<p>If the expression is Boolean (i.e., its value is either true
+or false), you won't be asked the condition of the search, because the
+computed expression itself specifies that condition. </p>
+<p>A user with programmer access can also enter M code at this
+prompt. The M code must set the variable X to whatever is to be
+compared against the search value.</p>
+<hr>
+<h5><big><big><a name="Sort">"SORT BY:"
+Prompt</a></big></big></h5>
+<p>In Print or Search File Entries options, you can answer the</p>
+<pre> SORT BY:</pre>
+<p>prompt with a computed expression. If you use a Boolean
+computed expression, you won't be asked for the "START WITH"
+parameters. </p>
+<p>A user with programmer access can also enter M code at this
+prompt. The M code must set the variable X to the sort value.</p>
+<p>Thus, if you want to print a list of the names of all patients
+who are Baptists, you could enter: </p>
+<pre></pre>
+<hr>
+<pre>Select OPTION: <b>PR</b>INT FILE ENTRIES <br><br>OUTPUT FROM WHAT FILE: <b>PATIENT</b> <br>SORT BY: <b>RELIGION="BAPTIST" </b><br>WITHIN RELIGION="BAPTIST", SORT BY: FIRST PRINT FIELD: <b>NAME</b> </pre>
+<hr>
+<p>This is a common way to select certain records for printing.</p>
+<hr style="width: 100%; height: 2px;">
+<h5><big><big><big><big><a name="Default"></a><img style="width: 60px; height: 30px;" alt="" src="22.gif"><small><a name="Default">"Start with" and "Go to" SORT values</a></small></big></big></big></big></h5>
+In Print or Search File
+Entries options, if the <br>
+<br>
+&nbsp;SORT BY:<br>
+<br>
+prompt is answered, the user is asked for the range of values to sort
+by. &nbsp; Sometimes it is convenient to have the values of these
+answers be computed at run time. &nbsp; In such cases, if the
+answers are preceded with "@" signs, they may be understood as computed
+expressions.<br>
+<br>
+For example, if we wanted the range of a certain date-valued field to
+be calculated as the week up to the day the output is run, we could
+enter:<br>
+<hr style="width: 100%; height: 2px;">Select
+OPTION:&nbsp; PRINT FILE ENTRIES<br>
+<br>
+Output from what File:
+PTF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Sort by: NUMBER// DISCHARGE DATE<br>
+Start with DISCHARGE DATE: FIRST// @TODAY-6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DO YOU MEAN 'TODAY-6' AS A VARIABLE? Yes//&nbsp;&nbsp; (Yes)<br>
+Go to DISCHARGE DATE: LAST// @TODAY<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DO YOU MEAN 'TODAY' AS A VARIABLE? Yes//&nbsp;&nbsp; (Yes)<br>
+&nbsp; Within DISCHARGE DATE, Sort by:<br>
+....<big><big><big><big><br>
+</big></big></big></big>
+<hr>
+<h5><big><big><big><a name="Default">Field
+Value Stuffing</a></big></big></big></h5>
+<p>In the Enter or Edit File Entries option, you can follow the <b>//</b>
+or <b>///</b> specifiers with computed expressions. The
+expression is evaluated for the entry you are inputting and used as a <a href="e3_intro.htm#defaults_variable" title="variable stuff" class="bodylink">variable stuff</a> value. </p>
+<p>Suppose you want to put the current contents of a patient's
+NEXT OF KIN field into the BENEFICIARY field, with a notation that this
+value is UNVERIFIED, for all patients who don't have a value in the
+BENEFICIARY field. The dialogue would look like this: </p>
+<pre></pre>
+<hr>
+<pre>Select OPTION: <b>ENT</b>ER OR EDIT FILE ENTRIES<br>INPUT TO WHAT FILE: <b>PATIENT</b> <br>EDIT WHICH FIELD: <b>BENEFICIARY///NEXT OF KIN_" (UNVERIFIED)"</b><br>THEN EDIT FIELD: Select PATIENT NAME: <b>^LOOP</b> <br> EDIT ENTRIES BY: <b>BENEFICIARY=""</b> <br> WITHIN BENEFICIARY="", EDIT ENTRIES BY: </pre>
+<hr>
+<p>This example uses two "on the fly" expressions: one in answer
+to the "EDIT ENTRIES BY:" prompt (which is essentially a SORT BY for <a href="e3_intro.htm#looping" title="looping" class="bodylink">looping</a>) and one as the forced
+default value for the BENEFICIARY input field. </p>
+<p>BENEFICIARY="" is a Boolean (True/False) computed expression
+that means "The BENEFICIARY value equals null."</p>
+<p>After the previous dialogue, the names of such patients would
+be printed out, and their BENEFICIARY value would automatically be set
+equal to their NEXT OF KIN field value, concatenated with a space
+followed by "(UNVERIFIED)." </p>
+<hr>
+<h5><big><big><a name="Output">OUTPUT
+Transforms</a></big></big></h5>
+<p>OUTPUT transforms change the way a field is displayed when
+printed. Frequently, the OUTPUT transform will contain a computed
+expression that alters the data stored internally in the field. A
+simple OUTPUT transform that converts the internally stored date into
+MM/DD/YY format is: </p>
+<pre> DATE OF BIRTH OUTPUT TRANSFORM: <b>NUMDATE(DATE OF BIRTH)</b></pre>
+<p>If an OUTPUT transform is applied to a field, the result of
+the transform will be used if that field is used in another computed
+expression. For example, if DATE OF BIRTH is used in a PRINT template,
+the "transformed" value will be output:</p>
+<pre> THEN PRINT FIELD: <b>NAME_"'S BIRTHDAY: "_DATE OF BIRTH</b></pre>
+<p>The result of this computed expression would be similar to: </p>
+<pre> JOHN DOE'S BIRTHDAY: 03/07/42</pre>
+<hr>
+<h5><big><big><a name="Wp">Word-processing
+Windows (| |)</a></big></big></h5>
+<p>When entering text into a field with a WORD-PROCESSING Data
+Type, you can insert a computed expression within a <b>|Window|</b>.
+This expression will be evaluated at the time the WORD-PROCESSING-type
+field is printed. If the expression is meaningful, its value will
+replace the <b>|Window|</b> in the printed output. </p>
+<p>For example, you could embed within the text of the HISTORY
+WORD-PROCESSING-type field a <b>|Window|</b> containing a
+COMPUTED field expression: </p>
+<pre> HISTORY: <br> 1&gt; <b>PATIENT IS A |SEX_" "_RELIGION| WHO HAS NO</b><br>2&gt; <b>APPARENT PROBLEMS.</b></pre>
+<p>When this field is printed for a patient who has a SEX value
+of MALE and a RELIGION value of CATHOLIC, the output would look like: </p>
+<pre> PATIENT IS A MALE CATHOLIC WHO HAS NO <br> APPARENT PROBLEMS.</pre>
+<p>&nbsp;</p>
+<hr class="hrstyle"><!-- ce_where.htm -->
+<p align="center">Reviewed/Updated: October 2016</p>
+<p>&nbsp;</p>
+</body></html>

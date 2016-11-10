@@ -1,72 +1,54 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 6/20/01-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: ScreenMan Introduction</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman api,screenman,api,calls,introduction">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
-  </HEAD>
-	<BODY TOPMARGIN="0" BGCOLOR="white">
-<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="sm_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan API Chapter TOC">Chapter</A></TD>
-		  
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../u2/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>ScreenMan API Introduction</H4> 
-	 <P>VA FileMan's ScreenMan utility provides a screen-oriented interface for
-		editing and displaying data. The API described in this chapter provides entry
-		points for loading a ScreenMan form and entry points you can use at various
-		places within a ScreenMan form. </P> 
-	 <P><B>See Also</B></P> 
-	 <UL> 
-		<LI>"<A HREF="sf_frm.htm" TARGET="_top" TITLE="ScreenMan Forms"
-		  CLASS="bodylink">ScreenMan Forms</A>" chapter<BR><BR></LI> 
-		<LI>"<A HREF="fe_frm.htm" TARGET="_top" TITLE="ScreenMan Form Editor"
-		  CLASS="bodylink">ScreenMan Form Editor</A>" chapter<BR><BR></LI> 
-		<LI>"<A HREF="http://vista.med.va.gov/fileman/docs/scrnman/"
-		  TARGET="_top" TITLE="ScreenMan Tutorial" CLASS="bodylink">ScreenMan
-		  Tutorial</A>"</LI> 
-	 </UL> 
-	 <P></P>
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
-	 <!-- sm_intro.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
-	 <P>&nbsp;</P> 
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 6/20/01-->
 
-  </BODY>
-</HTML>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Programmer Manual: ScreenMan Introduction</title>
 
+<meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+<meta name="keywords" content="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman api,screenman,api,calls,introduction">
+<link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="0" style="background-color: white;">
+<br>
+<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="sm_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan API Chapter TOC">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">ScreenMan API</a></h3>
+<hr class="hrstyle">
+<h4>ScreenMan API Introduction</h4>
+<p>VA FileMan's ScreenMan utility provides a screen-oriented
+interface for editing and displaying data. The API described in this
+chapter provides entry points for loading a ScreenMan form and entry
+points you can use at various places within a ScreenMan form.</p><img style="width: 60px; height: 30px;" alt="" src="22.gif">
+In Verson 22.2, ScreenMan recognizes mouse clicks. If
+you do not want Screenman to recognize mouse clicks, use the Kernel
+parameter that is named &#8220;DI SCREENMAN NO MOUSE&#8221;.&nbsp; <p><b>See Also</b></p>
+<ul>
+<li>"<a href="sf_frm.htm" target="_top" title="ScreenMan Forms" class="bodylink">ScreenMan
+Forms</a>" chapter<br>
+<br>
+</li>
+<li>"<a href="fe_frm.htm" target="_top" title="ScreenMan Form Editor" class="bodylink">ScreenMan
+Form Editor</a>" chapter<br>
+<br>
+</li>
+<li>"<a href="http://vista.med.va.gov/fileman/docs/scrnman/" target="_top" title="ScreenMan Tutorial" class="bodylink">ScreenMan
+Tutorial</a>"</li>
+</ul>
+<p></p>
+<p>&nbsp;</p>
+<hr class="hrstyle"><!-- sm_intro.htm -->
+<p align="center">Reviewed/Updated: October 2016</p>
+<p>&nbsp;</p>
+</body></html>

@@ -1,92 +1,73 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Strack Susan, 11/26/02-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: Assigning a Location for Fields Stored
-		within a Global </TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
-  </HEAD>
-	<BODY TOPMARGIN="0" BGCOLOR="white">
-  	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="afd_frm.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Advanced File Definition Chapter TOC"
-			 CLASS="menubarlink">Chapter</A></TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../u2/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">Advanced File Definition</A></H3> 
-	 <H4>Field Global Storage</H4> <HR CLASS="hrstyle"> 
-	 <H5>Assigning a Location for Fields Stored within a Global</H5> 
-	 <P>When creating a new Field, (Modify File Attributes option), press the
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 11/26/02--><!--Edited March 2007, Hardhats.org-->
+
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan Programmer Manual: Assigning a Location for Fields Stored within a Global</title><meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,advanced file definitions,file definitions,definitions,files">
+	 <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+ 
+  <body topmargin="0" bgcolor="white">
+  	<br><img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="afd_frm.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Advanced File Definition Chapter TOC" class="menubarlink">Chapter</a></td> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">Advanced File Definition</a></h3> 
+	 <h4>Field Global Storage</h4> <hr class="hrstyle"> 
+	 <h5><big>Assigning a Location for Fields Stored within a Global</big></h5> 
+	 <p>When creating a new Field, (Modify File Attributes option), press the
 		Enter/Return key at the "IS THIS FIELD MULTIPLE" window. If you are a
 		programmer, you are asked in a "pop-up" window for the global subscript and
 		^-piece position to specify where in each file entry to store the data element
 		being defined. If, for example, you were creating a field that you wanted to be
 		stored in the first ^-piece position of the global subscript DEMOG for every
-		entry, you would enter the following: </P> 
-	 <P ALIGN="CENTER"><IMG SRC="Subloc.jpg"
-		ALT="Example of Creating a Field (Assigning a Location for Fields Stored within a Global)."
-		WIDTH="640" HEIGHT="455"> </P> 
-	 <P>To aid in the process, VA FileMan prompts you with the highest subscript
+		entry, you would enter the following: </p> 
+	 <p align="center"><img src="Subloc.jpg" alt="Example of Creating a Field (Assigning a Location for Fields Stored within a Global)." height="455" width="640"> </p> 
+	 <p>To aid in the process, VA FileMan prompts you with the highest subscript
 		previously used for the file, and then, when the subscript has been entered, it
 		prompts the ^-piece position one past the highest previously assigned for that
 		subscript. FileMan ensures that no more than 250 characters of data will be
 		stored in any single global node and that no two fields are assigned to the
-		same subscript and ^-piece position. </P> 
-	 <P>Note that at the bottom of the screen, a list of the Global subscripts
-		already in use is displayed. </P> 
-	 <H5>Storing Data by Position within a Node</H5> 
-	 <P>You may occasionally wish to store a field's data by character position
+		same subscript and ^-piece position. </p> 
+	 <p>Note that at the bottom of the screen, a list of the Global subscripts
+		already in use is displayed.</p><p> </p> 
+	 <h5><big>Storing Data by Character Position within a Node</big></h5> 
+	 <p>You may occasionally wish to store a field's data by character position
 		within the global node, rather than by ^-piece position. This is called extract
 		storage instead of ^-piece storage. To accomplish this, after specifying a
 		subscript, respond to the ^-piece prompt with Em,n where m is the first
 		character position for data storage and n is the last. For example, to store
-		data in character positions 1 to 3 of subscript 20, do the following: </P> 
-	 <PRE>    SUBSCRIPT: <B>20
-</B>    ^-PIECE POSITION: <B>E1,3</B> 
-
-</PRE> 
-	 <P>One advantage of specifying your field data location using the Em,n
-		format is that <B>^</B> can be part of the stored data. It is recommended that
-		you do not mix extract and ^-piece storage on the same global node. </P>
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
+		data in character positions 1 to 3 of subscript 20, do the following: </p> 
+	 <pre>    SUBSCRIPT: <b>20<br></b>    ^-PIECE POSITION: <b>E1,3</b> <br><br></pre> 
+	 <p>One advantage of specifying your field data location using the Em,n
+		format is that <b>^</b> can be part of the stored data. &nbsp;Do not mix extract and ^-piece storage on the same global node.</p><p></p><p><img style="width: 60px; height: 30px;" alt="" src="22.gif"><span style="font-weight: bold;">Maximum length of data nodes</span></p><p style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;"></span>Traditionally,
+FileMan limited the calculated length of a data storage node to 245
+characters. &nbsp;This was in accordance with the&nbsp;MUMPS
+Portability Standard. &nbsp; A programmer can now increase this
+limitation by setting the global node</p><p style="font-family: Helvetica,Arial,sans-serif;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^DD(&#8220;STRING_LIMIT&#8221;)<br></p><span style="font-size: 11pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;"><small style="font-family: Helvetica,Arial,sans-serif;">to
+a higher number. &nbsp; This enables easy storage of data that is
+intrinsically lengthy. &nbsp;Be aware that any system to which such
+data is exported must also be capable of storing longer MUMPS strings.</small> </span><p>&nbsp;</p> 
+	 <hr class="hrstyle">
 	 <!-- afd_2.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
+	 <p align="center">Reviewed/Updated: October 2016</p>
+	 <p>&nbsp;</p> 
 
-  </BODY>
-</HTML>
+  </body></html>

@@ -25,7 +25,7 @@ td { font-family: Verdana, Georgia, "New Century Schoolbook", Palatino, serif; f
 th { font-family: Verdana, Georgia, "New Century Schoolbook", Palatino, serif; font-size: 70%; }
 
 /* These rules make the headers display in a certain typeface and size  */
-
+					
 h1	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
 h2	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
 h3	{ font-family: Arial, Verdana, Tahoma, Helvetica, Univers, Zurich BT, sans-serif }
@@ -58,53 +58,3 @@ a.menubarlink:hover {color: black; text-decoration: none; font-family: Verdana, 
 a.bodylink:link { color: blue; text-decoration: underline; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; }
 /* a.bodylink:visited { color: blue; text-decoration: underline; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; } */
 a.bodylink:hover { color: black; text-decoration: none; font-family: Verdana, Arial, Helvetica, Univers, Zurich BT; }
-
-/* Added by VEN/SMH for FM 22.2 */
-.badge {
-    background: yellow;
-    width: 40px;
-    height: 10px;
-    border-radius: 3px;
-    border: none;
-		margin-right: 5px;
-		padding: 0px 5px;
-		font-weight: bold;
-}
-.warn {
-    background: red;
-    width: 40px;
-    height: 10px;
-    border-radius: 3px;
-    border: none;
-		margin-right: 5px;
-		padding: 0px 5px;
-		font-weight: bold;
-    color: white;
-}
-code, samp, kbd, pre {
-	font-family: "Courier New", Courier, monospace, sans-serif;
-	text-align: left;
-	color: #555;
-	}
-pre code {
-	line-height: 1.6em;
-	font-size: 11px;
-	}
-pre {
-  font-size: 11px;
-	padding: 0.1em 0.5em 0.3em 0.7em;
-	border-left: 11px solid #ccc;
-	margin: 1.7em 0 1.7em 0.3em;
-	overflow: auto;
-	width: 93%;
-  background-color: #efeff5;
-	}
-.parameters
-{
-  border-collapse: collapse;
-}
-.parameters>tbody>tr>td
-{
-  border: 1px solid black;
-  margin: 0;
-}

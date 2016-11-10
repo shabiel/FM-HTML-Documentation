@@ -1,267 +1,230 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/30/03-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Getting Started HTML Manual: Adding and Deleting
-		Records</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,adding records,deleting records,adding and deleting records">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css"> 
-  </HEAD> 
-  <BODY TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	 <P>&nbsp;</P> 
-	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="ad_frm.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Adding and Deleting Records Chapter TOC"
-			 CLASS="menubarlink">Chapter</A></TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u2/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			 CLASS="menubarlink">Advanced User Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD> 
-		</TR> 
-	 </TABLE> 
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/30/03--><!--Edited March 2007, Hardhats.org-->
+
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan Getting Started HTML Manual: Adding and Deleting Records</title><meta name="subject" content="VA FileMan V. 22.0 Getting Started HTML Manual">
+	 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,adding records,deleting records,adding and deleting records">
+	 <link rel="StyleSheet" type="text/css" href="getting_started.css"></head>
+ 
+  <body topmargin="0">
+	<br><img src="common/fileman_gs_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	 <p>&nbsp;</p> 
+	 <table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="ad_frm.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual: Adding and Deleting Records Chapter TOC" class="menubarlink">Chapter</a></td> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td> 
+		</tr> 
+	 </tbody></table> 
 	 <!-- Content -->
-	 <H3><A NAME="navskip">Editing Records</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Adding and Deleting Records</H4> 
-	 <H5><A NAME="01_field">.01 Field</A> </H5> 
-	 <P>The ".01 field" is the most important field in a file. For the records
+	 <h3><big><a name="navskip">Editing Records</a></big></h3> <hr class="hrstyle"> 
+	 <h4><big>Adding and Deleting Records</big></h4> 
+	 <h5><a name="01_field">.01 Field</a> </h5> 
+	 <p>The ".01 field" is the most important field in a file. For the records
 		in a file, it usually identifies the record more than any other single field;
 		for example, the .01 field of the PATIENT file is NAME. The .01 field of a WARD
-		file might be WARD NAME. </P> 
-	 <P>Usually in an edit dialogue, the .01 field is the field you are prompted
+		file might be WARD NAME. </p> 
+	 <p>Usually in an edit dialogue, the .01 field is the field you are prompted
 		for when you choose a record to edit. Typically it's also the first field you
-		actually edit once you've chosen the record. </P> 
-	 <P>The .01 field plays a role in both adding and deleting entries in a
-		file. To <I>add</I> an entry to a file, you usually enter a new value at the
-		.01 field's prompt. To <I>delete</I> an entry to a file, you usually enter an
-		at-sign ("<B>@</B>") in the entry's .01 field. </P> <HR> 
-	 <H5><A NAME="add">How to Add a Record</A></H5> 
-	 <P>As you may recall from the "<A HREF="ov_frm.htm" TARGET="_top"
-		TITLE="Overview/Basics" CLASS="bodylink">Overview/Basics</A>" chapter, an entry
-		is a complete record in a file. To <I>add</I> a new entry to a file, enter the
+		actually edit once you've chosen the record. </p> 
+	 <p>The .01 field plays a role in both adding and deleting entries in a
+		file. To <i>add</i> an entry to a file, you usually enter a new value at the
+		.01 field's prompt. To <i>delete</i> an entry to a file, you usually enter an
+		at-sign ("<b>@</b>") in the entry's .01 field. </p> <hr> 
+	 <h5><big><a name="add">How to Add a Record</a></big></h5> 
+	 <p>As you may recall from the "<a href="ov_frm.htm" target="_top" title="Overview/Basics" class="bodylink">Overview/Basics</a>" chapter, an entry
+		is a complete record in a file. To <i>add</i> a new entry to a file, enter the
 		name of the new entry at the "Select..." prompt where you ordinarily choose
-		which record in the file to edit: </P> 
-	 <P ALIGN="CENTER"><IMG SRC="ad_1.gif" WIDTH="558" HEIGHT="93"
-		ALT="Example of Adding a New/Updated with VA FileMan V. 22.0 Record in a File.">
-		</P> 
-	 <P>This is the prompt for the record's .01 field (see above). If you enter
+		which record in the file to edit: </p> 
+	 <p align="center"><img src="ad_1.gif" alt="Example of Adding a New/Updated with VA FileMan V. 22.0 Record in a File." height="93" width="558">
+		</p> 
+	 <p>This is the prompt for the record's .01 field (see above). If you enter
 		a name that does not exist in the file, you are prompted "Are you adding
 		'XXXXXXXX' as a new 'ENTRY'?," where "XXXXXXXX" represents the field value and
 		"ENTRY" represents the field or file name. If LAYGO is allowed and you answer
 		YES to this prompt, VA FileMan will add the new entry to the file. You then go
-		on to edit other fields for the new entry.</P> 
-	 <P> If a file has one or more data Keys defined (i.e., fields or
+		on to edit other fields for the new entry.</p> 
+	 <p> If a file has one or more data Keys defined (i.e., fields or
 		combinations of fields that uniquely identify a record), then those fields must
-		also be filled in before the new entry will be added. There must <I>not</I> be
+		also be filled in before the new entry will be added. There must <i>not</i> be
 		any other records on the file that have the same values in all of those
-		fields.&nbsp;<IMG SRC="new.gif"
-		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> 
-	 <P>Finally, there may be a set of required fields (identifiers) for the new
-		entry; these must be filled in with values for the new entry to be saved.</P>
-	 <HR> 
-	 <H5><A NAME="same_name">Adding a Duplicate Record</A> (Use Quotes) </H5> 
-	 <P>What if there is already a "HENRY,JOHN" in the PATIENT file, and you
+		fields.&nbsp;</p> 
+	 <p>Finally, there may be a set of required fields (identifiers) for the new
+		entry; these must be filled in with values for the new entry to be saved.</p>
+	 <hr> 
+	 <h5><big><a name="same_name">Adding a Duplicate Record</a> (Use Quotes)</big> </h5> 
+	 <p>What if there is already a "HENRY,JOHN" in the PATIENT file, and you
 		need to add a second entry with the name "HENRY,JOHN"? Simply entering that
 		name at the "Select..." prompt selects the existing entry. To create a
-		<I>second</I> HENRY,JOHN entry, even though one with that name <I>already</I>
-		exists, enter the entry name you want to add, but with <I>quotation marks</I>
-		around it: </P> 
-	 <P></P> 
-	 <P ALIGN="CENTER"><IMG SRC="ad_2.gif"
-		ALT="Example of Adding a Duplicate Record (sam name)." WIDTH="624"
-		HEIGHT="109"> </P> 
-	 <P></P> 
-	 <P>See the "<A HREF="#adding_pointed_to"
-		TITLE="Adding Records at a POINTER TO A FILE" CLASS="bodylink">Adding Records
-		at a POINTER TO A FILE Field</A>" topic for instructions on adding entries with
-		the same name to pointed-to files from POINTER TO A FILE DATA TYPE fields. </P>
+		<i>second</i> HENRY,JOHN entry, even though one with that name <i>already</i>
+		exists, enter the entry name you want to add, but with <i>quotation marks</i>
+		around it: </p> 
+	 <p></p> 
+	 <p align="center"><img src="ad_2.gif" alt="Example of Adding a Duplicate Record (sam name)." height="109" width="624"> </p> 
+	 <p></p> 
+	 <p>See the "<a href="#adding_pointed_to" title="Adding Records at a POINTER TO A FILE" class="bodylink">Adding Records
+		at a POINTER TO A FILE Field</a>" topic for instructions on adding entries with
+		the same name to pointed-to files from POINTER TO A FILE DATA TYPE fields. </p>
 	 
-	 <P>If a record has a data Key defined (i.e., fields or combinations of
+	 <p>If a record has a data Key defined (i.e., fields or combinations of
 		fields that uniquely identify a record), and if the data Key contains more than
 		one field, then it would be possible to add a second Henry,John without using
 		quotes. Suppose the Key fields were the NAME and the DATE OF BIRTH. Then the
 		user would be prompted for both NAME and DATE OF BIRTH, and assuming that the
 		DATE OF BIRTH of the second Henry,John were different from the existing record,
-		VA FileMan would allow the user to add the new Henry,John <I>without</I>
-		enclosing the name in quotes.&nbsp;<IMG SRC="new.gif"
-		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> <HR> 
-	 <H5><A NAME="deleting">How to Delete a Record</A> </H5> 
-	 <P>To delete an existing record in a file, enter an at-sign ("<B>@</B>") in
+		VA FileMan would allow the user to add the new Henry,John <i>without</i>
+		enclosing the name in quotes.&nbsp;</p> <hr> 
+	 <h5><big><a name="deleting">How to Delete a Record</a> </big></h5> 
+	 <p>To delete an existing record in a file, enter an at-sign ("<b>@</b>") in
 		the record's .01 field. This tells VA FileMan to delete the record. In all
 		deletions, you're asked to confirm the deletion before VA FileMan goes ahead
-		and deletes the record. Here is an example of deleting a record in a file: </P>
+		and deletes the record. Here is an example of deleting a record in a file: </p>
 	 
-	 <P></P> 
-	 <P ALIGN="CENTER"><IMG SRC="ad_3.gif" WIDTH="558" HEIGHT="123"
-		ALT="Example of Deleting a Record Using the At-Sign."> </P> 
-	 <P></P> <HR> 
-	 <H5><A NAME="repointing">Repointing When Deleting Records</A></H5> 
-	 <P>What if a record in another file points to the record you're deleting?
-		</P> 
-	 <P>If you delete a record that is pointed to from another file, this would
+	 <p></p> 
+	 <p align="center"><img src="ad_3.gif" alt="Example of Deleting a Record Using the At-Sign." height="123" width="558"> </p> 
+	 <p></p> <hr> 
+	 <h5><a name="repointing">Repointing When Deleting Records</a></h5> 
+	 <p>What if a record in another file points to the record you're deleting?
+		</p> 
+	 <p>If you delete a record that is pointed to from another file, this would
 		leave a dangling pointer that points to a non-existent entry. To prevent this,
 		if the record you delete could be pointed to from another file, you're given
 		the opportunity to either delete any pointers to the deleted record, or change
-		them all to point to another record. </P> 
-	 <P>For example, an entry in the PATIENT file may have a field that points
+		them all to point to another record. </p> 
+	 <p>For example, an entry in the PATIENT file may have a field that points
 		to a doctor in the PROVIDER file. If you delete the doctor from the PROVIDER
 		file, you should say what should happen to any entries in other files,
-		including PATIENT, that point to this doctor. </P> 
-	 <P>In the example below, when we delete the MCCOY doctor record, we will
-		re-point any entries that had been pointing to MCCOY to point to SMITH. </P> 
-	 <P></P> 
-	 <P ALIGN="CENTER"><IMG SRC="ad_4.gif" WIDTH="606" HEIGHT="317"
-		ALT="Example of Repointing Records After Deleting a Record."> </P> 
-	 <P></P> 
-	 <P>When you leave the Enter or Edit File Entries option, the updating is
+		including PATIENT, that point to this doctor. </p> 
+	 <p>In the example below, when we delete the MCCOY doctor record, we will
+		re-point any entries that had been pointing to MCCOY to point to SMITH. </p> 
+	 <p></p> 
+	 <p align="center"><img src="ad_4.gif" alt="Example of Repointing Records After Deleting a Record." height="317" width="606"> </p> 
+	 <p></p> 
+	 <p>When you leave the Enter or Edit File Entries option, the updating is
 		done. A report is generated listing all changed entries; you need to specify on
-		what device this report should be listed: </P> 
-	 <P></P> 
-	 <P ALIGN="CENTER"><IMG SRC="ad_5.gif" WIDTH="576" HEIGHT="218"
-		ALT="Sample Report of Repointed Records."> </P> 
-	 <P></P> <HR> 
-	 <H5><A NAME="adding_pointed_to">Adding Records at a POINTER TO A FILE
-		Field</A> </H5> 
-	 <P>Suppose you're editing a POINTER TO A FILE-type field. This lets you
+		what device this report should be listed: </p> 
+	 <p></p> 
+	 <p align="center"><img src="ad_5.gif" alt="Sample Report of Repointed Records." height="218" width="576"> </p> 
+	 <p></p> <hr> 
+	 <h5><big><a name="adding_pointed_to">Adding Records at a POINTER TO A FILE
+		Field</a> </big></h5> 
+	 <p>Suppose you're editing a POINTER TO A FILE-type field. This lets you
 		choose an entry from another file to point to. If you have LAYGO access to the
-		pointed-to file, you can also <I>add</I> new entries to it when editing the
-		POINTER TO A FILE field. </P> 
-	 <P>For example, suppose you are editing the TITLE field in the NEW PERSON
+		pointed-to file, you can also <i>add</i> new entries to it when editing the
+		POINTER TO A FILE field. </p> 
+	 <p>For example, suppose you are editing the TITLE field in the NEW PERSON
 		file, which is a POINTER TO A FILE type field that "points" to the TITLE file.
 		What if you want to choose a TITLE that's not already in the TITLE file? You
-		can add it as in the example below: </P> 
-	 <P></P> 
-	 <P ALIGN="CENTER"><IMG SRC="ad_6.gif" WIDTH="606" HEIGHT="331"
-		ALT="Example of Adding a New/Updated with VA FileMan V. 22.0 Field Type (LAYGO access).">
-		</P> 
-	 <P></P> 
-	 <P>In this example, after adding WARD CLERK as a new entry, if you go back
-		to the TITLE field and enter two question marks ("<B>??</B>") again, WARD CLERK
-		would be one of the choices listed for TITLE.</P> 
-	 <P><B>Adding Duplicate-Named Entries</B></P> 
-	 <P>You can force an entry to be added to the pointed-to file even if an
+		can add it as in the example below: </p> 
+	 <p></p> 
+	 <p align="center"><img src="ad_6.gif" alt="Example of Adding a New/Updated with VA FileMan V. 22.0 Field Type (LAYGO access)." height="331" width="606">
+		</p> 
+	 <p></p> 
+	 <p>In this example, after adding WARD CLERK as a new entry, if you go back
+		to the TITLE field and enter two question marks ("<b>??</b>") again, WARD CLERK
+		would be one of the choices listed for TITLE.</p> 
+	 <p><b>Adding Duplicate-Named Entries</b></p> 
+	 <p>You can force an entry to be added to the pointed-to file even if an
 		entry with the same value already exists in the pointed-to file. To add a
-		duplicate-named entry, surround the value to be added with <I>one</I> set of
-		quotation marks, like this: </P> 
-	 <PRE>    POINTER FIELD:  <B>&quot;FORCED NEW ENTRY&quot;</B></PRE> 
-	 <P>If the POINTER TO A FILE field that you are editing happens to be the
+		duplicate-named entry, surround the value to be added with <i>one</i> set of
+		quotation marks, like this: </p> 
+	 <pre>    POINTER FIELD:  <b>"FORCED NEW ENTRY"</b></pre> 
+	 <p>If the POINTER TO A FILE field that you are editing happens to be the
 		NAME (#.01) field of the current file, you can add entries to both the current
-		file and to the pointed-to file by surrounding your value with <I>two</I> sets
-		of quotation marks as follows: </P> 
-	 <PRE>    POINTER FIELD (.01):  <B>&quot;&quot;FORCED NEW ENTRY&quot;&quot;</B></PRE> <HR> 
-	 <H5><A NAME="multiples">Adding and Deleting from Multiples</A></H5> 
-	 <P>Some special considerations apply when you are editing Multiple-valued
+		file and to the pointed-to file by surrounding your value with <i>two</i> sets
+		of quotation marks as follows: </p> 
+	 <pre>    POINTER FIELD (.01):  <b>""FORCED NEW ENTRY""</b></pre> <hr> 
+	 <h5><big><a name="multiples">Adding and Deleting from Multiples</a></big></h5> 
+	 <p>Some special considerations apply when you are editing Multiple-valued
 		fields. One example of a Multiple field is the DIAGNOSIS field in the PATIENT
 		file. As you may recall from the
-		<A HREF="he_frm.htm" TARGET="_top" TITLE="About Each Field Type"
-		CLASS="bodylink">About Each Field Type</A> chapter in this manual, a Multiple
+		<a href="he_frm.htm" target="_top" title="About Each Field Type" class="bodylink">About Each Field Type</a> chapter in this manual, a Multiple
 		is a field in a record that can store multiple Subrecords. In this case, VA
 		FileMan must be able to store multiple diagnosis entries for a single patient,
-		and it uses a Multiple field to do so:</P> 
-	 <P></P> 
-	 <P ALIGN="CENTER"><IMG SRC="ad_7.gif"
-		ALT="Example of Adding Data to a Multiple Field in a Record." WIDTH="624"
-		HEIGHT="306" BORDER="0"> </P> 
-	 <P></P> 
-	 <P>Multiples have .01 fields, just like records at the top level of a file.
+		and it uses a Multiple field to do so:</p> 
+	 <p></p> 
+	 <p align="center"><img src="ad_7.gif" alt="Example of Adding Data to a Multiple Field in a Record." border="0" height="306" width="624"> </p> 
+	 <p></p> 
+	 <p>Multiples have .01 fields, just like records at the top level of a file.
 		Thus, just as with records at the top level of a file, you select entries in
 		the Multiple at the Multiple's "Select..." prompt. You can also add a new entry
 		by typing it in at the Multiple's "Select..." prompt. You can delete an entry
-		in a Multiple by entering an at-sign ("<B>@</B>") in the existing entry's .01
-		field.</P> 
-	 <P>Enter a single question mark ("<B>?</B>") at a Multiple's "Select..."
+		in a Multiple by entering an at-sign ("<b>@</b>") in the existing entry's .01
+		field.</p> 
+	 <p>Enter a single question mark ("<b>?</b>") at a Multiple's "Select..."
 		prompt to retrieve brief Help for the field; enter two question marks
-		("<B>??</B>") to choose from the list of entries in the Multiple.</P> <HR> 
-	 <H5><A NAME="option">Enter or Edit File Entries Option</A></H5> 
-	 <P>In most cases you enter and edit data through application programs.
+		("<b>??</b>") to choose from the list of entries in the Multiple.</p> <hr> 
+	 <h5><big><big><a name="option">Enter or Edit File Entries Option</a></big></big></h5> 
+	 <p>In most cases you enter and edit data through application programs.
 		Applications are pre-programmed to allow you to edit specific files, and often
 		only a subset of the fields in any given file. The application shields you from
 		many aspects of editing the file data, such as even knowing the name of the
 		file you are working with. Usually, this information is already chosen for you
-		by the application. </P> 
-	 <P>You can also edit data in a file directly, however, using VA FileMan's
+		by the application. </p> 
+	 <p>You can also edit data in a file directly, however, using VA FileMan's
 		Enter or Edit File Entries option. Your ability to edit data in any given file
-		depends on:</P> 
-	 <UL> 
-		<LI>Whether you have the Enter or Edit File Entries option on your
-		  menu.<BR><BR></LI> 
-		<LI>Whether you have access to edit the file in question.</LI> 
-	 </UL> 
-	 <P>The steps to use the Enter or Edit File Entries option are:</P> 
-	 <OL> 
-		<LI>At the "INPUT TO WHAT FILE:" prompt, choose which file to edit. To
+		depends on:</p> 
+	 <ul> 
+		<li>Whether you have the Enter or Edit File Entries option on your
+		  menu.<br><br></li> 
+		<li>Whether you have access to edit the file in question.</li> 
+	 </ul> 
+	 <p>The steps to use the Enter or Edit File Entries option are:</p> 
+	 <ol> 
+		<li>At the "INPUT TO WHAT FILE:" prompt, choose which file to edit. To
 		  see what files you have access to, you can enter two question marks
-		  ("<B>??</B>") at this prompt: 
-		  <PRE>
-</PRE> <HR> 
-		  <PRE>INPUT TO WHAT FILE: <B>??</B>
+		  ("<b>??</b>") at this prompt: 
+		  <pre></pre> <hr> 
+		  <pre>INPUT TO WHAT FILE: <b>??</b>
      Choose from:
        335235          CATHY'S DATA            (7 entries)
        335238          PROJECTS               (3 entries)
        335668          WARD HISTORY           (178 entries)
 
-    INPUT TO WHAT FILE: <B>PROJECTS</B>
-</PRE> <HR> </LI> 
-		<LI><A NAME="Step2">At</A> the "EDIT WHICH FIELD:" prompt, choose what
+    INPUT TO WHAT FILE: <b>PROJECTS</b>
+</pre> <hr> </li> 
+		<li><a name="Step2">At</a> the "EDIT WHICH FIELD:" prompt, choose what
 		  fields to edit for each file entry. The easiest response is to just accept the
 		  default of ALL fields by pressing the Enter/Return key: 
-		  <PRE>    EDIT WHICH FIELD: ALL// </PRE> 
-		  <P>If, however, you want to edit only <I>certain fields</I> (not
-			 <I>all</I> fields), answer the "EDIT WHICH FIELD:" prompt with the name (or
+		  <pre>    EDIT WHICH FIELD: ALL// </pre> 
+		  <p>If, however, you want to edit only <i>certain fields</i> (not
+			 <i>all</i> fields), answer the "EDIT WHICH FIELD:" prompt with the name (or
 			 number) of the FIRST field you want to edit. You can then enter additional
 			 fields to edit (when you are done, press the Enter/Return key at the "THEN EDIT
 			 FIELD:" prompt). For a list of fields you can edit, enter two question marks at
-			 any "EDIT FIELD:" prompt.</P> 
-		  <PRE>
-</PRE> <HR> 
-		  <PRE>EDIT WHICH FIELD: ALL// <B>NAME</B>
-    THEN EDIT FIELD: <B>PROJECT SHORT DESCRIPTION</B>
-    THEN EDIT FIELD: <B>PROJECT ISSUE &lt;RET&gt;</B>  (multiple)
-       EDIT WHICH PROJECT ISSUE SUB-FIELD: ALL// <B>&lt;RET&gt;</B>
-    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+			 any "EDIT FIELD:" prompt.</p> 
+		  <pre></pre> <hr> 
+		  <pre>EDIT WHICH FIELD: ALL// <b>NAME</b>
+    THEN EDIT FIELD: <b>PROJECT SHORT DESCRIPTION</b>
+    THEN EDIT FIELD: <b>PROJECT ISSUE &lt;RET&gt;</b>  (multiple)<br>       EDIT WHICH PROJECT ISSUE SUB-FIELD: ALL// <b>&lt;RET&gt;</b>
+    THEN EDIT FIELD: <b>&lt;RET&gt;</b>
     Select PROJECTS NAME:
-</PRE> <HR> </LI> 
-		<LI>You can now edit entries. Choose each entry to edit at the
+</pre> <hr> </li> 
+		<li>You can now edit entries. Choose each entry to edit at the
 		  "Select...NAME:" prompt. Each time you choose an entry, you step through each
-		  field you specified in <A HREF="#Step2" TITLE="Step 2" CLASS="bodylink">Step
-		  2</A> above. When you are done with editing an entry, you are prompted for
+		  field you specified in <a href="#Step2" title="Step 2" class="bodylink">Step
+		  2</a> above. When you are done with editing an entry, you are prompted for
 		  another entry to edit at the "Select..." prompt. When you are done editing
 		  entries, just press the Enter/Return key. 
-		  <P></P> 
-		  <P ALIGN="CENTER"><IMG SRC="ad_8.gif" WIDTH="618" HEIGHT="729"
-			 ALT="Example of Editing Entries in a Field."> </P> </LI> 
-	 </OL> 
-	 <P>&nbsp;</P>
-	 <HR CLASS="hrstyle"> 
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P>
+		  <p></p> 
+		  <p align="center"><img src="ad_8.gif" alt="Example of Editing Entries in a Field." height="729" width="618"> </p> </li> 
+	 </ol> 
+	 <p>&nbsp;</p>
+	 <hr class="hrstyle"> 
+	 <p align="center">Reviewed/Updated: Octber 2016</p>
+	 <p>&nbsp;</p>
 	 
-  </BODY>
-</HTML>
+  </body></html>

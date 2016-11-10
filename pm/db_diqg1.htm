@@ -1,47 +1,26 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<html>
-<head>
-<!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 12/03/02--><!--Edited March 2007, Hardhats.org-->
-  <meta http-equiv="Content-Type"
- content="text/html; charset=iso-8859-1">
-  <title>VA FileMan Programmer Manual: $$GET1^DIQ( )</title>
-  <meta name="subject"
- content="VA FileMan V. 22.0 Programmer HTML Manual">
-  <meta name="keywords"
- content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$get1^diq(),diq">
-  <link rel="StyleSheet" type="text/css" href="programmer.css">
-</head>
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 12/03/02--><!--Edited March 2007, Hardhats.org-->
+
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  
+  <title>VA FileMan Programmer Manual: $$GET1^DIQ( )</title><meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+  <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$get1^diq(),diq">
+  <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+
 <body topmargin="0" bgcolor="white">
 <br>
-<img src="common/fileman_pm_heading.gif"
- alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0"
- height="29" width="429"> <br>
+<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429"> <br>
 <hr align="left" color="blue" width="429"> <br>
 <p>&nbsp;</p>
-<table class="tdstyle"
- summary="This table is for formatting purposes only" valign="TOP"
- border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
   <tbody>
     <tr>
-      <td class="menubartext" align="left" height="1" valign="bottom"
- width="10%">Contents:</td>
-      <td align="left" height="1" valign="bottom" width="7%"> <a
- href="index.htm" target="_top"
- title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
- class="menubarlink">Main</a> </td>
-      <td align="left" height="1" valign="bottom" width="17%"><a
- href="dba_frm.htm" target="_top" class="menubarlink"
- title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
-      <td class="menubartext" align="left" height="1" valign="bottom"
- width="10%">See Also: </td>
-      <td align="left" height="1" valign="bottom" width="28%"><a
- href="../u1/index.htm" target="_top"
- title="VA FileMan V. 22.0 Getting Started HTML Manual"
- class="menubarlink">Getting Started Manual</a></td>
-      <td colspan="4" align="left" height="1" valign="bottom"
- width="28%"> <a href="../u2/index.htm" target="_top"
- title="VA FileMan V. 22.0 Advanced User HTML Manual"
- class="menubarlink">Advanced User Manual</a></td>
+      <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+      <td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+      <td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
+      <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+      <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+      <td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
     </tr>
   </tbody>
 </table>
@@ -64,8 +43,7 @@ resolved TARGET_ROOT. Otherwise null is returned. </p>
 <h5>Format</h5>
 <pre>$$GET1^DIQ(FILE,IENS,FIELD,FLAGS,TARGET_ROOT,MSG_ROOT)<br></pre>
 <h5>Input Parameters</h5>
-<table summary="This table is for formatting purposes only" border="1"
- width="100%">
+<table summary="This table is for formatting purposes only" border="1" width="100%">
   <tbody>
     <tr>
       <td valign="top"><b>FILE</b></td>
@@ -83,8 +61,7 @@ resolved TARGET_ROOT. Otherwise null is returned. </p>
       <td valign="top"><b>FIELD</b></td>
       <td colspan="2" valign="top"> (Required) Field number, or field
 name, or <b>On-the-fly
-Computed Expression</b> for the FILE.<img src="new.gif" alt="NEW"
- style="border: 0px solid ; width: 35px; height: 11px;"> </td>
+Computed Expression</b> for the FILE. </td>
     </tr>
     <tr>
       <td rowspan="4" valign="top"><b>FLAGS </b></td>
@@ -106,8 +83,7 @@ fields on target array. </td>
     <tr>
       <td valign="top"><b>A#</b></td>
       <td valign="top"><b>A</b>udit Trail is used to retrieve the value
-of 'FIELD' at a particular point in time.<img src="new.gif" alt="NEW"
- style="border: 0px solid ; width: 35px; height: 11px;">
+of 'FIELD' at a particular point in time.
       <br>
 # is a date/time in FileMan internal format (e.g., 3021015.8). The
 value retrieved is the (audited) value of the field as of that
@@ -178,96 +154,78 @@ that
 field, and that early in 2000, an incorrect spelling of "DOE,JOHN" had
 been corrected:
 </p>
-<pre>&nbsp;&nbsp;&nbsp; &gt;<b>W $$GET1^DIQ(999000,"1,",.01,"A3000000")<img
- src="new.gif" alt="NEW" height="11" width="35">
+<pre>&nbsp;&nbsp;&nbsp; &gt;<b>W $$GET1^DIQ(999000,"1,",.01,"A3000000")
 </b>&nbsp;&nbsp;&nbsp; DORE,JOHN<br></pre>
 <h5>Error Codes Returned</h5>
-<table summary="This table is for formatting purposes only" border="1"
- width="100%">
+<table summary="This table is for formatting purposes only" border="1" width="100%">
   <tbody>
     <tr>
-      <td valign="top"><b><a href="err_200.htm" title="Error 200"
- class="bodylink">200</a></b></td>
+      <td valign="top"><b><a href="err_200.htm" title="Error 200" class="bodylink">200</a></b></td>
       <td valign="top">There is an error in one of the variables
 passed. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_202.htm" title="Error 202"
- class="bodylink">202</a></b></td>
+      <td valign="top"><b><a href="err_202.htm" title="Error 202" class="bodylink">202</a></b></td>
       <td valign="top">Missing or invalid input parameter. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_301.htm" title="Error 301"
- class="bodylink">301</a></b></td>
+      <td valign="top"><b><a href="err_301.htm" title="Error 301" class="bodylink">301</a></b></td>
       <td valign="top">Flags passed are unknown or incorrect. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_309.htm" title="Error 309"
- class="bodylink">309</a></b></td>
+      <td valign="top"><b><a href="err_309.htm" title="Error 309" class="bodylink">309</a></b></td>
       <td valign="top">Either the root of the multiple or the necessary
 entry numbers are missing. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_348.htm" title="Error 348"
- class="bodylink">348</a></b></td>
+      <td valign="top"><b><a href="err_348.htm" title="Error 348" class="bodylink">348</a></b></td>
       <td valign="top">The passed value points to a file that does not
 exist or lacks a Header Node. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_401.htm" title="Error 401"
- class="bodylink">401</a></b></td>
+      <td valign="top"><b><a href="err_401.htm" title="Error 401" class="bodylink">401</a></b></td>
       <td valign="top">The specified file or subfile does not exist. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_403.htm" title="Error 403"
- class="bodylink">403</a></b></td>
+      <td valign="top"><b><a href="err_403.htm" title="Error 403" class="bodylink">403</a></b></td>
       <td valign="top">The file lacks a Header Node. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_404.htm" title="Error 404"
- class="bodylink">404</a></b></td>
+      <td valign="top"><b><a href="err_404.htm" title="Error 404" class="bodylink">404</a></b></td>
       <td valign="top">The file Header Node lacks a file #. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_501.htm" title="Error 501"
- class="bodylink">501</a></b></td>
+      <td valign="top"><b><a href="err_501.htm" title="Error 501" class="bodylink">501</a></b></td>
       <td valign="top">The field name or number does not exist. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_505.htm" title="Error 505"
- class="bodylink">505</a></b></td>
+      <td valign="top"><b><a href="err_505.htm" title="Error 505" class="bodylink">505</a></b></td>
       <td valign="top">The field name passed is ambiguous. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_510.htm" title="Error 510"
- class="bodylink">510</a></b></td>
+      <td valign="top"><b><a href="err_510.htm" title="Error 510" class="bodylink">510</a></b></td>
       <td valign="top">The data type for the specified field cannot be
 determined. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_520.htm" title="Error 520"
- class="bodylink">520</a></b></td>
+      <td valign="top"><b><a href="err_520.htm" title="Error 520" class="bodylink">520</a></b></td>
       <td valign="top">An incorrect kind of field is being processed. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_537.htm" title="Error 537"
- class="bodylink">537</a></b></td>
+      <td valign="top"><b><a href="err_537.htm" title="Error 537" class="bodylink">537</a></b></td>
       <td valign="top">Field has a corrupted pointer definition. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_601.htm" title="Error 601"
- class="bodylink">601</a></b></td>
+      <td valign="top"><b><a href="err_601.htm" title="Error 601" class="bodylink">601</a></b></td>
       <td valign="top">The entry does not exist. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_603.htm" title="Error 603"
- class="bodylink">603</a></b></td>
+      <td valign="top"><b><a href="err_603.htm" title="Error 603" class="bodylink">603</a></b></td>
       <td valign="top">A specific entry in a specific file lacks a
 value for a required field. </td>
     </tr>
     <tr>
-      <td valign="top"><b><a href="err_648.htm" title="Error 648"
- class="bodylink">648</a></b></td>
+      <td valign="top"><b><a href="err_648.htm" title="Error 648" class="bodylink">648</a></b></td>
       <td valign="top">The value points to a file that does not exist
 or lacks a Header Node. </td>
     </tr>
@@ -276,7 +234,6 @@ or lacks a Header Node. </td>
 <p></p>
 <p>&nbsp;</p>
 <hr class="hrstyle"><!-- db_diqg1.htm -->
-<p align="center">Reviewed/Updated: March 10, 2007</p>
+<p align="center">Reviewed/Updated: October 2016</p>
 <p>&nbsp;</p>
-</body>
-</html>
+</body></html>

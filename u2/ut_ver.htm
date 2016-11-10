@@ -1,78 +1,55 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/27/03-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan VA FileMan V. 22.0 Advanced User Manual: File Utilities -
-		Verify Fields </TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,file utilities,utilities,verify fields,verify,fields">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
-  </HEAD> 
-  <BODY TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="ut_frm.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: File Utilities Chapter TOC"
-			 CLASS="menubarlink">Chapter</A></TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">File Utilities</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Verify Fields</H4> 
-	 <P>The Verify Fields option uses a field's definition to verify the data
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/27/03--><!--Edited March 2007, Hardhats.org-->
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan VA FileMan V. 22.0 Advanced User Manual: File Utilities - Verify Fields</title><meta name="subject" content="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <meta name="keywords" content="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,file utilities,utilities,verify fields,verify,fields">
+	 <link rel="StyleSheet" type="text/css" href="user.css"></head>
+<body topmargin="0">
+	<br><img src="common/fileman_au_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+	<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="ut_frm.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: File Utilities Chapter TOC" class="menubarlink">Chapter</a></td> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">File Utilities</a></h3> <hr class="hrstyle"> 
+	 <h4>Verify Fields</h4> 
+	 <p>The Verify Fields option uses a field's definition to verify the data
 		stored in a file. After invoking this option, you can ask to verify all
 		existing values of a particular field by entering its label at the "VERIFY
-		WHICH FIELD:" prompt; or you can ask that <I>all</I> fields at a given file
-		level be verified by entering ALL at the prompt. </P> 
-	 <P>If more than one discrepancy is found between the current definition and
+		WHICH FIELD:" prompt; or you can ask that <i>all</i> fields at a given file
+		level be verified by entering ALL at the prompt.</p><p>This option's basic function is to apply a field's INPUT TRANSFORM against all existing values of the field. &nbsp;<img style="width: 60px; height: 30px;" alt="" src="../u1/22.gif">It now also checks cross-referenced fields for duplicates and dangling pointers in the cross-references. </p> 
+	 <p>If more than one discrepancy is found between the current definition and
 		the data on file, you will be asked if you want to save the list of those
 		entries containing the inconsistent data in a template. Later you would be able
-		to "SORT BY:" the entries in this template to display or edit them.</P> 
-	 <P><B>NOTE:</B> For information on how to execute or avoid executing any
+		to "SORT BY:" the entries in this template to display or edit them.</p> 
+	 <p><b>NOTE:</b> For information on how to execute or avoid executing any
 		part of the INPUT transform when the Verify Fields option is being run, please
-		refer to the "<A HREF="../pm/afd_7.htm" TARGET="display"
-		CLASS="bodylink" TITLE="Input Transform">Input Transform</A>" section in the
-		"<A HREF="../pm/afd_frm.htm" TARGET="_top" CLASS="bodylink"
-		TITLE="Advanced File Definition">Advanced File Definition</A>" chapter in the
-		"<A HREF="../pm/index.htm" TARGET="_top"
-		TITLE="VA FileMan V. 22.0 Programmer HTML Manual" CLASS="bodylink">VA FileMan
-		Programmer Manual</A>." Some parts of a field's INPUT transform (whose main
+		refer to the "<a href="../pm/afd_7.htm" target="display" class="bodylink" title="Input Transform">Input Transform</a>" section in the
+		"<a href="../pm/afd_frm.htm" target="_top" class="bodylink" title="Advanced File Definition">Advanced File Definition</a>" chapter in the
+		"<a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="bodylink">VA FileMan
+		Programmer Manual</a>." Some parts of a field's INPUT transform (whose main
 		purpose is to validate data as a user enters it) may be inappropriate when
-		being executed in the context of the Verify Fields option.</P>
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
+		being executed in the context of the Verify Fields option.</p>
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
 	 <!-- ut_ver.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
+	 <p align="center">Reviewed/Updated: October 2016</p>
+	 <p>&nbsp;</p> 
 
-  </BODY>
-</HTML>
+  </body></html>

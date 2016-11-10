@@ -1,215 +1,56 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Strack Susan, 11/26/02-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: VA FileMan LANGUAGE File</TITLE><META
-	 NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
-  </HEAD> 
-  <BODY TOPMARGIN="2">
-  	<BR>
-	<IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="dia_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: DIALOG File Chapter TOC">Chapter</A></TD>
-		  
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../u2/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">DIALOG File</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>VA FileMan LANGUAGE File</H4> 
-	 <H5>Introduction</H5> 
-	 <P>Certain types of data such as dates and numbers, should be formatted
-		differently for display depending on the language of the end user. The VA
-		FileMan LANGUAGE file has been designed to help solve this problem for users of
-		interactive VA FileMan. The LANGUAGE file stores M code used to perform
-		language-specific conversions on such data. A system variable identifies to VA
-		FileMan the language currently in use. </P> 
-	 <P>At this time, VA FileMan distributes in the LANGUAGE file only the
-		English equivalent of language-specific data conversions specified below. </P> 
-	 <H5>Use of the LANGUAGE File</H5> 
-	 <P>A system variable, DUZ("LANG"), identifies to VA FileMan the language
-		currently in use. This system variable is set equal to a number that
-		corresponds to the ID NUMBER of an entry in the LANGUAGE file. It tells VA
-		FileMan where to find the appropriate data conversion code from the LANGUAGE
-		file at the time the code needs to be executed (for example, when printing a
-		date). For users running Kernel V. 8.0 or later, this variable is set
-		automatically during signon. </P> 
-	 <P>Developers may enter or create their own entries in the LANGUAGE file.
-		The VHA Database Administrator will assign an ID NUMBER for each unique
-		language entry in the LANGUAGE file. If developers do not follow these
-		guidelines, their language entry may be overwritten when VA FileMan is
-		installed. </P> 
-	 <P>The following Language file entries have been assigned and are
-		distributed with VA FileMan:</P> 
-	 <TABLE WIDTH="50%" ALIGN="CENTER"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD WIDTH="20%">1</TD> 
-		  <TD>English</TD> 
-		</TR> 
-		<TR> 
-		  <TD>2</TD> 
-		  <TD>German</TD> 
-		</TR> 
-		<TR> 
-		  <TD>3</TD> 
-		  <TD>Spanish</TD> 
-		</TR> 
-		<TR> 
-		  <TD>4</TD> 
-		  <TD>French</TD> 
-		</TR> 
-		<TR> 
-		  <TD>5</TD> 
-		  <TD>Finnish &nbsp;<IMG SRC="new.gif" ALT="NEW" width="35" height="11"></TD> 
-		</TR> 
-		<TR> 
-		  <TD>6</TD> 
-		  <TD>Italian &nbsp;<IMG SRC="new.gif" ALT="NEW" width="35" height="11"></TD> 
-		</TR> 
-		<TR> 
-		  <TD>10</TD> 
-		  <TD>Arabic &nbsp;<IMG SRC="new.gif" ALT="NEW" width="35" height="11"></TD> 
-		</TR> 
-		<TR> 
-		  <TD>11</TD> 
-		  <TD>Russian &nbsp;<IMG SRC="new.gif" ALT="NEW" width="35" height="11"></TD> 
-		</TR> 
-	 </TABLE> 
-	 <H5>Creating LANGUAGE File Entries</H5> 
-	 <P>Developers may enter or edit entries in the LANGUAGE file using VA
-		FileMan Enter/Edit. The only required fields are the ID NUMBER that uniquely
-		identifies a language and the language NAME. If M code is not found within the
-		current language for a specific conversion, VA FileMan will default to use the
-		English equivalent. </P> 
-	 <P>The other fields that can be entered for any LANGUAGE file entry are
-		described below. At the time the code in any of these fields is executed, the
-		data to be converted will be in the local variable Y. The M code in the field
-		should put the transformed output back into Y, without altering any other local
-		variables. More detail can be found in the field description for each field.
-		Looking at the English equivalent in entry number 1 may also be helpful. </P> 
-	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="25%">ORDINAL NUMBER FORMAT</TD> 
-		  <TD VALIGN="TOP">Changes 1 to 1ST, 2 to 2ND, etc. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">CARDINAL NUMBER FORMAT</TD> 
-		  <TD VALIGN="TOP">Changes 1234567 to 1,234,567 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">UPPERCASE CONVERSION</TD> 
-		  <TD VALIGN="TOP">Converts text to uppercase </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">LOWERCASE CONVERSION</TD> 
-		  <TD VALIGN="TOP">Converts text to lowercase </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">DATE/TIME FORMAT</TD> 
-		  <TD VALIGN="TOP">Converts date in internal VA FileMan format to
-			 MMM,DD,YYYY@HH:MM:SS </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">DATE/TIME FORMAT (FMTE) </TD> 
-		  <TD VALIGN="TOP">Does other date conversions from date in internal VA
-			 FileMan format. This call has an additional input flag that indicates the
-			 conversion to be done. </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P>The flags are:</P> 
-	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>1</B> </TD> 
-		  <TD VALIGN="TOP">MMM DD, YYYY@HH:MM:SS </TD> 
-		  <TD VALIGN="TOP">Space before year</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>2</B></TD> 
-		  <TD VALIGN="TOP">MM/DD/YY@HH:MM:SS </TD> 
-		  <TD VALIGN="TOP">No leading zeros on month,day</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>3</B></TD> 
-		  <TD VALIGN="TOP">DD/MM/YY@HH:MM:SS </TD> 
-		  <TD VALIGN="TOP">No leading zeros on month,day</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>4</B></TD> 
-		  <TD VALIGN="TOP">YY/MM/DD@HH:MM:SS </TD> 
-		  <TD VALIGN="TOP">--</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>5</B></TD> 
-		  <TD VALIGN="TOP">MMM DD,YYYY@HH:MM:SS </TD> 
-		  <TD VALIGN="TOP">No space before year</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>6</B></TD> 
-		  <TD VALIGN="TOP">MM-DD-YYYY @ HH:MM:SS </TD> 
-		  <TD VALIGN="TOP">Special spacing for time</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>7</B></TD> 
-		  <TD VALIGN="TOP">MM-DD-YYYY@HH:MM:SS </TD> 
-		  <TD VALIGN="TOP">--</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>S</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">Always return seconds </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>U</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">Return uppercase month (use only with 1 or
-			 5) </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>P</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">Return time with am,pm </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>D</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">Return only date without time </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
-	 <!-- app_b_l.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 8, 2007</P>
-	 <P>&nbsp;</P> 
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 11/26/02--><!--Edited March 2007, Hardhats.org-->
 
-  </BODY>
-</HTML>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Programmer Manual: VA FileMan LANGUAGE File</title>
+
+<meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+<meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual">
+<link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="2">
+<br>
+<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="dia_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: DIALOG File Chapter TOC">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">DIALOG File</a></h3>
+<hr class="hrstyle">
+<h4>VA FileMan LANGUAGE File</h4>
+<h5>Introduction</h5>
+<p>Certain types of data such as dates and numbers, should be
+formatted differently for display depending on the language of the end
+user. The VA FileMan LANGUAGE file has been designed to help solve this
+problem for users of interactive VA FileMan. The LANGUAGE file, File
+.85, stores M
+code used to perform language-specific conversions on such data. A
+system variable identifies to VA FileMan the language currently in use.
+</p>
+<p>
+<span class="badge"></span><img style="width: 60px; height: 30px;" alt="" src="22.gif">VA FileMan includes over 500 entries in File .85. Included in the
+definitions of these languages are two- and three-letter codes,
+'linguistic categories', and other information not actually used by
+FileMan code itself.</p><br>The
+LANGUAGE File is referenced by canned text in the DIALOG File (.84).
+&nbsp; Any DIALOG may have a TRANSLATION for any LANGUAGE.<br><br><h5>Use of the LANGUAGE File</h5>
+<p>A system variable, DUZ("LANG"), identifies to VA FileMan the
+language currently in use. This system variable is set equal to a
+number that corresponds to the ID NUMBER of an entry in the LANGUAGE
+file. It tells VA FileMan where to find the appropriate data conversion
+code from the LANGUAGE file at the time the code needs to be executed
+(for example, when printing a date). For users running Kernel V. 8.0 or
+later, this variable is set automatically during signon.</p>
+<p></p>
+<p align="center">Reviewed/Updated: October 2016</p>
+<p>&nbsp;</p>
+</body></html>

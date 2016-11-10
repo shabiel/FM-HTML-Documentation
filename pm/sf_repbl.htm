@@ -1,154 +1,128 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML>
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Strack Susan, 12/03/02-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
-	 <TITLE>VA FileMan Programmer Manual: ScreenMan Forms - Repeating
-		Blocks</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,repeating blocks,blocks,repeating">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css">
-  </HEAD>
-	<BODY TOPMARGIN="0" BGCOLOR="white">
-<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP">
-		<TR>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="sf_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</A></TD>
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 12/03/02--><!--Edited March 2007, Hardhats.org-->
 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD>
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD>
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../u2/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD>
-		</TR>
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle">
-	 <H4>Displaying Multiples in Repeating Blocks</H4>
-	 <P>You can display more than one subrecord in a multiple simultaneously on
-		the screen. See the "<A HREF="../u1/sm_intro.htm#Multiples" TITLE="Multiples"
-		CLASS="bodylink">Multiples</A>" section in the "VA FileMan Getting Started
-		Manual." You do this by defining a <B>repeating block</B>, a block that has a
-		Replication value greater 1. The Replication number defines the number of lines
-		in the scrolling list - or, in other words, the number of times the fields on
-		the block appear on the screen. All fields on the repeating block can occupy no
-		more than one line on the screen. The DD Number of the block corresponds to the
-		subfile number of the multiple. </P>
-    <p><span class="badge">22.2</span>New in Fileman 22.2, multiples within a
-      single Screenman page can now be more than one line deep.</p>
-	 <P>You should reserve one column to the left of the repeating block for
-		ScreenMan to display the plus sign (+) indicator before the first and last
-		lines of the list. </P>
-	 <P>The following illustration shows two subfields of a multiple displayed
-		in a repeating block: </P>
-	 <IMG ALIGN="BOTTOM" SRC="sf_repbl.gif"
-	  ALT="Example of Fields Displayed in a Repeating Block." WIDTH="577"
-	  HEIGHT="331">
-	 <P>The subfields are NAME MULT1 and SET OF CODES. The repeating block has a
-		Replication value of 5; therefore, up to five subrecords can be displayed
-		simultaneously. The coordinate of the repeating block corresponds to the
-		position of the first line in the list. </P>
-	 <P>The column headings are defined as caption-only fields on another block
-		that is non-repeating. </P>
-	 <P>The last line in the scrolling list is blank. This is where the user can
-		add a subrecord by entering a new name or jump to a particular entry in the
-		list by entering the name of an existing subrecord. By default, this blank line
-		is positioned in the same column as the first editable field in the repeating
-		block. </P>
-	 <P>The following variables are available in the pre- and post-actions of
-		fields on the repeating block, as well as in the Executable Caption code: </P>
-	 <H5>Variables Available in Repeating Blocks</H5>
-	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="Variables Available in Repeating Blocks Table"
-	  TITLE="Variables Available in Repeating Blocks Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Local Variable</B></TD>
-		  <TD VALIGN="TOP"><B>Description</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">DDSSN</TD>
-		  <TD VALIGN="TOP">The sequence number in the list of the current
-			 subrecord. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">DDSLN</TD>
-		  <TD VALIGN="TOP">The line number in the repeating block on which the
-			 cursor is currently resting. </TD>
-		</TR>
-	 </TABLE>
-	 <H5>Block Properties that Apply Only to Repeating Blocks</H5>
-	 <TABLE BORDER="1"
-	  SUMMARY="Block Properties that Apply Only to Repeating Blocks Table"
-	  WIDTH="100%"
-	  TITLE="Block Properties that Apply Only to Repeating Blocks Table">
-		<TR>
-		  <TD VALIGN="TOP"><B>Repeating Block Property</B></TD>
-		  <TD VALIGN="TOP"><B>Description</B> </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Replication</TD>
-		  <TD VALIGN="TOP">The number of times the fields defined in this block
-			 should be replicated. This number must be greater than 1. </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Index</TD>
-		  <TD VALIGN="TOP">The name of the index that should be used to pick up
-			 the subrecords in the multiple. The subrecords will initially be sorted in the
-			 order defined by this index. The default Index is B. If the multiple has no B
-			 index, or if you wish to display the subentries in record number order, enter
-			 !IEN. (Optional) </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Initial Position</TD>
-		  <TD VALIGN="TOP">This is where the cursor should rest when the user
-			 first navigates to the repeating block. Possible values are FIRST, LAST, and
-			 NEW, where NEW indicates that the cursor should initially rest on the blank
-			 line at the end of the list. The default Initial Position is FIRST. (Optional)
-			 </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Disallow LAYGO</TD>
-		  <TD VALIGN="TOP">If set to YES, this prohibits the user from entering
-			 new subrecords into the multiple. (Optional) </TD>
-		</TR>
-		<TR>
-		  <TD VALIGN="TOP">Field for Selection</TD>
-		  <TD VALIGN="TOP">This is the field order of the field that defines the
-			 column position of the blank line at the end of the list. The default is the
-			 first editable field in the block. This is also the field before which
-			 ScreenMan prints the plus sign (+) to indicate there are more entries above or
-			 below the displayed list. (Optional) </TD>
-		</TR>
-	 </TABLE>
-	 <P></P>	 <P>&nbsp;</P>
-	 <HR CLASS="hrstyle">
-	 <!-- sf_repbl.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Programmer Manual: ScreenMan Forms - Repeating Blocks</title>
 
-  </BODY>
-</HTML>
+<meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+<meta name="keywords" content="Information Infrastructure Service,IIS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,screenman forms,screenman,forms,repeating blocks,blocks,repeating">
+<link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="0" style="background-color: white;">
+<br>
+<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+<tbody>
+<tr>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+<td align="left" height="1" valign="bottom" width="17%"><a href="sf_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: ScreenMan Forms Chapter TOC">Chapter</a></td>
+<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+</tr>
+</tbody>
+</table>
+<!-- Content -->
+<h3><a name="navskip">ScreenMan Forms</a></h3>
+<hr class="hrstyle">
+<h4>Displaying Multiples in Repeating Blocks</h4>
+<p>You can display more than one subrecord in a multiple
+simultaneously on the screen. See the "<a href="../u1/sm_intro.htm#Multiples" title="Multiples" class="bodylink">Multiples</a>" section in the "VA
+FileMan Getting Started Manual." You do this by defining a <b>repeating
+block</b>, a block that has a Replication value greater 1. The
+Replication number defines the number of lines in the scrolling list -
+or, in other words, the number of times the fields on the block appear
+on the screen. &nbsp;&nbsp;<span class="badge"></span> The DD Number of the
+block corresponds to the subfile number of the multiple.</p><span class="badge"></span><img style="width: 60px; height: 30px;" alt="" src="22.gif">The
+fields on the repeating
+block can occupy one or more lines per block.<p>You should reserve one column to the left of the repeating
+block for ScreenMan to display the plus sign (+) indicator before the
+first and last lines of the list. </p>
+<p>The following illustration shows two subfields of a multiple
+displayed in a repeating block: </p>
+<img src="sf_repbl.gif" alt="Example of Fields Displayed in a Repeating Block." align="bottom" height="331" width="577">
+<p>The subfields are NAME MULT1 and SET OF CODES. The repeating
+block has a Replication value of 5; therefore, up to five subrecords
+can be displayed simultaneously. The coordinate of the repeating block
+corresponds to the position of the first line in the list. </p>
+<p>The column headings are defined as caption-only fields on
+another block that is non-repeating. </p>
+<p>The last line in the scrolling list is blank. This is where
+the user can add a subrecord by entering a new name or jump to a
+particular entry in the list by entering the name of an existing
+subrecord. By default, this blank line is positioned in the same column
+as the first editable field in the repeating block. </p>
+<p>The following variables are available in the pre- and
+post-actions of fields on the repeating block, as well as in the
+Executable Caption code: </p>
+<h5>Variables Available in Repeating Blocks</h5>
+<table summary="Variables Available in Repeating Blocks Table" title="Variables Available in Repeating Blocks Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Local Variable</b></td>
+<td valign="top"><b>Description</b> </td>
+</tr>
+<tr>
+<td valign="top">DDSSN</td>
+<td valign="top">The sequence number in the list of
+the current subrecord. </td>
+</tr>
+<tr>
+<td valign="top">DDSLN</td>
+<td valign="top">The line number in the repeating
+block on which the cursor is currently resting. </td>
+</tr>
+</tbody>
+</table>
+<h5>Block Properties that Apply Only to Repeating Blocks</h5>
+<table summary="Block Properties that Apply Only to Repeating Blocks Table" title="Block Properties that Apply Only to Repeating Blocks Table" border="1" width="100%">
+<tbody>
+<tr>
+<td valign="top"><b>Repeating Block Property</b></td>
+<td valign="top"><b>Description</b> </td>
+</tr>
+<tr>
+<td valign="top">Replication</td>
+<td valign="top">The number of times the fields
+defined in this block should be replicated. This number must be greater
+than 1. </td>
+</tr>
+<tr>
+<td valign="top">Index</td>
+<td valign="top">The name of the index that should
+be used to pick up the subrecords in the multiple. The subrecords will
+initially be sorted in the order defined by this index. The default
+Index is B. If the multiple has no B index, or if you wish to display
+the subentries in record number order, enter !IEN. (Optional) </td>
+</tr>
+<tr>
+<td valign="top">Initial Position</td>
+<td valign="top">This is where the cursor should
+rest when the user first navigates to the repeating block. Possible
+values are FIRST, LAST, and NEW, where NEW indicates that the cursor
+should initially rest on the blank line at the end of the list. The
+default Initial Position is FIRST. (Optional) </td>
+</tr>
+<tr>
+<td valign="top">Disallow LAYGO</td>
+<td valign="top">If set to YES, this prohibits the
+user from entering new subrecords into the multiple. (Optional) </td>
+</tr>
+<tr>
+<td valign="top">Field for Selection</td>
+<td valign="top">This is the field order of the
+field that defines the column position of the blank line at the end of
+the list. The default is the first editable field in the block. This is
+also the field before which ScreenMan prints the plus sign (+) to
+indicate there are more entries above or below the displayed list.
+(Optional) </td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>&nbsp;</p>
+<hr class="hrstyle"><!-- sf_repbl.htm -->
+<p align="center">Reviewed/Updated: October 2016</p>
+<p>&nbsp;</p>
+</body></html>

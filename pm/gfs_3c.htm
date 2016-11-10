@@ -1,259 +1,236 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Strack Susan, 12/03/02-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: Global File Structure - Other Field
-		Definition Nodes </TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Programmer HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,global file structure,global,file,other field definition nodes,nodes,definition">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
-  </HEAD>
-	<BODY TOPMARGIN="0" BGCOLOR="white">
-<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Programmer Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="gfs_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Programmer HTML Manual: Global File Structure Chapter TOC">Chapter</A></TD>
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 12/03/02--><!--Edited March 2007, Hardhats.org-->
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan Programmer Manual: Global File Structure - Other Field Definition Nodes</title><meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+	 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,global file structure,global,file,other field definition nodes,nodes,definition">
+	 <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="0" bgcolor="white">
+<br><img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="gfs_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Global File Structure Chapter TOC">Chapter</a></td>
 		  
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../u2/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			  CLASS="menubarlink">Advanced User Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">Global File Structure</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Attribute Dictionary: Other Field Definition Nodes</H4> 
-	 <P>Every field must have a zero node. All other nodes describing a field
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">Global File Structure</a></h3> <hr class="hrstyle"> 
+	 <h4><big>Attribute Dictionary: Other Field Definition Nodes</big></h4> 
+	 <p>Every field must have a zero node. All other nodes describing a field
 		are presented below, but none are mandatory. Each subscript listed is at least
 		the third level - that is, the global reference appears in the following
-		format: ^DD(File#,Field#,Subscript). </P> 
-	 <P></P> 
-	 <TABLE BORDER="1" SUMMARY="Other Field Definition Nodes Table"
-	  TITLE="Other Field Definition Nodes" WIDTH="100%"> 
-		<TR VALIGN="top"> 
-		  <TH>Subscript</TH> 
-		  <TH>Definition</TH> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD ALIGN="LEFT" VALIGN="TOP"><B>.1</B></TD> 
-		  <TD ALIGN="LEFT" VALIGN="TOP">Contains the full-length title of the
-			 field.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>1</B></TD> 
-		  <TD>Contains, at lower subscript levels, executable M code to set and
-			 kill cross-references based on the value of the field (in the variable X).</TD>
+		format: ^DD(File#,Field#,Subscript). </p> 
+	 <p></p> 
+	 <table summary="Other Field Definition Nodes Table" title="Other Field Definition Nodes" border="1" width="100%"> 
+		<tbody><tr valign="top"> 
+		  <th>Subscript</th> 
+		  <th>Definition</th> 
+		</tr> 
+		<tr><td><span style="font-weight: bold;"><img style="width: 60px; height: 30px;" alt="" src="22.gif">.007,n,0</span></td><td>For SET fields only. Subscripted by language number n, the internal number of File .85.
+&nbsp;Contains the external SET values of the field, translated into the non-English
+LANGUAGE, e.g., "OUI;NON;".</td></tr><tr><td><span style="font-weight: bold;"><img style="width: 60px; height: 30px;" alt="" src="22.gif">.008,n,0</span></td><td>Subscripted
+by language number n, the internal number of File .85. &nbsp;Contains
+the LABEL of the field, translated into the non-English LANGUAGE.</td></tr><tr valign="top"> 
+		  <td align="left" valign="top"><b>.1</b></td> 
+		  <td align="left" valign="top">Contains the full-length title of the
+			 field.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>1</b></td> 
+		  <td>Contains, at lower subscript levels, executable M code to set and
+			 kill cross-references based on the value of the field (in the variable X).</td>
 		  
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>2</B></TD> 
-		  <TD>Contains the OUTPUT transform: M code to display the field value in
-			 a format that differs from the format in which it is stored. (See the "<A
-			 HREF="afd_frm.htm" TARGET="_top"
-			 TITLE="Advanced File Definition chapter" CLASS="bodylink">Advanced File
-			 Definition</A>" chapter.)</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>3</B></TD> 
-		  <TD>Contains the help prompt message that is displayed when the user
-			 types a question mark.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>4</B></TD> 
-		  <TD>Contains M code that will be executed when the user types one or
-			 two question marks. (Other help messages are also displayed.)</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>5</B></TD> 
-		  <TD>Contains, at lower subscript levels, pointers to trigger
-			 cross-references to this field.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>7.5</B></TD> 
-		  <TD>Is valid only on .01 fields. It contains M code that will be
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>2</b></td> 
+		  <td>Contains the OUTPUT transform: M code to display the field value in
+			 a format that differs from the format in which it is stored. (See the "<a href="afd_frm.htm" target="_top" title="Advanced File Definition chapter" class="bodylink">Advanced File
+			 Definition</a>" chapter.)</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>3</b></td> 
+		  <td>Contains the help prompt message that is displayed when the user
+			 types a question mark.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>4</b></td> 
+		  <td>Contains M code that will be executed when the user types one or
+			 two question marks. (Other help messages are also displayed.)</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>5</b></td> 
+		  <td>Contains, at lower subscript levels, pointers to trigger
+			 cross-references to this field.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>7.5</b></td> 
+		  <td>Is valid only on .01 fields. It contains M code that will be
 			 executed to check the user input (in the variable X). This code is executed at
 			 the start of the ^DIC routine before the lookup on X has begun. If X is killed,
 			 the lookup will terminate. Special lookup programs naturally have a way to look
-			 at X.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>8</B></TD> 
-		  <TD>Read access for the field.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>8.5</B></TD> 
-		  <TD>Delete access for the field.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>9</B></TD> 
-		  <TD>Write access for the field.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>9.01</B></TD> 
-		  <TD>The fields used if the field is a computed field.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>9.1</B></TD> 
-		  <TD>The expression entered by the user to create the computed
-			 field.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>9.2 to 9.9</B></TD> 
-		  <TD>The overflow executable M code that may be part of the
-			 specification of a field definition, INPUT transform, or cross-reference.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>10</B></TD> 
-		  <TD>Contains the source of the data.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>11</B></TD> 
-		  <TD>Contains the destination of the data.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>12</B></TD> 
-		  <TD>Contains the explanation of the screen on node 12.1.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>12.1</B></TD> 
-		  <TD>Contains the code which sets DIC("S") if a screen has been written
-			 for a pointer or a set of codes.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>20</B></TD> 
-		  <TD>A multiple that lists the fields that belong to certain
-			 groups.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>21</B></TD> 
-		  <TD>A word processing field that holds the field description.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>22</B></TD> 
-		  <TD>The name of a help frame presented to a user who entered two
-			 question marks. <B>NOTE:</B> This subscript is being phased out.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>23</B></TD> 
-		  <TD>A word processing field that holds the technical description of the
-			 field.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>AUDIT</B></TD> 
-		  <TD>Contains a code defining the status of an audit trail for changes
+			 at X.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>8</b></td> 
+		  <td>Read access for the field.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>8.5</b></td> 
+		  <td>Delete access for the field.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>9</b></td> 
+		  <td>Write access for the field.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>9.01</b></td> 
+		  <td>The fields used if the field is a computed field.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>9.1</b></td> 
+		  <td>The expression entered by the user to create the computed
+			 field.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>9.2 to 9.9</b></td> 
+		  <td>The overflow executable M code that may be part of the
+			 specification of a field definition, INPUT transform, or cross-reference.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>10</b></td> 
+		  <td>Contains the source of the data.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>11</b></td> 
+		  <td>Contains the destination of the data.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>12</b></td> 
+		  <td>Contains the explanation of the screen on node 12.1.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>12.1</b></td> 
+		  <td>Contains the code which sets DIC("S") if a screen has been written
+			 for a pointer or a set of codes.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>20</b></td> 
+		  <td>A multiple that lists the fields that belong to certain
+			 groups.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>21</b></td> 
+		  <td>A word processing field that holds the field description.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>22</b></td> 
+		  <td>The name of a help frame presented to a user who entered two
+			 question marks. <b>NOTE:</b> This subscript is being phased out.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>23</b></td> 
+		  <td>A word processing field that holds the technical description of the
+			 field.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>AUDIT</b></td> 
+		  <td>Contains a code defining the status of an audit trail for changes
 			 to the data in the field. Possible codes are: y (always audited), e (changes
-			 and deletions only audited), n (no audit recorded).</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>AX</B></TD> 
-		  <TD>Contains the executable code that determines if a field should be
-			 audited.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>DEL</B></TD> 
-		  <TD>In this example, a string of executable M code that determines if
+			 and deletions only audited), n (no audit recorded).</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>AX</b></td> 
+		  <td>Contains the executable code that determines if a field should be
+			 audited.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>DEL</b></td> 
+		  <td>In this example, a string of executable M code that determines if
 			 the field can be deleted. This code must contain an M IF statement to set the
 			 value of $T. If $T is set to 1, the field cannot be deleted. Normally, the ^DD
 			 format is: 
-			 <PRE>
-    ^DD(File#,Field#,&quot;DEL&quot;,#,0)=&quot;executable MUMPS code&quot;
-</PRE> where <B>#</B> is an arbitrary number to distinguish each
+			 <pre>    ^DD(File#,Field#,"DEL",#,0)="executable MUMPS code"<br></pre> where <b>#</b> is an arbitrary number to distinguish each
 			 condition. If the condition was based on a particular field, then the field
 			 number was traditionally used. If "DEL" nodes are on the .01 field of a file,
 			 deletion of the entire entry can be blocked. 
-			 <P>If an entry is being deleted by a direct call to ^DIK, the "DEL"
-				nodes are not checked.</P> </TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>DT</B></TD> 
-		  <TD>Contains the date the field was last edited.</TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B><A NAME="laygo">LAYGO</A></B></TD> 
-		  <TD>A string of executable M code that determines if an entry can be
+			 <p>If an entry is being deleted by a direct call to ^DIK, the "DEL"
+				nodes are not checked.</p> </td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>DT</b></td> 
+		  <td>Contains the date the field was last edited.</td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b><a name="laygo">LAYGO</a></b></td> 
+		  <td>A string of executable M code that determines if an entry can be
 			 added. This code must contain an M IF statement to set the value of $T. If $T
 			 is set to 0, the entry cannot be added. Normally, the ^DD format is: 
-			 <PRE>
-   ^DD(File#,.01,&quot;LAYGO&quot;,#,0)=&quot;executable M code&quot;
-</PRE> where <B>#</B> is an arbitrary number to distinguish each
-			 condition. LAYGO nodes only apply to .01 fields. </TD> 
-		</TR> 
-		<TR VALIGN="top"> 
-		  <TD><B>V</B></TD> 
-		  <TD>Descendent from these nodes is information regarding variable
+			 <pre>   ^DD(File#,.01,"LAYGO",#,0)="executable M code"<br></pre> where <b>#</b> is an arbitrary number to distinguish each
+			 condition. LAYGO nodes only apply to .01 fields. </td> 
+		</tr> 
+		<tr valign="top"> 
+		  <td><b>V</b></td> 
+		  <td>Descendent from these nodes is information regarding variable
 			 pointers including pointed-to file, message, order, prefix, screen, and LAYGO
 			 status. 
-			 <P>^DD(File#,Field#,"V",n,0) </P> 
-			 <P>Where "<B>n</B>" is a sequential number representing a different
-				pointed-to file. The pieces within this 0 node are:</P> 
-			 <TABLE BORDER="1" WIDTH="100%"
-			  SUMMARY="This table is for formatting purposes only"> 
-				<TR> 
-				  <TD><B>^-Piece</B></TD> 
-				  <TD><B>Contents</B></TD> 
-				</TR> 
-				<TR> 
-				  <TD>Piece 1</TD> 
-				  <TD>File number of the pointed-to file. </TD> 
-				</TR> 
-				<TR> 
-				  <TD>Piece 2</TD> 
-				  <TD>Message defined for the pointed-to file.</TD> 
-				</TR> 
-				<TR> 
-				  <TD>Piece 3</TD> 
-				  <TD>Order defined for the pointed-to file. </TD> 
-				</TR> 
-				<TR> 
-				  <TD>Piece 4</TD> 
-				  <TD>Prefix defined for the pointed-to file. </TD> 
-				</TR> 
-				<TR> 
-				  <TD>Piece 5</TD> 
-				  <TD>y/n indicating if a screen is set up for the pointed-to
-					 file.</TD> 
-				</TR> 
-				<TR> 
-				  <TD>Piece 6</TD> 
-				  <TD>y/n indicating if the user can add new entries to the pointed
-					 to file.</TD> 
-				</TR> 
-			 </TABLE> 
-			 <P>^DD(File#,Field#,"V",n,1) Contains the M code defined as a screen
+			 <p>^DD(File#,Field#,"V",n,0) </p> 
+			 <p>Where "<b>n</b>" is a sequential number representing a different
+				pointed-to file. The pieces within this 0 node are:</p> 
+			 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
+				<tbody><tr> 
+				  <td><b>^-Piece</b></td> 
+				  <td><b>Contents</b></td> 
+				</tr> 
+				<tr> 
+				  <td>Piece 1</td> 
+				  <td>File number of the pointed-to file. </td> 
+				</tr> 
+				<tr> 
+				  <td>Piece 2</td> 
+				  <td>Message defined for the pointed-to file.</td> 
+				</tr> 
+				<tr> 
+				  <td>Piece 3</td> 
+				  <td>Order defined for the pointed-to file. </td> 
+				</tr> 
+				<tr> 
+				  <td>Piece 4</td> 
+				  <td>Prefix defined for the pointed-to file. </td> 
+				</tr> 
+				<tr> 
+				  <td>Piece 5</td> 
+				  <td>y/n indicating if a screen is set up for the pointed-to
+					 file.</td> 
+				</tr> 
+				<tr> 
+				  <td>Piece 6</td> 
+				  <td>y/n indicating if the user can add new entries to the pointed
+					 to file.</td> 
+				</tr> 
+			 </tbody></table> 
+			 <p>^DD(File#,Field#,"V",n,1) Contains the M code defined as a screen
 				on the pointer to the file defined in the 0 node above.
-				^DD(File#,Field#,"V",n,2) contains a description of the screen. </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
+				^DD(File#,Field#,"V",n,2) contains a description of the screen. </p> </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
 	 <!-- gfs_3c.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
-	 <P>&nbsp;</P> 
+	 <p align="center">Reviewed/Updated: October 2016</p>
+	 <p>&nbsp;</p> 
 
-  </BODY>
-</HTML>
+  </body></html>

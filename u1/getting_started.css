@@ -68,4 +68,8 @@ a.bodylink:hover { color: black; text-decoration: none; font-family: Verdana, Ar
 		margin-right: 5px;
 		padding: 0px 5px;
 		font-weight: bold;
+    /*margin-top: 0px;
+    margin-left: 0px;
+    position: relative;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.4); */
 }

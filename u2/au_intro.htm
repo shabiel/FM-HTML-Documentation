@@ -1,88 +1,57 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/30/03-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: Auditing
-		Introduction</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,auditing,audit,data dictionary,audit a data dictionary">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
-  </HEAD> 
-  <BODY BGCOLOR="white" TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="au_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Auditing Chapter TOC">Chapter</A></TD>
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/30/03-->
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan V. 22.0 Advanced User Manual: Auditing Introduction</title><meta name="subject" content="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <meta name="keywords" content="information infrastructure service,iis,Infrastructure and Security Services,Infrastructure Security Services,ISS,vista,fileman,va fileman,user,advanced user manual,auditing,audit,data dictionary,audit a data dictionary">
+	 <link rel="StyleSheet" type="text/css" href="user.css"></head>
+ 
+  <body topmargin="0" bgcolor="white">
+	<br><img src="common/fileman_au_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+	<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="au_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Advanced User HTML Manual: Auditing Chapter TOC">Chapter</a></td>
 		  
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">Auditing</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Auditing Introduction</H4> 
-	 <P>VA FileMan auditing tracks changes to data in a field (<A
-		HREF="au_field.htm" TITLE="Auditing a Data Field" CLASS="bodylink">Auditing a
-		Data Field</A>) or changes to the file's structure (<A HREF="au_dd.htm"
-		TITLE="Auditing a Data Dictionary" CLASS="bodylink">Auditing a Data
-		Dictionary</A>). Fields are identified for auditing by using the Modify File
-		Attributes option or by using the Turn Data Audit On/Off option (see the "<A
-		HREF="au_field.htm#Turning" TITLE="Turn Data Audit On/Off"
-		CLASS="bodylink">Turn Data Audit On/Off</A>" section of this chapter). Thus, a
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip"></a><img style="width: 60px; height: 30px;" alt="" src="../u1/22.gif"><a name="navskip">Auditing</a></h3> <hr class="hrstyle"> 
+	 <h4>Auditing Introduction</h4> 
+	 <p>VA FileMan auditing tracks changes to data in a field (<a href="au_field.htm" title="Auditing a Data Field" class="bodylink">Auditing a
+		Data Field</a>) or changes to the file's structure (<a href="au_dd.htm" title="Auditing a Data Dictionary" class="bodylink">Auditing a Data
+		Dictionary</a>). Fields are identified for auditing by using the Modify File
+		Attributes option or by using the Turn Data Audit On/Off option (see the "<a href="au_field.htm#Turning" title="Turn Data Audit On/Off" class="bodylink">Turn Data Audit On/Off</a>" section of this chapter). Thus, a
 		user with limited VA FileMan access does not need the Modify File Attribute
 		option to initiate an audit. Files are identified for auditing by using the
-		File Edit option .</P> 
-	 <P><B>NOTE:</B> Auditing can be resource intensive; it can slow your system
-		considerably. It can also use considerable disk space. Use it with discretion.
-		</P> 
-	 <P>The auditing options are located in the Other Options submenu: </P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>Select OPTION: <B>OTHER OPTIONS</B>  
-Select OTHER OPTION: <B>AUDITING</B> 
-Select AUDIT OPTION: <B>?</B>
+		File Edit option .</p> 
+	 <p><b>NOTE:</b> Auditing can be resource intensive.. It can use considerable disk space. Use it with discretion.
+		</p> 
+	 <p>The auditing options are located in the Other Options submenu: </p> 
+	 <pre></pre> <hr> 
+	 <pre>Select OPTION: <b>OTHER OPTIONS</b>  <br>Select OTHER OPTION: <b>AUDITING</b> <br>Select AUDIT OPTION: <b>?</b>
  
-CHOOSE FROM:
-   1               FIELDS BEING AUDITED
-   2               DATA DICTIONARIES BEING AUDITED
-   3               PURGE DATA AUDITS
-   4               PURGE DD AUDITS
-   5               TURN DATA AUDIT ON/OFF
+<br>   1            FIELDS BEING AUDITED<br>   2            MONITOR A USER<br>   3            PURGE DATA AUDITS<br>   4            PURGE DD AUDITS<br>   5            TURN DATA AUDIT ON/OFF<br>   6            SHOW PAST CHANGES TO DD'S<br>
 
-Select AUDIT OPTION: </PRE> <HR> 
-	 <P>The use of these options is described in this chapter. </P>
-	 <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
+Select AUDIT OPTION: </pre> <hr> 
+	 <p>The use of these options is described in this chapter. </p>
+	 <p>&nbsp;</p> 
+	 <hr class="hrstyle">
 	 <!-- au_intro.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
+	 <p align="center">Reviewed/Updated: October 2016</p>
+	 <p>&nbsp;</p> 
 
-  </BODY>
-</HTML>
+  </body></html>

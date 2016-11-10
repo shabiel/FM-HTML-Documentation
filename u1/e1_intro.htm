@@ -1,199 +1,172 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD>
-<!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/30/03-->
-<!--Edited March 2007, Hardhats.org-->
-	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Getting Started HTML Manual: VA FileMan Prompts</TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Getting Started HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,prompts">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="getting_started.css"> 
-  </HEAD> 
-  <BODY TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_gs_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	 <P>&nbsp;</P>  
-	 <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="e1_frm.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC"
-			 CLASS="menubarlink">Chapter</A></TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u2/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual"
-			 CLASS="menubarlink">Advanced User Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD> 
-		</TR> 
-	 </TABLE> 
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/30/03--><!--Edited March 2007, Hardhats.org-->
+
+
+
+
+
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan Getting Started HTML Manual: VA FileMan Prompts</title><meta name="subject" content="VA FileMan V. 22.0 Getting Started HTML Manual">
+	 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,getting started,prompts">
+	 <link rel="StyleSheet" type="text/css" href="getting_started.css"></head>
+ 
+  <body topmargin="0">
+	<br><img src="common/fileman_gs_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	 <p>&nbsp;</p>  
+	 <table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="e1_frm.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual: VA FileMan Prompts Chapter TOC" class="menubarlink">Chapter</a></td> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td> 
+		</tr> 
+	 </tbody></table> 
 	 <!-- Content -->
-	 <H3><A NAME="navskip">Editing Records</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>VA FileMan Prompts</H4> 
-	 <H5><A NAME="Introduction">Introduction</A></H5> 
-	 <P>Many VA <ACRONYM
-		 TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
-     application packages have a <I>scrolling mode</I> interface. Scrolling mode
-		works as follows: </P> 
-	 <OL> 
-		<LI>The computer puts a prompt on your screen.<BR><BR></LI> 
-		<LI>You enter a response to the prompt.<BR><BR></LI> 
-		<LI>The computer places another prompt on the screen, scrolling down one
-		  line. Previous prompts move up and eventually off of your screen. </LI> 
-	 </OL> 
-	 <P>In scrolling mode, prompting occurs in the same predetermined order, in
+	 <h3><big><a name="navskip">Editing Records</a></big></h3> <hr class="hrstyle"> 
+	 <h4><big>VA FileMan Prompts</big></h4> 
+	 <h5><big><a name="Introduction">Introduction</a></big></h5> 
+	 <p>Many VA <acronym title="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</acronym>
+     application packages have a <i>scrolling mode</i> interface. Scrolling mode
+		works as follows: </p> 
+	 <ol> 
+		<li>The computer puts a prompt on your screen.<br><br></li> 
+		<li>You enter a response to the prompt.<br><br></li> 
+		<li>The computer places another prompt on the screen, scrolling down one
+		  line. Previous prompts move up and eventually off of your screen. </li> 
+	 </ol> 
+	 <p>In scrolling mode, prompting occurs in the same predetermined order, in
 		a sequence designed by the developer of the application. You enter and the
 		computer stores your responses one at a time. And, unless you're familiar with
 		a few timesaving scrolling mode techniques, you have to step through each
-		prompt in a record before you can finish editing the record. </P> 
-	 <P>Recently developed <ACRONYM
-		TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
-     applications often use a <I>screen-oriented</I> interface (i.e., Screen Mode)
+		prompt in a record before you can finish editing the record. </p> 
+	 <p>Recently developed <acronym title="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</acronym>
+     applications often use a <i>screen-oriented</i> interface (i.e., Screen Mode)
 		for editing data. However, Scrolling Mode interfaces are still used quite
-		heavily in <ACRONYM
-		TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
-     applications. </P> 
-	 <P><B>NOTE:</B> For more information on Screen Mode, please refer to the
-		"<A HREF="sm_frm.htm" TARGET="_top" TITLE="ScreenMan"
-		CLASS="bodylink">ScreenMan</A>" chapter in this manual.</P> 
-	 <P>After reading about a few of the scrolling mode operations discussed in
+		heavily in <acronym title="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</acronym>
+     applications. </p> 
+	 <p><b>NOTE:</b> For more information on Screen Mode, please refer to the
+		"<a href="sm_frm.htm" target="_top" title="ScreenMan" class="bodylink">ScreenMan</a>" chapter in this manual.</p> 
+	 <p>After reading about a few of the scrolling mode operations discussed in
 		this chapter, you should be able to enter and edit data in scrolling mode with
-		a minimum number of keystrokes. </P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="ret">The &lt;RET&gt; Key</A></H5> 
-	 <P>To enter data in scrolling mode, you primarily enter data or commands at
+		a minimum number of keystrokes. </p> <hr align="center" width="90%"> 
+	 <h5><big><a name="ret">The &lt;RET&gt; Key</a></big></h5> 
+	 <p>To enter data in scrolling mode, you primarily enter data or commands at
 		a prompt on your terminal screen. After typing a command or data at your
 		terminal keyboard, you must send your response from your terminal to the
 		computer. Pressing the Enter or Return key on your keyboard (abbreviated as
-		<B>&lt;RET&gt;</B> in examples) sends all of your typed input to the computer
-		for action or storage. </P> 
-	 <P>If you type a response but fail to press the Enter/Return key, the
+		<b>&lt;RET&gt;</b> in examples) sends all of your typed input to the computer
+		for action or storage. </p> 
+	 <p>If you type a response but fail to press the Enter/Return key, the
 		computer waits; it won't do anything until you tell it you've finished entering
 		your response. Pressing the Enter/Return key also tells the computer when
 		you've decided to "enter" nothing at all. Whenever you press the Enter/Return
 		key without first entering data or a command, you tell the computer either to
 		avoid taking action or to take the default action at the current prompt. The
-		computer then moves on to the next prompt. </P> <HR ALIGN="center" WIDTH="90%">
+		computer then moves on to the next prompt. </p> <hr align="center" width="90%">
 	 
-	 <H5><A NAME="structure">Standard Prompt Structure</A></H5> 
-	 <P>The standard VA FileMan prompt consists of three parts: </P> 
-	 <P ALIGN="CENTER"><IMG SRC="e1_1.gif" WIDTH="440" HEIGHT="319"
-		ALT="Example Showing the Components of a Prompt and the User's Response."> </P>
-	 <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="responding">Responding to Prompts</A></H5> 
-	 <P>When VA FileMan prompts you for a response, typically a colon
-		("<B>:</B>") is used at the end of the prompt; the computer waits for a
+	 <h5><a name="structure">S<big>tandard Prompt Structure</big></a></h5> 
+	 <p>The standard VA FileMan prompt consists of three parts: </p> 
+	 <p align="center"><img src="e1_1.gif" alt="Example Showing the Components of a Prompt and the User's Response." height="319" width="440"> </p>
+	 <hr align="center" width="90%"> 
+	 <h5><big><a name="responding">Responding to Prompts</a></big></h5> 
+	 <p>When VA FileMan prompts you for a response, typically a colon
+		("<b>:</b>") is used at the end of the prompt; the computer waits for a
 		response. Prompts are often asking for the value of a field in a file, like the
-		one shown below: </P> 
-	 <PRE>    DATE OF BIRTH:</PRE> 
-	 <P>This type of prompt is waiting for you to enter a value, like <B>3 OCT
-		49</B>. Don't forget to complete your interaction by pressing the Enter/Return
-		key (<A HREF="#ret" TITLE="Return Key Topic"
-		CLASS="bodylink"><B>&lt;RET&gt;</B></A>). </P> 
-	 <P>If the answer to the prompt question is a choice of several things, the
-		prompt often starts with the word "Select", as in: </P> 
-	 <PRE>    Select PATIENT NAME: </PRE> 
-	 <P>If the question requires either a YES or NO response (in which case
+		one shown below: </p> 
+	 <pre>    DATE OF BIRTH:</pre> 
+	 <p>This type of prompt is waiting for you to enter a value, like <b>3 OCT
+		49</b>. Don't forget to complete your interaction by pressing the Enter/Return
+		key (<a href="#ret" title="Return Key Topic" class="bodylink"><b>&lt;RET&gt;</b></a>). </p> 
+	 <p>If the answer to the prompt question is a choice of several things, the
+		prompt often starts with the word "Select", as in: </p> 
+	 <pre>    Select PATIENT NAME: </pre> 
+	 <p>If the question requires either a YES or NO response (in which case
 		simply Y or N, upper- or lowercase, is acceptable), the prompt may end with a
-		question mark, rather than by a colon: </P> 
-	 <PRE>    ARE YOU SURE?  </PRE> 
-	 <P><B>NOTE:</B> For more information on the specific types of fields
+		question mark, rather than by a colon: </p> 
+	 <pre>    ARE YOU SURE?  </pre> 
+	 <p><b>NOTE:</b> For more information on the specific types of fields
 		(DATE/TIME, NUMERIC, WORD-PROCESSING, FREE TEXT, etc.) and how to edit them,
-		please refer to the "<A HREF="he_frm.htm" TARGET="_top"
-		TITLE="About Each Field Type" CLASS="bodylink">About Each Field Type</A>"
-		chapter in this manual.</P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="help">Getting Online Help at Any Prompt (Enter ? or
-		??)</A></H5> 
-	 <P>If you're not sure how to answer a prompt, Help is always available.
-		Just enter one question mark ("<B>?</B>") to get brief help, or two question
-		marks ("<B>??</B>") to get more detailed online help: </P> 
-	 <TABLE BORDER="0" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only."> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="17%" ALIGN="RIGHT"><B>?</B></TD> 
-		  <TD VALIGN="TOP" WIDTH="3%" ALIGN="RIGHT"></TD> 
-		  <TD VALIGN="TOP" WIDTH="80%">Entering a single question mark at a
-			 prompt gets a single line of Help. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="17%" ALIGN="RIGHT">&nbsp;</TD> 
-		  <TD VALIGN="TOP" WIDTH="3%" ALIGN="RIGHT"></TD> 
-		  <TD VALIGN="TOP" WIDTH="80%">&nbsp;</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" ALIGN="RIGHT"><B>??</B></TD> 
-		  <TD VALIGN="TOP" ALIGN="RIGHT"></TD> 
-		  <TD VALIGN="TOP">Entering two question marks at a prompt gets more
+		please refer to the "<a href="he_frm.htm" target="_top" title="About Each Field Type" class="bodylink">About Each Field Type</a>"
+		chapter in this manual.</p> <hr align="center" width="90%"> 
+	 <h5><big><a name="help">Getting Online Help at Any Prompt (Enter ? or
+		??)</a></big></h5> 
+	 <p>If you're not sure how to answer a prompt, Help is always available.
+		Just enter one question mark ("<b>?</b>") to get brief help, or two question
+		marks ("<b>??</b>") to get more detailed online help: </p> 
+	 <table summary="This table is for formatting purposes only." border="0" width="100%"> 
+		<tbody><tr> 
+		  <td align="right" valign="top" width="17%"><b>?</b></td> 
+		  <td align="right" valign="top" width="3%"></td> 
+		  <td valign="top" width="80%">Entering a single question mark at a
+			 prompt gets a single line of Help. </td> 
+		</tr> 
+		<tr> 
+		  <td align="right" valign="top" width="17%">&nbsp;</td> 
+		  <td align="right" valign="top" width="3%"></td> 
+		  <td valign="top" width="80%">&nbsp;</td> 
+		</tr> 
+		<tr> 
+		  <td align="right" valign="top"><b>??</b></td> 
+		  <td align="right" valign="top"></td> 
+		  <td valign="top">Entering two question marks at a prompt gets more
 			 detailed Help: a description of what values are acceptable, and/or a list of
-			 choices appropriate to the prompt where you entered the question marks. </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="incorrect">Incorrect Responses</A></H5> 
-	 <P>VA FileMan checks each answer to a prompt immediately after you enter
+			 choices appropriate to the prompt where you entered the question marks. </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p></p> <hr align="center" width="90%"> 
+	 <h5><big><a name="incorrect">Incorrect Responses</a></big></h5> 
+	 <p>VA FileMan checks each answer to a prompt immediately after you enter
 		it. If you answer a prompt incorrectly, VA FileMan "beeps," and displays two
 		spaces and two question marks. You may be given an explanation of what was
-		incorrect. Then, you're given a chance to respond to the prompt again. </P>
-	 <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="partial">Partial Responses</A></H5> 
-	 <P>When you are choosing one of a set of responses, you can save keystrokes
+		incorrect. Then, you're given a chance to respond to the prompt again. </p>
+	 <hr align="center" width="90%"> 
+	 <h5><big><a name="partial">Partial Responses</a></big></h5> 
+	 <p>When you are choosing one of a set of responses, you can save keystrokes
 		by not typing the full response. Type in only the first letter of first few
 		letters representing the response that you desire. If the characters you enter
 		uniquely identify one of the possible acceptable responses, VA FileMan "echoes
 		back" the remaining characters and uses the matching choice as your
-		response.</P> 
-	 <P>If more than one possible answers begin with the character(s) that you
+		response.</p> 
+	 <p>If more than one possible answers begin with the character(s) that you
 		typed, VA FileMan displays the possible choices in a list, and asks you to
-		choose which choice you want by number: </P> 
-	 <P ALIGN="CENTER"><IMG SRC="e1_2.gif" WIDTH="606" HEIGHT="142"
-		ALT="Example of Choosing from a List When Making a Partial Response."> </P>
-	 <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="default">Default Responses</A></H5> 
-	 <P>When you're working in <ACRONYM
-		 TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
-     applications, the computer frequently present a <I>default</I> answer along
+		choose which choice you want by number: </p> 
+	 <p align="center"><img src="e1_2.gif" alt="Example of Choosing from a List When Making a Partial Response." height="142" width="606"> </p>
+	 <hr align="center" width="90%"> 
+	 <h5><big><a name="default">Default Responses</a></big></h5> 
+	 <p>When you're working in <acronym title="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</acronym>
+     applications, the computer frequently present a <i>default</i> answer along
 		with a prompt. This answer is built into the application program and represents
 		the most probable response to the prompt that is being asked. These default
 		answers are clearly identified by the double slash marks that follow them
-		("<B>//</B>"). If the default answer that is provided is correct, you need only
-		press the Enter/Return key to accept it.</P> 
-	 <P>For example:</P> 
-	 <PRE>    SSN: 123123124// </PRE> 
-	 <P>In this case, if you press the Enter/Return key, 123123123 is posted as
-		your response to this prompt. </P> 
-	 <P>If, on the other hand, the default answer isn't what you need, enter the
-		correct information at the prompt. For example: </P> 
-	 <PRE>    SSN: 123123124// <B>089234563 &lt;RET&gt;</B></PRE> 
-	 <P>When editing data stored in fields, defaults are used to present the
+		("<b>//</b>"). If the default answer that is provided is correct, you need only
+		press the Enter/Return key to accept it.</p> 
+	 <p>For example:</p> 
+	 <pre>    SSN: 123123124// </pre> 
+	 <p>In this case, if you press the Enter/Return key, 123123123 is posted as
+		your response to this prompt. </p> 
+	 <p>If, on the other hand, the default answer isn't what you need, enter the
+		correct information at the prompt. For example: </p> 
+	 <pre>    SSN: 123123124// <b>089234563 &lt;RET&gt;</b></pre> 
+	 <p>When editing data stored in fields, defaults are used to present the
 		current value of the field. As with any default prompt, if you just press the
 		Enter/Return key, the current value of the field is left unchanged. To change
-		the value of the field, enter a new value and press the Enter/Return key.</P>
-	 <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="replace_with">Longer Default Responses and the "Replace &#133;
-		With" Editor</A></H5> 
-	 <P>When a default is 20 or more characters in length, it won't be followed
-		by double slashes ("<B>//</B>"). Instead, it is presented with a "Replace"
-		prompt:</P> 
-	 <PRE>    ADDRESS 1: 301 Bayshore Boulevard  Replace </PRE> 
-	 <P>The "Replace" prompt employs the "Replace...With" Editor. At the
+		the value of the field, enter a new value and press the Enter/Return key.</p>
+	 <hr align="center" width="90%"> 
+	 <h5><big><a name="replace_with">Longer Default Responses and the "Replace &#8230;
+		With" Editor</a></big></h5> 
+	 <p>When a default is 20 or more characters in length, it won't be followed
+		by double slashes ("<b>//</b>"). Instead, it is presented with a "Replace"
+		prompt:</p> 
+	 <pre>    ADDRESS 1: 301 Bayshore Boulevard  Replace </pre> 
+	 <p>The "Replace" prompt employs the "Replace...With" Editor. At the
 		"Replace" prompt, you can revise some or all of the existing default answer. To
 		revise only a piece of the existing default response, type in any series of
 		letters that are part of the existing default answer that you want to change
@@ -202,82 +175,73 @@
 		this point, the "Replace" prompt is presented again, so that you can enter
 		additional corrections. If you're all done, however, just press the
 		Enter/Return key to finish working in the field and move on to the next
-		prompt.</P> 
-	 <P>For example:</P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>ADDRESS 1: 301 Bayshore Boulevard  Replace <B>Bay &lt;RET&gt;</B> With <B>North
-&lt;RET&gt;</B>
-    Replace <B>&lt;RET&gt;</B>
+		prompt.</p> 
+	 <p>For example:</p> 
+	 <pre></pre> <hr> 
+	 <pre>ADDRESS 1: 301 Bayshore Boulevard  Replace <b>Bay &lt;RET&gt;</b> With <b>North<br>&lt;RET&gt;</b>
+    Replace <b>&lt;RET&gt;</b>
         301 Northshore Boulevard
     ADDRESS 2:
-</PRE> <HR> 
-	 <P>To replace the entire default answer at a "Replace...With" prompt,
-		simply enter three periods ("<B>&#133;</B>"), called an ellipsis, at the
+</pre> <hr> 
+	 <p>To replace the entire default answer at a "Replace...With" prompt,
+		simply enter three periods ("<b>&#8230;</b>"), called an ellipsis, at the
 		"Replace" prompt. You are then able to replace the entire default with what you
-		enter at the "With" prompt:</P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>ADDRESS 1: 301 Bayhshore Boulevard  Replace <B>... &lt;RET&gt;</B> With <B>301
-Folsom Street &lt;RET&gt;</B>
-      Replace <B>&lt;RET&gt;</B>
+		enter at the "With" prompt:</p> 
+	 <pre></pre> <hr> 
+	 <pre>ADDRESS 1: 301 Bayhshore Boulevard  Replace <b>... &lt;RET&gt;</b> With <b>301<br>Folsom Street &lt;RET&gt;</b>
+      Replace <b>&lt;RET&gt;</b>
        301 Folsom Street
     ADDRESS 2:
-</PRE> <HR> 
-	 <P>If you want to delete the entire text, enter the at-sign ("<B>@</B>") at
-		the "Replace" prompt: </P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>ADDRESS 1: 301 Bayshore Boulevard  Replace <B>@ &lt;RET&gt;</B>
-        SURE YOU WANT TO DELETE? <B>Y &lt;RET&gt;</B>  (Yes)
-    ADDRESS 2:
-</PRE> <HR> 
-	 <P><B>NOTE:</B> The at-sign ("<B>@</B>") is the command in many places to
-		signal deletion, as you'll learn later in this chapter. </P> 
-	 <P><B>"Replace..." Prompt Shortcuts</B></P> 
-	 <P>The following table illustrates shortcut responses when entering data at
-		the "Replace" prompt:</P> 
-	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="Replace... Prompt Shortcuts Table"
-	  TITLE="Replace... Prompt Shortcuts Table"> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="20%"><B>Shortcut</B></TD> 
-		  <TD VALIGN="TOP" WIDTH="80%"><B>Action</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="20%"><B>...</B></TD> 
-		  <TD VALIGN="TOP" WIDTH="80%">Replaces everything. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="20%"><B>xxx...</B></TD> 
-		  <TD VALIGN="TOP" WIDTH="80%">Replaces everything starting from the
-			 characters xxx to the end. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="20%"><B>...xxx</B></TD> 
-		  <TD VALIGN="TOP" WIDTH="80%">Replaces everything from the beginning up
-			 to and including the characters xxx. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="20%"><B>xxx...yyy</B></TD> 
-		  <TD VALIGN="TOP" WIDTH="80%">Replaces everything starting from xxx up
-			 to and including yyy. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="20%"><B>end or END</B></TD> 
-		  <TD VALIGN="TOP" WIDTH="80%">Appends what you enter at the "With"
-			 prompt to the end of the value. </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="list_prompts">Prompts with a List of Choices</A></H5> 
-	 <P>If the acceptable answer to a field prompt is one of a set of choices,
+</pre> <hr> 
+	 <p>If you want to delete the entire text, enter the at-sign ("<b>@</b>") at
+		the "Replace" prompt: </p> 
+	 <pre></pre> <hr> 
+	 <pre>ADDRESS 1: 301 Bayshore Boulevard  Replace <b>@ &lt;RET&gt;</b>
+        SURE YOU WANT TO DELETE? <b>Y &lt;RET&gt;</b>  (Yes)<br>    ADDRESS 2:<br></pre> <hr> 
+	 <p><b>NOTE:</b> The at-sign ("<b>@</b>") is the command in many places to
+		signal deletion, as you'll learn later in this chapter. </p> 
+	 <p><b>"Replace..." Prompt Shortcuts</b></p> 
+	 <p>The following table illustrates shortcut responses when entering data at
+		the "Replace" prompt:</p> 
+	 <table summary="Replace... Prompt Shortcuts Table" title="Replace... Prompt Shortcuts Table" border="1" width="100%"> 
+		<tbody><tr> 
+		  <td valign="top" width="20%"><b>Shortcut</b></td> 
+		  <td valign="top" width="80%"><b>Action</b> </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top" width="20%"><b>...</b></td> 
+		  <td valign="top" width="80%">Replaces everything. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top" width="20%"><b>xxx...</b></td> 
+		  <td valign="top" width="80%">Replaces everything starting from the
+			 characters xxx to the end. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top" width="20%"><b>...xxx</b></td> 
+		  <td valign="top" width="80%">Replaces everything from the beginning up
+			 to and including the characters xxx. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top" width="20%"><b>xxx...yyy</b></td> 
+		  <td valign="top" width="80%">Replaces everything starting from xxx up
+			 to and including yyy. </td> 
+		</tr> 
+		<tr> 
+		  <td valign="top" width="20%"><b>end or END</b></td> 
+		  <td valign="top" width="80%">Appends what you enter at the "With"
+			 prompt to the end of the value. </td> 
+		</tr> 
+	 </tbody></table> 
+	 <p></p> <hr align="center" width="90%"> 
+	 <h5><big><a name="list_prompts">Prompts with a List of Choices</a></big></h5> 
+	 <p>If the acceptable answer to a field prompt is one of a set of choices,
 		you can display the list of choices by entering one or two question marks. If
 		that set of choices is short enough to be displayed on five or six lines, the
-		choices are listed when you enter a single question mark.</P> 
-	 <P>Here's an example.</P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>Select PATIENT NAME: <B>? &lt;RET&gt;</B>
+		choices are listed when you enter a single question mark.</p> 
+	 <p>Here's an example.</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select PATIENT NAME: <b>?</b>
     ANSWER WITH PATIENT NAME 
     CHOOSE FROM:   
      ADAMS,JOHN 
@@ -286,59 +250,39 @@ Folsom Street &lt;RET&gt;</B>
     Answer must be 3-30 characters in length.
 
     Select PATIENT NAME:
-</PRE> <HR> 
-	 <P>When you enter a question mark ("<B>?</B>") and the entry list is long,
+</pre> <hr> 
+	 <p>When you enter a question mark ("<b>?</b>") and the entry list is long,
 		you're asked if you want to see all the entries. Besides a YES or NO response,
-		you can enter an up-arrow ("<B>^</B>") followed by a string of characters to
+		you can enter an up-arrow ("<b>^</b>") followed by a string of characters to
 		see a list of all entries beginning with the one that starts with those
-		characters. </P> 
-	 <P>The following example shows selection of an entry starting with an alpha
-		character.</P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>Select PATIENT NAME: <B>? &lt;RET&gt;</B>  
-    ANSWER WITH PATIENT NAME, OR SSN 
-    DO YOU WANT THE ENTIRE 1890-ENTRY PATIENT LIST? <B>^S &lt;RET&gt;</B> 
-    CHOOSE FROM: 
-     SAINT,JOSEPH 
-     SALTER,PAUL 
-     SAMSON,JOHN 
-     SANCHEZ,JOSE 
-      '^' TO STOP  <B>^ &lt;RET&gt;</B>
+		characters. </p> 
+	 <p>The following example shows selection of an entry starting with an alpha
+		character.</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select PATIENT NAME: <b>? &lt;RET&gt;</b>  <br>    ANSWER WITH PATIENT NAME, OR SSN <br>    DO YOU WANT THE ENTIRE 1890-ENTRY PATIENT LIST? <b>^S &lt;RET&gt;</b> <br>    CHOOSE FROM: <br>     SAINT,JOSEPH <br>     SALTER,PAUL <br>     SAMSON,JOHN <br>     SANCHEZ,JOSE <br>      '^' TO STOP  <b>^ &lt;RET&gt;</b>
  
       YOU MAY ENTER A NEW PATIENT, IF YOU WISH 
-     Enter patient name in &quot;Last, First Middle&quot; format [3-30 characters]. 
+     Enter patient name in "Last, First Middle" format [3-30 characters]. 
 
     Select PATIENT NAME:
-</PRE> <HR> 
-	 <P>If you know the list is long and still want it to be displayed, you can
-		enter <I>two</I> question marks ("<B>??</B>") to force the display of the
-		entire list. </P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="key_fields">Key Fields</A>&nbsp;<IMG SRC="new.gif"
-		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></H5> 
-	 <P>During a data entry session, VA FileMan checks that the combination of
+</pre> <hr> 
+	 <p>If you know the list is long and still want it to be displayed, you can
+		enter <i>two</i> question marks ("<b>??</b>") to force the display of the
+		entire list. </p> <hr align="center" width="90%"> 
+	 <h5><big><a name="key_fields">Key Fields</a>&nbsp;</big></h5> 
+	 <p>During a data entry session, VA FileMan checks that the combination of
 		fields that make up a key for a record is unique for all records in the file.
 		If a single field makes up a key, VA FileMan checks for uniqueness as soon as
 		that field is edited. If more than one field makes up a key (compound key), VA
 		FileMan checks that the combination of new key field values is unique only at
 		the end of the data entry session (unless otherwise instructed by the
-		programmer). If a compound key is <I>not</I> unique, VA FileMan restores the
+		programmer). If a compound key is <i>not</i> unique, VA FileMan restores the
 		fields that make up the key to their pre-edited values, and prints a message.
-		</P> 
-	 <P>For example:</P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>Select ZZTEST NAME: <B>`16 &lt;RET&gt;</B>  SMITH,JOHN  9900  SEP 03, 1932
-ID NUMBER: 9900// <B>9800</B>
-DATE: SEP 3,1932// <B>1/21/1932 &lt;RET&gt;</B>  (JAN 21, 1932)
-
-*****  NOTE  *****
-
-Some of the previous edits are not valid because they create one or more
-duplicate keys.  Some fields have been restored to their pre-edited
-values.
-
-Do you want to see a list of those fields? YES// <B>&lt;RET&gt;</B>
+		</p> 
+	 <p>For example:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select ZZTEST NAME: <b>`16 &lt;RET&gt;</b>  SMITH,JOHN  9900  SEP 03, 1932<br>ID NUMBER: 9900// <b>9800</b>
+DATE: SEP 3,1932// <b>1/21/1932 &lt;RET&gt;</b>  (JAN 21, 1932)<br><br>*****  NOTE  *****<br><br>Some of the previous edits are not valid because they create one or more<br>duplicate keys.  Some fields have been restored to their pre-edited<br>values.<br><br>Do you want to see a list of those fields? YES// <b>&lt;RET&gt;</b>
 
 The following field(s) have been restored to their pre-edited values:
 
@@ -353,110 +297,99 @@ File: ZZTEST File (#16999)
               Field: DATE (#2)
       Invalid value: JAN 21, 1932
         Restored to: SEP 03, 1932
-</PRE> <HR> <HR ALIGN="center" WIDTH="90%"> 
-	 <H4><A NAME="special">Special Responses to Field Prompts</A></H4> 
-	 <H5><A NAME="deleting">Deleting a Field's Value ("@")</A></H5> 
-	 <P>When you want to delete an answer previously entered, without
-		substituting any other answer, enter an at-sign ("<B>@</B>") as a response to
-		that prompt: </P> 
-	 <PRE>    DATE OF BIRTH:  May 21, 1946// <B>@ &lt;RET&gt;</B>
-    SURE YOU WANT TO DELETE? <B>YES</B></PRE> 
-	 <P>In this example, the date on file would be erased: there is no answer to
+</pre> <hr> <hr align="center" width="90%"> 
+	 <h4><big><a name="special">Special Responses to Field Prompts</a></big></h4> 
+	 <h5><big><a name="deleting">Deleting a Field's Value ("@")</a></big></h5> 
+	 <p>When you want to delete an answer previously entered, without
+		substituting any other answer, enter an at-sign ("<b>@</b>") as a response to
+		that prompt: </p> 
+	 <pre>    DATE OF BIRTH:  May 21, 1946// <b>@ &lt;RET&gt;</b>
+    SURE YOU WANT TO DELETE? <b>YES</b></pre> 
+	 <p>In this example, the date on file would be erased: there is no answer to
 		the DATE OF BIRTH question; its value is now null. You're asked to confirm the
 		deletion; this gives you a chance to change your mind before deleting the
-		field. </P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="jumping">Jumping to Another Field with the Up-Arrow
-		("^")</A></H5> 
-	 <P>If you fail to notice a typing error until after you've pressed the
+		field. </p> <hr align="center" width="90%"> 
+	 <h5><big><a name="jumping">Jumping to Another Field with the Up-Arrow
+		("^")</a></big></h5> 
+	 <p>If you fail to notice a typing error until after you've pressed the
 		Enter/Return key and stored a field, you can still correct this error. What you
 		need to do is go back to the field where the error occurred. You can usually
-		accomplish this by using the <I>jump</I> command. This command requires
-		entering an up-arrow ("<B>^</B>") along with the name, or first few letters, of
+		accomplish this by using the <i>jump</i> command. This command requires
+		entering an up-arrow ("<b>^</b>") along with the name, or first few letters, of
 		the field to which you wish to jump. Instead of moving to the next prompt, you
-		jump to the prompt you identified, as shown below:</P> 
-	 <PRE>    SSN:  123123123//  <B>^DATE OF BIRTH &lt;RET&gt;</B>
-    DATE OF BIRTH:</PRE> 
-	 <P>To get a list of the fields to which you can jump, enter an up-arrow and
-		a question mark ("<B>^?</B>") at any field prompt.</P> 
-	 <P>You can use the up-arrow to jump both forward and backward in a sequence
-		of fields.</P> 
-	 <P><B>TIP:</B> Sometimes, you may only need to update one field in a
+		jump to the prompt you identified, as shown below:</p> 
+	 <pre>    SSN:  123123123//  <b>^DATE OF BIRTH &lt;RET&gt;</b>
+    DATE OF BIRTH:</pre> 
+	 <p>To get a list of the fields to which you can jump, enter an up-arrow and
+		a question mark ("<b>^?</b>") at any field prompt.</p> 
+	 <p>You can use the up-arrow to jump both forward and backward in a sequence
+		of fields.</p> 
+	 <p><b>TIP:</b> Sometimes, you may only need to update one field in a
 		record. You can jump directly to that field once you start to edit that record.
 		This can save time; you don't need to go through every field and prompt that
-		precedes the one you want! </P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="up-arrow">Exiting with the Up-Arrow ("^")</A></H5> 
-	 <P>To exit or opt out of answering any question or prompt, enter the
-		up-arrow ("<B>^</B>") by itself at the field prompt, as in the example below:
-		</P> 
-	 <PRE>    SSN: 123123123// <B>^</B> 
-    Select PATIENT NAME:</PRE> 
-	 <P>In the previous example, the field value 123123123 remains unchanged,
+		precedes the one you want! </p> <hr align="center" width="90%"> 
+	 <h5><big><a name="up-arrow">Exiting with the Up-Arrow ("^")</a></big></h5> 
+	 <p>To exit or opt out of answering any question or prompt, enter the
+		up-arrow ("<b>^</b>") by itself at the field prompt, as in the example below:
+		</p> 
+	 <pre>    SSN: 123123123// <b>^</b> <br>    Select PATIENT NAME:</pre> 
+	 <p>In the previous example, the field value 123123123 remains unchanged,
 		but you skip the rest of the questions for this record and return to the
-		"Select..." prompt. If you enter an up-arrow ("<B>^</B>") at the "Select..."
-		prompt, you return to the previous prompt, and so on.</P> 
-	 <P>Entering the up-arrow ("<B>^</B>") by itself to exit a given function is
-		a convention used throughout <ACRONYM
-		 TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
-     applications.</P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A
-		NAME="up-arrow2">Exiting with the Up-Arrow ("^^")</A> &nbsp;<IMG SRC="new.gif"
-		ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></H5> 
-	 <P>When the user is doing a lookup to the file, VA FileMan may search many
+		"Select..." prompt. If you enter an up-arrow ("<b>^</b>") at the "Select..."
+		prompt, you return to the previous prompt, and so on.</p> 
+	 <p>Entering the up-arrow ("<b>^</b>") by itself to exit a given function is
+		a convention used throughout <acronym title="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</acronym>
+     applications.</p> <hr align="center" width="90%"> 
+	 <h5><big><a name="up-arrow2">Exiting with the Up-Arrow ("^^")</a> &nbsp;</big></h5> 
+	 <p>When the user is doing a lookup to the file, VA FileMan may search many
 		indexes looking for a value that matches the users input. This can be time
 		consuming. If the user wants to get out of the lookup before VA FileMan has
-		completed the search, the user can enter "<B>^^</B>" at any prompt. </P>
-	 <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="mandatory">Mandatory (Required) Fields</A></H5> 
-	 <P>In some cases a field is <I>mandatory</I>, and you <I>must</I> enter a
+		completed the search, the user can enter "<b>^^</b>" at any prompt. </p>
+	 <hr align="center" width="90%"> 
+	 <h5><big><a name="mandatory">Mandatory (Required) Fields</a></big></h5> 
+	 <p>In some cases a field is <i>mandatory</i>, and you <i>must</i> enter a
 		value, if one isn't already there; in other words, a null response (i.e.,
 		pressing the Enter/Return key without making an entry) is not valid. When you
-		use the up-arrow ("<B>^</B>") or press the Enter/Return key without entering
+		use the up-arrow ("<b>^</b>") or press the Enter/Return key without entering
 		data in one or more fields in the entry, your terminal "beeps" and prompts you
-		again to enter information.</P> 
-	 <P>If you don't fill in all required fields in a record, it is considered
+		again to enter information.</p> 
+	 <p>If you don't fill in all required fields in a record, it is considered
 		incomplete, and won't be stored unless you fill in the required fields. This
 		protects the database from records containing so little information that they
-		are useless. Enter the requested information.</P> 
-	 <P>If you still need to exit before you can provide all required
+		are useless. Enter the requested information.</p> 
+	 <p>If you still need to exit before you can provide all required
 		information, you should abort your edit and start over later. You can usually
 		exit out of the data editing sequence by answering any of the prompts with an
-		up-arrow ("<B>^</B>").</P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="spacebar">Spacebar Recall</A></H5> 
-	 <P>VA FileMan can recall your most recent response to a prompt. This
+		up-arrow ("<b>^</b>").</p> <hr align="center" width="90%"> 
+	 <h5><big><a name="spacebar">Spacebar Recall</a></big></h5> 
+	 <p>VA FileMan can recall your most recent response to a prompt. This
 		feature is called spacebar recall and employs the Spacebar
-		(<B>&lt;Space&gt;</B>) and Enter/Return (<B>&lt;RET&gt;</B>) keys. For example,
+		(<b>&lt;Space&gt;</b>) and Enter/Return (<b>&lt;RET&gt;</b>) keys. For example,
 		if you are editing a particular patient in a Nursing application and then
 		switch to the Order/Entry application to work with the same patient, you can
 		usually retrieve the same patient by pressing the Spacebar and the Enter/Return
 		keys at the second application's (Order/Entry) "Select PATIENT NAME:"
-		prompt.</P> 
-	 <P>For example:</P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>Select PATIENT NAME: <B>&lt;Space&gt;&lt;RET&gt;</B>
+		prompt.</p> 
+	 <p>For example:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select PATIENT NAME: <b>&lt;Space&gt;&lt;RET&gt;</b>
       DOE,JOHN
     NAME: DOE,JOHN//
-</PRE> <HR> 
-	 <P><B>Tip:</B> You can use spacebar recall throughout VA FileMan and the
+</pre> <hr> 
+	 <p><b>Tip:</b> You can use spacebar recall throughout VA FileMan and the
 		Kernel. Experiment with this feature as a quick way to recall your last
-		response to most prompts.</P> <HR ALIGN="center" WIDTH="90%"> 
-	 <H5><A NAME="session">Typical Data Entry Session</A></H5> 
-	 <P>So far we have discussed responding to individual prompts. Here is an
+		response to most prompts.</p> <hr align="center" width="90%"> 
+	 <h5><big><a name="session">Typical Data Entry Session</a></big></h5> 
+	 <p>So far we have discussed responding to individual prompts. Here is an
 		example of a typical data entry session. The example is characteristic of
-		editing data in many <ACRONYM
-		 TITLE="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</ACRONYM>
-     applications:</P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>Select Patient (Name or SSN): <B>ADAMS, &lt;RET&gt;</B>  CYNTHIA        01-12-41 
-    123456789    COLLATERAL
-  
-    Height: 5' 4&quot;// <B>&lt;RET&gt;</B>
-    Weight: <B>150#</B>
-    Date Weight Taken: TODAY// <B>&lt;RET&gt;</B>  (MAY 17, 1995)
-    Usual Weight: <B>145#</B>
-    Wrist Circumference (cm): <B>&lt;RET&gt;</B>
-    Frame Size (SMALL,MEDIUM,LARGE) MED// <B>&lt;RET&gt;</B>
+		editing data in many <acronym title="Veterans Health Information Systems and Technology Architecture/Decentralized Hospital Computer Program">VistA</acronym>
+     applications:</p> 
+	 <pre></pre> <hr> 
+	 <pre>Select Patient (Name or SSN): <b>ADAMS, &lt;RET&gt;</b>  CYNTHIA        01-12-41 <br>    123456789    COLLATERAL<br>  <br>    Height: 5' 4"// <b>&lt;RET&gt;</b>
+    Weight: <b>150#</b>
+    Date Weight Taken: TODAY// <b>&lt;RET&gt;</b>  (MAY 17, 1995)<br>    Usual Weight: <b>145#</b>
+    Wrist Circumference (cm): <b>&lt;RET&gt;</b>
+    Frame Size (SMALL,MEDIUM,LARGE) MED// <b>&lt;RET&gt;</b>
 
     Calculation of Ideal Body Weight
               H Hamwi
@@ -464,17 +397,17 @@ File: ZZTEST File (#16999)
               S Spinal Cord Injury
               E Enter Manually
 
-    Method: <B>S &lt;RET&gt;</B>
+    Method: <b>S &lt;RET&gt;</b>
 
     Extent of Injury:
            P Paraplegic
            Q Quadriplegic
 
-    Select: <B>P &lt;RET&gt;</B>
+    Select: <b>P &lt;RET&gt;</b>
 
-    Select Ideal Weight (109-118) 114 lb // <B>&lt;RET&gt;</B>
-    Does Patient have an Amputation? NO// <B>&lt;RET&gt;</B>
-    Do you wish Anthropometric Assessment? NO// <B>&lt;RET&gt;</B>
+    Select Ideal Weight (109-118) 114 lb // <b>&lt;RET&gt;</b>
+    Does Patient have an Amputation? NO// <b>&lt;RET&gt;</b>
+    Do you wish Anthropometric Assessment? NO// <b>&lt;RET&gt;</b>
 
     Collecting laboratory data ...
 
@@ -484,24 +417,22 @@ File: ZZTEST File (#16999)
       2 Ideal Body Weight
       3 Obese Calculation
 
-    Choose: <B>1 &lt;RET&gt;</B>
+    Choose: <b>1 &lt;RET&gt;</b>
 
     Comments:
       No existing text
-      Edit? NO// <B>&lt;RET&gt;</B>
+      Edit? NO// <b>&lt;RET&gt;</b>
 
-    Do you wish to FILE this Assessment Y// <B>&lt;RET&gt;</B>
-</PRE> <HR> 
-	 <P><B>NOTE:</B> The fields in the session listed above take many different
+    Do you wish to FILE this Assessment Y// <b>&lt;RET&gt;</b>
+</pre> <hr> 
+	 <p><b>NOTE:</b> The fields in the session listed above take many different
 		responses. Some accept FREE TEXT values, some accept only DATE/TIME, and some
-		accept only NUMERIC input. <BR> <BR> For more information on the specific types
+		accept only NUMERIC input. <br> <br> For more information on the specific types
 		of fields (DATE/TIME, NUMERIC, WORD-PROCESSING, FREE TEXT, etc.) and how to
-		edit them, please refer to the "<A HREF="he_frm.htm" TARGET="_top"
-		TITLE="About Each Field Type" CLASS="bodylink">About Each Field Type</A>"
-		chapter in this manual.</P>
-		<HR CLASS="hrstyle"> 
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
+		edit them, please refer to the "<a href="he_frm.htm" target="_top" title="About Each Field Type" class="bodylink">About Each Field Type</a>"
+		chapter in this manual.</p>
+		<hr class="hrstyle"> 
+	 <p align="center">Reviewed/Updated: October 2016</p>
+	 <p>&nbsp;</p> 
 
-  </BODY>
-</HTML>
+  </body></html>
