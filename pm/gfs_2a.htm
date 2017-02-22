@@ -43,7 +43,7 @@
 	 <p>The ^DIC global also contains the file's <b>security protection</b>
 		codes, if any, descendent from the zero subscript in the following nodes: </p> 
 	 <pre>    ^DIC(filenumber,0,"AUDIT")      --  Audit Access<br>    ^DIC(filenumber,0,"DD") --  Data Dictionary Access<br>    ^DIC(filenumber,0,"DEL")        --  Delete Access<br>    ^DIC(filenumber,0,"LAYGO")      --  LAYGO Access <br>    ^DIC(filenumber,0,"RD") --  Read Access <br>    ^DIC(filenumber,0,"WR") --  Write Access<br></pre> 
-	 <p><img style="width: 60px; height: 30px;" alt="" src="22.gif">The rest of the ^DIC global descriptors for a file are: </p> 
+	 <p><span class="badge">22.2</span>The rest of the ^DIC global descriptors for a file are: </p> 
 	  
 	 <pre>    ^DIC(filenumber,"%",    --  At lower subscript levels, contains the <br>	        application groups.<br>    ^DIC(filenumber,"%A")   --  Creator's DUZ^file creation date. <br>	        DIFROM does not send this node.<br>    ^DIC(filenumber,"%D",   --  At lower subscript levels, contains the <br>	        text of the file's DESCRIPTION.<br>   &nbsp;^DIC(filenumber,"%MSC")   --  Most recent date/time on which any aspect of the definition for this File was changed. <br>    ^DIC(filenumber,"ALANG",n,0)   --  Subscripted by language number n, the internal number of File .85. &nbsp;Contains the NAME of the File, translated into the non-English LANGUAGE.</pre><p></p>
 	 <p>&nbsp;</p> 
