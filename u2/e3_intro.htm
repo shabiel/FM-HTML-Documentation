@@ -106,12 +106,12 @@
 	 <PRE>INPUT TO WHAT FILE: <B>PATIENT</B> 
 EDIT WHICH FIELD: ALL// <B>NEXT OF KIN</B> 
 THEN EDIT FIELD: <B>BENEFICIARY//NEXT OF KIN</B>  
-  DO YOU MEAN 'NEXT OF KIN' AS A VARIABLE? YES// <B>&lt;RET&gt;</B>
-THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+  DO YOU MEAN 'NEXT OF KIN' AS A VARIABLE? YES// <B></B>
+THEN EDIT FIELD: <B></B>
 
 Select PATIENT NAME: <B>BROWN,JOE</B>
 NEXT OF KIN: <B>MRS SARAH BROWN</B> 
-BENEFICIARY: MRS SARAH BROWN// <B>&lt;RET&gt;</B>
+BENEFICIARY: MRS SARAH BROWN// <B></B>
 
 Select PATIENT NAME: <B>CAPLAN</B>, IRVING
 NEXT OF KIN: <B>MR BILL CAPLAN</B> 
@@ -168,18 +168,18 @@ normal</B> </PRE>
 </PRE> <HR> 
 	 <PRE>EDIT WHICH FIELD: <B>NAME</B>
     THEN EDIT FIELD: <B>DATE OF BIRTH</B>
-    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+    THEN EDIT FIELD: <B></B>
  
     Select PATIENT NAME: <B>^LOOP</B>   
-        EDIT ENTRIES BY:  NAME// <B>&lt;RET&gt;</B>
-        START WITH NAME:  FIRST// <B>&lt;RET&gt;</B>
+        EDIT ENTRIES BY:  NAME// <B></B>
+        START WITH NAME:  FIRST// <B></B>
 
         ADAMS,JOHN 
     NAME: ADAMS,JOHN// <B>ADAMS,JACK</B>
-    DATE OF BIRTH: APR 1, 1923// <B>&lt;RET&gt;</B>
+    DATE OF BIRTH: APR 1, 1923// <B></B>
  
         BROWN,JOE 
-    NAME: BROWN,JOE// <B>&lt;RET&gt;</B>
+    NAME: BROWN,JOE// <B></B>
     DATE OF BIRTH: FEB 27, 1939// <B>JAN 27, 1939</B>
 		:
 </PRE> <HR> 
@@ -196,14 +196,14 @@ normal</B> </PRE>
 	 <PRE>
 </PRE> <HR> 
 	 <PRE>EDIT WHICH FIELD: <B>FOLLOW-UP DATE///JUNE 1, 1982</B> 
-    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+    THEN EDIT FIELD: <B></B>
  
     Select PATIENT NAME: <B>^LOOP</B> 
  
       EDIT ENTRIES BY: NAME// <B>LAST VISIT DATE</B>
       START WITH LAST VISIT DATE: FIRST// <B>1900</B>
       GO TO LAST VISIT DATE: LAST// <B>DEC 31, 1976</B>
-           WITHIN LAST VISIT DATE, EDIT ENTRIES BY: <B>&lt;RET&gt;</B>
+           WITHIN LAST VISIT DATE, EDIT ENTRIES BY: <B></B>
  
     ...HOLD ON, PLEASE...
 
@@ -221,13 +221,13 @@ normal</B> </PRE>
 </PRE> <HR> 
 	 <PRE>EDIT WHICH FIELD: <B>FOLLOW-UP DATE/// @</B>
       WARNING-THIS MEANS AUTOMATIC DELETION!  
-    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+    THEN EDIT FIELD: <B></B>
 
     Select PATIENT NAME: <B>^LOOP</B>
       EDIT ENTRIES BY: NAME// <B>LAST VISIT DATE</B> 
       START WITH LAST VISIT DATE: FIRST// <B>1900</B> 
       GO TO LAST VISIT DATE: LAST// <B>12 31 76</B> 
-        WITHIN LAST VISIT DATE, EDIT ENTRIES BY: <B>&lt;RET&gt;</B>
+        WITHIN LAST VISIT DATE, EDIT ENTRIES BY: <B></B>
  
     ...JUST A MOMENT, PLEASE...
 
@@ -250,7 +250,7 @@ normal</B> </PRE>
     EDIT WHICH FIELD: ALL// <B>NAME</B>
     THEN EDIT FIELD: <B>DATE OF BIRTH</B> 
     THEN EDIT FIELD: <B>]</B>
-    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+    THEN EDIT FIELD: <B></B>
     STORE THESE FIELDS IN TEMPLATE: <B>UPDATE</B>
 </PRE> <HR> 
 	 <P>UPDATE is the name of the template. You'll notice that brackets were not
@@ -291,7 +291,7 @@ normal</B> </PRE>
 		contain all the fields currently in the file and will update the template when
 		new fields are added to the file. </P> 
 	 <PRE>    EDIT WHICH FIELD:  ALL// <B>]</B>
-    EDIT WHICH FIELD:  ALL// <B>&lt;RET&gt;</B>
+    EDIT WHICH FIELD:  ALL// <B></B>
     STORE THESE FIELDS IN TEMPLATE: <B>EVERY FIELD</B></PRE> <HR> 
 	 <H5><A NAME="branching">Branching Within INPUT Templates</A></H5> 
 	 <P>Sometimes, you want to dynamically control editing based on the
@@ -331,9 +331,9 @@ normal</B> </PRE>
     THEN EDIT FIELD: <B>FOLLOW-UP DATE</B>
     THEN EDIT FIELD: <B>@1</B>
     THEN EDIT FIELD: <B>BILLING METHOD</B>
-    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
+    THEN EDIT FIELD: <B></B>
     STORE THESE FIELDS IN TEMPLATE: <B>EDIT ADMISSION</B>
-      Are you adding 'EDIT ADMISSION' as a new INPUT TEMPLATE? <B>Y &lt;RET&gt;</B>  (YES)
+      Are you adding 'EDIT ADMISSION' as a new INPUT TEMPLATE? <B>Y </B>  (YES)
 </PRE> <HR> 
 	 <P>This template will branch around the discharge related questions, if the
 		DATE OF DISCHARGE is null. </P> 
@@ -342,29 +342,29 @@ normal</B> </PRE>
 		like this: </P> 
 	 <PRE>
 </PRE> <HR> 
-	 <PRE>INPUT TO WHAT FILE: ADMISSIONS// <B>&lt;RET&gt;</B>
-    EDIT WHICH FIELD: ALL// <B>[EDIT ADMISSION] &lt;RET&gt;</B>  (OCT 31, 1991@14:17)
+	 <PRE>INPUT TO WHAT FILE: ADMISSIONS// <B></B>
+    EDIT WHICH FIELD: ALL// <B>[EDIT ADMISSION] </B>  (OCT 31, 1991@14:17)
          USER #2 FILE #16155  
-    WANT TO EDIT 'EDIT ADMISSION' INPUT TEMPLATE? NO// <B>Y &lt;RET&gt;</B>  (YES)
-    NAME: EDIT ADMISSION// <B>&lt;RET&gt;</B>
-    READ ACCESS: @// <B>&lt;RET&gt;</B>
-    WRITE ACCESS: @// <B>&lt;RET&gt;</B>
-    EDIT WHICH FIELD: .01//  <B>&lt;RET&gt;</B>  NAME  
-    THEN EDIT FIELD: 1// <B>&lt;RET&gt;</B>  DIAGNOSIS  
-    THEN EDIT FIELD: 2// <B>&lt;RET&gt;</B>  ADMITTING PHYSICIAN  
-    THEN EDIT FIELD: 3// <B>&lt;RET&gt;</B>  DATE OF DISCHARGE  
-    THEN EDIT FIELD: S:X=&quot;&quot; Y=&quot;@1&quot;// <B>&lt;RET&gt;</B>
-    THEN EDIT FIELD: 4// <B>&lt;RET&gt;</B>  DISCHARGING PHYSICIAN  
-    THEN EDIT FIELD: 5// <B>&lt;RET&gt;</B>  FOLLOW-UP DATE  
-    THEN EDIT FIELD: @1// <B>&lt;RET&gt;</B>
-    THEN EDIT FIELD: 6// <B>&lt;RET&gt;</B>  BILLING METHOD  
+    WANT TO EDIT 'EDIT ADMISSION' INPUT TEMPLATE? NO// <B>Y </B>  (YES)
+    NAME: EDIT ADMISSION// <B></B>
+    READ ACCESS: @// <B></B>
+    WRITE ACCESS: @// <B></B>
+    EDIT WHICH FIELD: .01//  <B></B>  NAME  
+    THEN EDIT FIELD: 1// <B></B>  DIAGNOSIS  
+    THEN EDIT FIELD: 2// <B></B>  ADMITTING PHYSICIAN  
+    THEN EDIT FIELD: 3// <B></B>  DATE OF DISCHARGE  
+    THEN EDIT FIELD: S:X=&quot;&quot; Y=&quot;@1&quot;// <B></B>
+    THEN EDIT FIELD: 4// <B></B>  DISCHARGING PHYSICIAN  
+    THEN EDIT FIELD: 5// <B></B>  FOLLOW-UP DATE  
+    THEN EDIT FIELD: @1// <B></B>
+    THEN EDIT FIELD: 6// <B></B>  BILLING METHOD  
     THEN EDIT FIELD: 7// <B>S:X=&quot;M&quot; Y=&quot;MEDICARE NUMBER&quot;</B>
     THEN EDIT FIELD: <B>S Y=0</B>
     THEN EDIT FIELD: <B>MEDICARE NUMBER</B>   
-    THEN EDIT FIELD: <B>&lt;RET&gt;</B>
-    STORE THESE FIELDS IN TEMPLATE: <B>&lt;Space&gt;&lt;RET&gt;</B>  EDIT ADMISSION 
+    THEN EDIT FIELD: <B></B>
+    STORE THESE FIELDS IN TEMPLATE: <B>&lt;Space&gt;</B>  EDIT ADMISSION 
       (OCT 31, 1991@14:17)      USER #2 FILE #16155  
-    EDIT ADMISSION TEMPLATE ALREADY EXISTS.... OK TO REPLACE? <B>Y &lt;RET&gt;</B>  (YES)
+    EDIT ADMISSION TEMPLATE ALREADY EXISTS.... OK TO REPLACE? <B>Y </B>  (YES)
 </PRE> <HR> 
 	 <P>After the BILLING METHOD field is edited, a test is made of its
 		contents. It is a SET OF CODES DATA TYPE; thus, the test is for the letter "M"
@@ -378,11 +378,11 @@ normal</B> </PRE>
 	 <PRE>
 </PRE> <HR> 
 	 <PRE>Select ADMISSIONS NAME: <B>KEETON,KAREN</B>
-      Are you adding 'KEETON,KAREN' as a new ADMISSIONS (the 4TH)?  No// <B>Y &lt;RET&gt;</B>  (Yes)
+      Are you adding 'KEETON,KAREN' as a new ADMISSIONS (the 4TH)?  No// <B>Y </B>  (Yes)
     DIAGNOSIS: <B>MEASLES</B>
     ADMITTING PHYSICIAN: <B>MERCHANT,JEAN</B>
-    DATE OF DISCHARGE: <B>&lt;RET&gt;</B>
-    BILLING METHOD: <B>M &lt;RET&gt;</B>  MEDICARE
+    DATE OF DISCHARGE: <B></B>
+    BILLING METHOD: <B>M </B>  MEDICARE
     MEDICARE NUMBER: <B>3093-0393</B>
 </PRE> <HR> 
 	 <P>The discharge related questions were skipped, and the "MEDICARE NUMBER:"
@@ -391,14 +391,14 @@ normal</B> </PRE>
 	 <PRE>
 </PRE> <HR> 
 	 <PRE>Select ADMISSIONS NAME: <B>KEE</B>TON,KAREN  
-             ...OK? YES// <B>&lt;RET&gt;</B>  (YES)
+             ...OK? YES// <B></B>  (YES)
 
     NAME: KEETON,KAREN// <B>^DATE OF DISCHARGE</B> 
-    DATE OF DISCHARGE: <B>5/9/90 &lt;RET&gt;</B>  (MAY 09, 1990)
+    DATE OF DISCHARGE: <B>5/9/90 </B>  (MAY 09, 1990)
     DISCHARGING PHYSICIAN: <B>MERCHANT,JEAN</B>
-    FOLLOW-UP DATE: <B>6/1/90 &lt;RET&gt;</B>  (JUN 01, 1990)
-    BILLING METHOD: MEDICARE// <B>&lt;RET&gt;</B>
-    MEDICARE NUMBER: 3093-0393// <B>&lt;RET&gt;</B>
+    FOLLOW-UP DATE: <B>6/1/90 </B>  (JUN 01, 1990)
+    BILLING METHOD: MEDICARE// <B></B>
+    MEDICARE NUMBER: 3093-0393// <B></B>
 </PRE> <HR> 
 	 <P>There is a potential hazard in using branching. In this example, suppose
 		the BILLING METHOD were changed to "P" (for private insurance). The simple
@@ -412,7 +412,7 @@ normal</B> </PRE>
 	 <P>When creating an INPUT template, there are several ways you can control
 		the editing session to display customized prompts, to enable the duplication of
 		data by pressing the Spacebar and the Enter/Return keys
-		(<B>&lt;Space&gt;&lt;RET&gt;</B>), and to make a field required. </P> 
+		(<B>&lt;Space&gt;</B>), and to make a field required. </P> 
 	 <P>The following table summarizes the edit qualifiers you can use to
 		accomplish these results. They are described in more detail in the next three
 		sections. Enter these qualifiers in conjunction with fields at the "EDIT
@@ -440,7 +440,7 @@ normal</B> </PRE>
 		<TR> 
 		  <TD VALIGN="TOP" WIDTH="20%">field<B>;DUP</B></TD> 
 		  <TD VALIGN="TOP" WIDTH="80%">Save responses for later use with
-			 <B>&lt;Space&gt;&lt;RET&gt;</B> and allow their recall (see "<A
+			 <B>&lt;Space&gt;</B> and allow their recall (see "<A
 			 HREF="#duplicating" TITLE="Duplicating Input Values"
 			 CLASS="bodylink">Duplicating Input Values</A>" below). </TD> 
 		</TR> 
@@ -467,9 +467,9 @@ normal</B> </PRE>
 	 <P>To use the field's title instead of its label as the input prompt,
 		follow the field name (or number) with <B>;T</B>. Thus, when editing the
 		PATIENT file, you can enter: </P> 
-	 <PRE>    EDIT WHICH FIELD: <B>.01 &lt;RET&gt;</B>  NAME
+	 <PRE>    EDIT WHICH FIELD: <B>.01 </B>  NAME
     THEN EDIT FIELD: <B>SSN;T</B>
-    THEN EDIT FIELD: <B>&lt;RET&gt;</B></PRE> 
+    THEN EDIT FIELD: <B></B></PRE> 
 	 <P>If you enter these specifications <I>and</I> if this field's title is
 		defined as "Social Security Number," the user will encounter the "Social
 		Security Number:" prompt instead of the "SSN:" prompt.</P> <HR> 

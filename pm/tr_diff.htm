@@ -70,14 +70,14 @@ CURRENT CROSS-REFERENCES:
        2    TRIGGER OF THE 'DATE NAME CHANGED' FIELD OF THE PATIENT 
                    FILE
 Choose E (Edit)/D (Delete)/C (Create):  <B>CREATE</B>
-WANT TO CREATE A NEW CROSS-REFERENCE FOR THIS FIELD? NO//  <B>YES &lt;RET&gt;</B>  CROSS-REFERENCE NUMBER: 3// <B>&lt;RET&gt;</B>
+WANT TO CREATE A NEW CROSS-REFERENCE FOR THIS FIELD? NO//  <B>YES </B>  CROSS-REFERENCE NUMBER: 3// <B></B>
 Select TYPE OF INDEXING: REGULAR//  <B>TRIGGER </B>
 
 WHEN THE 'NAME' field (#.01) OF THE 'PATIENT' File (#2) IS CHANGED, 
 WHAT FIELD SHOULD BE 'TRIGGERED:  <B>NAME:MONITOR:TIME</B>
-DO YOU WANT TO PERMIT ADDING A NEW 'MONITOR' ENTRY? NO//  <B>Y &lt;RET&gt;</B>  (YES)
+DO YOU WANT TO PERMIT ADDING A NEW 'MONITOR' ENTRY? NO//  <B>Y </B>  (YES)
 WELL THEN, DO YOU WANT TO **FORCE** ADDING A NEW ENTRY
-      EVERY TIME? NO//  <B>Y &lt;RET&gt;</B>  (YES)
+      EVERY TIME? NO//  <B>Y </B>  (YES)
   ...OK
 
 --- SET LOGIC ---
@@ -88,7 +88,7 @@ PLEASE ENTER AN EXPRESSION WHICH WILL BECOME THE
  VALUE OF THE 'TIME' field (#1 ) OF THE 'MONITOR' File (#16001)
  WHENEVER 'NAME' IS ENTERED OR CHANGED:  <B>NOW</B>
 
-DO YOU WANT TO MAKE THE SETTING OF 'TIME' CONDITIONAL? NO// <B>&lt;RET&gt;</B>  (NO)
+DO YOU WANT TO MAKE THE SETTING OF 'TIME' CONDITIONAL? NO// <B></B>  (NO)
 
 --- KILL LOGIC ---
 
@@ -100,13 +100,13 @@ PLEASE ENTER AN EXPRESSION WHICH WILL BECOME THE VALUE OF
   THE 'TIME' field (#1) OF THE 'MONITOR' File (#16001)
   WHENEVER 'NAME' IS CHANGED OR DELETED:  <B>@</B>
 ARE YOU SURE YOU WANT TO 'ADD A NEW ENTRY' WHEN THIS
-  KILL LOGIC OCCURS? NO//  <B>Y &lt;RET&gt;</B>  (YES)
+  KILL LOGIC OCCURS? NO//  <B>Y </B>  (YES)
 
-DO YOU WANT TO MAKE THE DELETING OF 'TIME' CONDITIONAL? NO// <B>&lt;RET&gt;</B>  (NO)
+DO YOU WANT TO MAKE THE DELETING OF 'TIME' CONDITIONAL? NO// <B></B>  (NO)
 
 WANT TO PROTECT THE 'TIME' FIELD, SO THAT 
-IT CAN'T BE CHANGED BY THE 'ENTER &amp; EDIT' ROUTINE? NO// <B>&lt;RET&gt;</B>  (NO)
-NO-DELETION MESSAGE: <B>&lt;RET&gt;</B>
+IT CAN'T BE CHANGED BY THE 'ENTER &amp; EDIT' ROUTINE? NO// <B></B>  (NO)
+NO-DELETION MESSAGE: <B></B>
 DESCRIPTION: 
 
 1&gt;<B>The TIME field of the Monitor file will be triggered whenever</B>
@@ -114,11 +114,11 @@ DESCRIPTION:
 3&gt;<B>new value=NOW.  A new entry in the Monitor file will be created</B>
 4&gt;<B>at the same time.  If the NAME field in the Patient file is </B>
 5&gt;<B>deleted, TIME will be deleted.</B>
-6&gt;<B>&lt;RET&gt;</B>
+6&gt;<B></B>
 
 ...CROSS-REFERENCE IS SET
 DO YOU WANT TO RUN THE CROSS-REFERENCE FOR EXISTING ENTRIES NOW? 
-   NO// <B>&lt;RET&gt;</B>  (NO)</PRE> <HR> 
+   NO// <B></B>  (NO)</PRE> <HR> 
 	 <P>This example shows the <B>extended pointer syntax</B> used to specify a
 		field in another file. The patient's NAME is used as a lookup value in the
 		Monitor file. A new Monitor entry is created by the trigger. In a sense, this

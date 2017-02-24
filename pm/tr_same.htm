@@ -57,18 +57,18 @@
 	 <PRE>Select OPTION: <B>UTI</B>LITY FUNCTIONS 
 Select UTILITY OPTION: <B>CRO</B>SS-REFERENCE A FIELD
 
-MODIFY WHAT FILE: <B>PATIENT &lt;RET&gt;</B>              (1890 entries)
+MODIFY WHAT FILE: <B>PATIENT </B>              (1890 entries)
 Select FIELD: <B>NAME</B>
 
 CURRENT CROSS-REFERENCE IS REGULAR 'B' INDEX OF FILE
 
 Choose E (Edit)/D (Delete)/C (Create): <B>CREATE</B>
 WANT TO CREATE A NEW CROSS-REFERENCE FOR THIS FIELD?
-NO// <B>Y </B> (YES) CROSS-REFERENCE NUMBER:  2// <B>&lt;RET&gt;</B>
+NO// <B>Y </B> (YES) CROSS-REFERENCE NUMBER:  2// <B></B>
 Select TYPE OF INDEXING: REGULAR// <B>TRI</B>GGER
 
 WHEN THE NAME field (#.01) of the PATIENT File (#2)
-IS CHANGED, WHAT FIELD SHOULD BE 'TRIGGERED': <B>DATE NAME CHANGED &lt;RET&gt;</B>  ..OK </PRE> <HR> 
+IS CHANGED, WHAT FIELD SHOULD BE 'TRIGGERED': <B>DATE NAME CHANGED </B>  ..OK </PRE> <HR> 
 	 <P>The field to be triggered must already exist. </P> 
 	 <PRE></PRE> <HR> 
 	 <PRE>---- SET LOGIC ----
@@ -84,7 +84,7 @@ DO YOU WANT TO MAKE THE SETTING OF 'DATE NAME CHANGED' CONDITIONAL?
 	 <P>If you answered YES, you can set conditions for the trigger. You will
 		get the prompt: </P> 
 	 <PRE></PRE> <HR> 
-	 <PRE>ENTER AN EXPRESSION FOR THE CONDITION: <B>&lt;RET&gt;</B>
+	 <PRE>ENTER AN EXPRESSION FOR THE CONDITION: <B></B>
 
 --- KILL LOGIC ---
 
@@ -94,7 +94,7 @@ IN ANSWERING THE FOLLOWING QUESTION, 'DATE NAME CHANGED'
  OF THE NAME FIELD BEFORE ITS CHANGE OR DELETION.
 PLEASE ENTER AN EXPRESSION WHICH WILL BECOME THE VALUE OF 
 THE 'DATE NAME CHANGED' field (#2) OF THE 'PATIENT' File (#2) 
-  WHENEVER 'NAME' IS CHANGED OR DELETED: <B>&lt;RET&gt;</B>  NO EFFECT</PRE> <HR> 
+  WHENEVER 'NAME' IS CHANGED OR DELETED: <B></B>  NO EFFECT</PRE> <HR> 
 	 <P>You have specified that the NAME field will trigger the DATE NAME
 		CHANGED field (noting that the NAME field is already cross-referenced in the
 		usual way). You have requested that the current date/time (NOW) be stuffed into
@@ -113,7 +113,7 @@ THE 'DATE NAME CHANGED' field (#2) OF THE 'PATIENT' File (#2)
 		updated is via this trigger. No Enter or Edit File Entries option user (not
 		even one with an @-sign) will be able to change a patient's DATE NAME CHANGED
 		field directly. </P> 
-	 <PRE>    NO-DELETION MESSAGE: <B>&lt;RET&gt;</B></PRE> 
+	 <PRE>    NO-DELETION MESSAGE: <B></B></PRE> 
 	 <P>If you enter a free text message at this prompt, this cross-reference
 		cannot be deleted. </P> 
 	 <PRE></PRE> <HR> 
@@ -121,13 +121,13 @@ THE 'DATE NAME CHANGED' field (#2) OF THE 'PATIENT' File (#2)
 1&gt;<B>The DATE NAME CHANGED field will be triggered whenever the </B>
 2&gt;<B>NAME field is entered or updated.  The triggered value will be</B>
 3&gt;<B>NOW.  This field cannot be edited.</B>
-4&gt;<B>&lt;RET&gt;</B></PRE> <HR> 
+4&gt;<B></B></PRE> <HR> 
 	 <P>The description will appear in a standard DD listing. </P> 
 	 <PRE></PRE> <HR> 
 	 <PRE>...CROSS-REFERENCE IS SET
 
 DO YOU WANT TO RUN THE CROSS-REFERENCE FOR EXISTING
-ENTRIES NOW? NO// <B>&lt;RET&gt;</B></PRE> <HR> 
+ENTRIES NOW? NO// <B></B></PRE> <HR> 
 	 <P>Finally, you have the option of using the new trigger to update the
 		file. In this case, it would not be useful to put the current date and time
 		into the DATE NAME CHANGED field for every existing entry. Thus, the NO default

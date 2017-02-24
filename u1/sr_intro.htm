@@ -166,7 +166,7 @@
 	 <PRE></PRE> <HR> 
 	 <PRE>-A- SEARCH FOR FIELD: <B>DATE ACCESS CODE LAST CHANGED</B>
    -A- CONDITION: <B>LESS THAN</B>
-   -A- GREATER THAN: <B>T-120 &lt;RET&gt;</B>  (Jun 20, 1995)</PRE> <HR> 
+   -A- GREATER THAN: <B>T-120 </B>  (Jun 20, 1995)</PRE> <HR> 
 	 <P><B>NOTE:</B> Each prompt above begins with "<B>-A-</B>"; what you've
 		entered becomes search condition "A."</P> 
 	 <P>Once you enter your first search condition, you can enter additional
@@ -177,12 +177,12 @@
 	 <PRE></PRE> <HR> 
 	 <PRE>-A- SEARCH FOR FIELD: <B>DATE ACCESS CODE LAST CHANGED</B>
    -A- CONDITION: <B>LESS THAN</B>
-   -A- GREATER THAN: <B>T-120 &lt;RET&gt;</B>  (Jun 20, 1995)
+   -A- GREATER THAN: <B>T-120 </B>  (Jun 20, 1995)
 
   -B- SEARCH FOR FIELD: <B>ACCESS CODE</B>
   -B- CONDITION: <B>'NULL</B> 
 
-  -C- SEARCH FOR FIELD: <B>&lt;RET&gt;</B></PRE> <HR> 
+  -C- SEARCH FOR FIELD: <B></B></PRE> <HR> 
 	 <P></P><HR> 
 	 <H5><A NAME="Step_2">2. Combine Conditions</A></H5> 
 	 <P>After defining a series of conditions (A, B, etc.), you combine the
@@ -224,24 +224,24 @@
 			 that are combined with <B>OR</B> needs to be true. If <B>A</B> is true and
 			 <B>B</B> is false, <B>A OR B</B> evaluates to true. </TD> 
 		  <TD VALIGN="TOP"> 
-			 <PRE>IF: <B>A &lt;RET&gt;</B>
-OR: <B>B &lt;RET&gt;</B></PRE> </TD> 
+			 <PRE>IF: <B>A </B>
+OR: <B>B </B></PRE> </TD> 
 		</TR> 
 	 </TABLE> 
 	 <P></P> 
 	 <P>For example, if you just want to find all entries for which search
 		condition A is true, you would enter: </P> 
-	 <PRE>  -B- SEARCH FOR FIELD: <B>&lt;RET&gt;</B>
+	 <PRE>  -B- SEARCH FOR FIELD: <B></B>
    IF: <B>A</B>
-   OR: <B>&lt;RET&gt;</B></PRE> 
+   OR: <B></B></PRE> 
 	 <P>A more complicated search might have a number of search conditions
 		(e.g., A, B, C, and D). Thus, for example, to find all entries which either: 1)
 		satisfy both truth tests A and B, or 2) do not satisfy truth test C, but
 		satisfy truth test D, you could combine search conditions as follows:</P> 
-	 <PRE>  -E- SEARCH FOR FIELD: <B>&lt;RET&gt;</B>
+	 <PRE>  -E- SEARCH FOR FIELD: <B></B>
    IF: <B>A&amp;B</B>
    OR: <B>'C&amp;D</B>
-   OR: <B>&lt;RET&gt;</B></PRE> 
+   OR: <B></B></PRE> 
 	 <P>In the example above, the logic says "if A and B, or if not C (but D)".
 		</P> <HR> 
 	 <H5><A NAME="Step_3">3. Format Output</A></H5> 
@@ -380,7 +380,7 @@ DO YOU WANT THIS SEARCH SPECIFICATION TO BE CONSIDERED TRUE FOR CONDITION -B-
   
         2) WHEN ALL OF THE 'DIAGNOSIS' MULTIPLES SATISFY IT
  
-    CHOOSE 1-2: 1// <B>&lt;RET&gt;</B>
+    CHOOSE 1-2: 1// <B></B>
  </PRE> <HR> 
 	 <P>In this case, all the diagnoses would need to satisfy the A condition,
 		but only one (or more) would need to satisfy the B condition. </P> 

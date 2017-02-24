@@ -107,7 +107,7 @@ the data is initially entered). </td>
 OF BIRTH field of the PATIENT file (#2). Only changes to pre-existing
 data will be recorded: </p>
 <hr>
-<pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES<br>DO YOU WANT TO USER THE SCREEN-MODE VERSION? Yes// <b>N &lt;RET&gt;</b> (No)<br><br>MODIFY WHAT FILE: <b>PATIENT</b><br>Select FIELD: <b>DATE OF BIRTH</b><br>LABEL: <b>&lt;RET&gt;</b><br>TITLE: <b>&lt;RET&gt;</b><br>AUDIT: <b>EDITED &lt;RET&gt;</b> EDITED OR DELETED<br><b>.</b><br><b>.</b><br><b>.</b></pre>
+<pre>Select OPTION: <b>MOD</b>IFY FILE ATTRIBUTES<br>DO YOU WANT TO USER THE SCREEN-MODE VERSION? Yes// <b>N </b> (No)<br><br>MODIFY WHAT FILE: <b>PATIENT</b><br>Select FIELD: <b>DATE OF BIRTH</b><br>LABEL: <b></b><br>TITLE: <b></b><br>AUDIT: <b>EDITED </b> EDITED OR DELETED<br><b>.</b><br><b>.</b><br><b>.</b></pre>
 <hr>
 <p>If you have programmer access, you are also presented with the
 "AUDIT CONDITION:" prompt. Here, you can restrict the data entries that
@@ -150,7 +150,7 @@ Modify File Attributes option: </p>
 On/Off option and turn the audit off by entering NO at the "AUDIT:"
 prompt: </p>
 <hr>
-<pre>AUDIT: EDITED OR DELETED// <b>NO &lt;RET&gt;</b> NO</pre>
+<pre>AUDIT: EDITED OR DELETED// <b>NO </b> NO</pre>
 <hr>
 <h5><big><big><a name="Reviewing">Reviewing
 the Data Field
@@ -168,7 +168,7 @@ on the patient(s) displayed. </p>
 'Green' was first assigned a DOB of 1/20/49, but that subsequently this
 DOB was changed to 1/20/50. </p>
 <hr>
-<pre>Select OPTION: <b>INQ</b>UIRE TO FILE ENTRIES&nbsp;<br><br>OUTPUT FROM WHAT FILE: <b>PATIENT</b>&nbsp;&nbsp;<br>Select PATIENT: <b>GREEN,RICHARD<br></b>ANOTHER ONE: <br><br>STANDARD CAPTIONED OUTPUT? Yes//&nbsp;<b>&lt;RET&gt;</b> (Yes)<br>Include COMPUTED fields:&nbsp; (N/Y/R/B): NO//&nbsp;<b>&lt;RET&gt;</b><br> - No record number (IEN), no Computed<br>&nbsp;Fields<br>DISPLAY AUDIT TRAIL? No// <br><b>YES</b><br>NAME: GREEN, RICHARD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DOB: JAN 20, 1950<br><br>&nbsp;&nbsp;&nbsp; Changed from "JAN 20, 1949" on Mar 15, 2001@16:48:53 by User #16<br><br>&nbsp;&nbsp;&nbsp; Created on Mar 13, 2001@19:41:36 by User #330</pre>
+<pre>Select OPTION: <b>INQ</b>UIRE TO FILE ENTRIES&nbsp;<br><br>OUTPUT FROM WHAT FILE: <b>PATIENT</b>&nbsp;&nbsp;<br>Select PATIENT: <b>GREEN,RICHARD<br></b>ANOTHER ONE: <br><br>STANDARD CAPTIONED OUTPUT? Yes//&nbsp;<b></b> (Yes)<br>Include COMPUTED fields:&nbsp; (N/Y/R/B): NO//&nbsp;<b></b><br> - No record number (IEN), no Computed<br>&nbsp;Fields<br>DISPLAY AUDIT TRAIL? No// <br><b>YES</b><br>NAME: GREEN, RICHARD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DOB: JAN 20, 1950<br><br>&nbsp;&nbsp;&nbsp; Changed from "JAN 20, 1949" on Mar 15, 2001@16:48:53 by User #16<br><br>&nbsp;&nbsp;&nbsp; Created on Mar 13, 2001@19:41:36 by User #330</pre>
 <hr>
 <p><span class="badge">22.2</span><strong>2. Showing Changes by a Specific User</strong></p>
 <p>We may want to look at the audit trail by user rather than by
@@ -207,7 +207,7 @@ given User since the beginning of 2016.<br>
 		file, then by the internal entry number of the edited entry from the file being
 		audited, and finally by the date/time of the audited event. Suppose
         'GREEN,RICHARD' is the 355th entry in the PATIENT file.</p>
-        <pre>OUTPUT FROM WHAT FILE: PATIENT// <b>1.1 &lt;RET&gt; </b> AUDIT<br>AUDIT FROM WHAT FILE: PATIENT//&nbsp;<b></b><br>&nbsp;elect PATIENT AUDIT: <b>1&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp; 355&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3-15-2001@16:48:53<br>ANOTHER ONE:&nbsp;&nbsp;<br>STANDARD CAPTIONED OUTPUT? YES//&nbsp;<b></b> (YES)&nbsp;<br>DISPLAY COMPUTED FIELDS? NO// <b>Y </b>(YES)</pre> <hr> 
+        <pre>OUTPUT FROM WHAT FILE: PATIENT// <b>1.1  </b> AUDIT<br>AUDIT FROM WHAT FILE: PATIENT//&nbsp;<b></b><br>&nbsp;elect PATIENT AUDIT: <b>1&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp; 355&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3-15-2001@16:48:53<br>ANOTHER ONE:&nbsp;&nbsp;<br>STANDARD CAPTIONED OUTPUT? YES//&nbsp;<b></b> (YES)&nbsp;<br>DISPLAY COMPUTED FIELDS? NO// <b>Y </b>(YES)</pre> <hr> 
 	 <p> Responding with YES at the "DISPLAY COMPUTED FIELDS? NO//" prompt shows
 		the AUDIT file's COMPUTED fields: ENTRY NAME, FIELD NAME, OLD VALUE, and NEW
 		VALUE. A NO response will <i>not</i> show these fields.</p> 

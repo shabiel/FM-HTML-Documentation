@@ -86,23 +86,23 @@
 		Number) in the PATIENT file and would now like to edit the field: </P> 
 	 <PRE> </PRE> <HR> 
 	 <PRE>Select FIELD: <B>SSN</B>
-LABEL:  SSN// <B>&lt;RET&gt;</B> 
+LABEL:  SSN// <B></B> 
 TITLE: <B>Social Security Number</B> 
 AUDIT: <B>YES, ALWAYS</B>       
-AUDIT CONDITION: <B>&lt;RET&gt;</B></PRE> <HR> 
+AUDIT CONDITION: <B></B></PRE> <HR> 
 	 <P><B>NOTE:</B> Auditing is described in the "<A HREF="au_frm.htm"
 		TARGET="_top" TITLE="Auditing" CLASS="bodylink">Auditing</A>" chapter in this
 		manual. </P> 
 	 <PRE></PRE> <HR> 
-	 <PRE>READ ACCESS (OPTIONAL): <B>&lt;RET&gt;</B>
-DELETE ACCESS (OPTIONAL): <B>&lt;RET&gt;</B>
-WRITE ACCESS (OPTIONAL): <B>&lt;RET&gt;</B></PRE> <HR> 
+	 <PRE>READ ACCESS (OPTIONAL): <B></B>
+DELETE ACCESS (OPTIONAL): <B></B>
+WRITE ACCESS (OPTIONAL): <B></B></PRE> <HR> 
 	 <P><B>NOTE:</B> Control of various kinds of access to files is described in
 		the "<A HREF="ds_frm.htm" TARGET="_top" TITLE="Data Security"
 		CLASS="bodylink">Data Security</A>" chapter in this manual.</P> 
 	 <PRE></PRE> <HR> 
-	 <PRE>SOURCE: <B>&lt;RET&gt;</B> 
-Select DESTINATION: <B>&lt;RET&gt;</B> 
+	 <PRE>SOURCE: <B></B> 
+Select DESTINATION: <B></B> 
 Select GROUP:  <B>DEMOG</B></PRE> <HR> 
 	 <P>A GROUP is a shorthand way for the user to refer to several fields at
 		once when using the Print File Entries or the Enter or Edit File Entries
@@ -112,9 +112,9 @@ Select GROUP:  <B>DEMOG</B></PRE> <HR>
 1&gt;An entry is required.  If you do not know this patient's Social 
 2&gt;Security Number, enter '000000000' to indicate the number is 
 3&gt;unknown<B>.</B>
-EDIT Option: <B>&lt;RET&gt;</B>
+EDIT Option: <B></B>
 TECHNICAL DESCRIPTION: 
-1&gt; <B>&lt;RET&gt;</B></PRE> <HR> 
+1&gt; <B></B></PRE> <HR> 
 	 <P>The DESCRIPTION and TECHNICAL DESCRIPTION attributes document the use
 		and meaning of the field. The information in DESCRIPTION is shown to the user
 		when two question marks are entered at the "EDIT Option:" prompt. When
@@ -125,14 +125,14 @@ TECHNICAL DESCRIPTION:
 		also enter a Help Frame for field documentation; that attribute is no longer
 		supported.</P> 
 	 <PRE></PRE> <HR> 
-	 <PRE>DATA TYPE OF SSN:  FREE TEXT// <B>&lt;RET&gt;</B>
-MINIMUM LENGTH: 9// <B>&lt;RET&gt;</B>
-MAXIMUM LENGTH: 9// <B>&lt;RET&gt;</B>
-(OPTIONAL) PATTERN MATCH (IN 'X'): X?9N// <B>&lt;RET&gt;</B>
-IS SSN ENTRY MANDATORY (Y/N): Y// <B>&lt;RET&gt;</B>
+	 <PRE>DATA TYPE OF SSN:  FREE TEXT// <B></B>
+MINIMUM LENGTH: 9// <B></B>
+MAXIMUM LENGTH: 9// <B></B>
+(OPTIONAL) PATTERN MATCH (IN 'X'): X?9N// <B></B>
+IS SSN ENTRY MANDATORY (Y/N): Y// <B></B>
 'HELP'-PROMPT:  ANSWER MUST BE 9 CHARACTERS IN LENGTH 
   Replace <B>... </B>With  <B>Enter 9 numbers without dashes, e.g., 123456789.</B>
-  Replace <B>&lt;RET&gt;</B>
+  Replace <B></B>
       Enter 9 numbers without dashes, e.g., 123456789. </PRE> <HR> 
 	 <P>To illustrate the use of GROUPs, add the NAME, DATE OF BIRTH, and SEX
 		fields into the DEMOG group: </P> 
@@ -141,9 +141,9 @@ IS SSN ENTRY MANDATORY (Y/N): Y// <B>&lt;RET&gt;</B>
 LABEL:   NAME// <B>^GROUP</B>
 Select GROUP: <B>DEMOG</B> 
 DESCRIPTION: 
-1&gt; <B>&lt;RET&gt;</B>
+1&gt; <B></B>
 TECHNICAL DESCRIPTION:
-1&gt; <B>&lt;RET&gt;</B>
+1&gt; <B></B>
 
 DATA TYPE OF NAME:   FREE TEXT// <B>^</B></PRE> <HR> 
 	 <P>DATE OF BIRTH and SEX can be added to the GROUP in the same way. Now,
@@ -153,12 +153,12 @@ DATA TYPE OF NAME:   FREE TEXT// <B>^</B></PRE> <HR>
  1    DEMOG    NAME
  2    DEMOG    SEX
  3    DEMOG    DATE OF BIRTH
-EDIT WHICH FIELD: <B>&lt;RET&gt;</B>
+EDIT WHICH FIELD: <B></B>
 
 Select PATIENT NAME: <B>GREEN</B>,RICHARD<B></B>
-NAME:   GREEN,RICHARD// <B>&lt;RET&gt;</B>
-SEX:   MALE// <B>&lt;RET&gt;</B>
-DATE OF BIRTH:   JAN 3, 1955// <B>&lt;RET&gt; </B></PRE> <HR> 
+NAME:   GREEN,RICHARD// <B></B>
+SEX:   MALE// <B></B>
+DATE OF BIRTH:   JAN 3, 1955// <B> </B></PRE> <HR> 
 	 <H5><A NAME="data_type">Changing a Field's Data Type</A></H5> 
 	 <P>Within the Modify File Attributes option, you can change the Data Type
 		itself. There are limitations on the sort of changes you can make. These are
@@ -194,7 +194,7 @@ DATE OF BIRTH:   JAN 3, 1955// <B>&lt;RET&gt; </B></PRE> <HR>
 		of a field's LABEL when using the Modify File Attributes option: </P> 
 	 <PRE></PRE> <HR> 
 	 <PRE>Select OPTION: <B>MOD</B>IFY FILE ATTRIBUTES 
-DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <B>NO &lt;RET&gt;</B>  (No)
+DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <B>NO </B>  (No)
 
 MODIFY WHAT FILE: <B>PATIENT</B>
 

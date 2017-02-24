@@ -153,39 +153,39 @@
 		documentation for the use by developers only. </P> 
 	 <P>Following is an example creating a new entry in the DIALOG file. </P> 
 	 <PRE>    Select DIALOG: <B>10001
-</B>      Are you adding '10001' as a new DIALOG (the 239TH)? <B>Y &lt;RET&gt;</B>  (YES)
-    TYPE: <B>? &lt;RET&gt;</B>
+</B>      Are you adding '10001' as a new DIALOG (the 239TH)? <B>Y </B>  (YES)
+    TYPE: <B>? </B>
          Enter code that reflects how this dialogue is used when talking to the users.
          Choose from: 
            1        ERROR
            2        GENERAL MESSAGE
            3        HELP
-    TYPE: <B>3 &lt;RET&gt;</B>  HELP
-    PACKAGE: <B>VA FILEMAN &lt;RET&gt;</B>          DI
+    TYPE: <B>3 </B>  HELP
+    PACKAGE: <B>VA FILEMAN </B>          DI
     DESCRIPTION:
       1&gt;<B>Here we enter a description of the help message itself.  This</B>
       2&gt;<B>description is for our own documentation.</B>
       3&gt;
     EDIT Option: 
-    INTERNAL PARAMETERS NEEDED: <B>Y &lt;RET&gt;</B>  YES
+    INTERNAL PARAMETERS NEEDED: <B>Y </B>  YES
     TEXT:
       1&gt;<B>Here we enter the actual text of the help messages, with</B>
       2&gt;<B>parameters designated by vertical bars |1| as shown.</B>
       3&gt;
     EDIT Option: 
     Select PARAMETER SUBSCRIPT: <B>1</B>
-      Are you adding '1' as a new PARAMETER SUBSCRIPT (the 1ST for this DIALOG)? <B>Y &lt;RET&gt;</B> (YES)
+      Are you adding '1' as a new PARAMETER SUBSCRIPT (the 1ST for this DIALOG)? <B>Y </B> (YES)
       PARAMETER DESCRIPTION: <B>Brief description of parameter 1 goes here. For
       documentation only.</B>
-    Select PARAMETER SUBSCRIPT: <B>&lt;RET&gt;</B> 
-    POST MESSAGE ACTION: <B>? &lt;RET&gt;</B>   This is Standard MUMPS code.  This code will be
+    Select PARAMETER SUBSCRIPT: <B></B> 
+    POST MESSAGE ACTION: <B>? </B>   This is Standard MUMPS code.  This code will be
     executed whenever this message is retrieved through a call to BLD^DIALOG
     or $$EZBLD^DIALOG
     POST MESSAGE ACTION: <B>S MYVAR=&quot;HELP #10001 WAS REQUESTED&quot;</B>
     Select LANGUAGE:
-    Select ROUTINE NAME: DIKZ// <B>&lt;RET&gt;</B>
-      ROUTINE NAME: DIKZ// <B>&lt;RET&gt;</B>
-      LINE TAG:  // <B>&lt;RET&gt;</B>
+    Select ROUTINE NAME: DIKZ// <B></B>
+      ROUTINE NAME: DIKZ// <B></B>
+      LINE TAG:  // <B></B>
 </PRE>
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
