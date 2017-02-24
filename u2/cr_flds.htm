@@ -129,7 +129,7 @@
 	 <p></p> 
 	 <center>
 		<img src="firstscr.JPG" alt="Example of Editing Properties of a Field in Screen Mode." height="455" width="640"> </center> 
-	 <pre></pre> <hr> 
+	  
 	 <p>Using the Screen Mode version of this option, after entering the field
 		name or number (e.g., .01 field) after the "Select FIELD:" prompt, you are
 		presented with a
@@ -164,13 +164,13 @@
 		FileMan does not accept dates before 1700.</p> 
 	 <p>For example, when defining a DATE/TIME Data Type, you are asked the
 		following questions: </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select FIELD: <b>DATE OF BIRTH</b>
   Are you adding 'DATE OF BIRTH' as a new FIELD? No// <b>Y </b>  (Yes)<br><br>DATA TYPE OF DATE OF BIRTH: <b>DA</b>TE/TIME <br>EARLIEST DATE (OPTIONAL): <b>1/1/1860 </b>  (JAN 01, 1860) <br>LATEST DATE: <b>1963 </b>  (1963) <br>CAN DATE BE IMPRECISE (Y/N):  YES// <b></b>
 CAN TIME OF DAY BE ENTERED (Y/N):  NO// <b></b>  NO</pre> <hr> 
 	 <p> If you reply YES to the "CAN TIME OF DAY BE ENTERED (Y/N): NO//"
 		prompt, you would then be asked "CAN SECONDS BE ENTERED?".</p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>WILL DATE OF BIRTH FIELD BE MULTIPLE:  No// <b></b>  (No) <br>IS DATE OF BIRTH ENTRY MANDATORY (Y/N):  NO// <b>Y </b>  YES<br>...<br>'HELP'-PROMPT:  TYPE A DATE BETWEEN 1/1/1860 AND 1963 <br>           Replace <b></b>
 DESCRIPTION:
   1&gt; <b></b>
@@ -192,13 +192,13 @@ DESCRIPTION:
 		state whether dollar values are allowed (e.g., $33).</p> 
 	 <p>For example, when defining a NUMERIC Data Type, you are asked the
 		following questions: </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select FIELD: <b>AGE AT ONSET</b>   <br>  Are you adding 'AGE AT ONSET' as a new FIELD? No// <b>Y </b>  (YES)<br> <br>DATA TYPE OF AGE AT ONSET: <b>NUMERIC</b> <br>INCLUSIVE LOWER BOUND: <b>0</b>
 INCLUSIVE UPPER BOUND: <b>100</b> <br>IS THIS A DOLLAR AMOUNT (Y/N):  NO// <b></b></pre> <hr> 
 	 <p>If you answer YES at the "IS THIS A DOLLAR AMOUNT (Y/N):" prompt, VA
 		FileMan would allow users to precede input data with a dollar sign ("<b>$</b>")
 		and show up to two decimal places. </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>MAXIMUM NUMBER OF FRACTIONAL DIGITS: 0// <b></b> <br>WILL AGE AT ONSET FIELD BE MULTIPLE? No// <b></b>  (No)    <br>IS AGE AT ONSET ENTRY MANDATORY (Y/N): NO// <b></b>  NO<br>....<br>'HELP'-PROMPT:  Type a Number between 0 and 100, 0 Decimal Digits <br>           Replace <b></b>
 DESCRIPTION:
   1&gt; <b></b></pre> <hr> 
@@ -226,7 +226,7 @@ DESCRIPTION:
 		sometimes referred to as a SET. </p> 
 	 <p>For example, when defining a SET OF CODES Data Type, you are asked the
 		following questions: </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select FIELD: <b>SEX</b>
   Are you adding 'SEX' as a new FIELD? No// <b>Y </b>  (Yes)  <br><br>DATA TYPE OF SEX: <b>SET</b> OF CODES<br>INTERNALLY-STORED CODE: <b>m</b>  WILL STAND FOR: <b>MALE</b> <br>INTERNALLY-STORED CODE: <b>f</b>  WILL STAND FOR: <b>FEMALE</b> <br>INTERNALLY-STORED CODE: <b></b>
 WILL SEX FIELD BE MULTIPLE: No// <b></b>  (No) <br>IS SEX ENTRY MANDATORY (Y/N):  No// <b>Y </b>  YES<br>... <br>'HELP'-PROMPT: <b></b>
@@ -246,19 +246,19 @@ DESCRIPTION:
 		PATTERN MATCH that input data will have to match.</p> 
 	 <p>For example, when defining a FREE TEXT Data Type, you are asked the
 		following questions: </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select FIELD: <b>DIAGNOSIS</b>
   Are you adding 'DIAGNOSIS' as a new FIELD? No// <b>Y </b>  (Yes)<br><br>DATA TYPE OF DIAGNOSIS: <b>FREE TEXT</b> <br>MINIMUM LENGTH: <b>3</b>
 MAXIMUM LENGTH: <b>30</b> <br>(OPTIONAL) PATTERN MATCH (IN 'X'): <b></b></pre> <hr> 
 	 <p>The PATTERN MATCH is written in M code. If input data violates the
 		PATTERN MATCH or the Minimum/Maximum lengths, the data is not accepted and the
 		user is shown the Help prompt information. </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>WILL DIAGNOSIS FIELD BE MULTIPLE? No// <b>Y </b>  (Yes)<br>IS DIAGNOSIS ENTRY MANDATORY(Y/N): NO// <b></b>  NO<br>SHOULD USER SEE AN "ADDING A NEW DIAGNOSIS?" MESSAGE FOR NEW<br>   ENTRIES (Y/N): <b>N </b>  NO<br>HAVING ENTERED OR EDITED ONE DIAGNOSIS, SHOULD USER BE ASKED <br>   ANOTHER (Y/N): <b>Y </b>  YES </pre> <hr> 
 	 <p>With these specifications, the user is not given a confirming message
 		when new subentries are added to the Multiple. The user is allowed to enter
 		several diagnoses in a row for a given patient. </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>....<br>....<br>'HELP'-PROMPT:  Answer must be 3-30 characters in length.<br>           Replace <b></b>
 DESCRIPTION:
   1&gt; <b></b></pre> <hr> 
@@ -283,7 +283,7 @@ DESCRIPTION:
 		FileMan Getting Started Manual</a>."</p> 
 	 <p>For example, when defining a WORD-PROCESSING Data Type, you are asked
 		the following questions: </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select FIELD: <b>HISTORY</b>
   Are you adding 'HISTORY' as a new FIELD? No// <b>Y </b>  (Yes) <br><br>DATA TYPE OF HISTORY: <b>WORD-PROCESSING</b>
 SHALL THIS TEXT NORMALLY APPEAR IN WORD-WRAP MODE? Yes// <b></b>  (Yes)<br>....<br>....<br>'HELP'-PROMPT: <b>SUBJECTIVE NARRATIVE OF PATIENT'S PROBLEM HISTORY</b>
@@ -318,7 +318,7 @@ DESCRIPTION:
 		to the COMPUTED field value.</p> 
 	 <p>For example, when defining a COMPUTED Data Type, you are asked the
 		following questions:</p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select FIELD: <b>AGE</b>
   Are you adding 'AGE' as a new FIELD? No// <b>Y </b>  (Yes)<br><br>DATA TYPE OF AGE: <b>COMPUTED</b>  <br><br>'COMPUTED-FIELD' EXPRESSION: <b>TODAY-(DATE OF BIRTH)\365.25</b>
 
@@ -330,7 +330,7 @@ NUMBER OF FRACTIONAL DIGITS TO OUTPUT (ONLY ANSWER IF NUMBER-VALUED): <b>2</b>
 		the "NUMBER OF FRACTIONAL DIGITS TO OUTPUT" question is asking whether you
 		should enter the number of digits that should normally appear to the right of
 		the decimal point when this field is displayed.</p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>SHOULD VALUE ALWAYS BE INTERNALLY ROUNDED TO 2 DECIMAL PLACES? No// <b>Y<br></b>  (Yes)<br>WHEN TOTALLING THIS FIELD, SHOULD THE SUM BE COMPUTED FROM<br>       THE SUMS OF THE COMPONENT FIELDS? No// <b></b>  (No)<br>LENGTH OF FIELD: 8// <b></b> <br></pre> <hr> 
 	 <p>You can review and change a file's field attributes easily by running
 		the Modify File Attributes option in
@@ -344,18 +344,18 @@ NUMBER OF FRACTIONAL DIGITS TO OUTPUT (ONLY ANSWER IF NUMBER-VALUED): <b>2</b>
 		previously).</p> 
 	 <p>For example, when defining a POINTER TO A FILE Data Type, you are asked
 		the following questions: </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select FIELD: <b>RELIGION</b>
   Are you adding 'RELIGION' as a new FIELD? No// <b>Y </b>  (Yes)<br><br>DATA TYPE OF RELIGION: <b>POINTER</b> TO A FILE  <br>POINT TO WHICH FILE: <b>RELIGION</b> <br></pre> <hr> 
 	 <p>The file that is pointed to must already exist on your system. If you
 		enter a single question mark ("<b>?</b>") at the "POINT TO WHICH FILE:" prompt,
 		you will be presented with a list of the available files. </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>SHOULD 'ADDING A NEW RELIGION FILE ENTRY' ("LAYGO") <br>BE ALLOWED WHEN ANSWERING THE 'RELIGION' QUESTION?  No// <b></b>  (No)  </pre> <hr> 
 	 <p>By answering NO to this prompt, users who are editing patient data are
 		not able to add a new entry on the fly to the RELIGION file. This prompt
 		depends on whether you have LAYGO access to the file or not.</p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>WILL RELIGION FIELD BE MULTIPLE? No// <b></b>  (No)<br>IS RELIGION ENTRY MANDATORY (Y/N): NO// <b></b>  NO<br>.... <br>'HELP'-PROMPT: <b></b>
 DESCRIPTION:
   1&gt; <b></b>
@@ -375,13 +375,13 @@ DESCRIPTION:
 		file.</p> 
 	 <p>For example, when defining a VARIABLE-POINTER Data Type, you are asked
 		the following questions: </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select FIELD: <b>PROVIDER</b>
   Are you adding 'PROVIDER' as a new FIELD? No// <b>Y </b>  (Yes)  <br><br>DATA TYPE OF PROVIDER: <b>VARIABLE-POINTER</b>
 Select VARIABLE POINTER: <b>PROVIDER</b>      <br> <br></pre> <hr> 
 	 <p>You answer the "Select VARIABLE POINTER:" prompt with the name or number
 		of an existing file. </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Are you adding 'PROVIDER' as a new VARIABLE-POINTER? No// <b>Y </b>  (Yes)<br> <br>VARIABLE-POINTER:  PROVIDER// <b></b>
 MESSAGE: <b>Staff Provider</b>  <br>ORDER: <b>1</b>  <br>PREFIX: <b>S</b>
 SHOULD USER BE ALLOWED TO ADD A NEW ENTRY: <b>NO </b>  NO</pre> <hr> 
@@ -406,7 +406,7 @@ SHOULD USER BE ALLOWED TO ADD A NEW ENTRY: <b>NO </b>  NO</pre> <hr>
 		<a href="cr_ex.htm#Pointer" title="POINTER TO A FILE" class="bodylink">POINTER
 		TO A FILE</a>). If you had answered YES, then new entries could be added to the
 		PROVIDER file.</p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select VARIABLE-POINTER: <b>16 </b>  PERSON <br>  Are you adding 'PERSON' as a new VARIABLE-POINTER? (the 2ND)? No// <b>Y </b>  (Yes)<br>VARIABLE-POINTER:    PERSON// <b></b>
 MESSAGE: <b>Other Provider</b> <br>ORDER: <b>2</b>
 PREFIX: <b>O</b>
@@ -415,19 +415,19 @@ SHOULD USER BE ALLOWED TO ADD A NEW ENTRY: <b>YES </b>  YES</pre> <hr>
 		file (#16). By answering YES to the "SHOULD USER BE ALLOWED TO ADD A NEW
 		ENTRY:" prompt, users who are editing patient data are allowed to add entries
 		to the PERSON file. </p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>Select VARIABLE-POINTER: <b></b></pre> <hr> 
 	 <p>You stop identifying files for a VARIABLE-POINTER by simply pressing the
 		Enter/Return key without any additional entries at the "Select
 		VARIABLE-POINTER:" prompt.</p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>WILL PROVIDER FIELD BE MULTIPLE?  No// <b></b>  (No) <br>IS PROVIDER ENTRY MANDATORY (Y/N):  NO// <b></b>  NO<br>'HELP'-PROMPT: <b></b>
 DESCRIPTION:
   1&gt; <b></b></pre> <hr> 
 	 <p>After entering both VARIABLE-POINTERS, when you enter a single question
 		mark ("<b>?</b>") at the "PROVIDER" field prompt, you will see the following
 		Help message:</p> 
-	 <pre></pre> <hr> 
+	  
 	 <pre>PROVIDER: <b>?</b>
      Enter one of the following:
        S.EntryName to select a Staff Provider

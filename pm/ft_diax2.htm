@@ -273,12 +273,12 @@
 		look like:</P> 
 	 <PRE>  D EXTRACT^DIAXU(16151,&quot;[EXTRACT SEARCH]&quot;,&quot;[EXTRACT TEMPLATE]&quot;)</PRE> 
 	 <P>The results messages would be returned as follows:</P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>^TMP(&quot;DIAXU&quot;,627068728,&quot;RESULT&quot;,16151,7) = 1
 ^TMP(&quot;DIAXU&quot;,627068728,&quot;RESULT&quot;,16151,32) = 13
 ^TMP(&quot;DIAXU&quot;,627068728,&quot;RESULT&quot;,&quot;ERR&quot;,16151,34) = 1;</PRE> <HR> 
 	 <P>The error messages would be returned as follows:</P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>^TMP(&quot;DIERR&quot;,627068728,1) = 701
 ^TMP(&quot;DIERR&quot;,627068728,1,&quot;PARAM&quot;,0) = 3
 ^TMP(&quot;DIERR&quot;,627068728,1,&quot;PARAM&quot;,3) = NEWONE
@@ -294,7 +294,7 @@
 		two subrecords are extracted individually with the FILING_LEVEL array.
 		Subrecord #1 extracts successfully, and subrecord #2 fails. The results and
 		error messages would be returned as follows:</P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>^TMP(&quot;DIAXU&quot;,541074770,&quot;RESULT&quot;,662001,5) = 75                 (<I>record #5, success</I>)
 ^TMP(&quot;DIAXU&quot;,541074770,&quot;RESULT&quot;,662001.1,&quot;1,5,&quot;) = 1,75,       (<I>subrecord #1, success</I>)
 ^TMP(&quot;DIAXU&quot;,541074770,&quot;RESULT&quot;,&quot;ERR&quot;,662001,5) = 2            (<I>record #5, error 2

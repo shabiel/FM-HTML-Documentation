@@ -111,7 +111,7 @@
 		points to the DOCTOR file. Given a field PT AGE in the PATIENT file and a field
 		DR AGE in the DOCTOR file, you can use the Print File Entries option and then
 		enter the information that follows: </P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>OUTPUT FROM WHAT FILE: <B>PATIENT </B>
 SORT BY:  NAME// <B>PT AGE&gt;(ATTENDING PHYSICIAN:DR AGE)</B> 
 WITHIN PT AGE&gt;(ATTENDING PHYSICIAN:DR AGE), SORT BY:<B></B>
@@ -147,14 +147,14 @@ FIRST PRINT FIELD: <B>NAME</B></PRE> <HR>
 		field is a variable pointer to either the PHYSICIAN file or the PERSON file,
 		and PHONE is a field in the PERSON file. You could enter the following print
 		specifications: </P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>FIRST PRINT FIELD: <B>NAME</B>
 THEN PRINT FIELD: <B>PROVIDER</B>
 THEN PRINT FIELD: <B>FILE(PROVIDER)</B>
 THEN PRINT FIELD: <B>PROVIDER:PERSON:PHONE</B>
 THEN PRINT FIELD: <B></B></PRE> <HR> 
 	 <P>You would receive the following output:</P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>NAME                PROVIDER         FILE(PROVIDER)   PROVIDER:PERSON:PHONE
 ---------------------------------------------------------------------------
 BROWN,JOHN L.       CRUSHER,BEVERLY   PHYSICIAN 

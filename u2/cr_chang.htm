@@ -93,21 +93,21 @@ AUDIT CONDITION: <B></B></PRE> <HR>
 	 <P><B>NOTE:</B> Auditing is described in the "<A HREF="au_frm.htm"
 		TARGET="_top" TITLE="Auditing" CLASS="bodylink">Auditing</A>" chapter in this
 		manual. </P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>READ ACCESS (OPTIONAL): <B></B>
 DELETE ACCESS (OPTIONAL): <B></B>
 WRITE ACCESS (OPTIONAL): <B></B></PRE> <HR> 
 	 <P><B>NOTE:</B> Control of various kinds of access to files is described in
 		the "<A HREF="ds_frm.htm" TARGET="_top" TITLE="Data Security"
 		CLASS="bodylink">Data Security</A>" chapter in this manual.</P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>SOURCE: <B></B> 
 Select DESTINATION: <B></B> 
 Select GROUP:  <B>DEMOG</B></PRE> <HR> 
 	 <P>A GROUP is a shorthand way for the user to refer to several fields at
 		once when using the Print File Entries or the Enter or Edit File Entries
 		options. Here, SSN is being assigned to the DEMOG group. </P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>DESCRIPTION: 
 1&gt;An entry is required.  If you do not know this patient's Social 
 2&gt;Security Number, enter '000000000' to indicate the number is 
@@ -124,7 +124,7 @@ TECHNICAL DESCRIPTION:
 	 <P><B>NOTE:</B> Versions of VA FileMan prior to Version 21.0 allowed you to
 		also enter a Help Frame for field documentation; that attribute is no longer
 		supported.</P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>DATA TYPE OF SSN:  FREE TEXT// <B></B>
 MINIMUM LENGTH: 9// <B></B>
 MAXIMUM LENGTH: 9// <B></B>
@@ -136,7 +136,7 @@ IS SSN ENTRY MANDATORY (Y/N): Y// <B></B>
       Enter 9 numbers without dashes, e.g., 123456789. </PRE> <HR> 
 	 <P>To illustrate the use of GROUPs, add the NAME, DATE OF BIRTH, and SEX
 		fields into the DEMOG group: </P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>Select FIELD: <B>NAME</B> 
 LABEL:   NAME// <B>^GROUP</B>
 Select GROUP: <B>DEMOG</B> 
@@ -148,7 +148,7 @@ TECHNICAL DESCRIPTION:
 DATA TYPE OF NAME:   FREE TEXT// <B>^</B></PRE> <HR> 
 	 <P>DATE OF BIRTH and SEX can be added to the GROUP in the same way. Now,
 		when using the Enter or Edit File Entries option, you could say: </P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>EDIT WHICH FIELD: <B>DEMOG</B>
  1    DEMOG    NAME
  2    DEMOG    SEX
@@ -192,7 +192,7 @@ DATE OF BIRTH:   JAN 3, 1955// <B> </B></PRE> <HR>
 	 <P>Deleting a field and its definition is done by deleting the field Name
 		(LABEL). Delete the field by typing the at-sign ("<B>@</B>") after the display
 		of a field's LABEL when using the Modify File Attributes option: </P> 
-	 <PRE></PRE> <HR> 
+	  
 	 <PRE>Select OPTION: <B>MOD</B>IFY FILE ATTRIBUTES 
 DO YOU WANT TO USE THE SCREEN-MODE VERSION? Yes// <B>NO </B>  (No)
 
