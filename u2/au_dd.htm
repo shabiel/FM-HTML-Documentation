@@ -30,14 +30,14 @@
 <p>In addition to auditing changes to data values, you can audit
 changes to data dictionaries. </p>
 <ul>
-<li><a href="#Setting" title="Setting Up a Data Dictionary Audit" class="bodylink">Setting
+<li><span class="badge">22.2</span><a href="#Setting" title="Setting Up a Data Dictionary Audit" class="bodylink">Setting
 Up a Data Dictionary Audit</a><br>
 <br>
 </li>
 <li><a href="#Reviewing" title="Reviewing the Data Dictionary Audit Trail" class="bodylink">Reviewing the Data Dictionary Audit Trail</a><br>
 <br>
 </li>
-<li><a href="#Tracking"><img style="border: 0px solid ; width: 60px; height: 30px;" alt="" src="22.gif"></a><a href="#Tracking" title="Tracking Audited Data Dictionaries" class="bodylink">Tracking Changes to Data Dictionaries</a><br>
+<li><span class="badge">22.2</span><a href="#Tracking"></a><a href="#Tracking" title="Tracking Audited Data Dictionaries" class="bodylink">Tracking Changes to Data Dictionaries</a><br>
 <br>
 </li>
 <li><a href="#Purging" title="Purging a Data Dictionary Audit Trail" class="bodylink">Purging
@@ -46,13 +46,12 @@ a Data Dictionary Audit Trail</a></li>
 <hr>
 <h5><a name="Setting">Setting Up a Data Dictionary
 Audit</a></h5>
-<p><span class="badge"></span><img style="width: 60px; height: 30px;" alt="" src="22.gif">There is no longer an Option to set up a Data Dictionary
+<p><span class="badge">22.2</span>There is no longer an Option to set up a Data Dictionary
 audit. &nbsp;VA FileMan makes an audit trail of all changes made
 to all data dictionaries. Changes to the definitions of fields in the
 file are audited. Fields in Subfiles are audited, too. Changes made to
 the definition of the file, using the Edit File option, are not
 audited. The changes are recorded in the DD AUDIT file (#.6).</p>
-<pre><b><br></b><br></pre>
 <hr>
 <h5><a name="Reviewing">Reviewing the Data
 Dictionary Audit Trail</a></h5>
@@ -63,15 +62,13 @@ Audited option is just used to display a list of data dictionaries
 being audited; it doesn't include the changes made to audited data
 dictionaries. The following dialogue is an example of how to identify
 the changes made to a data dictionary: </p>
-<pre></pre>
 <hr>
-<pre>Select OPTION: <b>INQ</b>UIRE TO FILE ENTRIES<br><br>OUTPUT FROM WHAT FILE: <b>.6 &lt;RET&gt;</b> DD AUDIT<br>AUDIT FROM WHAT FILE: <b>PATIENT</b><br>Select PATIENT SUB-FILE: <b>&lt;RET&gt;</b>
+<pre>Select OPTION: <b>INQ</b>UIRE TO FILE ENTRIES<br><br>OUTPUT FROM WHAT FILE: <b>.6 </b> DD AUDIT<br>AUDIT FROM WHAT FILE: <b>PATIENT</b><br>Select PATIENT SUB-FILE: <b></b>
 </pre>
 <hr>
 <p><b>NOTE:</b> You only see the "SUB-FILE" prompt if
 the file contains a Subfile. To display audit information for the
 Subfile, specify it here. </p>
-<pre></pre>
 <hr>
 <pre>Select PATIENT DD AUDIT: <b>?</b><br>ANSWER WITH ZZPT DD AUDIT NUMBER, OR FIELD NUMBER, OR DATE<br>UPDATED, OR USER<br>CHOOSE FROM:<br>1 2 02-20-90 PROGRAMMER,SYSTEMS<br>2 3 02-20-90 PROGRAMMER,SYSTEMS<br></pre>
 <hr>
@@ -79,9 +76,8 @@ Subfile, specify it here. </p>
 number (2 and 3 in this example), the date of the change (02/20/90 for
 both entries), and the person making the change (PROGRAMMER, SYSTEMS
 for both).</p>
-<pre></pre>
 <hr>
-<pre>Select PATIENT DD AUDIT: <b>1</b><br>ANOTHER ONE: <b>2</b><br>ANOTHER ONE: <b>&lt;RET&gt;</b><br>STANDARD CAPTIONED OUTPUT? YES// <b>&lt;RET&gt;</b><br>DISPLAY COMPUTED FIELDS? NO// <b>&lt;RET&gt;</b><br>NUMBER: 1 FIELD NUMBER: 2<br>TYPE: EDIT DATE UPDATED: FEB 20, 1990@17:54:36<br>USER: PROGRAMMER,SYSTEMS ATTRIBUTE NAME: LABEL<br>ATTRIBUTE NUMBER: .01 FILE NUMBER: 999000<br>OLD VALUE(S): DATE OF BIRTH NEW VALUE(S): DOB<br>NUMBER: 2 FIELD NUMBER: 3<br>TYPE: EDIT DATE UPDATED: FEB 21, 1990@11:54:03<br>USER: PROGRAMMER,SYSTEMS ATTRIBUTE NAME: LABEL<br>ATTRIBUTE NUMBER: .01 FILE NUMBER: 999000<br>OLD VALUE(S): CURRENT AGE NEW VALUE(S): AGE<br></pre>
+<pre>Select PATIENT DD AUDIT: <b>1</b><br>ANOTHER ONE: <b>2</b><br>ANOTHER ONE: <b></b><br>STANDARD CAPTIONED OUTPUT? YES// <b></b><br>DISPLAY COMPUTED FIELDS? NO// <b></b><br>NUMBER: 1 FIELD NUMBER: 2<br>TYPE: EDIT DATE UPDATED: FEB 20, 1990@17:54:36<br>USER: PROGRAMMER,SYSTEMS ATTRIBUTE NAME: LABEL<br>ATTRIBUTE NUMBER: .01 FILE NUMBER: 999000<br>OLD VALUE(S): DATE OF BIRTH NEW VALUE(S): DOB<br>NUMBER: 2 FIELD NUMBER: 3<br>TYPE: EDIT DATE UPDATED: FEB 21, 1990@11:54:03<br>USER: PROGRAMMER,SYSTEMS ATTRIBUTE NAME: LABEL<br>ATTRIBUTE NUMBER: .01 FILE NUMBER: 999000<br>OLD VALUE(S): CURRENT AGE NEW VALUE(S): AGE<br></pre>
 <hr>
 <p>This example indicates that a user named Systems Programmer
 modified the PATIENT file (#999000) on 2/20 and 2/21/90. This person
@@ -91,12 +87,13 @@ Field #2 was changed from DATE OF BIRTH to DOB and the LABEL of Field
 as it was recorded in the DD AUDIT file (#.6) is 1 and the second is 2.
 </p>
 <hr>
-<h5><a name="Tracking"></a><img style="width: 60px; height: 30px;" alt="" src="22.gif"><a name="Tracking">Tracking Changes to&nbsp; Data
+<h5><span class="badge">22.2</span><a name="Tracking"></a><a name="Tracking">Tracking Changes to&nbsp; Data
 Dictionaries</a></h5>
 <p>An easy way to look at <span style="font-style: italic;">every&nbsp;</span>change to <span style="font-style: italic;">any&nbsp;</span>Data
 Dictionary is to use the new&nbsp;sub-option 'SHOW PAST CHANGES TO
 DD'S'. &nbsp;You will be asked for a starting date. &nbsp;All changes
-to all data definitions on or after that date will be displayed.</p><hr style="width: 100%; height: 2px;"><p></p><p><small>Select AUDIT OPTION: 6&nbsp; SHOW PAST CHANGES TO DD'S<br>Show Data Dictionary changes since: First// 7 7&nbsp; (JUL 07, 2016)<br>DEVICE:<br>DATA DICTIONARY CHANGES, NEW PERSON FILE(#200) since JUL 7,2016<br>FIELD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+to all data definitions on or after that date will be displayed.</p><hr style="width: 100%; height: 2px;">
+<pre>Select AUDIT OPTION: 6&nbsp; SHOW PAST CHANGES TO DD'S<br>Show Data Dictionary changes since: First// 7 7&nbsp; (JUL 07, 2016)<br>DEVICE:<br>DATA DICTIONARY CHANGES, NEW PERSON FILE(#200) since JUL 7,2016<br>FIELD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ATTRIBUTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -107,7 +104,7 @@ LABEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 31,2016@13:52:39&nbsp;&nbsp; 1<br>&nbsp;&nbsp; TO: CLINICAL CORE TRAINEE<br>DATE
 NO LONGER TRAINEE&nbsp;&nbsp;
 'HELP'-PROMPT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AUG
-31,2016@13:49:18&nbsp;&nbsp; 1<br>&nbsp;&nbsp; TO: Date Trainee became inactive<br>DATE NO LONGER TRAINEE&nbsp;&nbsp; INPUT TRANSFORM&nbsp;&nbsp;AUG 31,2016@13:48:28&nbsp;&nbsp; 1<br>&nbsp;FROM: S %DT="EX" D ^%DT S X=Y K:Y&lt;1 X<br>&nbsp;&nbsp; TO: S %DT="EX",%DT(0)="-"_DT D ^%DT K %DT(0) S X=Y K:Y&lt;1 X<br><br></small></p><p><small>...</small> </p><pre><br><br></pre>
+31,2016@13:49:18&nbsp;&nbsp; 1<br>&nbsp;&nbsp; TO: Date Trainee became inactive<br>DATE NO LONGER TRAINEE&nbsp;&nbsp; INPUT TRANSFORM&nbsp;&nbsp;AUG 31,2016@13:48:28&nbsp;&nbsp; 1<br>&nbsp;FROM: S %DT="EX" D ^%DT S X=Y K:Y&lt;1 X<br>&nbsp;&nbsp; TO: S %DT="EX",%DT(0)="-"_DT D ^%DT K %DT(0) S X=Y K:Y&lt;1 X<br><br>...</p></pre>
 <hr>
 <h5><a name="Purging">Purging a Data Dictionary
 Audit Trail</a></h5>
@@ -123,15 +120,14 @@ possible that you might end up with incomplete audit records on the
 audited file. </p>
 <p>The following dialogue results in purging <i>selected</i>
 data dictionary audit records for the user Ringleader: </p>
-<pre></pre>
 <hr>
-<pre>Select AUDIT OPTION: <b>PUR</b>GE DD AUDITS<br>AUDIT FROM WHAT FILE: <b>PATIENT</b><br>Select PATIENT SUB-FILE: <b>&lt;RET&gt;</b><br>DO YOU WANT TO PURGE ALL DD AUDIT RECORDS? NO// <b>NO</b> <br><br>PURGE DD AUDIT RECORDS BY: FIELD NUMBER// <b>USER</b><br>START WITH USER: FIRST// <b>RINGLEADER</b><br>GO TO USER: LAST// <b>RINGLEADER</b><br>WITHIN USER, PURGE AUDITS RECORDS BY: <b>&lt;RET&gt;</b><br>DEVICE: <b>&lt;RET&gt;</b><br>HOLD ON, PLEASE...<br>PURGE OF DD AUDIT: PATIENT FILE FEB 21, 1990 14:45 PAGE 1<br>------------------------------------------------------------------<br>9 RECORDS PURGED. </pre>
+<pre>Select AUDIT OPTION: <b>PUR</b>GE DD AUDITS<br>AUDIT FROM WHAT FILE: <b>PATIENT</b><br>Select PATIENT SUB-FILE: <b></b><br>DO YOU WANT TO PURGE ALL DD AUDIT RECORDS? NO// <b>NO</b> <br><br>PURGE DD AUDIT RECORDS BY: FIELD NUMBER// <b>USER</b><br>START WITH USER: FIRST// <b>RINGLEADER</b><br>GO TO USER: LAST// <b>RINGLEADER</b><br>WITHIN USER, PURGE AUDITS RECORDS BY: <b></b><br>DEVICE: <b></b><br>HOLD ON, PLEASE...<br>PURGE OF DD AUDIT: PATIENT FILE
+FEB 21, 1990 14:45 PAGE 1<br>------------------------------------------------------------------<br>9 RECORDS PURGED. </pre>
 <hr>
 <p>The following dialogue results in purging <i>all</i>
 data dictionary audit records for the PATIENT file: </p>
-<pre></pre>
 <hr>
-<pre>AUDIT FROM WHAT FILE: <b>PATIENT</b><br>Select PATIENT SUB-FILE: <b>&lt;RET&gt;</b><br>DO YOU WANT TO PURGE ALL DD AUDIT RECORDS? NO// <b>YES</b> <br>ARE YOU SURE? NO// <b>YES</b> <br><br>DELETED<br>	</pre>
+<pre>AUDIT FROM WHAT FILE: <b>PATIENT</b><br>Select PATIENT SUB-FILE: <b></b><br>DO YOU WANT TO PURGE ALL DD AUDIT RECORDS? NO// <b>YES</b> <br>ARE YOU SURE? NO// <b>YES</b> <br><br>DELETED<br>	</pre>
 <p>&nbsp;</p>
 <hr class="hrstyle"><!-- au_dd.htm -->
 <p align="center">Reviewed/Updated: October 2016</p>
