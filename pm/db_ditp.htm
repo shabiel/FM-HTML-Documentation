@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>VA FileMan Programmer Manual: EN^DITP</title><meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+  <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,ditp">
+  <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="0" bgcolor="white">
+<br>
+<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+  <tbody>
+    <tr>
+      <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+      <td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+      <td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
+      <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+      <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+      <td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- Content -->
+<h3><big><big><a name="navskip">Database Server (DBS) API</a></big></big></h3>
+<hr class="hrstyle">
+<h4><br>&nbsp;<big><big>EN^DITP: Repointer</big></big><br><br><span style="font-weight: normal;">This
+procedure goes through all files that have fields or sub-fields
+pointing to a particular FileMan File.&nbsp; It looks for pointers to
+particular entries in that File, and either re-points each entry to a
+different specified entry, or deletes such pointers.</span><br><br><big>Format</big><br></h4><pre>DO EN^DITP(FILE,LIST))&nbsp;&nbsp;&nbsp; <br></pre><h4><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</h4><h5><big><big>Input Parameters</big></big></h5>
+<table summary="This table is for formatting purposes only" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top"><b>FILE</b></td>
+      <td colspan="2" valign="top">
+      <p>(Required) A file number or subfile number. </p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td valign="top"><b>LIST</b></td>
+      <td colspan="2" valign="top">(Required) Array containing list of entries to be re-pointed or deleted.</td>
+    </tr>
+  </tbody>
+</table>
+<h4><br><br>&nbsp;&nbsp;&nbsp;&nbsp; <br><big>Examples</big><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+<p><b>Example 1</b></p>
+<h4><span style="font-weight: normal;">
+In this example, we want all pointers to entry `38 in File 9999999.14
+to be re-pointed to entry `103.&nbsp; `103 must exist.</span></h4><p> </p>
+<pre>    &gt;<span style="font-weight: bold;">S GFT(1)="38^103"<br></span>    &gt;D EN^DITP(9999999.14,.GFT)
+</pre>
+<p><b></b></p><p><b>Example 2</b></p>
+<h4><span style="font-weight: normal;">In this example, we want all pointers to entries `38&nbsp; and `666 in File 9999999.14 to be deleted. </span></h4><p> </p>
+<pre>    &gt;<b>S GFT(1)="38^@",GFT(2)="666^@"</b>    <br>    &gt;<span style="font-weight: bold;">D EN^DITP(9999999.14,.GFT)</span>
+    
+</pre><br>
+<p align="center">Reviewed/Updated: August 2017</p>
+<p>&nbsp;</p>
+</body></html>
