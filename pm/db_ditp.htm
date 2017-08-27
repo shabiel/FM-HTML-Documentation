@@ -24,7 +24,7 @@
 <!-- Content -->
 <h3><big><big><a name="navskip">Database Server (DBS) API</a></big></big></h3>
 <hr class="hrstyle">
-<h4><br>&nbsp;<big><big>EN^DITP: Repointer</big></big><br><br><span style="font-weight: normal;">This
+<h4><br>&nbsp;<big><big><span class="badge">22.2</span>EN^DITP: Repointer</big></big><br><br><span style="font-weight: normal;">This
 procedure goes through all files that have fields or sub-fields
 pointing to a particular FileMan File.&nbsp; It looks for pointers to
 particular entries in that File, and either re-points each entry to a
@@ -34,7 +34,7 @@ different specified entry, or deletes such pointers.</span><br><br><big>Format</
     <tr>
       <td valign="top"><b>FILE</b></td>
       <td colspan="2" valign="top">
-      <p>(Required) A file number or subfile number. </p>
+      <p>(Required) A file number.</p>
       </td>
     </tr>
     
@@ -49,13 +49,12 @@ different specified entry, or deletes such pointers.</span><br><br><big>Format</
 <h4><span style="font-weight: normal;">
 In this example, we want all pointers to entry `38 in File 9999999.14
 to be re-pointed to entry `103.&nbsp; `103 must exist.</span></h4><p> </p>
-<pre>    &gt;<span style="font-weight: bold;">S GFT(1)="38^103"<br></span>    &gt;D EN^DITP(9999999.14,.GFT)
-</pre>
+<pre>&gt;<span style="font-weight: bold;">S GFT(1)="38^103"<br></span>
+&gt;D EN^DITP(9999999.14,.GFT)</pre>
 <p><b></b></p><p><b>Example 2</b></p>
 <h4><span style="font-weight: normal;">In this example, we want all pointers to entries `38&nbsp; and `666 in File 9999999.14 to be deleted. </span></h4><p> </p>
-<pre>    &gt;<b>S GFT(1)="38^@",GFT(2)="666^@"</b>    <br>    &gt;<span style="font-weight: bold;">D EN^DITP(9999999.14,.GFT)</span>
-    
-</pre><br>
+<pre>&gt;<b>S GFT(1)="38^@",GFT(2)="666^@"</b><br>
+&gt;<span style="font-weight: bold;">D EN^DITP(9999999.14,.GFT)</span></pre><br>
 <p align="center">Reviewed/Updated: August 2017</p>
 <p>&nbsp;</p>
 </body></html>
