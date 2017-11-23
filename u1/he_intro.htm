@@ -1,10 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
 <html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/30/03--><!--Edited March 2007, Hardhats.org-->
-
-
-
-
-
 	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 	 
 	 <title>VA FileMan Getting Started HTML Manual: About Each Field Type</title><meta name="subject" content="VA FileMan V. 22.0 Getting Started HTML Manual">
@@ -61,20 +56,26 @@
 	 <ul> 
 		<li><a href="#date" title="DATE/TIME" class="bodylink">DATE/TIME</a><br><br></li> 
 		<li><a href="#numeric" title="NUMERIC" class="bodylink">NUMERIC</a><br><br></li> 
-		<li><a href="#set" title="SET OF CODES" class="bodylink">SET OF
-		  CODES</a><br><br></li> 
+		<li><a href="#set" title="SET OF CODES" class="bodylink">SET OF CODES</a><br><br></li> 
 		<li><a href="#free" title="FREE TEXT" class="bodylink">FREE
 		  TEXT</a><br><br></li> 
 		<li><a href="#word" title="WORD-PROCESSING" class="bodylink">WORD-PROCESSING</a><br><br></li> 
 		<li><a href="#computed" title="COMPUTED" class="bodylink">COMPUTED</a><br><br></li> 
-		<li><a href="#pointer" title="POINTER TO A FILE" class="bodylink">POINTER
-		  TO A FILE</a><br><br></li> 
-		<li><a href="#variable" title="VARIABLE-POINTER" class="bodylink">VARIABLE-POINTER</a></li> 
+		<li><a href="#pointer" title="POINTER TO A FILE" class="bodylink">POINTER TO A FILE</a><br><br></li> 
+    <li><a href="#variable" title="VARIABLE-POINTER" class="bodylink">VARIABLE-POINTER</a><br><br></li> 
+    <li><span class="badge">22.2</span><a href="#boolean" title="BOOLEAN" class="bodylink">BOOLEAN</a><br><br></li>
+    <li><span class="badge">22.2</span><a href="#label" title="LABEL REFERENCE" class="bodylink">LABEL REFERENCE</a><br><br></li>
+    <li><span class="badge">22.2</span><a href="#time" title="TIME" class="bodylink">TIME</a><br><br></li>
+    <li><span class="badge">22.2</span><a href="#year" title="YEAR" class="bodylink">YEAR</a><br><br></li>
+    <li><span class="badge">22.2</span><a href="#utc" title="UNIVERSAL TIME" class="bodylink">UNIVERSAL TIME</a><br><br></li>
+    <li><span class="badge">22.2</span><a href="#ftpointer" title="FT POINTER" class="bodylink">FT POINTER</a><br><br></li>
+    <li><span class="badge">22.2</span><a href="#ftdate" title="FT DATE" class="bodylink">FT DATE</a><br><br></li>
+    <li><span class="badge">22.2</span><a href="#ratio" title="RATIO" class="bodylink">RATIO</a><br><br></li>
 	 </ul> 
 	 <p>In addition,
 		<a href="#subfiles" title="Subfiles (Multiples)" class="bodylink">Subfiles
 		(Multiples)</a> are introduced at the end of this chapter.</p> <hr> 
-	 <h5><a name="date">DATE/TIME Fields</a></h5> 
+	 <h4><a name="date">DATE/TIME Fields</a></h4> 
 	 <p>You can use a variety of formats when entering dates. For example, a
 		DATE/TIME field would probably be used to hold a patient's birthdate: </p> 
 	 <pre>    DATE OF BIRTH: MAR 3, 1955</pre> 
@@ -188,7 +189,7 @@
 		</tr> 
 	 </tbody></table> 
 	 <p></p> <hr> 
-	 <h5><a name="numeric">NUMERIC Fields</a></h5> 
+	 <h4><a name="numeric">NUMERIC Fields</a></h4> 
 	 <p>NUMERIC-type fields work very much like
 		<a href="#free" title="FREE TEXT" class="bodylink">FREE TEXT</a> fields, except
 		that input is restricted to valid numbers. There can also be restrictions as to
@@ -198,7 +199,7 @@
 	 <p>For example, a NUMERIC field would probably be used to store the height
 		of a patient: </p> 
 	 <pre>    HEIGHT (cm): 196 </pre> <hr> 
-	 <h5><a name="set">SET OF CODES Fields</a></h5> 
+	 <h4><a name="set">SET OF CODES Fields</a></h4> 
 	 <p>SET OF CODES-type fields (sometimes referred to as a SET) are preset to
 		accept coded information. The codes are usually only one or two characters
 		long. Each code in a SET represents a word or a series of words. The codes Y
@@ -227,7 +228,7 @@
 		on a SET OF CODES field. The sort order is based on the internal values (codes)
 		if you sort on a SET OF CODES field. <br> <br> For more information on printing
 		and sorting, please refer to the "<a href="pr_frm.htm" target="_top" title="Print" class="bodylink">Print</a>" chapter in this manual. </p> <hr> 
-	 <h5><a name="free">FREE TEXT Fields</a></h5> 
+	 <h4><a name="free">FREE TEXT Fields</a></h4> 
 	 <p>You can enter almost any character from your keyboard in a FREE
 		TEXT-type field. The computer accepts numbers, letters, and most of the symbols
 		that can be entered. The FREE TEXT field places a restriction on the number of
@@ -247,7 +248,7 @@
     DATE:
 </pre> <hr> 
 	 <p></p><hr> 
-	 <h5><a name="word">WORD-PROCESSING Fields</a></h5> 
+	 <h4><a name="word">WORD-PROCESSING Fields</a></h4> 
 	 <p>Fields with a WORD-PROCESSING DATA TYPE can contain unlimited amounts of
 		text data, and are suitable for things like mail messages, physician notes, and
 		descriptions. Because of their special nature, VA FileMan provides special
@@ -279,7 +280,7 @@ NAME: SAMPLE,FRED A.// <b></b> <br>SEX: MALE// <b></b> <br>DATE OF BIRTH: AUG 22
 	 <p><b>NOTE:</b> For a guide to using the Line Editor, please refer to the
 		<a href="le_frm.htm" target="_top" title="Line Editor" class="bodylink">Line
 		Editor</a> chapter in this manual.</p> <hr> 
-	 <h5><a name="computed">COMPUTED Fields</a></h5> 
+	 <h4><a name="computed">COMPUTED Fields</a></h4> 
 	 <p>COMPUTED-type fields are typically used to output a value computed at
 		run-time in a report. You can't edit the value of a COMPUTED field. </p> 
 	 <p>An example of a COMPUTED field would be a field that calculated AGE
@@ -297,7 +298,7 @@ NAME: SAMPLE,FRED A.// <b></b> <br>SEX: MALE// <b></b> <br>DATE OF BIRTH: AUG 22
 	 <p></p> 
 	 <p><b>NOTE:</b> For more information on CAPTIONED output, please refer to
 		the "<a href="in_frm.htm" target="_top" title="Inquire" class="bodylink">Inquire</a>" and "<a href="pr_frm.htm" target="_top" title="Print" class="bodylink">Print</a>" chapters in this manual.</p> <hr> 
-	 <h5><a name="pointer">POINTER TO A FILE Fields</a></h5> 
+	 <h4><a name="pointer">POINTER TO A FILE Fields</a></h4> 
 	 <p>A POINTER TO A FILE-type field is a field that directs the computer to
 		another file for information. If you're working in the PATIENT file, for
 		example, and you've reached a field that asks for the patient's STATE, the
@@ -315,7 +316,7 @@ NAME: SAMPLE,FRED A.// <b></b> <br>SEX: MALE// <b></b> <br>DATE OF BIRTH: AUG 22
 		VA FileMan adds the new entry. For example, if there was a state that did not
 		have an entry in the STATE file, you could add it by entering it at the
 		"STATE:" field prompt. </p> <hr> 
-	 <h5><a name="variable">VARIABLE-POINTER Fields</a></h5> 
+	 <h4><a name="variable">VARIABLE-POINTER Fields</a></h4> 
 	 <p>A VARIABLE-POINTER-type field is like the regular
 		<a href="#pointer" title="POINTER TO A FILE" class="bodylink">POINTER TO A
 		FILE</a> field type, with one difference: the VARIABLE-POINTER DATA TYPE can
@@ -372,8 +373,49 @@ NAME: SAMPLE,FRED A.// <b></b> <br>SEX: MALE// <b></b> <br>DATE OF BIRTH: AUG 22
 		want to add the Provider as a new entry. To add the entry, enter YES: </p> 
 	  
 	 <pre>PROVIDER: <b>O.MCCOY,LEONARD M.</b>  <br>      Are you adding 'MCCOY,LEONARD M.' as a new OUTSIDE PROVIDER?  No// <b>YES<br></b>  (Yes)<br>    OUTSIDE PROVIDER SEX: <b>MALE</b> <br>    OUTSIDE PROVIDER DATE OF BIRTH: <b>020235 </b>  (FEB 02, 1935) <br>    OUTSIDE PROVIDER SSN: <b>654987321</b> <br></pre> <hr> 
-	 <p></p><hr> 
-	 <h5><a name="subfiles">Subfiles (Multiples)</a></h5> 
+
+
+	 <h4><span class="badge">22.2</span><a name="boolean">BOOLEAN fields</a></h4> 
+	 <p>A field defined as a BOOLEAN data type can have only two entry choices: YES or NO. The internal values of the BOOLEAN DATA TYPE is set to 1 for YES and 0 for NO.</p>
+   <pre>
+BOOLEAN: ?
+     Choose from: 
+       1        YES
+       0        NO</pre>
+   <hr> 
+
+	 <h4><span class="badge">22.2</span><a name="label">LABEL REFERENCE fields</a></h4> 
+	 <p>A field defined as a LABEL REFERENCE data type is designed to store a tag and routine entry of the format, TAG^ROUTINE. It is stored as a free-text field.</p>
+   <pre>LABEL REFERENCE: TEST^BOO</pre>
+   <hr> 
+
+	 <h4><span class="badge">22.2</span><a name="time">TIME fields</a></h4> 
+	 <p>A field defined as a TIME data type can accept many of the date/time entries, but only stores the TIME portion.</p>
+   <pre>TIME: ?
+Enter 'NOW' or some valid time like '2:33PM'
+              Time may include seconds.
+TIME: 15:09:43  (15:09:43)</pre>
+   <hr>
+
+	 <h4><span class="badge">22.2</span><a name="year">YEAR fields</a></h4> 
+	 <p>A field defined as a YEAR data type can accept many of the date entries, but only stores the YEAR portion.</p>
+   <pre>
+YEAR: ?
+
+     Enter a 4-digit year, e.g., '2015'.
+     Must not be earlier than 1980
+Examples of Valid Dates:
+   JAN 20 1957 or 20 JAN 57 or 1/20/57 or 012057  (omitting punctuation)
+   T   (for TODAY),  T+1 (for TOMORROW),  T+2,  T+7, etc.
+   T-1 (for YESTERDAY),  T-3W (for 3 WEEKS AGO), etc.
+If the year is omitted, the computer uses CURRENT YEAR.
+A 2-digit year means no more than 20 years in the future, or 80 years in
+the past.
+You may omit the precise day of the month, e.g.: Jan, 1957
+YEAR: 2014</pre>
+   <hr>
+
+	 <h4><a name="subfiles">Subfiles (Multiples)</a></h4> 
 	 <p>Sometimes, a single field in a record is not enough to hold all the
 		information required. For example, to keep track of the appointment history for
 		a patient, a single field would not be enough. An ordinary field could only
