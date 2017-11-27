@@ -378,29 +378,30 @@ NAME: SAMPLE,FRED A.// <b></b> <br>SEX: MALE// <b></b> <br>DATE OF BIRTH: AUG 22
 	 <h4><span class="badge">22.2</span><a name="boolean">BOOLEAN fields</a></h4> 
 	 <p>A field defined as a BOOLEAN data type can have only two entry choices: YES or NO. The internal values of the BOOLEAN DATA TYPE is set to 1 for YES and 0 for NO.</p>
    <pre>
-BOOLEAN: ?
+BOOLEAN: <strong>?</strong>
      Choose from: 
        1        YES
        0        NO</pre>
+BOOLEAN: <strong>N</strong>  NO
    <hr> 
 
 	 <h4><span class="badge">22.2</span><a name="label">LABEL REFERENCE fields</a></h4> 
 	 <p>A field defined as a LABEL REFERENCE data type is designed to store a tag and routine entry of the format, TAG^ROUTINE. It is stored as a free-text field.</p>
-   <pre>LABEL REFERENCE: TEST^BOO</pre>
+   <pre>LABEL REFERENCE: <strong>TEST^BOO</strong></pre>
    <hr> 
 
 	 <h4><span class="badge">22.2</span><a name="time">TIME fields</a></h4> 
 	 <p>A field defined as a TIME data type can accept many of the date/time entries, but only stores the TIME portion.</p>
-   <pre>TIME: ?
+   <pre>TIME: <strong>?</strong>
 Enter 'NOW' or some valid time like '2:33PM'
               Time may include seconds.
-TIME: 15:09:43  (15:09:43)</pre>
+TIME: <strong>15:09:43</strong> (15:09:43)</pre>
    <hr>
 
 	 <h4><span class="badge">22.2</span><a name="year">YEAR fields</a></h4> 
 	 <p>A field defined as a YEAR data type can accept many of the date entries, but only stores the YEAR portion.</p>
    <pre>
-YEAR: ?
+YEAR: <strong>?</strong>
 
      Enter a 4-digit year, e.g., '2015'.
      Must not be earlier than 1980
@@ -412,8 +413,39 @@ If the year is omitted, the computer uses CURRENT YEAR.
 A 2-digit year means no more than 20 years in the future, or 80 years in
 the past.
 You may omit the precise day of the month, e.g.: Jan, 1957
-YEAR: 2014</pre>
+YEAR: <strong>2014</strong></pre>
    <hr>
+
+	 <h4><span class="badge">22.2</span><a name="utc">UNIVERSAL TIME Fields</a></h4> 
+   <p>A field defined as a UNIVERSAL TIME data type can accept many of the date/time entries and stores the date/time in a format with the local time and includes an indicator showing the offset from Universal Time.</p>
+   <p>The first 14 characters of the internal storage of the UNIVERSAL TIME data type are exactly like the current DATE/TIME data type that includes seconds. The three characters in position 15, 16, and 17 indicate the UTC time offset in five (5) minute increments. In the example below: (440-500)/12=-5, this is a negative five hour offset from UTC.</p>
+   <pre>External: JAN 6,2016@08:03:36 (UTC-5:00)             Internal: 3160106.080336440</pre>
+   <p><strong>NOTE:</strong> Doesn't currently work on FOIA.</p>
+   <hr>
+
+	 <h4><span class="badge">22.2</span><a name="ftpointer">FT POINTER Fields</a></h4> 
+	 <p>A field defined as a FT POINTER data type works similar to the POINTER data type, but internally stores the free text that was returned from the pointed-to value. The example below shows selecting the first entry from File 200 (NEW PERSON).</p>
+   <pre>FREE TEXT POINTER: <strong>`1</strong>  USER,ONE     DBA</pre>
+   <hr> 
+
+	 <h4><span class="badge">22.2</span><a name="ftdate">FT DATE Fields</a></h4> 
+	 <p>A field defined as a FT DATE data type works similar to the DATE/TIME data type, but internally stores the free text that was input by the user to determine the date. So, for example, typing T-1 to store yesterday's date will not actually store yesterday's date, but "T-1", implying a relative date.</p>
+   <pre>
+FREE TEXT DATE: <strong>?</strong>
+
+Examples of Valid Dates:
+  JAN 20 1957 or 20 JAN 57 or 1/20/57 or 012057
+  T   (for TODAY),  T+1 (for TOMORROW),  T+2,  T+7,  etc.
+  T-1 (for YESTERDAY),  T-3W (for 3 WEEKS AGO), etc.
+If the year is omitted, the computer uses CURRENT YEAR.  Two digit year
+  assumes no more than 20 years in the future, or 80 years in the past.
+FREE TEXT DATE: <strong>T-1</strong>  (NOV 26, 2017)</pre>
+   <hr> 
+
+	 <h4><span class="badge">22.2</span><a name="ratio">RATIO Fields</a></h4> 
+	 <p>A field defined as a RATIO data type is designed to accept two numbers with a colon “:” between the two numbers. It is formatted and stored like a mathematical ratio.</p>
+   <pre>RATIO: <strong>1:3</strong></pre>
+   <hr> 
 
 	 <h4><a name="subfiles">Subfiles (Multiples)</a></h4> 
 	 <p>Sometimes, a single field in a record is not enough to hold all the
