@@ -1,0 +1,211 @@
+<HTML> 
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+<!--Authored by T.B., 08/16/2016-->
+<!--Revised by T.B., 01/11/2018-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1"> 
+	<TITLE>VA FileMan Developer's Guide: LOCK^DILF</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$iens^dilf(),dilf">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+<!--webbot bot="Include" U-Include="common/banner_std_page.htm" TAG="BODY" startspan --> 
+    <TABLE CELLSPACING="0"
+           CELLPADDING="0"
+           BORDER="0"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD>
+	      <BR>
+	      <IMG SRC="images/fileman_dg_heading.gif"
+	           BORDER="0"
+		       ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner">
+		  <BR>
+		  <IMG SRC="images/vaoitbanner.gif"
+		       BORDER="0"
+			   ALT="VA Office of Information and Technology (OIT) Banner">
+		  <BR>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  <!--webbot bot="Include" i-checksum="44734" endspan -->
+<!--webbot bot="Include" U-Include="common/top_links.htm" TAG="BODY" startspan -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="0"
+           CELLPADDING="3"
+	       CLASS="tdstyle"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="1"
+	       VALIGN="TOP" id="table1"> 
+      <TR> 
+	    <TD VALIGN="BOTTOM"
+	        ALIGN="LEFT"
+	        HEIGHT="1"
+	        WIDTH="10%"
+			CLASS="menubartext">Contents:
+	    </TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="7%">
+		  <A HREF="index.shtml"
+		     TARGET="_top"
+			 TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents"
+			 CLASS="menubarlink">Main</A>
+		</TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="17%">
+		  <A HREF="afd_frm.shtml"
+		     TARGET="_top"
+			 TITLE="VA FileMan Developer's Guide (HTML): Advanced File Definition Section TOC"
+			 CLASS="menubarlink">Section</A>
+		</TD> 
+		<TD ALIGN="LEFT"
+		    VALIGN="BOTTOM"
+		    HEIGHT="1"
+		    WIDTH="10%"
+			CLASS="menubartext">See Also:
+	    </TD> 
+		<TD ALIGN="LEFT"
+		    VALIGN="BOTTOM"
+		    HEIGHT="1"
+		    WIDTH="28%">
+		  <A HREF="../u1/index.shtml"
+		     TARGET="_top"
+			 TITLE="VA FileMan User Manual (HTML)"
+			 CLASS="menubarlink">User Manual</A>
+		</TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="28%">
+		  <A HREF="../u2/index.shtml"
+		     TARGET="_top"
+			 TITLE="VA FileMan Advanced User Manual (HTML)"
+			 CLASS="menubarlink">Advanced User Manual</A>
+		</TD> 
+	  </TR> 
+    </TABLE>
+  <!--webbot bot="Include" i-checksum="35683" endspan -->
+<!-- Content -->
+    <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
+    <HR CLASS="hrstyle"> 
+	<H4>LOCK^DILF(): Lock Global Reference</H4> 
+	<P>The LOCK^DILF API locks a global reference using VA FileMan's 
+	Lock time out value (<strong>DILOCKTM</strong>).</P> 
+	<H5>Format</H5> 
+	<PRE>    LOCK^DILF(closed_root)</PRE> 
+	<H5>Input Parameters</H5> 
+	<TABLE BORDER="1"
+	       SUMMARY="This table is for formatting purposes only"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    width="10%">
+		  <B>closed_root:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    width="90%"> 
+		  <P>(Required) A closed root, which is a global root ending in a 
+		  close parenthesis.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H5>Output</H5> 
+	<P><strong>$Truth</strong> value:</P>
+    <ul>
+	  <li>
+	    <strong>1&#8212;</strong>Lock obtained.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <strong>0&#8212;</strong>Lock failed.
+	  </li>
+    </ul>	  
+	<H5>Example</H5>
+	<table width="100%"
+	       border="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <tr>
+	    <td>
+	      <PRE>
+    &gt;<b>D LOCK^DILF(&quot;^MYFILE(123,1,0)&quot;)
+</b>    &gt;<b>W $T
+</b>    1
+    &gt;<b>W DILOCKTM</b>
+    3</PRE>
+	    </td>
+	  </tr>
+	</table> 
+	<p>&nbsp;</p>	 
+	<HR CLASS="hrstyle"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm" TAG="BODY" startspan --> 
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Internet Home Page"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Intranet Home Page"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Intranet)</A> / 
+	<A HREF="http://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology (OIT) Home Page"><ACRONYM TITLE="Office of Information and Technology">OIT</ACRONYM></A> /
+	<A HREF="https://vaww.oit.va.gov/epmo/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Enterprise Program Management Office (EPMO) Home Page"><ACRONYM TITLE="Enterprise Program Management Office">EPMO</ACRONYM></A> /
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="VistA Infrastructure (VI) Site Map">Site Map</A> /
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Enterprise Program Management Office (EPMO) Terms of Use Page">Terms of Use</A> /
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Privacy Policy">VA Privacy Policy</A>
+			    /
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Internet Accessibility">Accessibility</A></P>
+  <!--webbot bot="Include" i-checksum="63908" endspan --><!--Date content was reviewed or updated--><p> Reviewed/Updated: 
+          <!--webbot bot="Timestamp"
+          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->January 11, 2018<!--webbot bot="Timestamp" i-checksum="31903" endspan --></p>
+		  <P ALIGN="CENTER"> If you
+		  have questions, need more information, or are having accessibility problems
+		  with this Web site, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/db_dilf6a.shtml"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 CLASS="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  </BODY>
+</HTML>

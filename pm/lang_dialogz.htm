@@ -1,0 +1,360 @@
+<HTML> 
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+<!--Authored by T.B., 08/16/2016-->
+<!--Revised by T.B., 01/17/2018-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1"> 
+	<TITLE>VA FileMan Developer's Guide: LANG^DIALOGZ: File Modification for Multiple Languages</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,^dialogz,dialogz">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+<!--webbot bot="Include" U-Include="common/banner_std_page.htm" TAG="BODY" startspan --> 
+    <TABLE CELLSPACING="0"
+           CELLPADDING="0"
+           BORDER="0"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD>
+	      <BR>
+	      <IMG SRC="images/fileman_dg_heading.gif"
+	           BORDER="0"
+		       ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner">
+		  <BR>
+		  <IMG SRC="images/vaoitbanner.gif"
+		       BORDER="0"
+			   ALT="VA Office of Information and Technology (OIT) Banner">
+		  <BR>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  <!--webbot bot="Include" i-checksum="44734" endspan -->
+<!--Top Navigation Links--><P></P> 
+<!--webbot bot="Include" u-include="common/top_links.htm" tag="BODY" startspan -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="0"
+           CELLPADDING="3"
+	       CLASS="tdstyle"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="1"
+	       VALIGN="TOP" id="table1"> 
+      <TR> 
+	    <TD VALIGN="BOTTOM"
+	        ALIGN="LEFT"
+	        HEIGHT="1"
+	        WIDTH="10%"
+			CLASS="menubartext">Contents:
+	    </TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="7%">
+		  <A HREF="index.shtml"
+		     TARGET="_top"
+			 TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents"
+			 CLASS="menubarlink">Main</A>
+		</TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="17%">
+		  <A HREF="afd_frm.shtml"
+		     TARGET="_top"
+			 TITLE="VA FileMan Developer's Guide (HTML): Advanced File Definition Section TOC"
+			 CLASS="menubarlink">Section</A>
+		</TD> 
+		<TD ALIGN="LEFT"
+		    VALIGN="BOTTOM"
+		    HEIGHT="1"
+		    WIDTH="10%"
+			CLASS="menubartext">See Also:
+	    </TD> 
+		<TD ALIGN="LEFT"
+		    VALIGN="BOTTOM"
+		    HEIGHT="1"
+		    WIDTH="28%">
+		  <A HREF="../u1/index.shtml"
+		     TARGET="_top"
+			 TITLE="VA FileMan User Manual (HTML)"
+			 CLASS="menubarlink">User Manual</A>
+		</TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="28%">
+		  <A HREF="../u2/index.shtml"
+		     TARGET="_top"
+			 TITLE="VA FileMan Advanced User Manual (HTML)"
+			 CLASS="menubarlink">Advanced User Manual</A>
+		</TD> 
+	  </TR> 
+    </TABLE>
+  <!--webbot bot="Include" i-checksum="35683" endspan -->
+<!-- Content -->
+    <H3><A NAME="navskip">LANG^DIALOGZ: File Modification for Multiple Languages</A></H3>
+	<HR CLASS="hrstyle"> 
+	<P>The LANG^DIALOGZ API is invoked from programmer mode to modify the user dialogue 
+	to show file components in a language different than the one used to define the file. 
+	It is part of the ongoing initiative to internationalize VA FileMan.</P>
+    <P>Among the items that you can translate are:
+	<UL> 
+      <LI>
+        File name
+        <BR>
+        <BR>
+      </LI>
+	  <LI>
+	    Field name
+	    <BR>
+	    <BR>
+	  </LI>
+	  <LI>
+	    Help text for a field
+	    <BR>
+	    <BR>
+	  </LI>
+	  <LI>
+	    External value of SET OF CODES fields.
+	  </LI>
+    </UL>
+    <P>You can see the translated values using the Standard output of the List File Attributes option 
+	[DILIST].</P> 
+	<H5>Format</H5> 
+	<P>LANG^DIALOZ(LangNum)</P>
+	<H5>Input Parameters</H5> 
+	<table width="100%"
+	       border="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <tr>
+	    <td valign="top"
+	        width="10%">
+	      <strong>LangNum:</strong>
+	    </td>
+		<td width="90%">
+		  (Required) The ID NUMBER (#.001) field value from the LANGUAGE (#.85) file of the language you want to translate.
+		</td>
+	  </tr>
+    </table>
+    <P>The following sample dialogue illustrates the addition of French language translations to some 
+	items in a file. The examples below do <em>not</em> include possible translations of any of the 
+	VA FileMan prompts.</P>
+	<P>During this session, the following fields are translated:</p>
+	<ul>
+	  <li>
+	    Name of the file
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Name of two fields<br>
+	    <br>
+	  </li>
+	  <li>
+	    Help text for one field
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    External values of a SET OF CODES for the other field
+	    <br>
+	    <br>
+	    <strong>NOTE:</strong> The syntax for entering the translated set of codes 
+		is: the external values in order, separated by a semicolon.
+	  </li>
+	</ul>
+    <table width="100%"
+           cellspacing="3"
+           cellpadding="3"
+           border="1">
+	  <tr>
+	    <td>
+          <PRE>&gt;<strong>D LANG^DIALOGZ(4) &lt;Enter&gt; </strong>;4 is ID NUMBER of French in LANGUAGE (#.85) File 
+
+Modify what File: <strong>ZZD TEST FILE1 &lt;Enter&gt;</strong> (3 entries)
+FRENCH translation of ZZD TEST FILE1: ZZD FICHIER DE TEST
+
+Select FIELD: <strong>NAME</strong>                   
+FRENCH translation of NAME: <strong>NOM</strong>
+Current NAME Field Help Prompt:
+  NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+FRENCH translation of Prompt: <strong>NOM EST 3-30 CARACTERES, PAS NUMERIC NI COMMENCEMENT AVEC DES SIGNES DE PONCTUATION</strong>.
+
+Select FIELD: <strong>YES/NO</strong>
+FRENCH translation of YES/NO: <strong>OUI/NON</strong>
+Current SET values: Y:Yes;N:No;U:Unknown
+FRENCH translation of SET values: <strong>?</strong>
+YOU MUST ENTER 3 EXTERNAL VALUES, SEPARATED BY SEMICOLONS(;).
+FRENCH translation of SET values: <strong>Oui;Non;Inconnu</strong>
+Select FIELD: <strong>&lt;Enter&gt;</strong></PRE> 
+	    </td>
+	  </tr>
+    </table>
+    <P>The user sees the translated values when the value of <strong>DUZ(&#8220;LANG&#8221;)</strong> is set and the 
+	<strong>ID NUMBER</strong> of a language 
+	for which the translations are performed. In the examples below, <strong>DUZ(&#8220;LANG&#8221;)=4</strong>.</P>
+    <P>The complete integration of the translated values is a work in progress. The following sample 
+	dialogue shows how the translated values are used. Comments are added in italics to illustrate interesting aspects 
+    of the current state of the translation program.</P>
+    <table width="100%"
+           cellspacing="3"
+           cellpadding="3"
+           border="1">
+	  <tr>
+	    <td>
+          <PRE>Select OPTION: <strong>ENTER OR EDIT FILE ENTRIES</strong>
+
+Input to what File: <strong>ZZD TEST FILE1</strong> <em>&lt;-Translated file name cannot be used here.</em>
+EDIT WHICH FIELD: ALL// <strong>.01 &lt;Enter&gt;</strong> NAME    NOM <em>&lt;-Translated field name is echoed.</em>
+THEN EDIT FIELD: <strong>YES/NO &lt;Enter&gt;</strong> OUI/NON <em>&lt;-Original field name must be used; translated is echoed.</em> 
+THEN EDIT FIELD: <strong>&lt;Enter&gt;</strong>
+
+Select ZZD FICHIER DE TEST NOM: <strong>EN FRANCAIS</strong>  <em>&lt;-In editing dialogue, translated file and field names used.</em>
+  Are you adding 'EN FRANCAIS' as a new ZZD FICHIER DE TEST (the 4TH)? No// <strong>Y &lt;Enter&gt;</strong> (Yes)
+OUI/NON: <strong>?</strong>  <em>&lt;-Translated external values for sets of codes are displayed.</em>
+     Choose from:
+       1        Oui
+       2        Non
+       3        Inconnu
+OUI/NON: <strong>2 &lt;Enter&gt;</strong>  Non <em>&lt;-Translated external value is echoed.</em>
+
+Select ZZD FICHIER DE TEST NOM: <strong>EN FRANCAIS NUMERO DEUX</strong>
+  Are you adding 'EN FRANCAIS NUMERO DEUX' as
+    a new ZZD FICHIER DE TEST (the 5TH)? No// <strong>Y &lt;Enter&gt;</strong> (Yes)
+OUI/NON: <strong>Yes</strong>??  <em>&lt;-Untranslated external value is not accepted.</em>
+     Choose from:
+       1        Oui
+       2        Non
+       3        Inconnu
+OUI/NON: <strong>O &lt;Enter&gt;</strong> Oui
+
+Select ZZD FICHIER DE TEST NOM: <strong>EN FRANCAIS NUMERO DEUX</strong>
+NOM: EN FRANCAIS NUMERO DEUX  Replace <strong>?</strong>
+     NOM EST 3-30 CARACTERE, PAS NUMERIC NI COMMENCEMENT AVEC DES SIGNES DE
+     PONCTUATION.  <em>&lt;-Help text is translated.</em>
+NOM: EN FRANCAIS NUMERO DEUX  Replace <strong>DEUX With TROIS</strong>
+  Replace <strong>&lt;Enter&gt;</strong>
+   EN FRANCAIS NUMERO TROIS
+OUI/NON: Oui// <strong>In &lt;Enter&gt;</strong> Inconnu</pre>
+        </td>
+	  </tr>
+    </table>
+    <p>During the Print File Entries dialogue, you <em>must</em> use the untranslated values for the 
+	file and field names. However, the output will show translated file and field names as well as translated 
+	external values for the SET OF CODES.</p>
+    <p><strong>NOTE:</strong> the internal values of the set of codes field remain as originally defined.</p>
+    <p>Below is a sample translated Print File Entries dialogue:</p>
+    <table width="100%"
+           cellspacing="3"
+           cellpadding="3"
+           border="1">
+	  <tr>
+	    <td>
+          <pre>Select OPTION: <strong>PRINT FILE ENTRIES</strong>
+
+Output from what File: <strong>ZZD TEST FILE1 &lt;Enter&gt;</strong>  (5 entries)
+Sort by: NAME// <strong>&lt;Enter&gt;</strong>
+Start with NAME: FIRST// <strong>&lt;Enter&gt;</strong>
+First Print FIELD: <strong>.01 &lt;Enter&gt;</strong> NAME   NOM  <em>&lt;-Translated field names are echoed.</em>    
+Then Print FIELD: <strong>YES/NO &lt;Enter&gt;</strong>  OUI/NON
+Then Print FIELD: <strong>INTERNAL(YES/NO)</strong>
+By 'YES', do you mean ZZD TEST FILE1  'YES/NO'? Yes// <strong>&lt;Enter&gt;</strong> (Yes)
+Then Print FIELD: <strong>&lt;Enter&gt;</strong>
+Heading (S/C): ZZD FICHIER DE TEST List Replace <strong>&lt;Enter&gt;</strong> <em>&lt;-Heading is translated.</em>
+STORE PRINT LOGIC IN TEMPLATE: <strong>&lt;Enter&gt;</strong>
+DEVICE: HOME// <strong>&lt;Enter&gt;</strong> TELNET
+
+ZZD FICHIER DE TEST List                              MAR 11,2013@10:19   PAGE 1
+NOM                             OUI/NON  INTERNAL(YES/NO)      
+-------------------------------------------------------------------------------
+
+EN FRANCAIS                     Non      N
+EN FRANCAIS NUMERO DEUX         Oui      Y
+FIRST ENTRY
+SECOND ENTRY
+THIRD ENTRY</PRE>
+	    </td>
+	  </tr>
+    </table>
+    <P>DIALOGZ places the translations as shown below:</P>
+    <table width="100%"
+           cellspacing="3"
+           cellpadding="3"
+           border="1">
+	  <tr>
+	    <td>
+          <PRE>^DIC(filenumber,&#8221;ALANG&#8221;,LangNum,  --  Contains the Translation of the file name 
+caption for the indicated language.
+^DD(filenumber,FieldNum,.008,LangNum  --  Contains the Translation of the field 
+name caption for the indicated language.</PRE>
+	    </td>
+	  </tr>
+    </table>
+    <P>&nbsp;</P>
+	<HR CLASS="hrstyle"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm" TAG="BODY" startspan --> 
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Internet Home Page"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Intranet Home Page"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Intranet)</A> / 
+	<A HREF="http://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology (OIT) Home Page"><ACRONYM TITLE="Office of Information and Technology">OIT</ACRONYM></A> /
+	<A HREF="https://vaww.oit.va.gov/epmo/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Enterprise Program Management Office (EPMO) Home Page"><ACRONYM TITLE="Enterprise Program Management Office">EPMO</ACRONYM></A> /
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="VistA Infrastructure (VI) Site Map">Site Map</A> /
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Enterprise Program Management Office (EPMO) Terms of Use Page">Terms of Use</A> /
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Privacy Policy">VA Privacy Policy</A>
+			    /
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Internet Accessibility">Accessibility</A></P>
+  <!--webbot bot="Include" i-checksum="63908" endspan --><!--Date content was reviewed or updated--><P> Reviewed/Updated: 
+          <!--webbot bot="Timestamp"
+          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->January 17, 2018<!--webbot bot="Timestamp" i-checksum="31915" endspan -->
+		  <P ALIGN="CENTER"> If you
+		  have questions, need more information, or are having accessibility problems
+		  with this Web site, please contact us by E-Mail: 
+		  <a HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/lang_dialogz.shtml"
+		     TITLE="Send mail to the Webmasters regarding this page"
+		     CLASS="bodylink">Webmasters</a></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  </BODY>
+</HTML>
