@@ -1,0 +1,333 @@
+<HTML> 
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+<!--Authored by T.B., 10/03/2017-->
+<!--Revised by T.B., 01/19/2018-->
+	<META HTTP-EQUIV="Content-Type"
+	      CONTENT="text/html; charset=iso-8859-1"> 
+	<TITLE>VA FileMan Developer's Guide: $$CANDO^DIAC1</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,Data Access Control (DAC),data,access,dac,other api,api,calls,$$cando^diac1,diac1,cando,polciy evaluation,policy,evaluation">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+<!--webbot bot="Include" U-Include="common/banner_std_page.htm" TAG="BODY" startspan --> 
+    <TABLE CELLSPACING="0"
+           CELLPADDING="0"
+           BORDER="0"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD>
+	      <BR>
+	      <IMG SRC="images/fileman_dg_heading.gif"
+	           BORDER="0"
+		       ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner">
+		  <BR>
+		  <IMG SRC="images/vaoitbanner.gif"
+		       BORDER="0"
+			   ALT="VA Office of Information and Technology (OIT) Banner">
+		  <BR>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  <!--webbot bot="Include" i-checksum="44734" endspan -->
+<!--Top Navigation Links--><P></P> 
+<!--webbot bot="Include" U-Include="common/top_links.htm" TAG="BODY" startspan -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="0"
+           CELLPADDING="3"
+	       CLASS="tdstyle"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="1"
+	       VALIGN="TOP" id="table1"> 
+      <TR> 
+	    <TD VALIGN="BOTTOM"
+	        ALIGN="LEFT"
+	        HEIGHT="1"
+	        WIDTH="10%"
+			CLASS="menubartext">Contents:
+	    </TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="7%">
+		  <A HREF="index.htm"
+		     TARGET="_top"
+			 TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents"
+			 CLASS="menubarlink">Main</A>
+		</TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="17%">
+		  <A HREF="afd_frm.htm"
+		     TARGET="_top"
+			 TITLE="VA FileMan Developer's Guide (HTML): Advanced File Definition Section TOC"
+			 CLASS="menubarlink">Section</A>
+		</TD> 
+		<TD ALIGN="LEFT"
+		    VALIGN="BOTTOM"
+		    HEIGHT="1"
+		    WIDTH="10%"
+			CLASS="menubartext">See Also:
+	    </TD> 
+		<TD ALIGN="LEFT"
+		    VALIGN="BOTTOM"
+		    HEIGHT="1"
+		    WIDTH="28%">
+		  <A HREF="../u1/index.htm"
+		     TARGET="_top"
+			 TITLE="VA FileMan User Manual (HTML)"
+			 CLASS="menubarlink">User Manual</A>
+		</TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="28%">
+		  <A HREF="../u2/index.htm"
+		     TARGET="_top"
+			 TITLE="VA FileMan Advanced User Manual (HTML)"
+			 CLASS="menubarlink">Advanced User Manual</A>
+		</TD> 
+	  </TR> 
+    </TABLE>
+  <!--webbot bot="Include" i-checksum="35683" endspan -->
+<!-- Content -->
+    <H3><A NAME="navskip">Data Access Control (DAC) API</A></H3>
+	<HR CLASS="hrstyle"> 
+	<H4>$$CANDO^DIAC1(): Policy Evaluation</H4> 
+	<P>Once a policy has been created and tested, it is ready to be used by the new VA FileMan Web service or within an application&#8217;s own code. The $$CANDO^DIAC1 API evaluates a policy to determine if the action being attempted is permitted.</P>
+    <p>If a matching entry exists in the APPLICATION ACTION (#1.61) file for the requested action and specified file or sub-file, its policy is evaluated to determine the user&#8217;s authorization to access the file and/or record. Policy rules are evaluated in sequence, and processing continues until the stop criteria for the policy is met.</p>
+	<H5>Format</H5> 
+    <PRE>    $$CANDO^DIAC1(file,iens,action[,user][,.value][,.fields][,msg_root][,err_root])</PRE> 
+	<H5>Input Parameters</H5> 
+	<TABLE BORDER="1"
+	       WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    width="10%">
+		  <B>file:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    width="90%"> 
+		  <P>(Required) A VistA file number or sub-file number.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>iens:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(Required/Optional) Standard IENS string indicating internal entry numbers. It is required if evaluating an action on an existing record.</P>
+		</TD> 
+	  </TR>
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>action:</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      <p>(Required) The API name of the action to be taken on the record; the 
+			<strong>file</strong> and <strong>action</strong> parameters should identify an entry in the APPLICATION ACTION (#1.61) file.</p>
+	    </td>
+	  </tr> 
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>user:</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      <p>(Optional) Pointer to the NEW PERSON (#200) file; defaults to the current value of 
+			<strong>DUZ</strong> if <em>not</em> defined.</p>
+	    </td>
+	  </tr> 
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>value(name):</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      <p>(Optional) Array of additional attribute values to use when evaluating policies, passed by reference in the form:</p>
+		  <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>VALUE(&#8220;name&#8221;) = &#8220;value&#8221;</strong></p>
+		  <p>The name-value pairs could match target attributes in the policy for supplementing the results of the ATTRIBUTE FUNCTION, or simply be additional values used by other functions or messages.</p>
+			<p><strong>NOTE:</strong> The ATTRIBUTE FUNCTION (#.04) field of the POLICY (#1.6) file points to the TYPE (#.03) field of the POLICY (#1.62) file. </p>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>.fields:</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      <p>(Optional) Local variable that receives output from the call:</p>
+		  <ul>
+			<li>
+			  If the AVAILABLE FIELDS (#5) field of the POLICY (1.6) file have been defined for the application action and its policy returns a permit result, that field string is be returned.
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  If AVAILABLE FIELDS (#5) field of the POLICY (1.6) file have been defined for the policy or rule that determined the result, that string takes precedence over the action&#8217;s and be returned instead.
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  The ADDITIONAL FIELDS (#5.1) field of the POLICY (1.6) file can also be returned here, as an array of the same name subscripted by the file or sub-file number.
+			</li>
+		  </ul>
+	      <p><strong>NOTE:</strong> The <strong>.fields</strong> parameter is passed by reference, which is indicated by the dot (<strong>.</strong>) in front of the name in the parameter list. Every parameter is passed using variables, but if it&#8217;s passed by reference then whatever happens to the variable inside the call also happens to the variable in the calling program. (That is 
+		  <em>not</em> the case with normal parameter passing, without the leading 
+			<strong>dot</strong>.) The 
+		  <strong>fields</strong> variable is <strong>KILL</strong>ed at the beginning of each call.</p> 
+	    </td>
+	  </tr> 
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>msg_root:</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      <p>(Optional) Closed root into which any relevant advice messages is returned. If this parameter is not passed, the array is put into nodes descendant from <strong>^TMP(&#8220;DIMSG&#8221;,$J)</strong>.</p>
+	    </td>
+	  </tr> 
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>err_root:</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      <p>(Optional) Closed root into which the error messages are returned. If this parameter is not passed, the array is put into nodes descendant from <strong>^TMP(&#8220;DIERR&#8221;,$J)</strong>.</p>
+	    </td>
+	  </tr> 
+	</TABLE> 
+	<H5><a name="Output">Output</a></H5> 
+	<P>This Boolean extrinsic function returns the following:</P>
+	<ul>
+	  <li>
+	    <strong>1&#8212;</strong>If authorization is permitted (Permit).
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <strong>0&#8212;</strong>If authorization is denied (Deny).
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <strong>Null&#8212;</strong>If authorization cannot be determined (i.e., no policies exist in the POLICY [#1.6] file that apply).
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <strong>-1&#8212;</strong>Error.
+	  </li>
+	</ul> 
+	<p>Advice messages can be returned for either a Permit or Deny result. Available Fields are only returned on a Permit.</p>
+	<H5>Examples</H5>
+    <h6>Example 1</h6>
+    <p>To check the current user&#8217;s authorization to view a chemistry result using our sample Lab policy, a simple call could be made to the API, 
+	as shown below:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<strong>S OK=$$CANDO^DIAC1(63.04,&#8220;7019779.8679,12345,&#8221;,&#8220;read&#8221;) W !,OK</strong>
+1</PRE>    
+        </td>
+      </tr>
+    </table>  	 
+    <h6>Example 2</h6>
+    <p>A different user may not be permitted to view the result, and the message array can show why, 
+	as shown below:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<strong>S OK=$$CANDO^DIAC1(63.04,&#8220;7019779.8679,12345,&#8221;,&#8220;read&#8221;,1000406,,,&#8220;ZZMSG&#8221;)</strong>
+&gt;<strong>W OK,! ZW ZZMSG</strong>
+0
+ZZMSG(1)=&#8220;FMUSER,ONE is not authorized to view preliminary results.&#8221;
+ZZMSG(2)=&#8220;Please contact Lab staff.&#8221;</PRE>    
+        </td>
+      </tr>
+    </table>  	 
+    <h6>Example 3</h6>
+    <p>An incomplete call to the API returns an error, as shown below:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<strong>S OK=$$CANDO^DIAC1(63.04,&#8220;7019779.8679,12345,&#8221;,,,,,&#8220;ZZMSG&#8221;,&#8220;ZZERR&#8221;)</strong>
+&gt;<strong>W OK,! ZW ZZERR</strong>
+-1
+ZZERR(1)=&#8220;The input parameter that identifies the ACTION is missing or invalid.&#8221;</PRE>    
+        </td>
+      </tr>
+    </table>  	 
+	<p>&nbsp;</p>
+	<HR CLASS="hrstyle"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm" TAG="BODY" startspan --> 
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Internet Home Page"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Intranet Home Page"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Intranet)</A> / 
+	<A HREF="http://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology (OIT) Home Page"><ACRONYM TITLE="Office of Information and Technology">OIT</ACRONYM></A> /
+	<A HREF="https://vaww.oit.va.gov/epmo/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Enterprise Program Management Office (EPMO) Home Page"><ACRONYM TITLE="Enterprise Program Management Office">EPMO</ACRONYM></A> /
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="VistA Infrastructure (VI) Site Map">Site Map</A> /
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Enterprise Program Management Office (EPMO) Terms of Use Page">Terms of Use</A> /
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Privacy Policy">VA Privacy Policy</A>
+			    /
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Internet Accessibility">Accessibility</A></P>
+  <!--webbot bot="Include" i-checksum="63908" endspan --><!--Date content was reviewed or updated--><p> Reviewed/Updated: 
+          <!--webbot bot="Timestamp"
+          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->January 19, 2018<!--webbot bot="Timestamp" i-checksum="31919" endspan --></p>
+		  <P ALIGN="CENTER"> If you
+		  have questions, need more information, or are having accessibility problems
+		  with this Web site, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/dac_diac1_cando.htm"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 CLASS="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  </BODY>
+</HTML>

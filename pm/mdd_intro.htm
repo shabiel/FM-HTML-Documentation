@@ -1,16 +1,16 @@
-<HTML> 
+<HTML xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"> 
   <HEAD>
 <!--Office of Information and Technology (OIT)-->
 <!--Oakland OITFO-->
-<!--Authored by T.B., 10/03/2017-->
+<!--Authored by T.B., 10/10/2017-->
 <!--Revised by T.B., 01/17/2018-->
     <META HTTP-EQUIV="Content-Type"
           CONTENT="text/html; charset=iso-8859-1"> 
-	<TITLE>VA FileMan Developer's Guide: Coordinated Universal Time (UTC) Introduction</TITLE>
+	<TITLE>VA FileMan Developer's Guide: Meta Data Dictionary (MDD) Introduction</TITLE>
 	<META NAME="subject"
 	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
 	<META NAME="keywords"
-	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,Coordinated Universal Time (UTC),utc,coordinated,universal,time,introduction">
+	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,Meta Data Dictionary,MDD,meta,data,dictionary,data dictionary,introduction">
 	<LINK REL="StyleSheet"
 	      TYPE="text/css"
 	      HREF="common/developer.css"> 
@@ -101,11 +101,89 @@
     </TABLE>
   <!--webbot bot="Include" i-checksum="35683" endspan -->
 <!-- Content -->
-    <H3><A NAME="navskip">Coordinated Universal Time (UTC)</A></H3>
+    <H3><A NAME="navskip">Meta Data Dictionary (MDD)</A></H3>
 	<HR CLASS="hrstyle"> 
-	<H4> Introduction</H4> 
-	<P>The Coordinated Universal Time (UTC) API converts a VA FileMan date/time into Greenwich Mean Time (GMT) with a time zone offset based on various input values entered by the user or the default institution in the 
-	<strong>DUZ(2)</strong> variable.</P> 
+	<H4>Introduction</H4> 
+	<P>The META DATA DICTIONARY (#.9) file is a summary of all the VA FileMan files within a Veterans Health Information Systems and Technology Architecture (VistA) installation. It enables users to quickly identify where information is stored within files and fields throughout the VistA system.</P>
+	<p>The META DATA DICTIONARY (#.9) file contains the following fields:</p>
+	<ul>
+	  <li>
+	    NAME (#.01)&#8212;Contains the dictionary name followed by the field name with the underscore (&#8220;_&#8221;) connecting the two. If the field is a Multiple, then the Multiple name is included.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    LOOKUP TERM (#.02)&#8212;Final field name.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    DATA DICTIONARY NUMBER (#.03)&#8212;Internal entry number (IEN) for the dictionary represented.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    FIELD NUMBER (#.04)&#8212;Internal entry number (IEN) for the field represented.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    DATA (#.05)&#8212;Indicator that the field contains data.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    OBJECT NAME (#.06)&#8212;CamelCase representation of the NAME (#.01) field.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    LAST UPDATED (#.07)&#8212;Indicates the last date/time this field was last edited.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    DESCRIPTION (#1)&#8212;Field description.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    BUILD(S) (#9.6)&#8212;Displays all of the builds where this field was included.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    TYPE (#25)&#8212;Data Type of the field.
+	  </li>
+	</ul>
+	<HR>
+    <h6>META DATA DICTIONARY (#.9) File Sample Entry:</h6>	 
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <pre>NUMBER: 21336                           NAME: NEW PERSON_NAME
+  LOOKUP TERM: NAME                     DATA DICTIONARY NUMBER: 200
+  FIELD NUMBER: .01                     OBJECT NAME: newPerson.name
+  LAST UPDATED: DEC 30,2015@08:02:19
+ DESCRIPTION:   Answer must be 3-35 upper-case characters in length, and be in
+ the format Family(Last),Given(First) Middle Suffix. Enter '??' for more help.  
+  Enter only data that is actually part of the person's name. Do not include
+ extra titles, identification, flags, local information, etc.  Enter the
+ person's name in 'LAST,FIRST MIDDLE SUFFIX' format.  This value must be 3-35
+ characters in length and may contain only uppercase alpha characters, spaces,
+ apostrophes, hyphens and one comma.  All other characters and parenthetical
+ text will be removed.  
+BUILD(S) (c): XU*8.0*120
+            : XU*8.0*135
+            : XU*8.0*134
+            : XU*8.0*551                TYPE (c): FREE TEXT</pre>    
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>	 
 	<HR CLASS="hrstyle"> 
 	<TABLE WIDTH="100%"
 	       SUMMARY="This table for layout purposes only"
@@ -155,7 +233,7 @@
 		  <P ALIGN="CENTER">If you have questions, need more information, or
 		  are having accessibility problems with this Web site, please contact us by
 		  E-Mail:
-		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/utc_intro.htm"
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/mdd_intro.htm"
 			 TITLE="Send mail to the Webmasters regarding this page"
 			 CLASS="bodylink">Webmasters</A></P> 
 		  <P>&nbsp;</P>

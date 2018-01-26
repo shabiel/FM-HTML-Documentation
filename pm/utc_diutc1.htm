@@ -1,0 +1,510 @@
+<HTML> 
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+<!--Authored by T.B., 10/03/2017-->
+<!--Revised by T.B., 01/22/2018-->
+	<META HTTP-EQUIV="Content-Type"
+	      CONTENT="text/html; charset=iso-8859-1"> 
+	<TITLE>VA FileMan Developer's Guide: $$UTC^DIUTC</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,utc,Coordinated Universal Time (UTC),gmt,other api,api,calls,$$utc^diutc,diutc">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+<!--webbot bot="Include" U-Include="common/banner_std_page.htm" TAG="BODY" startspan --> 
+    <TABLE CELLSPACING="0"
+           CELLPADDING="0"
+           BORDER="0"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD>
+	      <BR>
+	      <IMG SRC="images/fileman_dg_heading.gif"
+	           BORDER="0"
+		       ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner">
+		  <BR>
+		  <IMG SRC="images/vaoitbanner.gif"
+		       BORDER="0"
+			   ALT="VA Office of Information and Technology (OIT) Banner">
+		  <BR>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  <!--webbot bot="Include" i-checksum="44734" endspan -->
+<!--Top Navigation Links--><P></P> 
+<!--webbot bot="Include" U-Include="common/top_links.htm" TAG="BODY" startspan -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="0"
+           CELLPADDING="3"
+	       CLASS="tdstyle"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="1"
+	       VALIGN="TOP" id="table1"> 
+      <TR> 
+	    <TD VALIGN="BOTTOM"
+	        ALIGN="LEFT"
+	        HEIGHT="1"
+	        WIDTH="10%"
+			CLASS="menubartext">Contents:
+	    </TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="7%">
+		  <A HREF="index.htm"
+		     TARGET="_top"
+			 TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents"
+			 CLASS="menubarlink">Main</A>
+		</TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="17%">
+		  <A HREF="afd_frm.htm"
+		     TARGET="_top"
+			 TITLE="VA FileMan Developer's Guide (HTML): Advanced File Definition Section TOC"
+			 CLASS="menubarlink">Section</A>
+		</TD> 
+		<TD ALIGN="LEFT"
+		    VALIGN="BOTTOM"
+		    HEIGHT="1"
+		    WIDTH="10%"
+			CLASS="menubartext">See Also:
+	    </TD> 
+		<TD ALIGN="LEFT"
+		    VALIGN="BOTTOM"
+		    HEIGHT="1"
+		    WIDTH="28%">
+		  <A HREF="../u1/index.htm"
+		     TARGET="_top"
+			 TITLE="VA FileMan User Manual (HTML)"
+			 CLASS="menubarlink">User Manual</A>
+		</TD> 
+		<TD VALIGN="BOTTOM"
+		    ALIGN="LEFT"
+		    HEIGHT="1"
+		    WIDTH="28%">
+		  <A HREF="../u2/index.htm"
+		     TARGET="_top"
+			 TITLE="VA FileMan Advanced User Manual (HTML)"
+			 CLASS="menubarlink">Advanced User Manual</A>
+		</TD> 
+	  </TR> 
+    </TABLE>
+  <!--webbot bot="Include" i-checksum="35683" endspan -->
+<!-- Content -->
+    <H3><A NAME="navskip">Coordinated Universal Time (UTC) API</A></H3>
+	<HR CLASS="hrstyle"> 
+	<H4>$$UTC^DIUTC(): Return GMT in VA FileMan Internal Format with Time Zone Offset</H4> 
+	<P>The $$UTC^DIUTC API returns the Greenwich Mean Time (GMT) represented in standard VA FileMan internal date/time format with an internal three-digit time zone offset appended to the end. The calculation for the internal offset is:</P>
+	<ol>
+	  <li>
+	    Convert the external offset to minutes.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Divide value from Step 1 by 5.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Add value from Step 2 to 500.
+	  </li>
+	</ol>
+	<p>For example:</p>
+	<p>&nbsp;&nbsp;&nbsp;&nbsp;-07:00 = -420 minutes, divided by 5 = -84, and added to 500 = 416</p>
+	<p>There may be other output variables based on the value of the <strong>extended_output_flag</strong> input parameter. The details for the other output values are documented in the 
+	&#8220;<a href="#Output"
+		      title="Output Section"
+		      class="bodylink">Output</a>&#8221; section.</p>
+	<p>To determine the offset, the API needs to have the timezone and country input parameters. These values are determined using the following algorithm:</p>
+	<ul>
+	  <li>
+	    If no optional input parameters are passed in, then the user's <strong>DUZ(2)</strong> variable is used to determine the user&#8217;s default institution within the INSTITUTION (#4) file; where the TIMEZONE (#801) and COUNTRY (#802) fields are located. 
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    If only the <strong>institution</strong> input parameter is passed in, the time zone and country are determined by fields in the INSTITUTION (#4) file.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    If the <strong>timezone</strong> and <strong>country</strong> input parameters are passed in, the offset is determined from the WORLD TIMEZONE (#1.71) file.
+	  </li>
+	</ul>
+	<p>The following errors are returned based on the evaluation of the input parameters:</p>
+	<ul>
+	  <li>
+	    If the <strong>timezone</strong> and <strong>country</strong> parameters <em>cannot</em> be determined by any of the methods above, an error message is returned.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    If the <strong>timezone</strong> parameter is passed into the API but the <strong>country</strong> parameter is not, an error message is returned.
+	    <br>
+        <br>
+	  </li>
+	  <li>
+	    If the <strong>country</strong> parameter is passed into the API but the <strong>timezone</strong> parameter is not, an error message is returned.
+	    <br>
+        <br>
+	  </li>
+	  <li>
+	    If the <strong>institution</strong> parameter is passed in with either the <strong>timezone</strong> or <strong>country</strong> parameter, or both, an error message is returned.
+	    <br>
+        <br>
+	  </li>
+	  <li>
+	    Once the <strong>timezone</strong> and <strong>country</strong> input parameters are determined, they are validated for consistency. An error message is returned if they are inconsistent.
+	    <br>
+	    <br>
+	    For example: if the user passes in <strong>timezone</strong> = "Australian Eastern Time" and <strong>country</strong> = "Mexico", the $$UTC^DIUTC API returns an error message.
+	  </li>         
+	</ul>
+	<H5>Format</H5> 
+    <PRE>    $$UTC^DIUTC(fm_datetime[,timezone][,institution][,country][,extended_output_flag])</PRE> 
+	<H5>Input Parameters</H5> 
+	<TABLE BORDER="1"
+	       WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    width="10%">
+		  <B>fm_datetime:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    width="90%"> 
+		  <P>(Required) Standard internal or external VA FileMan DateTime (e.g., NOW, T@12A). The Time portion of the input is required.</P>
+		  <p><strong>NOTE:</strong> The <strong>NOW</strong> input parameter is based on the current system time. If <strong>NOW</strong> is passed in with a <strong>timezone</strong> and <strong>country</strong> input parameter that is different than the system&#8217;s time zone and country, inconsistent output may occur.</p>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>timezone:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(Optional) Can be either of the following:</P>
+		  <ul>
+		    <li>
+		      Pointer to the WORLD TIMEZONES (#1.71) file.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      Value from the NAME (#.01) field if the WORLD TIMEZONES (#1.71) file (e.g., EASTERN).
+		    </li>
+		  </ul>
+		</TD> 
+	  </TR>
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>institution:</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      (Optional) Pointer to the INSTITUTION (#4) file.
+	    </td>
+	  </tr> 
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>country:</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      (Optional) Can be either of the following:
+		  <ul>
+		    <li>
+		      Pointer to the COUNTRY CODE (#779.004) file.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      Valid entry from the uppercase DESCRIPTION (#2) field of the COUNTRY CODE (#779.004) file.
+		    </li>
+		  </ul>
+	    </td>
+	  </tr> 
+	  <tr>
+	    <td VALIGN="TOP">
+	      <strong>extended_output_flag:</strong>
+	    </td>
+	    <td VALIGN="TOP">
+	      (Optional) This parameter is an indicator of whether to do either of the following:
+		  <ul>
+		    <li>
+		      Return the default output (GMT+offset in internal format).
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      Include any extended return values.
+		    </li>
+		  </ul>
+		  If the <strong>extended_output_flag</strong> parameter is set to:
+		  <ul>
+		    <li>
+		      <strong>Null or Missing&#8212;</strong>Only the default value is outputted.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      <strong>1&#8212;</strong>Additional values are returned as documented in the 
+		      &#8220;<a href="#Output"
+		                title="Output Section"
+		                class="bodylink">Output</a>&#8221; section.
+		    </li>
+		  </ul>
+	    </td>
+	  </tr> 
+	</TABLE> 
+	<H5><a name="Output">Output</a></H5> 
+	<P>The function can have two different outputs depending on the value of the <strong>extended_input_flag</strong> input parameter. If the <strong>extended_output_flag</strong> is set to:</P>
+	<ul>
+	  <li>
+	    <strong>Null or Missing&#8212;</strong>Default output (GMT+offset in internal format) is returned.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <strong>1&#8212;</strong>Output is multiple caret- (<strong>^</strong>) delimited pieces:
+	    <br>
+	    <br>
+	    &nbsp;&nbsp;&nbsp;&nbsp;
+	    Piece 1: GMT+offset in internal format (e.g, 3160105.080715416)
+	    <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Piece 2: GMT+offset in external format [e.g., JAN 5,2016@08:07:15 (UTC-7:00)]
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Piece 3: Offset in external format (e.g., -7:00)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Piece 4: Time zone (e.g., EASTERN STANDARD TIME, ESTONIA STANDARD TIME)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Piece 5: Country Name (e.g., UNITED STATES, FRANCE)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Piece 6: Time zone abbreviation (e.g., EST, PST)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Piece 7: Timeframe (e.g., DAYTLIGHT, STANDARD, SUMMER)
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Piece 8: Institution Name from the INSTITUTION (#4) file (e.g., CHEYENNE VAMC). This piece is set to 
+		<strong>null</strong> if 
+		<strong>timezone</strong> and <strong>country</strong> are passed in as 
+		input
+		<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; parameters.
+	  </li>
+	</ul> 
+	<H5>Examples</H5>
+    <h6>Example 1</h6>
+    <p>The default output <strong>DUZ(2)</strong> variable is used, as shown below:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<strong>W $$UTC^DIUTC(3160816.120016)</strong>
+3160816.160016452</PRE>    
+        </td>
+      </tr>
+    </table>  	 
+    <h6>Example 2</h6>
+    <p>The extended output <strong>DUZ(2)</strong> variable is used, as shown below:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<strong>W $$UTC^DIUTC("T+1@11",,,,1)</strong>
+3160811.150000452^AUG 11, 2016@15:00:00 (UTC-04:00)^-04:00^EASTERN^UNITED STATES^EDT^DAYLIGHT SAVINGS^SOFTWARE SERVICE
+</PRE>    
+        </td>
+      </tr>
+    </table>  	 
+    <h6>Example 3</h6>
+    <p>The time zone and country are passed in, as shown below:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<strong>W $$UTC^DIUTC("NOW","EASTERN",,"UNITED STATES",1)</strong>
+3160815.133449452^AUG 15, 2016@13:34:49 (UTC-04:00)^-04:00^EASTERN^UNITED STATES
+^EDT^DAYLIGHT SAVINGS^
+</PRE>    
+        </td>
+      </tr>
+    </table>  	 
+    <h6>Example 4</h6>
+    <p>The time zone and country are passed in and extended output, as shown below:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<strong>W $$UTC^DIUTC("2/1/16@1500","CENTRAL",,"UNITED STATES",1)</strong>
+3160201.210000428^FEB 01, 2016@21:00:00 (UTC-06:00)^-06:00^CENTRAL^UNITED STATES
+^CST^STANDARD^
+</PRE>    
+        </td>
+      </tr>
+    </table>  	 
+    <h6>Example 5</h6>
+    <p>The institution is passed in and extended output, as shown below:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<strong>W $$UTC^DIUTC("Jan 15, 2016@11",,1,,1)</strong>
+3160115.160000440^JAN 15, 2016@16:00:00 (UTC-05:00)^-05:00^EASTERN^UNITED STATES
+^EST^STANDARD^SOFTWARE SERVICE
+</PRE>    
+        </td>
+      </tr>
+    </table>  	 
+	<H5>Error Messages Returned</H5>
+    <p>The following table lists the possible error messages returned with the 
+    $$UTC^DIUTC API:</p> 
+	<TABLE BORDER="1"
+	       WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+		<TH VALIGN="TOP"
+		    align="left">
+		  Description
+		</TH> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    align="left">
+		  Date/Time parameter is missing.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Institution parameter cannot include Country or Timezone parameter. 
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Timezone parameter must include Country parameter.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Country parameter must include Timezone parameter.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Extended parameter must be <strong>NULL</strong> or a <strong>1</strong> for extended output.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Cannot determine Country and Timezone from the Institution.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Cannot determine User location.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Cannot determine Country and Timezone from User location.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Invalid Timezone.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Invalid Country.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  Mismatch of Country and Timezone.
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<P><strong>NOTE:</strong> All of the error messages returned from the $$UTC^DIUTC API are preceeded by a: <strong>-1^</strong>. For example, &#8220;<strong>-1^</strong>Invalid Country&#8221;.</P>
+	<p>&nbsp;</p>
+	<HR CLASS="hrstyle"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Bottom Navigation Links-->
+<!--webbot bot="Include" U-Include="common/bottom_links.htm" TAG="BODY" startspan --> 
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Internet Home Page"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Intranet Home Page"><ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Intranet)</A> / 
+	<A HREF="http://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology (OIT) Home Page"><ACRONYM TITLE="Office of Information and Technology">OIT</ACRONYM></A> /
+	<A HREF="https://vaww.oit.va.gov/epmo/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Enterprise Program Management Office (EPMO) Home Page"><ACRONYM TITLE="Enterprise Program Management Office">EPMO</ACRONYM></A> /
+    <A HREF="http://vista.med.va.gov/iss/site_map.asp"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="VistA Infrastructure (VI) Site Map">Site Map</A> /
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Enterprise Program Management Office (EPMO) Terms of Use Page">Terms of Use</A> /
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Privacy Policy">VA Privacy Policy</A>
+			    /
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs (VA) Internet Accessibility">Accessibility</A></P>
+  <!--webbot bot="Include" i-checksum="63908" endspan --><!--Date content was reviewed or updated--><P> Reviewed/Updated: 
+          <!--webbot bot="Timestamp"
+          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->January 22, 2018<!--webbot bot="Timestamp" i-checksum="31906" endspan -->
+		  <P ALIGN="CENTER"> If you
+		  have questions, need more information, or are having accessibility problems
+		  with this Web site, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/utc_diutc1.htm"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 CLASS="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+  </BODY>
+</HTML>

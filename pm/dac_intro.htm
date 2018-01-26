@@ -3,14 +3,14 @@
 <!--Office of Information and Technology (OIT)-->
 <!--Oakland OITFO-->
 <!--Authored by T.B., 10/03/2017-->
-<!--Revised by T.B., 01/17/2018-->
+<!--Revised by T.B., 01/11/2018-->
     <META HTTP-EQUIV="Content-Type"
           CONTENT="text/html; charset=iso-8859-1"> 
-	<TITLE>VA FileMan Developer's Guide: Coordinated Universal Time (UTC) Introduction</TITLE>
+	<TITLE>VA FileMan Developer's Guide: Data Access Control (DAC) Introduction</TITLE>
 	<META NAME="subject"
 	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
 	<META NAME="keywords"
-	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,Coordinated Universal Time (UTC),utc,coordinated,universal,time,introduction">
+	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,Data Access Control (DAC),data,access,dac,introduction">
 	<LINK REL="StyleSheet"
 	      TYPE="text/css"
 	      HREF="common/developer.css"> 
@@ -101,11 +101,11 @@
     </TABLE>
   <!--webbot bot="Include" i-checksum="35683" endspan -->
 <!-- Content -->
-    <H3><A NAME="navskip">Coordinated Universal Time (UTC)</A></H3>
+    <H3><A NAME="navskip">Data Access Control (DAC)</A></H3>
 	<HR CLASS="hrstyle"> 
-	<H4> Introduction</H4> 
-	<P>The Coordinated Universal Time (UTC) API converts a VA FileMan date/time into Greenwich Mean Time (GMT) with a time zone offset based on various input values entered by the user or the default institution in the 
-	<strong>DUZ(2)</strong> variable.</P> 
+	<H4>Introduction</H4> 
+	<P>The Data Access Control (DAC) utility, released with VA FileMan Patch DI*22.2*8, is based upon the XACML (eXtensible Access Control Markup Language) standard, an extension of XML. XACML assumes an attribute-based rule structure that can permit or deny a user access to a resource (e.g., a record in a file). It uses pre-defined target attribute values to match appropriate policies to the action being taken. Policies are made up of rules that can be combined as needed. This allows you to create simple or very complex access policies.</P> 
+    <p><strong>REF:</strong> For more information on the Data Access Control (DAC) utility and setting up policies, which must be in place before calling the $$CANDO^DIAC1 API, see the <em>VA FileMan 22.2; Patch DI*22.2*8 Data Access Control (DAC) User Guide</em>.</p>
 	<HR CLASS="hrstyle"> 
 	<TABLE WIDTH="100%"
 	       SUMMARY="This table for layout purposes only"
@@ -151,13 +151,13 @@
 	   TITLE="Department of Veterans Affairs (VA) Internet Accessibility">Accessibility</A></P>
   <!--webbot bot="Include" i-checksum="63908" endspan --><!--Date content was reviewed or updated--><P> Reviewed/Updated: 
           <!--webbot bot="Timestamp"
-          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->January 17, 2018<!--webbot bot="Timestamp" i-checksum="31915" endspan --></P> 
+          S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->January 11, 2018<!--webbot bot="Timestamp" i-checksum="31903" endspan --></P> 
 		  <P ALIGN="CENTER">If you have questions, need more information, or
 		  are having accessibility problems with this Web site, please contact us by
 		  E-Mail:
-		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/utc_intro.htm"
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/dac_intro.htm"
 			 TITLE="Send mail to the Webmasters regarding this page"
-			 CLASS="bodylink">Webmasters</A></P> 
+			 CLASS="bodylink"> Webmasters</A></P> 
 		  <P>&nbsp;</P>
 	    </TD> 
 	  </TR> 

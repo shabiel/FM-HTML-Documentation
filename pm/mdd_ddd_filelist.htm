@@ -2,15 +2,15 @@
   <HEAD>
 <!--Office of Information and Technology (OIT)-->
 <!--Oakland OITFO-->
-<!--Authored by T.B., 10/03/2017-->
+<!--Authored by T.B., 10/10/2017-->
 <!--Revised by T.B., 01/17/2018-->
     <META HTTP-EQUIV="Content-Type"
           CONTENT="text/html; charset=iso-8859-1"> 
-	<TITLE>VA FileMan Developer's Guide: Coordinated Universal Time (UTC) Introduction</TITLE>
+	<TITLE>VA FileMan Developer's Guide: FILELIST^DDD</TITLE>
 	<META NAME="subject"
 	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
 	<META NAME="keywords"
-	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,Coordinated Universal Time (UTC),utc,coordinated,universal,time,introduction">
+	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,Meta Data Dictionary,MDD,meta,data,dictionary,data dictionary,other api,api,calls,filelist^ddd api,filelist,ddd,File List Partial Update,file,list,partial,update">
 	<LINK REL="StyleSheet"
 	      TYPE="text/css"
 	      HREF="common/developer.css"> 
@@ -101,12 +101,45 @@
     </TABLE>
   <!--webbot bot="Include" i-checksum="35683" endspan -->
 <!-- Content -->
-    <H3><A NAME="navskip">Coordinated Universal Time (UTC)</A></H3>
+    <H3><A NAME="navskip">Meta Data Dictionary (MDD)</A></H3>
 	<HR CLASS="hrstyle"> 
-	<H4> Introduction</H4> 
-	<P>The Coordinated Universal Time (UTC) API converts a VA FileMan date/time into Greenwich Mean Time (GMT) with a time zone offset based on various input values entered by the user or the default institution in the 
-	<strong>DUZ(2)</strong> variable.</P> 
-	<HR CLASS="hrstyle"> 
+	<H4>FILELIST^DDD(): File List Partial Update</H4> 
+	<P>The FILELIST^DDD API can be run directly from the M programmer&#8217;s prompt. It requires an array passed by reference that includes files that are to be updated.</P>
+	<H5>Format</H5> 
+	<Pre>    FILELIST^DDD(.array)</Pre>
+	<H5>Input Parameters</H5> 
+	<table width="100%"
+	       border="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <tr>
+	    <td valign="top"
+	        width="10%">
+	      <strong>.array</strong>
+	    </td>
+		<td width="90%">
+		  (Required) A subscripted array of files where the subscript is the file number.
+		</td>
+	  </tr>
+    </table>
+    <h5>Output</h5>
+    <p>None.</p>
+    <h5>Example</h5>
+	<p>For example:</p>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <pre>S ARRAY(2)= &#8220;&#8221;   ;PATIENT FILE
+S ARRAY(200)= &#8220;&#8221;  ;NEW PERSON FILE
+D FILELIST^DDD(.ARRAY)</pre>          
+        </td>
+      </tr>
+    </table>
+    <P>&nbsp;</P>
+	<HR CLASS="hrstyle"> 	
 	<TABLE WIDTH="100%"
 	       SUMMARY="This table for layout purposes only"
 	       CLASS="white"> 
@@ -155,7 +188,7 @@
 		  <P ALIGN="CENTER">If you have questions, need more information, or
 		  are having accessibility problems with this Web site, please contact us by
 		  E-Mail:
-		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/utc_intro.htm"
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/dg/mdd_ddd_filelist.htm"
 			 TITLE="Send mail to the Webmasters regarding this page"
 			 CLASS="bodylink">Webmasters</A></P> 
 		  <P>&nbsp;</P>

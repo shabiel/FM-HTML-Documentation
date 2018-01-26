@@ -1,0 +1,64 @@
+/* This Style Sheet should be used with all Developer/Programmer-type manuals/web pages (e.g., APIs), */
+
+/* The following style applies to the BODY font size and background color within a left frame in a frameset and/or left side Table of Contents (TOC). */
+
+body.toc { background: #ffffcc; }
+
+/* The following style applies to all text within the page. */
+
+body { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%; color: #000000; }
+
+/* Since most of the text is inside TD (table cells) tags, the following style governs what that text looks like in tables. */
+
+td { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%; }
+
+/* The following style is for the left and top menu bars coloring. */
+
+.tdstyle { background-color: #ffffcc; color: #000000; }
+
+/* The following style is for the header rule coloring. */
+
+.hrstyle { color: #000000; }
+
+/* The following style is for text inside TH (table header) tags. */
+
+th { font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 80%; }
+
+/* The following style is for text inside PRE (Preformat/Code) tags. */
+
+pre { font-family: Courier New,Courier; font-size: 100%; }
+
+/* These rules make the headers display in a certain typeface and size  */
+					
+h1	{ font-family: Verdana,Arial,Helvetica,sans-serif }
+h2	{ font-family: Verdana,Arial,Helvetica,sans-serif }
+h3	{ font-family: Verdana,Arial,Helvetica,sans-serif }
+h4	{ font-family: Verdana,Arial,Helvetica,sans-serif }
+h5	{ font-family: Verdana,Arial,Helvetica,sans-serif }
+h6	{ font-family: Verdana,Arial,Helvetica,sans-serif }
+
+/* The following class rule is for hyperlinks on the left menu. */
+
+a.navbarlink:link { color: blue; text-decoration: underline; font-size: 120%; font-family: Verdana,Arial,Helvetica,sans-serif; }
+a.navbarlink:visited { color: blue; text-decoration: underline; font-size: 120%; font-family: Verdana,Arial,Helvetica,sans-serif; }
+a.navbarlink:hover {color: black; text-decoration: none; font-size: 120%; font-family: Verdana,Arial,Helvetica,sans-serif; }
+
+/* The following class is for the text on the left menu. */
+
+.navbartext { color: #000000; text-decoration: none; font-size: 120%; font-family: Verdana,Arial,Helvetica,sans-serif; font-weight: bold; }
+
+/* The following class is for the hyperlinks on the top menu. */
+
+a.menubarlink:link { color: blue; text-decoration: underline; font-family: Verdana,Arial,Helvetica,sans-serif; }
+a.menubarlink:visited { color: blue; text-decoration: underline; font-family: Verdana,Arial,Helvetica,sans-serif; }
+a.menubarlink:hover {color: black; text-decoration: none; font-family: Verdana,Arial,Helvetica,sans-serif; }
+
+/* The following class is for the text on the top menu. */
+
+.menubartext { font-family: Verdana,Arial,Helvetica,sans-serif; font-weight: bold; color: #000000; }
+
+/* The following class is for the hyperlinks on the rest of the page. */
+
+a.bodylink:link { color: blue; text-decoration: underline; font-family: Verdana,Arial,Helvetica,sans-serif; }
+/* a.bodylink:visited { color: blue; text-decoration: underline; font-family: Verdana,Arial,Helvetica,sans-serif; } */
+a.bodylink:hover { color: black; text-decoration: none; font-family: Verdana,Arial,Helvetica,sans-serif; }
