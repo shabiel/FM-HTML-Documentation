@@ -66,9 +66,9 @@ a.bodylink:hover { color: black; text-decoration: none; font-family: Verdana, Ar
     height: 10px;
     border-radius: 3px;
     border: none;
-		margin-right: 5px;
-		padding: 0px 5px;
-		font-weight: bold;
+    margin-right: 5px;
+    padding: 0px 5px;
+    font-weight: bold;
 }
 .warn {
     background: red;
@@ -76,9 +76,9 @@ a.bodylink:hover { color: black; text-decoration: none; font-family: Verdana, Ar
     height: 10px;
     border-radius: 3px;
     border: none;
-		margin-right: 5px;
-		padding: 0px 5px;
-		font-weight: bold;
+    margin-right: 5px;
+    padding: 0px 5px;
+    font-weight: bold;
     color: white;
 }
 code, samp, kbd, pre {
