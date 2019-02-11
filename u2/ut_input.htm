@@ -1,65 +1,178 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD><!--VHA OI Health Systems Design & Development (HSD&D)-->
-<!--Oakland OIFO-->
-<!--Authored by Thom Blom and Kyle Clarke, 12/31/99-->
-<!--Revised by Thom Blom, 06/27/03-->
-<!--Edited March 2007, Hardhats.org--><META HTTP-EQUIV="Content-Type"
-	 CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan V. 22.0 Advanced User Manual: File Utilities - Input
-		Transform (Syntax) </TITLE>
-	 <META NAME="subject" CONTENT="VA FileMan V. 22.0 Advanced User HTML Manual">
-	 <META NAME="keywords"
-	  CONTENT="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,file utilities,utilities,input transform (syntax),syntax,input transform,input,transform">
-	 <LINK REL="StyleSheet" TYPE="text/css" HREF="user.css"> 
-  </HEAD> 
-  <BODY BGCOLOR="white" TOPMARGIN="0">
-	<BR><IMG SRC="common/fileman_au_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
-	ALT="VA FileMan V. 22.0 Getting Started HTML Manual Banner">
-	<BR>
-	<HR ALIGN="left" WIDTH="429" COLOR="blue">
-	<BR>
-	<P>&nbsp;</P>
-	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
-	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
-	  VALIGN="TOP"> 
-		<TR> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">Contents:</TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
-			 <A HREF="index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents"
-			  CLASS="menubarlink">Main</A> </TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="ut_frm.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Advanced User HTML Manual: File Utilities Chapter TOC"
-			 CLASS="menubarlink">Chapter</A></TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
-			CLASS="menubartext">See Also: </TD> 
-		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
-			 HREF="../u1/index.htm" TARGET="_top"
-			 TITLE="VA FileMan V. 22.0 Getting Started HTML Manual"
-			 CLASS="menubarlink">Getting Started Manual</A></TD> 
-		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
-			 <A HREF="../pm/index.htm" TARGET="_top"
-			  TITLE="VA FileMan V. 22.0 Programmer HTML Manual"
-			  CLASS="menubarlink">Programmer Manual</A></TD> 
-		</TR> 
-	 </TABLE><!-- Content -->
-	 <H3><A NAME="navskip">File Utilities</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>INPUT Transform (Syntax)</H4> 
-	 <P>If you have programmer access, you will be able to edit a field's INPUT
-		transform or syntax checker. </P> 
-	 <P><B>NOTE:</B> For a detailed description of the INPUT transform, see the
-		"<A HREF="../pm/afd_7.htm" TARGET="_top" TITLE="Input Transforms"
-		CLASS="bodylink">Input Transforms</A>" section in the "<A
-		HREF="../pm/index.htm" TARGET="_top"
-		TITLE="VA FileMan V. 22.0 Programmer HTML Manual" CLASS="bodylink">VA FileMan
-		Programmer Manual</A>."</P> <P>&nbsp;</P> 
-	 <HR CLASS="hrstyle">
-	 <!-- ut_input.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
-	 <P>&nbsp;</P> 
+<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/27/03--><!--Edited March 2007, Hardhats.org-->
 
-  </BODY>
-</HTML>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	 
+	 <title>VA FileMan V. 22.0 Advanced User Manual: File Utilities - Input Transform (Syntax)</title><meta name="subject" content="VA FileMan V. 22.0 Advanced User HTML Manual">
+	 <meta name="keywords" content="information infrastructure service,iis,vista,fileman,va fileman,user,advanced user manual,file utilities,utilities,input transform (syntax),syntax,input transform,input,transform">
+	 <link rel="StyleSheet" type="text/css" href="user.css"></head>
+<body topmargin="0" bgcolor="white">
+	<br><img src="common/fileman_au_heading.gif" alt="VA FileMan V. 22.0 Getting Started HTML Manual Banner" border="0" height="29" width="429">
+	<br>
+	<hr align="left" color="blue" width="429">
+	<br>
+	<p>&nbsp;</p>
+	<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%"> 
+		<tbody><tr> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td> 
+		  <td align="left" height="1" valign="bottom" width="7%">
+			 <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td> 
+		  <td align="left" height="1" valign="bottom" width="17%"><a href="ut_frm.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual: File Utilities Chapter TOC" class="menubarlink">Chapter</a></td> 
+		  <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td> 
+		  <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td> 
+		  <td colspan="4" align="left" height="1" valign="bottom" width="28%">
+			 <a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="menubarlink">Programmer Manual</a></td> 
+		</tr> 
+	 </tbody></table><!-- Content -->
+	 <h3><a name="navskip">File Utilities</a></h3> 
+	 <hr class="hrstyle"> 
+	 <h4><span class="warn">MSC</span>INPUT TRANSFORM/CONSISTENCY-CHECK</h4>
+	 <p>Consistency checks on a given field can be entered by developers without using
+MUMPS code. &nbsp;There can be any number of consistency checks on a
+given field. Each is evaluated (true/false) whenever data for the field
+is entered via FileMan (ENTER/EDIT Option, ScreenMan, Database Server
+APIs) &nbsp; &nbsp;If any of the Consistency Checks evaluate as FALSE,
+the data change is not allowed. &nbsp;Consistency checks are also made
+during the VERIFY Option.</p>
+	 <p>A consistency check is in the form of a Boolean-valued Computed Expression.</p>
+	 <p>Example 1: Suppose we want to ensure that when a user enters a value for Field
+#10 in the PACKAGE File, that value contains a "/" character. &nbsp;In
+Computed-Field syntax, the "[" operator means "contains". &nbsp;Note
+that after we enter the Consitency Check, FileMan will offer to show
+which of the current values of Field 10 do <span style="font-style: italic;">not</span> 
+obey the rule that we have just entered.
+<pre>
+Select OPTION:&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">UTILITY FUNCTIONS</span>
+Select UTILITY OPTION:&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">INPUT TRANSFORM/CONSISTENCY-CHECK</span>
+
+Modify what File: <span style="font-weight: bold;">PACKAGE</span>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (125 entries)
+Select FIELD:&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> DEVELOPER (PERSON/SITE)</span>
+Do you wish to create a new Consistency-Check for the 'DEVELOPER (PERSON/SITE)' Field? No// <span style="font-weight: bold;">Y</span>
+&nbsp; (Yes)
+Internal number of check being created:&nbsp; (1-9999999999): 1//
+
+Using 'DEVELOPER (PERSON/SITE)' to refer to this Field's value,
+enter an expression which must be true for this Field to be considered properly validated:
+&nbsp;&nbsp; <span style="font-weight: bold;">DEVELOPER (PERSON/SITE)["/"</span>
+
+By 'DEVELOPER ', do you mean PACKAGE&nbsp; 'DEVELOPER (PERSON/SITE)'? Yes//&nbsp;&nbsp; (Yes)
+WARNING--EXPRESSION DOESN'T MENTION ANOTHER FIELD BESIDES 'DEVELOPER (PERSON/SITE)'!
+Now please enter a message corresponding to this check
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt; <span style="font-weight: bold;">MUST HAVE A SLASH IN THE ANSWER</span>
+&lt;DONE&gt;
+
+
+SINCE YOU HAVE CHANGED THE FIELD DEFINITION,
+EXISTING 'DEVELOPER (PERSON/SITE)' DATA WILL NOW BE CHECKED FOR INCONSISTENCIES
+OK? Yes//&nbsp;&nbsp; (Yes)
+...
+VERIFY FIELDS REPORT
+PACKAGE
+FILE
+(#9.4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JAN 18, 2019&nbsp; 17:25&nbsp;&nbsp;&nbsp; PAGE 1
+-------------------------------------------------------------------------------
+--FIELD #10 DEVELOPER (PERSON/SITE)--&nbsp; (FREE TEXT)
+
+ENTRY#&nbsp;&nbsp;&nbsp;
+NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ERROR
+
+4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MAILMAN
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'WASHINGTON ISC' DATA INCONSISTENCY: MUST HAVE A SLASH IN THE ANSWER
+42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HEALTH SUMMARY
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'SALT LAKE CITY' DATA INCONSISTENCY: MUST HAVE A SLASH IN THE ANSWER
+.....
+</pre>
+
+<p>Example 2:&nbsp;The Computed Expression might simply check for the presence of
+a value in another field. &nbsp;Remember that in a Computed Expression,
+a field can be referred to by its number. &nbsp;Suppose we want to make
+sure that, in the PATIENT File, Field #.1411 must be filled in before a
+user can enter a value for Field #.14112. &nbsp;Saying that .1411 is
+"filled in" is equivalent to saying that it is "not null".</p>
+
+<pre>
+Select OPTION: <span style="font-weight: bold;">UTILITY FUNCTIONS</span>
+Select UTILITY OPTION: <span style="font-weight: bold;">5&nbsp;</span> INPUT TRANSFORM/CONSISTENCY-CHECK
+
+Modify what File: <span style="font-weight: bold;">PATIENT</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2497 entries)
+Select FIELD:&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">CONFIDENTIAL ADDR CHANGE DT/TM</span>
+
+Do you wish to create a new Consistency-Check for the 'CONFIDENTIAL ADDR CHANGEDT/TM' Field? No// <span style="font-weight: bold;">Y</span>&nbsp; (Yes)
+Internal number of check being created:&nbsp; (1-9999999999): 1//
+
+Using 'CONFIDENTIAL ADDR CHANGE DT/TM' to refer to this Field's value,
+enter an expression which must be true
+for this Field to be considered properly validated: <span style="font-weight: bold;">#.1411'=""</span>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Do you want this check made if 'CONFIDENTIAL STREET [LINE 1]' is null? No// <span style="font-weight: bold;">Y</span>&nbsp; (Yes)
+WARNING--EXPRESSION DOES NOT MENTION 'CONFIDENTIAL ADDR CHANGE DT/TM'!
+
+Now please enter a message corresponding to this check
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt; <span style="font-weight: bold;">ADDRESS MUST EXIST</span>
+&lt;DONE&gt;
+
+
+
+SINCE YOU HAVE CHANGED THE FIELD DEFINITION,
+EXISTING 'CONFIDENTIAL ADDR CHANGE DT/TM' DATA WILL NOW BE CHECKED FOR INCONSIST
+ENCIES
+OK? Yes//&nbsp; .....
+</pre>
+
+<p>Example 3: It's often desirable to validate a date being input by comparing it
+with another date. &nbsp;For example, nothing in a patient's record
+should be dated as taking place before the patient was born! &nbsp;The <span style="font-style: italic;">internally-stored </span>dates in FileMan can be compared as numbers, but since the <span style="font-style: italic;">external</span>
+forms of dates look like "JUL 20,1969", the INTERNAL Function must be
+used to turn such strings into numbers. &nbsp;Suppose that we want to
+check every value of Field .153 to insure it is not earlier than the
+PATIENT's birth.</p>
+<pre>
+Select OPTION: <span style="font-weight: bold;">UTILITY FUNCTIONS</span>
+Select UTILITY OPTION:<span style="font-weight: bold;"> 5</span>&nbsp; INPUT TRANSFORM/CONSISTENCY-CHECK
+
+Modify what File: PATIENT//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2497 entries)
+Select FIELD: <span style="font-weight: bold;">.153</span>&nbsp; MISSING PERSON DATE
+Do you wish to create a new Consistency-Check for the 'MISSING PERSON DATE' Field? No// <span style="font-weight: bold;">Y </span>&nbsp; (Yes)
+Internal number of check being created:&nbsp; (1-9999999999): 1//
+
+Using 'MISSING PERSON DATE' to refer to this Field's value,
+enter an expression which must be true for this Field to be considered properly validated:
+&nbsp;&nbsp; <span style="font-weight: bold;">INTERNAL(MISSING PERSON DATE)&gt;INTERNAL(DOB)</span>
+
+By 'DOB', do you mean PATIENT&nbsp; 'DATE OF BIRTH'? Yes//&nbsp;&nbsp; (Yes)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Do you want this check made if 'DATE OF BIRTH' is null? No//&nbsp;&nbsp; (No)
+
+Now please enter a message corresponding to this check
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt; <span style="font-weight: bold;">CAN'T BE BEFORE HE WAS BORN</span>
+&lt;DONE&gt;
+
+
+
+SINCE YOU HAVE CHANGED THE FIELD DEFINITION,
+EXISTING 'MISSING PERSON DATE' DATA WILL NOW BE CHECKED FOR INCONSISTENCIES
+OK? Yes//&nbsp; ....
+</pre>
+	 <p>Consistency checks can be
+considered adjuncts to the Field's Input Transform, which is MUMPS code
+that FileMan creates internally for a Field when it is created.
+&nbsp;If you have programmer access, you can edit a field's Input
+Transform (or 'syntax checker'), using this same Utility Option.
+&nbsp;Answer YES to the question</p>
+	 <pre>DO YOU WISH TO EDIT THE MUMPS INPUT TRANSFORM? No//</pre>
+	 <p><b>NOTE:</b> For a detailed description of the INPUT transform, see the
+		"<a href="../pm/afd_7.htm" target="_top" title="Input Transforms" class="bodylink">Input Transforms</a>" section in the "<a href="../pm/index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual" class="bodylink">VA FileMan
+		Programmer Manual</a>."</p> <p>&nbsp;</p> 
+	 <hr class="hrstyle">
+	 <!-- ut_input.htm -->
+	 <p align="center">Reviewed/Updated: January, 2019</p>
+	 <p>&nbsp;</p> 
+
+  </body></html>
