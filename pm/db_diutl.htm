@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>VA FileMan Programmer Manual: CHKPT^DIUTL</title><meta name="subject" content="VA FileMan V. 22.0 Programmer HTML Manual">
+  <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,diutl,chkpt">
+  <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
+<body topmargin="0" bgcolor="white">
+<br>
+<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.0 Programmer Manual Banner" border="0" height="29" width="429"> <br>
+<hr align="left" color="blue" width="429"> <br>
+<p>&nbsp;</p>
+<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
+  <tbody>
+    <tr>
+      <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
+      <td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.0 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
+      <td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.0 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
+      <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
+      <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.0 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
+      <td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.0 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- Content -->
+<h3><big><big><a name="navskip">Database Server (DBS) API</a></big></big></h3>
+<hr class="hrstyle">
+<h4><br>&nbsp;<big><big>CHKPT^DIUTL: Check for Existing File Entry Points</big></big><br><br><span style="font-weight: normal;">The
+<b>CHKPT^DIUTL</b> API checks what entry points to a particular record exist in a VA
+FileMan file.&nbsp; It returns an array of records in one of two formats based on the <b>flag</b> parameter:</span></h4>
+<ul>
+  <li><b>FLAG=0</b> (default)&#8212;text:
+    <pre>ARRAY(0)=line count
+ARRAY(line #)="Entry" record ien "in FILE (" file ") refers to it"</pre>
+  </li>
+  <li><b>FLAG=1</b>&#8212;detailed: Shows data and data dictionary information that points to the record:
+    <pre>ARRAY(0)=line count
+ARRAY(file #, ien, dd/subdd #, field #)=""</pre>
+  </li>
+</ul>
+<p><b>NOTE:</b> This API was released with VA FileMan Patch DI*22.2*10 and updated with DI*22.2*19.</p>
+<h4><big>Format</big><br></h4><pre>CHKPT^DIUTL(FILE,IEN,MSG_ROOT[,FLAG])</pre>
+<h5><big><big>Input Parameters</big></big></h5>
+<table summary="This table is for formatting purposes only" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top"><b>FILE</b></td>
+      <td colspan="2" valign="top">(Required) VA FileMan file number.</td>
+    </tr>
+    <tr>
+      <td valign="top"><b>IEN</b></td>
+      <td colspan="2" valign="top">(Required) Internal Entry Number (IEN) of the record.</td>
+    </tr>
+    <tr>
+      <td valign="top"><b>MSG_ROOT</b></td>
+      <td colspan="2" valign="top">(Required) Closed global root or local array.</td>
+    </tr>
+    <tr>
+      <td valign="top"><b>FLAG</b></td>
+      <td colspan="2" valign="top">(Optional) Output format:
+        <ul>
+          <li><b>0</b> (default)&#8212;text</li>
+          <li><b>1</b>&#8212;detailed</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5><big><big>Output</big></big></h5>
+<p>Depending on the <b>FLAG</b> parameter, it returns:</p>
+<ul>
+  <li><b>FLAG=0</b> (default)&#8212;text:
+    <pre>ARRAY(0)=line count
+ARRAY(line #)="Entry" record ien "in FILE (" file ") refers to it"</pre>
+  </li>
+  <li><b>FLAG=1</b>&#8212;detailed: Shows data and data dictionary information that points to the record:
+    <pre>ARRAY(0)=line count
+ARRAY(file #, ien, dd/subdd #, field #)=""</pre>
+  </li>
+</ul>
+<br>
+<p align="center">Reviewed/Updated: May 2026</p>
+<p>&nbsp;</p>
+</body></html>
