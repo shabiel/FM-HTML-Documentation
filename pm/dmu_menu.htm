@@ -1,0 +1,201 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: DMU Menu Options</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,Data Mapping Utility,DMU,menu options,DDE ENTITY MAPPING,DIOTHER,enter/edit,print,generate">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" SUMMARY="This table is for formatting purposes only">
+	  <TR><TD><BR><IMG SRC="images/fileman_dg_heading.gif" BORDER="0" ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner"><BR><IMG SRC="images/vaoitbanner.gif" BORDER="0" ALT="VA Office of Information and Technology (OIT) Banner"><BR></TD></TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3" CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1" VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>Menu Options</H4>
+	<P>The <B>Data Mapping</B> [DDE ENTITY MAPPING] menu is located on a submenu of the <B>Other Options</B> [DIOTHER] menu as shown below:</P>
+	<pre>
+VA F<U>ILE</U>M<U>AN</U> 22.2
+
+
+S<U>ELECT</U> OPTION: <B>OTHER OPTIONS</B>
+S<U>ELECT</U> OTHER OPTION: <B>DATA MAPPING</B>
+S<U>ELECT</U> DATA MAPPING OPTION: <B>?</B>
+    A<U>NSWER</U> W<U>ITH</U> DATA MAPPING OPTION NUMBER, O<U>R</U> NAME
+   C<U>HOOSE</U> F<U>ROM</U>:
+   1            ENTER/EDIT AN ENTITY
+   2            PRINT AN ENTITY
+   3            GENERATE AN ENTITY FOR A FILE
+
+S<U>ELECT</U> DATA MAPPING OPTION:
+	</pre>
+	<P>The following sections describe the three <B>Data Mapping</B> [DDE ENTITY MAPPING] menu options:</P>
+	<ul>
+	  <li><A HREF="#enter_edit" CLASS="bodylink">Enter/Edit an Entity Option</A></li>
+	  <li><A HREF="#print_entity" CLASS="bodylink">Print an Entity Option</A></li>
+	  <li><A HREF="#generate_entity" CLASS="bodylink">Generate an Entity for a File Option</A></li>
+	</ul>
+
+	<H5 id="enter_edit">Enter/Edit an Entity Option</H5>
+	<P>Use the <B>Enter/Edit an Entity</B> [DDE ENTITY ENTER/EDIT] option on the <B>Data Mapping</B> [DDE ENTITY MAPPING] menu to invoke a ScreenMan form for creating and managing Entities. Editing an Entity is described in detail in the <A HREF="dmu_edit.htm" CLASS="bodylink">Entity Editor</A> section.</P>
+
+	<H5 id="print_entity">Print an Entity Option</H5>
+	<P>Use the <B>Print an Entity</B> [DDE ENTITY INQUIRE] option on the <B>Data Mapping</B> [DDE ENTITY MAPPING] menu to display an Entity formatted for easier readability. It displays the data in two views:</P>
+	<ul>
+	  <li><B>Summary</B>&#8212;Simply lists the Items by property name.</li>
+	  <li><B>Detailed</B>&#8212;Includes all attributes of each Item.</li>
+	</ul>
+	<P>Example of a <B>Summary</B> view:</P>
+	<pre>
+S<U>ELECT</U> DATA MAPPING OPTION: <B>PRINT AN ENTITY</B>
+S<U>ELECT</U> ENTITY: <B>ZZPATIENT</B>
+P<U>RINT</U> I<U>TEM</U> S<U>UMMARY</U> O<U>R</U> D<U>ETAILS</U>? <B>SUMMARY</B>
+
+DEVICE: HOME// <B>0;80;99</B> L<U>INUX</U> T<U>ELNET</U> /SSH
+
+
+ENTITY: ZZPATIENT (#281)
+   FILE: PATIENT (#2)                              OCT 17, 2021@13:06:01    PAGE 1
+-------------------------------------------------------------------------------
+
+ DISPLAY NAME: T<U>EST</U>P<U>ATIENT</U>
+
+     SORT BY: B                          DATA MODEL:
+   FILTER BY: ZZ                           READ ONLY: NO
+       SCREEN:
+QUERY ROUTINE:
+
+ ENTRY ACTION:
+    ID ACTION: I '$$TESTPAT^VADPT(DIEN) S DDEOUT=1
+   EXIT ACTION:
+
+SEQ  ITEM                    TYPE  FIELD    SUB/FILE     ENTITY
+-------------------------------------------------------------------------------
+1     P<U>ATIENT</U>ID                I
+2     N<U>AME</U>                    S    .01    2
+3     D<U>ATE</U>E<U>NTERED</U>             3     S    .097   2
+4     A<U>LIAS</U>                   4     L            2.01      ZZALIAS
+5     F<U>LAG</U>                    5     F
+6     W<U>HO</U>E<U>NTERED</U>             6     E    .096   2          ZZUSER
+7     A<U>DDRESS</U>                 7     C
+       S<U>TREET</U>                       S    .111    2
+       C<U>ITY</U>                         S    .114    2
+       S<U>TATE</U>                        S    .115    2
+       Z<U>IP</U>                          S    .116    2
+
+
+S<U>ELECT</U> DATA MAPPING OPTION:
+	</pre>
+	<P><B>NOTE:</B> The READ ONLY field is <I>not</I> currently used and displays as NO.</P>
+	<P>Example of a <B>Detailed</B> view:</P>
+	<pre>
+S<U>ELECT</U> DATA MAPPING OPTION: <B>PRINT AN ENTITY</B>
+S<U>ELECT</U> ENTITY: <B>ZZUSER</B>
+P<U>RINT</U> I<U>TEM</U> S<U>UMMARY</U> O<U>R</U> D<U>ETAILS</U>? <B>DETAILED</B>
+
+DEVICE: HOME// <B>0;80;99</B> L<U>INUX</U> T<U>ELNET</U> /SSH
+
+
+ENTITY: ZZUSER (#284)
+   FILE: NEW PERSON (#200)                         OCT 17, 2021@13:10:05    PAGE 1
+-------------------------------------------------------------------------------
+
+ DISPLAY NAME: U<U>SER</U>
+
+     SORT BY:                            DATA MODEL:
+   FILTER BY:                              READ ONLY: NO
+       SCREEN:
+QUERY ROUTINE:
+
+ ENTRY ACTION:
+    ID ACTION:
+   EXIT ACTION:
+
+SEQ     ITEM
+NUMBER  PROPERTIES
+------- ----------
+
+1       NAME:   CODE
+        TYPE:   ID
+
+2       NAME:   DESCRIPTION
+        TYPE:   FIELD
+        FIELD:  NAME (#.01)
+
+3       NAME:   CODINGSYSTEM
+        TYPE:   FIXED STRING
+        VALUE:  VA200
+
+
+S<U>ELECT</U> DATA MAPPING OPTION:
+	</pre>
+
+	<H5 id="generate_entity">Generate an Entity for a File Option</H5>
+	<P>Use the <B>Generate an Entity for a File</B> [DDE AUTO GEN ENTITY FOR A DD #] option on the <B>Data Mapping</B> [DDE ENTITY MAPPING] menu to build a simple Entity from a selected VistA file data dictionary automatically. Select the <A HREF="#print_entity" CLASS="bodylink">Print an Entity</A> [DDE ENTITY INQUIRE] option to view the results.</P>
+	<pre>
+S<U>ELECT</U> DATA MAPPING OPTION: GENERATE AN ENTITY FOR A FILE
+E<U>NTER</U> N<U>AME</U> O<U>F</U> ENTITY RESOURCE - U<U>SE</U> C<U>AMEL</U>C<U>ASE</U>: <B>CLINICSTOP</B>
+E<U>NTER</U> FILE NUMBER T<U>O</U> A<U>UTO</U> M<U>AP</U>:   (1-999999999999): <B>40.7</B>
+
+
+S<U>ELECT</U> DATA MAPPING OPTION: <B>PRINT</B> AN ENTITY
+S<U>ELECT</U> ENTITY: <B>CLINICSTOP</B>
+P<U>RINT</U> I<U>TEM</U> S<U>UMMARY</U> O<U>R</U> D<U>ETAILS</U>? <B>S</B> SUMMARY
+
+DEVICE: HOME// <B>0;80;99</B> L<U>INUX</U> T<U>ELNET</U> /SSH
+
+
+ENTITY: <U>CLINIC</U>STOP (#286)
+   FILE: CLINIC STOP (#40.7)                       OCT 17, 2021@19:35:50    PAGE 1
+-------------------------------------------------------------------------------
+
+ DISPLAY NAME:
+
+     SORT BY:                            DATA MODEL:
+   FILTER BY:                              READ ONLY: NO
+       SCREEN:
+QUERY ROUTINE:
+
+ ENTRY ACTION:
+    ID ACTION:
+   EXIT ACTION:
+
+SEQ   ITEM                    TYPE  FIELD    SUB/FILE   ENTITY
+-------------------------------------------------------------------------------
+1     NAME                      S      .01    40.7
+2     AMISREPORTINGSTOPCODE     S       1     40.7
+3     INACTIVEDATE              S       2     40.7
+4     CONVERTTOSTOPCODE         S       3     40.7
+5     COSTDISTRIBUTIONCENTER    S       4     40.7
+6     RESTRICTIONTYPE           S       5     40.7
+7     RESTRICTIONDATE           S       6     40.7
+
+
+S<U>ELECT</U> DATA MAPPING OPTION:
+	</pre>
+
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>

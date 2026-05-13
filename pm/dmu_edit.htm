@@ -1,0 +1,145 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: DMU Entity Editor</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,Data Mapping Utility,DMU,entity editor,basic information,search criteria,FIND^DIC,query routine">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" SUMMARY="This table is for formatting purposes only">
+	  <TR><TD><BR><IMG SRC="images/fileman_dg_heading.gif" BORDER="0" ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner"><BR><IMG SRC="images/vaoitbanner.gif" BORDER="0" ALT="VA Office of Information and Technology (OIT) Banner"><BR></TD></TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3" CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1" VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>Entity Editor</H4>
+
+	<H5>Introduction</H5>
+	<P>The basic steps to create an Entity are:</P>
+	<ol>
+	  <li>Identify the source file(s) in VistA for the data model.</li>
+	  <li>Assign an element tag to each field that will be returned.</li>
+	  <li>Write any additional code needed for the Entity or individual elements, to perform specific tasks, such as a special lookup routine or data transformations.</li>
+	</ol>
+
+	<H5>Invoking the Editor</H5>
+	<P>Use the <B>Enter/Edit an Entity</B> [DDE ENTITY ENTER/EDIT] option on the <B>Data Mapping</B> [DDE ENTITY MAPPING] menu to invoke a ScreenMan form to facilitate the creation or modification of Entities.</P>
+	<pre>
+VA F<U>ILE</U>M<U>AN</U> 22.2
+
+
+S<U>ELECT</U> OPTION: <U>OTHER OPTIONS</U>
+S<U>ELECT</U> OTHER OPTION: <U>DATA MAPPING</U>
+S<U>ELECT</U> DATA MAPPING OPTION: <U>ENTER/EDIT AN ENTITY</U>
+	</pre>
+	<P>You are then asked to select an Entity; you can also create a new one:</P>
+	<pre>
+S<U>ELECT</U> ENTITY: <B>ZZPATIENT</B>
+  A<U>RE</U> Y<U>OU</U> A<U>DDING</U> 'ZZPATIENT' A<U>S</U> A NEW ENTITY (T<U>HE</U> 276TH)? N<U>O</U>// <B>Y</B> (Y<U>ES</U>)
+	</pre>
+	<P>The ScreenMan form launches, presenting the following pages and attributes for editing:</P>
+	<ul>
+	  <li><A HREF="#basic_info" CLASS="bodylink">Basic Information</A> (Page 1)</li>
+	  <li><A HREF="dmu_items.htm" CLASS="bodylink">Items/Fields</A> (Page 2)</li>
+	  <li><A HREF="dmu_addcode.htm" CLASS="bodylink">Additional Processing Code</A> (Page 3)</li>
+	</ul>
+
+	<H5 id="basic_info">Basic Information</H5>
+	<H6>Field Definitions</H6>
+	<P>The first page of the &#8220;Edit Entity&#8221; ScreenMan form presents the basic information fields needed to set up and define the Entity.</P>
+	<P><B>REF:</B> For a description of the fields on this screen see <A HREF="dmu_prop.htm#table105" CLASS="bodylink">Table 105</A> and Section <A HREF="#search_criteria" CLASS="bodylink">17.2.3.2</A>, &#8220;<A HREF="#search_criteria" CLASS="bodylink">Search Criteria</A>.&#8221;</P>
+	<pre>
+                                EDIT ENTITY
+NAME: ZZPATIENT                                                       PAGE 1 OF 3
+-------------------------------------------------------------------------------
+
+        NAME: ZZPATIENT
+ DISPLAY NAME: TESTPATIENT
+
+ DEFAULT FILE: 2
+
+     SORT BY: B                              DATA MODEL:
+   FILTER BY: ZZ                              READ ONLY:
+       SCREEN:
+
+
+                                                          QUERY ROUTINE:
+   DESCRIPTION: +
+
+_______________________________________________________________________________
+
+EXIT     SAVE     NEXT PAGE     PREVIOUS PAGE     REFRESH    QUIT
+
+ENTER A COMMAND, OR &quot;^&quot; FOLLOWED BY THE CAPTION OF A FIELD TO JUMP TO.
+
+COMMAND:                                            PRESS &lt;PF1&gt;H FOR HELP  INSERT
+	</pre>
+	<P><B>NOTE:</B> The READ ONLY field is <I>not</I> currently used.</P>
+	<P>Sample DESCRIPTION field text:</P>
+	<pre>
+ 1&gt;THIS ENTITY CAN BE USED TO FIND TEST PATIENTS, USING THE B INDEX TO FIND
+ 2&gt;LAST NAMES THAT START WITH &quot;ZZ&quot;. THE ID ACTION WILL QUIT IF THE PATIENT
+ 3&gt;IS NOT FLAGGED WITH THE TEST PATIENT INDICATOR.
+ 4&gt;
+ 5&gt;IT RETURNS BASIC DEMOGRAPHIC INFORMATION ABOUT EACH PATIENT. TO RUN IT
+ 6&gt;FOR A SINGLE KNOWN TEST PATIENT, PASS THE PATIENT (#2) FILE IEN AS THE ID.
+EDIT OPTION:
+	</pre>
+	<P><B>REF:</B> For a description of the ENTITY (#1.5) file fields displayed on the &#8220;Edit Entity&#8221; Screen (Page 1), see <A HREF="dmu_prop.htm#table105" CLASS="bodylink">Table 105</A>.</P>
+
+	<H6 id="search_criteria">Search Criteria Fields</H6>
+	<P>An Entity can be used to return a list of records if the search criteria are defined:</P>
+	<pre>
+     SORT BY: B                              DATA MODEL:
+   FILTER BY: ZZ                              READ ONLY:
+       SCREEN:
+
+QUERY ROUTINE:
+	</pre>
+
+	<H6>FIND^DIC Parameters</H6>
+	<P>The following parameters can be defined to support a <A HREF="db_dicf.htm" CLASS="bodylink">FIND^DIC</A> call on the <A HREF="dmu_prop.htm#DEFAULT_FILE_NUMBER" CLASS="bodylink">DEFAULT FILE NUMBER (#.02)</A> field:</P>
+	<ul>
+	  <li>Set the <A HREF="dmu_prop.htm#SORT_BY" CLASS="bodylink">SORT BY</A> parameter to the name of the index.</li>
+	  <li>Set the <A HREF="dmu_prop.htm#FILTER_BY" CLASS="bodylink">FILTER BY</A> parameter to the search value.</li>
+	  <li>Optionally, define the <A HREF="dmu_prop.htm#SCREEN" CLASS="bodylink">SCREEN</A> parameter (M code that sets <B>$T</B>).</li>
+	</ul>
+	<P>In this example, the <B>ZZPATIENT</B> Entity searches the PATIENT (#2) file using the <B>B</B> index, looking for any name that starts with &#8220;ZZ&#8221;.</P>
+	<P>Advanced: To change the search value at runtime, set <A HREF="dmu_prop.htm#FILTER_BY" CLASS="bodylink">FILTER BY</A> to the name of a local variable that contains the search value, such as DFN, which holds the current PATIENT (#2) file IEN.</P>
+	<P>If the search index is compound, then lookup values can also be provided at run time via the <A HREF="dmu_get.htm" CLASS="bodylink">GET^DDE</A> API for each subscript using the <B>QUERY</B> array.</P>
+
+	<H6 id="query_routine">Query Routine</H6>
+	<P>Alternatively, you can write a special lookup routine called the <A HREF="dmu_prop.htm#GET_QUERY_ROUTINE" CLASS="bodylink">Query Routine</A> to perform the search. This routine <I>must</I> set the following array:</P>
+	<pre>    DLIST(#)=ID</pre>
+	<P>Where:</P>
+	<ul>
+	  <li><B>#</B> is a sequential number greater than <B>Zero</B>.</li>
+	  <li><B>ID</B> is the record identifier (usually an IEN or IENS string) or input value.</li>
+	</ul>
+	<P><B>REF:</B> <A HREF="dmu_addcode.htm#table108" CLASS="bodylink">Table 108</A> lists the variables that are passed into the <A HREF="dmu_get.htm" CLASS="bodylink">GET^DDE</A> API or set by VA FileMan and can be referenced as read-only in the <A HREF="dmu_prop.htm#GET_QUERY_ROUTINE" CLASS="bodylink">GET QUERY ROUTINE (#5)</A> field.</P>
+
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>

@@ -1,0 +1,57 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: DMU Entity Features</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,Data Mapping Utility,DMU,features,nested entities,groups,multiple records">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" SUMMARY="This table is for formatting purposes only">
+	  <TR><TD><BR><IMG SRC="images/fileman_dg_heading.gif" BORDER="0" ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner"><BR><IMG SRC="images/vaoitbanner.gif" BORDER="0" ALT="VA Office of Information and Technology (OIT) Banner"><BR></TD></TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3" CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1" VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>Entity Features</H4>
+
+	<H5>Nested Entities</H5>
+	<P>Most clinical <A HREF="dmu_prop.htm#DATA_MODEL" CLASS="bodylink">data models</A> are <I>not</I> flat tables, and classes can be nested to accommodate that complexity. The ENTITY (#1.5) file is a self-referring file like the OPTION (#19) or PROTOCOL (#101) files. The ITEM (#1.51) subfile can itself point to the ENTITY (#1.5) file, to allow a single property to return multiple related sub-properties. This also allows re-usability of Entities for common data elements.</P>
+	<P>For example, a Provider Entity can accept a NEW PERSON (#200) file IEN and return a common set of attributes (e.g., code and description, specialty, phone number, etc.). An Entity can accept any string as its input, however. For example, an Entity could also be created to take a standard VistA name string and return its components as separate properties of a Name class.</P>
+
+	<H5>Groups of Properties</H5>
+	<P>Some data models collect properties in a group that are <I>not</I> stored together or in the same source file in VistA. The Entity can define a <B>group</B> property and identify the specific fields that should be included in the <B>group</B>. This functionality could also be accomplished using a nested Entity.</P>
+	<P>A <B>list</B> property is like a <B>group</B> but returns multiple instances of the same source field, such as from a subfile. In XML output, groups and lists look the same, but the tags and brackets are different in JSON.</P>
+
+	<H5>Multiple Records</H5>
+	<P>An Entity maps a single record to an instance of a data model, but it can include code to find multiple records that match the criteria of the model.</P>
+	<P>The Data Mapping Utility includes application programming interfaces (APIs) to return:</P>
+	<ul>
+	  <li>A single record given an identifier.</li>
+	  <li>Multiple records using the search parameters of the Entity.</li>
+	</ul>
+
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>

@@ -1,0 +1,77 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: Data Mapping Utility (DMU) Introduction</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VI,Infrastructure,Information Infrastructure Service,IIS,OIT,Office of Information and Technology,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,programmer manual,Data Mapping Utility,DMU,data,mapping,utility,entity,introduction">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0"
+           CELLPADDING="0"
+           BORDER="0"
+	       SUMMARY="This table is for formatting purposes only">
+	  <TR>
+	    <TD>
+	      <BR>
+	      <IMG SRC="images/fileman_dg_heading.gif"
+	           BORDER="0"
+		       ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner">
+		  <BR>
+		  <IMG SRC="images/vaoitbanner.gif"
+		       BORDER="0"
+			   ALT="VA Office of Information and Technology (OIT) Banner">
+		  <BR>
+	    </TD>
+	  </TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="0"
+           CELLPADDING="3"
+	       CLASS="tdstyle"
+	       SUMMARY="This table is for formatting purposes only"
+	       HEIGHT="1"
+	       VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>Introduction</H4>
+	<P>The VA FileMan Data Mapping Utility (DMU) facilitates mapping Veterans Health Information Systems and Technology Architecture (VistA) to other <A HREF="dmu_prop.htm#DATA_MODEL" CLASS="bodylink">data models</A>. It is comprised of the following components:</P>
+	<ul>
+	  <li><A HREF="dmu_struct.htm" CLASS="bodylink">Entities</A></li>
+	  <li><A HREF="dmu_edit.htm" CLASS="bodylink">Entity Editor</A></li>
+	  <li><A HREF="dmu_apis.htm" CLASS="bodylink">DDE Application Programming Interfaces (APIs)</A></li>
+	</ul>
+	<H4>Entities</H4>
+	<P>An Entity is simply a collection of data elements, like a class in an object-oriented system. If a specific <A HREF="dmu_prop.htm#DATA_MODEL" CLASS="bodylink">data model</A> is being followed, that model determines the tag names and allowable values of each element. The Entity acts as a template, assigning each element to a class property and transforming the data as needed to meet any requirements or constraints of the model.</P>
+	<P>The ENTITY (#1.5) file supports the Data Mapping Utility. It can map VistA data to any data model, including common standards. For example:</P>
+	<ul>
+	  <li>Health Level Seven (HL7)</li>
+	  <li>Fast Healthcare Interoperability Resources (FHIR)</li>
+	  <li>InterSystems Summary Document Architecture (SDA)</li>
+	</ul>
+	<P>The Data Mapping Utility uses the ENTITY (#1.5) file to provide a table-driven mechanism for producing XML or JavaScript Object Notation (JSON) output from VistA data.</P>
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>

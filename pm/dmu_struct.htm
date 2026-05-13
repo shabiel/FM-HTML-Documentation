@@ -1,0 +1,53 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: DMU Entity Structure</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VI,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,Data Mapping Utility,DMU,entity,structure,data model,properties,supporting code">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" SUMMARY="This table is for formatting purposes only">
+	  <TR><TD><BR><IMG SRC="images/fileman_dg_heading.gif" BORDER="0" ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner"><BR><IMG SRC="images/vaoitbanner.gif" BORDER="0" ALT="VA Office of Information and Technology (OIT) Banner"><BR></TD></TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3" CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1" VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>Entity Structure</H4>
+
+	<H5>Data Model</H5>
+	<P>The target data model should drive the definition of the Entity. The name of the class is the <A HREF="dmu_prop.htm#DISPLAY_NAME" CLASS="bodylink">Display Name</A> of the Entity. If SDA or FHIR, entities can be tagged as such and will be indexed for quick access. The primary source of the data in VistA should be defined as the <A HREF="dmu_prop.htm#DEFAULT_FILE_NUMBER" CLASS="bodylink">Default File Number</A>, where most if not all desired property values are stored.</P>
+	<P>Usually, an Entity maps a single record from a VistA file to an instance of a class, accepting a record internal entry number (IEN) as the identifier. Search parameters can be defined to fetch multiple records at a time, using the Entity as a template for producing each result.</P>
+
+	<H5>Properties</H5>
+	<P>The Entity ITEM (#1.51) subfile is a list of property names, each usually linked to a VistA field. Fields are assumed to be from the <A HREF="dmu_prop.htm#DEFAULT_FILE_NUMBER" CLASS="bodylink">Default File Number</A>, unless otherwise specified in the Item definition.</P>
+	<P>Properties are evaluated in sequence as defined. Various attributes for an Item can be defined depending on the Item Type. Simple strings can be returned, such as a fixed string or a single field value, or complex groups of multiple fields or values.</P>
+
+	<H5>Supporting Code</H5>
+	<P>Each Entity can include additional M code fields for <B>SET</B>ting and <B>KILL</B>ing Entity-wide variables or performing any needed validation or set-up tasks before attempting to fetch any single record.</P>
+	<P>A flag can be set in any of these code fields to quit if a property or record should <I>not</I> be returned.</P>
+
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>

@@ -1,0 +1,97 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: GET^DDE</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,Data Mapping Utility,DMU,DDE,GET^DDE,API,JSON,XML,REST,entity,records">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" SUMMARY="This table is for formatting purposes only">
+	  <TR><TD><BR><IMG SRC="images/fileman_dg_heading.gif" BORDER="0" ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner"><BR><IMG SRC="images/vaoitbanner.gif" BORDER="0" ALT="VA Office of Information and Technology (OIT) Banner"><BR></TD></TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3" CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1" VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>GET^DDE(): Retrieve Multiple or Single Entity File Records as JSON or XML Array</H4>
+
+	<H5>Reference Type</H5>
+	<P>Supported</P>
+
+	<H5>Category</H5>
+	<P>Data Mapping</P>
+
+	<H5>ICR #</H5>
+	<P>7008</P>
+
+	<H5>Description</H5>
+	<P>The <B>GET^DDE</B> API is the main API for processing an Entity to retrieve VistA data. It can retrieve multiple records using the <B>query</B> input array, or a single record using the <B>id</B> input parameter. It returns an array containing the data in <B>msg_root</B> formatted in either XML or JSON.</P>
+
+	<H5>Format</H5>
+	<pre>GET^DDE(<A HREF="#param_entity" CLASS="bodylink">ENTITY</A>[,<A HREF="#param_id" CLASS="bodylink">ID</A>][,.<A HREF="#param_query" CLASS="bodylink">QUERY</A>][,<A HREF="#param_format" CLASS="bodylink">FORMAT</A>][,<A HREF="#param_max" CLASS="bodylink">MAX</A>][,<A HREF="#param_msg_root" CLASS="bodylink">MSG_ROOT</A>][,<A HREF="#param_error_root" CLASS="bodylink">ERROR_ROOT</A>])</pre>
+
+	<H5>Input Parameters</H5>
+	<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" SUMMARY="GET^DDE API Input Parameters">
+	  <TR id="param_entity"><TD VALIGN="TOP"><B>entity</B></TD><TD VALIGN="TOP">(Required) The name or IEN of an ENTITY (#1.5) file.</TD></TR>
+	  <TR id="param_id"><TD VALIGN="TOP"><B>id</B></TD><TD VALIGN="TOP">(Optional) The identifier of the record, or input string, to be processed by the Entity. If an <B>id</B> is defined, no query is performed.</TD></TR>
+	  <TR id="param_query"><TD VALIGN="TOP"><B>query(name)</B></TD><TD VALIGN="TOP">(Optional) An array of name-value pairs passed by reference to refine the query or results. Standard names supported by <B>DDE</B> include:
+	    <ul>
+	      <li><B>QUERY(&#8220;patient&#8221;)</B> = PATIENT (#2) file IEN</li>
+	      <li><B>QUERY(&#8220;start&#8221;)</B> = start date.time of search (default = <B>all</B>), FM format</li>
+	      <li><B>QUERY(&#8220;stop&#8221;)</B> = stop date.time of search (default = <B>all</B>), FM format</li>
+	      <li><B>QUERY(&#8220;notag&#8221;)</B> = <B>1</B>, to omit the leading item tag for JSON results</li>
+	      <li><B>QUERY(#)</B> = filters to be used by <A HREF="db_dicf.htm" CLASS="bodylink">FIND^DIC</A>, with index defined in Entity</li>
+	    </ul>
+	    Other name-value pairs can be passed in as well if supported by the <B>Query Routine</B>, such as <B>QUERY(&#8220;status&#8221;) = &#8220;active&#8221;</B>.
+	  </TD></TR>
+	  <TR id="param_format"><TD VALIGN="TOP"><B>format</B></TD><TD VALIGN="TOP">(Optional) Desired format for the results:
+	    <ul>
+	      <li><B>0</B>=JSON (default).</li>
+	      <li><B>1</B>=XML.</li>
+	    </ul>
+	  </TD></TR>
+	  <TR id="param_max"><TD VALIGN="TOP"><B>max</B></TD><TD VALIGN="TOP">(Optional) Maximum number of records to return in the results (default = <B>9999</B>).</TD></TR>
+	  <TR id="param_msg_root"><TD VALIGN="TOP"><B>msg_root</B></TD><TD VALIGN="TOP">(Optional) Closed-root array name where the results are returned. If this parameter is <I>not</I> passed, the results are returned in nodes descendant from <B>^TMP(&#8220;DDE GET&#8221;,$J)</B>.</TD></TR>
+	  <TR id="param_error_root"><TD VALIGN="TOP"><B>error_root</B></TD><TD VALIGN="TOP">(Optional) Closed-root array name where the errors are returned. If this parameter is <I>not</I> passed, the results are returned in nodes descendant from <B>^TMP(&#8220;DDERR&#8221;,$J)</B>.</TD></TR>
+	</TABLE>
+
+	<H5>Output</H5>
+	<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" SUMMARY="GET^DDE API Output">
+	  <TR><TD VALIGN="TOP"><B>Results</B></TD><TD VALIGN="TOP">The XML or JSON results are returned in the <B>msg_root</B> array, where each entry corresponds to one record. Any errors encountered during processing are returned in the <B>error_root</B> array.</TD></TR>
+	</TABLE>
+
+	<H5>Example</H5>
+	<P>To return the problems for patient <B>DFN 229</B> as XML:</P>
+	<pre>
+&gt;S QUERY(&quot;PATIENT&quot;)=229 D GET^DDE(&quot;VPR PROBLEM&quot;,,.QUERY,1,,&quot;ZZRES&quot;) ZW ZZRES
+
+ZZRES(0)=3
+ZZRES(1)=&quot;&lt;PROBLEM&gt;&lt;UPDATEDON&gt;2019-05-02T00:00:00&lt;/UPDATEDON&gt;&lt;EXTENSION&gt;&lt;ISEXPOSUREAO&gt;FALSE&lt;/ISEXPOSUREAO&gt;&lt;ISEXPOSUREIR&gt;FALSE&lt;/ISEXPOSUREIR&gt;&lt;ISEXPOSUREPG&gt;FALSE&lt;/ISEXPOSUREPG&gt;&lt;LOCATION&gt;&lt;SDACODINGSTANDARD&gt;VA44&lt;/SDACODINGSTANDARD&gt;&lt;EXTENSION&gt;&lt;STOPCODE&gt;&lt;SDACODINGSTANDARD&gt;AMIS&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;301&lt;/CODE&gt;&lt;DESCRIPTION&gt;GENERAL INTERNAL MEDICINE&lt;/DESCRIPTION&gt;&lt;/STOPCODE&gt;&lt;SERVICE&gt;MEDICINE&lt;/SERVICE&gt;&lt;SPECIALTY&gt;&lt;SDACODINGSTANDARD&gt;VA45.7&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;9&lt;/CODE&gt;&lt;DESCRIPTION&gt;GENERAL MEDICINE&lt;/DESCRIPTION&gt;&lt;/SPECIALTY&gt;&lt;/EXTENSION&gt;&lt;CODE&gt;23&lt;/CODE&gt;&lt;DESCRIPTION&gt;GENERAL MEDICINE&lt;/DESCRIPTION&gt;&lt;/ORGANIZATION&gt;&lt;SDACODINGSTANDARD&gt;VA4&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;500&lt;/CODE&gt;&lt;DESCRIPTION&gt;CAMP MASTER&lt;/DESCRIPTION&gt;&lt;/ORGANIZATION&gt;&lt;LOCATIONTYPE&gt;CLINIC&lt;/LOCATIONTYPE&gt;&lt;/LOCATION&gt;&lt;REMOVED&gt;FALSE&lt;/REMOVED&gt;&lt;ISSC&gt;FALSE&lt;/ISSC&gt;&lt;LEXICONID&gt;7026741&lt;/LEXICONID&gt;&lt;COMMENTS&gt;&lt;COMMENT&gt;&lt;ID&gt;1,1,940&lt;/ID&gt;&lt;ENTEREDAT&gt;&lt;SDACODINGSTANDARD&gt;VA4&lt;/SDACODINGSTANDARD&gt;&lt;/ENTEREDAT&gt;&lt;ENTEREDBY&gt;&lt;SDACODINGSTANDARD&gt;VA200&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;10000000407&lt;/CODE&gt;&lt;DESCRIPTION&gt;DDEUSER,ONE&lt;/DESCRIPTION&gt;&lt;/ENTEREDBY&gt;&lt;ENTEREDON&gt;2019-05-02&lt;/ENTEREDON&gt;&lt;COMMENTTEXT&gt;TESTING UPDATES&lt;/COMMENTTEXT&gt;&lt;/COMMENT&gt;&lt;COMMENT&gt;&lt;ID&gt;2,1,940&lt;/ID&gt;&lt;ENTEREDAT&gt;&lt;SDACODINGSTANDARD&gt;VA4&lt;/SDACODINGSTANDARD&gt;&lt;/ENTEREDAT&gt;&lt;ENTEREDBY&gt;&lt;SDACODINGSTANDARD&gt;VA200&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;10000000407&lt;/CODE&gt;&lt;DESCRIPTION&gt;DDEUSER,ONE&lt;/DESCRIPTION&gt;&lt;/ENTEREDBY&gt;&lt;ENTEREDON&gt;2019-05-02&lt;/ENTEREDON&gt;&lt;COMMENTTEXT&gt;SECOND COMMENT&lt;/COMMENTTEXT&gt;&lt;/COMMENT&gt;&lt;/COMMENTS&gt;&lt;/EXTENSION&gt;&lt;PROBLEMDETAILS&gt;ALCOHOL ABUSE (SCT 15167005)&lt;/PROBLEMDETAILS&gt;&lt;PROBLEM&gt;&lt;SDACODINGSTANDARD&gt;SNOMED CT&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;15167005&lt;/CODE&gt;&lt;DESCRIPTION&gt;ALCOHOL ABUSE&lt;/DESCRIPTION&gt;&lt;/PROBLEM&gt;&lt;CLINICIAN&gt;&lt;SDACODINGSTANDARD&gt;VA200&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;10000000407&lt;/CODE&gt;&lt;DESCRIPTION&gt;DDEUSER,ONE&lt;/DESCRIPTION&gt;&lt;/CLINICIAN&gt;&lt;STATUS&gt;&lt;SDACODINGSTANDARD&gt;SNOMED CT&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;55561003&lt;/CODE&gt;&lt;DESCRIPTION&gt;ACTIVE&lt;/DESCRIPTION&gt;&lt;/STATUS&gt;&lt;ENTEREDBY&gt;&lt;SDACODINGSTANDARD&gt;VA200&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;10000000407&lt;/CODE&gt;&lt;DESCRIPTION&gt;DDEUSER,ONE&lt;/DESCRIPTION&gt;&lt;/ENTEREDBY&gt;&lt;ENTEREDAT&gt;&lt;SDACODINGSTANDARD&gt;VA4&lt;/SDACODINGSTANDARD&gt;&lt;/ENTEREDAT&gt;&lt;ENTEREDON&gt;2019-05-02T00:00:00&lt;/ENTEREDON&gt;&lt;EXTERNALID&gt;940;PL&lt;/EXTERNALID&gt;&lt;/PROBLEM&gt;&quot;
+ZZRES(2)=&quot;&lt;PROBLEM&gt;&lt;UPDATEDON&gt;2007-04-10T00:00:00&lt;/UPDATEDON&gt;&lt;EXTENSION&gt;&lt;ISEXPOSUREAO&gt;FALSE&lt;/ISEXPOSUREAO&gt;&lt;ISEXPOSUREIR&gt;FALSE&lt;/ISEXPOSUREIR&gt;&lt;ISEXPOSUREPG&gt;FALSE&lt;/ISEXPOSUREPG&gt;&lt;LOCATION&gt;&lt;SDACODINGSTANDARD&gt;VA44&lt;/SDACODINGSTANDARD&gt;&lt;/LOCATION&gt;&lt;SERVICE&gt;MEDICAL&lt;/SERVICE&gt;&lt;ISSC&gt;FALSE&lt;/ISSC&gt;&lt;ONSETDATE&gt;2005-04-07&lt;/ONSETDATE&gt;&lt;LEXICONID&gt;60339&lt;/LEXICONID&gt;&lt;/EXTENSION&gt;&lt;PROBLEMDETAILS&gt;HYPERTENSION&lt;/PROBLEMDETAILS&gt;&lt;PROBLEM&gt;&lt;SDACODINGSTANDARD&gt;ICD-9-CM&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;401.9&lt;/CODE&gt;&lt;DESCRIPTION&gt;HYPERTENSION NOS&lt;/DESCRIPTION&gt;&lt;/PROBLEM&gt;&lt;CLINICIAN&gt;&lt;SDACODINGSTANDARD&gt;VA200&lt;/SDACODINGSTANDARD&gt;&lt;EXTENSION&gt;&lt;TITLE&gt;SCHOLAR EXTRAORDINAIRE&lt;/TITLE&gt;&lt;/EXTENSION&gt;&lt;CODE&gt;10000000031&lt;/CODE&gt;&lt;DESCRIPTION&gt;VEHU,ONEHUNDRED&lt;/DESCRIPTION&gt;&lt;NAME&gt;&lt;FAMILYNAME&gt;VEHU&lt;/FAMILYNAME&gt;&lt;GIVENNAME&gt;ONEHUNDRED&lt;/GIVENNAME&gt;&lt;/NAME&gt;&lt;/CLINICIAN&gt;&lt;STATUS&gt;&lt;SDACODINGSTANDARD&gt;SNOMED CT&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;55561003&lt;/CODE&gt;&lt;DESCRIPTION&gt;ACTIVE&lt;/DESCRIPTION&gt;&lt;/STATUS&gt;&lt;ENTEREDBY&gt;&lt;SDACODINGSTANDARD&gt;VA200&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;10000000031&lt;/CODE&gt;&lt;DESCRIPTION&gt;VEHU,ONEHUNDRED&lt;/DESCRIPTION&gt;&lt;/ENTEREDBY&gt;&lt;ENTEREDAT&gt;&lt;SDACODINGSTANDARD&gt;VA4&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;500&lt;/CODE&gt;&lt;DESCRIPTION&gt;CAMP MASTER&lt;/DESCRIPTION&gt;&lt;/ENTEREDAT&gt;&lt;ENTEREDON&gt;2007-04-10T00:00:00&lt;/ENTEREDON&gt;&lt;FROMTIME&gt;2005-04-07T00:00:00&lt;/FROMTIME&gt;&lt;EXTERNALID&gt;644;PL&lt;/EXTERNALID&gt;&lt;/PROBLEM&gt;&quot;
+ZZRES(3)=&quot;&lt;PROBLEM&gt;&lt;UPDATEDON&gt;2005-03-17T00:00:00&lt;/UPDATEDON&gt;&lt;EXTENSION&gt;&lt;ISEXPOSUREAO&gt;FALSE&lt;/ISEXPOSUREAO&gt;&lt;ISEXPOSUREIR&gt;FALSE&lt;/ISEXPOSUREIR&gt;&lt;ISEXPOSUREPG&gt;FALSE&lt;/ISEXPOSUREPG&gt;&lt;LOCATION&gt;&lt;SDACODINGSTANDARD&gt;VA44&lt;/SDACODINGSTANDARD&gt;&lt;EXTENSION&gt;&lt;STOPCODE&gt;&lt;SDACODINGSTANDARD&gt;AMIS&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;301&lt;/CODE&gt;&lt;DESCRIPTION&gt;GENERAL INTERNAL MEDICINE&lt;/DESCRIPTION&gt;&lt;/STOPCODE&gt;&lt;SERVICE&gt;MEDICINE&lt;/SERVICE&gt;&lt;SPECIALTY&gt;&lt;SDACODINGSTANDARD&gt;VA45.7&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;9&lt;/CODE&gt;&lt;DESCRIPTION&gt;GENERAL MEDICINE&lt;/DESCRIPTION&gt;&lt;/SPECIALTY&gt;&lt;/EXTENSION&gt;&lt;CODE&gt;23&lt;/CODE&gt;&lt;DESCRIPTION&gt;GENERAL MEDICINE&lt;/DESCRIPTION&gt;&lt;/ORGANIZATION&gt;&lt;SDACODINGSTANDARD&gt;VA4&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;500&lt;/CODE&gt;&lt;DESCRIPTION&gt;CAMP MASTER&lt;/DESCRIPTION&gt;&lt;/ORGANIZATION&gt;&lt;LOCATIONTYPE&gt;&lt;/LOCATIONTYPE&gt;&lt;/LOCATION&gt;&lt;REMOVED&gt;FALSE&lt;/REMOVED&gt;&lt;ISSC&gt;FALSE&lt;/ISSC&gt;&lt;ONSETDATE&gt;2005-03-17&lt;/ONSETDATE&gt;&lt;LEXICONID&gt;269673&lt;/LEXICONID&gt;&lt;/EXTENSION&gt;&lt;PROBLEMDETAILS&gt;ACUTE MYOCARDIAL INFARCTION, UNSPECIFIED SITE, EPISODE OF CARE UNSPECIFIED&lt;/PROBLEMDETAILS&gt;&lt;PROBLEM&gt;&lt;SDACODINGSTANDARD&gt;ICD-9-CM&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;410.90&lt;/CODE&gt;&lt;DESCRIPTION&gt;AMI NOS, UNSPECIFIED&lt;/DESCRIPTION&gt;&lt;/PROBLEM&gt;&lt;CLINICIAN&gt;&lt;SDACODINGSTANDARD&gt;VA200&lt;/SDACODINGSTANDARD&gt;&lt;EXTENSION&gt;&lt;TITLE&gt;SCHOLAR EXTRAORDINAIRE&lt;/TITLE&gt;&lt;/EXTENSION&gt;&lt;CODE&gt;20005&lt;/CODE&gt;&lt;DESCRIPTION&gt;VEHU,FOUR&lt;/DESCRIPTION&gt;&lt;NAME&gt;&lt;FAMILYNAME&gt;VEHU&lt;/FAMILYNAME&gt;&lt;GIVENNAME&gt;FOUR&lt;/GIVENNAME&gt;&lt;/NAME&gt;&lt;CAREPROVIDERTYPE&gt;&lt;SDACODINGSTANDARD&gt;X12&lt;/SDACODINGSTANDARD&gt;&lt;EXTENSION&gt;&lt;CLASSIFICATION&gt;PHYSICIAN/OSTEOPATH&lt;/CLASSIFICATION&gt;&lt;/EXTENSION&gt;&lt;CODE&gt;203B00000N&lt;/CODE&gt;&lt;DESCRIPTION&gt;PHYSICIANS (M.D. AND D.O.)&lt;/DESCRIPTION&gt;&lt;/CAREPROVIDERTYPE&gt;&lt;/CLINICIAN&gt;&lt;STATUS&gt;&lt;SDACODINGSTANDARD&gt;SNOMED CT&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;55561003&lt;/CODE&gt;&lt;DESCRIPTION&gt;ACTIVE&lt;/DESCRIPTION&gt;&lt;/STATUS&gt;&lt;ENTEREDBY&gt;&lt;SDACODINGSTANDARD&gt;VA200&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;20005&lt;/CODE&gt;&lt;DESCRIPTION&gt;VEHU,FOUR&lt;/DESCRIPTION&gt;&lt;/ENTEREDBY&gt;&lt;ENTEREDAT&gt;&lt;SDACODINGSTANDARD&gt;VA4&lt;/SDACODINGSTANDARD&gt;&lt;CODE&gt;500&lt;/CODE&gt;&lt;DESCRIPTION&gt;CAMP MASTER&lt;/DESCRIPTION&gt;&lt;/ENTEREDAT&gt;&lt;ENTEREDON&gt;2005-03-17T00:00:00&lt;/ENTEREDON&gt;&lt;FROMTIME&gt;2005-03-17T00:00:00&lt;/FROMTIME&gt;&lt;EXTERNALID&gt;495;PL&lt;/EXTERNALID&gt;&lt;/PROBLEM&gt;&quot;
+	</pre>
+
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>

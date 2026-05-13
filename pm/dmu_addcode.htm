@@ -1,0 +1,109 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: DMU Additional Processing Code</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,Data Mapping Utility,DMU,additional processing code,GET ENTRY ACTION,GET EXIT ACTION,GET ID ACTION,key entity variables,PUT actions,data access policies">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" SUMMARY="This table is for formatting purposes only">
+	  <TR><TD><BR><IMG SRC="images/fileman_dg_heading.gif" BORDER="0" ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner"><BR><IMG SRC="images/vaoitbanner.gif" BORDER="0" ALT="VA Office of Information and Technology (OIT) Banner"><BR></TD></TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3" CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1" VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>Additional Processing Code</H4>
+	<P>The third page of the &#8220;Edit Entity&#8221; ScreenMan form provides access to the Entity M code fields.</P>
+	<pre>
+                                EDIT ENTITY
+NAME: ZZPATIENT                                                       PAGE 3 OF 3
+-------------------------------------------------------------------------------
+
+GET ENTRY ACTION:
+  GET EXIT ACTION:
+    GET ID ACTION: I '$$TESTPAT^VADPT(DIEN) S DDEOUT=1
+
+      GET POLICY:
+
+
+PUT ENTRY ACTION:
+  PUT EXIT ACTION:
+    PUT ID ACTION:
+
+       PUT POLICY:
+
+
+_______________________________________________________________________________
+
+EXIT     SAVE     NEXT PAGE     PREVIOUS PAGE     REFRESH    QUIT
+
+ENTER A COMMAND, OR &quot;^&quot; FOLLOWED BY THE CAPTION OF A FIELD TO JUMP TO.
+
+COMMAND:
+	</pre>
+
+	<H5 id="get_entry_action">GET ENTRY ACTION</H5>
+	<P>The <A HREF="dmu_prop.htm#GET_ENTRY_ACTION" CLASS="bodylink">GET ENTRY ACTION</A> code does any set up needed to process a <B>GET</B> request using the Entity. It is executed once when the Entity is first invoked, before the query is run and any records are processed. Additional local variables can be set that can be referenced throughout the Entity, but they <I>must</I> be cleaned up in the <A HREF="#get_exit_action" CLASS="bodylink">GET EXIT ACTION</A>.</P>
+
+	<H5 id="get_exit_action">GET EXIT ACTION</H5>
+	<P>The <A HREF="dmu_prop.htm#GET_EXIT_ACTION" CLASS="bodylink">GET EXIT ACTION</A> code does any clean up that is needed on a <B>GET</B>; it is executed once at the end, after all records found by the query are processed. Any local variables created in the <B>Entry</B> or <B>ID</B> action fields <I>must</I> be killed here.</P>
+
+	<H5 id="get_id_action">GET ID ACTION</H5>
+	<P>The <A HREF="dmu_prop.htm#GET_ID_ACTION" CLASS="bodylink">GET ID ACTION</A> code is executed once for every record, before the data elements are retrieved. It can be used for any set up or validation that is needed for each record. For example, an API can be called to retrieve data from the target file and referenced by the Items.</P>
+	<P>The current record ID is available to reference as read-only in the local <A HREF="dmu_items.htm#var_DIEN" CLASS="bodylink">DIEN</A> variable.</P>
+	<P>If a record should not be included in the results, you can <B>S DDEOUT=1</B> and processing will quit without including the record.</P>
+
+	<H5>Key Entity Variables</H5>
+	<P>The following variables will be available to reference in any code field throughout the Entity. These values are either passed into the <A HREF="dmu_apis.htm" CLASS="bodylink">DDE API</A> or set by VA FileMan.</P>
+	<A NAME="table108"></A>
+	<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" SUMMARY="Read-Only Variables passed into DDE API or Set by VA FileMan">
+	  <TR><TH ALIGN="LEFT">Variable</TH><TH ALIGN="LEFT">Description</TH></TR>
+	  <TR><TD VALIGN="TOP"><B>DFN</B></TD><TD VALIGN="TOP">PATIENT (#2) file IEN.</TD></TR>
+	  <TR><TD VALIGN="TOP"><B>DFORM</B></TD><TD VALIGN="TOP">Format of the results:
+	    <ul>
+	      <li><B>0</B>=JSON</li>
+	      <li><B>1</B>=XML</li>
+	      <li><B>2</B>=TEXT</li>
+	    </ul>
+	  </TD></TR>
+	  <TR><TD VALIGN="TOP"><B>DMAX</B></TD><TD VALIGN="TOP">Maximum number (<B>max#</B>) of results to return.</TD></TR>
+	  <TR><TD VALIGN="TOP"><B>DSTRT</B></TD><TD VALIGN="TOP">Start <B>date.time</B> of search range in VA FileMan format.</TD></TR>
+	  <TR><TD VALIGN="TOP"><B>DSTOP</B></TD><TD VALIGN="TOP">Stop <B>date.time</B> of search range in VA FileMan format.</TD></TR>
+	  <TR><TD VALIGN="TOP"><B>DTYPE</B></TD><TD VALIGN="TOP">ENTITY (#1.5) file IEN.</TD></TR>
+	  <TR><TD VALIGN="TOP"><B>FILTER(&#8220;name&#8221;)</B></TD><TD VALIGN="TOP">Additional search criteria, passed by reference as the Query array.</TD></TR>
+	</TABLE>
+	<P>To exit and skip the current record, set the local variable <B>DDEQUIT</B> to <B>1</B> in any code field of the Entity.</P>
+
+	<H5>PUT Actions</H5>
+	<P>Similar fields exist in the ENTITY (#1.5) file to support the other REST actions of <B>PUT</B>, <B>POST</B>, and <B>DELETE</B>.</P>
+	<P><B>NOTE:</B> The code fields for the PUT actions appear on Page 3 of the form but <I>have not yet been implemented</I> by the Data Mapping Utility yet.</P>
+
+	<H5>Data Access Policies</H5>
+	<P>The Data Mapping Utility supports the use of the <A HREF="dac_frm.htm" TARGET="_top" CLASS="bodylink">Data Access Control (DAC) Utility</A> APIs to grant or deny access to data using an Entity. An appropriate APPLICATION ACTION (#1.61) file entry for a policy can be entered in the <A HREF="dmu_prop.htm#GET_POLICY" CLASS="bodylink">GET POLICY (#19.1)</A> field to control <B>READ</B> access to the data, if needed.</P>
+	<P><B>NOTE:</B> The PUT action <I>has not yet been implemented</I>, so the PUT POLICY (#19.2) field is <I>not</I> currently in use.</P>
+
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>

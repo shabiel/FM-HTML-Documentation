@@ -1,0 +1,342 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: DMU Items/Fields</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,Data Mapping Utility,DMU,items,fields,item type,ID,fixed string,simple field,word-processing,entity,complex group,list">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" SUMMARY="This table is for formatting purposes only">
+	  <TR><TD><BR><IMG SRC="images/fileman_dg_heading.gif" BORDER="0" ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner"><BR><IMG SRC="images/vaoitbanner.gif" BORDER="0" ALT="VA Office of Information and Technology (OIT) Banner"><BR></TD></TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3" CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1" VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>Items/Fields</H4>
+	<P>The second page of the &#8220;Edit Entity&#8221; ScreenMan form allows access to create and manage the list of property Items for the Entity.</P>
+	<pre>
+                                EDIT ENTITY
+NAME: ZZPATIENT                                                       PAGE 2 OF 3
+-------------------------------------------------------------------------------
+
+ITEM                          SEQ    TYPE    FIELD       SUB/FILE
+ADDRESS                       7      C
+ALIAS                         4      L                   2.01
+CITY                                 S       .114        2
+DATEENTERED                   3      S       .097        2
+FLAG                          5      F
+NAME                          2      S       .01         2
+PATIENTID                     1      I
+STATE                                S       .115        2
+STREET                               S       .111        2
+WHOENTERED                    6      E       .096        2
+ZIP                                  S       .116        2
+
+
+EXIT     SAVE     NEXT PAGE     PREVIOUS PAGE     REFRESH    QUIT
+
+ENTER A COMMAND, OR &quot;^&quot; FOLLOWED BY THE CAPTION OF A FIELD TO JUMP TO.
+
+COMMAND:                                            PRESS &lt;PF1&gt;H FOR HELP  INSERT
+	</pre>
+	<P>A <A HREF="dmu_prop.htm#SEQUENCE" CLASS="bodylink">SEQUENCE</A> number (&#8220;Seq&#8221;; processing order) is generally assigned to each Item. If an Item has no <A HREF="dmu_prop.htm#SEQUENCE" CLASS="bodylink">SEQUENCE</A> number, then it is skipped in the main processing loop. The result of each Item is returned in the local <B>VALUE</B> variable; tags are put around <B>VALUE</B> using the property name and added to the results string of the record.</P>
+	<P>An element <A HREF="dmu_prop.htm#ITEM_TYPE" CLASS="bodylink">ITEM TYPE</A> (<I>not</I> the VA FileMan data type) is assigned to every Item. The ScreenMan editor pops up a dialog with fields appropriate for that <A HREF="dmu_prop.htm#ITEM_TYPE" CLASS="bodylink">ITEM TYPE</A>:</P>
+	<ul>
+	  <li><A HREF="#id_type" CLASS="bodylink">ID</A></li>
+	  <li><A HREF="#fixed_string" CLASS="bodylink">Fixed String</A></li>
+	  <li><A HREF="#simple_field" CLASS="bodylink">Simple Field</A></li>
+	  <li><A HREF="#word_processing" CLASS="bodylink">Word-Processing</A></li>
+	  <li><A HREF="#entity_type" CLASS="bodylink">Entity</A></li>
+	  <li><A HREF="#complex_group" CLASS="bodylink">Complex Group</A></li>
+	  <li><A HREF="#list_type" CLASS="bodylink">List</A></li>
+	</ul>
+
+	<H5 id="id_type">ID</H5>
+	<P>Instead of returning a field value, the <B>ID</B> element automatically uses the current record identifier string as the return <B>VALUE</B> unless code in the Item's <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> field sets the <B>VALUE</B> variable.</P>
+	<pre>
+    GET ACTION:
+
+
+OUTPUT TRANSFORM: S VALUE=VALUE_&quot;;DPT(&quot;
+ INPUT TRANSFORM:
+	</pre>
+	<P>An optional <A HREF="dmu_prop.htm#OUTPUT_TRANSFORM" CLASS="bodylink">OUTPUT TRANSFORM</A> field can be defined to modify <B>VALUE</B> if any special formatting is needed.</P>
+	<P><B>NOTE:</B> The INPUT TRANSFORM field is <I>not</I> currently in use.</P>
+
+	<H5 id="fixed_string">Fixed String</H5>
+	<pre>
+FIXED RESPONSE: TEST PATIENT
+    GET ACTION:
+	</pre>
+	<P>The <B>Fixed String</B> element returns either of the following in <B>VALUE</B>:</P>
+	<ul>
+	  <li>Static string defined in the <A HREF="dmu_prop.htm#FIXED_RESPONSE" CLASS="bodylink">FIXED RESPONSE</A> field.</li>
+	  <li>Dynamic <B>VALUE</B> returned by executing the Item's <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> code field.</li>
+	</ul>
+	<P>This <A HREF="dmu_prop.htm#ITEM_TYPE" CLASS="bodylink">ITEM TYPE</A> is useful for returning data that <I>cannot</I> be mapped to a single field. For example, a function can be called in <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> that computes a value based on multiple fields or other data.</P>
+
+	<H5 id="simple_field">Simple Field</H5>
+	<P>The <B>Simple Field</B> element uses a <A HREF="db_diqg1.htm" CLASS="bodylink">$$GET1^DIQ</A> call to retrieve the specified field in the <B>VALUE</B> variable.</P>
+	<pre>
+       FIELD#: .01                         FILE#: 2
+    EXT PTR LKUP:
+  INTERNAL VALUE:
+
+      GET ACTION:
+
+OUTPUT TRANSFORM:
+ INPUT TRANSFORM:
+	</pre>
+	<P>The simplest form requires only a <A HREF="dmu_prop.htm#FILE_NUMBER" CLASS="bodylink">FILE#</A> and <A HREF="dmu_prop.htm#FIELD_NUMBER" CLASS="bodylink">FIELD#</A>, returning the external form of the value. Other optional input parameters can be defined to modify the output.</P>
+	<P>For <B>POINTER</B>-type fields, the <A HREF="dmu_prop.htm#EXT_PTR_LKUP" CLASS="bodylink">EXT PTR LKUP</A> can contain a field number in the pointed-to file that should be returned instead of the usual <A HREF="dmu_prop.htm#NAME" CLASS="bodylink">NAME (#.01)</A> field.</P>
+	<pre>
+       FIELD#: .115                        FILE#: 2
+    EXT PTR LKUP: 1
+  INTERNAL VALUE:
+	</pre>
+	<P>Set the <A HREF="dmu_prop.htm#INTERNAL_VALUE" CLASS="bodylink">INTERNAL VALUE</A> flag to <B>YES</B> to force the internal form of the field value to be returned; this is especially useful when some other transformation must be done to the data.</P>
+	<pre>
+       FIELD#: .097                        FILE#: 2
+    EXT PTR LKUP:
+  INTERNAL VALUE: YES
+
+      GET ACTION:
+
+OUTPUT TRANSFORM: S VALUE=$$FMTE^XLFDT(VALUE,5)
+ INPUT TRANSFORM:
+	</pre>
+	<P>An optional <A HREF="dmu_prop.htm#OUTPUT_TRANSFORM" CLASS="bodylink">OUTPUT TRANSFORM</A> field can be defined to modify <B>VALUE</B> (e.g., if the field returns a VA FileMan date it may need to be reformatted).</P>
+	<P><B>NOTE:</B> The INPUT TRANSFORM field is <I>not</I> currently in use.</P>
+	<P>Alternatively, the <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> field can execute M code that sets <B>VALUE</B>, or do any other pre-processing needed for this item. This code is executed first, and if <B>VALUE</B> is defined then no <A HREF="db_diqg1.htm" CLASS="bodylink">$$GET1^DIQ</A> call is attempted.</P>
+	<P><B>REF:</B> For a list of the variables available to reference in the <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> field, see <A HREF="#table107" CLASS="bodylink">Table 107</A>.</P>
+
+	<H6>Changing Source File</H6>
+	<P>If a field from a related file or subfile needs to be retrieved, the <A HREF="dmu_prop.htm#FILE_NUMBER" CLASS="bodylink">FILE#</A> can be changed for an Item. The record identifier will likely need to be changed as well, for that Item only. The <A HREF="#var_DIEN" CLASS="bodylink">DIEN</A> variable holds the identifier for the record and should <I>not</I> be changed; the <A HREF="#var_IEN" CLASS="bodylink">IEN</A> variable is initialized to the value of <A HREF="#var_DIEN" CLASS="bodylink">DIEN</A> and can be changed in the <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> for a single Item.</P>
+	<pre>
+       FIELD#: .01                         FILE#: 2.01
+    EXT PTR LKUP:
+  INTERNAL VALUE:
+
+      GET ACTION: S IEN=&quot;1,&quot;_DIEN
+	</pre>
+
+	<H5 id="word_processing">Word-Processing</H5>
+	<P>The <B>Word-Processing</B> element returns a field value like a <A HREF="#simple_field" CLASS="bodylink">Simple Field</A> but automatically converts the resulting VA FileMan word-processing array to a single return string.</P>
+	<pre>
+       FIELD#: 2                           FILE#: 8925
+ EXT PTR LKUP:
+    WORD WRAP:                           MAXIMUM WORD SIZE:
+
+ WP ERROR MSG:
+
+   GET ACTION: D GET^ZZTEXT
+	</pre>
+	<P>If the <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> field is used to execute custom M code to get the value, the text <I>must</I> be returned in the following array:</P>
+	<pre>    WP(#)=value or WP(#,0)=value</pre>
+	<P>Where:</P>
+	<ul>
+	  <li><B>#</B> is a sequential number greater than <B>Zero</B>.</li>
+	  <li><B>value</B> is a line of text.</li>
+	</ul>
+	<P>The <A HREF="dmu_apis.htm" CLASS="bodylink">DDE API</A> concatenates the lines of text together into a single long text string.</P>
+	<P>If the <A HREF="dmu_prop.htm#WORD_WRAP" CLASS="bodylink">WORD WRAP</A> field is set to:</P>
+	<ul>
+	  <li><B>YES</B>&#8212;Text is returned in Word-Wrap Mode <I>without</I> embedded carriage returns between lines.</li>
+	  <li><B>NO</B> or left empty&#8212;Carriage returns separate each line.</li>
+	</ul>
+	<P>If the <A HREF="dmu_prop.htm#MAX_WORD_SIZE" CLASS="bodylink">MAXIMUM WORD SIZE</A> field:</P>
+	<ul>
+	  <li>Has a value and the length of the resulting string exceeds that value, then the text in the <A HREF="dmu_prop.htm#WORD_ERROR_MESSAGE" CLASS="bodylink">WP ERROR MSG</A> field is returned instead of the field value.</li>
+	  <li>Is <I>not</I> defined, then the default upper limit of <B>three (3) megabytes</B> is enforced and a default error message is returned if the text is longer than <B>3 million characters</B>.</li>
+	</ul>
+
+	<H5 id="entity_type">Entity</H5>
+	<P>The <B>Entity</B> element returns multiple data elements for a single field value. These are especially useful for creating a coded element from a <B>POINTER</B>, or for any group of data that will be re-used. Create the Entity to be embedded first or simply enter its name when editing this Item to create a stub (make sure to finish it later!).</P>
+	<pre>
+       FIELD#: .096                        FILE#: 2
+    EXT PTR LKUP:
+  INTERNAL VALUE: YES
+
+      GET ACTION:
+
+OUTPUT TRANSFORM:
+ INPUT TRANSFORM:
+
+           ENTITY: ZZUSER
+	</pre>
+	<P>The field's <B>VALUE</B> is first retrieved in the same manner as for a simple field, by executing the Item's <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> code or <A HREF="db_diqg1.htm" CLASS="bodylink">$$GET1^DIQ</A> according to the specified input parameters. The same modifications can be made to the <B>VALUE</B> for an Entity as with <A HREF="#simple_field" CLASS="bodylink">Simple Fields</A>. The <B>VALUE</B> is then passed into the Item's <A HREF="dmu_prop.htm#ENTITY_FIELD" CLASS="bodylink">Entity</A> as its ID.</P>
+	<P>Nested Entities are especially useful for <B>POINTER</B>-type fields, to return multiple fields from the pointed-to file (e.g., IEN, NAME (#.01) field, etc.). Set the <A HREF="dmu_prop.htm#INTERNAL_VALUE" CLASS="bodylink">INTERNAL VALUE</A> flag to <B>YES</B> to retain the <B>POINTER</B> for passing into the nested <A HREF="dmu_prop.htm#ENTITY_FIELD" CLASS="bodylink">Entity</A> as its ID.</P>
+
+	<H5 id="complex_group">Complex Group</H5>
+	<P>The <B>Complex Group</B> element is a set of discrete fields in the <A HREF="dmu_prop.htm#DEFAULT_FILE_NUMBER" CLASS="bodylink">DEFAULT FILE</A> (<I>not</I> a subfile or separate file) that are returned together as a group.</P>
+	<P>To create a group:</P>
+	<ol>
+	  <li>Create an Item for each desired field but omit the processing <A HREF="dmu_prop.htm#SEQUENCE" CLASS="bodylink">Sequence</A> number; this causes them to be skipped in the main loop.</li>
+	  <li>Create another Item for the group:
+	    <ol type="a">
+	      <li>Assign it a <A HREF="dmu_prop.htm#SEQUENCE" CLASS="bodylink">Sequence</A> number.</li>
+	      <li>Editor popup dialog prompts for the Items to return in this group instead of at the top level.</li>
+	      <li>Select the Items created in Step 1, assigning a <A HREF="dmu_prop.htm#SEQUENCE" CLASS="bodylink">Sequence</A> number for use inside the group.</li>
+	    </ol>
+	  </li>
+	</ol>
+	<P>The <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> code field can be used for any needed pre-processing. For example, fields from the PATIENT (#2) file can be returned together in the Address group. After creating each <A HREF="#simple_field" CLASS="bodylink">Simple Field</A> Item, collect the Items under Address in the desired <A HREF="dmu_prop.htm#SEQUENCE" CLASS="bodylink">SEQUENCE</A>:</P>
+	<pre>
+GET ACTION:
+
+   SEQ    ITEM
+     1    STREET
+     2    CITY
+     3    STATE
+     4    ZIP
+	</pre>
+	<P>Note that the <B>Street</B>, <B>City</B>, <B>State</B>, and <B>Zip</B> Items have no <A HREF="dmu_prop.htm#SEQUENCE" CLASS="bodylink">SEQUENCE</A> (<B>Seq</B>) value, as shown below:</P>
+	<pre>
+ITEM                          SEQ    TYPE    FIELD       SUB/FILE
+ADDRESS                       7      C
+ALIAS                         4      L                   2.01
+CITY                                 S      .114         2
+DATEENTERED                   3      S      .097         2
+FLAG                          5      F
+NAME                          2      S      .01          2
+PATIENTID                     1      I
+STATE                                S      .115         2
+STREET                               S      .111         2
+WHOENTERED                    6      E      .096         2
+ZIP                                  S      .116         2
+	</pre>
+
+	<H5 id="list_type">List</H5>
+	<P>The <B>List</B> element returns multiple results from a:</P>
+	<ul>
+	  <li>File or Subfile</li>
+	  <li>List of specific fields</li>
+	  <li>Custom lists</li>
+	</ul>
+	<P>Each result in the list can be either a single value, or an <A HREF="dmu_prop.htm#ENTITY_FIELD" CLASS="bodylink">Entity</A> for complex or coded values.</P>
+
+	<H6>Sub/File List</H6>
+	<P>Example of editing a Subfile <A HREF="dmu_prop.htm#LIST_TYPE" CLASS="bodylink">List</A> Item:</P>
+	<pre>
+  LIST TYPE: SUBFILE
+
+GET ACTION:
+
+  SELECT THE ENTITY OR FIELD TO BE RETURNED FOR EACH RECORD:
+     ENTITY: ZZALIAS                                FIELD#:
+                                              EXT PTR:
+                                              INT VAL:
+
+    XML TAG: NAME
+	</pre>
+	<P>The <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> field can execute M code that does any setup or pre-processing needed for this item.</P>
+	<P>The format of each result <I>must</I> be defined, either as input to a nested <A HREF="dmu_prop.htm#ENTITY_FIELD" CLASS="bodylink">Entity</A> or a <A HREF="dmu_prop.htm#FIELD_NUMBER" CLASS="bodylink">Field</A> number in the target sub/file; some field attributes can be defined as <A HREF="#simple_field" CLASS="bodylink">Simple Field</A> Items.</P>
+	<P>The <A HREF="dmu_prop.htm#XML_NAME" CLASS="bodylink">XML TAG</A> specifies the tags to be used around each instance in the list when using XML. If this field is <I>not</I> defined, the name of the List Item is used. JSON does <I>not</I> put tags around each list item, so this value is ignored if using JSON.</P>
+	<P>Input parameters for a <A HREF="db_dicf.htm" CLASS="bodylink">FIND^DIC</A> lookup can be defined for File lists, in the same way as for the Entity's <A HREF="dmu_edit.htm#search_criteria" CLASS="bodylink">Search Criteria</A>. Lookups for subfile lists use <A HREF="db_dic_l.htm" CLASS="bodylink">LIST^DIC</A> instead and only support the <B>Screen</B>.</P>
+	<P>The dialog that pops up when the <A HREF="dmu_prop.htm#LIST_TYPE" CLASS="bodylink">List Type</A> is selected:</P>
+	<pre>
+DEFINE THE SUB/FILE SEARCH FOR THE DESIRED RECORDS:
+
+    FILE#: 2.01
+     XREF:
+FILTER BY:
+
+   SCREEN:
+	</pre>
+	<P>If each result in the list is returned as an <A HREF="dmu_prop.htm#ENTITY_FIELD" CLASS="bodylink">Entity</A>, a query can instead be defined for that Entity to determine the list contents.</P>
+
+	<H6>Complex Field List</H6>
+	<P>A Complex Field List is simply a collection of specific field values returned as a list.</P>
+	<pre>
+LIST TYPE: COMPLEX
+
+GET ACTION:
+
+  SELECT THE ENTITY OR FIELD TO BE RETURNED FOR EACH RECORD:
+     ENTITY:                                         FIELD#:
+                                              EXT PTR:
+                                              INT VAL:
+
+    XML TAG: ADDRESS
+	</pre>
+	<P>The <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> field can execute M code that does any setup or pre-processing needed for this item.</P>
+	<P>The <A HREF="dmu_prop.htm#XML_NAME" CLASS="bodylink">XML TAG</A> specifies the tags to be used around each instance in the list when using XML. If this field is <I>not</I> defined, the name of the List Item is used. JSON does <I>not</I> put tags around each list item, so this value is ignored if using JSON.</P>
+	<P>The contents of the list are created in the same way as for <A HREF="#complex_group" CLASS="bodylink">Complex Groups</A>.</P>
+	<P><B>NOTE:</B> The only difference between a complex group and a complex list are the brackets used when returning the results as JSON.</P>
+	<P>When the <A HREF="dmu_prop.htm#LIST_TYPE" CLASS="bodylink">List Type</A> is selected, the screen dialog pops up allowing other Items from the Entity to be added to the list:</P>
+	<pre>
+SELECT THE ENTITY ITEMS TO RETURN THE DESIRED VALUES FOR THIS LIST:
+
+   SEQ    ITEM
+     1    PERMANENTADDRESS
+     2    TEMPORARYADDRESS
+	</pre>
+	<P>Because each Item has its own field definition, the <A HREF="dmu_prop.htm#ENTITY_FIELD" CLASS="bodylink">Entity</A> and <A HREF="dmu_prop.htm#FIELD_NUMBER" CLASS="bodylink">Field</A> attributes are <I>not</I> used for complex lists.</P>
+
+	<H6>Custom List</H6>
+	<pre>
+LIST TYPE: ARRAY
+
+GET ACTION: N I S I=0 F  S I=$O(VAEL(1,I)) Q:I&lt;1  S DLIST(I)=+VAEL(1,I)
+
+ SELECT THE ENTITY OR FIELD TO BE RETURNED FOR EACH RECORD:
+    ENTITY: ZZZELIGIBILITY                          FIELD#:
+                                              EXT PTR:
+                                              INT VAL:
+
+   XML TAG: ELIGIBILITY
+	</pre>
+	<P>For Custom Lists, the <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> code is used to generate the list instead of defining search criteria and <I>must</I> create the following array:</P>
+	<pre>    DLIST(#)=value</pre>
+	<P>Where:</P>
+	<ul>
+	  <li><B>#</B> is a sequential number greater than <B>Zero</B>.</li>
+	  <li><B>value</B> is the list item.</li>
+	</ul>
+	<P>Each value can be either the actual result for that instance, or a string to pass into the Item's <A HREF="dmu_prop.htm#ENTITY_FIELD" CLASS="bodylink">Entity</A> as its identifier. The <A HREF="dmu_prop.htm#FIELD_NUMBER" CLASS="bodylink">Field</A> attribute is <I>not</I> used for custom lists.</P>
+	<P>The <A HREF="dmu_prop.htm#XML_NAME" CLASS="bodylink">XML TAG</A> specifies the tags to be used around each instance in the list when using XML. If this field is <I>not</I> defined, the name of the List Item is used. JSON does <I>not</I> put tags around each list item, so this value is ignored if using JSON.</P>
+
+	<H5>Key Item Variables</H5>
+	<P>The following variables can be referenced in the <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> of a data element Item:</P>
+	<A NAME="table107"></A>
+	<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" SUMMARY="Variables Referenced in GET ACTION of a Data Element Item">
+	  <TR><TH ALIGN="LEFT">Variable</TH><TH ALIGN="LEFT">Description</TH></TR>
+	  <TR id="var_DFN"><TD VALIGN="TOP"><B>DFN</B></TD><TD VALIGN="TOP">PATIENT (#2) file IEN.</TD></TR>
+	  <TR id="var_DIEN"><TD VALIGN="TOP"><B>DIEN</B></TD><TD VALIGN="TOP">ID (IEN or ID string) of source data record being accessed.</TD></TR>
+	  <TR id="var_FIELD"><TD VALIGN="TOP"><B>FIELD</B></TD><TD VALIGN="TOP">Field number of source data in <A HREF="#var_FILE" CLASS="bodylink">FILE</A> number for current Item.</TD></TR>
+	  <TR id="var_FILE"><TD VALIGN="TOP"><B>FILE</B></TD><TD VALIGN="TOP">File number of source data for current Item (can be different than the <A HREF="dmu_prop.htm#DEFAULT_FILE_NUMBER" CLASS="bodylink">Default File Number</A> for the Entity).</TD></TR>
+	  <TR id="var_IEN"><TD VALIGN="TOP"><B>IEN</B></TD><TD VALIGN="TOP">Same as <A HREF="#var_DIEN" CLASS="bodylink">DIEN</A>, but can be changed for current Item if <A HREF="#var_FILE" CLASS="bodylink">FILE</A> is <I>not</I> the <A HREF="dmu_prop.htm#DEFAULT_FILE_NUMBER" CLASS="bodylink">Default File Number</A>.</TD></TR>
+	  <TR id="var_ITM"><TD VALIGN="TOP"><B>ITM</B></TD><TD VALIGN="TOP"><B>DA</B> of current Item in ITEM (#1.51) subfile.</TD></TR>
+	  <TR id="var_ITM0"><TD VALIGN="TOP"><B>ITM0</B></TD><TD VALIGN="TOP"><B>Zero</B> node of current Item.</TD></TR>
+	  <TR id="var_TAG"><TD VALIGN="TOP"><B>TAG</B></TD><TD VALIGN="TOP">Name of current Item; used for XML or JSON tags.</TD></TR>
+	  <TR id="var_TYPE"><TD VALIGN="TOP"><B>TYPE</B></TD><TD VALIGN="TOP">Item Type name.</TD></TR>
+	  <TR id="var_VALUE"><TD VALIGN="TOP"><B>VALUE</B></TD><TD VALIGN="TOP">Value or result of data element.</TD></TR>
+	</TABLE>
+	<P>Set <B>DDEOUT=1</B> in <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> to exit the Item <I>without</I> adding its value to the results.</P>
+	<P>Set <B>DDEQUIT=1</B> in <A HREF="dmu_prop.htm#GET_ACTION" CLASS="bodylink">GET ACTION</A> to exit the entire record <I>without</I> adding anything to the results.</P>
+
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>

@@ -1,0 +1,99 @@
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Developer's Guide: DMU Property References</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan 22.2 Developer's Guide HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="VistA Infrastructure,VISTA,FileMan,VA FileMan,programmer,developer,developer's guide,Data Mapping Utility,DMU,property references,entity properties,item properties,ENTITY file,ITEM subfile">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="common/developer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0"
+        BGCOLOR="white">
+    <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" SUMMARY="This table is for formatting purposes only">
+	  <TR><TD><BR><IMG SRC="images/fileman_dg_heading.gif" BORDER="0" ALT="VA FileMan 22.2 Developer's Guide HTML Manual Banner"><BR><IMG SRC="images/vaoitbanner.gif" BORDER="0" ALT="VA Office of Information and Technology (OIT) Banner"><BR></TD></TR>
+    </TABLE>
+<P></P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3" CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1" VALIGN="TOP">
+      <TR>
+	    <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%" CLASS="menubartext">Contents:</TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%"><A HREF="index.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Main Table of Contents" CLASS="menubarlink">Main</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A HREF="dmu_frm.htm" TARGET="_top" TITLE="VA FileMan Developer's Guide (HTML): Data Mapping Utility Section TOC" CLASS="menubarlink">Section</A></TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%" CLASS="menubartext">See Also:</TD>
+		<TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A HREF="../u1/index.htm" TARGET="_top" TITLE="VA FileMan User Manual (HTML)" CLASS="menubarlink">User Manual</A></TD>
+		<TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="28%"><A HREF="../u2/index.htm" TARGET="_top" TITLE="VA FileMan Advanced User Manual (HTML)" CLASS="menubarlink">Advanced User Manual</A></TD>
+	  </TR>
+    </TABLE>
+<!-- Content -->
+    <H3><A NAME="navskip">Data Mapping Utility (DMU)</A></H3>
+	<HR CLASS="hrstyle">
+	<H4>Property References</H4>
+
+	<H5>Entity Properties</H5>
+	<P><A HREF="#table105" CLASS="bodylink">Table 105</A> lists the ENTITY (#1.5) file fields actively in use:</P>
+	<A NAME="table105"></A>
+	<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" SUMMARY="ENTITY (#1.5) File Fields (Actively in Use)">
+	  <TR><TH ALIGN="LEFT">Field</TH><TH ALIGN="LEFT">Description</TH></TR>
+	  <TR id="NAME"><TD VALIGN="TOP"><B>NAME (#.01)</B></TD><TD VALIGN="TOP">(Required) This field contains the name of the Entity. Each Entity <I>must</I> have a unique name. Since the ENTITY (#1.5) file is a shared public file, it is <I>strongly recommended</I> to begin the name with the VistA namespace of the owning package.</TD></TR>
+	  <TR id="DEFAULT_FILE_NUMBER"><TD VALIGN="TOP"><B>DEFAULT FILE NUMBER (#.02)</B></TD><TD VALIGN="TOP">(Optional) This is the primary file or subfile number associated with this Entity, and the default source file for data. It is optional if no data associated with this Entity is stored in any VA FileMan file. It is <I>recommended</I> that you enter a VistA file number in this field, but it is <I>not</I> required. Fields mapped to the properties are assumed to be from the VistA file number referenced in this field unless otherwise specified. If data is being expanded instead of extracted, such as expanding a name string into its components, a source file is <I>not</I> needed.</TD></TR>
+	  <TR id="SORT_BY"><TD VALIGN="TOP"><B>SORT BY (#.03)</B></TD><TD VALIGN="TOP">(Optional) This field contains the name of the cross-reference to use for the lookup.</TD></TR>
+	  <TR id="FILTER_BY"><TD VALIGN="TOP"><B>FILTER BY (#.04)</B></TD><TD VALIGN="TOP">(Optional) This field is the value, or the name of a local variable that contains the value, to filter entries by using the specified cross-reference. <B>REF:</B> For a list of variables that are available to use (read-only), see <A HREF="dmu_addcode.htm#table108" CLASS="bodylink">Table 108</A>.</TD></TR>
+	  <TR id="DATA_MODEL"><TD VALIGN="TOP"><B>DATA MODEL (#.06)</B></TD><TD VALIGN="TOP">(Optional) If this Entity is intended to return data according to the constraints of a specific data model (e.g., SDA or FHIR), then enter that target data model in this field.</TD></TR>
+	  <TR id="DISPLAY_NAME"><TD VALIGN="TOP"><B>DISPLAY NAME (#.1)</B></TD><TD VALIGN="TOP">(Optional) This field is the name that is used for the XML or JSON tags (property names). If no value is entered here, the <A HREF="#NAME" CLASS="bodylink">NAME (#.01)</A> field is used. This field is used as the outer tags around each result and is usually the name of the class from the <A HREF="#DATA_MODEL" CLASS="bodylink">data model</A> that is being mapped (e.g., SDA or FHIR).</TD></TR>
+	  <TR id="ITEM_MULT"><TD VALIGN="TOP"><B>ITEM (#1) Multiple</B></TD><TD VALIGN="TOP">The Items Multiple defines the data elements that make up the Entity. <B>REF:</B> For a description of the subfields, see <A HREF="#table106" CLASS="bodylink">Table 106</A>.</TD></TR>
+	  <TR id="GET_ENTRY_ACTION"><TD VALIGN="TOP"><B>GET ENTRY ACTION (#2)</B></TD><TD VALIGN="TOP">This field contains standard M code that does any set up needed to process the Entity. It is executed once when the Entity is first invoked, before the query is run and any records are processed. Additional local variables can be set that can be referenced throughout the Entity, but they <I>must</I> be cleaned up in the <A HREF="#GET_EXIT_ACTION" CLASS="bodylink">GET EXIT ACTION</A> field.</TD></TR>
+	  <TR id="GET_EXIT_ACTION"><TD VALIGN="TOP"><B>GET EXIT ACTION (#3)</B></TD><TD VALIGN="TOP">This field contains standard M code that does any clean up that is needed on a <A HREF="#GET_ENTRY_ACTION" CLASS="bodylink">GET ENTRY ACTION</A>; it is executed once at the end, after all records found by the query are processed. Any local variables created in the <A HREF="#GET_ENTRY_ACTION" CLASS="bodylink">GET ENTRY ACTION</A> or <A HREF="#GET_ID_ACTION" CLASS="bodylink">GET ID ACTION</A> fields <I>must</I> be killed here.</TD></TR>
+	  <TR id="GET_ID_ACTION"><TD VALIGN="TOP"><B>GET ID ACTION (#4)</B></TD><TD VALIGN="TOP">This field contains standard M code that is executed once for every record, before the data elements are retrieved. It can be used for any setup or validation that is needed for each record. The current record ID is available to reference as read-only in the local <B>DIEN</B> variable. If a record should <I>not</I> be included in the results, you can <B>S DDEOUT=1</B> and processing quits <I>without</I> including the record.</TD></TR>
+	  <TR id="GET_QUERY_ROUTINE"><TD VALIGN="TOP"><B>GET QUERY ROUTINE (#5)</B></TD><TD VALIGN="TOP">(Optional) This field is the <B>tag^routine</B> used for finding the appropriate records in the VistA primary source file, instead of <A HREF="db_dicf.htm" CLASS="bodylink">FIND^DIC</A>. This routine creates the array <B>DLIST(#)=ID</B>, where <B>#</B> is a sequential number and <B>ID</B> is a string that identifies a record in the <A HREF="#DEFAULT_FILE_NUMBER" CLASS="bodylink">Default File</A>. ID can also be a string that is processed by this entity. <B>REF:</B> For a definition of local variables that can be referenced and used (<I>not</I> changed or killed), see <A HREF="dmu_items.htm#table107" CLASS="bodylink">Table 107</A>.</TD></TR>
+	  <TR id="SCREEN"><TD VALIGN="TOP"><B>SCREEN (#5.1)</B></TD><TD VALIGN="TOP">(Optional) This field contains standard M code that sets <B>DIC('S')</B> for a screen, which is used in a <A HREF="db_dicf.htm" CLASS="bodylink">FIND^DIC</A> query.</TD></TR>
+	  <TR id="DESCRIPTION"><TD VALIGN="TOP"><B>DESCRIPTION (#19)</B></TD><TD VALIGN="TOP">(Optional) This is a description of the Entity, which is used to document its intended usage, expected input values or data sources, and any other information that is helpful for maintenance. It is <I>strongly recommended</I> that you enter a description of the Entity in this field.</TD></TR>
+	  <TR id="GET_POLICY"><TD VALIGN="TOP"><B>GET POLICY (#19.1)</B></TD><TD VALIGN="TOP">(Optional) This field points to the APPLICATION ACTION (#1.61) file entry, which links a Data Access Control POLICY (#1.6) file entry to a GET request for this Entity, to determine if a user or client is authorized to access this data.</TD></TR>
+	</TABLE>
+
+	<H5>Item Properties</H5>
+	<P><A HREF="#table106" CLASS="bodylink">Table 106</A> lists the ENTITY (#1.5) file ITEM (#1.51) Multiple subfields:</P>
+	<A NAME="table106"></A>
+	<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" SUMMARY="ITEM (#1.51) Subfile Fields (Actively in Use)">
+	  <TR><TH ALIGN="LEFT">ITEM (#1) Multiple Subfield</TH><TH ALIGN="LEFT">Description</TH></TR>
+	  <TR id="ITEM_NAME"><TD VALIGN="TOP"><B>ITEM (#.01)</B></TD><TD VALIGN="TOP">This field contains the name of the Item that is used as the XML or JSON tag.</TD></TR>
+	  <TR id="SEQUENCE"><TD VALIGN="TOP"><B>SEQUENCE (#.02)</B></TD><TD VALIGN="TOP">This field defines the sequence in which to process top-level items. Leave this field blank for Items that will be processed via the Complex Fields group.</TD></TR>
+	  <TR id="ITEM_TYPE"><TD VALIGN="TOP"><B>ITEM TYPE (#.03)</B></TD><TD VALIGN="TOP">This field contains the type of element for this Item. It describes how to find the source data in VistA, as well as its structure in the XML or JSON results:
+	    <ul>
+	      <li><B>I</B>&#8212;Record ID</li>
+	      <li><B>F</B>&#8212;Fixed String</li>
+	      <li><B>S</B>&#8212;Simple VistA field</li>
+	      <li><B>C</B>&#8212;Complex field (group of items)</li>
+	      <li><B>E</B>&#8212;Embedded entity</li>
+	      <li><B>L</B>&#8212;List of simple fields, items, or entities</li>
+	      <li><B>W</B>&#8212;<B>WORD-PROCESSING</B> VistA field</li>
+	    </ul>
+	  </TD></TR>
+	  <TR id="FILE_NUMBER"><TD VALIGN="TOP"><B>FILE NUMBER (#.04)</B></TD><TD VALIGN="TOP">This field contains the VistA file or subfile number containing the data value(s) for this Item.</TD></TR>
+	  <TR id="FIELD_NUMBER"><TD VALIGN="TOP"><B>FIELD NUMBER (#.05)</B></TD><TD VALIGN="TOP">This field contains the number of a field in the file that is the source of the data for this Item.</TD></TR>
+	  <TR id="EXT_PTR_LKUP"><TD VALIGN="TOP"><B>EXTENDED POINTER LKUP (#.06)</B></TD><TD VALIGN="TOP">This field contains the number of a field in the pointed-to file to return as the resolved external value, instead of the .01 field.</TD></TR>
+	  <TR id="INTERNAL_VALUE"><TD VALIGN="TOP"><B>RETURN INTERNAL VALUE (#.07)</B></TD><TD VALIGN="TOP">If this field is set to <B>YES</B>, the value of this Item should remain in internal format. The default is <B>NO</B>, which returns the external format.</TD></TR>
+	  <TR id="ENTITY_FIELD"><TD VALIGN="TOP"><B>ENTITY (#.08)</B></TD><TD VALIGN="TOP">This field contains the name of an Entity whose value should be constructed and returned as the value for this Item. A parent or ancestor of this Entity <I>cannot</I> be used as a descendant item.</TD></TR>
+	  <TR id="WORD_WRAP"><TD VALIGN="TOP"><B>WORD WRAP (#.09)</B></TD><TD VALIGN="TOP">If this field is set to <B>YES</B>, the text is returned <I>without</I> carriage returns (CR) or line feeds (LF) so the client can allow the text to wrap. The default is <B>NO</B>, which inserts <B>CR-LF</B> characters between lines.</TD></TR>
+	  <TR id="MAX_WORD_SIZE"><TD VALIGN="TOP"><B>MAXIMUM WORD SIZE (#.1)</B></TD><TD VALIGN="TOP">This field contains the maximum number of characters that a <B>WORD PROCESSING</B> field can return. If the field value exceeds this limit, the text in the <A HREF="#WORD_ERROR_MESSAGE" CLASS="bodylink">WORD ERROR MESSAGE (#.11)</A> field is returned instead of the value.</TD></TR>
+	  <TR id="WORD_ERROR_MESSAGE"><TD VALIGN="TOP"><B>WORD ERROR MESSAGE (#.11)</B></TD><TD VALIGN="TOP">This field contains an error message that is returned if a <B>WORD PROCESSING</B> field value exceeds the number of characters defined by the <A HREF="#MAX_WORD_SIZE" CLASS="bodylink">MAXIMUM WORD SIZE (#.1)</A> field.</TD></TR>
+	  <TR id="LIST_TYPE"><TD VALIGN="TOP"><B>LIST TYPE (#1.01)</B></TD><TD VALIGN="TOP">This field contains the source of this Item's values, if the list instances come from a file, sub-file, Complex Fields group, or an array created by the <A HREF="#GET_ACTION" CLASS="bodylink">GET ACTION</A> logic.</TD></TR>
+	  <TR id="XML_NAME"><TD VALIGN="TOP"><B>XML NAME (#1.02)</B></TD><TD VALIGN="TOP">This field contains the name to be used for the tags around this Item when returning XML, for each entry in the list. If this Item is an Entity, its <A HREF="#DISPLAY_NAME" CLASS="bodylink">Display Name</A> is the default, but this name overrides it if defined.</TD></TR>
+	  <TR id="XREF"><TD VALIGN="TOP"><B>XREF (#1.03)</B></TD><TD VALIGN="TOP">If this list is coming from a file, use this field to enter the cross-reference to be used to find the desired records.</TD></TR>
+	  <TR id="ITEM_FILTER_BY"><TD VALIGN="TOP"><B>FILTER BY (#1.04)</B></TD><TD VALIGN="TOP">If this list is coming from a file, you can enter the name of a local variable in this field that contains the value to filter entries by using the specified cross-reference. <B>REF:</B> For a list of variables that are available to use (read only), see <A HREF="dmu_addcode.htm#table108" CLASS="bodylink">Table 108</A>. Other variables can be created in the <A HREF="#GET_ACTION" CLASS="bodylink">GET ACTION</A> code field; these should be killed in the Entity's <A HREF="#GET_EXIT_ACTION" CLASS="bodylink">GET EXIT ACTION</A>.</TD></TR>
+	  <TR id="ITEM_SCREEN"><TD VALIGN="TOP"><B>SCREEN (#1.1)</B></TD><TD VALIGN="TOP">This field contains standard M code that should set <B>DIC('S')</B> for a screen.</TD></TR>
+	  <TR id="FIXED_RESPONSE"><TD VALIGN="TOP"><B>FIXED RESPONSE (#2)</B></TD><TD VALIGN="TOP">Use this field to add static text that should always be returned as the value of this Item.</TD></TR>
+	  <TR id="COMPLEX_TYPE"><TD VALIGN="TOP"><B>COMPLEX TYPE (#3) Multiple</B></TD><TD VALIGN="TOP">This field allows an Item to return a group of fields or data elements.</TD></TR>
+	  <TR id="OUTPUT_TRANSFORM"><TD VALIGN="TOP"><B>OUTPUT TRANSFORM (#4)</B></TD><TD VALIGN="TOP">This field contains code that is executed after extracting the data value, which can be used to re-format it for XML or JSON. It expects the <B>VALUE</B> variable to contain the current form of this property's value and should leave <B>VALUE</B> set to the desired form (e.g., <B>S VALUE=+VALUE</B>). If the value should be omitted, set the <B>VALUE</B> variable to <B>NULL</B>.</TD></TR>
+	  <TR id="GET_ACTION"><TD VALIGN="TOP"><B>GET ACTION (#6)</B></TD><TD VALIGN="TOP">This field contains code that is executed when extracting this item from VistA. It can do additional setup tasks for <I>non</I>-simple elements or even create the return value itself for simple fields that <I>cannot</I> be pulled directly from VistA. At the time this code is executed within <B>^DDE</B>, the <B>VALUE</B> variable can be returned as the value of this property. If <B>VALUE</B> is <I>not</I> set here, then <A HREF="db_diqg1.htm" CLASS="bodylink">$$GET1^DIQ</A> is called using the Item's properties to determine a value. If a value for this Item <I>cannot</I> or should <I>not</I> be returned, set <B>DDEOUT=1</B> to cause <B>^DDE</B> to quit the item and go on to the next one. <B>REF:</B> For a list of variables that can be referenced, see <A HREF="dmu_items.htm#table107" CLASS="bodylink">Table 107</A>.</TD></TR>
+	</TABLE>
+
+	<HR CLASS="hrstyle">
+	<P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	<P>&nbsp;</P>
+  </BODY>
+</HTML>
