@@ -48,15 +48,20 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Extract Tool API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>EN^DIAXU: Extract Data</H4> 
-	 <P>The extract tool has been enhanced and this has resulted in a number of
-		changes to the output variables of the EN^DIAXU entry point.</P> 
-	 <P>This entry point extracts data specified in the EXTRACT template for a
-		single entry and moves that data to a destination file. The source entry may be
-		deleted after the extract process is completed. </P> 
+	 <H4>EN^DIAXU: Extract Data (Single Entry)</H4>
+	 <H5>Reference Type</H5>
+	 <P>Supported</P>
+	 <H5>Category</H5>
+	 <P>Extract Tool</P>
+	 <H5>ICR #</H5>
+	 <P>10151</P>
+	 <H5>Description</H5>
+	 <P>The <B>EN^DIAXU</B> API extracts data specified in the <B>EXTRACT</B> template for a
+		single entry and moves that data to a destination file. The source entry can be
+		deleted after the extract process is completed. </P>
 	 <P>If you need to extract in batches (more than one entry), you should use
 		the <A HREF="ft_diax2.htm" TITLE="EXTRACT^DIAXU"
-		CLASS="bodylink">EXTRACT^DIAXU</A> entry point instead.</P> 
+		CLASS="bodylink">EXTRACT^DIAXU</A> API instead.</P>
 	 <H5>Input Variables</H5> 
 	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
 	  WIDTH="100%"> 
@@ -101,24 +106,20 @@
 			 <P>Internal entry number of entry created in the destination file.
 				</P> 
 			 <P> In addition to DIAXDA, <BR> </P> 
-			 <PRE>  ^TMP(&quot;DIAXU&quot;,$J,&quot;RESULT&quot;,DIAXF,DIAXFE)=DIAXDA</PRE> 
-			 <P>is returned.&nbsp;<IMG SRC="new.gif"
-				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
+			 <PRE>  ^TMP(&quot;DIAXU&quot;,$J,&quot;RESULT&quot;,DIAXF,DIAXFE)=DIAXDA</PRE>
+			 <P>is returned.</P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>DIAXNTC</B></TD> 
 		  <TD VALIGN="TOP"> 
 			 <P>No longer returned. For batch processing of extracts, you should
 				use the <A HREF="ft_diax2.htm" TITLE="EXTRACT^DIAXU"
-				CLASS="bodylink">EXTRACT^DIAXU</A> entry point instead of this one.&nbsp;<IMG
-				SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
-				HEIGHT="11"></P> </TD> 
+				CLASS="bodylink">EXTRACT^DIAXU</A> entry point instead of this one.</P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>DIAXFE</B></TD> 
 		  <TD VALIGN="TOP"> 
-			 <P>No longer killed upon exit.&nbsp;<IMG SRC="new.gif"
-				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
+			 <P>No longer killed upon exit.</P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>DIAXF</B></TD> 
@@ -157,16 +158,14 @@
 			 <P>For example, </P> 
 			 <PRE>  ^TMP(&quot;DIAXU&quot;,$J,&quot;RESULT&quot;,&quot;ERR&quot;,662001,5)</PRE> 
 			 <P>No longer indicates the total number of errors encountered during
-				the extract process.&nbsp;<IMG SRC="new.gif"
-				ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11"></P> </TD> 
+				the extract process.</P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>(array in ^TMP)</B></TD> 
 		  <TD VALIGN="TOP"> 
 			 <P>Error information is returned in ^TMP("DIERR",$J), in the same
-				format that error information is returned for DBS calls.&nbsp;<IMG
-				SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35" HEIGHT="11">
-				</P> 
+				format that error information is returned for DBS calls.
+				</P>
 			 <P>Please refer to the "<A HREF="db_how.htm"
 				TITLE="How to Use the Database Server" CLASS="bodylink">How to Use the Database
 				Server</A>" section for a complete description of this array.</P> </TD> 
