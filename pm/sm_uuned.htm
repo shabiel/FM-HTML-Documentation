@@ -46,80 +46,91 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>UNED^DDSUTL( )</H4> 
-	 <P>You can use this entry point only within a ScreenMan form, in all places
-		where M code can be placed on the form. </P> 
-	 <P>This procedure changes the DISABLE EDITING property of a field on the
-		form.</P> 
-	 <H5>Format</H5> 
+	 <H4>UNED^DDSUTL(): Change Disable Editing Property of a Field on a Form</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>10150</TD>
+	   </TR>
+	 </TABLE>
+	 <P>You can use the UNED^DDSUTL API only within a ScreenMan form, in all places
+		where M code can be placed on the form. </P>
+	 <P>The UNED^DDSUTL API changes the Disable Editing property of a field on the
+		form.</P>
+	 <H5>Format</H5>
 	 <PRE>
-UNED^DDSUTL(FIELD,BLOCK,PAGE,VALUE,IENS)
-
-</PRE> 
-	 <H5>Input Parameters</H5> 
+UNED^DDSUTL(field,block,page,value,iens)
+</PRE>
+	 <H5>Input Parameters</H5>
 	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
 	  WIDTH="100%"> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
+		  <TD VALIGN="TOP"><B>field</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2">
 			 <P>(Required) The Field Order number, Caption, or Unique Name of the
-				field. </P> </TD> 
+				field. </P> </TD>
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>BLOCK</B></TD> 
+		  <TD VALIGN="TOP"><B>block</B></TD>
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Required at the page and form levels) The Block Order or Block
 				Name. The default is the current block. </P> </TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>PAGE</B></TD> 
+		  <TD VALIGN="TOP"><B>page</B></TD>
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Required at the form level) The Page Number or Page Name. The
 				default is the current page. </P> </TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP" ROWSPAN="5"><B>VALUE</B> </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Required) The value to give the DISABLE EDITING property, shown
-				below: </P> </TD> 
+		  <TD VALIGN="TOP" ROWSPAN="5"><B>value</B> </TD>
+		  <TD VALIGN="TOP" COLSPAN="2">
+			 <P>(Required) The value to give the Disable Editing property, shown
+				below: </P> </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>""</B></TD>
+		  <TD VALIGN="TOP">Restore the Disable Editing property to the value as
+			 defined in the BLOCK (#.404) file. </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>0</B></TD>
+		  <TD VALIGN="TOP">Enable editing and allow the user to navigate to the
+			 field. </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>1</B></TD>
+		  <TD VALIGN="TOP">Disable editing and prevent the user from navigating
+			 to the field. </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>2</B></TD>
+		  <TD VALIGN="TOP">Disable editing but allow the user to navigate to the
+			 field. </TD>
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>""</B></TD> 
-		  <TD VALIGN="TOP">Restore the DISABLE EDITING property to the value as
-			 defined in the BLOCK file. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>0</B></TD> 
-		  <TD VALIGN="TOP">Enable editing, and allow the user to navigate to the
-			 field. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>1</B></TD> 
-		  <TD VALIGN="TOP">Disable editing, and prevent the user from navigating
-			 to the field. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>2</B></TD> 
-		  <TD VALIGN="TOP">Disable editing, but allow the user to navigate to the
-			 field. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>IENS</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">(Required at the page and form levels) The
+		  <TD VALIGN="TOP"><B>iens</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2"><P>(Required at the page and form levels) The
 			 standard IENS that identifies the entry or subentry associated with the
-			 form-only field. The default is the current entry or subentry. For a detailed
-			 description of IENS, see "<A HREF="db_int3.htm"
-			 TITLE="IENS - A New Way to Identify Entries and Subentries"
-			 CLASS="bodylink">IENS - A New Way to Identify Entries and Subentries</A>" in
-			 the Introduction to the "<A HREF="dba_frm.htm"
+			 Form-only field. The default is the current entry or subentry.</P>
+			 <P>REF: For a detailed description of IENS, see the "<A HREF="db_int3.htm"
+			 TITLE="IENS: Identify Entries and Subentries"
+			 CLASS="bodylink">IENS: Identify Entries and Subentries</A>" section in the
+			 "<A HREF="dba_frm.htm"
 			 TITLE="Database Server (DBS) API" CLASS="bodylink">Database Server (DBS)
-			 API</A>" chapter. </TD> 
+			 API</A>" section. </P></TD>
 		</TR> 
 	 </TABLE> 
 	 <P></P>	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- sm_uuned.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

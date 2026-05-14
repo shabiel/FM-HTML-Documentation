@@ -46,77 +46,90 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>PUT^DDSVALF( )</H4> 
-	 <P>You can use this entry point only within a ScreenMan form, in all places
-		where M code can be placed on the form. </P> 
-	 <P>This procedure stuffs data into a form-only field. </P> 
+	 <H4>PUT^DDSVALF(): Stuff Data into a Form-only Field</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>2610</TD>
+	   </TR>
+	 </TABLE>
+	 <P>You can use the PUT^DDSVALF API only within a ScreenMan form, in all places
+		where M code can be placed on the form. </P>
+	 <P>The PUT^DDSVALF API stuffs data into a Form-only field. </P>
 	 <P>If, while a form is running, a call to PUT^DDSVALF fails, ScreenMan
-		prints an error message in the Command Area. </P> 
-	 <H5>Format</H5> 
+		prints an error message in the Command Area. </P>
+	 <H5>Format</H5>
 	 <PRE>
-PUT^DDSVALF(FIELD,BLOCK,PAGE,VALUE,FLAGS,IENS)
-</PRE> 
+PUT^DDSVALF(field,block,page,value[,flags],iens)
+</PRE>
 	 <H5>Input Parameters</H5> 
 	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
 	  WIDTH="100%"> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
-		  <TD COLSPAN="2" VALIGN="TOP"> 
+		  <TD VALIGN="TOP"><B>field</B></TD>
+		  <TD COLSPAN="2" VALIGN="TOP">
 			 <P>(Required) The Field Order number, Caption, or Unique Name of the
-				form-only field. </P></TD> 
+				Form-only field. </P></TD>
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>BLOCK</B></TD> 
+		  <TD VALIGN="TOP"><B>block</B></TD>
 		  <TD COLSPAN="2" VALIGN="TOP"> 
 			 <P>(Required at the page and form levels) The Block Order or Block
 				Name. The default is the current block. </P></TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>PAGE</B></TD> 
+		  <TD VALIGN="TOP"><B>page</B></TD>
 		  <TD COLSPAN="2" VALIGN="TOP"> 
 			 <P>(Required at the form level) The Page Number or Page Name. The
 				default is the current page. </P></TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>VALUE</B></TD> 
-		  <TD COLSPAN="2" VALIGN="TOP"> 
-			 <P>(Required) The value to stuff into the form-only field. If
-				<A HREF="#FLAGS" TITLE="FLAGS" CLASS="bodylink">FLAGS</A> (described below)
+		  <TD VALIGN="TOP"><B>value</B></TD>
+		  <TD COLSPAN="2" VALIGN="TOP">
+			 <P>(Required) The value to stuff into the Form-only field. If
+				the <A HREF="#FLAGS" TITLE="flags" CLASS="bodylink">flags</A> parameter
 				does not contain an I, the value must be in the form of a valid, unambiguous
-				user response. </P></TD> 
+				user response. </P></TD>
 		</TR> 
 		<TR> 
-		  <TD ROWSPAN="3" VALIGN="TOP"><B><A NAME="FLAGS">FLAGS</A></B></TD> 
-		  <TD COLSPAN="2" VALIGN="TOP"> 
-			 <P>(Optional) Indicates whether VALUE is in internal or external
-				form, as shown below: </P></TD> 
+		  <TD ROWSPAN="3" VALIGN="TOP"><B><A NAME="FLAGS">flags</A></B></TD>
+		  <TD COLSPAN="2" VALIGN="TOP">
+			 <P>(Optional) Indicates whether the value parameter is in internal or
+				external form, as shown below: </P></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>I</B></TD>
+		  <TD VALIGN="TOP">The value parameter is in <B>I</B>nternal form; it is
+			 not validated. </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>E</B> (Default)</TD>
+		  <TD VALIGN="TOP">The value parameter is in <B>E</B>xternal form. </TD>
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>I</B></TD> 
-		  <TD VALIGN="TOP">VALUE is in <B>I</B>nternal form; it is not validated.
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>E</B></TD> 
-		  <TD VALIGN="TOP">VALUE is in <B>E</B>xternal form (default). </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>IENS</B></TD> 
-		  <TD COLSPAN="2" VALIGN="TOP"> 
+		  <TD VALIGN="TOP"><B>iens</B></TD>
+		  <TD COLSPAN="2" VALIGN="TOP">
 			 <P>(Required at the page and form levels) The standard IENS that
-				identifies the entry or subentry associated with the form-only field. The
-				default is the current entry or subentry. For a detailed description of IENS,
-				see "<A HREF="db_int3.htm"
-				TITLE="IENS - A New Way to Identify Entries and Subentries"
-				CLASS="bodylink">IENS - A New Way to Identify Entries and Subentries</A>" in
-				the Introduction to the "<A HREF="dba_frm.htm"
+				identifies the entry or subentry associated with the Form-only field. The
+				default is the current entry or subentry.</P>
+			 <P>REF: For a detailed description of IENS, see the
+				"<A HREF="db_int3.htm"
+				TITLE="IENS: Identify Entries and Subentries"
+				CLASS="bodylink">IENS: Identify Entries and Subentries</A>" section
+				in the "<A HREF="dba_frm.htm"
 				TITLE="Database Server (DBS) API" CLASS="bodylink">Database Server (DBS)
-				API</A>" chapter. </P></TD> 
+				API</A>" section. </P></TD>
 		</TR> 
 	 </TABLE> 
-	 <H5>Example</H5> 
-	 <P>Stuff the value 2940801 into a form-only date field with the caption
-		"DATE", as shown below: </P> 
+	 <H5>Example</H5>
+	 <P>Stuff the value 2940801 into a Form-only date field with the caption
+		"DATE", as shown below: </P>
 	 <PRE>
     <B>D PUT^DDSVALF(&quot;DATE&quot;,&quot;&quot;,&quot;&quot;,&quot;AUG
 1,1994&quot;)</B>
@@ -125,7 +138,7 @@ PUT^DDSVALF(FIELD,BLOCK,PAGE,VALUE,FLAGS,IENS)
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- sm_uputf.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

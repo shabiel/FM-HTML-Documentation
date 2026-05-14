@@ -47,40 +47,52 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>$$GET^DDSVALF( )</H4> 
-	 <P>You can use this entry point only within a ScreenMan form, in all places
-		where M code can be placed on the form. </P> 
-	 <P>This extrinsic function retrieves data from a form-only field or a
-		computed field. </P> 
-	 <P>If, while a form is running, a call to GET^DDSVALF fails, ScreenMan
-		prints an error message in the Command Area. </P> 
-	 <H5>Format</H5> 
+	 <H4>$$GET^DDSVALF(): Retrieve Data from a Form-only Field</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>2610</TD>
+	   </TR>
+	 </TABLE>
+	 <P>You can use the $$GET^DDSVALF extrinsic function only within a ScreenMan
+		form, in all places where M code can be placed on the form. </P>
+	 <P>The $$GET^DDSVALF extrinsic function retrieves data from a Form-only field
+		or a Computed field. </P>
+	 <P>If, while a form is running, a call to $$GET^DDSVALF fails, ScreenMan
+		prints an error message in the Command Area. </P>
+	 <H5>Format</H5>
 	 <PRE>
-$$GET^DDSVALF(FIELD,BLOCK,PAGE,FLAGS,IENS)  
-</PRE> 
+$$GET^DDSVALF(field,block,page[,flags],iens)
+</PRE>
 	 <H5>Input Parameters</H5> 
 	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
 	  WIDTH="100%"> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
+		  <TD VALIGN="TOP"><B>field</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2">
 			 <P>(Required) The Field Order number, Caption, or Unique Name of the
-				form-only field. </P> </TD> 
+				Form-only field. </P> </TD>
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>BLOCK</B></TD> 
+		  <TD VALIGN="TOP"><B>block</B></TD>
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Required at the page and form levels) The Block Order or Block
 				Name. The default is the current block. </P> </TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>PAGE</B></TD> 
+		  <TD VALIGN="TOP"><B>page</B></TD>
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Required at the form level) The Page Number or Page Name. The
 				default is the current page. </P> </TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP" ROWSPAN="3"><B>FLAGS</B></TD> 
+		  <TD VALIGN="TOP" ROWSPAN="3"><B>flags</B></TD>
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Optional) Controls whether the internal or external form is
 				returned, as shown below: </P> </TD> 
@@ -95,28 +107,29 @@ $$GET^DDSVALF(FIELD,BLOCK,PAGE,FLAGS,IENS)
 		  <TD VALIGN="TOP">Return the <B>E</B>xternal form of the data. </TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>IENS</B></TD> 
-		  <TD COLSPAN="2"> 
+		  <TD VALIGN="TOP"><B>iens</B></TD>
+		  <TD COLSPAN="2">
 			 <P>(Required at the page and form levels) The standard IENS that
-				identifies the entry or subentry associated with the form-only field. The
-				default is the current entry or subentry. For a detailed description of IENS,
-				see "<A HREF="db_int3.htm"
-				TITLE="IENS - A New Way to Identify Entries and Subentries"
-				CLASS="bodylink">IENS - A New Way to Identify Entries and Subentries</A>" in
-				the "<A HREF="dba_frm.htm" TITLE="Database Server (DBS) API"
-				CLASS="bodylink">Database Server (DBS) API</A>" chapter. </P> </TD> 
+				identifies the entry or subentry associated with the Form-only field. The
+				default is the current entry or subentry.</P>
+			 <P>REF: For a detailed description of IENS, see the
+				"<A HREF="db_int3.htm"
+				TITLE="IENS: Identify Entries and Subentries"
+				CLASS="bodylink">IENS: Identify Entries and Subentries</A>" section in the
+				"<A HREF="dba_frm.htm" TITLE="Database Server (DBS) API"
+				CLASS="bodylink">Database Server (DBS) API</A>" section. </P> </TD>
 		</TR> 
 	 </TABLE> 
 	 <H5>Examples</H5> 
-	 <P><B>Example 1 </B> </P> 
-	 <P>Retrieve the value of a computed field called TOTAL on the current
-		block: </P> 
+	 <P><B>Example 1</B></P>
+	 <P>Retrieve the value of a Computed field called TOTAL on the current
+		block: </P>
 	 <PRE>
     <B>S nmspTOT=$$GET^DDSVALF(&quot;TOTAL&quot;)</B>
 </PRE> 
-	 <P><B>Example 2</B></P> 
-	 <P>Retrieve the external form of a form-only date field with caption "DATE
-		OF BIRTH" on a block named "ZZBLOCK 1":</P> 
+	 <P><B>Example 2</B></P>
+	 <P>Retrieve the external form of a Form-only date field with caption "DATE
+		OF BIRTH" on a block named "ZZBLOCK 1":</P>
 	 <PRE>
     <B>S nmspDATE=$$GET^DDSVALF(&quot;DATE OF BIRTH&quot;,&quot;ZZBLOCK 1&quot;,&quot;&quot;,&quot;E&quot;)</B>
 </PRE> 
@@ -124,7 +137,7 @@ $$GET^DDSVALF(FIELD,BLOCK,PAGE,FLAGS,IENS)
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- sm_ugetf.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

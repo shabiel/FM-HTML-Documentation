@@ -46,41 +46,51 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>MSG^DDSUTL( )</H4> 
-	 <P>You can call this entry point only within a ScreenMan form and only in
-		the Form level Data Validation.</P> 
-	 <P>This procedure prints Data Validation messages on a separate screen.
+	 <H4>MSG^DDSUTL(): Print Data Validation Messages on a Separate Screen</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>10150</TD>
+	   </TR>
+	 </TABLE>
+	 <P>You can call the MSG^DDSUTL API only within a ScreenMan form and only in
+		the form-level Data Validation.</P>
+	 <P>The MSG^DDSUTL API prints Data Validation messages on a separate screen.
 		These messages are printed after the user issues the Save command or attempts
-		to save the form on Exit, but before ScreenMan actually updates the database.
-		</P> 
-	 <H5>Formats</H5> 
-	 <OL> 
-		<LI> 
-		  <PRE>MSG^DDSUTL(STRING)</PRE><BR><BR> </LI> 
-		<LI> 
-		  <PRE>MSG^DDSUTL(.STRING) </PRE> </LI> 
-	 </OL> 
-	 <H5>Input Variables</H5> 
+		to save the form on Exit, but before ScreenMan updates the database. </P>
+	 <H5>Formats</H5>
+	 <OL>
+		<LI>
+		  <PRE>MSG^DDSUTL(string)</PRE><BR><BR> </LI>
+		<LI>
+		  <PRE>MSG^DDSUTL(.string) </PRE> </LI>
+	 </OL>
+	 <H5>Input Parameters</H5>
 	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>STRING</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>(Required) The message to print in the Command Area. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>.STRING</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>(Required) An array of messages to print in the Command Area. </P>
-			 
+	  SUMMARY="This table is for formatting purposes only">
+		<TR>
+		  <TD VALIGN="TOP"><B>string</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required; Format 1) The message to print in the Command Area. </P> </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>.string</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required; Format 2) An array of messages to print in the Command Area. </P>
 			 <P> STRING(1), STRING(2), ..., STRING(n) each contain a line of text.
-				</P> </TD> 
-		</TR> 
-	 </TABLE> 
+				</P> </TD>
+		</TR>
+	 </TABLE>
 	 <P></P>	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- sm_umsg.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

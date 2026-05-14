@@ -46,46 +46,57 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>REQ^DDSUTL( )</H4> 
-	 <P>You can use this entry point only within a ScreenMan form, in all places
-		where M code can be placed on the form. </P> 
-	 <P>This procedure changes the REQUIRED property of a field on the form.
-		</P> 
-	 <H5>Format</H5> 
+	 <H4>REQ^DDSUTL(): Change Required Property of a Field on a Form</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>10150</TD>
+	   </TR>
+	 </TABLE>
+	 <P>You can use the REQ^DDSUTL API only within a ScreenMan form, in all places
+		where M code can be placed on the form. </P>
+	 <P>The REQ^DDSUTL API changes the Required property of a field on the form.</P>
+	 <H5>Format</H5>
 	 <PRE>
-REQ^DDSUTL(FIELD,BLOCK,PAGE,VALUE,IENS)
-</PRE> 
-	 <H5>Input Variables</H5> 
+REQ^DDSUTL(field,block,page,value,iens)
+</PRE>
+	 <H5>Input Parameters</H5>
 	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
 	  WIDTH="100%"> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
+		  <TD VALIGN="TOP"><B>field</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2">
 			 <P>(Required) The Field Order number, Caption, or Unique Name of the
-				field. </P> </TD> 
+				field. </P> </TD>
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>BLOCK</B></TD> 
+		  <TD VALIGN="TOP"><B>block</B></TD>
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Required at the page and form levels) The Block Order or Block
 				Name. The default is the current block. </P> </TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>PAGE</B></TD> 
+		  <TD VALIGN="TOP"><B>page</B></TD>
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Required at the form level) The Page Number or Page Name. The
 				default is the current page. </P> </TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP" ROWSPAN="4"><B>VALUE</B> </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Required) The value to give the REQUIRED property, listed as
-				follows: </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>""</B></TD> 
-		  <TD VALIGN="TOP">Restore the REQUIRED property to the value defined in
-			 the BLOCK file. </TD> 
+		  <TD VALIGN="TOP" ROWSPAN="4"><B>value</B> </TD>
+		  <TD VALIGN="TOP" COLSPAN="2">
+			 <P>(Required) The value to give the Required property, listed as
+				follows: </P> </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>""</B></TD>
+		  <TD VALIGN="TOP">Restore the Required property to the value defined in
+			 the BLOCK (#.404) file. </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>0</B></TD> 
@@ -96,23 +107,24 @@ REQ^DDSUTL(FIELD,BLOCK,PAGE,VALUE,IENS)
 		  <TD VALIGN="TOP">Make the field required. </TD> 
 		</TR> 
 		<TR> 
-		  <TD VALIGN="TOP"><B>IENS</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"> 
+		  <TD VALIGN="TOP"><B>iens</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2">
 			 <P>(Required at the page and form levels) The standard IENS that
-				identifies the entry or subentry associated with the form-only field. The
-				default is the current entry or subentry. For a detailed description of IENS,
-				see "<A HREF="db_int3.htm"
-				TITLE="IENS - A New Way to Identify Entries and Subentries"
-				CLASS="bodylink">IENS - A New Way to Identify Entries and Subentries</A>" in
-				the Introduction to the "<A HREF="dba_frm.htm"
+				identifies the entry or subentry associated with the Form-only field. The
+				default is the current entry or subentry.</P>
+			 <P>REF: For a detailed description of IENS, see the
+				"<A HREF="db_int3.htm"
+				TITLE="IENS: Identify Entries and Subentries"
+				CLASS="bodylink">IENS: Identify Entries and Subentries</A>" section in the
+				"<A HREF="dba_frm.htm"
 				TITLE="Database Server (DBS) API" CLASS="bodylink">Database Server (DBS)
-				API</A>" chapter. </P> </TD> 
+				API</A>" section. </P> </TD>
 		</TR> 
 	 </TABLE> 
 	 <P></P>	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- sm_ureq.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

@@ -47,13 +47,27 @@
 	 </TABLE> 
 	 <!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4><A NAME="^DDS">^DDS</A></H4> 
-	 <P>You can call this entry point directly from an M routine to invoke the
-		specified form.</P> 
-	 <P>This routine invokes a ScreenMan form attached to the specified file.
+	 <H4><A NAME="^DDS">^DDS: Invoke ScreenMan</A></H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>10031</TD>
+	   </TR>
+	 </TABLE>
+	 <P>You can call the ^DDS API directly from an M routine to invoke the
+		specified form.</P>
+	 <P>The ^DDS API invokes a ScreenMan form attached to the specified file.
 		ScreenMan automatically uses incremental locks to lock all records accessed
-		during an editing session. </P> 
-	 <H5>Input Variables</H5> 
+		during an editing session. </P>
+	 <H5>Format</H5>
+	 <PRE>^DDS</PRE>
+	 <H5>Input Variables</H5>
 	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
 	  WIDTH="100%"> 
 		<TR> 
@@ -65,25 +79,25 @@
 		<TR> 
 		  <TD VALIGN="TOP"><B>DR</B></TD> 
 		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>(Required) The name of the form (an entry in the Form file)
-				enclosed in square brackets. </P> </TD> 
+			 <P>(Required) The name of the form (an entry in the FORM [#.403] file)
+				enclosed in square brackets. </P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>DA</B></TD> 
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Optional) The record number of the file entry to display or edit.
-				If DA is null or undefined, the form must either contain no data dictionary
-				fields or have a Record Selection page, which is the first page ScreenMan
+				If DA is NULL or undefined, the form must either contain no DATA DICTIONARY
+				fields or have a Record Selection Page, which is the first page ScreenMan
 				presents to the user and is where the user can select a record from the file.
-				(See "<A HREF="#Example2" TITLE="Example 2" CLASS="bodylink">Example 2</A>"
-				when a subfile is being accessed directly.) </P> </TD> 
+				REF: See "<A HREF="#Example2" TITLE="Example 2" CLASS="bodylink">Example 2</A>"
+				when a subfile is being accessed directly. </P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>DDSPAGE</B></TD> 
 		  <TD VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Optional) The Page Number of the first page to display to the
-				user. If '$G(DDSPAGE), a page with a Page Number equal to 1 must exist on the
-				form and that is the first page ScreenMan presents to the user. </P> </TD> 
+				user. If `$G(DDSPAGE), a page with a Page Number equal to 1 must exist on the
+				form and that is the first page ScreenMan presents to the user. </P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP" ROWSPAN="4"><B><A NAME="DDSPARM">DDSPARM</A></B></TD> 
@@ -101,14 +115,14 @@
 		  <TD VALIGN="TOP">Return <B>E</B>rror messages in ^TMP("DIERR",$J) and
 			 return DIERR if ScreenMan encounters problems when initially trying to load the
 			 form. If DDSPARM does not contain an E, ScreenMan prints messages directly on
-			 the screen, and returns the variable DIMSG equal to null. </TD> 
+			 the screen, and returns the DIMSG variable equal to NULL. </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP" WIDTH="100"><B>S</B></TD> 
 		  <TD VALIGN="TOP">Return the variable DDSSAVE=1 if the user pressed
-			 &lt;PF1&gt;S or &lt;PF1&gt;E, or entered an "Exit" or "<B>S</B>ave" command
-			 from the Command Line, whether or not any changes were actually made on the
-			 form. </TD> 
+			 &lt;PF1&gt;S or &lt;PF1&gt;E or entered an Exit or <B>S</B>ave command
+			 from the command line, whether any changes were made on the
+			 form. </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP" COLSPAN="3"> 
@@ -125,13 +139,13 @@
 		<TR> 
 		  <TD VALIGN="TOP"><B>DA(1) ... DA(n)</B></TD> 
 		  <TD VALIGN="TOP" COLSPAN="2"> 
-			 <P>The DA array, where DA is the subrecord number at the deepest
-				level and DA(n) is the record number at the top level. </P> </TD> 
+			 <P>(Required) The DA array, where DA is the subrecord number at the deepest
+				level, and DA(n) is the record number at the top level. </P> </TD>
 		</TR> 
 	 </TABLE> 
 	 <P>All the input variables are returned unchanged by the ^DDS call.
-		DDSFILE(1) should be killed when the call is complete to avoid conflict with
-		subsequent ^DDS calls. </P> 
+		KILL DDSFILE(1) when the call is complete to avoid conflict with
+		subsequent ^DDS calls. </P>
 	 <H5>Output Variables</H5> 
 	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
 	  WIDTH="100%"> 
@@ -145,16 +159,16 @@
 		  <TD VALIGN="TOP"><B>DDSSAVE</B></TD> 
 		  <TD VALIGN="TOP"> 
 			 <P>$G(DDSSAVE)=1, if the DDSPARM input variable to ^DDS contains an S
-				and the user pressed &lt;PF1&gt;E or &lt;PF1&gt;S, or issued the "Save" or
-				"Exit" command from the Command Line. </P> </TD> 
+				and the user pressed &lt;PF1&gt;E or &lt;PF1&gt;S or issued the Save or
+				Exit command from the command line. </P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>DIMSG</B></TD> 
 		  <TD VALIGN="TOP"> 
 			 <P>$D(DIMSG)&gt;0, if the form could not be loaded, and the DDSPARM
-				input variable to ^DDS does <B>not</B> contain an E. (See the description of
+				input variable to ^DDS does <B>not</B> contain an E. REF: See the description of
 				the <A HREF="#DDSPARM" TITLE="DDSPARM" CLASS="bodylink">DDSPARM</A> input
-				variable.) </P> </TD> 
+				variable. </P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>DTOUT</B></TD> 
@@ -163,24 +177,22 @@
 				</P> </TD> 
 		</TR> 
 	 </TABLE> 
-	 <H5><A NAME="DDS_Variable">The DDS Variable</A>&nbsp;<IMG
-		SRC="new.gif" ALT="New/Updated with VA FileMan V. 22.0" WIDTH="35"
-		HEIGHT="11"></H5> 
-	 <P>$D(DDS) can be checked within programming hooks such as Executable Help
-		and Input Transforms to determine whether the hook is being executed from
-		within a ScreenMan form. In that case, $D(DDS) evaluates to true.</P> 
+	 <H5><A NAME="DDS_Variable">DDS Variable</A></H5>
+	 <P>$D(DDS) can be checked within programming hooks, such as Executable Help
+		and INPUT Transforms, to determine whether the hook is being executed from
+		within a ScreenMan form. In that case, $D(DDS) evaluates to true.</P>
 	 <H5>Examples</H5> 
-	 <P><B>Example 1</B></P> 
-	 <P>Invoke the form EE FORM1 to edit the 15th entry in file #16500, as shown
-		below: </P> 
+	 <P><B>Example 1</B></P>
+	 <P>Invoke the form EE FORM1 to edit the 15th entry in (fictitious) File #16500,
+		as shown below: </P>
 	 <PRE>
     &gt;<B>S DDSFILE=16500,DA=15,DR=&quot;[EE FORM1]&quot; D ^DDS</B>
 </PRE> 
-	 <P><B><A NAME="Example2">Example 2</A></B></P> 
+	 <P><B><A NAME="Example2">Example 2</A></B></P>
 	 <P>As shown below, invoke the form EE FORM2 to edit the 31st subentry in
-		subfile #16100.01, for the 9th entry in file #16100; Page Number 11 is the
-		first page to present to the user; and have ScreenMan return DDSCHANG if it
-		detects a change to the database when the user exits: </P> 
+		(fictitious) Subfile #16100.01, for the 9th entry in (fictitious) File #16100;
+		Page Number 11 is the first page to present to the user; and have ScreenMan
+		return DDSCHANG if it detects a change to the database when the user exits: </P>
 	 <PRE>
     &gt;<B>S DDSFILE=16100,DDSFILE(1)=16100.01</B>
     &gt;<B>S DA=31,DA(1)=9,DR=&quot;[EE FORM2]&quot;</B>
@@ -252,7 +264,7 @@
 	 <P></P>	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- sm_dds.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>
