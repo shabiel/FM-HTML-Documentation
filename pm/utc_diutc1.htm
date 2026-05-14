@@ -102,8 +102,15 @@
 <!-- Content -->
     <H3><A NAME="navskip">Coordinated Universal Time (UTC) API</A></H3>
 	<HR CLASS="hrstyle"> 
-	<H4>$$UTC^DIUTC(): Return GMT in VA FileMan Internal Format with Time Zone Offset</H4> 
-	<P>The $$UTC^DIUTC API returns the Greenwich Mean Time (GMT) represented in standard VA FileMan internal date/time format with an internal three-digit time zone offset appended to the end. The calculation for the internal offset is:</P>
+	<H4>$$UTC^DIUTC(): Return GMT in VA FileMan Internal Format with Time Zone Offset</H4>
+	<H5>Reference Type</H5>
+	<P>Supported</P>
+	<H5>Category</H5>
+	<P>Coordinated Universal Time (UTC)</P>
+	<H5>ICR #</H5>
+	<P>6445</P>
+	<H5>Description</H5>
+	<P>The $$UTC^DIUTC API returns the Greenwich Mean Time (GMT) represented in standard VA FileMan internal date/time format with an internal <strong>three-digit</strong> time zone offset appended to the end. The calculation for the internal offset is:</P>
 	<ol>
 	  <li>
 	    Convert the external offset to minutes.
@@ -183,7 +190,7 @@
 		</TD> 
 		<TD VALIGN="TOP"
 		    width="90%"> 
-		  <P>(Required) Standard internal or external VA FileMan DateTime (e.g., NOW, T@12A). The Time portion of the input is required.</P>
+		  <P>(Required) Standard internal or external VA FileMan <strong>DATE/TIME</strong> (e.g., <strong>NOW</strong>, <strong>T@12A</strong>). The <strong>Time</strong> portion of the input is required.</P>
 		  <p><strong>NOTE:</strong> The <strong>NOW</strong> input parameter is based on the current system time. If <strong>NOW</strong> is passed in with a <strong>timezone</strong> and <strong>country</strong> input parameter that is different than the system&#8217;s time zone and country, inconsistent output may occur.</p>
 		</TD> 
 	  </TR> 
@@ -277,7 +284,7 @@
 	    <br>
 	    <br>
 	    &nbsp;&nbsp;&nbsp;&nbsp;
-	    Piece 1: GMT+offset in internal format (e.g, 3160105.080715416)
+	    Piece 1: GMT+offset in internal format (e.g., 3160105.080715416)
 	    <br>
         &nbsp;&nbsp;&nbsp;&nbsp;
         Piece 2: GMT+offset in external format [e.g., JAN 5,2016@08:07:15 (UTC-7:00)]
@@ -299,7 +306,7 @@
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;
         Piece 8: Institution Name from the INSTITUTION (#4) file (e.g., CHEYENNE VAMC). This piece is set to 
-		<strong>null</strong> if 
+		<strong>NULL</strong> if
 		<strong>timezone</strong> and <strong>country</strong> are passed in as 
 		input
 		<br>
@@ -448,7 +455,7 @@
 		</TD> 
 	  </TR> 
 	</TABLE> 
-	<P><strong>NOTE:</strong> All of the error messages returned from the $$UTC^DIUTC API are preceeded by a: <strong>-1^</strong>. For example, &#8220;<strong>-1^</strong>Invalid Country&#8221;.</P>
+	<P><strong>NOTE:</strong> All error messages returned from the $$UTC^DIUTC API are preceded by a: <strong>-1^</strong>. For example, &#8220;<strong>-1^</strong>Invalid Country&#8221;.</P>
 	<p>&nbsp;</p>
 	<HR CLASS="hrstyle"> 
 	<TABLE WIDTH="100%"
