@@ -7,7 +7,7 @@
 <!--Revised by Thom Blom, 08/05/03-->
 <!--Edited March 2007, Hardhats.org-->
 	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: TURNON^DIAUTL( )</TITLE>
+	 <TITLE>VA FileMan Programmer Manual: TURNON^DIAUTL()</TITLE>
 	 <META NAME="subject" CONTENT="VA FileMan V. 22.2 Programmer HTML Manual">
 	 <META NAME="keywords"
 	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer,auditing API,TURNON^DIAUTL,TURNON,DIAUTL">
@@ -32,8 +32,8 @@
 			  TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents"
 			  CLASS="menubarlink">Main</A> </TD> 
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+			 HREF="au_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Auditing API Chapter TOC">Chapter</A></TD>
 		  
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
 			CLASS="menubartext">See Also: </TD> 
@@ -50,32 +50,41 @@
 	 <!-- Content -->
 	 <H3><A NAME="navskip">Auditing API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>
-TURNON^DIAUTL( ): Utility to enable auditing</H4> 
-	 <P><p>This procedure turns on auditing for specified fields in a file
-  (except for Computed and Word-Processing fields) if auditing is not already
-  on.&nbsp; These changes
-are recorded in the Data Dictionary audit, if the file has Data-Dictionary
-auditing turned on.&nbsp; Also, input templates containing the changed fields
-are recompiled. 
-	 <P></P> 
-	 <H5>Format</H5> 
-	 <PRE>DO TURNON^DIAUTL(FILE,FIELDS)</PRE> 
-	 <H5><A NAME="input">Input Parameters</A></H5> 
+	 <H4>TURNON^DIAUTL(): Enable/Disable Auditing</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>Auditing</TD>
+	     <TD>4397</TD>
+	   </TR>
+	 </TABLE>
+	 <P>The TURNON^DIAUTL API turns on (or off) auditing for specified fields
+in a file (except for COMPUTED and WORD-PROCESSING fields). These changes
+are recorded in the Data Dictionary audit if the file has Data-Dictionary
+auditing turned on. Also, INPUT templates containing the changed fields
+are recompiled.</P>
+	 <H5>Format</H5>
+	 <PRE>TURNON^DIAUTL(file,field[,mode])</PRE>
+	 <H5><A NAME="input">Input Parameters</A></H5>
 	 <TABLE WIDTH="100%" BORDER="1"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  
-<td VALIGN=TOP><b>FILE</b></td>
+	  SUMMARY="This table is for formatting purposes only">
+		<TR>
 
-<td VALIGN=TOP COLSPAN="2">(Required) File number of a file which is being
+<td VALIGN=TOP><b>file</b></td>
+
+<td VALIGN=TOP COLSPAN="2">(Required) File number of a file that is being
 audited.&nbsp;</td>
 </tr>
 <tr>
-<td VALIGN=TOP><b>FIELD</b></td>
+<td VALIGN=TOP><b>field</b></td>
 
 <td VALIGN=TOP COLSPAN="2">(Required) Specifies which fields from the file
-will be forced on ("ALWAYS") for auditing.&nbsp; Can be one of the following:&nbsp;
+are forced on ("ALWAYS") for auditing.&nbsp; Can be one of the following:&nbsp;
 <ul>
 <li>
 A single field number.<br>
@@ -83,27 +92,42 @@ A single field number.<br>
 </li>
 
 <li>
-A list of field numbers, separated by semicolons.<br>
+A list of field numbers separated by semicolons.<br>
 <br>
 </li>
 
 <li>
-A range of field numbers, in the form M:N, where M and N are the end points
-of the inclusive range. All field numbers within this range will be audited.<br>
+A range of field numbers in the form M:N; where M and N are the end points
+of the inclusive range. All field numbers within this range are audited.<br>
 <br>
 </li>
 
 <li>
-<b>
-*</b> meaning, &quot;audit all fields.&quot;</li>
+An asterisk (<b>*</b>) meaning &quot;audit all fields.&quot;</li>
 </ul>
 </td>
 </tr>
-	 </TABLE> &nbsp; 
-	 <H5>Example</H5> 
-	 <P>Turn on auditing for all fields in File #999000 (except for Word-Processing
-and Computed fields).</P> 
-	 <PRE>    <B>&gt;D TURNON^DIAUTL(999000,&quot;*&quot;)</B></pre>
+<tr>
+<td VALIGN=TOP><b>mode</b></td>
+
+<td VALIGN=TOP COLSPAN="2">(Optional) This is an optional parameter. It
+defaults to "y," which means to turn on auditing.
+<ul>
+<li><b>y</b> (Default)&mdash;Yes, always audit. Turn auditing on.<br><br></li>
+<li><b>e</b>&mdash;Audit only when edited or deleted.<br><br></li>
+<li><b>n</b>&mdash;No, do not audit. Turn auditing off.</li>
+</ul>
+</td>
+</tr>
+	 </TABLE> &nbsp;
+	 <H5>Examples</H5>
+	 <P>To turn on auditing for the STOP CODE NUMBER (#8) field in the HOSPITAL
+LOCATION (#44) file:</P>
+	 <PRE>    <B>&gt;D TURNON^DIAUTL(44,8)</B></pre>
+	 <P>Or:</P>
+	 <PRE>    <B>&gt;D TURNON^DIAUTL(44,8,&quot;y&quot;)</B></pre>
+	 <P>To turn off auditing for that field:</P>
+	 <PRE>    <B>&gt;D TURNON^DIAUTL(44,8,&quot;n&quot;)</B></pre>
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- 

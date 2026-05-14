@@ -7,7 +7,7 @@
 <!--Revised by Thom Blom, 07/23/03-->
 <!--Edited March 2007, Hardhats.org-->
 	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: CHANGED^DIAUTL( )</TITLE>
+	 <TITLE>VA FileMan Programmer Manual: CHANGED^DIAUTL()</TITLE>
 	 <META NAME="subject" CONTENT="VA FileMan V. 22.2 Programmer HTML Manual">
 	 <META NAME="keywords"
 	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure and Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer,auditing API,CHANGED^DIAUTL( ),CHANGED,DIAUTL">
@@ -32,8 +32,8 @@
 			  TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents"
 			  CLASS="menubarlink">Main</A> </TD> 
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+			 HREF="au_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Auditing API Chapter TOC">Chapter</A></TD>
 		  
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
 			CLASS="menubartext">See Also: </TD> 
@@ -50,27 +50,37 @@
 	 <!-- Content -->
 	 <H3><A NAME="navskip">Auditing API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>
-CHANGED^DIAUTL( ): Historical Data Retriever</H4> 
-	 <P><p>This procedure returns a list of IENs of entries that have had audit
-  events within a specified time period. Optionally, the oldest value of each
-  audited field within that time period is returned with each entry.
-	 <P></P> 
-	 <H5>Format</H5> 
-	 <PRE>DO CHANGED^DIAUTL(FILE,FIELDS,FLAG,TARGET_ROOT,START_DATE,END_DATE)</PRE> 
+	 <H4>CHANGED^DIAUTL(): Retrieve Audit History</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>Auditing</TD>
+	     <TD>4397</TD>
+	   </TR>
+	 </TABLE>
+	 <P>The CHANGED^DIAUTL API returns a list of IENs of entries that have
+had audit events within a specified period. Optionally, the oldest value of each
+audited field within that period is returned with each entry.</P>
+	 <H5>Format</H5>
+	 <PRE>CHANGED^DIAUTL(file,fields[,flag],target_root[,start_date][,end_date])</PRE>
 	 <H5><A NAME="input">Input Parameters</A></H5> 
 	 <TABLE WIDTH="100%" BORDER="1"
 	  SUMMARY="This table is for formatting purposes only"> 
 		<TR> 
 		  
-<td VALIGN=TOP><b>FILE</b></td>
+<td VALIGN=TOP><b>file</b></td>
 
-<td VALIGN=TOP>(Required) File number of a file which is being
+<td VALIGN=TOP>(Required) File number of a file that is being
 audited.&nbsp;</td>
 </tr>
 
 <tr>
-<td VALIGN=TOP><b>FIELDS</b></td>
+<td VALIGN=TOP><b>fields</b></td>
 
 <td VALIGN=TOP>(Required) Specifies which fields from the audited
   file are to be examined for audit history.&nbsp; Can be one of the following:&nbsp;
@@ -81,110 +91,102 @@ A single field number.<br>
     </li>
 
 <li>
-A list of field numbers, separated by semicolons.<br>
+A list of field numbers separated by semicolons.<br>
 <br>
     </li>
 
 <li>
-A range of field numbers, in the form M:N, where M and N are the end points
+A range of field numbers, in the form M:N; where M and N are the end points
 of the inclusive range. All field numbers within this range are retrieved.<br>
 <br>
     </li>
 
 <li>
-<b>
-*</b> meaning, &quot;examine all audited fields.&quot;</li>
+Asterisk (<b>*</b>) meaning, &quot;examine all audited fields.&quot;</li>
   </ul>
 </td>
 </tr>
 
 <tr>
-<td><b>FLAG</b></td>
+<td><b>flag</b></td>
 
-<td>(Optional) "O" if the &quot;oldest&quot; values within the specified time
-  period are to be returned.&nbsp; Without
-the "O" parameter, the API returns only the entry numbers.</td>
+<td>(Optional) The O flag parameter if the &quot;oldest&quot; values within
+the specified period are to be returned.&nbsp; Without
+the O parameter, the API returns only the entry numbers.</td>
 </tr>
 
 <tr>
-<td VALIGN=TOP><b>TARGET_ROOT</b></td>
+<td VALIGN=TOP><b>target_root</b></td>
 
 <td VALIGN=TOP>(Required) The name of a closed root reference.&nbsp;</td>
 </tr>
 
 <tr>
-<td VALIGN=TOP><b>START_DATE</b></td>
+<td VALIGN=TOP><b>start_date</b></td>
 
-<td VALIGN=TOP>(Optional) Beginning date/time (FileMan format)
-of the auditing period.&nbsp; If no START_DATE is specified, the file's audit history will be scanned from its earliest
+<td VALIGN=TOP>(Optional) Beginning date/time, in VA FileMan internal format,
+of the auditing period.&nbsp; If no start_date is specified, the file's audit history is scanned from its earliest
   date/time.</td>
 </tr>
 
 <tr>
-<td valign="top"><b>END_DATE</b></td>
+<td valign="top"><b>end_date</b></td>
 
-<td>(Optional) Ending date/time (FileMan format) of the auditing period.&nbsp;If no END_DATE specified, the file's audit history will be scanned through
+<td>(Optional) Ending date/time, in VA FileMan internal format, of the auditing period.&nbsp;If no end_date specified, the file's audit history is scanned through
 its most recent date/time.</td>
 </tr>
 	 </TABLE> 
 
 
-	 <H5><A NAME="output">Output</A></H5> 
+	 <H5><A NAME="output">Output Parameter</A></H5>
 	 <TABLE WIDTH="100%" BORDER="1"
-	  SUMMARY="This table is for formatting purposes only"> 
+	  SUMMARY="This table is for formatting purposes only">
 		<tr>
-<td VALIGN=TOP><b>TARGET_ROOT</b></td>
+<td VALIGN=TOP><b>target_root</b></td>
 
-<td VALIGN=TOP>The output array is found in TARGET_ROOT(IEN)=&quot;&quot;
-<br>oldest values, if requested by the "O" parameter, are in
-  TARGET_ROOT(IEN,field#)</td>
+<td VALIGN=TOP>The output array is found in TARGET_ROOT(IEN)=&quot;&quot;.
+<br>The oldest values, if requested by the O parameter, are in
+  TARGET_ROOT(IEN,field#).</td>
 </tr>
-	 </TABLE> 
- <br>
-Note that CHANGED^DIAUTL can only retrieve what is recorded in the FileMan Audit file
-  (#1.1),&nbsp;
-and does not look at subfiles (multiple fields).&nbsp;
-Data entry events that happen before auditing is turned on for a particular field,&nbsp;are
-  not recorded.
+	 </TABLE>
+ <P><B>NOTE:</B> CHANGED^DIAUTL can only retrieve what is recorded in the VA FileMan
+  AUDIT (#1.1) file and does not look at subfiles (Multiple fields).
+Data entry events that happen before auditing is turned on for a particular field are
+  not recorded.</P>
 
-<p>Also, if the PURGE DATA AUDITS option is run, information
-from the audit trail is removed.
-<br>&nbsp;
+<P>Also, if the Purge Data Audits [DIAUDIT PURGE DATA] option is run, information
+from the audit trail is removed.</P>
 
 
-	 <h5>Examples</h5> 
-<h6>Example 1</h6>
-	 <P>
-Find which entries in File #999000 have been changed since yesterday.</P> 
+	 <H5>Examples</H5>
+<H6>Example 1</H6>
+	 <P>In this example, you want to find which entries in (fictitious) File #999000
+have been changed since yesterday.</P>
 	 <PRE>    <B>&gt;S %DT=&quot;&quot;,X=&quot;T-1&quot; D ^%DT,CHANGED^DIAUTL(999000,&quot;*&quot;,&quot;&quot;,&quot;^TMP($J)&quot;,Y)</B>
 
 &nbsp;&nbsp;&nbsp; ^TMP($J,7)=&quot;&quot;
 &nbsp;&nbsp;&nbsp; ^TMP($J,4878)=&quot;&quot;
-&nbsp;&nbsp;&nbsp; ^TMP($J,9899)=&quot;&quot;</pre>
+&nbsp;&nbsp;&nbsp; ^TMP($J,9899)=&quot;&quot;</PRE>
 
-	 <P>Three records have had audited events since yesterday at 12:01 AM.
-</PRE> 
+	 <P>From this example, you find that three records have had audited events
+since yesterday at 12:01 AM.</P>
 
 
-<h6>Example 2</h6>
-Find which NAMEs in File #999000 have ever been changed, and retrieve the
-original NAMEs.
-<pre>&nbsp;&nbsp;&nbsp; &gt;<b>D CHANGED^DIAUTL(999000,.01,&quot;O&quot;,&quot;ARRAY&quot;)&nbsp; ZW ARRAY</b>
+<H6>Example 2</H6>
+<P>In this example, you want to find which NAMEs in (fictitious) File #999000 have
+ever been changed and retrieve the original NAMEs.</P>
+<PRE>&nbsp;&nbsp;&nbsp; &gt;<B>D CHANGED^DIAUTL(999000,.01,&quot;O&quot;,&quot;ARRAY&quot;)&nbsp; ZW ARRAY</B> &lt;Enter&gt;
 
 &nbsp;&nbsp;&nbsp; ARRAY(344)=&quot;&quot;
 &nbsp;&nbsp;&nbsp; ARRAY(344,.01)=&quot;DELETED,DAVID&quot;
 &nbsp;&nbsp;&nbsp; ARRAY(477)=&quot;&quot;
-&nbsp;&nbsp;&nbsp; ARRAY(477,.01)=&quot;UNMARRIED,UNA&quot;</pre>
+&nbsp;&nbsp;&nbsp; ARRAY(477,.01)=&quot;UNMARRIED,UNA&quot;</PRE>
 
-Two records are found, because the audit status of the .01 field of this&nbsp;
-
-file is "EDITED OR DELETED".&nbsp; Entry 344 no longer exists.&nbsp; Entry 477 has a&nbsp;
-
-new married name.&nbsp; It is the EXTERNAL version of the old value that is returned.&nbsp;
-
-If the name were changed twice in the time period, the oldest value would be&nbsp;
-
-returned.
+<P>From this example, you find two records are found, because the audit status of
+the .01 field of this file is "EDITED OR DELETED". Entry 344 no longer exists.
+Entry 477 has a new married name. It is the EXTERNAL version of the old value
+that is returned. If the name was changed twice in the period, the oldest value
+would be returned.</P>
 	 
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">

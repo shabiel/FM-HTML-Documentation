@@ -1,63 +1,98 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<html><head>
-<!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by George Timson and Susan Strack, 04/04/02--><!--Revised by Thom Blom, 07/23/03--><!--Edited March 2007, Hardhats.org-->
-<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type"><title>VA FileMan Programmer Manual: CHANGED^DIAUTL( )</title>
+<HTML>
+  <HEAD>
+<!--VHA OI Health Systems Design & Development (HSD&D)-->
+<!--Oakland OIFO-->
+<!--Authored by George Timson and Susan Strack-->
+<!--Edited October 2016, Hardhats.org-->
+	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+	 <TITLE>VA FileMan Programmer Manual: ACCESSED^DIET</TITLE>
+	 <META NAME="subject" CONTENT="VA FileMan V. 22.2 Programmer HTML Manual">
+	 <META NAME="keywords"
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer,auditing API,ACCESSED^DIET,ACCESSED,DIET">
+	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css">
+  </HEAD>
+	<BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR>
+	<IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.2 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+<TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP">
+		<TR>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="au_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Auditing API Chapter TOC">Chapter</A></TD>
 
-<meta content="VA FileMan V. 22.2 Programmer HTML Manual" name="subject">
-<meta content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure and Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer,auditing API,CHANGED^DIAUTL( ),CHANGED,DIAUTL" name="keywords">
-<link href="programmer.css" type="text/css" rel="StyleSheet">
-</head>
-<body topmargin="0" style="background-color: white;">
-<br>
-<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.2 Programmer Manual Banner" border="0" height="29" width="429"> <br>
-<hr align="left" color="blue" width="429"> <br>
-<p>&nbsp;</p>
-<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
-<tbody>
-<tr>
-<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
-<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
-<td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.2 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
-<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
-<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.2 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
-<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.2 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
-</tr>
-</tbody>
-</table>
-<!-- Content -->
-<h4><big><big><a name="navskip">Auditing
-access
-to a record</a></big></big></h4>
-<hr class="hrstyle">
-<h4><span class="badge">22.2</span>&nbsp;DO
-ACCESSED^DIET(FILE,ENTRY)</h4>
-<h5><big><a name="input">Input Parameters</a></big></h5>
-<p>The entry point ACCESSED^DIET will record access to a file
-entry in the audit file. &nbsp; Each time this API is called a new
-entry is created in the Audit trail (File 1.1) for the FILE and ENTRY
-named by the calling parameters. &nbsp;Such "accessed" entries are
-set for the FILE's .01 field, and have a value of &nbsp;"i"
-("INQUIRED TO ENTRY") in Field .06 of the AUDIT File.</p>
-<br>
-<hr class="hrstyle">
-<p>&nbsp;</p>
-<table style="width: 1229px; height: 115px;" summary="This table is for formatting purposes only" border="1">
-<tbody>
-<tr>
-<td style="height: 45px;" valign="top"><b>FILE</b></td>
-<td style="height: 45px;" colspan="2" valign="top">(Required) File number of a file which is being
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD>
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.2 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.2 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD>
+		</TR>
+	 </TABLE>
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Auditing API</A></H3>
+	 <HR CLASS="hrstyle">
+	 <H4><span class="badge">22.2</span>&nbsp;ACCESSED^DIET(): Record Access to a File Entry</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>Auditing</TD>
+	     <TD>TBD</TD>
+	   </TR>
+	 </TABLE>
+	 <P>The ACCESSED^DIET API records access to a file entry in the audit file.
+Each time this API is called, a new entry is created in the Audit trail
+(File #1.1) for the file and entry named by the calling parameters. Such
+"accessed" entries are set for the file's .01 field, and have a value of
+"i" ("INQUIRED TO ENTRY") in Field .06 of the AUDIT file.</P>
+	 <H5>Format</H5>
+	 <PRE>ACCESSED^DIET(file,entry)</PRE>
+	 <H5><A NAME="input">Input Parameters</A></H5>
+	 <TABLE WIDTH="100%" BORDER="1"
+	  SUMMARY="This table is for formatting purposes only">
+		<TR>
+<td VALIGN=TOP><b>file</b></td>
+
+<td VALIGN=TOP COLSPAN="2">(Required) File number of a file that is being
 audited.&nbsp;</td>
 </tr>
 <tr>
-<td style="height: 64px;" valign="top"><b>ENTRY</b></td>
-<td style="height: 64px;" colspan="2" valign="top">(Required) Specifies which internal entry
-number in the File is being "looked at" by the current user (DUZ) at
+<td VALIGN=TOP><b>entry</b></td>
+
+<td VALIGN=TOP COLSPAN="2">(Required) Specifies which internal entry
+number in the file is being "looked at" by the current user (DUZ) at
 the current moment.</td>
 </tr>
-</tbody>
-</table><p></p>
-<p>&nbsp;</p>
-<hr class="hrstyle"><!-- sm_intro.htm -->
-<p align="center">Reviewed/Updated: October 2016</p>
-<p>&nbsp;</p>
-</body></html>
+	 </TABLE>
+	 <H5>Output</H5>
+	 <P>None</P>
+	 <P>&nbsp;</P>
+	 <HR CLASS="hrstyle">
+	 <!-- au_access.htm -->
+	 <P ALIGN="CENTER">Reviewed/Updated: October 2016</P>
+	 <P>&nbsp;</P>
+
+  </BODY>
+</HTML>

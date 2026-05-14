@@ -7,7 +7,7 @@
 <!--Revised by Thom Blom, 07/23/03-->
 <!--Edited March 2007, Hardhats.org-->
 	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: LAST^DIAUTL</TITLE>
+	 <TITLE>VA FileMan Programmer Manual: LAST^DIAUTL()</TITLE>
 	 <META NAME="subject" CONTENT="VA FileMan V. 22.2 Programmer HTML Manual">
 	 <META NAME="keywords"
 	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer,auditing API,LAST^DIAUTL,LAST,DIAUTL">
@@ -32,8 +32,8 @@
 			  TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents"
 			  CLASS="menubarlink">Main</A> </TD> 
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="dba_frm.htm" TARGET="_top" CLASS="menubarlink"
-			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</A></TD>
+			 HREF="au_frm.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Auditing API Chapter TOC">Chapter</A></TD>
 		  
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
 			CLASS="menubartext">See Also: </TD> 
@@ -50,32 +50,42 @@
 	 <!-- Content -->
 	 <H3><A NAME="navskip">Auditing API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>
-LAST^DIAUTL( ): Who last changed data</H4> 
-  <p>This extrinsic function uses the audit trail to retrieve the last user
-who touched a particular field value, and the date/time when this editing occurred.
-	 <P></P> 
-	 <H5>Format</H5> 
-	 <PRE>$$LAST^DIAUTL(FILE,ENTRY,FIELD)</PRE> 
+	 <H4>LAST^DIAUTL(): Retrieve Last Person Who Changed Data</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>Auditing</TD>
+	     <TD>4397</TD>
+	   </TR>
+	 </TABLE>
+	 <P>The LAST^DIAUTL API uses the audit trail to retrieve the last user
+who touched a particular field value, and the date/time when this editing occurred.</P>
+	 <H5>Format</H5>
+	 <PRE>$$LAST^DIAUTL(file,entry,field)</PRE>
 	 <H5><A NAME="input">Input Parameters</A></H5> 
 	 <TABLE WIDTH="100%" BORDER="1"
 	  SUMMARY="This table is for formatting purposes only"> 
 		<TR> 
 		  
-<td VALIGN=TOP><b>FILE</b></td>
+<td VALIGN=TOP><b>file</b></td>
 
-<td VALIGN=TOP COLSPAN="2">(Required) File number of a file which is being
+<td VALIGN=TOP COLSPAN="2">(Required) File number of a file that is being
 audited.&nbsp;</td>
 </tr>
 
 <tr>
-<td><b>ENTRY</b></td>
+<td><b>entry</b></td>
 
 <td>(Required) Entry number in the audited file.</td>
 </tr>
 
 <tr>
-<td VALIGN=TOP><b>FIELD</b></td>
+<td VALIGN=TOP><b>field</b></td>
 
 <td VALIGN=TOP COLSPAN="2">(Required) Specifies which fields in the audited file are to be examined for audit history.&nbsp; Can be one of the following:&nbsp;
 <ul>
@@ -85,34 +95,35 @@ A single field number.<br>
 </li>
 
 <li>
-A list of field numbers, separated by semicolons.<br>
+A list of field numbers separated by semicolons.<br>
 <br>
 </li>
 
 <li>
-A range of field numbers, in the form M:N, where M and N are the end points
+A range of field numbers, in the form M:N; where M and N are the end points
 of the inclusive range. All field numbers within this range are retrieved.<br>
 <br>
 </li>
 
 <li>
-<b>
-*</b> for all fields.</li>
+Asterisk (<b>*</b>) for all fields.</li>
 </ul>
 </td></tr>
-	 </TABLE> 
-	 <H5><A NAME="output">Output</A></H5> 
-	 <TABLE WIDTH="100%" BORDER="1"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-Returns a string, delimited by an up-arrow.&nbsp; The string is null if
-there is no audit history on file for the given fields in the given entry.&nbsp;
-If there is a history, the first up-arrow piece of the returned string is
-the (FileMan-format) date/time of the most recent audited event, and the
-second up-arrow piece is the user number (DUZ) of the user who made that
-most recent change.
-		</TR> 
-	 </TABLE> 
+	 </TABLE>
+	 <H5><A NAME="output">Output</A></H5>
+	 <P>Returns a string, delimited by a caret (^):</P>
+	 <ul>
+	   <li>String is NULL if there is no audit history on file for the given
+fields in the given entry.</li>
+	   <li>If there is a history:
+	     <ul>
+	       <li>First caret piece of the returned string is the VA FileMan
+internal format of the date/time of the most recent audited event.</li>
+	       <li>Second caret piece is the user number (DUZ) of the user who made
+that most recent change.</li>
+	     </ul>
+	   </li>
+	 </ul>
 	 <H5>Example</H5> 
 	 <P>
 Find who last changed demographics of entry number 666 in File #2.</P> 
