@@ -1,60 +1,105 @@
-<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<html><head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-  <title>VA FileMan Programmer Manual: EN^DITP</title><meta name="subject" content="VA FileMan V. 22.2 Programmer HTML Manual">
-  <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,ditp">
-  <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
-<body topmargin="0" bgcolor="white">
-<br>
-<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.2 Programmer Manual Banner" border="0" height="29" width="429"> <br>
-<hr align="left" color="blue" width="429"> <br>
-<p>&nbsp;</p>
-<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
-  <tbody>
-    <tr>
-      <td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
-      <td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
-      <td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.2 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
-      <td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
-      <td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.2 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
-      <td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.2 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
-    </tr>
-  </tbody>
-</table>
-<!-- Content -->
-<h3><big><big><a name="navskip">Database Server (DBS) API</a></big></big></h3>
-<hr class="hrstyle">
-<h4><br>&nbsp;<big><big>EN^DITP: Repointer</big></big><br><br><span style="font-weight: normal;">This
-procedure goes through all files that have fields or sub-fields
-pointing to a particular FileMan File.&nbsp; It looks for pointers to
-particular entries in that File, and either re-points each entry to a
-different specified entry, or deletes such pointers.</span><br><br><big>Format</big><br></h4><pre>DO EN^DITP(FILE,LIST))&nbsp;&nbsp;&nbsp; <br></pre><h4><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</h4><h5><big><big>Input Parameters</big></big></h5>
-<table summary="This table is for formatting purposes only" border="1" width="100%">
-  <tbody>
-    <tr>
-      <td valign="top"><b>FILE</b></td>
-      <td colspan="2" valign="top">
-      <p>(Required) A file number.</p>
-      </td>
-    </tr>
-    
-    <tr>
-      <td valign="top"><b>LIST</b></td>
-      <td colspan="2" valign="top">(Required) Array containing list of entries to be re-pointed or deleted.</td>
-    </tr>
-  </tbody>
-</table>
-<h4><br><br>&nbsp;&nbsp;&nbsp;&nbsp; <br><big>Examples</big><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-<p><b>Example 1</b></p>
-<h4><span style="font-weight: normal;">
-In this example, we want all pointers to entry `38 in File 9999999.14
-to be re-pointed to entry `103.&nbsp; `103 must exist.</span></h4><p> </p>
-<pre>&gt;<span style="font-weight: bold;">S GFT(1)="38^103"<br></span>
-&gt;D EN^DITP(9999999.14,.GFT)</pre>
-<p><b></b></p><p><b>Example 2</b></p>
-<h4><span style="font-weight: normal;">In this example, we want all pointers to entries `38&nbsp; and `666 in File 9999999.14 to be deleted. </span></h4><p> </p>
-<pre>&gt;<b>S GFT(1)="38^@",GFT(2)="666^@"</b><br>
-&gt;<span style="font-weight: bold;">D EN^DITP(9999999.14,.GFT)</span></pre><br>
-<p align="center">Reviewed/Updated: August 2017</p>
-<p>&nbsp;</p>
-</body></html>
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Programmer Manual: EN^DITP</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan V. 22.2 Programmer HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,File Pointer Maintenance,EN^DITP,DITP,repoint,delete,pointers,api">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="programmer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.2 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP">
+		<TR>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="index.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents">Chapter</A></TD>
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD>
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.2 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.2 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD>
+		</TR>
+	 </TABLE>
+	 <!-- Content -->
+	 <H3><A NAME="navskip">File Pointer Maintenance API</A></H3>
+	 <HR CLASS="hrstyle">
+	 <H4>EN^DITP(): Repoint or Delete Existing File Entry Points</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>File Pointer Maintenance</TD>
+	     <TD>6875</TD>
+	   </TR>
+	 </TABLE>
+	 <H5>Description</H5>
+	 <P>The <B>EN^DITP</B> API processes all files that have fields or subfields pointing to a particular VA FileMan file. It looks for <B>POINTER</B>s to entries in that file and does either of the following:</P>
+	 <UL>
+	   <LI>Repoints each entry to a different specified entry.</LI>
+	   <LI>Deletes the <B>POINTER</B>s.</LI>
+	 </UL>
+	 <P><B>NOTE:</B> This API was released with VA FileMan Patch DI*22.2*10.</P>
+	 <H5>Format</H5>
+	 <PRE>    EN^DITP(FILE,.LIST)</PRE>
+	 <H5>Input Parameters</H5>
+	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="This table is for formatting purposes only">
+		<TR>
+		  <TD VALIGN="TOP" WIDTH="20%"><B>file</B></TD>
+		  <TD VALIGN="TOP">(Required) VA FileMan file number.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>.list</B></TD>
+		  <TD VALIGN="TOP">(Required) Array (passed by reference) containing list of entries to be repointed or deleted.</TD>
+		</TR>
+	 </TABLE>
+	 <H5>Output</H5>
+	 <P>None.</P>
+	 <H5>Examples</H5>
+	 <P><B>Example 1</B></P>
+	 <P>In this example, you want to repoint all <B>POINTER</B>s to entry <B>`38</B> in (fictitious) File #9999999.14 to entry <B>`103</B>. <B>`103</B> <I>must</I> exist.</P>
+	 <PRE>
+&gt;S GFT(1)=&quot;38^103&quot;
+&gt;D EN^DITP(9999999.14,.GFT)
+	 </PRE>
+	 <P><B>Example 2</B></P>
+	 <P>In this example, you want to delete all <B>POINTER</B>s to entries <B>`38</B> and <B>`666</B> in (fictitious) File #9999999.14.</P>
+	 <PRE>
+&gt;S GFT(1)=&quot;38^@&quot;
+&gt;S GFT(2)=&quot;666^@&quot;
+&gt;D EN^DITP(9999999.14,.GFT)
+	 </PRE>
+	 <P>&nbsp;</P>
+	 <HR CLASS="hrstyle">
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	 <P>&nbsp;</P>
+  </BODY>
+</HTML>
