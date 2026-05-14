@@ -1,82 +1,115 @@
-<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
-<html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Strack Susan, 12/03/02--><!--Edited March 2007, Hardhats.org-->
-
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Programmer Manual: FILESEC^DDMOD</title>
-
-<meta name="subject" content="VA FileMan V. 22.2 Programmer HTML Manual">
-<meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,filesec^ddmod,ddmod">
-<link rel="StyleSheet" type="text/css" href="programmer.css"></head>
-<body topmargin="0" style="background-color: white;">
-<br>
-<img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.2 Programmer Manual Banner" border="0" height="29" width="429"> <br>
-<hr align="left" color="blue" width="429"> <br>
-<p>&nbsp;</p>
-<table class="tdstyle" summary="This table is for formatting purposes only" valign="TOP" border="0" cellpadding="3" cellspacing="0" height="1" width="100%">
-<tbody>
-<tr>
-<td class="menubartext" align="left" height="1" valign="bottom" width="10%">Contents:</td>
-<td align="left" height="1" valign="bottom" width="7%"> <a href="index.htm" target="_top" title="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents" class="menubarlink">Main</a> </td>
-<td align="left" height="1" valign="bottom" width="17%"><a href="dba_frm.htm" target="_top" class="menubarlink" title="VA FileMan V. 22.2 Programmer HTML Manual: Database Server (DBS) API Chapter TOC">Chapter</a></td>
-<td class="menubartext" align="left" height="1" valign="bottom" width="10%">See Also: </td>
-<td align="left" height="1" valign="bottom" width="28%"><a href="../u1/index.htm" target="_top" title="VA FileMan V. 22.2 Getting Started HTML Manual" class="menubarlink">Getting Started Manual</a></td>
-<td colspan="4" align="left" height="1" valign="bottom" width="28%"> <a href="../u2/index.htm" target="_top" title="VA FileMan V. 22.2 Advanced User HTML Manual" class="menubarlink">Advanced User Manual</a></td>
-</tr>
-</tbody>
-</table>
-<!-- Content -->
-<h3><a name="navskip">Database Server (DBS) API</a></h3>
-<hr class="hrstyle">
-<h4><span class="badge">22.2</span>BUILDNEW^DIBTED: Create a new SORT Template</h4>
-<p>This entry point will silently create a sort template.</p>
-<br>
-<h5><font size="+1">Format</font><span style="font-family: monospace;"></span></h5>
-<h5><span style="font-family: monospace;"></span>
-<span style="font-size: 11pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;">DO
-BUILDNEW^DIBTED(OUT,FILE,ARRAY,NAME) </span></h5>
-<h5><font size="+1">Input Parameters</font></h5>
-<table summary="This table is for formatting purposes only" border="1" width="100%">
-<tbody>
-<tr><td style="font-weight: bold;">OUT</td><td>(Required)&nbsp;Call-by-reference variable for return value.</td></tr><tr>
-<td width="185"><b>FILE</b></td>
-<td width="524">(Required) File number.&nbsp;</td>
-</tr>
-<tr>
-<td valign="top" width="185"><b>ARRAY</b></td>
-<td width="524">
-<p>(Required) Closed-root name of a numbered array of text that
-looks like the dialog used to build a SORT TEMPLATE, as in the FileMan
-<a href="../u2/ut_templ.htm#sortfields">TEMPLATE EDIT</a> Option.</p>
-
-</td>
-</tr>
-<tr>
-<td width="185"><b>NAME</b></td>
-<td width="524">
-<p>(Optional) The name of the new SORT TEMPLATE being created.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h5><font size="+1">Output</font></h5>
-<p>The internal number of the SORT TEMPLATE created in File .401,
-concatenated with its NAME, as in the return value "Y" from ^DIC. &nbsp;</p><p> -1 if error.</p>
-<h5></h5>
-<p><b>Example</b></p><p>Create a SORT TEMPLATE named 'ZZTEST' that will sort the PTF file &nbsp;(File 45) by STATUS and within STATUS by PATIENT.</p>
-<p>GFT(1)="SORT BY: @STATUS"<br>GFT(2)="From: 0" <br>GFT(3)="To: 1"<br>GFT(4)=" Do NOT ask range of values
-"<br>GFT(5)="&nbsp; &nbsp;WITHIN STATUS, SORT BY: PATIENT"<br>GFT(6)="&nbsp; &nbsp;From: "<br>GFT(7)="&nbsp; &nbsp;To:"</p><pre>. . . .<big><big><br>DO BUILDNEW^DIBTED(.GFTOUT,45,"GFT","ZZTEST")<br><br>GFTOUT=7889^ZZTEST^1</big></big><br><br></pre>
-<pre><br></pre>
-<h5>Error Codes Returned</h5>
-<table summary="This table is for formatting purposes only" border="1" width="100%">
-<tbody>
-<tr>
-<td width="71"><span style="text-decoration: underline;"><span style="font-weight: bold;"></span></span>-1</td>
-<td width="0">LINE n OF TEMPLATE COULD NOT BE
-PROCESSED</td>
-</tr>
-</tbody>
-</table>
-<p></p>
-<p>&nbsp;</p>
-<hr class="hrstyle"><!-- db_ddmo3.htm -->
-<p align="center">Reviewed/Updated: October 2016</p>
-</body></html>
+<HTML>
+  <HEAD>
+<!--Office of Information and Technology (OIT)-->
+<!--Oakland OITFO-->
+    <META HTTP-EQUIV="Content-Type"
+          CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>VA FileMan Programmer Manual: BUILDNEW^DIBTED</TITLE>
+	<META NAME="subject"
+	      CONTENT="VA FileMan V. 22.2 Programmer HTML Manual">
+	<META NAME="keywords"
+	      CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,Create SORT Templates Silently,SORT Template Builder,BUILDNEW^DIBTED,DIBTED,SORT template,api">
+	<LINK REL="StyleSheet"
+	      TYPE="text/css"
+	      HREF="programmer.css">
+  </HEAD>
+  <BODY TOPMARGIN="0" BGCOLOR="white">
+	<BR><IMG SRC="common/fileman_pm_heading.gif" BORDER="0" WIDTH="429" HEIGHT="29"
+	ALT="VA FileMan V. 22.2 Programmer Manual Banner">
+	<BR>
+	<HR ALIGN="left" WIDTH="429" COLOR="blue">
+	<BR>
+	<P>&nbsp;</P>
+    <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="3"
+	  CLASS="tdstyle" SUMMARY="This table is for formatting purposes only" HEIGHT="1"
+	  VALIGN="TOP">
+		<TR>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">Contents:</TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="7%">
+			 <A HREF="index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents"
+			  CLASS="menubarlink">Main</A> </TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
+			 HREF="index.htm" TARGET="_top" CLASS="menubarlink"
+			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents">Chapter</A></TD>
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
+			CLASS="menubartext">See Also: </TD>
+		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="28%"><A
+			 HREF="../u1/index.htm" TARGET="_top"
+			 TITLE="VA FileMan V. 22.2 Getting Started HTML Manual"
+			 CLASS="menubarlink">Getting Started Manual</A></TD>
+		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" COLSPAN="4" WIDTH="28%">
+			 <A HREF="../u2/index.htm" TARGET="_top"
+			  TITLE="VA FileMan V. 22.2 Advanced User HTML Manual"
+			  CLASS="menubarlink">Advanced User Manual</A></TD>
+		</TR>
+	 </TABLE>
+	 <!-- Content -->
+	 <H3><A NAME="navskip">Create SORT Templates Silently API</A></H3>
+	 <HR CLASS="hrstyle">
+	 <H4>BUILDNEW^DIBTED(): SORT Template Builder</H4>
+	 <H5>Reference Type</H5>
+	 <P>Supported</P>
+	 <H5>Category</H5>
+	 <P>Create Sort Templates Silently</P>
+	 <H5>ICR #</H5>
+	 <P>TBD</P>
+	 <H5>Description</H5>
+	 <P>The <B>BUILDNEW^DIBTED</B> API silently creates an entry in the SORT TEMPLATE (#.401) file. <B>SORT</B> templates can be used for any purpose; however, you primarily use them with the <A HREF="db_dic_l.htm" CLASS="bodylink">LIST^DIC(): Lister</A> API. The <B>SORT</B> templates created &#8220;on-the-fly&#8221; by the <B>BUILDNEW^DIBTED</B> API can be used in the <A HREF="db_dic_l.htm" CLASS="bodylink">LIST^DIC(): Lister</A> API in conjunction with the <B>X</B> flag to control the output of that procedure.</P>
+	 <H5>Format</H5>
+	 <PRE>    BUILDNEW^DIBTED(.RETURN,FILE,SORT_CRITERIA,TEMPLATE_NAME)</PRE>
+	 <H5>Input Parameters</H5>
+	 <TABLE BORDER="1" WIDTH="100%" SUMMARY="This table is for formatting purposes only">
+		<TR>
+		  <TD VALIGN="TOP" WIDTH="20%"><B>.return</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required) This parameter is passed by reference. It contains the result of the API call.</P>
+			 <P>Possible returned values are:</P>
+			 <UL>
+			   <LI><B>-1</B>&#8212;Failure; no returned error message.</LI>
+			   <LI><B>-1^error</B>&#8212;Failure; with a returned error message.</LI>
+			   <LI><B>Template_IEN^Template_Name^1</B>&#8212;Success; with a <I>new</I> entry in the SORT TEMPLATE (#.401) file at <B>Template_IEN</B> and with the name indicated. The name should be the <B>SORT</B> template name passed into the API in the <B>template_name</B> parameter.</LI>
+			   <LI><B>Template_IEN^Template_Name</B>&#8212;Success; with an <I>existing</I> entry in the SORT TEMPLATE (#.401) file being overwritten with the new sort criteria. The <B>SORT</B> template name passed into the API already existed in the SORT TEMPLATE (#.401) file.</LI>
+			 </UL>
+		  </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>file</B></TD>
+		  <TD VALIGN="TOP">(Required) Number of the file on which the <B>SORT</B> template is created.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>sort_criteria</B></TD>
+		  <TD VALIGN="TOP">(Required) Name of the array containing the sort criteria. The array should be subscripted with positive numbers. The contents of the array <I>must</I> match exactly the format expected by the <B>SORT</B> template engine. The best way for the developer to create the array is to make a <B>SORT</B> template using the <B>Print File Entries</B> [DIPRINT] option and copy the array produced. The properly formatted elements of the array can be found using the <B>Template Edit</B> [DITEMP] option on the second page of the screen mode form.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>template_name</B></TD>
+		  <TD VALIGN="TOP">(Required) Name you want to give the <B>SORT</B> template. Do <I>not</I> include brackets. If a <B>SORT</B> template with that name already exists, it is overwritten with the new sort criteria.</TD>
+		</TR>
+	 </TABLE>
+	 <H5>Output</H5>
+	 <P>The primary output is the creation of a new <B>SORT</B> template. A description of the result of the call is returned in the <B>.return</B> parameter as described in the &#8220;Input Parameters&#8221; section.</P>
+	 <H5>Example</H5>
+	 <P>The example below illustrates the creation of a <B>SORT</B> template using <B>BUILDNEW^DIBTED</B> API. Note the specific spacing in the nodes of <B>SORT()</B>.</P>
+	 <P>The <B>RET</B> variable returns the IEN of the entry in the SORT TEMPLATE (#.401) file (i.e., <B>922</B>) as well as the name of the new <B>SORT</B> template, which is the same name passed into the API.</P>
+	 <P>The &#8220;<B>1</B>&#8221; in the third piece of <B>RET</B> indicates that a new template was created. The <A HREF="db_dic_l.htm" CLASS="bodylink">LIST^DIC(): Lister</A> call makes use of the newly created template.</P>
+	 <P><B>NOTE:</B> Brackets are added to the Template Name for the <A HREF="db_dic_l.htm" CLASS="bodylink">LIST^DIC(): Lister</A> call.</P>
+	 <PRE>
+&gt;S SORT(1)=&quot;SORT BY: -COUNT(COUNTY)&quot;
+&gt;S SORT(2)=&quot;FROM:&quot;
+&gt;S SORT(3)=&quot;TO:&quot;
+&gt;S SORT(4)=&quot;   WITHIN COUNT(COUNTY), SORT BY: $E(NAME,1,3)=&quot;&quot;NEW&quot;&quot;&quot;
+&gt;S FILE=5
+&gt;N RET
+&gt;S TNAME=&quot;ZZD STATE SORT 1&quot;
+&gt;D BUILDNEW^DIBTED(.RET,FILE,$NA(SORT),TNAME)
+&gt;W RET
+922^ZZD STATE SORT 1^1
+&gt;D LIST^DIC(FILE,,&quot;.01;COUNT(COUNTY)&quot;,&quot;X&quot;,,,,&quot;[ZZD STATE SORT 1]&quot;)
+	 </PRE>
+	 <P>&nbsp;</P>
+	 <HR CLASS="hrstyle">
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
+	 <P>&nbsp;</P>
+  </BODY>
+</HTML>
