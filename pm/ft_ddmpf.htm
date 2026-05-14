@@ -48,10 +48,17 @@
 	 <!-- Content -->
 	 <H3><A NAME="navskip">Import and Export Tools API</A></H3><HR
 	 CLASS="hrstyle"> 
-	 <H4>FILE^DDMP: Data Import</H4> 
-	 <P>This procedure imports data from ASCII host files into VA FileMan file
+	 <H4>FILE^DDMP: Data Import</H4>
+	 <H5>Reference Type</H5>
+	 <P>Supported</P>
+	 <H5>Category</H5>
+	 <P>Import and Export Tools</P>
+	 <H5>ICR #</H5>
+	 <P>2648</P>
+	 <H5>Description</H5>
+	 <P>The <B>FILE^DDMP</B> API imports data from ASCII host files into VA FileMan file
 		entries. Each record (line of data) in the host file is stored as a new entry
-		in a specified FileMan file. </P> 
+		in a specified VA FileMan file. </P>
 	 <P>For additional information about the Import and Export Tools, see the
 		"<A HREF="../u2/ei_frm.htm" TARGET="_top"
 		TITLE="Import and Export Tools" CLASS="bodylink">Import and Export Tools</A>"
@@ -156,8 +163,8 @@
 			 <P>(Optional) Set to the name of the device (as stored in the DEVICE
 				file) on which to print the Import Report. This pre-selects the output device.
 				You can also set CONTROL("IOP") to match any of the additional formats for the
-				IOP input variable recognized by ^%ZIS entry point (see the Kernel Systems
-				Manual for more information on ^%ZIS and IOP).</P> Default is to ask the user
+				IOP input variable recognized by the ^%ZIS API (see the <I>Kernel 8.0 Systems
+				Management: Device Handler User Guide</I> for more information on ^%ZIS and IOP).</P> Default is to ask the user
 			 for output device.</TD> 
 		</TR> 
 		<TR> 
@@ -236,7 +243,7 @@
     S FIELDS=&quot;.01;14;14&quot;
     S FIELDS(16100.014)=&quot;.01;1&quot;
     S SOURCE(&quot;FILE&quot;)=&quot;PEOPLE2.CSV&quot;
-    S SOURCE(&quot;PATH&quot;)=&quot;VA6$:[SMITH]&quot;
+    S SOURCE(&quot;PATH&quot;)=&quot;VA6$:[FMPERSON]&quot;
     D FILE^DDMP(FILE,.FIELDS,.CONTROL,.SOURCE,&quot;EXCEL(COMMA)&quot;)</PRE> 
 	 <P>The import data is in external format, so the call to FILE^DDMP uses the
 		E flag. The data in the import file contains records of five comma-delimited

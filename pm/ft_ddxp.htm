@@ -48,10 +48,17 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Import and Export Tools API</A></H3><HR
 	 CLASS="hrstyle"> 
-	 <H4>EXPORT^DDXP: Data Export</H4> 
-	 <P>This procedure exports data from VA FileMan files into ASCII host files.
-		Each entry in a specified FileMan file is stored as a line of data in the host
-		file. </P> 
+	 <H4>EXPORT^DDXP: Data Export</H4>
+	 <H5>Reference Type</H5>
+	 <P>Supported</P>
+	 <H5>Category</H5>
+	 <P>Import and Export Tools</P>
+	 <H5>ICR #</H5>
+	 <P>TBD</P>
+	 <H5>Description</H5>
+	 <P>The <B>EXPORT^DDXP</B> API exports data from VA FileMan files into ASCII host files.
+		Each entry in a specified VA FileMan file is stored as a line of data in the host
+		file. </P>
 	 <P>For additional information about the Import and Export Tools, see the
 		"<A HREF="../u2/ei_frm.htm" TARGET="_top"
 		TITLE="Import and Export Tools" CLASS="bodylink">Import and Export Tools</A>"
@@ -212,7 +219,7 @@ SORT_TEMPLATE,[.]FR,[.]TO,.DIS,[.]DISTOP,IOP,DQTIME)</PRE>
 	 <P>This example shows the special case of the AUDIT file.</P> 
 	 <P>Because users may want to export information from the AUDIT file (1.1),
 		a special case has been created. All parameters that are to be passed remain
-		the same as abovve, EXCEPT for the FILE parameter. In this special case, the
+		the same as above, EXCEPT for the FILE parameter. In this special case, the
 		format is as follows:</P> 
 	 <PRE>    FILE &quot;1.1^&lt;file number of audited file&gt;&quot;</PRE> 
 	 <P>Here is an example:</P> 
@@ -291,37 +298,37 @@ SORT_TEMPLATE,[.]FR,[.]TO,.DIS,[.]DISTOP,IOP,DQTIME)</PRE>
 
 </PRE> 
 	 <P><B>Example Routine and Output:</B></P> 
-	 <PRE>    ZZSONPAD -- 
-            ;SFISC/SO-Sample Export API Usage ;7:18 AM  1 APR 2000 
-           ;;1.0 
-           N %DT 
-           S %DT=&quot;AEPX&quot; 
-           S %DT(&quot;A&quot;)=&quot;Enter Beginning of previous Month: &quot; 
-           D ^%DT 
-           I Y&lt;1 Q 
-           S FR=&quot;,&quot;_$P(Y,&quot;.&quot;) 
-           S %DT=&quot;AEPX&quot; 
-           S %DT(&quot;A&quot;)=&quot;Enter End of previous Month: &quot; 
-           D ^%DT 
-           I Y&lt;1 Q 
-           S TO=&quot;,&quot;_$P(Y,&quot;.&quot;) 
-           K %DT 
-           D EXPORT^DDXP(2,&quot;ZZSO PATIENT ADDRESS X&quot;,,&quot;ZZSO NEW PATIENTS&quot;,FR,T 
-            O) 
-           Q FM22 &gt;D ^ZZSONPAD 
- 
+	 <PRE>    ZZSONPAD --
+            ;SFISC/SO-SAMPLE EXPORT API USAGE ;7:18 AM  1 APR 2000
+           ;;1.0
+           N %DT
+           S %DT=&quot;AEPX&quot;
+           S %DT(&quot;A&quot;)=&quot;ENTER BEGINNING OF PREVIOUS MONTH: &quot;
+           D ^%DT
+           I Y&lt;1 Q
+           S FR=&quot;,&quot;_$P(Y,&quot;.&quot;)
+           S %DT=&quot;AEPX&quot;
+           S %DT(&quot;A&quot;)=&quot;ENTER END OF PREVIOUS MONTH: &quot;
+           D ^%DT
+           I Y&lt;1 Q
+           S TO=&quot;,&quot;_$P(Y,&quot;.&quot;)
+           K %DT
+           D EXPORT^DDXP(2,&quot;ZZSO PATIENT ADDRESS X&quot;,,&quot;ZZSO NEW PATIENTS&quot;,FR,T
+            O)
+           Q FM22 &gt;D ^ZZSONPAD
 
-    Enter Beginning of previous Month: 3/1/00  (MAR 01, 2000) Enter End of
-    previous Month: 3/31/00  (MAR 31, 2000) DEVICE:   Telnet terminal 
-    &quot;BIRD,TWEETY&quot;,&quot;123 TREE ST.&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;94521&quot;, 
-    &quot;BUNNY,BUGS&quot;,&quot;123 CARROT ST&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;90041&quot;, 
-    &quot;CAT,SYLVESTER&quot;,&quot;132 ANY ST&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;98765&quot;, 
-    &quot;DUCK,DAFFY&quot;,&quot;301 Howard St.&quot;,&quot;San Francisco&quot;,&quot;CALIFORNIA&quot;,&quot;94105&quot;, 
-    &quot;LASVEGAS,LEACH&quot;,&quot;111 LAS VEGAS BLVD.&quot;,&quot;LAS VEGAS&quot;,&quot;NEVADA&quot;,&quot;89101&quot;, 
-    &quot;RUNNER,ROAD&quot;,&quot;234 ROAD ST.&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;94077&quot;, 
-    &quot;SAM,YOSEMITE&quot;,&quot;234 YOSEMITE&quot;,&quot;SAN DIEGO&quot;,&quot;CALIFORNIA&quot;,&quot;98765&quot;, 
 
-</PRE> 
+    ENTER BEGINNING OF PREVIOUS MONTH: 3/1/00  (MAR 01, 2000) ENTER END OF
+    PREVIOUS MONTH: 3/31/00  (MAR 31, 2000) DEVICE:   TELNET TERMINAL
+    &quot;FMPATIENT,FIVE&quot;,&quot;111 FIVE BLVD.&quot;,&quot;LAS VEGAS&quot;,&quot;NEVADA&quot;,&quot;89101&quot;,
+    &quot;FMPATIENT,FOUR&quot;,&quot;301 FOUR ST.&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;99999&quot;,
+    &quot;FMPATIENT,ONE&quot;,&quot;123 ONE ST.&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;99999&quot;,
+    &quot;FMPATIENT,SEVEN&quot;,&quot;234 SEVEN&quot;,&quot;SAN DIEGO&quot;,&quot;CALIFORNIA&quot;,&quot;99999&quot;,
+    &quot;FMPATIENT,SIX&quot;,&quot;234 SIX ST.&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;99999&quot;,
+    &quot;FMPATIENT,THREE&quot;,&quot;132 THREE ST&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;99999&quot;,
+    &quot;FMPATIENT,TWO&quot;,&quot;123 TWO ST&quot;,&quot;SAN FRANCISCO&quot;,&quot;CALIFORNIA&quot;,&quot;99999&quot;,
+
+</PRE>
 	 <P></P>
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
