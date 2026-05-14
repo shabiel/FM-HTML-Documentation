@@ -31,7 +31,7 @@
 			  TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents"
 			  CLASS="menubarlink">Main</A> </TD> 
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="br_frm.htm" TARGET="_top" CLASS="nmenubarlink"
+			 HREF="br_frm.htm" TARGET="_top" CLASS="menubarlink"
 			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Browser API Chapter TOC">Chapter</A></TD>
 		  
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
@@ -47,12 +47,24 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Browser API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>POST^DDBRZIS</H4> 
+	 <H4>POST^DDBRZIS: Initialize Browser to Display Text</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>Browser</TD>
+	     <TD>2609</TD>
+	   </TR>
+	 </TABLE>
 	 <P>This procedure initializes the Browser to display the text sent to the
 		device. It is used when setting up the Browser as a device on a system running
 		Kernel version 8.0 or greater. The call is set up in the POST-CLOSE EXECUTE
-		field of the DEVICE file (#3.5). Also, refer to the Kernel System Manual for
-		operating system information, if any, to be included with this call. </P> 
+		field of the DEVICE file (#3.5). Also, refer to the <I>Kernel 8.0 and Kernel Toolkit 7.3 Developer's Guide</I> for
+		operating system information, if any, to be included with this call. </P>
 	 <H5>Format</H5> 
 	 <PRE>
 POST^DDBRZIS

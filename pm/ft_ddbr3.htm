@@ -31,7 +31,7 @@
 			  TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Main Table of Contents"
 			  CLASS="menubarlink">Main</A> </TD> 
 		  <TD VALIGN="BOTTOM" ALIGN="LEFT" HEIGHT="1" WIDTH="17%"><A
-			 HREF="br_frm.htm" TARGET="_top" CLASS="nmenubarlink"
+			 HREF="br_frm.htm" TARGET="_top" CLASS="menubarlink"
 			 TITLE="VA FileMan V. 22.2 Programmer HTML Manual: Browser API Chapter TOC">Chapter</A></TD>
 		  
 		  <TD ALIGN="LEFT" VALIGN="BOTTOM" HEIGHT="1" WIDTH="10%"
@@ -47,7 +47,19 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Browser API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>WP^DDBR</H4> 
+	 <H4>WP^DDBR(): Display Word-Processing Field Using the Browser</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>Browser</TD>
+	     <TD>2607</TD>
+	   </TR>
+	 </TABLE>
 	 <P>This procedure displays word processing fields, as well as allowing
 		navigation throughout the text, in a FileMan-compatible database using
 		FileMan's Browser facility.</P> 
@@ -141,7 +153,7 @@ WP^DDBR(FILE,IENS,FIELD,FLAGS,TITLE,LINE,TABS,TOP,BOTTOM)
 		processing fields in a FileMan-compatible database. </P> 
 	 <H5>Example</H5> 
 	 <PRE>
-&gt;D WP^DDBR(999088,&quot;12,&quot;,&quot;TEXT&quot;,&quot;N&quot;,&quot;Programming SAC&quot;)
+&gt;D WP^DDBR(999088,&quot;12,&quot;,&quot;TEXT&quot;,&quot;N&quot;,&quot;PROGRAMMING SAC&quot;)
 </PRE> 
 	 <P><BR> </P> 
 	 <H5>Error Codes Returned</H5> 
