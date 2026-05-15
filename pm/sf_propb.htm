@@ -53,9 +53,9 @@
 		  TITLE="Block Properties stored in the BLOCK File" CLASS="bodylink">Block
 		  Properties stored in the BLOCK File</A></LI> 
 	 </UL> <HR> 
-	 <H5><A NAME="form_file">Block Properties Stored in the FORM File</A></H5> 
-	 <P>Since these properties are stored in the Form file, they apply only as
-		it is used on a particular form. </P> 
+	 <H5><A NAME="form_file">Block Properties Stored in the FORM File</A></H5>
+	 <P>Since these properties are stored in the FORM (#.403) file, they apply
+		only as it is used on a particular form.</P>
 	 <UL> 
 		<LI><A HREF="#name" TITLE="Block Name" CLASS="bodylink">Block
 		  Name</A><BR><BR></LI> 
@@ -74,63 +74,72 @@
 		  CLASS="bodylink">Replication, Index, Initial Position, Disallow LAYGO, Field
 		  for Selection</A></LI> 
 	 </UL> <HR> 
-	 <P><B><A NAME="name">Block Name </A></B></P> 
-	 <P>(Required) This is the .01 field of the block multiple of the page
-		multiple of the Form file (#.403). This field is a pointer to Block file
-		(#.404). </P> <HR> 
-	 <P><B><A NAME="order">Block Order </A></B></P> 
+	 <P><B><A NAME="name">Block Name</A></B></P>
+	 <P>(Required) This is the .01 field of the BLOCK Multiple of the PAGE
+		Multiple of the FORM (#.403) file. This field is a POINTER to the BLOCK
+		(#.404) file.</P> <HR>
+	 <P><B><A NAME="order">Block Order</A></B></P>
 	 <P>(Required) The Block Order determines the order in which users traverse
 		fields on a page when they press <B>&lt;PF1&gt;&lt;PF4&gt;</B> to go to the
-		next block or press the Enter/Return key to move from the last field on one
-		block to the first field on the next. When the user first reaches a page,
-		ScreenMan places the user on the block with the lowest Block Order number. </P>
-	 <HR> 
-	 <P><B><A NAME="Type">Type of Block </A></B></P> 
-	 <P>(Required) The Type of Block property can be either "DISPLAY" or "EDIT."
-		</P> 
-	 <P>EDIT blocks allow fields to be changed by the user and DISPLAY blocks
-		allow fields to be displayed but <I>not</I> changed by the user. Adding an EDIT
-		block to a form enables the editing of any data dictionary fields placed on the
-		EDIT-type block. Fields in a DISPLAY block are read-only. </P> 
+		next block or press the Enter key to move from the last field on one block
+		to the first field on the next. When the user first reaches a page,
+		ScreenMan places the user on the block with the lowest Block Order number.</P>
+	 <HR>
+	 <P><B><A NAME="Type">Type of Block</A></B></P>
+	 <P>(Required) The Type of Block property can be either:</P>
+	 <UL>
+		<LI><B>DISPLAY</B>&mdash;DISPLAY blocks allow fields to be displayed but
+		  not changed by the user. Fields in a DISPLAY block are read-only.<BR><BR></LI>
+		<LI><B>EDIT</B>&mdash;EDIT blocks allow fields to be changed by the user.
+		  Adding an EDIT block to a form enables the editing of any DATA DICTIONARY
+		  fields placed on the EDIT-type block.</LI>
+	 </UL>
 	 <P>When you first add a block to a form, you enter the properties for the
-		block, including the type of block it is. You can also edit the properties of
-		the block later. See the "ScreenMan Tutorial for Developers Manual,"
+		block, including the type of block it is. You can also edit the properties
+		of the block later. See the "ScreenMan Tutorial for Developers Manual,"
 		particularly Lessons 1-2 (DISPLAY blocks) and 1-7 (EDIT blocks) for more
 		information. This manual is available both in Adobe Acrobat PDF and HTML
-		formats on the <a HREF="http://www.hardhats.org/fileman/FMmain.html" TARGET="_top" TITLE="VA FileMan Home Page" CLASS="bodylink">VA FileMan Home Page</a>.</P>
-	 <HR> 
-	 <P><B><A NAME="coordinate">Block Coordinate </A></B></P> 
+		formats on the <a HREF="http://www.hardhats.org/fileman/FMmain.html"
+		TARGET="_top" TITLE="VA FileMan Home Page" CLASS="bodylink">VA FileMan Home
+		Page</a>.</P>
+	 <HR>
+	 <P><B><A NAME="coordinate">Block Coordinate</A></B></P>
 	 <P>(Required) This property defines the location of the block. The format
-		of a coordinate is: Row,Column. </P> 
-	 <P>A Block Coordinate is defined relative to the page on which the block is
-		defined. A Block Coordinate of "1,1", for example, corresponds to the top left
-		corner of the page. If a page is moved to a new position--that is, if it is
-		given a new coordinate--all blocks on the page move with it. </P> <HR> 
-	 <P><B><A NAME="Pointer_link">Pointer Link</A></B></P> 
+		of a coordinate is:</P>
+	 <PRE>    Row,Column</PRE>
+	 <P>A Block Coordinate is defined relative to the page on which the block
+		is defined. A Block Coordinate of "1,1", for example, corresponds to the
+		top left corner of the page. If a page is moved to a new position (i.e.,
+		if it is given a new coordinate), all blocks on the page move with it.</P>
+	 <HR>
+	 <P><B><A NAME="Pointer_link">Pointer Link</A></B></P>
 	 <P>This property is used if the fields displayed in this block are reached
-		through a relational jump from the primary file of the form. The Pointer Link
-		is a relational expression that describes this jump. See the "<A
-		HREF="../u2/rn_intro.htm" TARGET="display" TITLE="Relational Navigation"
-		CLASS="bodylink">Relational Navigation</A>" section in the "VA FileMan Advanced
-		User Manual" for more information.</P> <HR> 
-	 <P><B><A NAME="pre_post_action">Pre Action and Post Action</A></B></P> 
+		through a relational jump from the primary file of the form. The Pointer
+		Link is a relational expression that describes this jump.</P>
+	 <P>REF: For more information, see the "<A HREF="../u2/rn_intro.htm"
+		TARGET="display" TITLE="Relational Navigation"
+		CLASS="bodylink">Relational Navigation</A>" section in the <I>VA FileMan
+		Advanced User Manual</I>.</P> <HR>
+	 <P><B><A NAME="pre_post_action">Pre Action and Post Action</A></B></P>
 	 <P>The Pre Action property is M code that is executed whenever the user
-		reaches this block. The Post Action property is M code that is executed
-		whenever the user navigates away from this block. Since these two properties
-		are stored in the Form file, they apply to the block only as it is used on this
-		form. </P> <HR> 
+		reaches this block.</P>
+	 <P>The Post Action property is M code that is executed whenever the user
+		navigates away from this block. Since these two properties are stored in
+		the FORM (#.403) file, they apply to the block only as it is used on this
+		form.</P> <HR>
 	 <P><B><A NAME="repeating_properties">Replication, Index, Initial Position,
-		Disallow LAYGO, Field for Selection </A></B></P> 
-	 <P>These properties pertain only to repeating blocks. See the "<A
-		HREF="sf_repbl.htm" TARGET="display"
-		TITLE="Displaying Multiples in Repeating Blocks" CLASS="bodylink">Displaying
-		Multiples in Repeating Blocks</A>" section for more information about these
-		properties.</P> <HR> 
+		Disallow LAYGO, Field for Selection</A></B></P>
+	 <P>These properties pertain only to repeating blocks.</P>
+	 <P>REF: For more information about these properties, see the
+		"<A HREF="sf_repbl.htm" TARGET="display"
+		TITLE="Displaying Multiples in Repeating Blocks"
+		CLASS="bodylink">Displaying Multiples in Repeating Blocks</A>" section.</P>
+	 <HR>
 	 <P><B><A NAME="Block_file">Block Properties Stored in the BLOCK
-		File</A></B></P> 
-	 <P>Since these properties are stored in the BLOCK file, they are part of
-		the definition of the block itself. These properties apply to the block
-		wherever it is used. </P> 
+		File</A></B></P>
+	 <P>Since these properties are stored in the BLOCK (#.404) file, they are
+		part of the definition of the block itself. These properties apply to the
+		block wherever it is used.</P>
 	 <UL> 
 		<LI><A HREF="#Block_Name" TITLE="Name"
 		  CLASS="bodylink">Name</A><BR><BR></LI> 
@@ -141,36 +150,45 @@
 		<LI><A HREF="#block_pre_post_action" TITLE="Pre Action and Post Action"
 		  CLASS="bodylink">Pre Action and Post Action</A></LI> 
 	 </UL> <HR> 
-	 <P><B><A NAME="Block_Name">Name</A></B></P> 
-	 <P>(Required) This is the .01 field of the BLOCK file (#.404). Block Names
-		should be namespaced. </P> <HR> 
-	 <P><B><A NAME="block_dd_number">DD Number</A></B></P> 
-	 <P>This is the data dictionary number of the file or subfile that contains
-		the fields that are placed on this block. A block can contain fields from only
-		one file or subfile. </P> <HR> 
-	 <P><B><A NAME="block_disable_navigation">Disable Navigation</A></B></P> 
-	 <P>If you set this property to "YES," navigation within the block is
-		disabled. When navigation is disabled, users cannot ^-jump to other fields,
-		they cannot ^-jump to the Command Line, and the &lt;ARROW UP&gt;, &lt;ARROW
-		DOWN&gt;, &lt;Tab&gt;, and &lt;PF4&gt; keys traverse the fields in the same
-		order when pressing the Enter/Return key - that is, in the order established by
-		the Field Order property of the fields. The &lt;PF1&gt; S, &lt;PF1&gt; E,
-		&lt;PF1&gt; Q, and &lt;PF1&gt; C key sequences cannot be used if this property
-		is set to YES. </P> 
-	 <P>If you set this property to OUTOK, navigation is disabled, but the user
-		can ^-jump to the Command Line and use &lt;PF1&gt; S, &lt;PF1&gt; E,
-		&lt;PF1&gt; Q, and &lt;PF1&gt; C. </P> <HR> 
+	 <P><B><A NAME="Block_Name">Name</A></B></P>
+	 <P>(Required) This is the .01 field of the BLOCK (#.404) file. The block
+		Name should be namespaced.</P> <HR>
+	 <P><B><A NAME="block_dd_number">DD Number</A></B></P>
+	 <P>This is the data dictionary (DD) number of the file or subfile that
+		contains the fields that are placed on this block. A block can contain
+		fields from only one file or subfile.</P> <HR>
+	 <P><B><A NAME="block_disable_navigation">Disable Navigation</A></B></P>
+	 <P>If you set this property to YES, navigation within the block is
+		disabled:</P>
+	 <UL>
+		<LI>Users cannot ^-jump to other fields.<BR><BR></LI>
+		<LI>Users cannot ^-jump to the command line.<BR><BR></LI>
+		<LI>The &lt;ARROW UP&gt;, &lt;ARROW DOWN&gt;, Tab, and PF4 keys traverse
+		  the fields in the same order when pressing the Enter key (i.e., in the
+		  order established by the Field Order property of the fields).<BR><BR></LI>
+		<LI>Users cannot use the <B>&lt;PF1&gt;S</B>, <B>&lt;PF1&gt;E</B>,
+		  <B>&lt;PF1&gt;Q</B>, and <B>&lt;PF1&gt;C</B> key sequences.</LI>
+	 </UL>
+	 <P>If you set this property to OUTOK, navigation within the block is
+		disabled, but the user can:</P>
+	 <UL>
+		<LI>^-jump to the command line.<BR><BR></LI>
+		<LI>Use the <B>&lt;PF1&gt;S</B>, <B>&lt;PF1&gt;E</B>,
+		  <B>&lt;PF1&gt;Q</B>, and <B>&lt;PF1&gt;C</B> key sequences.</LI>
+	 </UL>
+	 <HR>
 	 <P><B><A NAME="block_pre_post_action">Pre Action and Post
-		Action</A></B></P> 
+		Action</A></B></P>
 	 <P>The Pre Action property is M code that is executed whenever the user
-		reaches this block. The Post Action property is M code that is executed
-		whenever the user navigates away from this block. Since these two properties
-		are stored in the BLOCK file, they apply to the block as it is used on any page
-		of any form. </P>
-	 <P>&nbsp;</P> 
+		reaches this block.</P>
+	 <P>The Post Action property is M code that is executed whenever the user
+		navigates away from this block. Since these two properties are stored in
+		the BLOCK (#.404) file, they apply to the block as it is used on any page
+		of any form.</P>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sf_propb.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

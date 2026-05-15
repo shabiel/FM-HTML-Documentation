@@ -47,83 +47,89 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Form-only Fields</H4> 
+	 <H4>Form-only Fields</H4>
 	 <P>Form-only fields are fields that are defined only on the form. They
 		allow you to request from the user data that is not linked to a VA FileMan
-		field. You might use a form-only field to control the flow of data input. For
-		example, when the user presses the Enter/Return key at a form-only field, you
-		might branch to a "pop-up" page (window) or branch only if the user enters a
-		certain value. You might also use a form-only field to request data from the
-		user, store the response in a local or global variable, and process the
-		response after the user exits the form. </P> 
-	 <P>When you define a form-only field, you specify parameters that look like
-		the VA FileMan Reader (^DIR) parameters. In addition, you can define Save Code,
-		code that is executed when the user issues the "Save" command. You might use
-		the Save Code to store the value entered by the user in local or global
-		variables. </P> 
-	 <P>The following chart describes the field properties that pertain only to
-		Form-only fields. See the "<A HREF="cl_dir.htm" TARGET="display"
-		TITLE="Reader: ^DIR" CLASS="bodylink">Reader: ^DIR</A>" section for more
-		detailed information about the Reader parameters: </P> 
-	 <H5>Properties of Form-only Fields</H5> 
-	 <TABLE BORDER="1" SUMMARY="Properties of Form-only Fields Table"
-	  WIDTH="100%" TITLE="Properties of Form-only Fields Table"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Form-only Field Property</B></TD> 
-		  <TD VALIGN="TOP"><B>Description</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Read Type</B></TD> 
-		  <TD VALIGN="TOP">This property defines the type of the form-only field.
-			 Valid values are: 
-			 <UL> 
-				<LI>D = DATE<BR><BR></LI> 
-				<LI>F = FREE TEXT<BR><BR></LI> 
-				<LI>L = LIST OR RANGE<BR><BR></LI> 
-				<LI>N = NUMERIC<BR><BR></LI> 
-				<LI>P = POINTER<BR><BR></LI> 
-				<LI>S = SET OF CODES<BR><BR></LI> 
-				<LI>Y = YES OR NO<BR><BR></LI> 
-				<LI>DD = DATA DICTIONARY </LI> 
-			 </UL> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Parameters</B></TD> 
+		field. You might use a Form-only field to control the flow of data input.
+		For example, when the user presses the Enter key at a Form-only field, you
+		might branch to a "popup" page (window) or branch only if the user enters a
+		certain value. You might also use a Form-only field to:</P>
+	 <OL>
+		<LI>Request data from the user.<BR><BR></LI>
+		<LI>Store the response in a local or global variable.<BR><BR></LI>
+		<LI>Process the response after the user exits the form.</LI>
+	 </OL>
+	 <P>When you define a Form-only field, you specify parameters that look like
+		the VA FileMan Reader (^DIR) parameters. In addition, you can define Save
+		Code, code that is executed when the user issues the Save command. You might
+		use the Save Code to store the value entered by the user in local or global
+		variables.</P>
+	 <P>Table 73 describes the field properties that pertain only to Form-only
+		fields.</P>
+	 <P>REF: For more detailed information about the Reader parameters, see the
+		"<A HREF="cl_dir.htm" TARGET="display" TITLE="Reader: ^DIR"
+		CLASS="bodylink">^DIR: Response Reader</A>" section in the "Classic VA
+		FileMan API" section.</P>
+	 <P ALIGN="CENTER"><B>Table 73: ScreenMan Forms&mdash;Properties of Form-only
+		Fields</B></P>
+	 <TABLE BORDER="1" SUMMARY="Properties of Form-only Fields"
+	  WIDTH="100%" TITLE="Properties of Form-only Fields">
+		<TR>
+		  <TD VALIGN="TOP"><B>Form Only Field Property</B></TD>
+		  <TD VALIGN="TOP"><B>Description</B></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>Read Type</B></TD>
+		  <TD VALIGN="TOP">This property defines the type of the Form-only field.
+			 Valid values are:
+			 <UL>
+				<LI>D&mdash;DATE<BR><BR></LI>
+				<LI>F&mdash;FREE TEXT<BR><BR></LI>
+				<LI>L&mdash;LIST OR RANGE<BR><BR></LI>
+				<LI>N&mdash;NUMERIC<BR><BR></LI>
+				<LI>P&mdash;POINTER<BR><BR></LI>
+				<LI>S&mdash;SET OF CODES<BR><BR></LI>
+				<LI>Y&mdash;YES OR NO<BR><BR></LI>
+				<LI>DD&mdash;DATA DICTIONARY</LI>
+			 </UL></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>Parameters</B></TD>
 		  <TD VALIGN="TOP">This property corresponds to the parameters that can
-			 be used in the first ^-piece of the DIR(0) input variable to ^DIR. The "O"
-			 parameter has no effect, since the Required property can be used to make a
-			 field required. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Qualifiers</B></TD> 
+			 be used in the first ^-piece of the DIR(0) input variable to ^DIR. The
+			 O parameter has no effect, since the Required property can be used to
+			 make a field required.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>Qualifiers</B></TD>
 		  <TD VALIGN="TOP">This property corresponds to the second ^- piece of
-			 the DIR(0) input variable to ^DIR. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Help (WP)</B></TD> 
-		  <TD VALIGN="TOP">The lines in this word processing field correspond to
-			 the nodes in the DIR("?",#) input array to ^DIR. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>INPUT Transform</B></TD> 
+			 the DIR(0) input variable to ^DIR.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>Help (WP)</B></TD>
+		  <TD VALIGN="TOP">The lines in this WORD-PROCESSING field correspond to
+			 the nodes in the DIR("?",#) input array to ^DIR.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>INPUT Transform</B></TD>
 		  <TD VALIGN="TOP">This property corresponds to the third ^-piece of the
-			 DIR(0) input variable to ^DIR. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Screen</B></TD> 
-		  <TD VALIGN="TOP">This is M code that sets the variable DIR("S"). </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Save Code</B></TD> 
+			 DIR(0) input variable to ^DIR.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>Screen</B></TD>
+		  <TD VALIGN="TOP">This is M code that sets the variable DIR("S").</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>Save Code</B></TD>
 		  <TD VALIGN="TOP">This is M code that is executed when the user issues a
-			 "Save" command and ScreenMan hasdetected a change to the value of the form-only
-			 field.</TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P>	 <P>&nbsp;</P> 
+			 Save command and ScreenMan has detected a change to the value of the
+			 Form-only field.</TD>
+		</TR>
+	 </TABLE>
+	 <P></P>	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sf_formo.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

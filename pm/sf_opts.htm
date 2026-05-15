@@ -46,13 +46,16 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>ScreenMan Menu Options</H4> 
-	 <P>The ScreenMan menu options are found on a submenu of the Other Options
-		menu: </P> 
-	  
-	 <PRE>Select OPTION: <B>O</B>THER OPTIONS
-Select OTHER OPTION: <B>SC</B>REENMAN
-Select SCREENMAN OPTION: <B>?</B>
+	 <H4>ScreenMan Menu Options</H4>
+	 <P>The ScreenMan [DDS SCREEN MENU] menu, which is locked with the
+		XUSCREENMAN security key, is found on a submenu of the Other Options
+		[DIOTHER] menu, as shown in Figure 229:</P>
+	 <P ALIGN="CENTER"><B>Figure 229: ScreenMan Forms&mdash;ScreenMan Menu
+		Options</B></P>
+<PRE>
+Select VA FileMan Option: <B>OTHER OPTIONS</B> &lt;Enter&gt;
+Select Other Options Option: <B>SCREENMAN</B> &lt;Enter&gt;
+Select ScreenMan Option: <B>?</B> &lt;Enter&gt;
  Answer with SCREENMAN OPTION NUMBER, or NAME
 Choose from:
    1               <A HREF="#Edit/Create" TITLE="EDIT/CREATE A FORM" CLASS="bodylink">EDIT/CREATE A FORM</A>
@@ -60,167 +63,191 @@ Choose from:
    3               <A HREF="#Delete" TITLE="DELETE A FORM" CLASS="bodylink">DELETE A FORM</A>
    4               <A HREF="#Purge" TITLE="PURGE UNUSED BLOCKS" CLASS="bodylink">PURGE UNUSED BLOCKS</A>
 
-Select SCREENMAN OPTION: 
+Select SCREENMAN OPTION:
+</PRE>
+	 <P>The following sections describe these four ScreenMan options.</P>
+	 <H5><A NAME="Edit/Create">Edit/Create a Form</A></H5>
+	 <P>Use the Edit/Create a Form [DDS EDIT/CREATE A FORM] option on the
+		ScreenMan [DDS SCREEN MENU] menu to invoke the Form Editor, the
+		screen-oriented utility for editing and building ScreenMan forms.</P>
+	 <P>REF: The Form Editor is described in detail in the
+		"<A HREF="fe_frm.htm" TARGET="_top" TITLE="ScreenMan Form Editor"
+		CLASS="bodylink">ScreenMan Form Editor</A>" section.</P>
+	 <H5><A NAME="Run">Run a Form</A></H5>
+	 <P>Instead of setting up input variables and making a call to ^DDS, you
+		can use the Run A Form [DDS RUN A FORM] option on the ScreenMan [DDS
+		SCREEN MENU] menu to run a form, as shown in Figure 230:</P>
+	 <P ALIGN="CENTER"><B>Figure 230: ScreenMan Forms&mdash;Run a Form Option</B></P>
+<PRE>
+Select SCREENMAN OPTION: <B>RUN A FORM</B> &lt;Enter&gt;
 
-</PRE> <HR> 
-	 <P>This section describes the four ScreenMan options. </P> 
-	 <H5><A NAME="Edit/Create">Edit/Create a Form</A></H5> 
-	 <P>The first option, Edit/Create a Form, invokes the Form Editor, the
-		screen-oriented utility for editing and building ScreenMan forms. The Form
-		Editor is described in detail in the "<A HREF="fe_frm.htm" TARGET="_top"
-		TITLE="ScreenMan Form Editor" CLASS="bodylink">ScreenMan Form Editor</A>"
-		chapter. </P> 
-	 <H5><A NAME="Run">Run a Form</A></H5> 
-	 <P>Instead of setting up input variables and making a call to ^DDS, you can
-		use the second option on the ScreenMan menu to run a form shown below: </P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>Select SCREENMAN OPTION: <B>R</B>UN A FORM 
+MODIFY SCREEN TEMPLATE FOR WHAT FILE: <B>ZZEZ SCREENDOC</B> &lt;Enter&gt;
 
-MODIFY SCREEN TEMPLATE FOR WHAT FILE: <B>ZZEZ SCREENDOC</B> 
+Select FORM: <B>ZZEZ DOC</B> &lt;Enter&gt; ZZEZ DOC
 
+Enter number of first page: 1// &lt;Enter&gt;
 
-Select FORM: <B>ZZEZ DOC</B>  ZZEZ DOC 
+Select ZZEZ SCREENDOC NAME: <B>FMUSER,ONE</B> &lt;Enter&gt;            M.             FM
+</PRE>
+	 <P>You are asked to select a:</P>
+	 <UL>
+		<LI>File<BR><BR></LI>
+		<LI>Form<BR><BR></LI>
+		<LI>Initial page<BR><BR></LI>
+		<LI>Record</LI>
+	 </UL>
+	 <P>The Run A Form [DDS RUN A FORM] option cannot run a form used to edit
+		a subfile directly.</P>
+	 <H5><A NAME="Delete">Delete a Form</A></H5>
+	 <P>You can use the Delete A Form [DDS DELETE A FORM] option on the
+		ScreenMan [DDS SCREEN MENU] menu to delete a form from the FORM (#.403)
+		file, and any or all blocks used on that form from the BLOCK (#.404) file.</P>
+	 <P ALIGN="CENTER"><B>Figure 231: ScreenMan Forms&mdash;Delete a Form Option</B></P>
+<PRE>
+Select SCREENMAN OPTION: <B>DELETE A FORM</B> &lt;Enter&gt;
 
-Enter number of first page: 1// <B>  Select ZZEZ SCREENDOC NAME: <B>TURING,ALAN
-M.</B>          AL</B>
-</PRE> <HR> 
-	 <P>You are asked to select a file, a form, an initial page, and a record.
-		This option cannot run a form used to a edit a subfile directly. </P> 
-	 <H5><A NAME="Delete">Delete a Form</A></H5> 
-	 <P>You can use the third option on the ScreenMan menu, shown below, to
-		delete a form from the Form file, and any or all of the blocks used on that
-		form from the BLOCK file. </P> 
-	 <PRE>
-</PRE> <HR> 
-	 <PRE>Select SCREENMAN OPTION: <B>D</B>ELETE A FORM   
+MODIFY SCREEN TEMPLATE FOR WHAT FILE: <B>ZZEZ SCREENDOC</B> &lt;Enter&gt;
 
-MODIFY SCREEN TEMPLATE FOR WHAT FILE: <B>ZZEZ SCREENDOC</B>
-
-
-Select FORM to delete: <B>ZZTEST DOC</B>  ZZTEST DOC
-                         #55      02/16/91  User #14    File #16500
-
-</PRE> <HR> 
-	 <P>Once you've selected a file and form to delete, a short report is
-		printed that lists all blocks used on the form, as illustrated below: </P> 
-	  
-	 <PRE>BLOCKS USED ON FORM &quot;ZZTEST DOC&quot; (IEN #55) 
+Select FORM to delete: <B>ZZTEST DOC</B> &lt;Enter&gt; ZZTEST DOC
+                         #55      02/16/91 User #14                File #16500
+</PRE>
+	 <P>Once you have selected a file and form to delete, a short report is
+		printed that lists all blocks used on the form, as illustrated in Figure 232:</P>
+	 <P ALIGN="CENTER"><B>Figure 232: ScreenMan Forms&mdash;Delete a Form Option:
+		Report of All Blocks Used on the Form</B></P>
+<PRE>
+BLOCKS USED ON FORM &quot;ZZTEST DOC&quot; (IEN #55)
 Internal                                  Used on
-Entry Number   Block Name                 Other Forms?   Deletable?
-------------   ----------                 ------------   ----------
-178            ZZTEST DOC HDR1                NO            YES
-179            ZZTEST DOC1                    NO            YES
-180            ZZTEST DOC2                    NO            YES
-181            ZZTEST DOC3                    NO            YES
-182            ZZTEST DOC HDR3                NO            YES
-
-</PRE> <HR> 
-	 <P>The first column lists the internal entry numbers of the blocks used on
-		the form, and the second column lists the names of the blocks. The last two
-		columns indicate whether the blocks are used on other forms and whether you can
-		delete those blocks from the BLOCK file. Only those blocks that are not used on
-		other forms can be deleted. </P> 
+Entry Number   Block Name                 Other Forms?               Deletable?
+------------   ----------                 ------------               ----------
+178            ZZTEST DOC HDR1                NO                        YES
+179            ZZTEST DOC1                    NO                        YES
+180            ZZTEST DOC2                    NO                        YES
+181            ZZTEST DOC3                    NO                        YES
+182            ZZTEST DOC HDR3                NO                        YES
+</PRE>
+	 <P>Delete a Form Data (Figure 232):</P>
+	 <UL>
+		<LI>The "Entry Number" column lists the internal entry numbers of the
+		  blocks used on the form.<BR><BR></LI>
+		<LI>The "Block Name" column lists the names of the blocks.<BR><BR></LI>
+		<LI>The "Used on Other Forms?" column indicates whether the blocks are
+		  used on other forms.<BR><BR></LI>
+		<LI>The "Deletable?" indicates whether you can delete those blocks from
+		  the BLOCK (#.404) file. Only those blocks that are not used on other
+		  forms can be deleted.</LI>
+	 </UL>
 	 <P>You are then asked whether you want to delete the blocks used on the
-		form from the BLOCK file. </P> 
-	  
-	 <PRE>Delete all deletable blocks used on form ZZTEST DOC
-from the BLOCK file (Y/N)? YES// <B>?</B>
+		form from the BLOCK (#.404) file, as shown in Figure 233:</P>
+	 <P ALIGN="CENTER"><B>Figure 233: ScreenMan Forms&mdash;Delete a Form Option:
+		Delete Blocks</B></P>
+<PRE>
+Delete all deletable blocks used on form ZZTEST DOC
+from the BLOCK file (Y/N)? YES// <B>?</B> &lt;Enter&gt;
 
   Enter 'Y' to delete blocks used on form
     ZZTEST DOC from the BLOCK file.
-    (Only blocks not used on other forms can be deleted.) 
+    (Only blocks not used on other forms can be deleted.)
 
   Enter 'N' to delete the form but not the blocks.
- 
-Delete all deletable blocks used on form ZZTEST DOC
-from the BLOCK file (Y/N)? YES//<B></B>
 
-</PRE> <HR> 
-	 <P>If you answer "NO," the form will be deleted from the Form file, but
-		none of the blocks used on the form will be deleted. Note that if you choose
-		not to delete a block, and that block is not used on any form, the only way to
-		delete the block is to run the Purge Unused Blocks option described below. </P>
-	 
-	 <P>If you answer "YES," you are asked whether you want to delete those
-		blocks without confirmation. </P> 
-	  
-	 <PRE>Delete blocks without prompting (Y/N)? NO// <B>?</B>
+Delete all deletable blocks used on form ZZTEST DOC
+from the BLOCK file (Y/N)? YES// &lt;Enter&gt;
+</PRE>
+	 <P>If you answer NO, the form is deleted from the FORM (#.403) file, but
+		none of the blocks used on the form are deleted. If you choose not to
+		delete a block, and that block is not used on any form, the only way to
+		delete the block is to run the Purge Unused Blocks [DDS PURGE UNUSED
+		BLOCKS] option.</P>
+	 <P>If you answer YES, you are asked whether you want to delete those blocks
+		without confirmation.</P>
+	 <P ALIGN="CENTER"><B>Figure 234: ScreenMan Forms&mdash;Delete a Form Option:
+		Delete Blocks with or without Confirmation</B></P>
+<PRE>
+Delete blocks without prompting (Y/N)? NO// <B>?</B> &lt;Enter&gt;
 
   Enter 'Y' to delete blocks from the BLOCK file
-    without confirmation. 
+    without confirmation.
 
   Enter 'N' to confirm each delete.
 
 Delete blocks without prompting (Y/N)? NO//
+</PRE>
+	 <P>If you answer YES, all blocks used on the form that are not used on any
+		form are deleted.</P>
+	 <P>If you answer NO, you are prompted before any block is deleted. This
+		gives you a chance to delete only specific blocks.</P>
+	 <P ALIGN="CENTER"><B>Figure 235: ScreenMan Forms&mdash;Delete a Form Option:
+		Deleting Blocks without Confirmation</B></P>
+<PRE>
+Continue (Y/N)? NO// <B>YES</B> &lt;Enter&gt;
 
-</PRE> <HR> 
-	 <P>If you answer "YES," all blocks used on the form that are not used on
-		any form will be deleted. If you answer "NO," you will be prompted before any
-		block is deleted. This gives you a chance to delete only specific blocks. </P> 
-	  
-	 <PRE>Continue (Y/N)? NO// <B>YES</B>
+Deleting form ZZTEST DOC (IEN #55) ...
 
-Deleting form ZZTEST DOC (IEN #55) ... 
-
-ZZTEST DOC HDR1               Delete (Y/N)? NO// <B>Y</B>ES
-ZZTEST DOC1                   Delete (Y/N)? NO// <B>Y</B>ES
-ZZTEST DOC2                   Delete (Y/N)? NO// <B>Y</B>ES
-ZZTEST DOC3                   Delete (Y/N)? NO// <B>Y</B>ES
-ZZTEST DOC HDR3               Delete (Y/N)? NO// <B>Y</B>ES 
+ZZTEST DOC HDR1                     Delete (Y/N)? NO// YES
+ZZTEST DOC1                         Delete (Y/N)? NO// YES
+ZZTEST DOC2                         Delete (Y/N)? NO// YES
+ZZTEST DOC3                         Delete (Y/N)? NO// YES
+ZZTEST DOC HDR3                     Delete (Y/N)? NO// YES
 
 DONE!
-</PRE> <HR> 
-	 <H5><A NAME="Purge">Purge Unused Blocks</A></H5> 
-	 <P>You can use the fourth option on the ScreenMan menu to delete any or all
-		of the unused blocks from the BLOCK file that are associated with a specific
-		file. </P> 
-	  
-	 <PRE>Select OPTION: <B>O</B>THER OPTIONS  
-Select OTHER OPTION: <B>SC</B>REENMAN  
-Select SCREENMAN OPTION: <B>P</B>URGE UNUSED BLOCKS   
+</PRE>
+	 <H5><A NAME="Purge">Purge Unused Blocks</A></H5>
+	 <P>You can use the Purge Unused Blocks [DDS PURGE UNUSED BLOCKS] option on
+		the ScreenMan [DDS SCREEN MENU] menu to delete any or all unused blocks
+		from the BLOCK (#.404) file that are associated with a specific file.</P>
+	 <P ALIGN="CENTER"><B>Figure 236: ScreenMan Forms&mdash;Purge Unused Blocks
+		Option</B></P>
+<PRE>
+Select OPTION: <B>OTHER OPTIONS</B> &lt;Enter&gt;
+Select OTHER OPTION: <B>SCREENMAN</B> &lt;Enter&gt;
+Select SCREENMAN OPTION: <B>PURGE UNUSED BLOCKS</B> &lt;Enter&gt;
 
-PURGE UNUSED BLOCKS FROM WHAT FILE: <B>ZZEZ SCREENDOC</B>
-
-</PRE> <HR> 
-	 <P>Once you've selected a file, a short report is printed that lists the
-		blocks that aren't used on any forms. </P> 
-	  
-	 <PRE>UNUSED BLOCKS ASSOCIATED WITH FILE ZZEZ SCREENDOC (#16500) 
+PURGE UNUSED BLOCKS FROM WHAT FILE: <B>ZZEZ SCREENDOC</B> &lt;Enter&gt;
+</PRE>
+	 <P>Once you have selected a file, a short report is printed that lists the
+		blocks that are not used on any forms:</P>
+	 <P ALIGN="CENTER"><B>Figure 237: ScreenMan Forms&mdash;Purge Unused Blocks
+		Option: Report of Unused Blocks on any Forms</B></P>
+<PRE>
+UNUSED BLOCKS ASSOCIATED WITH FILE ZZEZ SCREENDOC (#16500)
 
 Internal
-Entry Number   Block Name
-------------   ----------
-72             ZZZEE EDIT3
-178            ZZTEST DOC1
-179            ZZTEST DOC2
-180            ZZTEST DOC3
-181            ZZTEST DOC HDR3
+Entry Number       Block Name
+------------       ----------
+72                 ZZZEE EDIT3
+178                ZZTEST DOC1
+179                ZZTEST DOC2
+180                ZZTEST DOC3
+181                ZZTEST DOC HDR3
+</PRE>
+	 <P>You are then asked whether to delete the blocks without confirmation:</P>
+	 <P ALIGN="CENTER"><B>Figure 238: ScreenMan Forms&mdash;Purge Unused Blocks
+		Option: Delete Blocks with or without Confirmation</B></P>
+<PRE>
+   Delete all unused blocks without prompting (Y/N)? NO// &lt;Enter&gt;
+</PRE>
+	 <P>If you answer YES, all unused blocks are deleted.</P>
+	 <P>If you answer NO, you are prompted before any block is deleted. This
+		gives you a chance to delete only specific blocks.</P>
+	 <P ALIGN="CENTER"><B>Figure 239: ScreenMan Forms&mdash;Purge Unused Blocks
+		Option: Delete Blocks without Confirmation</B></P>
+<PRE>
+Continue (Y/N)? NO// <B>YES</B> &lt;Enter&gt;
 
-</PRE> <HR> 
-	 <P>You are then asked whether to delete the blocks without confirmation:
-		</P> 
-	 <PRE>    Delete all unused blocks without prompting (Y/N)? NO// <B></B></PRE> 
-	 <P>If you answer "YES," all unused block are deleted. If you answer "NO,"
-		you will be prompted before any block is deleted. This gives you a chance to
-		delete only specific blocks. </P> 
-	  
-	 <PRE>Continue (Y/N)? NO// <B>Y</B>ES 
-
-ZZZEE EDIT3                   Delete (Y/N)? NO// <B>Y</B>ES
-ZZTEST DOC1                   Delete (Y/N)? NO// <B>Y</B>ES
-ZZTEST DOC2                   Delete (Y/N)? NO// <B>Y</B>ES
-ZZTEST DOC3                   Delete (Y/N)? NO// <B>Y</B>ES
-ZZTEST DOC HDR3               Delete (Y/N)? NO// <B>Y</B>ES 
+ZZZEE EDIT3                         Delete (Y/N)? NO// YES
+ZZTEST DOC1                         Delete (Y/N)? NO// YES
+ZZTEST DOC2                         Delete (Y/N)? NO// YES
+ZZTEST DOC3                         Delete (Y/N)? NO// YES
+ZZTEST DOC HDR3                     Delete (Y/N)? NO// YES
 
 DONE!
-
-</PRE> <HR> 
+</PRE>
 	 <P></P>
-	 <P>&nbsp;</P> 
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sf_opts.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

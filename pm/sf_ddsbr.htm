@@ -47,73 +47,80 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>The DDSBR Variable</H4> 
+	 <H4>DDSBR Variable</H4>
 	 <P>ScreenMan allows you to branch the user to a field under conditions you
-		specify. You can do this by defining M code in the Branching Logic, Pre Action,
-		Post Action, and Post Action on Change properties at the field level, and at
-		the Data Validation property at the form level. The M code can set the local
-		variable DDSBR to a value that defines the location of the field to which you
-		wish to take the user. </P> 
-	 <P>DDSBR has the following format: </P> 
-	 <PRE>   DDSBR=Field id^Block id^Page id</PRE> 
-	 <P>where, </P> 
-	 <UL> 
+		specify. You can do this by defining M code in the following properties:</P>
+	 <UL>
+		<LI>Branching Logic<BR><BR></LI>
+		<LI>Pre Action<BR><BR></LI>
+		<LI>Post Action<BR><BR></LI>
+		<LI>Post Action on Change (at the field level)<BR><BR></LI>
+		<LI>Data Validation (at the form level)</LI>
+	 </UL>
+	 <P>The M code can set the local variable DDSBR to a value that defines the
+		location of the field to which you wish to take the user.</P>
+	 <P>DDSBR has the following format:</P>
+	 <PRE>    DDSBR=Field id^Block id^Page id</PRE>
+	 <P>Where:</P>
+	 <UL>
 		<LI>Field id = Field Order number; or Caption of the field; or Unique
-		  Name of the field<BR><BR></LI> 
-		<LI>Block id = Block Order number; or Block Name<BR><BR></LI> 
-		<LI>Page id = Page Number; or Page Name </LI> 
-	 </UL> 
-	 <P>For example, </P> 
-	 <PRE>    S:X=&quot;Y&quot; DDSBR=&quot;FIELD 1^BLOCK 1^PAGE 2&quot;</PRE> 
-	 <P>would take the user to the field with unique name or caption "FIELD 1"
-		on the block named "BLOCK 1" on the page named "PAGE 2", if the internal value
-		of the field equals "Y". </P> 
+		  Name of the field<BR><BR></LI>
+		<LI>Block id = Block Order number; or Block Name<BR><BR></LI>
+		<LI>Page id = Page Number; or Page Name</LI>
+	 </UL>
+	 <P>For example:</P>
+	 <P ALIGN="CENTER"><B>Figure 226: ScreenMan Forms&mdash;DDSBR Variable:
+		Example</B></P>
+	 <PRE>    S:X=&quot;Y&quot; DDSBR=&quot;FIELD 1^BLOCK 1^PAGE 2&quot;</PRE>
+	 <P>This would take the user to the field with unique name or caption
+		"FIELD 1" on the block named "BLOCK 1" on the page named "PAGE 2", if the
+		internal value of the field equals Y.</P>
 	 <P>ScreenMan assumes values for any of the ^-pieces of DDSBR that are
-		empty, as illustrated in the following table: </P> 
+		empty, as listed in Table 78:</P>
+	 <P ALIGN="CENTER"><B>Table 78: ScreenMan Forms&mdash;Assumptions when Pieces
+		of DDSBR are NULL</B></P>
 	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="Assumptions When Pieces of DDSBR Are Null Table"
-	  TITLE="Assumptions When Pieces of DDSBR Are Null Table"> 
-		<TR> 
-		  <TD COLSPAN="2" VALIGN="TOP"><B>Assumptions When Pieces of DDSBR Are
-			 Null</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>If DDSBR is set to:</B></TD> 
-		  <TD VALIGN="TOP"><B>ScreenMan assumes:</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">Field id</TD> 
-		  <TD VALIGN="TOP">Current block and current page </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">Field id^Block id</TD> 
-		  <TD VALIGN="TOP">Current page </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">Field id^^Page id</TD> 
-		  <TD VALIGN="TOP">Current block </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">^Block id</TD> 
-		  <TD VALIGN="TOP">Field with lowest Field Order, current page </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">^Block id^Page id</TD> 
-		  <TD VALIGN="TOP">Field with lowest Field Order </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">^^Page id</TD> 
+	  SUMMARY="Assumptions When Pieces of DDSBR Are NULL"
+	  TITLE="Assumptions When Pieces of DDSBR Are NULL">
+		<TR>
+		  <TD VALIGN="TOP"><B>If DDSBR is Set to:</B></TD>
+		  <TD VALIGN="TOP"><B>ScreenMan Assumes:</B></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">Field id</TD>
+		  <TD VALIGN="TOP">Current block and current page.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">Field id^Block id</TD>
+		  <TD VALIGN="TOP">Current page.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">Field id^^Page id</TD>
+		  <TD VALIGN="TOP">Current block.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">^Block id</TD>
+		  <TD VALIGN="TOP">Field with lowest Field Order, current page.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">^Block id^Page id</TD>
+		  <TD VALIGN="TOP">Field with lowest Field Order.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">^^Page id</TD>
 		  <TD VALIGN="TOP">Field with lowest Field Order, Block with lowest Block
-			 Order </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P>To branch the user to the Command Line, DDSBR takes the following
-		format: </P> 
-	 <PRE>    S DDSBR=&quot;COM&quot;</PRE> 
-	 <P></P>	 <P>&nbsp;</P> 
+			 Order.</TD>
+		</TR>
+	 </TABLE>
+	 <P>To branch the user to the command line, DDSBR takes the following
+		format:</P>
+	 <P ALIGN="CENTER"><B>Figure 227: ScreenMan Forms&mdash;DDSBR Variable: Example
+		of Format to Branch the User to the Command Line</B></P>
+	 <PRE>    S DDSBR=&quot;COM&quot;</PRE>
+	 <P></P>	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sf_ddsbr.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

@@ -47,19 +47,34 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>RESET^DDS</H4> 
-	 <P>If during a call to ^DDS you get a hard error, you can DO RESET^DDS to
-		reset the terminal characteristics, unlock any locked records, clean up some
-		variables in the local symbol table, and remove the temporary data ScreenMan
-		stores in ^TMP. Since RESET^DDS doesn't clean up all local variables, you
-		should do P^DI afterwards to clean up any variables that RESET^DDS missed. </P>
-	 
-	 <P>You can also use RESET^DDS if you get a hard error while using the Form
-		Editor. </P>
-	 <P>&nbsp;</P> 
+	 <H4>RESET^DDS: Reset Terminal, Variables, and Remove Temp Data</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>10031</TD>
+	   </TR>
+	 </TABLE>
+	 <P>If during a call to ^DDS you get a hard error, you can DO RESET^DDS to:</P>
+	 <UL>
+		<LI>Reset the terminal characteristics.<BR><BR></LI>
+		<LI>Unlock any locked records.<BR><BR></LI>
+		<LI>Clean up some variables in the local symbol table.<BR><BR></LI>
+		<LI>Remove the temporary data ScreenMan stores in ^TMP.</LI>
+	 </UL>
+	 <P>Since RESET^DDS does not clean up all local variables, you should DO
+		P^DI afterwards to clean up any variables that RESET^DDS missed.</P>
+	 <P>You can also use RESET^DDS if you get a hard error while using the
+		Form Editor.</P>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sm_prest.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

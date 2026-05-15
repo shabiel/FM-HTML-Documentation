@@ -53,95 +53,98 @@
 		<LI><A HREF="#Linking" TITLE="Linking Pages of a Form"
 		  CLASS="bodylink">Linking Pages of a Form</A></LI> 
 	 </UL> <HR> 
-	 <H5><A NAME="Form_structure">Form Structure</A></H5> 
+	 <H5><A NAME="Form_structure">Form Structure</A></H5>
 	 <P>A form is a series of screens that are presented to the user. A form
 		contains one or more pages, a page contains one or more blocks, and a block
-		contains one or more fields. </P> 
-	 <P>Structurally, the form is an entry in the FORM file (#.403). The FORM
-		file contains a PAGE multiple, and the PAGE multiple contains a BLOCK multiple.
-		The .01 field of the BLOCK multiple is a pointer to the BLOCK file (#.404). The
-		BLOCK file contains a multiple for fields. </P> 
-	 <P>Because of this structure, blocks in the BLOCK file are reusable; that
-		is, the same block can be placed on more than one page and on more than one
-		form. </P> 
-	 <P>Each block in the BLOCK file that contains VA FileMan fields has a DD
-		(data dictionary) Number. Each block can contain fields from only one file or
-		subfile, as determined by this DD Number. </P> <HR> 
-	 <H5><A NAME="Linking">Linking Pages of a Form</A></H5> 
+		contains one or more fields.</P>
+	 <P>Structurally, the form is an entry in the FORM (#.403) file. The FORM
+		(#.403) file contains a PAGE Multiple, and the PAGE Multiple contains a BLOCK
+		Multiple. The .01 field of the BLOCK Multiple is a POINTER to the BLOCK
+		(#.404) file. The BLOCK (#.404) file contains a Multiple for fields.</P>
+	 <P>Because of this structure, blocks in the BLOCK (#.404) file are reusable
+		(i.e., the same block can be placed on more than one page and on more than
+		one form).</P>
+	 <P>Each block in the BLOCK (#.404) file that contains VA FileMan fields has
+		a DD Number property. Each block can contain fields from only one file or
+		subfile, as determined by this DD Number.</P> <HR>
+	 <H5><A NAME="Linking">Linking Pages of a Form</A></H5>
 	 <P>When a form is first invoked and the user is presented with the first
-		page, conceptually, the user is at the top level of the form. When the user
-		goes to the next or previous pages, the user remains at the top level. Only at
-		this level can the user exit or quit the form or save changes made during the
-		editing session. </P> 
-	 <P>When the user opens up a subpage, however, the user has descended a
-		level. At this level, and at lower levels, the user can only close the current
-		page, or issue the Refresh command to repaint the screen; the user cannot exit
-		or quit the form or save any changes. </P> 
+		page, conceptually, the user is at the top-level of the form. When the user
+		goes to the next or previous pages, the user remains at the top-level. Only
+		at this level can the user exit or quit the form or save changes made during
+		the editing session.</P>
+	 <P>When the user opens a subpage, however, the user has descended a level.
+		At this level and at lower levels, the user can only close the current page
+		or issue the Refresh command to repaint the screen; the user cannot exit or
+		quit the form or save any changes.</P>
 	 <P>Pages on a form can be linked together in a variety of ways. The
-		following lists the places where links can be defined: </P> 
-	 <UL> 
-		<LI><B>Pages at the same level</B> 
-		  <UL> 
-			 <LI>The Next Page property of a page<BR><BR></LI> 
-			 <LI>The Previous Page property of a page<BR><BR></LI> 
-			 <LI>The DDSBR variable in the Branching Logic of a field or in Pre
-				and Post Actions</LI> 
-		  </UL> <BR><BR> </LI> 
-		<LI><B>Pages at different levels</B> 
-		  <UL> 
-			 <LI>The Parent Field property of a page<BR><BR></LI> 
-			 <LI>The Subpage Link property of a field<BR><BR></LI> 
-			 <LI>The DDSSTACK variable in the Branching Logic of a field</LI> 
-		  </UL> </LI> 
-	 </UL> 
+		following lists the places where links can be defined:</P>
+	 <UL>
+		<LI><B>Pages at the same level:</B>
+		  <UL>
+			 <LI>The Next Page property of a page.<BR><BR></LI>
+			 <LI>The Previous Page property of a page.<BR><BR></LI>
+			 <LI>The DDSBR variable in the Branching Logic property of a field or
+				in Pre Action and Post Action page properties.</LI>
+		  </UL> <BR><BR></LI>
+		<LI><B>Pages at different levels:</B>
+		  <UL>
+			 <LI>The Parent Field property of a page.<BR><BR></LI>
+			 <LI>The Subpage Link property of a field.<BR><BR></LI>
+			 <LI>The DDSSTACK variable in the Branching Logic property of a field.</LI>
+		  </UL></LI>
+	 </UL>
 	 <P>Both the Next Page and Previous Page properties link pages at the same
 		level. The user can go to the next and previous pages by pressing
 		<B>&lt;PF1&gt;&lt;ARROW DOWN&gt;</B> and <B>&lt;PF1&gt;&lt;ARROW UP&gt;</B>,
-		respectively. Pages linked via the Next and Previous page links must be regular
-		pages; they cannot be "pop-up" pages. The
+		respectively. Pages linked via the Next Page and Previous Page links must be
+		regular pages; they cannot be "popup" pages. Use the
 		<A HREF="sf_ddsbr.htm" TARGET="display" TITLE="DDSBR variable"
-		 CLASS="bodylink">DDSBR variable</A>, discussed in the "<A HREF="sf_propg.htm"
-		TARGET="display" TITLE="Field Properties" CLASS="bodylink">Field
-		Properties</A>" section, can be used to take the user to another page under
-		conditions you specify. </P> 
+		 CLASS="bodylink">DDSBR variable</A> to take the user to another page under
+		conditions you specify.</P>
 	 <P>Both the Parent Field and Subpage Link properties allow you to take the
-		user to a subpage at a lower level when the user presses the Enter/Return key
-		at a field on the parent page. The subpage can be either a regular or a
-		"pop-up" page. A "pop-up" page is usually preferable since it gives users a
-		better indication that they have descended a level and must close the subpage
-		to return to the previous level. After the user closes the subpage, ScreenMan
-		automatically returns to the previous level -- that is, to the parent page from
-		where the branch occurred. </P> 
+		user to a subpage at a lower level when the user presses the Enter key at a
+		field on the parent page. The subpage can be either a regular or a "popup"
+		page. A "popup" page is usually preferable, since it gives users a better
+		indication that they have descended a level and must close the subpage to
+		return to the previous level. After the user closes the subpage, ScreenMan
+		automatically returns to the previous level (i.e., to the parent page from
+		where the branch occurred).</P>
 	 <P>The difference between the Parent Field property and the Subpage Link
-		property is where the link is defined. The Parent Field property is defined
-		with the subpage and indicates the field from which the branch should occur.
-		The Subpage Link property, on the other hand, is defined with the field and
-		indicates the subpage to which the branch should occur. In a sense, then, the
-		difference between these two properties is the direction of the "pointer."
-		Parent Field points from the subpage to the field, and Subpage Link points from
-		the field to the subpage. Where you choose to define the link is a matter of
-		personal preference. However, the disadvantage of defining the link in the
-		Subpage Link property is that the block on which the field is defined may not
-		be reusable on other forms, since the link points to a specific page on the
-		form. </P> 
+		property is where the link is defined:</P>
+	 <UL>
+		<LI><B>Parent Field</B>&mdash;Defined with the subpage and indicates the
+		  field from which the branch should occur.<BR><BR></LI>
+		<LI><B>Subpage Link</B>&mdash;Defined with the field and indicates the
+		  subpage to which the branch should occur.</LI>
+	 </UL>
+	 <P>In a sense, the difference between these two properties is the direction
+		of the "POINTER:"</P>
+	 <UL>
+		<LI><B>Parent Field</B>&mdash;Points from the subpage to the field.<BR><BR></LI>
+		<LI><B>Subpage Link</B>&mdash;Points from the field to the subpage.</LI>
+	 </UL>
+	 <P>Where you choose to define the link is a matter of personal preference.
+		However, the disadvantage of defining the link in the Subpage Link property
+		is that the block on which the field is defined may not be reusable on other
+		forms, since the link points to a specific page on the form.</P>
 	 <P>You must use either the Parent Field or the Subpage Link property to
-		link a multiple field on a form to a subpage that contains the fields within
-		the multiple. </P> 
-	 <P>The
-		<A HREF="sf_ddsst.htm" TARGET="display" TITLE="DDSSTACK variable"
-		 CLASS="bodylink">DDSSTACK variable</A>, discussed in the "<A
-		HREF="sf_propg.htm" TITLE="Field Properties" CLASS="bodylink">Field
-		Properties</A>" section, can also be used to link a field to a subpage. It
-		behaves just like the Parent Field and Subpage Link properties, but because it
-		is set in M code in the Branching Logic property of a field, DDSSTACK lets you
-		branch conditionally. </P> 
-	 <P>The following diagram illustrates the various page links:</P> 
+		link a Multiple field on a form to a subpage that contains the fields within
+		the Multiple.</P>
+	 <P>Use the <A HREF="sf_ddsst.htm" TARGET="display" TITLE="DDSSTACK variable"
+		CLASS="bodylink">DDSSTACK variable</A> to link a field to a subpage. It
+		behaves just like the Parent Field and Subpage Link properties, but because
+		it is set in M code in the Branching Logic property of a field, DDSSTACK lets
+		you branch conditionally.</P>
+	 <P>Figure 221 illustrates the various page links:</P>
+	 <P ALIGN="CENTER"><B>Figure 221: ScreenMan Forms&mdash;DDSSTACK Variable:
+		Sample Page Links</B></P>
 	 <P><IMG SRC="sf_lay.gif" WIDTH="466" HEIGHT="480"
-		ALT="Example of Linking Various Forms (Page Links)."> </P>
-	 <P>&nbsp;</P> 
+		ALT="Example of Linking Various Forms (Page Links)."></P>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- pm/sf_lay.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

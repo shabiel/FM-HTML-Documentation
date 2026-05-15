@@ -48,87 +48,101 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>CLONE^DDS</H4> 
-	 <P>You can use this entry point to make a copy of a form. All blocks used
-		on the form are copied and a new form that uses the new blocks is created. </P>
-	 
-	 <P>In the following illustration, CLONE^DDS is used to make a copy of the
-		XUEDIT CHARACTERISTICS form of the NEW PERSON file: </P> 
-	 <PRE>
-&gt;<B>D CLONE^DDS</B>
+	 <H4>CLONE^DDS: Make a Copy of a Form</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>10031</TD>
+	   </TR>
+	 </TABLE>
+	 <P>Use the CLONE^DDS API to make a copy of a form. All blocks used on the
+		form are copied and a new form that uses the new blocks is created.</P>
+	 <P>In Figure 240, CLONE^DDS is used to make a copy of the XUEDIT
+		CHARACTERISTICS form of the NEW PERSON (#200) file:</P>
+	 <P ALIGN="CENTER"><B>Figure 240: ScreenMan Forms&mdash;CLONE^DDS: Sample
+		Dialog to Copy a Form</B></P>
+<PRE>
+&gt;<B>D CLONE^DDS</B> &lt;Enter&gt;
 
 
-CLONE FORM FROM WHAT FILE: <B>NEW PERSON</B>
+CLONE FORM FROM WHAT FILE: <B>NEW PERSON</B> &lt;Enter&gt;
 
 Select FORM to clone: <B>??</B>
- 
+
 Choose from:
-   XUEDIT CHARACTERISTICS        #1     12/06/90         File #200
-   XUEXISTING USER               #2     12/12/90         File #200
+   XUEDIT CHARACTERISTICS              #1      12/06/90           File #200
+   XUEXISTING USER                     #2      12/12/90           File #200
 
-Select FORM to clone: <B>XUEDIT CHARACTERISTICS</B>  XUEDIT CHARACTERISTICS
+Select FORM to clone: <B>XUEDIT CHARACTERISTICS</B> &lt;Enter&gt; XUEDIT CHARACTERISTICS
 
-                                 #1     12/06/90         File #200
-
-
-</PRE> 
+                                        #1      12/06/90           File #200
+</PRE>
 	 <P>Once you have selected a form to clone, a report that lists the blocks
-		used on the form is printed: </P> 
-	 <PRE>
-  BLOCKS USED ON FORM &quot;XUEDIT CHARACTERISTICS&quot; (IEN #1)
+		used on the form is printed, as shown in Figure 241:</P>
+	 <P ALIGN="CENTER"><B>Figure 241: ScreenMan Forms&mdash;CLONE^DDS: Report
+		Showing Blocks Used on a Form</B></P>
+<PRE>
+   BLOCKS USED ON FORM &quot;XUEDIT CHARACTERISTICS&quot; (IEN #1)
 
-  Internal
-  Entry Number   Block Name
-  ------------   ----------
-  1              XUEDIT CHARACTERISTICS HDR
-  2              XUEDIT CHARACTERISTICS
+   Internal
+   Entry Number      Block Name
+   ------------      ----------
+   1                 XUEDIT CHARACTERISTICS HDR
+   2                 XUEDIT CHARACTERISTICS
 
-Enter RETURN to continue or '^' to exit: <B></B>
-
-
-</PRE> 
+Enter RETURN to continue or '^' to exit: &lt;Enter&gt;
+</PRE>
 	 <P>You must assign names to the new form and blocks you are creating. If
-		the original form and blocks are namespaced - that is, start with the same set
-		of characters - you can choose to give the new form and blocks the same name,
-		but with the namespace replaced with another set of characters. Then, when you
-		are asked to enter new names, names that have the namespace replaced with the
-		set of characters are displayed as defaults: </P> 
-	 <PRE>
+		the original form and blocks are namespaced (i.e., start with the same set
+		of characters), you can choose to give the new form and blocks the same
+		name, but with the namespace replaced with another set of characters. Then,
+		when you are asked to enter new names, names that have the namespace
+		replaced with the set of characters are displayed as defaults, as shown in
+		Figure 242:</P>
+	 <P ALIGN="CENTER"><B>Figure 242: ScreenMan Forms&mdash;CLONE^DD: Assigning
+		New Form and Block Names</B></P>
+<PRE>
 The new form and blocks must be given unique names.
 
 Give the new form and blocks the same names as the original,
-but a different namespace? YES//<B> </B>
+but a different namespace? YES// &lt;Enter&gt;
 
 
-Original namespace: <B>XU</B>
-     New namespace: <B>ZZ</B>
+Original namespace: <B>XU</B> &lt;Enter&gt;
+     New namespace: <B>ZZ</B> &lt;Enter&gt;
 
 Enter names for the new form and blocks.
 
-Original form name: XUEDIT CHARACTERISTICS
-     New form name: <B>ZZEDIT CHARACTERISTICS</B>
+Original form name: XUEDIT CHARACTERISTICS &lt;Enter&gt;
+     New form name: <B>ZZEDIT CHARACTERISTICS</B> &lt;Enter&gt;
 
 
-Original block name: XUEDIT CHARACTERISTICS HDR
-     New block name: <B>ZZEDIT CHARACTERISTICS HDR</B>
+Original block name: XUEDIT CHARACTERISTICS HDR &lt;Enter&gt;
+     New block name: <B>ZZEDIT CHARACTERISTICS HDR</B> &lt;Enter&gt;
 
-Original block name: XUEDIT CHARACTERISTICS
-     New block name: <B>ZZEDIT CHARACTERISTICS</B>
-
-
-</PRE> 
-	 <P>After you have given names to the new form and blocks, you are ready to
-		clone the form as follows: </P> 
-	 <PRE>
-Ready to clone form? <B>YES</B>
+Original block name: XUEDIT CHARACTERISTICS &lt;Enter&gt;
+     New block name: <B>ZZEDIT CHARACTERISTICS</B> &lt;Enter&gt;
+</PRE>
+	 <P>After you have given names to the new form and blocks, you are ready
+		to clone the form as shown in Figure 243:</P>
+	 <P ALIGN="CENTER"><B>Figure 243: ScreenMan Forms&mdash;CLONE^DDS: Cloning a
+		Form</B></P>
+<PRE>
+Ready to clone form? <B>YES</B> &lt;Enter&gt;
 
 Creating new blocks ...
 
-  ZZEDIT CHARACTERISTICS HDR       #71
-  ZZEDIT CHARACTERISTICS           #72
+   ZZEDIT CHARACTERISTICS HDR           #71
+   ZZEDIT CHARACTERISTICS               #72
 
 Creating new form ...
-  ZZEDIT CHARACTERISTICS           #36
+  ZZEDIT CHARACTERISTICS                #36
 
 Repointing to new blocks ...
 Reindexing new form ...
@@ -136,14 +150,14 @@ Reindexing new form ...
 
 DONE!
 &gt;
-</PRE> 
+</PRE>
 	 <P><B>NOTE:</B> Be sure to check the properties of the cloned form and
-		blocks for namespaced variables, block references, etc., that may need to be
-		modified manually. </P>
-	 <P>&nbsp;</P> 
+		blocks for namespaced variables, block references, etc., that need to be
+		modified manually.</P>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sm_pclon.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

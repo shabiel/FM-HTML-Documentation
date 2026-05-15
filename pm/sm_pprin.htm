@@ -47,66 +47,79 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan API</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>PRINT^DDS</H4> 
-	 <P>You can use this entry point to print a form. PRINT^DDS prints the
-		properties of the form and the properties of all the blocks used on that form.
-		</P> 
-	 <PRE>
-&gt;<B>D PRINT^DDS</B> 
- 
-Select FORM: <B>ZZSAMPLE</B>        (Nov 16, 1994)   User #3   File 16201
- 
-Start each page of the form on a new page? Yes// <B>NO</B> 
-DEVICE: HOME// <B>;;9999</B>  DECSERVER
- 
+	 <H4>PRINT^DDS: Print a Form</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+	     <TH ALIGN="LEFT">Reference Type</TH>
+	     <TH ALIGN="LEFT">Category</TH>
+	     <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+	     <TD>Supported</TD>
+	     <TD>ScreenMan</TD>
+	     <TD>10031</TD>
+	   </TR>
+	 </TABLE>
+	 <P>Use the PRINT^DDS API to print a form. PRINT^DDS prints the properties
+		of the form and the properties of all the blocks used on that form, as
+		shown in Figure 244:</P>
+	 <P ALIGN="CENTER"><B>Figure 244: ScreenMan Forms&mdash;PRINT^DDS: Printing a
+		Form</B></P>
+<PRE>
+&gt;<B>D PRINT^DDS</B> &lt;Enter&gt;
+
+Select FORM: <B>ZZSAMPLE</B> &lt;Enter&gt; (Nov 16, 1994)           User #3    File 16201
+
+Start each page of the form on a new page? Yes// <B>NO</B> &lt;Enter&gt;
+DEVICE: HOME// <B>;;9999</B> &lt;Enter&gt; DECSERVER
+
 FORM LISTING - ZZSAMPLE (#38)
-FILE: ZZTEST (#16201)                NOV 16, 1994  13:29    PAGE 1
+FILE: ZZTEST (#16201)                NOV 16, 1994 13:29     PAGE 1
 ------------------------------------------------------------------
          PRIMARY FILE: 16201                   READ ACCESS: @
          DATE CREATED: NOV 16, 1994@08:24     WRITE ACCESS: @
        DATE LAST USED: NOV 16, 1994@08:25          CREATOR: 3
- 
-Page    Page
-Number  Properties
-------  ----------
-1       Page 1
- 
-PAGE COORDINATE:        1,1
- 
-Block  Block
-Order  Properties (Form File)
------  ----------------------
-1      ZZSAMPLE (#104)
- 
-TYPE OF BLOCK:          EDIT
-BLOCK COORDINATE:       1,1
+
+Page      Page
+Number    Properties
+------    ----------
+1         Page 1
+
+PAGE COORDINATE:             1,1
+
+Block    Block
+Order    Properties (Form File)
+-----    ----------------------
+1        ZZSAMPLE (#104)
+
+TYPE OF BLOCK:               EDIT
+BLOCK COORDINATE:            1,1
 
 Block Properties (Block File)
 -----------------------------
 DATA DICTIONARY NUMBER: 16201
 
-Field  Field
-Order  Properties
------  ----------
-1      FIELD TYPE:            DATA DICTIONARY FIELD
-       CAPTION:               NAME
-       FIELD:                 .01
-       CAPTION COORDINATE:    1,1
-       DATA COORDINATE:       1,7
-       DATA LENGTH:           30
- 
-2      FIELD TYPE:            DATA DICTIONARY FIELD
-       CAPTION:               SET
-       FIELD:                 1
-       CAPTION COORDINATE:    2,2
-       DATA COORDINATE:       2,7
-       DATA LENGTH:           10
+Field    Field
+Order    Properties
+-----    ----------
+1        FIELD TYPE:                DATA DICTIONARY FIELD
+         CAPTION:                   NAME
+         FIELD:                     .01
+         CAPTION COORDINATE:        1,1
+         DATA COORDINATE:           1,7
+         DATA LENGTH:               30
 
-</PRE> 
-	 <P></P>	 <P>&nbsp;</P> 
+2        FIELD TYPE:                DATA DICTIONARY FIELD
+         CAPTION:                   SET
+         FIELD:                     1
+         CAPTION COORDINATE:        2,2
+         DATA COORDINATE:           2,7
+         DATA LENGTH:               10
+</PRE>
+	 <P></P>	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sm_pprin.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 4, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

@@ -48,59 +48,71 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Relational Navigation: Forward Pointers</H4> 
+	 <H4>Relational Navigation: Forward Pointers</H4>
 	 <P>On a page of a form, you can place a block that contains fields from a
-		file other than the Primary File of the form. If the file is reached via a
-		forward pointer, you must define a Pointer Link for that block. The syntax of
-		the Pointer Link property is similar to FileMan's relational syntax. When you
-		define the Pointer link, your point of reference is the Primary File of the
-		form. </P> 
-	 <P>In the following illustration, the Primary File of the form is the ORDER
-		file (#16202). There are two blocks on the page. Block A contains fields from
-		the ORDER file, and Block B contains fields from the CUSTOMER file (#16201).
-		CUSTOMER NAME in the ORDER file points to the CUSTOMER file. </P> 
-	 <P></P>
+		file other than the Primary file of the form. If the file is reached via a
+		forward POINTER, you must define a Pointer Link for that block. The syntax
+		of the Pointer Link property is like VA FileMan's relational syntax. When
+		you define the Pointer Link, your point of reference is the Primary file of
+		the form.</P>
+	 <P>In Figure 223, the Primary file of the form is the (fictitious) ORDER
+		(#16202) file. There are two blocks on the page. Block A contains fields
+		from the (fictitious) ORDER (#16202) file, and Block B contains fields from
+		the (fictitious) CUSTOMER (#16201) file. CUSTOMER NAME in the (fictitious)
+		ORDER (#16202) file points to the (fictitious) CUSTOMER (#16201) file.</P>
+	 <P ALIGN="CENTER"><B>Figure 223: ScreenMan Forms&mdash;Relational Navigation:
+		Forward Pointers</B></P>
 	 <IMG ALIGN="BOTTOM" SRC="sf_forpt.gif"
-	 ALT="Example of a Form with Forward-Pointer Relational Navigation." WIDTH="595"
-	 HEIGHT="427"> 
-	 <P></P> 
-	 <P>If CUSTOMER NAME is field #1, the Pointer Link property for Block B can
-		be set to either "CUSTOMER NAME" or 1. The following sections describe in more
-		detail the syntax for the Pointer Link property. </P> 
-	 <H5>Syntax for Pointer Link -- Navigating Via DD Fields</H5> 
-	 <P>In the valid formats listed below, "Pfield" is a pointer-type field.
-		Both "Pfield" and "Field" can be either field names or field numbers.
-		"Mult_field" is the name or number of a multiple field. "File" is the name or
-		number of a file. A file or field name can be enclosed in quotation marks. </P>
-	 
+	  ALT="Example of a Form with Forward-Pointer Relational Navigation."
+	  WIDTH="595" HEIGHT="427">
+	 <P></P>
+	 <P>If CUSTOMER NAME is Field #1, the Pointer Link property for Block B can
+		be set to either "CUSTOMER NAME" or 1. The following sections describe in
+		more detail the syntax for the Pointer Link property:</P>
+	 <UL>
+		<LI>Syntax for Pointer Link&mdash;Navigating Via DD Fields<BR><BR></LI>
+		<LI>Syntax for Pointer Link&mdash;Navigating Via Form Only Fields</LI>
+	 </UL>
+	 <H5>Syntax for Pointer Link&mdash;Navigating Via DD Fields</H5>
+	 <P>In the valid formats listed in Table 74:</P>
+	 <UL>
+		<LI>"Pfield" is a POINTER-type field.<BR><BR></LI>
+		<LI>Both "Pfield" and "Field" can be either field names or field
+		  numbers.<BR><BR></LI>
+		<LI>"Mult_field" is the name or number of a Multiple field.<BR><BR></LI>
+		<LI>"File" is the name or number of a file.</LI>
+	 </UL>
+	 <P>A file or field name can be enclosed in quotation marks.</P>
+	 <P ALIGN="CENTER"><B>Table 74: ScreenMan Forms&mdash;Valid Formats for DD
+		Fields</B></P>
 	 <TABLE BORDER="1"
-	 SUMMARY="Syntax for Pointer Link -- Navigating Via DD Fields Table"
-	 WIDTH="100%" TITLE="Syntax for Pointer Link -- Navigating Via DD Fields Table">
-		
-		<TR> 
-		  <TD VALIGN="TOP"><B>Format</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">Pfield</TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">The Primary File of the form has a field
-			 Pfield that points to the file associated with the block. That pointer field
-			 determines the record to display in the pointed-to block. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">Pfield_1:Pfield_2: ... :Pfield_n </TD> 
+	 SUMMARY="Valid Formats for DD Fields"
+	 WIDTH="100%" TITLE="Valid Formats for DD Fields">
+		<TR>
+		  <TD VALIGN="TOP"><B>Format</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">Pfield</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">The Primary file of the form has a Pfield
+			 field that points to the file associated with the block. That POINTER
+			 field determines the record to display in the pointed-to block.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">Pfield_1:Pfield_2: ... :Pfield_n</TD>
 		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to block is reached after
-			 relational jumps across many files. Here, Pfield_1 in the Primary File points
-			 to File 2 that contains a Pfield_2 that points to File 3, etc. Finally,
-			 Pfield_n points to the file associated with the block being defined. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" ROWSPAN="4">Field;Opt_spec </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">The value of Field in the Primary File
-			 should be used to do a lookup into the file associated with the block. 
+			 relational jumps across many files. Here, Pfield_1 in the Primary file
+			 points to File #2 that contains a Pfield_2 that points to File #3, etc.
+			 Finally, Pfield_n points to the file associated with the block being
+			 defined.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP" ROWSPAN="4">Field;Opt_spec</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">The value of Field in the Primary file
+			 should be used to do a lookup into the file associated with the block.
 			 <P>You can control how the lookup is done by using any of the
-				following optional specifiers (<A NAME="OptSpec">Opt_spec</A>): </P> </TD> 
-		</TR> 
+				following optional specifiers (<A NAME="OptSpec">Opt_spec</A>):</P></TD>
+		</TR>
 		<TR> 
 		  <TD VALIGN="TOP">;I</TD> 
 		  <TD VALIGN="TOP">Use the <B>I</B>nternal form of the field value for
@@ -117,68 +129,74 @@
 			 specifier is not used, all indexes starting with the B index are used in the
 			 lookup. </TD> 
 		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">Field;Opt_spec:File:Pfield_1: Pfield_2: ... :Pfield_n
-			 </TD> 
+		<TR>
+		  <TD VALIGN="TOP">Field;Opt_spec:File:Pfield_1: Pfield_2: ... :Pfield_n</TD>
 		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to block is reached after
-			 relational jumps across many files. The first jump is accomplished with a
-			 lookup into File. See <A HREF="#OptSpec" TITLE="Opt_spec"
-			 CLASS="bodylink">Opt_spec</A>. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">Mult_field_1:Mult_field_2: ... :Mult_field_n:Pfield
-			 </TD> 
+			 relational jumps across many files. The first jump is accomplished with
+			 a lookup into File.
+			 <P>REF: See <A HREF="#OptSpec" TITLE="Opt_spec"
+				CLASS="bodylink">Opt_spec</A>.</P></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">Mult_field_1:Mult_field_2: ... :Mult_field_n:Pfield</TD>
 		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to block is reached after
-			 descending into subfiles of the Primary File and finally a relational jump via
-			 a pointer field within a subfile. </TD> 
-		</TR> 
-	 </TABLE> 
-	 <H5><A NAME="form_only">Syntax for Pointer Link -- Navigating Via Form-only
-		Fields</A></H5> 
-	 <P>Form-only fields can also be used to relationally link blocks.</P> 
-	 <P>In the formats below, the characters "FO" indicate that a form-only
-		field is being identified. "Pform_only" is a pointer-type form-only field and
-		"Form_only" is a form-only field that is not a pointer. Form_only and
-		Pform_only are three-piece comma-delimited strings that uniquely identify
-		form-only fields on the form. They have the following format: </P> 
-	 <P> Format of Form_only: Field_id,Block_id,Page_id </P> 
-	 <P>where</P> 
-	 <UL> 
+			 descending into subfiles of the Primary file and finally a relational
+			 jump via a POINTER field within a subfile.</TD>
+		</TR>
+	 </TABLE>
+	 <H5><A NAME="form_only">Syntax for Pointer Link&mdash;Navigating Via Form Only
+		Fields</A></H5>
+	 <P>Form-only fields can also be used to relationally link blocks.</P>
+	 <P>In the formats in Table 75:</P>
+	 <UL>
+		<LI>The characters "FO" indicate that a Form-only field is being
+		  identified.<BR><BR></LI>
+		<LI>"Pform_only" is a POINTER-type Form-only field.<BR><BR></LI>
+		<LI>"Form_only" is a Form-only field that is not a POINTER.</LI>
+	 </UL>
+	 <P>Form_only and Pform_only are three-piece comma-delimited strings that
+		uniquely identify Form-only fields on the form. They have the following
+		format:</P>
+	 <PRE>    Field_id,Block_id,Page_id</PRE>
+	 <P>Where:</P>
+	 <UL>
 		<LI>Field_id = Field Order number; or Caption of the field; or Unique
-		  Name of the field<BR><BR></LI> 
-		<LI>Block_id = Block Order number; or Block Name<BR><BR></LI> 
+		  Name of the field<BR><BR></LI>
+		<LI>Block_id = Block Order number; or Block Name<BR><BR></LI>
 		<LI>Page_id = Page Number; or Page Name (required only if Block Order
-		  number is used to identify the block.) </LI> 
-	 </UL> 
-	 <P> Valid formats are: </P> 
+		  number is used to identify the block)</LI>
+	 </UL>
+	 <P ALIGN="CENTER"><B>Table 75: ScreenMan Forms&mdash;Valid Formats for Form
+		Only Fields</B></P>
 	 <TABLE BORDER="1" WIDTH="100%"
-	 SUMMARY="Syntax for Pointer Link -- Navigating Via Form-only Fields Table"
-	 TITLE="Syntax for Pointer Link -- Navigating Via Form-only Fields Table"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Format</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">FO(Pform_only) </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">The pointer-type form-only field is a
-			 pointer to the file associated with the block being defined. The contents of
-			 the form-only field determines the record to display in the pointed-to file.
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">FO(Pform_only):Pfield_1: ... Pfield_n </TD> 
+	 SUMMARY="Valid Formats for Form Only Fields"
+	 TITLE="Valid Formats for Form Only Fields">
+		<TR>
+		  <TD VALIGN="TOP"><B>Format</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">FO(Pform_only)</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">The POINTER-type Form-only field is a
+			 POINTER to the file associated with the block being defined. The
+			 contents of the Form-only field determines the record to display in the
+			 pointed-to file.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">FO(Pform_only):Pfield_1: ... Pfield_n</TD>
 		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to file is reached after
-			 relational jumps across many files. Here, the pointer-type form-only field
-			 points to File 1 that contains a Pfield_1 that points to File 2, etc. Finally,
-			 Pfield_n points to the file associated with the block being defined. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" ROWSPAN="4">FO(Form_only);Opt_spec </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">The value of the form-only field is used
-			 to do a lookup into the file associated with the block. 
+			 relational jumps across many files. Here, the POINTER-type Form-only
+			 field points to File #1 that contains a Pfield_1 that points to File
+			 #2, etc. Finally, Pfield_n points to the file associated with the block
+			 being defined.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP" ROWSPAN="4">FO(Form_only);Opt_spec</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">The value of the Form-only field is used
+			 to do a lookup into the file associated with the block.
 			 <P>You can control how the lookup is done by using any of the
-				following optional specifiers (<A NAME="OptSpec2">Opt_spec</A>): </P> </TD> 
-		</TR> 
+				following optional specifiers (<A NAME="OptSpec2">Opt_spec</A>):</P></TD>
+		</TR>
 		<TR> 
 		  <TD VALIGN="TOP">;I</TD> 
 		  <TD VALIGN="TOP">Use the <B>I</B>nternal form of the field value for
@@ -195,20 +213,20 @@
 			 specifier is not used, all indexes starting with the B index are used in the
 			 lookup. </TD> 
 		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">FO(Form_only);Opt_spec:File: Pfield_1: ... Pfield_n
-			 </TD> 
+		<TR>
+		  <TD VALIGN="TOP">FO(Form_only);Opt_spec:File: Pfield_1: ... Pfield_n</TD>
 		  <TD VALIGN="TOP" COLSPAN="2">The pointed-to file is reached after
-			 relational jumps across many files. The first jump is accomplished with a
-			 lookup. See <A HREF="#OptSpec2" TITLE="Opt_spec" CLASS="bodylink">Opt_spec</A>.
-			 </TD> 
-		</TR> 
-	 </TABLE> 
+			 relational jumps across many files. The first jump is accomplished with
+			 a lookup.
+			 <P>REF: See <A HREF="#OptSpec2" TITLE="Opt_spec"
+				CLASS="bodylink">Opt_spec</A>.</P></TD>
+		</TR>
+	 </TABLE>
 	 <P></P>
-	 <P>&nbsp;</P> 
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sf_forpt.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

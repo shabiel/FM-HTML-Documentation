@@ -47,38 +47,48 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan Forms</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Computed Fields</H4> 
-	 <P>ScreenMan computed fields, like form-only fields, are fields that are
-		defined only on the form. You cannot place computed fields from FileMan files
-		on a form because the M code for those fields often directly references data in
-		files, which is outside the context of ScreenMan's transaction. </P> 
-	 <P>When you define a ScreenMan computed field, you enter a Computed
-		Expression. The computed expression has the following format: </P> 
-	 <P> M code that sets the local variable Y </P> 
-	 <P>For example: </P> 
-	 <PRE>    S:$D(FLAG) Y=$P(MYVAR,&quot;,&quot;,2)_&quot; &quot;_$P(MYVAR,&quot;,&quot;)</PRE> 
-	 <P>The computed expression can reference data dictionary fields, form-only
-		fields, and computed fields used elsewhere on the form. If the user changes the
-		value of a field used in a computed expression, ScreenMan automatically
-		recalculates and repaints the computed field. </P> 
+	 <H4>COMPUTED Fields</H4>
+	 <P>ScreenMan COMPUTED fields, like Form-only fields, are fields that are
+		defined only on the form. You cannot place COMPUTED fields from VA FileMan
+		files on a form, because the M code for those fields often directly
+		references data in files, which is outside the context of ScreenMan's
+		transaction.</P>
+	 <P>When you define a ScreenMan COMPUTED field, you enter a computed
+		expression. The computed expression has the following format:</P>
+	 <PRE>    M code that sets the local variable Y</PRE>
+	 <P>For example:</P>
+	 <P ALIGN="CENTER"><B>Figure 224: ScreenMan Forms&mdash;Computed Fields: Example
+		of Format</B></P>
+	 <PRE>    S:$D(FLAG) Y=$P(MYVAR,&quot;,&quot;,2)_&quot; &quot;_$P(MYVAR,&quot;,&quot;)</PRE>
+	 <P>The computed expression can reference any of the following used elsewhere
+		on the form:</P>
+	 <UL>
+		<LI>DATA DICTIONARY fields<BR><BR></LI>
+		<LI>Form-only fields<BR><BR></LI>
+		<LI>COMPUTED fields</LI>
+	 </UL>
+	 <P>If the user changes the value of a field used in a computed expression,
+		ScreenMan automatically recalculates and repaints the COMPUTED field.</P>
 	 <P>The expression atom that identifies other form elements has a syntax
-		that uses curly braces (<B>{}</B>) as described below. </P> 
-	 <H5>Referencing Data Dictionary Fields</H5> 
-	 <P>In the formats below, "Field" is the name or number of a data dictionary
-		field. "Pfield" is the name or number of a pointer-type data dictionary field.
-		"File" is the name or number of a file. </P> 
+		that uses curly braces (<B>{}</B>) as described in Table 76.</P>
+	 <H5>Referencing DATA DICTIONARY Fields</H5>
+	 <P>In the formats in Table 76:</P>
+	 <UL>
+		<LI>"Field" is the name or number of a DATA DICTIONARY field.<BR><BR></LI>
+		<LI>"Pfield" is the name or number of a POINTER-type DATA DICTIONARY
+		  field.<BR><BR></LI>
+		<LI>"File" is the name or number of a file.</LI>
+	 </UL>
+	 <P ALIGN="CENTER"><B>Table 76: ScreenMan Forms&mdash;Syntax for Computed
+		Expression Atom that References a DD Field</B></P>
 	 <TABLE BORDER="1"
-	 SUMMARY="Syntax for Computed Expression Atom that References a DD Field Table"
+	 SUMMARY="Syntax for Computed Expression Atom that References a DD Field"
 	 WIDTH="100%"
-	 TITLE="Syntax for Computed Expression Atom that References a DD Field Table"> 
-		<TR> 
-		  <TD COLSPAN="3" VALIGN="TOP"><B>Syntax for Computed Expression Atom
-			 that References a DD Field</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Format</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B> </TD> 
-		</TR> 
+	 TITLE="Syntax for Computed Expression Atom that References a DD Field">
+		<TR>
+		  <TD VALIGN="TOP"><B>Format</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B></TD>
+		</TR>
 		<TR> 
 		  <TD VALIGN="TOP" ROWSPAN="2">{Field;Opt_spec} </TD> 
 		  <TD VALIGN="TOP" COLSPAN="2">The value of Field is retrieved. 
@@ -90,19 +100,18 @@
 		  <TD VALIGN="TOP">Retrieve the <B>I</B>nternal form of the Field value.
 			 </TD> 
 		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">{Pfield:Field;Opt_spec} </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">Pfield is a pointer to a file. The value
-			 of Field in that file is retrieved. The Opt_spec value of ;I can be used as
-			 described immediately above to retrieve the internal, rather than the external
-			 form. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" ROWSPAN="3">{Field_1;Opt_spec1: File:Field_2;Opt_spec}
-			 </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">Field_1 is not a pointer field. The value
+		<TR>
+		  <TD VALIGN="TOP">{Pfield:Field;Opt_spec}</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">Pfield is a POINTER to a file. The value
+			 of Field in that file is retrieved. The Opt_spec value of ;I can be
+			 used as described immediately above to retrieve the internal, rather
+			 than the external form.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP" ROWSPAN="3">{Field_1;Opt_spec1: File:Field_2;Opt_spec}</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">Field_1 is not a POINTER field. The value
 			 of Field_1 is used to do a lookup into File. Field_2 from that file is
-			 retrieved. 
+			 retrieved.
 			 <P>An Opt_spec value of ;I can be used to retrieve the internal
 				rather than the external form. </P> 
 			 <P>In addition, you can control how the lookup is done by using any
@@ -122,55 +131,56 @@
 			 lookup. </TD> 
 		</TR> 
 	 </TABLE> 
-	 <H5>Referencing Form-Only and Computed Fields</H5> 
-	 <P>A computed expression atom can also reference form-only fields and
-		computed fields used on the form.</P> 
-	 <P>In the formats below, the syntax is similar to the that for referencing
-		data dictionary fields, except that "FO(Form_only)" is used instead of "Field."
-		"Form_only" is a three-piece comma-delimited string that identifies a form-only
-		or computed field. See the description of
-		<A HREF="sf_forpt.htm#form_only"
+	 <H5>Referencing Form-only and Computed Fields</H5>
+	 <P>A computed expression atom can also reference Form-only fields and
+		COMPUTED fields used on the form.</P>
+	 <P>In the formats listed in Table 77:</P>
+	 <UL>
+		<LI>The syntax is like that for referencing DATA DICTIONARY fields, except
+		  that "FO(Form_only)" is used instead of "Field."<BR><BR></LI>
+		<LI>"Form_only" is a three-piece comma-delimited string that identifies a
+		  Form-only or COMPUTED field.</LI>
+	 </UL>
+	 <P>REF: For a description of the format of "Form_only," see the description
+		of "<A HREF="sf_forpt.htm#form_only"
 		TITLE="Syntax for Pointer Link -- Navigating Via Form Only"
-		CLASS="bodylink">Syntax for Pointer Link -- Navigating Via Form-only Fields</A>
-		for a description of the format of "Form_only." </P> 
+		CLASS="bodylink">Syntax for Pointer Link&mdash;Navigating Via Form Only
+		Fields</A>."</P>
+	 <P ALIGN="CENTER"><B>Table 77: ScreenMan Forms&mdash;Syntax for Computed
+		Expression Atom that References a Form-only Field</B></P>
 	 <TABLE BORDER="1"
-	 SUMMARY="Syntax for Computed Expression Atom that References a Form-only Field Table"
+	 SUMMARY="Syntax for Computed Expression Atom that References a Form-only Field"
 	 WIDTH="100%"
-	 TITLE="Syntax for Computed Expression Atom that References a Form-only Field Table">
-		
-		<TR> 
-		  <TD COLSPAN="3" VALIGN="TOP"><B>Syntax for Computed Expression Atom
-			 that References a Form-only Field</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Format</B></TD> 
-		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" ROWSPAN="2">{FO(Form_only);Opt_spec} </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">The value of Form_only is retrieved. 
+	 TITLE="Syntax for Computed Expression Atom that References a Form-only Field">
+		<TR>
+		  <TD VALIGN="TOP"><B>Format</B></TD>
+		  <TD VALIGN="TOP" COLSPAN="2"><B>Explanation</B></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP" ROWSPAN="2">{FO(Form_only);Opt_spec}</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">The value of Form-only is retrieved.
 			 <P>An Opt_spec (optional specifier) can be used to retrieve the
-				internal, rather than the external form. </P> 
-			 <P> </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">;I</TD> 
+				internal, rather than the external form.</P></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">;I</TD>
 		  <TD VALIGN="TOP">Retrieve the <B>I</B>nternal form of the Form_only
-			 field. </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP">{FO(Pform_only: Field;Opt_spec} </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">Pfield_order is a pointer-type form-only
-			 field that points to a file. The value of Field in that file is retrieved. 
+			 field.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP">{FO(Pform_only: Field;Opt_spec}</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">Pfield_order is a POINTER-type Form-only
+			 field that points to a file. The value of Field in that file is
+			 retrieved.
 			 <P>The Opt_spec value of ;I can be used as described above to
-				retrieve the internal, rather than the external form. </P> </TD> 
-		</TR> 
-		<TR> 
+				retrieve the internal, rather than the external form.</P></TD>
+		</TR>
+		<TR>
 		  <TD VALIGN="TOP" ROWSPAN="3">{FO(Form_only);Opt_spec1
-			 :File:Field_2;Opt_spec} </TD> 
-		  <TD VALIGN="TOP" COLSPAN="2">Form_only is a form-only field that is not
-			 a pointer-type form-only field. The value of Field_order is used to do a lookup
-			 into File. Field_2 from that file is retrieved. 
+			 :File:Field_2;Opt_spec}</TD>
+		  <TD VALIGN="TOP" COLSPAN="2">Form_only is a Form-only field that is
+			 not a POINTER-type Form-only field. The value of Field_order is used
+			 to do a lookup into File. Field_2 from that file is retrieved.
 			 <P>An Opt_spec value of ;I can be used to retrieve the internal,
 				rather than the external form. </P> 
 			 <P>In addition, you can control how the lookup is done by using any
@@ -189,18 +199,20 @@
 			 lookup.</TD> 
 		</TR> 
 	 </TABLE> 
-	 <H5>Examples</H5> 
+	 <H5>Example</H5>
+	 <P ALIGN="CENTER"><B>Figure 225: ScreenMan Forms&mdash;Referencing Form-only
+		and Computed Fields: Example</B></P>
 	 <PRE>    S Y=&quot;The value is: &quot;_{NUMERIC}
     S:$D(var)#2 Y=&quot;The value is: &quot;_{NUMERIC}
     S Y={LAST NAME}_&quot;,&quot;_{FIRST NAME}
     S Y={NAME}_&quot; &quot;_{NAME:SSN}
     S Y={FO(PRICE)}*1.085
-    S Y={FO(NAME):NEW PERSON:SSN}</PRE> 
+    S Y={FO(NAME):NEW PERSON:SSN}</PRE>
 	 <P></P>
-	 <P>&nbsp;</P> 
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- sf_comp.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>
