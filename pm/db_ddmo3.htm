@@ -48,105 +48,67 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>FILESEC^DDMOD: Set File Protection Security Codes</H4> 
-	 <P>This entry point sets the security access codes for a file. The call
+	 <H4>FILESEC^DDMOD(): Set File Protection Security Codes</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+		 <TH ALIGN="LEFT">Reference Type</TH>
+		 <TH ALIGN="LEFT">Category</TH>
+		 <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+		 <TD>Supported</TD>
+		 <TD>Database Server (DBS)</TD>
+		 <TD>2916</TD>
+	   </TR>
+	 </TABLE>
+	 <H5>Description</H5>
+	 <P>The FILESEC^DDMOD API sets the Security Access Codes for a file. The call
 		allows developers to change only the File Security Codes at a target site
 		without having to transport the entire file. The codes are stored in the
-		following nodes:</P> 
-	 <TABLE SUMMARY="This table is for formatting purposes only" WIDTH="100%"> 
-		<TR> 
-		  <TD WIDTH="239"> 
-			 <PRE>^DIC(filenumber,0,&quot;AUDIT&quot;)</PRE> </TD> 
-		  <TD WIDTH="271">Audit Access</TD> 
-		</TR> 
-		<TR> 
-		  <TD WIDTH="239"> 
-			 <PRE>^DIC(filenumber,0,&quot;DD&quot;)</PRE> </TD> 
-		  <TD WIDTH="271">Data Dictionary Access </TD> 
-		</TR> 
-		<TR> 
-		  <TD WIDTH="239"> 
-			 <PRE>^DIC(filenumber,0,&quot;DEL&quot;)</PRE></TD> 
-		  <TD WIDTH="271">Delete Access</TD> 
-		</TR> 
-		<TR> 
-		  <TD WIDTH="239"> 
-			 <PRE>^DIC(filenumber,0,&quot;LAYGO&quot;) 	 </PRE></TD> 
-		  <TD WIDTH="271">LAYGO Access</TD> 
-		</TR> 
-		<TR> 
-		  <TD WIDTH="239"> 
-			 <PRE>^DIC(filenumber,0,&quot;RD&quot;)</PRE></TD> 
-		  <TD WIDTH="271">Read Access</TD> 
-		</TR> 
-		<TR> 
-		  <TD WIDTH="239"> 
-			 <PRE>^DIC(filenumber,0,&quot;WR&quot;)</PRE></TD> 
-		  <TD WIDTH="271">Write Access</TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P> 
-	 <H5>Format</H5> 
-	 <PRE>FILESEC^DDMOD(FILE,.SECURITY_CODES,MSG_ROOT)</PRE> 
+		following nodes:</P>
+	 <UL>
+	   <LI>^DIC(filenumber,0,&quot;AUDIT&quot;)&mdash;AUDIT Access</LI>
+	   <LI>^DIC(filenumber,0,&quot;DD&quot;)&mdash;DATA DICTIONARY Access</LI>
+	   <LI>^DIC(filenumber,0,&quot;DEL&quot;)&mdash;DELETE Access</LI>
+	   <LI>^DIC(filenumber,0,&quot;LAYGO&quot;)&mdash;LAYGO Access</LI>
+	   <LI>^DIC(filenumber,0,&quot;RD&quot;)&mdash;READ Access</LI>
+	   <LI>^DIC(filenumber,0,&quot;WR&quot;)&mdash;WRITE Access</LI>
+	 </UL>
+	 <H5>Format</H5>
+	 <PRE>FILESEC^DDMOD(file,.security_codes[,msg_root])</PRE>
 	 <H5>Input Parameters</H5> 
 	 <TABLE BORDER="1" WIDTH="100%"
 	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD WIDTH="185"><B>FILE</B></TD> 
-		  <TD WIDTH="524">(Required) File number. (Cannot be less than 2.)</TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="185"><B>SECURITY CODES</B></TD> 
-		  <TD WIDTH="524">(Required) Array of new security access codes:<BR> 
-			 <P></P> 
-			 <TABLE SUMMARY="This table is for formatting purposes only"
-			  WIDTH="100%"> 
-				<TR> 
-				  <TD VALIGN="TOP"> 
-					 <PRE>SECURITY_CODES(&quot;AUDIT&quot;)</PRE></TD> 
-				  <TD VALIGN="TOP">= Audit Access</TD> 
-				</TR> 
-				<TR> 
-				  <TD VALIGN="TOP"> 
-					 <PRE>SECURITY_CODES(&quot;DD&quot;)</PRE></TD> 
-				  <TD VALIGN="TOP">= Data Dictionary Access</TD> 
-				</TR> 
-				<TR> 
-				  <TD VALIGN="TOP"> 
-					 <PRE>SECURITY_CODES(&quot;DEL&quot;)</PRE></TD> 
-				  <TD VALIGN="TOP">= Delete Access</TD> 
-				</TR> 
-				<TR> 
-				  <TD VALIGN="TOP"> 
-					 <PRE>SECURITY_CODES(&quot;LAYGO&quot;)</PRE></TD> 
-				  <TD VALIGN="TOP">= LAYGO Access</TD> 
-				</TR> 
-				<TR> 
-				  <TD VALIGN="TOP"> 
-					 <PRE>SECURITY_CODES(&quot;RD&quot;)</PRE></TD> 
-				  <TD VALIGN="TOP">= Read Access</TD> 
-				</TR> 
-				<TR> 
-				  <TD VALIGN="TOP"> 
-					 <PRE>SECURITY_CODES(&quot;WR&quot;)</PRE></TD> 
-				  <TD VALIGN="TOP">= Write Access</TD> 
-				</TR> 
-			 </TABLE></TD> 
-		</TR> 
-		<TR> 
-		  <TD WIDTH="185"><B>MSG_ROOT</B></TD> 
-		  <TD WIDTH="524"> 
+		<TR>
+		  <TD WIDTH="185"><B>FILE</B></TD>
+		  <TD WIDTH="524">(Required) File number. It cannot be less than 2.</TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP" WIDTH="185"><B>.SECURITY_CODES</B></TD>
+		  <TD WIDTH="524">(Required) Array of Security Access Codes:
+			 <UL>
+			   <LI>SECURITY_CODES(&quot;AUDIT&quot;) = AUDIT Access</LI>
+			   <LI>SECURITY_CODES(&quot;DD&quot;) = DATA DICTIONARY Access</LI>
+			   <LI>SECURITY_CODES(&quot;DEL&quot;) = DELETE Access</LI>
+			   <LI>SECURITY_CODES(&quot;LAYGO&quot;) = LAYGO Access</LI>
+			   <LI>SECURITY_CODES(&quot;RD&quot;) = READ Access</LI>
+			   <LI>SECURITY_CODES(&quot;WR&quot;) = WRITE Access</LI>
+			 </UL></TD>
+		</TR>
+		<TR>
+		  <TD WIDTH="185"><B>MSG_ROOT</B></TD>
+		  <TD WIDTH="524">
 			 <P>(Optional) The root of an array into which error messages are
-				returned. If this parameter is not included, errors are returned in the default
-				array: ^TMP("DIERR",$J)</P></TD> 
-		</TR> 
-	 </TABLE> 
+				returned. If this parameter is not included, errors are returned in the
+				default ^TMP(&quot;DIERR&quot;,$J) array.</P></TD>
+		</TR>
+	 </TABLE>
 	 <H5>Output</H5> 
 	 <P>None.</P> 
-	 <H5>Examples</H5> 
-	 <P><B>Example 1</B></P> 
-	 <P>In this example we are going to set all of the File Security Code
-		nodes:</P> 
+	 <H5>Examples</H5>
+	 <P><B>Example 1</B></P>
+	 <P>In this example (Figure 118), you are going to set all File Security Code nodes:</P>
+	 <P ALIGN="CENTER"><B>Figure 118: FILESEC^DDMOD API&mdash;Example 1: Input and Output</B></P>
 	 <PRE>. . . .<B>&gt;D ^%G</B>
 . . . . Global ^DIC(16028
             DIC(16028
@@ -178,9 +140,10 @@
 
 
 </PRE> 
-	 <P><B>Example 2</B></P> 
-	 <P>In this example, we are going to use the results from the previous
-		example and change just the Write Access.</P> 
+	 <P><B>Example 2</B></P>
+	 <P>In this example (Figure 119), you are going to use the results from the
+		previous example (Figure 118) and change just the WRITE Access.</P>
+	 <P ALIGN="CENTER"><B>Figure 119: FILESEC^DDMOD API&mdash;Example 2: Input and Output</B></P>
 	 <PRE>. . . . <B>&gt;S SECURITY(&quot;WR&quot;)=&quot;a&quot;
 . . . . &gt;D FILESEC^DDMOD(16028,.SECURITY)
 . . . . &gt;D ^%G
@@ -199,21 +162,26 @@
 . . . . Global ^
 
 </PRE> 
-	 <H5>Error Codes Returned</H5> 
+	 <H5>Error Codes Returned</H5>
+	 <P>Table 41 lists the possible error codes returned with the FILESEC^DDMOD API:</P>
+	 <P ALIGN="CENTER"><B>Table 41: FILESEC^DDMOD API&mdash;Error Codes Returned</B></P>
 	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
+	  SUMMARY="This table is for formatting purposes only">
+		<TR>
+		  <TH ALIGN="LEFT">Code</TH>
+		  <TH ALIGN="LEFT">Description</TH>
+		</TR>
+		<TR>
 		  <TD WIDTH="71"><B><A HREF="err_401.htm" TITLE="Error 401"
-			 CLASS="bodylink">401</A></B></TD> 
+			 CLASS="bodylink">401</A></B></TD>
 		  <TD WIDTH="402">The file does not exist or the File Number that was
-			 passed was less than 2.</TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P>
-	 <P>&nbsp;</P> 
+			 passed was less than 2.</TD>
+		</TR>
+	 </TABLE>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- db_ddmo3.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

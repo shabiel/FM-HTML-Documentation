@@ -7,10 +7,10 @@
 <!--Revised by Strack Susan, 12/03/02-->
 <!--Edited March 2007, Hardhats.org-->
 	 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
-	 <TITLE>VA FileMan Programmer Manual: DELIX^DDMOD</TITLE>
+	 <TITLE>VA FileMan Programmer Manual: DELIXN^DDMOD</TITLE>
 	 <META NAME="subject" CONTENT="VA FileMan V. 22.2 Programmer HTML Manual">
 	 <META NAME="keywords"
-	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,delix^ddmod,ddmod">
+	  CONTENT="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,delixn^ddmod,ddmod">
 	 <LINK REL="StyleSheet" TYPE="text/css" HREF="programmer.css"> 
   </HEAD>
 	<BODY TOPMARGIN="0" BGCOLOR="white"> 
@@ -53,21 +53,33 @@
 	 <!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>DELIXN^DDMOD: New-Style Index Deleter</H4> 
-	 <P>This procedure deletes a new-style index definition from the Index file.
-		Optionally, it deletes the data in the index or executes the kill logic for all
-		entries in the file. Compiled input templates that contain one or more of the
-		fields defined in the index are recompiled. If cross-references on the file are
-		compiled, they are recompiled.</P> 
-	 <P>DELIXN^DDMOD can be used is the pre-install or post-install routine of a
-		KIDS (Kernel Installation and Distribution System) Build, for example, to
-		delete a new-style index from the installing site.</P> 
-	 <P>See <A HREF="db_ddmod.htm" TITLE="DELIX^DDMOD"
-		CLASS="bodylink">DELIX^DDMOD</A> for information on the call to delete a
-		traditional cross-reference definition.</P> 
-	 <P></P> 
-	 <H5>Format</H5> 
-	 <PRE>DELIXN^DDMOD(FILE,INDEX,FLAGS,OUTPUT_ROOT,MSG_ROOT)</PRE> 
+	 <H4>DELIXN^DDMOD(): New-Style Index Delete</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+	   <TR>
+		 <TH ALIGN="LEFT">Reference Type</TH>
+		 <TH ALIGN="LEFT">Category</TH>
+		 <TH ALIGN="LEFT">ICR #</TH>
+	   </TR>
+	   <TR>
+		 <TD>Supported</TD>
+		 <TD>Database Server (DBS)</TD>
+		 <TD>2916</TD>
+	   </TR>
+	 </TABLE>
+	 <H5>Description</H5>
+	 <P>The DELIXN^DDMOD API deletes a New-Style index definition from the
+		INDEX (#.11) file. Optionally, it deletes the data in the index or executes the
+		KILL logic for all entries in the file. Compiled INPUT templates that contain one
+		or more of the fields defined in the index are recompiled. If cross-references
+		on the file are compiled, they are recompiled.</P>
+	 <P>DELIXN^DDMOD can be used in the pre-install or post-install routine of a
+		Kernel Installation and Distribution System (KIDS) build, (e.g., to delete a
+		New-Style index from the installing site).</P>
+	 <P><B>REF:</B> For information on the call to delete a traditional cross-reference
+		definition, see <A HREF="db_ddmod.htm" TITLE="DELIX^DDMOD"
+		CLASS="bodylink">DELIX^DDMOD</A>.</P>
+	 <H5>Format</H5>
+	 <PRE>DELIXN^DDMOD(file,index[,flags][,output_root][,msg_root])</PRE>
 	 <H5><A NAME="input">Input Parameters</A></H5> 
 	 <TABLE WIDTH="100%" BORDER="1"
 	  SUMMARY="This table is for formatting purposes only"> 
@@ -89,24 +101,24 @@
 		</TR> 
 		<TR> 
 		  <TD ROWSPAN="2"></TD> 
-		  <TD VALIGN="TOP"><B>K</B></TD> 
-		  <TD> 
+		  <TD VALIGN="TOP"><B>K</B></TD>
+		  <TD>
 			 <P>For Regular indexes, delete the data in the index. For MUMPS
-				indexes, execute the <B>K</B>ill logic for all entries in the file.</P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>W</B></TD> 
-		  <TD> 
-			 <P><B>W</B>rite messages to the current device as the index is
-				deleted and cross-references and input templates are recompiled.</P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><A NAME="Output_root"><B>OUTPUT_ROOT</B></A></TD> 
-		  <TD COLSPAN="2"> 
+				(M) indexes, execute the <B>K</B>ILL logic for all entries in the file.</P> </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>W</B></TD>
+		  <TD>
+			 <P><B>W</B>RITE messages to the current device as the index is
+				deleted and cross-references and INPUT templates are recompiled.</P> </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><A NAME="Output_root"><B>OUTPUT_ROOT</B></A></TD>
+		  <TD COLSPAN="2">
 			 <P>(Optional) The name of the array that should receive information
-				about input templates and cross-references that may have been recompiled. See
-				"<A HREF="#output" CLASS="bodylink">Output</A>" below. This must be a closed
-				root, either local or global.</P> </TD> 
+				about INPUT templates and cross-references that may have been recompiled.</P>
+			 <P><B>REF:</B> See the &ldquo;<A HREF="#output" CLASS="bodylink">Output Parameters</A>&rdquo; section.</P>
+			 <P>This must be a closed root, either local or global.</P> </TD>
 		</TR> 
 		<TR> 
 		  <TD VALIGN="TOP"><B>MSG_ROOT</B></TD> 
@@ -116,50 +128,52 @@
 				errors are returned descendent from ^TMP("DIERR",$J).</P> </TD> 
 		</TR> 
 	 </TABLE> 
-	 <H5><A NAME="output">Output</A></H5> 
+	 <H5><A NAME="output">Output Parameters</A></H5>
 	 <TABLE WIDTH="100%" BORDER="1"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>OUTPUT_ROOT</B></TD> 
-		  <TD> 
+	  SUMMARY="This table is for formatting purposes only">
+		<TR>
+		  <TD VALIGN="TOP"><B>OUTPUT_ROOT</B></TD>
+		  <TD>
 			 <P>See <A HREF="#Output_root" TITLE="OUTPUT_ROOT"
-				CLASS="bodylink">OUTPUT_ROOT</A> under "<A HREF="#input"
-				TITLE="Input Parameters" CLASS="bodylink">Input Parameters</A>."</P> 
-			 <P>If a field used in the index is used in any compiled input
-				templates, those input templates are recompiled. Information about the
-				recompiled input templates is stored descendant from OUTPUT_ROOT("DIEZ"):</P> 
-			 <PRE>OUTPUT_ROOT(&quot;DIEZ&quot;,input template #) = 
-input template name ^ file # ^ 
-compiled routine name</PRE> 
+				CLASS="bodylink">OUTPUT_ROOT</A> under &quot;<A HREF="#input"
+				TITLE="Input Parameters" CLASS="bodylink">Input Parameters</A>.&quot;</P>
+			 <P>If a field used in the index is used in any compiled INPUT
+				templates, those INPUT templates are recompiled. Information about the
+				recompiled INPUT templates is stored descendant from OUTPUT_ROOT(&quot;DIEZ&quot;):</P>
+			 <PRE>OUTPUT_ROOT(&quot;DIEZ&quot;, INPUT template #) = INPUT template
+name ^ file # ^ compiled routine name</PRE>
 			 <P>If cross-references for the file are compiled, they are
-				recompiled, and the compiled routine name is stored in OUTPUT_ROOT("DIKZ"):</P>
-			 
-			 <PRE>OUTPUT_ROOT(&quot;DIKZ&quot;) = compiled routine name</PRE> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <H5>Examples</H5> 
-	 <P><B>Example 1</B></P> 
-	 <P>In this example, the new-style "G" index defined on file #16200 is
-		deleted. The "K" flag indicates that the entire ^DIZ(16200,"G") index should be
-		removed from the file.</P> 
+				recompiled, and the compiled routine name is stored in OUTPUT_ROOT(&quot;DIKZ&quot;):</P>
+			 <PRE>OUTPUT_ROOT(&quot;DIKZ&quot;) = compiled routine name</PRE> </TD>
+		</TR>
+	 </TABLE>
+	 <H5>Examples</H5>
+	 <P><B>Example 1</B></P>
+	 <P>In this example in (Figure 116), the New-Style &quot;G&quot; index defined
+		on (fictitious) File #16200 is deleted. The &quot;K&quot; flag indicates that
+		the entire ^DIZ(16200,&quot;G&quot;) index should be removed from the file.</P>
+	 <P ALIGN="CENTER"><B>Figure 116: DELIXN^DDMOD API&mdash;Example 1: Input and Output</B></P>
 	 <PRE>    <B>&gt;D DELIXN^DDMOD(16200,&quot;G&quot;,&quot;K&quot;,&quot;MYOUT&quot;)
 
     &gt;ZW MYOUT
 </B>    MYOUT(&quot;DIEZ&quot;,94)=ZZ TEST^16200^ZZIT
     MYOUT(&quot;DIEZ&quot;,100)=ZZ TEST A^16200^ZZITA
     MYOUT(&quot;DIKZ&quot;)=ZZCR
-</PRE> 
+</PRE>
 	 <P>The MYOUT output array indicates that a field or fields used in the
-		deleted index are also used in the compiled input templates ZZ TEST (#94) and
-		ZZ TEST 2 (#100). Those two input templates were recompiled. Cross-references
-		on file #16200 were also recompiled under the ZZCR namespace.</P> 
-	 <P><B>Example 2</B></P> 
-	 <P>In this example, the whole-file regular index (the "J" index) is
-		deleted. The fields in the index come from fields in a multiple, subfile
-		#16200.075, but the whole-file index resides at the top-level file #16200. The
-		"K" flag indicates that the entire ^DIZ(16200,"J") index should be removed, and
-		the "W" flag indicates that messages should be printed to the current
-		device.</P> 
+		deleted index are also used in the compiled INPUT templates ZZ TEST (#94) and
+		ZZ TEST 2 (#100). Those two INPUT templates were recompiled. Cross-references
+		on (fictitious) File #16200 were also recompiled under the ZZCR namespace.</P>
+	 <P><B>Example 2</B></P>
+	 <P>In this example (Figure 117), the whole-file regular index (the &quot;J&quot;
+		index) is deleted. The fields in the index come from fields in a Multiple,
+		Subfile #16200.075, but the whole-file index resides at the top-level of
+		(fictitious) File #16200:</P>
+	 <UL>
+	   <LI>The &quot;K&quot; flag indicates that the entire ^DIZ(16200,&quot;J&quot;) index should be removed.</LI>
+	   <LI>The &quot;W&quot; flag indicates that messages should be printed to the current device.</LI>
+	 </UL>
+	 <P ALIGN="CENTER"><B>Figure 117: DELIXN^DDMOD API&mdash;Example 2: Input and Output</B></P>
 	 <PRE>    <B>&gt;D DELIXN^DDMOD(16200,&quot;J&quot;,&quot;KW&quot;,&quot;MYOUT&quot;)
 </B>
     Removing index ...
@@ -192,25 +206,30 @@ compiled routine name</PRE>
     'ZZCR10' ROUTINE FILED.
     'ZZCR' ROUTINE FILED.
 </PRE> 
-	 <H5>Error Codes Returned</H5> 
+	 <H5>Error Codes Returned</H5>
+	 <P>Table 40 lists the possible error codes returned with the DELIXN^DDMOD API.</P>
+	 <P ALIGN="CENTER"><B>Table 40: DELIXN^DDMOD API&mdash;Error Codes Returned</B></P>
 	 <TABLE WIDTH="100%" BORDER="1"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
+	  SUMMARY="This table is for formatting purposes only">
+		<TR>
+		  <TH ALIGN="LEFT">Code</TH>
+		  <TH ALIGN="LEFT">Description</TH>
+		</TR>
+		<TR>
 		  <TD><B><A HREF="err_202.htm" TITLE="Error 202"
-			 CLASS="bodylink">202</A></B></TD> 
-		  <TD>The specified parameter is missing or invalid.</TD> 
-		</TR> 
-		<TR> 
+			 CLASS="bodylink">202</A></B></TD>
+		  <TD>The specified parameter is missing or invalid.</TD>
+		</TR>
+		<TR>
 		  <TD><B><A HREF="err_301.htm" TITLE="Error 301"
-			 CLASS="bodylink">301</A></B></TD> 
-		  <TD>The passed flags are incorrect.</TD> 
-		</TR> 
-	 </TABLE> 
-	 <P></P>
-	 <P>&nbsp;</P> 
+			 CLASS="bodylink">301</A></B></TD>
+		  <TD>The passed flags are incorrect.</TD>
+		</TR>
+	 </TABLE>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- db_ddmo2.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 14, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>
