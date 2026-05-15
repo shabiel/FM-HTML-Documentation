@@ -48,25 +48,36 @@
 		</TR> 
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">ScreenMan Form Editor</A></H3> <HR CLASS="hrstyle"> 
-	 <H4>Editing Field Properties</H4> 
-	 <P>To edit the properties of a field, select the field with
-		<B>&lt;SpaceBar&gt; or </B>, and press <B>&lt;PF4&gt;</B>. The Form
-		Editor invokes a ScreenMan form where the properties of the field can be
-		edited. </P> 
+	 <H4>Editing Field Properties</H4>
+	 <P>To edit the properties of a field:</P>
+	 <OL>
+		<LI>Select the field with <B>Spacebar or Enter</B> keys.<BR><BR></LI>
+		<LI>Press <B>&lt;PF4&gt;</B>.<BR><BR></LI>
+		<LI>The Form Editor invokes a ScreenMan form where the properties of the
+		  field can be edited.</LI>
+	 </OL>
 	 <P>The specific form that is invoked depends on the type of the selected
-		field. For example, the form for editing data dictionary fields looks like
-		this: </P> 
+		field. For example, the form for editing DATA DICTIONARY fields looks like
+		this:</P>
 	 <P></P>
 	 <IMG SRC="fe_edfld.gif" ALIGN="BOTTOM" WIDTH="552" HEIGHT="203"
-	  ALT="Example of the Form for Editing Data Dictionary Fields."> 
-	 <P></P> 
-	 <P>When you enter a value at the "FIELD:" prompt for data dictionary
-		fields, the Form Editor automatically defines the Caption as the field's label.
-		If the field is a multiple field, the Form Editor adds the word "Select" before
-		the field's label. If the field is a word processing field, the Form Editor
-		adds the characters "(WP)" after the field's label. At the "CAPTION:" prompt,
-		you can accept the Form Editor's default, enter a new caption, or enter one of
-		the following: </P> 
+	  ALT="Example of the Form for Editing Data Dictionary Fields.">
+	 <P></P>
+	 <P>When you enter a value at the "FIELD:" prompt for DATA DICTIONARY fields,
+		the Form Editor automatically defines the Caption as the field's label:</P>
+	 <UL>
+		<LI><B>Multiple field</B>&mdash;If the field is a Multiple field, the Form
+		  Editor adds the word "Select" before the field's label.<BR><BR></LI>
+		<LI><B>WORD-PROCESSING field</B>&mdash;If the field is a WORD-PROCESSING
+		  field, the Form Editor adds the characters "(WP)" after the field's
+		  label.</LI>
+	 </UL>
+	 <P>At the "CAPTION:" prompt, you can:</P>
+	 <UL>
+		<LI>Accept the Form Editor's default.<BR><BR></LI>
+		<LI>Enter a new caption.<BR><BR></LI>
+		<LI>Enter one of the captions listed in the following table:</LI>
+	 </UL>
 	 <TABLE BORDER="1" WIDTH="100%"
 	  SUMMARY="Shortcuts at the CAPTION Prompt Table"
 	  TITLE="Shortcuts at the CAPTION Prompt"> 
@@ -123,30 +134,30 @@
 		<B>&lt;ARROW LEFT&gt;</B>. An indicator (L=n) at the lower right portion of the
 		Main Screen indicates the current data length. Press the Enter/Return key when
 		you are finished editing the data length. </P> 
-	 <H5>Reordering All Fields on a Block</H5> 
+	 <H5>Reordering All Fields on a Block</H5>
 	 <P>After creating and arranging all the fields on a block, you can quickly
-		make the Field Orders of all the fields equivalent to the tab order by doing
-		the following: </P> 
-	 <OL> 
-		<LI>Go to the Block Viewer Screen (<B>&lt;PF1&gt;V</B>)<BR><BR></LI> 
-		<LI>Select the block (<B>&lt;SpaceBar&gt; or </B> over the
-		  block name)<BR><BR></LI> 
-		<LI>Press <B>&lt;PF1&gt;O</B> </LI> 
-	 </OL> 
+		make the Field Order of all the fields equivalent to the tab order by doing
+		the following:</P>
+	 <OL>
+		<LI>Go to the Block Viewer Screen (<B>&lt;PF1&gt;V</B>).<BR><BR></LI>
+		<LI>Select the block (<B>Spacebar or Enter</B> over the block
+		  name).<BR><BR></LI>
+		<LI>Press <B>&lt;PF1&gt;O</B>.</LI>
+	 </OL>
 	 <P>Remember that the Field Order is the order in which the elements on the
-		block are traversed when the user presses the Enter/Return key. The
-		<B>&lt;PF1&gt;O</B> key sequence reassigns Field Order numbers to all the
-		elements on the block, so that the Enter/Return key takes the user from field
-		to field in the same order as the Tab key (left to right, top to bottom).</P> 
-	 <P>Note that if you refer to fields by Field Order in places such as
-		Branching logic and Pre and Post Actions, reordering the fields on the block
-		could cause that code to refer to the wrong fields. You must then modify the
-		code to either reflect the new Field Order numbers, or refer to those fields by
-		Caption or Unique Name instead.</P>
-	 <P>&nbsp;</P> 
+		block are traversed when the user presses Enter. The <B>&lt;PF1&gt;O</B> key
+		sequence reassigns Field Order numbers to all the elements on the block, so
+		that the Enter key takes the user from field to field in the same order as
+		the Tab key (left to right, top to bottom).</P>
+	 <P><B>NOTE:</B> If you refer to fields by Field Order in places, such as
+		Branching Logic, Pre Action, and Post Action, reordering the fields on the
+		block could cause that code to refer to the wrong fields. You must then
+		modify the code to either reflect the new Field Order numbers or refer to
+		those fields by Caption or Unique Name instead.</P>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- fe_edfld.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>
