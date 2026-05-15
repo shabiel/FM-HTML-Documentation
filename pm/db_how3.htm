@@ -48,157 +48,192 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>Contents of Arrays</H4> 
-	 <UL> 
-		<LI><A HREF="#DIHELP" TITLE="DIHELP"
-		  CLASS="bodylink">DIHELP</A><BR><BR></LI> 
-		<LI><A HREF="#DIMSG" TITLE="DIMSG"
-		  CLASS="bodylink">DIMSG</A><BR><BR></LI> 
-		<LI><A HREF="#DIERR" TITLE="DIERR" CLASS="bodylink">DIERR</A></LI> 
-	 </UL> <HR> 
-	 <H5><A NAME="DIHELP">DIHELP Array</A></H5> 
-	 <P>Text in the DIHELP array has several sources. Some help text is stored
-		in the new DIALOG file; an example of this sort of help is the text returned by
-		%DT when you enter a "?" at a prompt requiring a date. Other help comes
-		directly from text in the Data Dictionary. Xecutable Help relies on calls to
-		the Loader (see <A HREF="cl_ddiol.htm" TITLE="EN^DDIOL"
-		CLASS="bodylink">EN^DDIOL</A>) embedded in the executable code. The Loader call
-		takes the place of Writes. </P> 
+	 <H4>Contents of Arrays</H4>
+	 <P>The following arrays are discussed in this section:</P>
+	 <UL>
+		<LI><A HREF="#DIHELP" TITLE="DIHELP Array" CLASS="bodylink">DIHELP
+		  Array</A><BR><BR></LI>
+		<LI><A HREF="#DIMSG" TITLE="DIMSG Array" CLASS="bodylink">DIMSG
+		  Array</A><BR><BR></LI>
+		<LI><A HREF="#DIERR" TITLE="DIERR Array" CLASS="bodylink">DIERR Array</A></LI>
+	 </UL> <HR>
+	 <H5><A NAME="DIHELP">DIHELP Array</A></H5>
+	 <P>Text in the DIHELP array has several sources:</P>
+	 <UL>
+		<LI>Some help text is stored in the DIALOG (#.84) file; an example of
+		  this sort of help is the text returned by %DT when you enter a ? at a
+		  prompt requiring a date.<BR><BR></LI>
+		<LI>Other help comes directly from text in the data dictionary
+		  (DD).<BR><BR></LI>
+		<LI>Executable help relies on calls to the Loader (see
+		  <A HREF="cl_ddiol.htm" TITLE="EN^DDIOL" CLASS="bodylink">EN^DDIOL</A>)
+		  embedded in the executable code. The Loader call takes the place of
+		  WRITEs.</LI>
+	 </UL>
 	 <P><B>NOTE:</B> In other contexts, the Loader puts text under the DIMSG
-		subscript. However, when executing Xecutable Help, the Loader puts the text
-		under the DIHELP subscript instead. </P> 
-	 <P>The following DBS call returns help for a particular field: </P> 
-	 <PRE>
-    D HELP^DIE(FILE,IENS,FIELD,TYPE_OF_HELP,MSG_ROOT)
-</PRE> 
-	 <P>TYPE_OF_HELP is a set of flags that allows the client application to
-		specify which help text (Help Prompt, Description, list of Set of Codes,
-		Xecutable Help, etc.) to return. Alternatively, a single or double question
-		mark returns the same information that is currently returned in scrolling mode.
-		(See the documentation for the
-		<A HREF="db_die_h.htm" TITLE="Helper call" CLASS="bodylink">Helper call</A> for
-		details.) </P> 
-	 <P>If MSG_ROOT is not specified as a target, the help is returned in
-		^TMP("DIHELP", $J) as described in the <A HREF="#DIHELP"
-		CLASS="bodylink">DIHELP Array</A> topic. The local variable DIHELP equals the
-		total number of nodes returned. </P> 
+		subscript. However, when executing Executable Help, the Loader puts the
+		text under the DIHELP subscript instead.</P>
+	 <P>The DBS call in Figure 96 returns help for a particular field:</P>
+	 <P ALIGN="CENTER"><B>Figure 96: Database Server (DBS) API&mdash;DIHELP Array:
+		Input to Return Help for a Particular Field</B></P>
+<PRE>
+    &gt;D HELP^DIE(file,iens,field,type_of_help,msg_root)
+</PRE>
+	 <P>type_of_help is a set of flags that allows the client application to
+		specify which help text (e.g., help prompt, description, list of SET OF
+		CODES, executable help, etc.) to return. Alternatively, a single or
+		double question mark returns the same information that is currently
+		returned in scrolling mode.</P>
+	 <P>REF: For details, see the documentation for the
+		<A HREF="db_die_h.htm" TITLE="Helper call" CLASS="bodylink">Helper</A>
+		call.</P>
+	 <P>If msg_root is not specified as a target, the help is returned in
+		^TMP("DIHELP", $J) as described in the "<A HREF="db_how2.htm"
+		TITLE="How Information Is Returned" CLASS="bodylink">How Information Is
+		Returned</A>" section. The local variable DIHELP equals the total number
+		of nodes returned.</P>
 	 <P>Text in the array that contains help is subscripted with integers. If
-		more than one kind of help is being returned, a null node is put between them.
-		</P> 
+		more than one kind of help is being returned, a NULL node is put between
+		them.</P>
 	 <P>If a flag is set by the client application when the CHK^DIE or VAL^DIE
-		calls are made, help is returned when a value is found to be invalid. The help
-		is returned in the standard way described above. </P> <HR> 
-	 <H5><A NAME="DIMSG">DIMSG Array</A></H5> 
+		calls are made, help is returned when a value is found to be invalid. The
+		help is returned in the standard way described in the
+		"<A HREF="db_how2.htm" TITLE="How Information Is Returned"
+		CLASS="bodylink">How Information Is Returned</A>" section.</P> <HR>
+	 <H5><A NAME="DIMSG">DIMSG Array</A></H5>
 	 <P>A main source of the DIMSG array is output from the Loader: EN^DDIOL.
-		Writes that are currently embedded in the database must be changed to calls to
-		EN^DDIOL if the DBS is to be used. When running applications in scrolling mode,
-		the Loader simply Writes the text to the screen. However, if the node
-		containing the EN^DDIOL call is executed from within one of the DBS calls, the
-		DBS returns text in an array, usually subscripted by DIMSG. (For more detailed
-		information about <A HREF="cl_ddiol.htm" TITLE="EN^DDIOL"
-		CLASS="bodylink">EN^DDIOL</A>, see its description in the Classic VA FileMan
-		API section of this manual.) </P> 
-	 <P TITLE="DIHELP Array">When the user is not in scrolling mode, the Loader
-		will most frequently place the text into the DIMSG array with the local
-		variable DIMSG set equal to the total number of lines in the array. There are
-		certain situations, however, where the output is put into another array. As
-		mentioned in the <A HREF="#DIHELP" CLASS="bodylink">DIHELP Array</A> topic,
-		when the DBS HELP^DIE call is used to get help, the output of an EN^DDIOL call
-		embedded in Xecutable Help is placed into the DIHELP array. </P> 
-	 <P>Like DIHELP, the DIMSG array is simply a list of lines of text. </P> 
-	 <P>Suppose an INPUT transform currently contains: </P> 
-	 <PRE>
-    N Y S Y=$L(X) K:Y&gt;30!(Y&lt;3) X I '$D(X) W !,&quot;Your input was &quot;_Y_
-    &quot; characters long.&quot;,!,&quot;This is the wrong length.&quot;
-</PRE> 
-	 <P>It can be changed to: </P> 
-	 <PRE>
-    N Y S Y=$L(X) K:Y&gt;30!(Y&lt;3) X I '$D(X) S Y(1)=&quot;Your input was &quot;_Y_
-    &quot; characters long.&quot;,Y(2)=&quot;This is the wrong length.&quot; D EN^DDIOL(.Y)
-</PRE> 
-	 <P>This change would have no effect if the user were in scrolling mode; the
-		same message is written to the screen. However, if the second INPUT transform
-		were executed from a silent call, nothing is Written and the "DIMSG" array
-		returned to the client application might look like this: </P> 
-	 <PRE>
-    ^TMP(&quot;DIMSG&quot;,$J,1)=&quot;Your input was 2 characters long.&quot;
-    ^TMP(&quot;DIMSG&quot;,$J,2)=&quot;This is the wrong length.&quot;
-</PRE> <HR> 
-	 <H5><A NAME="DIERR">DIERR Array</A></H5> 
+		WRITEs that are currently embedded in the database must be changed to
+		calls to EN^DDIOL if the DBS is to be used. When running applications in
+		scrolling mode, the Loader simply WRITEs the text to the screen. However,
+		if the node containing the EN^DDIOL call is executed from within one of
+		the DBS calls, the DBS returns text in an array, usually subscripted by
+		DIMSG.</P>
+	 <P>REF: For more detailed information about
+		<A HREF="cl_ddiol.htm" TITLE="EN^DDIOL" CLASS="bodylink">EN^DDIOL(): Message
+		Loader</A>, see its description in the "Classic VA FileMan API" section.</P>
+	 <P>When the user is not in scrolling mode, the Loader most frequently
+		places the text into the DIMSG array with the local variable DIMSG set
+		equal to the total number of lines in the array. There are certain
+		situations, however, where the output is put into another array. As
+		mentioned in the <A HREF="#DIHELP" CLASS="bodylink">DIHELP Array</A>, when
+		the DBS HELP^DIE call is used to get help, the output of an EN^DDIOL call
+		embedded in executable help is placed into the DIHELP array.</P>
+	 <P>Like DIHELP, the DIMSG array is simply a list of lines of text.</P>
+	 <P>Suppose an INPUT transform currently contains:</P>
+	 <P ALIGN="CENTER"><B>Figure 97: Database Server (DBS) API&mdash;DIMSG Array:
+		Sample INPUT Transform</B></P>
+<PRE>
+    N Y S Y=$L(X) K:Y&gt;30!(Y&lt;3) X I '$D(X) W !,"Your input was "_Y_
+    " characters long.",!,"This is the wrong length."
+</PRE>
+	 <P>It can be changed to:</P>
+	 <P ALIGN="CENTER"><B>Figure 98: Database Server (DBS) API&mdash;DIMSG Array:
+		Changing INPUT Transform: Executed in Scrolling Mode</B></P>
+<PRE>
+    N Y S Y=$L(X) K:Y&gt;30!(Y&lt;3) X I '$D(X) S Y(1)="Your input was "_Y_
+    " characters long.",Y(2)="This is the wrong length." D EN^DDIOL(.Y)
+</PRE>
+	 <P>This change would have no effect if the user were in scrolling mode;
+		the same message is written to the screen. However, if the second INPUT
+		transform were executed from a silent call, nothing is written and the
+		"DIMSG" array returned to the client application might look like Figure 99:</P>
+	 <P ALIGN="CENTER"><B>Figure 99: Database Server (DBS) API&mdash;DIMSG Array:
+		Changing INPUT Transform: Executed from a Silent Call</B></P>
+<PRE>
+    ^TMP("DIMSG",$J,1)="Your input was 2 characters long."
+    ^TMP("DIMSG",$J,2)="This is the wrong length."
+</PRE>
+	 <HR>
+	 <H5><A NAME="DIERR">DIERR Array</A></H5>
 	 <P>When an error condition is encountered during a DBS call, an error
-		message and other information is placed in the DIERR array. In addition, the
-		DIERR variable is returned with the following two pieces of information: the
-		number of errors generated during the call in the first piece and the total
-		number of lines of the error messages in the second. Thus, a $D check on the
-		variable DIERR after the completion of the call allows the client application
-		to determine if an error occurred. Both syntactical (e.g., the root of an array
-		is not in the proper format for subscript indirection) and substantive (e.g., a
-		specified field does not exist in the specified file) errors are returned. </P>
-	 
+		message and other information is placed in the DIERR array. In addition,
+		the DIERR variable is returned with the following two pieces of
+		information:</P>
+	 <UL>
+		<LI><B>First Piece:</B> Number of errors generated during the
+		  call.<BR><BR></LI>
+		<LI><B>Second Piece:</B> Total number of lines of the error messages.</LI>
+	 </UL>
+	 <P>Thus, a $D check on the DIERR variable after the completion of the
+		call allows the client application to determine if an error occurred.
+		Both of the following errors are returned:</P>
+	 <UL>
+		<LI><B>Syntactical</B> (e.g., the root of an array is not in the proper
+		  format for subscript indirection).<BR><BR></LI>
+		<LI><B>Substantive</B> (e.g., a specified field does not exist in the
+		  specified file).</LI>
+	 </UL>
 	 <P>The information contained in the DIERR array is designed to give the
-		client application specific information about the kind of error that occurred
-		to allow for intelligent error handling and to provide readable error messages.
-		Here is an example of error reporting following a Filer call: </P> 
-	 <PRE>
-    &gt;<B>W $G(DIERR)</B>
+		client application-specific information about the kind of error that
+		occurred to allow for intelligent error handling and to provide readable
+		error messages. Figure 100 is an example of error reporting following a
+		Filer call:</P>
+	 <P ALIGN="CENTER"><B>Figure 100: Database Server (DBS) API&mdash;DIERR
+		Array: Sample Input and Output</B></P>
+<PRE>
+    &gt;<B>W $G(DIERR)</B> &lt;Enter&gt;
     2^2
-    &gt;<B>D ^%G</B>
+    &gt;<B>D ^%G</B> &lt;Enter&gt;
 
-    Global ^<B>TMP(&quot;DIERR&quot;,$J</B> 
-            TMP(&quot;DIERR&quot;,$J
-    ^TMP(&quot;DIERR&quot;,731990208,1) = 305
-    ^TMP(&quot;DIERR&quot;,731990208,1,&quot;PARAM&quot;,0) = 1
-    ^TMP(&quot;DIERR&quot;,731990208,1,&quot;PARAM&quot;,1) = ^TMP(&quot;MYWPDATA&quot;,$J)
-    ^TMP(&quot;DIERR&quot;,731990208,1,&quot;TEXT&quot;,1) = The array with a root of
-       '^TMP(&quot;MYWPDATA&quot;,$J)' has no data associated with it.
-    ^TMP(&quot;DIERR&quot;,731990208,2) = 501
-    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;PARAM&quot;,0) = 3
-    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;PARAM&quot;,1) = 89
-    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;PARAM&quot;,&quot;FIELD&quot;) = 89
-    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;PARAM&quot;,&quot;FILE&quot;) = 16200
-    ^TMP(&quot;DIERR&quot;,731990208,2,&quot;TEXT&quot;,1) = File #16200 does not contain
-       a field 89.
-    ^TMP(&quot;DIERR&quot;,731990208,&quot;E&quot;,305,1) = 
-    ^TMP(&quot;DIERR&quot;,731990208,&quot;E&quot;,501,2) = 
-</PRE> 
-	 <P>The DIERR variable acts like a flag. In the example above, it reports
-		that two errors occurred and that they have a total of two lines of text. </P> 
-	 <P>The ^TMP("DIERR",$J) global contains information about the error(s).</P>
-	 
-	 <PRE>
-    ^TMP(&quot;DIERR&quot;,$J,sequence#) = error number
-
-</PRE> 
-	 <P>In this case, two errors were returned: errors #305 and #501. Each error
-		number corresponds to an entry in the DIALOG file. The actual text of each
-		error is stored in nodes descendent from "TEXT": </P> 
-	 <PRE>    ^TMP(&quot;DIERR&quot;,$J,sequence#,&quot;TEXT&quot;,line#) = line of text
-
-</PRE> 
+    Global ^<B>TMP("DIERR",$J</B>
+            TMP("DIERR",$J
+    ^TMP("DIERR",731990208,1) = 305
+    ^TMP("DIERR",731990208,1,"PARAM",0) = 1
+    ^TMP("DIERR",731990208,1,"PARAM",1) = ^TMP("MYWPDATA",$J)
+    ^TMP("DIERR",731990208,1,"TEXT",1) = The array with a root of
+       '^TMP("MYWPDATA",$J)' has no data associated with it.
+    ^TMP("DIERR",731990208,2) = 501
+    ^TMP("DIERR",731990208,2,"PARAM",0) = 3
+    ^TMP("DIERR",731990208,2,"PARAM",1) = 89
+    ^TMP("DIERR",731990208,2,"PARAM","FIELD") = 89
+    ^TMP("DIERR",731990208,2,"PARAM","FILE") = 16200
+    ^TMP("DIERR",731990208,2,"TEXT",1) = File #16200 does not contain a field 89.
+    ^TMP("DIERR",731990208,"E",305,1) =
+    ^TMP("DIERR",731990208,"E",501,2) =
+</PRE>
+	 <P>The DIERR variable acts like a flag. In Figure 100, it reports that
+		two errors occurred and that they have a total of two lines of text.</P>
+	 <P>The ^TMP("DIERR",$J) global contains information about the errors.</P>
+<PRE>
+    ^TMP("DIERR",$J,sequence#) = error number
+</PRE>
+	 <P>In this case, two errors were returned: errors #305 and #501. Each
+		error number corresponds to an entry in the DIALOG (#.84) file. The
+		actual text of each error is stored in nodes descendent from "TEXT":</P>
+<PRE>
+    ^TMP("DIERR",$J,sequence#,"TEXT",line#) = line of text
+</PRE>
 	 <P>The ^TMP("DIERR",$J,sequence#,"PARAM") subtree contains specific
-		parameters that may be returned with each error: </P> 
-	 <PRE>    ^TMP(&quot;DIERR&quot;,$J,sequence#,&quot;PARAM&quot;,0) = number of parameters returned with the error
-
-    ^TMP(&quot;DIERR&quot;,$J,sequence#,&quot;PARAM&quot;,&quot;param_name&quot;) = parameter value
-
-</PRE> 
+		parameters that can be returned with each error:</P>
+<PRE>
+    ^TMP("DIERR",$J,sequence#,"PARAM",0) = number of parameters returned
+    with the error
+    ^TMP("DIERR",$J,sequence#,"PARAM","param_name") = parameter value
+</PRE>
 	 <P>The VA FileMan error messages and their associated parameters are
-		documented in Appendix A-VA FileMan Error Codes in this manual. For example,
-		Appendix A indicates that three parameters are returned with error #501: '1',
-		the field name or number; 'FILE', the File number; and 'FIELD', the Field
-		number. So, in the example above, for error #501, the "PARAM" nodes indicate
-		that the error corresponds to File #16200, Field #89. </P> 
-	 <P>Finally, the "E" cross-reference in the ^TMP("DIERR",$J) global allows
-		you to determine quickly whether a particular error occurred. For example, if
-		you wanted to do some special error processing if a DBS call generated error
-		#305, you could check $D(^TMP("DIERR",$J,"E",305)). </P> 
+		documented in "Appendix A&mdash;VA FileMan Error Codes." For example,
+		Appendix A indicates that three parameters are returned with error #501:</P>
+	 <UL>
+		<LI>"1"&mdash;Field name or number<BR><BR></LI>
+		<LI>"FILE"&mdash;File number<BR><BR></LI>
+		<LI>"FIELD"&mdash;Field number</LI>
+	 </UL>
+	 <P>So, in Figure 100, for error #501, the "PARAM" nodes indicate that
+		the error corresponds to (fictitious) File #16200, Field #89.</P>
+	 <P>Finally, the "E" cross-reference in the ^TMP("DIERR",$J) global
+		allows you to determine quickly whether a particular error occurred. For
+		example, if you wanted to do some special error processing if a DBS call
+		generated error #305, you could check:</P>
+<PRE>
+    $D(^TMP("DIERR",$J,"E",305))
+</PRE>
 	 <P>The DIERR array is more complicated than the other arrays discussed,
-		thereby making more information available to the client application for error
-		handling. </P>
-	 <P>&nbsp;</P> 
+		thereby making more information available to the client application for
+		error handling.</P>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- db_how3.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

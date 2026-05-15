@@ -49,24 +49,42 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>How the Database Server Communicates: Overview</H4> 
-	 <P>A distinguishing feature of the DBS calls is that they don't "talk" -
-		nothing is Written to a device. The DBS communicates with the client
-		application by passing data in arrays instead of communicating directly with
-		the user by Writing to the screen. It is the client application's
-		responsibility to determine if, when, and how to inform the user of the
-		information originating from the DBS. </P> 
-	 <P>The way that the DBS passes <I>primary</I> information, like the value
-		of a field when doing a Data Retriever call or a record's internal entry number
-		when doing a Finder call, is documented for each call. <I>Secondary</I>
-		information consists of error messages, help text, and information currently
-		Written from nodes in the Data Dictionary by Classic FileMan calls. The way
-		secondary information is passed to the client application is described in this
-		section. </P>
-	 <P>&nbsp;</P> 
+	 <H4>Overview</H4>
+	 <P>A distinguishing feature of the Database Server (DBS) calls is that
+		they do not "talk," nothing is written to a device. The DBS communicates
+		with the client application by passing data in arrays instead of
+		communicating directly with the user by writing to the screen. It is the
+		client application's responsibility to determine if, when, and how to
+		inform the user of the information originating from the DBS.</P>
+	 <P>The way that the DBS passes <I>primary</I> information, such as the
+		value of a field when doing a Data Retriever call or a record's internal
+		entry number when doing a Finder call, is documented for each call.</P>
+	 <P>Secondary information consists of:</P>
+	 <UL>
+		<LI>Error messages.<BR><BR></LI>
+		<LI>Help text.<BR><BR></LI>
+		<LI>Information currently written from nodes in the data dictionary by
+		  Classic VA FileMan calls.</LI>
+	 </UL>
+	 <P>The way secondary information is passed to the client application is
+		described in the following sections:</P>
+	 <UL>
+		<LI><A HREF="db_how2.htm" TITLE="How Information Is Returned"
+		  CLASS="bodylink">How Information Is Returned</A><BR><BR></LI>
+		<LI><A HREF="db_how3.htm" TITLE="Contents of Arrays"
+		  CLASS="bodylink">Contents of Arrays</A><BR><BR></LI>
+		<LI><A HREF="db_how4.htm"
+		  TITLE="Obtaining Formatted Text from the Arrays"
+		  CLASS="bodylink">Obtaining Formatted Text from the Arrays</A><BR><BR></LI>
+		<LI><A HREF="db_how5.htm" TITLE="Cleaning Up the Output Arrays"
+		  CLASS="bodylink">Cleaning Up the Output Arrays</A><BR><BR></LI>
+		<LI><A HREF="db_how6.htm" TITLE="Example of Call to VA FileMan DBS"
+		  CLASS="bodylink">Example of Call to VA FileMan DBS</A></LI>
+	 </UL>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- db_how1.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

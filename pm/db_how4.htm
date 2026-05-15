@@ -49,27 +49,39 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>Obtaining Formatted Text From The Arrays</H4> 
+	 <H4>Obtaining Formatted Text from the Arrays</H4>
 	 <P>If you want the text from any of the three
 		<A HREF="db_how3.htm" TARGET="display" TITLE="arrays"
-		 CLASS="bodylink">arrays</A>, the following call extracts it from the structures
-		described and either writes it to the screen or puts it into a local array for
-		further use: </P> 
-	 <PRE>
-    D MSG^DIALOG(FLAGS,.OUTPUT_ARRAY,TEXT_WIDTH,LEFT_MARGIN,
-      INPUT_ROOT)
-</PRE> 
-	 <P>The flags for this call control whether the text is Written to the
-		current device or moved into the output_array specified in the second
-		parameter. The flags also direct whether the source arrays are saved or deleted
-		and which kinds of dialog (errors, help, or other messages) are processed. Some
-		formatting of text is also supported. See the description of
-		<A HREF="db_dia_m.htm" TITLE="MSG^DIALOG" CLASS="bodylink">MSG^DIALOG</A> in
-		this DBS section for details of its use. </P>
-	 <P>&nbsp;</P> 
+		CLASS="bodylink">arrays</A>, the call in Figure 101 extracts it from the
+		structures described in the "<A HREF="db_how3.htm" TARGET="display"
+		TITLE="Contents of Arrays" CLASS="bodylink">Contents of Arrays</A>"
+		section.</P>
+	 <P ALIGN="CENTER"><B>Figure 101: Database Server (DBS) API&mdash;Obtaining
+		Formatted Text from the Arrays: Input</B></P>
+<PRE>
+    &gt;D MSG^DIALOG(flags,.output_array,text_width,left_margin,input_root)
+</PRE>
+	 <P>It does either of the following:</P>
+	 <UL>
+		<LI>Writes it to the screen.<BR><BR></LI>
+		<LI>Puts it into a local array for further use.</LI>
+	 </UL>
+	 <P>The flags for the MSG^DIALOG call:</P>
+	 <UL>
+		<LI>Control whether the text is written to the current device or moved
+		  into the output_array specified in the second parameter.<BR><BR></LI>
+		<LI>Direct whether the source arrays are saved or deleted, and which
+		  kinds of dialog (e.g., errors, help, or other messages) are
+		  processed.<BR><BR></LI>
+		<LI>Support some formatting of text.</LI>
+	 </UL>
+	 <P>REF: For details of its use, see the description of the
+		<A HREF="db_dia_m.htm" TITLE="MSG^DIALOG" CLASS="bodylink">MSG^DIALOG():
+		Output Generator</A> API.</P>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- db_how4.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

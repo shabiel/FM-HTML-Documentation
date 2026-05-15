@@ -52,75 +52,81 @@
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
 	 <H4><A NAME="FDA">FDA: Format of Data Passed to and from VA
-		FileMan</A></H4> 
-	 <P>Data is passed to and from the DBS as values in the FileMan Data Array
-		(FDA). The FDA contains the file, internal entry numbers, and field information
-		in its subscripting scheme.</P> 
-	 <P>The format of the FDA is:</P> 
-	 <PRE>
-    FDA_ROOT(FILE#,&quot;IENS&quot;,FIELD#)=&quot;VALUE&quot;
-
-</PRE> 
+		FileMan</A></H4>
+	 <H5>Description</H5>
+	 <P>Data is passed to and from the DBS as values in the VA FileMan Data
+		Array (FDA). The FDA contains the file, internal entry numbers, and field
+		information in its subscripting scheme.</P>
+	 <H5>Format</H5>
+<PRE>
+    FDA_ROOT(file#,"iens",field#)="value"
+</PRE>
+	 <H5>Input Parameters</H5>
 	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="12%"><B>FILE#</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>The number of the file or subfile to which the data belongs. </P>
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>IENS</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>As explained in the "<A HREF="db_int3.htm" TARGET="display"
-				TITLE="IENS: To Identify Entries and Subentries" CLASS="bodylink">IENS: To
-				Identify Entries and Subentries</A>" topic, a comma-delimited string of entry
-				and subentry numbers. The IENS always ends with a comma. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>FIELD#</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>The number of the field being accessed. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>VALUE</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>The internal (and verified) or external (and unverified) value of
-				the field. The specific call that you are making along with the way certain
-				flags are set determines if the internal or external value is appropriate.</P> 
-			 <P> The values for word processing fields are stored in the FDA
-				differently. Instead of setting the node equal to the actual value, set it
-				equal to the root of an array (local or global) that holds the data. The word
-				processing data must be stored at nodes with positive numbers in the designated
-				array or at the 0-node descendent from those nodes. The subscripts need not be
-				integers. For example, if the value of an FDA node were "^TMP($J,"WP")", the
-				location of the word processing data could be:</P> 
-			 <PRE>    ^TMP($J,&quot;WP&quot;,1,0)=Line 1
-    ^TMP($J,&quot;WP&quot;,2,0)=Line 2
+	  SUMMARY="FDA Input Parameters">
+		<TR>
+		  <TD VALIGN="TOP" WIDTH="12%"><B>file#</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required) The number of the file or subfile to which the data
+				belongs.</P></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>iens</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required) As explained in the "<A HREF="db_int3.htm"
+				TARGET="display" TITLE="IENS: Identify Entries and Subentries"
+				CLASS="bodylink">IENS: Identify Entries and Subentries</A>" section,
+				a comma-delimited string of entry and subentry numbers. The iens
+				always ends with a comma.</P></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>field#</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required) The number of the field being accessed.</P></TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>value</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required) The internal (and verified) or external (and
+				unverified) value of the field. The specific call that you are
+				making along with the way certain flags are set determines if the
+				internal or external value is appropriate.</P>
+			 <P>The values for WORD-PROCESSING fields are stored in the FDA
+				differently. Instead of setting the node equal to the actual value,
+				set it equal to the root of an array (local or global) that holds
+				the data. The word-processing data must be stored at nodes with
+				positive numbers in the designated array or at the 0-node
+				descendent from those nodes. The subscripts need not be integers.</P>
+			 <P>For example, if the value of an FDA node were "^TMP($J,"WP")",
+				the location of the word-processing data could be:</P>
+<PRE>
+    ^TMP($J,"WP",1,0)=Line 1
+    ^TMP($J,"WP",2,0)=Line 2
     ...etc.
-</PRE> 
-			 <P> OR: </P> 
-			 <PRE>
-    ^TMP($J,&quot;WP&quot;,1)=Line 1
-    ^TMP($J,&quot;WP&quot;,2)=Line 2
-    ...etc.</PRE> 
-			 <P> For word processing data, the file and field numbers should
-				reflect the file (or subfile) and field of the word processing field, not the
-				subfile number of the pseudo-multiple where the word processing data is
-				actually stored. </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <P>Nodes in the FDA can be set in several ways. The Validator call (<A HREF="db_die_v.htm"
-		TITLE="VAL^DIE" CLASS="bodylink">VAL^DIE</A>) optionally creates nodes in an
-		FDA for valid user input. If the Validator is not being used, programmers can
-		use a call (<A HREF="db_dilf5.htm" TITLE="FDA^DILF"
-		CLASS="bodylink">FDA^DILF</A>) that creates an element in the FDA. Finally, the
-		application developer can set the nodes manually in the client application's
-		code. </P>
-	 <P>&nbsp;</P> 
+</PRE>
+			 <P>Or:</P>
+<PRE>
+    ^TMP($J,"WP",1)=Line 1
+    ^TMP($J,"WP",2)=Line 2
+    ...etc.
+</PRE>
+			 <P>For word-processing data, the file and field numbers should
+				reflect the file (or subfile) and field of the WORD-PROCESSING
+				field, not the subfile number of the pseudo-Multiple where the
+				word-processing data is stored.</P></TD>
+		</TR>
+	 </TABLE>
+	 <P>Nodes in the FDA can be set in several ways. The Validator call
+		(<A HREF="db_die_v.htm" TITLE="VAL^DIE" CLASS="bodylink">VAL^DIE</A>)
+		optionally creates nodes in an FDA for valid user input. If the Validator
+		is not being used, developers can use the <A HREF="db_dilf5.htm"
+		TITLE="FDA^DILF" CLASS="bodylink">FDA^DILF</A> call that creates an
+		element in the FDA. Finally, the application developer can set the nodes
+		manually in the client application's code.</P>
+	 <P>&nbsp;</P>
 	 <HR CLASS="hrstyle">
 	 <!-- db_int4.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>
