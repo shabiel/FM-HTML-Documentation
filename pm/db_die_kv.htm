@@ -7,8 +7,8 @@
 
 	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 	 
-	 <title>VA FileMan Programmer Manual: FILE^DIE( )</title><meta name="subject" content="VA FileMan V. 22.2 Programmer HTML Manual">
-	 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,file^die(),die">
+	 <title>VA FileMan Programmer Manual: $$KEYVAL^DIE( )</title><meta name="subject" content="VA FileMan V. 22.2 Programmer HTML Manual">
+	 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,$$keyval^die(),die">
 	 <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
  
   <body topmargin="0" bgcolor="white">
@@ -32,70 +32,92 @@
 	 </tbody></table><!-- Content -->
 	 <h3><a name="navskip">Database Server (DBS) API</a></h3>
 	 <hr class="hrstyle"> 
-	 <h4>$$KEYVAL^DIE( ): Key Validator&nbsp;</h4> 
-	 <p>The Key Validator extrinsic function verifies that new values contained
-		in the FDA do not produce an invalid key. All keys in which any field in the
-		FDA participates are checked. If the value for a field in a key being checked
-		is not present in the FDA, the value used to verify the key is obtained from
-		the previously filed data.</p> 
-	 <h5>Format</h5> 
-	 <pre>$$KEYVAL^DIE(FLAGS,FDA_ROOT,MSG_ROOT)</pre> 
+	 <h4>$$KEYVAL^DIE(): Key Validator&nbsp;</h4>
+	 <table border="1" cellpadding="3" summary="API reference summary">
+		<tr>
+		  <th align="left">Reference Type</th>
+		  <th align="left">Category</th>
+		  <th align="left">ICR #</th>
+		</tr>
+		<tr>
+		  <td>Supported</td>
+		  <td>Database Server (DBS)</td>
+		  <td>2053</td>
+		</tr>
+	 </table>
+	 <h5>Description</h5>
+	 <p>The $$KEYVAL^DIE extrinsic function (aka Key Validator) verifies that new
+		values contained in the FDA do not produce an invalid key. All keys in which
+		any field in the FDA participates are checked. If the value for a field in a
+		key being checked is not present in the FDA, the value used to verify the key
+		is obtained from the previously filed data.</p>
+	 <h5>Format</h5>
+	 <pre>$$KEYVAL^DIE([flags,]fda_root[,msg_root])</pre>
 	 <h5>Input Parameters</h5> 
 	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
 		<tbody><tr> 
-		  <td><b>FLAGS </b></td> 
-		  <td colspan="2"> 
-			 <p>(Optional) Flags to control processing. The possible values are:
-				</p> </td> 
-		</tr> 
-		<tr> 
-		  <td></td> 
-		  <td><b>Q</b></td> 
-		  <td><b>Q</b>uit when the first problem in the FDA is encountered.</td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b>FDA_ROOT</b></td> 
-		  <td colspan="2"> 
+		  <td valign="top" rowspan="2"><b>FLAGS </b></td>
+		  <td colspan="2">
+			 <p>(Optional) Flags to control processing. The possible value is:
+				</p> </td>
+		</tr>
+		<tr>
+		  <td><b>Q</b></td>
+		  <td><b>Q</b>uit when the first problem in the FDA is encountered.</td>
+		</tr>
+		<tr>
+		  <td valign="top"><b>fda_root</b></td>
+		  <td colspan="2">
 			 <p>(Required) The root of the FDA that contains the data to be
-				checked. The array can be a local or global one. See the "<a href="db_how.htm" title="Database Server Introduction" class="bodylink">Database Server
-				Introduction</a>" for details of the structure of the
-				<a href="db_int4.htm" title="FDA" class="bodylink">FDA</a>.</p> 
+				checked. The array can be a local or global one. </p>
+			 <p><b>REF:</b> For details of the structure of the
+				<a href="db_int4.htm" title="FDA" class="bodylink">FDA</a>, see the
+				<a href="db_how.htm" title="Database Server Introduction"
+				class="bodylink">Database Server Introduction</a>. </p>
 			 <p>The value of fields in the FDA must be the internal value. Do not
-				pass external (e.g., unresolved pointer values, non-FileMan dates) in the
-				FDA.</p> 
+				pass external (e.g., unresolved POINTER values, non-VA FileMan dates) in the
+				FDA.</p>
 			 <p>No action is taken on fields in the referenced FDA if those fields
-				do not participate in a Key defined in the KEY file. </p> </td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b>MSG_ROOT</b></td> 
+				do not participate in a key defined in the KEY (#.31) file. </p> </td>
+		</tr>
+		<tr>
+		  <td valign="top"><b>msg_root</b></td>
 		  <td colspan="2"> 
 			 <p>(Optional) The root of an array into which error messages are
 				returned. If this parameter is not included, errors are returned in the default
 				array: ^TMP("DIERR",$J). </p> </td> 
 		</tr> 
 	 </tbody></table> 
-	 <h5>Output</h5> 
-	 <p>This Boolean function returns a 1 if key integrity is not violated by
-		any value in the FDA and a 0 if an invalid key was produced by any of the
-		values. Error messages and DIERR are also returned when necessary. </p> 
-	 <h5>Example</h5> 
-	 <p>In the following example, two fields from File #99999 (SAMPLE file) are
-		set into an FDA. These are values for a new record; therefore, the IENS is
-		"+1,". The values (".111" and "Albert Jones") are valid internal values for
-		fields .01 and .02. $$KEYVAL^DIE returns "0" indicating that key integrity is
-		violated by these values. The returned error message states the values create a
-		duplicate key. The key that is duplicated is the "A" key.</p> 
-	 <pre>&gt;<b>K MYERRORS,MYFDA</b>
+	 <h5>Output</h5>
+	 <p>This Boolean function returns the following: </p>
+	 <ul>
+		<li><b>1</b>&mdash;If key integrity is not violated by any value in the
+		  FDA. </li>
+		<li><b>0</b>&mdash;If an invalid key was produced by any of the values.
+		  </li>
+	 </ul>
+	 <p>Error messages and DIERR are also returned when necessary. </p>
+	 <h5>Example</h5>
+	 <p>In <a href="#fig171" class="bodylink">Figure 171</a>, two fields from
+		(fictitious) File #99999 are set into an FDA. These are values for a new
+		record; therefore, the IENS is +1,. The values (".111" and "One Fmuser") are
+		valid internal values for fields .01 and .02. $$KEYVAL^DIE returns 0
+		indicating that key integrity is violated by these values. The returned error
+		message states the values create a duplicate key. The key that is duplicated
+		is the A key.</p>
+	 <p align="center"><b><a name="fig171">Figure 171: $$KEYVAL^DIE
+		API&mdash;Example: Input and Output</a></b></p>
+	 <pre>&gt;<b>K MYERRORS,MYFDA</b> &lt;Enter&gt;
 
-&gt;<b>S MYFDA(99999,"+1,",.01)=.111</b>
+&gt;<b>S MYFDA(99999,"+1,",.01)=.111</b> &lt;Enter&gt;
 
-&gt;<b>S MYFDA(99999,"+1,",.02)="Albert Jones"</b>
+&gt;<b>S MYFDA(99999,"+1,",.02)="One Fmuser"</b> &lt;Enter&gt;
 
-&gt;<b>W $$KEYVAL^DIE("","MYFDA","MYERRORS")</b>
+&gt;<b>W $$KEYVAL^DIE("","MYFDA","MYERRORS")</b> &lt;Enter&gt;
 0
-&gt;<b>W DIERR</b>
+&gt;<b>W DIERR</b> &lt;Enter&gt;
 1^1
-&gt;<b>ZW MYERRORS</b>
+&gt;<b>ZW MYERRORS</b> &lt;Enter&gt;
 MYERRORS("DIERR")=1^1
 MYERRORS("DIERR",1)=740
 MYERRORS("DIERR",1,"PARAM",0)=3
@@ -103,13 +125,22 @@ MYERRORS("DIERR",1,"PARAM","FILE")=99999
 MYERRORS("DIERR",1,"PARAM","IENS")=+1,
 MYERRORS("DIERR",1,"PARAM","KEY")=11
 MYERRORS("DIERR",1,"TEXT",1)=New values are invalid because they create a
-  duplicate Key 'A' for the SAMPLE file.
+duplicate
+  Key 'A' for the SAMPLE file.
 MYERRORS("DIERR","E",740,1)=
-</pre> 
-	 <h5><a name="errors">Error Codes Returned</a></h5> 
-	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
-		<tbody><tr> 
-		  <td valign="top"><b><a href="err_740.htm" title="Error 740" class="bodylink">740</a></b></td> 
+</pre>
+	 <h5><a name="errors">Error Codes Returned</a></h5>
+	 <p><a href="#tbl56" class="bodylink">Table 56</a> lists the possible error
+		codes returned with the $$KEYVAL^DIE API: </p>
+	 <p align="center"><b><a name="tbl56">Table 56: $$KEYVAL^DIE API&mdash;Error
+		Codes Returned</a></b></p>
+	 <table summary="Error codes returned by the $$KEYVAL^DIE API" border="1" width="100%">
+		<tbody><tr>
+		  <th scope="col">Code</th>
+		  <th scope="col">Description</th>
+		</tr>
+		<tr>
+		  <td valign="top"><b><a href="err_740.htm" title="Error 740" class="bodylink">740</a></b></td>
 		  <td valign="top">A duplicate key is produced by a field's new
 			 value.</td> 
 		</tr> 
@@ -122,26 +153,31 @@ MYERRORS("DIERR","E",740,1)=
 		  <td valign="top">Not all fields in a key have a value.</td> 
 		</tr> 
 	 </tbody></table> 
-	 <h5>Details and Features</h5> 
-	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
-		<tbody><tr> 
-		  <td valign="top"><b>Possible IENS</b></td> 
-		  <td valign="top"> 
-			 <p>The only placeholder the IENS in the FDA can contain is the '+'
-				for records not yet added to the database. You cannot use the '?' or '?+'
-				placeholders since the Key Validator will not attempt to lookup an entry to
-				obtain existing values for a key. (See the "<a href="db_how.htm" target="display" title="Database Server Introduction" class="bodylink">Database
-				Server Introduction</a>" for details of the
-				<a href="db_int3.htm" target="display" title="IENS" class="bodylink">IENS</a>;
-				see <a href="db_die_u.htm" target="display" title="UPDATE^DIE" class="bodylink">UPDATE^DIE</a> for description of
-				<a href="db_die_u.htm#placeholder" title="placeholders" class="bodylink">placeholders</a>.) </p> </td> 
-		</tr> 
-	 </tbody></table> 
+	 <h5>Details and Features</h5>
+	 <table summary="Details and features of the $$KEYVAL^DIE API" border="1" width="100%">
+		<tbody><tr>
+		  <td valign="top"><b>Possible IENS</b></td>
+		  <td valign="top">
+			 <p>The only placeholder the IENS in the FDA can contain is the +
+				for records not yet added to the database. You cannot use the ? or ?+
+				placeholders, since the Key Validator does not attempt to look up an entry to
+				obtain existing values for a key. </p>
+			 <p><b>REF:</b> For details of the
+				<a href="db_int3.htm" target="display" title="IENS" class="bodylink">IENS</a>,
+				see the <a href="db_how.htm" target="display"
+				title="Database Server Introduction" class="bodylink">Database Server
+				Introduction</a>. </p>
+			 <p>For description of
+				<a href="db_die_u.htm#placeholder" title="placeholders" class="bodylink">placeholders</a>,
+				see the <a href="db_die_u.htm" target="display" title="UPDATE^DIE"
+				class="bodylink">UPDATE^DIE</a> API. </p> </td>
+		</tr>
+	 </tbody></table>
 	 <p></p>
 	 <p>&nbsp;</p> 
 	 <hr class="hrstyle">
 	 <!-- db_die_kv.htm -->
-	 <p align="center">Reviewed/Updated: March 10, 2007</p>
+	 <p align="center">Reviewed/Updated: May 2026</p>
 	 <p>&nbsp;</p> 
 
   </body></html>

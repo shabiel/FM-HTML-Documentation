@@ -31,29 +31,45 @@
 	 </tbody></table><!-- Content -->
 	 <h3><a name="navskip">Database Server (DBS) API</a></h3>
 	 <hr class="hrstyle"> 
-	 <h4>UPDATE^DIE( ): Updater</h4> 
-	 <p>This procedure adds new entries in files or subfiles. The caller uses a
-		standard FDA structure to specify the field values of the new entries. The
-		caller should restrict each Updater call to one logical entry, possibly made up
-		of multiple physical entries. The record numbers for the new entries are
-		returned in an array; the caller may assign their own record numbers to new
-		entries by presetting the array. Any appropriate indexing and auditing
-		automatically occurs for the new record. </p> 
-	 <p>Although the Updater can safely add entries to top-level files and to
-		subfiles within those same new entries, there is one caution. If the subfile
-		contains an INPUT transform that assumes the existence of the parent record,
-		the developer should make two separate Updater calls, first to add the parents,
-		then to add the children. </p> 
-	 <p>This procedure includes some elementary filing capabilities to permit
-		the adding of required identifiers and key values at the time new records are
+	 <h4>UPDATE^DIE(): Updater&nbsp;</h4>
+	 <table border="1" cellpadding="3" summary="API reference summary">
+		<tr>
+		  <th align="left">Reference Type</th>
+		  <th align="left">Category</th>
+		  <th align="left">ICR #</th>
+		</tr>
+		<tr>
+		  <td>Supported</td>
+		  <td>Database Server (DBS)</td>
+		  <td>2053</td>
+		</tr>
+	 </table>
+	 <h5>Description</h5>
+	 <p>The UPDATE^DIE API (aka Updater) adds new entries in files or subfiles.
+		The caller uses a standard FDA structure to specify the field values of the
+		new entries. The caller should restrict each Updater call to one logical
+		entry, possibly made up of multiple physical entries. The record numbers for
+		the new entries are returned in an array; the caller can assign their own
+		record numbers to new entries by presetting the array. Any appropriate
+		indexing and auditing automatically occurs for the new record. </p>
+	 <p><b>CAUTION:</b> Although the Updater can safely add entries to top-level
+		files and to subfiles within those same new entries, there is one caution. If
+		the subfile contains an INPUT transform that assumes the existence of the
+		parent record, the developer should make two separate Updater calls: </p>
+	 <ol>
+		<li>Add the parents. </li>
+		<li>Add the children. </li>
+	 </ol>
+	 <p>This API includes some elementary filing capabilities to permit the
+		adding of required identifiers and key values at the time new records are
 		created. It also includes elementary finding capabilities to facilitate the
 		identification of top-level entries to which subentries are being added. For
 		full filing and finding capabilities beyond the scope of adding new records,
-		programmers should use the Filer (<a href="db_die_f.htm" title="FILE^DIE" class="bodylink">FILE^DIE</a>) or Finder (<a href="db_dicf.htm" title="FIND^DIC" class="bodylink">FIND^DIC</a>). If you are
+		developers should use the Filer (<a href="db_die_f.htm" title="FILE^DIE" class="bodylink">FILE^DIE</a>) or Finder (<a href="db_dicf.htm" title="FIND^DIC" class="bodylink">FIND^DIC</a>). If you are
 		filing data in existing records and you know the record numbers, use the Filer
-		instead of the Updater. </p> 
-	 <h5>Format</h5> 
-	 <pre>UPDATE^DIE(FLAGS,FDA_ROOT,IEN_ROOT,MSG_ROOT)<br></pre> 
+		instead of the Updater. </p>
+	 <h5>Format</h5>
+	 <pre>UPDATE^DIE([flags,]fda_root[,ien_root][,msg_root])<br></pre>
 	 <h5>Input Parameters</h5> 
 	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
 		<tbody><tr> 
@@ -63,13 +79,13 @@
 				</p> </td> 
 		</tr> 
 		<tr> 
-		  <td valign="top"><b><a name="E">E</a></b></td> 
+		  <td valign="top"><b><a name="E">E</a></b></td>
 		  <td valign="top"><b>E</b>xternal values are processed. If this flag is
 			 set, the values in the FDA must be in the format input by the user. The Updater
-			 validates all values and converts them to internal format. Invalid values
-			 cancel the entire transaction. 
-			 <p></p> If the flag is not set, values must be in internal format and
-			 must be valid. </td> 
+			 validates all values and converts them to VA FileMan internal format. Invalid
+			 values cancel the entire transaction.
+			 <p></p> If the flag is not set, values must be in VA FileMan internal
+			 format and must be valid. </td>
 		</tr> 
 		<tr> 
 		  <td valign="top"><b><a name="K">K</a></b>&nbsp;</td> 
@@ -79,131 +95,231 @@
 		</tr> 
 		<tr> 
 		  <td valign="top"><b>S</b></td> 
-		  <td valign="top">The Updater <b>S</b>aves the FDA instead of killing it
-			 at the end. </td> 
-		</tr> 
+		  <td valign="top">The Updater <b>S</b>aves the FDA instead of KILLing it
+			 at the end. </td>
+		</tr>
+		<tr>
+		  <td valign="top"><b><a name="U">U</a></b>&nbsp;</td>
+		  <td valign="top">Do not check key integrity.
+			 <p><b>CAUTION:</b> If this flag is used, the UPDATE^DIE call can
+				result in records that contain NULL key fields or records with duplicate keys.
+				It is the developer's responsibility to ensure that the database is not left
+				in a state in which the integrity of keys is violated.</p></td>
+		</tr>
 		<tr> 
-		  <td valign="top"><b><a name="U">U</a></b>&nbsp;</td> 
-		  <td valign="top">Don't check key integrity. (<b>CAUTION:</b> If this
-			 flag is used, the UPDATE^DIE call may result in records that contain null key
-			 fields or records with duplicate keys. It is the programmer's responsibility to
-			 ensure that the database is not left in a state in which the integrity of keys
-			 is violated.)</td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b>FDA_ROOT</b></td> 
-		  <td colspan="2" valign="top"> 
-			 <p>(Required) The name of the root of a VA FileMan Data Array, which
-				describes the entries to add to the database. The Updater accepts Adding Nodes,
-				Filing Nodes, Finding Nodes, and LAYGO Finding Nodes in its FDAs. See "<a href="#DetailsandFeatures" title="Details and Features" class="bodylink">Details and Features</a>" in this section for a description of
-				the format of the array named by the FDA parameter. </p> </td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b>IEN_ROOT</b></td> 
-		  <td colspan="2" valign="top"> 
+		  <td valign="top"><b>fda_root</b></td>
+		  <td colspan="2" valign="top">
+			 <p>(Required) The name of the root of a VA FileMan data array, which
+				describes the entries to add to the database. The Updater accepts the
+				following in its FDAs: </p>
+			 <ul>
+				<li>Adding nodes </li>
+				<li>Filing nodes </li>
+				<li>Finding nodes </li>
+				<li>LAYGO Finding nodes </li>
+			 </ul>
+			 <p><b>REF:</b> For a description of the format of the array named by
+				the FDA parameter, see the "<a href="#DetailsandFeatures"
+				title="Details and Features" class="bodylink">Details and Features</a>"
+				section. </p> </td>
+		</tr>
+		<tr>
+		  <td valign="top"><b>ien_root</b></td>
+		  <td colspan="2" valign="top">
 			 <p>(Optional) The name of the Internal Entry Number Array (or IEN
-				Array). This should be a closed root. This array has two functions: </p> 
-			 <p><b>1) Requesting Record Numbers for New Entries </b></p> 
+				Array). This should be a closed root. This array has two functions: </p>
+			 <ul>
+				<li>Requesting Record Numbers for New Entries </li>
+				<li>Locating Feedback on What the Updater Did </li>
+			 </ul>
+			 <p><b>Requesting Record Numbers for New Entries</b></p>
 			 <p>The application can set nodes in the IEN Array to direct the
 				Updater to use specific record numbers for specific new records. These nodes
 				should have a single subscript equal to the sequence number in the IENS
 				subscript of the FDA entry and a value equal to the desired record number. </p>
-			 
-			 <p>For example, if the application sets the IEN_ROOT parameter to
-				ORIEN, and sets ORIEN(1)=1701, the Updater will try to assign record number
-				1701 to the new record denoted by the "+1" value in the FDA subscripts. </p> 
+			 <p>For example, if the application sets the ien_root parameter to
+				ORIEN, and sets ORIEN(1)=1701, the Updater tries to assign record number
+				1701 to the new record denoted by the +1 value in the FDA subscripts. </p>
 			 <p>This feature also affects LAYGO Finding nodes. When these nodes
-				result in adding a new record, the Updater will check the IEN Array to see if
+				result in adding a new record, the Updater checks the IEN Array to see if
 				the application wants to place the new record at a specific record number. When
 				LAYGO Finding nodes result in a successful lookup, the IEN Array node passed in
-				by the application is changed to the record number of the record found. </p> 
+				by the application is changed to the record number of the record found. </p>
 			 <p>If the application sets an entry in the IEN Array for a Finding
-				node, the Updater will ignore it (actually, it will overwrite it when it finds
-				the record number for that node). </p> 
-			 <p>This feature is meaningless for Filing nodes since they have no
-				sequence numbers. </p> 
-			 <p>Unlike FDA_ROOT, IEN_ROOT is optional, both partially and as a
-				whole. The Updater will pick the next available record numbers for any new
-				records not listed by sequence number in the IEN Array. If the IEN Array is
-				empty or if the IEN_ROOT is not passed, the Updater will pick all the new
-				record numbers. </p> 
-			 <p><b>2) Locating Feedback on What the Updater Did </b></p> 
+				node, the Updater ignores it (actually, it overwrites it when it finds the
+				record number for that node). </p>
+			 <p>This feature is meaningless for Filing nodes, since they have no
+				sequence numbers. </p>
+			 <p>Unlike the fda_root parameter, the ien_root parameter is optional,
+				both partially and as a whole. The Updater picks the next available record
+				numbers for any new records not listed by sequence number in the IEN Array. If
+				the IEN Array is empty or if the ien_root is not passed, the Updater picks all
+				the new record numbers. </p>
+			 <p><b>Locating Feedback on What the Updater Did</b></p>
 			 <p>As the Updater decodes and processes the sequence numbers, it
 				gradually converts them into genuine record numbers (see Output). The IEN Array
-				named by the IEN_ROOT parameter is where this feedback will be given. Those
-				sequence numbers not already assigned by the application will be filled in by
-				the Updater (or sometimes replaced, in the case of LAYGO Finding nodes). </p>
-			 </td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b>MSG_ROOT</b></td> 
-		  <td colspan="2" valign="top"> 
+				named by the ien_root parameter is where this feedback is given. Those
+				sequence numbers not already assigned by the application are filled in by the
+				Updater (or sometimes replaced, in the case of LAYGO Finding nodes). </p>
+			 </td>
+		</tr>
+		<tr>
+		  <td valign="top"><b>msg_root</b></td>
+		  <td colspan="2" valign="top">
 			 <p>(Optional) The array that should receive any error messages. This
 				must be a closed array reference and can be either local or global. For
-				example, if MSG_ROOT equals "OROUT(42)", any errors generated appear in
-				OROUT(42,"DIERR"). </p> 
-			 <p>If the MSG_ROOT is not passed, errors are returned descendent from
-				^TMP("DIERR",$J). </p> </td> 
-		</tr> 
+				example, if msg_root equals "OROUT(42)", any errors generated appear in
+				OROUT(42,"DIERR"). </p>
+			 <p>If the msg_root is not passed, errors are returned descendent from
+				^TMP("DIERR",$J). </p> </td>
+		</tr>
 	 </tbody></table> 
-	 <h5>Output</h5> 
-	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
-		<tbody><tr> 
-		  <td valign="top"><b><a name="IENarray">IEN Array</a></b></td> 
-		  <td valign="top"> 
+	 <h5>Output</h5>
+	 <table summary="Output of the UPDATE^DIE API" border="1" width="100%">
+		<tbody><tr>
+		  <td valign="top"><b><a name="IENarray">IEN Array</a></b></td>
+		  <td valign="top">
 			 <p>As the Updater assigns record numbers to the records described in
 				the FDA, it sets up nodes in the IEN Array to indicate how it decoded the
-				sequence numbers. See "<a href="#DetailsandFeatures" title="Details and Features" class="bodylink">Details and Features</a>" for
-				more information on
+				sequence numbers. </p>
+			 <p><b>REF:</b> For more information on
 				<a href="#SequenceNumbers" title="sequence numbers" class="bodylink">sequence
-				numbers</a>. This lets the application find out what was done with the various
-				nodes in the FDA. </p> 
+				numbers</a>, see "<a href="#DetailsandFeatures" title="Details and Features"
+				class="bodylink">Details and Features</a>." </p>
+			 <p>This lets the application find out what was done with the various
+				nodes in the FDA. </p>
 			 <p>The meaning of IEN Array entries varies depending on the type of
 				node the sequence number came from. For example, the significance of an IEN
 				Array entry of ORIEN(3) = 1701 depends on which type of node in the FDA the
-				sequence number 3 came from. </p> 
-			 <p>For Adding Node sequence numbers, the value in the IEN Array
-				indicates the record number of the new record. If our example came from an
-				Adding Node, such as FDA(19,"+3,",.01) ="ZTMDQ", it means the new record was
-				assigned the record number 1701. </p> 
-			 <p>For Finding Node sequence numbers, the value indicates at which
-				record number the value was found. If our example came from a Finding Node,
+				sequence number 3 came from. </p>
+			 <p>For Adding node sequence numbers, the value in the IEN Array
+				indicates the record number of the new record. If the example came from an
+				Adding node, such as FDA(19,"+3,",.01) ="ZTMDQ", it means the new record was
+				assigned the record number 1701. </p>
+			 <p>For Finding node sequence numbers, the value indicates at which
+				record number the value was found. If the example came from a Finding node,
 				such as FDA(19,"?3,",.01) ="ZTMDQ", it means a call to $$FIND1^DIC found record
-				number 1701 based on a lookup value of "ZTMDQ". </p> 
-			 <p>For LAYGO Finding sequence numbers, an extra zero-node equal to ?
-				or + identifies whether the entry was found (?) or added (+). If our example
-				came from a LAYGO Finding Node, such as FDA(19,"?+3,",.01)="ZTMDQ", an extra
+				number 1701 based on a lookup value of "ZTMDQ". </p>
+			 <p>For LAYGO Finding sequence numbers, an extra Zero-node equal to ?
+				or + identifies whether the entry was found (?) or added (+). If the example
+				came from a LAYGO Finding node, such as FDA(19,"?+3,",.01)="ZTMDQ", an extra
 				node of ORIEN(3,0)="?" means ZTMDQ was found, whereas ORIEN(3,0)="+" means it
-				was added. </p> 
+				was added. </p>
 			 <p>By the time the Updater finishes processing an FDA, every sequence
-				number will be listed with a value in the IEN Array (some set by the
-				application as input for new record numbers and the rest set by the Updater).
-				</p> 
-			 <p>If the IEN_ROOT parameter was not passed, the IEN Array is not
-				returned. </p> </td> 
-		</tr> 
-	 </tbody></table> 
-	 <p></p> 
-	 <h5>Example</h5> 
-	 <p>The following example illustrates the use of this call to create a new
-		record in a top-level file. In this case, a new option is being added at a
-		specified record number. Notice the triggered 9 on the 0-node and the triggered
-		"U" node: </p> 
-	 <pre>    &gt;<b>S FDA(42,19,"+1,",.01)="ZZ FDA TEST NAME"<br></b>    <br>    &gt;<b>S FDA(42,19,"+1,",1)="ZZ Toad Test Menu Text"<br></b>    <br>    &gt;<b>S FDAIEN(1)=2067642283<br></b>    <br>    &gt;<b>D UPDATE^DIE("","FDA(42)","FDAIEN")<br></b>    <br>    &gt;<b>D ^%G<br></b>    <br>    Global ^<b>DIC(19,2067642283 <br></b>        DIC(19,2067642283<br>    ^DIC(19,2067642283,0) = ZZ FDA TEST NAME^ZZ Toad Test Menu Text^^^9<br>    ^DIC(19,2067642283,"U") = ZZ FDA TEST MENU TEXT <br></pre> 
-	 <h5><a name="errors">Error Codes Returned </a></h5> 
-	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
-		<tbody><tr> 
-		  <td valign="top"><b><a href="err_110.htm" title="Error 110" class="bodylink">110</a></b></td> 
-		  <td valign="top">The record is currently locked. </td> 
+				number is listed with a value in the IEN Array (some set by the application as
+				input for new record numbers and the rest set by the Updater). </p>
+			 <p>If the ien_root parameter was not passed, the IEN Array is not
+				returned. </p> </td>
+		</tr>
+	 </tbody></table>
+	 <p></p>
+	 <h5>Examples</h5>
+	 <h6>Example 1</h6>
+	 <p><a href="#fig172" class="bodylink">Figure 172</a> illustrates the use of
+		this call to create a new record in a top-level file. In this case, a new
+		option is being added at a specified record number. Notice the triggered 9 on
+		the 0-node and the triggered "U" node: </p>
+	 <p align="center"><b><a name="fig172">Figure 172: UPDATE^DIE
+		API&mdash;Example 1: Input and Output</a></b></p>
+	 <pre>    &gt;<b>S FDA(42,19,"+1,",.01)="ZZ FDA TEST NAME"</b> &lt;Enter&gt;
+
+    &gt;<b>S FDA(42,19,"+1,",1)="ZZ Toad Test Menu Text"</b> &lt;Enter&gt;
+
+    &gt;<b>S FDAIEN(1)=2067642283</b> &lt;Enter&gt;
+
+    &gt;<b>D UPDATE^DIE("","FDA(42)","FDAIEN")</b> &lt;Enter&gt;
+
+    &gt;<b>D ^%G</b> &lt;Enter&gt;
+
+    Global ^<b>DIC(19,2067642283</b>
+        DIC(19,2067642283
+    ^DIC(19,2067642283,0) = ZZ FDA TEST NAME^ZZ Toad Test Menu Text^^^9
+    ^DIC(19,2067642283,"U") = ZZ FDA TEST MENU TEXT
+</pre>
+	 <h6>Example 2</h6>
+	 <p><a href="#fig173" class="bodylink">Figure 173</a> illustrates the use of
+		UPDATE^DIE to create a new record in a Multiple field. A new subentry Person
+		Class is created for a user, in this example IEN #82, in the NEW PERSON (#200)
+		file: </p>
+	 <p align="center"><b><a name="fig173">Figure 173: UPDATE^DIE
+		API&mdash;Example 2: Input and Output</a></b></p>
+	 <pre>    &gt;<b>S USERIEN=82</b> &lt;Enter&gt;
+
+    &gt;<b>S ZZ(1,200.05,"+2,"_USERIEN_",",.01)=144</b> &lt;Enter&gt;
+
+    &gt;<b>S ZZ(1,200.05,"+2,"_USERIEN_",",2)=3070605</b> &lt;Enter&gt;
+
+    &gt;<b>S ZZ(1,200.05,"+2,"_USERIEN_",",3)=3070615</b> &lt;Enter&gt;
+
+    &gt;<b>D UPDATE^DIE("","ZZ(1)")</b> &lt;Enter&gt;
+
+    &gt;<b>D ^%G</b> &lt;Enter&gt;
+
+    Global ^<b>VA(200,82,"USC1"</b>
+    ^VA(200,82,"USC1",0)=^200.05P^1^1
+    ^VA(200,82,"USC1",1,0)=144^3070605^3070615
+    ^VA(200,82,"USC1","AD",3070605,1)=
+    ^VA(200,82,"USC1","B",144,1)=
+</pre>
+	 <h6>Example 3</h6>
+	 <p><a href="#fig174" class="bodylink">Figure 174</a> is another example of
+		adding a new subentry to a menu option. In this case, the menu is EVE and the
+		new option that is to be added is ZZSO SECURITY DEMO: </p>
+	 <p align="center"><b><a name="fig174">Figure 174: UPDATE^DIE
+		API&mdash;Example 3: Input and Output</a></b></p>
+	 <pre> ; Demo Adding Sub-file Entry N DIERR,IEN,IENS,FDA,NOPT
+ ; Get "EVE" menu IEN
+ ;;;;
+ S IEN=$$FIND1^DIC(19,"","X","EVE","B")
+ I $G(DIERR)'="" D Q
+ . W !,"LOOKUP FOR 'EVE' FAILED"
+ . D CLEAN^DILF
+ . Q
+ ;
+ ; Get the option to be added to EVE IEN
+ S NOPT=$$FIND1^DIC(19,"","X","ZZSO SECURITY DEMO","B")
+ I $G(DIERR)'="" D Q
+ . W !,"LOOKUP FOR 'ZZSO SECURITY DEMO' FAILED"
+ . D CLEAN^DILF
+ . Q
+ ;
+ ; Now add the option to EVE using UPDATE^DIE
+ ; The '?' says to see if the .01 value already exists, if it does
+ ;     then just edit the existing entry.
+ ; The '+' says if the .01 value doesn't already exists, then add it.
+ ; The '1' is just a place holder number.
+ ; The value for IEN is equal to DA(1).
+ ; The value '?+1' is a place holder for DA.
+ S IENS="?+1"
+ S FDA(19.01,IENS_","_IEN_",",.01)=NOPT
+ S FDA(19.01,IENS_","_IEN_",",2)="ZZ"
+ D UPDATE^DIE("","FDA")
+ W:$G(DIERR)'="" !,"THE MENU ADDITION FAILED."
+ D CLEAN^DILF
+ Q
+</pre>
+	 <h5><a name="errors">Error Codes Returned </a></h5>
+	 <p><a href="#tbl57" class="bodylink">Table 57</a> lists the possible error
+		codes returned with the UPDATE^DIE API: </p>
+	 <p align="center"><b><a name="tbl57">Table 57: UPDATE^DIE API&mdash;Error
+		Codes Returned</a></b></p>
+	 <table summary="Error codes returned by the UPDATE^DIE API" border="1" width="100%">
+		<tbody><tr>
+		  <th scope="col">Error</th>
+		  <th scope="col">Description</th>
+		</tr>
+		<tr>
+		  <td valign="top"><b><a href="err_110.htm" title="Error 110" class="bodylink">110</a></b></td>
+		  <td valign="top">The record is currently locked. </td>
 		</tr> 
 		<tr> 
 		  <td valign="top"><b><a href="err_111.htm" title="Error 111" class="bodylink">111</a></b></td> 
 		  <td valign="top">The File Header Node is currently locked. </td> 
 		</tr> 
 		<tr> 
-		  <td valign="top"><b><a href="err_120.htm" title="Error 120" class="bodylink">120</a></b></td> 
-		  <td valign="top">Error occurred during execution of a VA FileMan hook.
-			 </td> 
+		  <td valign="top"><b><a href="err_120.htm" title="Error 120" class="bodylink">120</a></b></td>
+		  <td valign="top">Error occurred during execution of a FileMan hook.
+			 </td>
 		</tr> 
 		<tr> 
 		  <td valign="top"><b><a href="err_202.htm" title="Error 202" class="bodylink">202</a></b></td> 
@@ -351,126 +467,138 @@
 			 provided in the FDA for Finding and LAYGO Finding nodes.</td> 
 		</tr> 
 	 </tbody></table> 
-	 <p>The Updater may also return any error returned by: </p> 
-	 <ul> 
-		<li><a href="db_dicf1.htm" title="$$FIND1^DIC" class="bodylink">$$FIND1^DIC</a><br><br></li> 
+	 <p>The Updater can also return any error returned by: </p>
+	 <ul>
+		<li><a href="db_dicf1.htm" title="$$FIND1^DIC" class="bodylink">$$FIND1^DIC</a></li>
 		<li><a href="db_die_f.htm" title="FILE^DIE" class="bodylink">FILE^DIE</a>
-		  </li> 
-	 </ul> 
-	 <h5><a name="DetailsandFeatures">Details and Features</a></h5> 
-	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
-		<tbody><tr> 
-		  <td valign="top"><b><a name="adding">Adding</a></b></td> 
-		  <td valign="top"> 
-			 <p>Adding Nodes let applications create new entries in a file. In the
+		  </li>
+	 </ul>
+	 <h5><a name="DetailsandFeatures">Details and Features</a></h5>
+	 <table summary="Details and features of the UPDATE^DIE API" border="1" width="100%">
+		<tbody><tr>
+		  <td valign="top"><b><a name="adding">Adding</a></b></td>
+		  <td valign="top">
+			 <p>Adding nodes let applications create new entries in a file. In the
 				place of the actual IENS subscript for the new record in the FDA array, the
 				application instead uses a unique value consisting of a + followed by a
-				positive number.</p> 
-			 <p>"+#" will ALWAYS add without regard to duplication. </p> 
+				positive number.</p>
+			 <p>The +# Always adds without regard to duplication. </p>
 			 <p>Thus, for example, an FDA of "FDA(42)" might be accompanied by the
-				following array: </p> 
-			 <pre>    FDA(42,19,"+1,",.01)="NAME OF OPTION"<br>    FDA(42,19,"+1,",1)="MENU TEXT OF NEW OPTION"    <br>    FDA(42,19.01,"+2,+1,",.01)=45 <br>    FDA(42,19.01,"+2,+1,",2)="TM" <br>    FDA(42,19.01,"+3,+1,",.01)=408  </pre> 
-			 <p>The FDA_ROOT value directs the Updater to the FDA(42) array, whose
-				format instructs the Updater to add one new entry to the Option file and two
-				new entries to the Menu multiple of that entry. </p> 
+				following array: </p>
+			 <pre> FDA(42,19,"+1,",.01)="NAME OF OPTION"
+ FDA(42,19,"+1,",1)="MENU TEXT OF NEW OPTION"
+ FDA(42,19.01,"+2,+1,",.01)=45
+ FDA(42,19.01,"+2,+1,",2)="TM"
+ FDA(42,19.01,"+3,+1,",.01)=408</pre>
+			 <p>The fda_root value directs the Updater to the FDA(42) array, whose
+				format instructs the Updater to add one new entry to the OPTION (#19) file and
+				two new entries to the MENU Multiple of that entry. </p>
 			 <p><b>NOTE:</b> The sequence number for each new entry to be added to
-				a file or subfile must be unique throughout the FDA.&nbsp;</p> </td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b><a name="adding_identifiers_keys">Adding --
-			 Identifiers and Keys</a></b>&nbsp;</td> 
-		  <td valign="top"> 
-			 <p>The FDA for a new record MUST include the .01 field, all of the
-				<b>required</b> identifiers, and all key fields. If any of these needed fields
-				is missing, the entire FDA transaction fails; none of the entries is added if
-				any one lacks required data.</p> </td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b>Filing</b></td> 
-		  <td valign="top"> 
-			 <p>Filing Nodes let the application file new data under existing
+				a file or subfile must be unique throughout the FDA.&nbsp;</p> </td>
+		</tr>
+		<tr>
+		  <td valign="top"><b><a name="adding_identifiers_keys">Adding&mdash;Identifiers
+			 and Keys</a></b>&nbsp;</td>
+		  <td valign="top">
+			 <p>The FDA for a new record must include the .01 field, all required
+				identifiers, and all key fields. If any of these needed fields is missing, the
+				entire FDA transaction fails; none of the entries is added if any one lacks
+				required data.</p> </td>
+		</tr>
+		<tr>
+		  <td valign="top"><b>Filing</b></td>
+		  <td valign="top">
+			 <p>Filing nodes let the application file new data under existing
 				entries. This may be necessary to complete a logical record addition. Any FDA
 				node whose IENS subscript consists solely of record numbers and commas is
-				considered a Filing Node. If you know all of the record numbers, (that is, if
-				all of the nodes in your FDA are Filing Nodes), you should use the Filer
-				instead of the Updater to file the data. </p> 
+				considered a Filing node. If you know all of the record numbers (i.e., if all
+				of the nodes in your FDA are Filing nodes), you should use the Filer
+				(FILE^DIE(): Filer) instead of the Updater to file the data. </p>
 			 <p>For example, FDA(42,19,"408,",1)="NEW MENU TEXT" instructs the
-				Updater to update field 1 of record 408, so no actual record creation takes
-				place as a result of this node.</p> </td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b><a name="Finding">Finding</a></b></td> 
-		  <td valign="top"> 
-			 <p>Finding Nodes let applications work with existing entries for
+				Updater to update Field #1 of record 408, so no actual record creation takes
+				place because of this node.</p> </td>
+		</tr>
+		<tr>
+		  <td valign="top"><b><a name="Finding">Finding</a></b></td>
+		  <td valign="top">
+			 <p>Finding nodes let applications work with existing entries for
 				which the application does not yet have a record number. Instead of +#, the
 				application uses the notation ?# to stand in for an unknown record number. The
-				sequence number that follows the ? must be unique throughout the FDA. </p> 
+				sequence number that follows the ? must be unique throughout the FDA. </p>
 			 <p>Every FDA of this type must include an FDA node for the .01 field,
 				or, if the <a href="#K" title="K flag" class="bodylink">K flag</a> is passed,
 				nodes for at least one field in the primary key. The value of this FDA node is
 				used to perform a lookup on the file. It must match only one entry in that
 				file; ambiguity or failure to find a match is an error condition. The record
-				number found will then be used for this FDA entry.&nbsp;</p> 
-			 <p>For example the following FDA adds a new menu item to the ZTMMGR
-				menu and changes the menu's text: </p> 
-			 <pre>    FDA(42,19,"?1,",.01)="ZTMMGR" <br>    FDA(42,19,"?1,",1)="New Menu Text"<br>    FDA(42,19.01,"+2,?1,",.01)=45 <br>    FDA(42,19.01,"+2,?1,",2)="TM"</pre> 
+				number found is then used for this FDA entry.&nbsp;</p>
+			 <p>For example, the following FDA adds a new menu item to the ZTMMGR
+				menu and changes the menu's text: </p>
+			 <pre> FDA(42,19,"?1,",.01)="ZTMMGR"
+ FDA(42,19,"?1,",1)="New Menu Text"
+ FDA(42,19.01,"+2,?1,",.01)=45
+ FDA(42,19.01,"+2,?1,",2)="TM"</pre>
 			 <p>In this example, the Updater first uses the value ZTMMGR in a
 				lookup to find the record number that replaces ?1. It then adds a new entry to
-				subfile 19.01 under that entry, and changes the menu text of the option to "New
-				Menu Text". The first node shown is a Finding Node that specifies the value of
-				the .01 field to be used for lookup. The next node specifies a new value for
-				field 1, the menu's text. The last two nodes are Adding Nodes that specify the
-				values for fields .01 and 2 of the new menu item. </p> 
+				Subfile #19.01 under that entry and changes the menu text of the option to
+				"New Menu Text". The first node shown is a Finding node that specifies the
+				value of the .01 field to be used for lookup. The next node specifies a new
+				value for Field #1, the menu's text. The last two nodes are Adding nodes that
+				specify the values for Fields #.01 and #2 of the new menu item. </p>
 			 <p>When the <a href="#E" title="E flag" class="bodylink">E flag</a>
 				is used, the .01 Finding node can equal any valid input value for the Lookup.
-				For example, to pick based on a set of codes where WA stands for WASHINGTON,
-				when using the E flag, you may enter WASH. </p> 
-			 <p>However, when the E flag is NOT used, the .01 Finding node must
-				equal an internal value, though the special lookup values -- space-bar and
-				accent grave (`) concatenated with the IEN -- will still work.. So for example,
-				a .01 Finding node equal to WASH would return an error in the above scenario if
-				the E flag were not passed. To succeed, the .01 Finding node would need to
-				equal WA, the internal value. </p> </td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b>LAYGO Finding</b></td> 
-		  <td valign="top"> 
-			 <p>LAYGO Finding Nodes let the application refer to entries that may
+				For example, to pick based on a SET OF CODES where WA stands for WASHINGTON,
+				when using the E flag, you can enter WASH. </p>
+			 <p>However, when the E flag is not used, the .01 Finding node must
+				equal an internal value, though the special lookup values&mdash;&lt;Spacebar&gt;
+				and grave accent (`) concatenated with the IEN&mdash;still work. For example,
+				a .01 Finding node equal to WASH would return an error in the above scenario
+				if the E flag were not passed. To succeed, the .01 Finding node would need to
+				equal WA, the internal value. </p> </td>
+		</tr>
+		<tr>
+		  <td valign="top"><b>LAYGO Finding</b></td>
+		  <td valign="top">
+			 <p>LAYGO Finding nodes let the application refer to entries that may
 				or may not already exist. If they do exist, the Updater finds and uses their
-				record numbers. If not, the Updater adds the entries. The IENS notation used to
-				stand in for these entries is ?+#. # is a unique positive number which acts as
-				a placeholder until an actual internal entry number can be produced by the
-				Updater. </p> 
-			 <p>For example, this call expects to find the option ZTMMGR, but adds
-				it if it's missing: </p> 
-			 <pre>    FDA(42,19,"?+1,",.01)="ZTMMGR"<br>    FDA(42,19.01,"+2,?+1,",.01)=45 <br>    FDA(42,19.01,"+2,?+1,",2)="TM"</pre> 
-			 <p>The <a href="#IENarray" title="IEN Array node" class="bodylink">IEN Array node</a> for this entry includes an extra zero node
-				equal to ? or + to identify whether the entry was found or added. For example,
-				if the entry for the previous example was found, the IEN Array node for this
-				FDA might look like this:</p> 
-			 <pre>    IEN(1)=388<br>    IEN(1,0)="?"<br>    IEN(2)=9 </pre> 
-			 <p>All LAYGO Finding Nodes are processed in order after Finding Nodes
-				and before other kinds of nodes. </p> 
-			 <p>Like Finding Nodes, .01 LAYGO Finding Nodes must match the format
+				record numbers. If not, the Updater adds the entries. The IENS notation used
+				to stand in for these entries is ?+#. The # is a unique positive number that
+				acts as a placeholder until an actual internal entry number can be produced
+				by the Updater. </p>
+			 <p>For example, this call expects to find the ZTMMGR option, but
+				adds it if it is missing: </p>
+			 <pre> FDA(42,19,"?+1,",.01)="ZTMMGR"
+ FDA(42,19.01,"+2,?+1,",.01)=45
+ FDA(42,19.01,"+2,?+1,",2)="TM"</pre>
+			 <p>The <a href="#IENarray" title="IEN Array node" class="bodylink">IEN Array node</a> for this entry includes an extra Zero node
+				equal to ? or + to identify if the entry was found or added. For example, if
+				the entry for the previous example was found, the IEN Array node for this FDA
+				might look like this:</p>
+			 <pre> IEN(1)=388
+ IEN(1,0)="?"
+ IEN(2)=9</pre>
+			 <p>All LAYGO Finding nodes are processed in order after Finding nodes
+				and before other kinds of nodes. </p>
+			 <p>Like Finding nodes, .01 LAYGO Finding nodes must match the format
 				of the overall call: external if the E flag has been passed, internal if not.
-				See the "<a href="#Finding" title="Finding" class="bodylink">Finding</a>"
-				section for details. </p> </td> 
-		</tr> 
-		<tr> 
+				</p>
+			 <p><b>REF:</b> For details, see the "<a href="#Finding" title="Finding"
+				class="bodylink">Finding</a>" section. </p> </td>
+		</tr>
+		<tr>
 		  <td valign="top"><b><a name="SequenceNumbers">Sequence
-			 Numbers</a></b></td> 
-		  <td valign="top"> 
-			 <p>A positive number which acts as a <a name="placeholder">placeholder</a> to identify a record until an actual
+			 Numbers</a></b></td>
+		  <td valign="top">
+			 <p>A positive number that acts as a <a name="placeholder">placeholder</a> to identify a record until an actual
 				internal entry number can be created or found by the Updater. This positive
-				number must be unique throughout the FDA array. For example, if "+1," is used
-				in an FDA, you cannot also use "?1," or "?+1".</p> </td> 
-		</tr> 
-	 </tbody></table> 
+				number must be unique throughout the FDA array. For example, if +1, is used
+				in an FDA, you cannot also use ?1, or ?+1.</p> </td>
+		</tr>
+	 </tbody></table>
 	 <p></p>
 	 <p>&nbsp;</p> 
 	 <hr class="hrstyle">
 	 <!-- db_die_u.htm -->
-	 <p align="center">Reviewed/Updated: March 10, 2007</p>
+	 <p align="center">Reviewed/Updated: May 2026</p>
 	 <p>&nbsp;</p> 
 
   </body></html>

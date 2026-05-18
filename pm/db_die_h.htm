@@ -48,17 +48,34 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>HELP^DIE( ): Helper</H4> 
-	 <P>This procedure retrieves user-oriented help for a field from the Data
-		Dictionary and other sources. The help is returned in arrays. (The MSG^DIALOG
-		procedure can be used to display the help.) You control the kind of help
-		obtained by using the FLAGS input parameter - either a specific kind of help,
-		the help normally returned with one or two question marks, or all available
-		help for a field. </P> 
-	 <H5>Format</H5> 
+	 <H4>HELP^DIE(): Helper&nbsp;</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+		<TR>
+		  <TH ALIGN="left">Reference Type</TH>
+		  <TH ALIGN="left">Category</TH>
+		  <TH ALIGN="left">ICR #</TH>
+		</TR>
+		<TR>
+		  <TD>Supported</TD>
+		  <TD>Database Server (DBS)</TD>
+		  <TD>2053</TD>
+		</TR>
+	 </TABLE>
+	 <H5>Description</H5>
+	 <P>The HELP^DIE API (aka Helper) retrieves user-oriented help for a field
+		from the data dictionary (DD) and other sources. The help is returned in
+		arrays. Use the MSG^DIALOG API to display the help. </P>
+	 <P>You control the kind of help obtained by using the flags input parameter:
+		</P>
+	 <UL>
+		<LI>Specific kind of help. </LI>
+		<LI>Help normally returned with one or two question marks. </LI>
+		<LI>All available help for a field. </LI>
+	 </UL>
+	 <H5>Format</H5>
 	 <PRE>
-HELP^DIE(FILE,IENS,FIELD,FLAGS,msg_root)
-</PRE> 
+HELP^DIE(file[,iens],field,flags[,msg_root])
+</PRE>
 	 <H5>Input Parameters</H5> 
 	 <TABLE WIDTH="100%" BORDER="1"
 	  SUMMARY="This table is for formatting purposes only"> 
@@ -68,36 +85,36 @@ HELP^DIE(FILE,IENS,FIELD,FLAGS,msg_root)
 			 <P>(Required) File or subfile number. </P></TD> 
 		</TR> 
 		<TR> 
-		  <TD ALIGN="LEFT" VALIGN="TOP"><B>IENS</B></TD> 
-		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>IENS</B></TD>
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
 			 <P>(Optional) Standard IENS indicating internal entry numbers. This
-				parameter is only needed if code in the Data Dictionary for Xecutable Help or
-				Screen on a Set of Codes references the entry number using DA() array or D0,
-				D1, etc., and if that kind of help is being requested. </P></TD> 
-		</TR> 
+				parameter is only needed if code in the data dictionary for Executable Help or
+				Screen on a SET OF CODES references the entry number using DA() array or D0,
+				D1, etc., and if that kind of help is being requested. </P></TD>
+		</TR>
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>FIELD</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
 			 <P>(Required) Field number for which help is requested. </P></TD> 
 		</TR> 
 		<TR> 
-		  <TD ALIGN="LEFT" VALIGN="TOP" ROWSPAN="17"><B>FLAGS</B> </TD> 
-		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+		  <TD ALIGN="LEFT" VALIGN="TOP" ROWSPAN="17"><B>FLAGS</B> </TD>
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
 			 <P>(Required) Flags used to determine what kind of help is returned
-				by the call. If a lower case letter is shown, use it to suppress that kind of
-				help - useful in conjunction with ? or ??. The possible values are: </P></TD> 
+				by the call. If a lowercase letter is shown, use it to suppress that kind of
+				help; useful in conjunction with ? or ??. The possible values are: </P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>?</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P>Help equivalent to user entering one "<B>?</B>" at an edit prompt.
-				(Also help returned for an invalid response.) </P></TD> 
+			 <P>Help equivalent to user entering one <B>?</B> at an edit prompt.
+				Also, help returned for an invalid response. </P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>??</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P>Help equivalent to user entering "<B>??</B>" at an edit prompt.
-				</P></TD> 
+			 <P>Help equivalent to user entering <B>??</B> at an edit prompt.
+				</P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>A</B></TD> 
@@ -107,11 +124,12 @@ HELP^DIE(FILE,IENS,FIELD,FLAGS,msg_root)
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>B (b)</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P><B>B</B>rief variable pointer help. A single line beginning with
-				"To see the entries ...". <BR> <B>NOTE:</B> See also "<A HREF="#limitations"
-				TITLE="Limitations" CLASS="bodylink">Limitations</A>" under "<A
-				HREF="#details_and_features" CLASS="bodylink"
-				TITLE="Details and Features">Details and Features </A>" below.</P></TD> 
+			 <P><B>B</B>rief VARIABLE POINTER help. A single line beginning with
+				"To see the entries ...". </P>
+			 <P><B>REF:</B> See also "<A HREF="#limitations" TITLE="Limitations"
+				CLASS="bodylink">Limitations</A>" under the "<A HREF="#details_and_features"
+				CLASS="bodylink" TITLE="Details and Features">Details and Features</A>"
+				section. </P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>C</B></TD> 
@@ -121,15 +139,16 @@ HELP^DIE(FILE,IENS,FIELD,FLAGS,msg_root)
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>D</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P><B>D</B>escription text for the field; this may be multiple lines.
-				</P></TD> 
+			 <P><B>D</B>escription text for the field; this can be multiple lines.
+				</P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>F</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
 			 <P><B>F</B>ields that can be used for lookups. Returned for top-level
-				.01 fields and for pointed-to files for pointer data types. For pointed-to
-				files, the F flag is effective only if the G flag is also sent. </P></TD> 
+				.01 fields and for pointed-to files for a DATA TYPE field value of POINTER
+				data. For pointed-to files, the F flag is effective only if the G flag is also
+				sent. </P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>G (g)</B></TD> 
@@ -145,8 +164,8 @@ HELP^DIE(FILE,IENS,FIELD,FLAGS,msg_root)
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>M</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P><B>M</B>ore variable pointer help. Detailed description of how to
-				enter variable pointer data. </P></TD> 
+			 <P><B>M</B>ore VARIABLE POINTER help. Detailed description of how to
+				enter VARIABLE POINTER data. </P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>P</B></TD> 
@@ -156,41 +175,40 @@ HELP^DIE(FILE,IENS,FIELD,FLAGS,msg_root)
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>S</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P><B>S</B>et of codes possible choices. Any screen that exists on
-				the set of codes field is applied so that only actually selectable choices are
-				presented.</P></TD> 
+			 <P><B>S</B>ET OF CODES possible choices. Any screen that exists on
+				the SET OF CODES field is applied so that only actually selectable choices are
+				presented.</P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>T</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
 			 <P>Date/<B>T</B>ime generic help. This help text is customized based
-				on the allowable and required elements of the particular Date/Time field.
-				</P></TD> 
+				on the allowable and required elements of the DATE/TIME field. </P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>U</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P><B>U</B>nscreened set of codes choices. </P></TD> 
+			 <P><B>U</B>nscreened SET OF CODES choices. </P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>V</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P><B>V</B>ariable pointer help that lists the prefixes and messages
-				associated with a particular variable pointer field. </P></TD> 
+			 <P><B>V</B>ARIABLE POINTER help that lists the prefixes and messages
+				associated with a particular VARIABLE POINTER field. </P></TD>
 		</TR> 
 		<TR> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"><B>X</B></TD> 
 		  <TD ALIGN="LEFT" VALIGN="TOP"> 
-			 <P><B>X</B>ecutable help-the M code contained in Xecutable Help is
-				executed. In order to have the help returned in an array, the executed code
-				must use EN^DDIOL to load the help message. </P></TD> 
+			 <P><B>EX</B>ecutable help-the M code contained in executable help
+				is executed. To have the help returned in an array, the executed code must
+				use EN^DDIOL to load the help message. </P></TD>
 		</TR> 
 		<TR> 
-		  <TD ALIGN="LEFT" VALIGN="TOP"><B>msg_root</B></TD> 
-		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2"> 
+		  <TD ALIGN="LEFT" VALIGN="TOP"><B>msg_root</B></TD>
+		  <TD ALIGN="LEFT" VALIGN="TOP" COLSPAN="2">
 			 <P>(Optional) Closed root into which the output from the call is put.
-				If not supplied, output is returned in ^TMP-see Output. </P></TD> 
-		</TR> 
+				If not supplied, output is returned in ^TMP (see Output). </P></TD>
+		</TR>
 	 </TABLE> 
 	 <H5>Output</H5> 
 	 <P>The default output from this call is: </P> 
@@ -210,32 +228,44 @@ HELP^DIE(FILE,IENS,FIELD,FLAGS,msg_root)
 		</TR> 
 	 </TABLE> 
 	 <P>If error messages are necessary, they are returned in the standard
-		manner. </P> 
-	 <P>If the MSG_ROOT is included in the input parameters, output is returned
+		manner. </P>
+	 <P>If the msg_root is included in the input parameters, output is returned
 		there instead of ^TMP. The help text is returned in nodes descendent from
-		MSG_ROOT("DIHELP"). </P> 
-	 <H5>Example</H5> 
-	 <P>The following example illustrates the use of this call to return help
-		text from a field that is a Set of Codes data type. This is the same help that
-		can be obtained with a "<B>?</B>" in a traditional FileMan call. Note that the
-		help is returned in the specified array descendent from MYHELP(1): </P> 
+		MSG_ROOT("DIHELP"). </P>
+	 <H5>Example</H5>
+	 <P><A HREF="#fig170" CLASS="bodylink">Figure 170</A> illustrates the use of
+		this call to return help text from a field that has a DATA TYPE field value of
+		SET OF CODES. This is the same help that can be obtained with a ? in a
+		traditional VA FileMan call. </P>
+	 <P><B>NOTE:</B> The help is returned in the specified array descendent from
+		MYHELP(1). </P>
+	 <P ALIGN="CENTER"><B><A NAME="fig170">Figure 170: HELP^DIE
+		API&mdash;Example: Input and Output</A></B></P>
 	 <PRE>
-    &gt;<B>D HELP^DIE(16200,&quot;&quot;,5,&quot;?&quot;,&quot;MYHELP(1)&quot;)</B>
-    
-    &gt;<B>ZW MYHELP</B>
+    &gt;<B>D HELP^DIE(16200,&quot;&quot;,5,&quot;?&quot;,&quot;MYHELP(1)&quot;)</B> &lt;Enter&gt;
+
+    &gt;<B>ZW MYHELP</B> &lt;Enter&gt;
     MYHELP(1,&quot;DIHELP&quot;)=5
     MYHELP(1,&quot;DIHELP&quot;,1)=Only YES and MAYBE are acceptable.
     MYHELP(1,&quot;DIHELP&quot;,2)=
     MYHELP(1,&quot;DIHELP&quot;,3)=Choose from:
     MYHELP(1,&quot;DIHELP&quot;,4)=Y        YES
     MYHELP(1,&quot;DIHELP&quot;,5)=M        MAYBE
-</PRE> 
-	 <H5>Error Codes Returned</H5> 
+</PRE>
+	 <H5>Error Codes Returned</H5>
+	 <P><A HREF="#tbl55" CLASS="bodylink">Table 55</A> lists the possible error
+		codes returned with the HELP^DIE API: </P>
+	 <P ALIGN="CENTER"><B><A NAME="tbl55">Table 55: HELP^DIE API&mdash;Error
+		Codes Returned</A></B></P>
 	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
+	  SUMMARY="Error codes returned by the HELP^DIE API">
+		<TR>
+		  <TH SCOPE="col">Code</TH>
+		  <TH SCOPE="col">Description</TH>
+		</TR>
+		<TR>
 		  <TD VALIGN="TOP"><B><A HREF="err_120.htm" TITLE="Error 120"
-			 CLASS="bodylink">120</A></B></TD> 
+			 CLASS="bodylink">120</A></B></TD>
 		  <TD VALIGN="TOP">Error occurred during execution of a FileMan hook.
 			 </TD> 
 		</TR> 
@@ -251,38 +281,40 @@ HELP^DIE(FILE,IENS,FIELD,FLAGS,msg_root)
 		</TR> 
 	 </TABLE> 
 	 <P> </P> 
-	 <H5><A NAME="details_and_features">Details and Features</A></H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Helper and Validator</B></TD> 
-		  <TD VALIGN="TOP"> 
+	 <H5><A NAME="details_and_features">Details and Features</A></H5>
+	 <TABLE BORDER="1" SUMMARY="Details and features of the HELP^DIE API"
+	  WIDTH="100%">
+		<TR>
+		  <TD VALIGN="TOP"><B>Helper and Validator</B></TD>
+		  <TD VALIGN="TOP">
 			 <P>Based on a flag passed to the Validator call, single question mark
 				help is returned by the Validator if the value being checked is invalid. </P>
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>Pointed-to Files</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>By default you receive help for the .01 field of pointed-to files
-				with ? or ?? when the field on which you are requesting help is a pointer. If
-				you do not want this extended help returned, use the g flag. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME="limitations">Limitations</A></B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>This call does not return lists of entries for .01, pointer, or
-				variable pointer fields. Use the Lister utility to obtain these lists. </P> 
-			 <P>The b flag will suppress the line of Variable Pointer help that
-				indicates a user can get a list of entries if they type &lt;Prefix.?&gt;. Use
-				this flag with "?" if you are not supporting this capability. </P> </TD> 
-		</TR> 
-	 </TABLE> 
+			 </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>Pointed-to Files</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>By default, you receive help for the .01 field of pointed-to files
+				with ? or ?? when the field on which you are requesting help is a POINTER. If
+				you do not want this extended help returned, use the (lowercase) g flag. </P>
+			 </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B><A NAME="limitations">Limitations</A></B></TD>
+		  <TD VALIGN="TOP">
+			 <P>This call does not return lists of entries for .01, POINTER, or
+				VARIABLE POINTER fields. Use the Lister utility to obtain these lists. </P>
+			 <P>The (lowercase) b flag suppresses the line of VARIABLE POINTER
+				help that indicates a user can get a list of entries if they type
+				&lt;Prefix.?&gt;. Use this flag with ? if you are not supporting this
+				capability. </P> </TD>
+		</TR>
+	 </TABLE>
 	 <P></P>
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- db_die_h.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>
