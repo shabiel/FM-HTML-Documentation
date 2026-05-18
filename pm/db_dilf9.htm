@@ -48,87 +48,102 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>VALUES^DILF( ): FDA Values Retriever</H4> 
-	 <P>This procedure returns values from an FDA for a specified field. The
-		IENS associated with a particular value is also returned. Use $$VALUE1^DILF if
-		you want the single value associated with a particular file and field in a
-		standard FDA. </P> 
-	 <H5>Format</H5> 
+	 <H4>VALUES^DILF(): FDA Values Retriever&nbsp;</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+		<TR>
+		  <TH ALIGN="left">Reference Type</TH>
+		  <TH ALIGN="left">Category</TH>
+		  <TH ALIGN="left">ICR #</TH>
+		</TR>
+		<TR>
+		  <TD>Supported</TD>
+		  <TD>Database Server (DBS)</TD>
+		  <TD>2054</TD>
+		</TR>
+	 </TABLE>
+	 <H5>Description</H5>
+	 <P>The VALUES^DILF API returns values from an FDA for a specified field. The
+		IENS associated with a particular value is also returned. Use the
+		$$VALUE1^DILF(): FDA Value Retriever (Single) API if you want the single value
+		associated with a particular file and field in a standard FDA. </P>
+	 <H5>Format</H5>
 	 <PRE>
-VALUES^DILF(FILE,FIELD,FDA_ROOT,.RESULT)
-</PRE> 
-	 <H5>Input Parameters</H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>FILE</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>(Required) File or subfile number. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>FIELD</B></TD> 
-		  <TD VALIGN="TOP"> 
+VALUES^DILF(file,field,fda_root,.result)
+</PRE>
+	 <H5>Input Parameters</H5>
+	 <TABLE BORDER="1" SUMMARY="Input parameters for VALUES^DILF"
+	  WIDTH="100%">
+		<TR>
+		  <TD VALIGN="TOP"><B>file</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required) File or subfile number. </P> </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>field</B></TD>
+		  <TD VALIGN="TOP">
 			 <P>(Required) Field number for which data is being requested. </P>
-			 </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>FDA_ROOT</B></TD> 
-		  <TD VALIGN="TOP"> 
+			 </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>fda_root</B></TD>
+		  <TD VALIGN="TOP">
 			 <P>(Required) The root of the FDA from which data is being requested.
-				</P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B><A NAME=".RESULT">.RESULT</A></B></TD> 
-		  <TD VALIGN="TOP"> 
+				</P> </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B><A NAME=".RESULT">.result</A></B></TD>
+		  <TD VALIGN="TOP">
 			 <P>(Required) Local array that receives output from the call. The
-				array is killed at the beginning of each call. See the "<A
-				HREF="#OUTPUT" TITLE="Output" CLASS="bodylink">Output</A>" below, for the
-				structure of the array. </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <H5><A NAME="OUTPUT">Output</A></H5> 
-	 <P>See the
-		<A HREF="#.RESULT" TITLE=".RESULT input parameter" CLASS="bodylink">.RESULT
-		input parameter</A>. </P> 
-	 <P>The output from the call is returned in the array identified by RESULT.
-		Its structure is: </P> 
+				array is KILLed at the beginning of each call. </P>
+			 <P><B>REF:</B> For the structure of the array, see the
+				"<A HREF="#OUTPUT" TITLE="Output" CLASS="bodylink">Output</A>" section. </P> </TD>
+		</TR>
+	 </TABLE>
+	 <H5><A NAME="OUTPUT">Output</A></H5>
+	 <P><B>REF:</B> See the
+		<A HREF="#.RESULT" TITLE=".result input parameter" CLASS="bodylink">.result
+		input parameter</A>. </P>
+	 <P>The output from the call is returned in the array identified by result.
+		Its structure is: </P>
 	 <TABLE WIDTH="100%" BORDER="1"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD>RESULT</TD> 
+	  SUMMARY="Output structure of VALUES^DILF">
+		<TR>
+		  <TD>RESULT</TD>
 		  <TD>Number of values found for the specified field. If no node exists
-			 in the FDA for the field, RESULT=0</TD> 
-		</TR> 
-		<TR> 
-		  <TD>RESULT(seq#)</TD> 
+			 in the FDA for the field, RESULT=0.</TD>
+		</TR>
+		<TR>
+		  <TD>RESULT(seq#)</TD>
 		  <TD>Value for a particular instance of the field. Seq# is an integer
-			 starting with 1 that identifies the particular value</TD> 
-		</TR> 
-		<TR> 
-		  <TD>RESULT(seq#,"IENS")</TD> 
+			 starting with 1 that identifies the value.</TD>
+		</TR>
+		<TR>
+		  <TD>RESULT(seq#,"IENS")</TD>
 		  <TD>The IENS of the entry or subentry with the value in
-			 RESULT(seq#)</TD> 
-		</TR> 
-	 </TABLE> 
-	 <H5>Example</H5> 
+			 RESULT(seq#).</TD>
+		</TR>
+	 </TABLE>
+	 <H5>Example</H5>
+	 <P ALIGN="CENTER"><B><A NAME="fig192">Figure 192: VALUES^DILF
+		API&mdash;Example: Input and Output</A></B></P>
 	 <PRE>
-    <B>&gt;ZW MYFDA
-</B>    MYFDA(&quot;DATA&quot;,16200,&quot;33,&quot;,4)=FREE TEXT DATA
+    &gt;<B>ZW MYFDA</B> &lt;Enter&gt;
+    MYFDA(&quot;DATA&quot;,16200,&quot;33,&quot;,4)=FREE TEXT DATA
     MYFDA(&quot;DATA&quot;,16200.04,&quot;1,33,&quot;,1)=16
     MYFDA(&quot;DATA&quot;,16200.04,&quot;2,33,&quot;,1)=45
-    
-    &gt;<B>D VALUES^DILF(16200.04,1,&quot;MYFDA(&quot;&quot;DATA&quot;&quot;)&quot;,.MYVALUES)
-</B>    
-    &gt;<B>ZW MYVALUES
-</B>    MYVALUES=2
+
+    &gt;<B>D VALUES^DILF(16200.04,1,&quot;MYFDA(&quot;&quot;DATA&quot;&quot;)&quot;,.MYVALUES)</B> &lt;Enter&gt;
+
+    &gt;<B>ZW MYVALUES</B> &lt;Enter&gt;
+    MYVALUES=2
     MYVALUES(1)=16
     MYVALUES(1,&quot;IENS&quot;)=1,33,
     MYVALUES(2)=45
     MYVALUES(2,&quot;IENS&quot;)=2,33,
-
-</PRE> 
-	 <H5>Error Codes Returned</H5> 
-	 <P>None</P> <HR CLASS="hrstyle"> 
+</PRE>
+	 <H5>Error Codes Returned</H5>
+	 <P>None.</P>
+	 <HR CLASS="hrstyle">
 	 <TABLE WIDTH="100%" SUMMARY="This table for layout purposes only"
 	  CLASS="white"> 
 		<TR> 
@@ -158,13 +173,13 @@ VALUES^DILF(FILE,FIELD,FDA_ROOT,.RESULT)
 
              <!--Date content was reviewed or updated-->
              <p>Reviewed/Updated: <!--webbot bot="Timestamp"
-             S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->July 24, 2003<!--webbot bot="Timestamp" endspan i-checksum="14304" -->
+             S-Type="REGENERATED" S-Format="%B %d, %Y" startspan -->May 2026<!--webbot bot="Timestamp" endspan i-checksum="14304" -->
              </p>
 			 <P ALIGN="CENTER"> If you
 				have questions, need more information, or are having accessibility problems
 				with this website, please contact us by E-Mail: <A
 				 HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /fileman/docs/pm/db_dilf9.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

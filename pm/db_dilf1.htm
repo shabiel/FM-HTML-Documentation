@@ -48,40 +48,51 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>CLEAN^DILF: Array and Variable Clean-up</H4> 
-	 <P>This procedure kills the standard message arrays and variables that are
-		produced by VA FileMan. </P> 
-	 <H5>Format</H5> 
+	 <H4>CLEAN^DILF: Array and Variable Cleanup&nbsp;</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+		<TR>
+		  <TH ALIGN="left">Reference Type</TH>
+		  <TH ALIGN="left">Category</TH>
+		  <TH ALIGN="left">ICR #</TH>
+		</TR>
+		<TR>
+		  <TD>Supported</TD>
+		  <TD>Database Server (DBS)</TD>
+		  <TD>2054</TD>
+		</TR>
+	 </TABLE>
+	 <H5>Description</H5>
+	 <P>The CLEAN^DILF API KILLs the standard message arrays and variables that
+		are produced by VA FileMan. </P>
+	 <H5>Format</H5>
 	 <PRE>
 CLEAN^DILF
-</PRE> 
-	 <H5>Input Parameters</H5> 
-	 <P>None </P> 
-	 <H5>Output</H5> 
-	 <P>The call kills the following arrays:</P> 
-	 <PRE>
-    ^TMP(&quot;DIERR&quot;,$J)
-    ^TMP(&quot;DIHELP&quot;,$J)
-    ^TMP(&quot;DIMSG&quot;,$J) 
-
-</PRE> 
-	 <P>The call kills the following variables:</P> 
-	 <PRE>
-    DIERR 
-    DIHELP
-    DIMSG
-    DUOUT
-    DIRUT
-    DIROUT
-    DTOUT
-
-</PRE> 
-	 <H5>Error Codes Returned</H5> 
-	 <P>None</P>
+</PRE>
+	 <H5>Input Parameters</H5>
+	 <P>None. </P>
+	 <H5>Output</H5>
+	 <P>The CLEAN^DILF API KILLs the following arrays:</P>
+	 <UL>
+		<LI>^TMP("DIERR",$J)</LI>
+		<LI>^TMP("DIHELP",$J)</LI>
+		<LI>^TMP("DIMSG",$J)</LI>
+	 </UL>
+	 <P>The CLEAN^DILF API KILLs the following variables:</P>
+	 <UL>
+		<LI>DIERR</LI>
+		<LI>DIHELP</LI>
+		<LI>DIMSG</LI>
+		<LI>DUOUT</LI>
+		<LI>DIRUT</LI>
+		<LI>DIROUT</LI>
+		<LI>DTOUT</LI>
+	 </UL>
+	 <H5>Error Codes Returned</H5>
+	 <P>None.</P>
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- db_dilf1.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

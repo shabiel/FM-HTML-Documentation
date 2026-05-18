@@ -47,33 +47,46 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>$$OREF^DILF( ): Root Converter (Closed to Open Format)</H4> 
-	 <P>This extrinsic function converts a closed root to an open root. It
-		converts an ending close parenthesis to a comma.</P> 
-	 <H5>Format</H5> 
+	 <H4>$$OREF^DILF(): Root Converter (Closed to Open Format)&nbsp;</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+		<TR>
+		  <TH ALIGN="left">Reference Type</TH>
+		  <TH ALIGN="left">Category</TH>
+		  <TH ALIGN="left">ICR #</TH>
+		</TR>
+		<TR>
+		  <TD>Supported</TD>
+		  <TD>Database Server (DBS)</TD>
+		  <TD>2054</TD>
+		</TR>
+	 </TABLE>
+	 <H5>Description</H5>
+	 <P>The $$OREF^DILF extrinsic function converts a closed root to an open
+		root. It converts an ending close parenthesis to a comma.</P>
+	 <H5>Format</H5>
 	 <PRE>
-$$OREF^DILF(CLOSED_ROOT)
-</PRE> 
-	 <H5>Input Parameter</H5> 
-	 <TABLE BORDER="1" SUMMARY="This table is for formatting purposes only"
-	  WIDTH="100%"> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>CLOSED_ROOT</B></TD> 
-		  <TD VALIGN="TOP"> 
+$$OREF^DILF(closed_root)
+</PRE>
+	 <H5>Input Parameter</H5>
+	 <TABLE BORDER="1" SUMMARY="Input parameter for $$OREF^DILF" WIDTH="100%">
+		<TR>
+		  <TD VALIGN="TOP"><B>closed_root</B></TD>
+		  <TD VALIGN="TOP">
 			 <P>(Required) A closed root, which is a global root ending in a close
-				parenthesis. </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <H5>Example</H5> 
+				parenthesis. </P> </TD>
+		</TR>
+	 </TABLE>
+	 <H5>Example</H5>
+	 <P ALIGN="CENTER"><B><A NAME="fig190">Figure 190: $$OREF^DILF
+		API&mdash;Example: Input and Output</A></B></P>
 	 <PRE>
-    &gt;<B>W $$OREF^DILF(&quot;^DIZ(999000)&quot;)
-</B>    ^DIZ(999000,
-
+    &gt;<B>W $$OREF^DILF(&quot;^DIZ(999000)&quot;)</B> &lt;Enter&gt;
+    ^DIZ(999000,
 </PRE>
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- db_dilf7.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>

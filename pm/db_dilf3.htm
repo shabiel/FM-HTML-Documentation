@@ -47,53 +47,67 @@
 	 </TABLE><!-- Content -->
 	 <H3><A NAME="navskip">Database Server (DBS) API</A></H3>
 	 <HR CLASS="hrstyle"> 
-	 <H4>DA^DILF( ): DA( ) Creator</H4> 
-	 <P>This procedure converts an IENS into an array with the structure of a
-		DA() array. </P> 
-	 <H5>Format</H5> 
+	 <H4>DA^DILF(): Convert IENS to DA() Array Structure&nbsp;</H4>
+	 <TABLE BORDER="1" CELLPADDING="3" SUMMARY="API reference summary">
+		<TR>
+		  <TH ALIGN="left">Reference Type</TH>
+		  <TH ALIGN="left">Category</TH>
+		  <TH ALIGN="left">ICR #</TH>
+		</TR>
+		<TR>
+		  <TD>Supported</TD>
+		  <TD>Database Server (DBS)</TD>
+		  <TD>2054</TD>
+		</TR>
+	 </TABLE>
+	 <H5>Description</H5>
+	 <P>The DA^DILF API converts an IENS into an array with the structure of a
+		DA() array. </P>
+	 <H5>Format</H5>
 	 <PRE>
-DA^DILF(IENS,.DA)
-</PRE> 
-	 <H5>Input Parameters</H5> 
+DA^DILF(iens,.da)
+</PRE>
+	 <H5>Input Parameters</H5>
 	 <TABLE BORDER="1" WIDTH="100%"
-	  SUMMARY="This table is for formatting purposes only"> 
-		<TR> 
-		  <TD VALIGN="TOP" WIDTH="10%"><B>IENS</B></TD> 
-		  <TD VALIGN="TOP"> 
+	  SUMMARY="Input parameters for DA^DILF">
+		<TR>
+		  <TD VALIGN="TOP" WIDTH="10%"><B>iens</B></TD>
+		  <TD VALIGN="TOP">
 			 <P>(Required) A string with record and subrecord numbers in IENS
-				format. </P> </TD> 
-		</TR> 
-		<TR> 
-		  <TD VALIGN="TOP"><B>.DA</B></TD> 
-		  <TD VALIGN="TOP"> 
-			 <P>(Required) The name of the array which receives the record
-				numbers. </P> 
-			 <P><B>NOTE:</B> This array is cleaned out (killed) before the record
-				numbers are loaded. </P> </TD> 
-		</TR> 
-	 </TABLE> 
-	 <H5>Output</H5> 
-	 <P>An array with the record numbers from the IENS - the array is structured
-		like the traditional VA FileMan DA() array. </P> 
-	 <H5>Example</H5> 
+				format. </P> </TD>
+		</TR>
+		<TR>
+		  <TD VALIGN="TOP"><B>.da</B></TD>
+		  <TD VALIGN="TOP">
+			 <P>(Required) The name of the array that receives the record
+				numbers. </P>
+			 <P><B>NOTE:</B> This array is cleaned out (KILLed) before the record
+				numbers are loaded. </P> </TD>
+		</TR>
+	 </TABLE>
+	 <H5>Output</H5>
+	 <P>An array with the record numbers from the IENS; the array is structured
+		like the traditional VA FileMan DA() array. </P>
+	 <H5>Example</H5>
+	 <P ALIGN="CENTER"><B><A NAME="fig183">Figure 183: DA^DILF API&mdash;Example:
+		Input and Output</A></B></P>
 	 <PRE>
-    &gt;<B>S IENS=&quot;4,1,2,532,&quot;
-</B>    
-    &gt;<B>D DA^DILF(IENS,.MYDA)
-</B>    
-    &gt;<B>ZW MYDA
-</B>    MYDA=4
+    &gt;<B>S IENS=&quot;4,1,2,532,&quot;</B> &lt;Enter&gt;
+
+    &gt;<B>D DA^DILF(IENS,.MYDA)</B> &lt;Enter&gt;
+
+    &gt;<B>ZW MYDA</B> &lt;Enter&gt;
+    MYDA=4
     MYDA(1)=1
     MYDA(2)=2
     MYDA(3)=532
-
-</PRE> 
-	 <H5>Error Codes Returned</H5> 
-	 <P>None</P>
+</PRE>
+	 <H5>Error Codes Returned</H5>
+	 <P>None.</P>
 	 <P>&nbsp;</P> 
 	 <HR CLASS="hrstyle">
 	 <!-- db_dilf3.htm -->
-	 <P ALIGN="CENTER">Reviewed/Updated: March 10, 2007</P>
+	 <P ALIGN="CENTER">Reviewed/Updated: May 2026</P>
 	 <P>&nbsp;</P> 
 
   </BODY>
