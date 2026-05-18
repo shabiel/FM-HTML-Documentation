@@ -36,11 +36,24 @@
 	 </tbody></table><!-- Content -->
 	 <h3><a name="navskip">Database Server (DBS) API</a></h3>
 	 <hr class="hrstyle"> 
-	 <h4>FIELD^DID( ): DD Field Retriever</h4> 
-	 <p>This procedure retrieves the values of the specified field-level
-		attributes for the specified field. </p> 
-	 <h5>Format</h5> 
-	 <pre>FIELD^DID(FILE,FIELD,FLAGS,ATTRIBUTES,TARGET_ROOT,MSG_ROOT)<br></pre> 
+	 <h4>FIELD^DID(): DD Field Retriever</h4>
+	 <table border="1" cellpadding="3" summary="API reference summary">
+	   <tr>
+		 <th align="left">Reference Type</th>
+		 <th align="left">Category</th>
+		 <th align="left">ICR #</th>
+	   </tr>
+	   <tr>
+		 <td>Supported</td>
+		 <td>Database Server (DBS)</td>
+		 <td>2052</td>
+	   </tr>
+	 </table>
+	 <h5>Description</h5>
+	 <p>The FIELD^DID API retrieves the values of the specified field-level
+		attributes for the specified field.</p>
+	 <h5>Format</h5>
+	 <pre>FIELD^DID(file,field[,flags],attributes,target_root[,msg_root])</pre>
 	 <h5>Input Parameters</h5> 
 	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
 		<tbody><tr> 
@@ -60,14 +73,14 @@
 				</p> </td> 
 		</tr> 
 		<tr> 
-		  <td valign="top"><b>N</b></td> 
+		  <td valign="top"><b>N</b></td>
 		  <td valign="top"><b>N</b>o entry in the target array is created if the
-			 attribute is null. </td> 
-		</tr> 
-		<tr> 
-		  <td valign="top"><b>Z</b></td> 
-		  <td valign="top">Word processing attributes include <b>Z</b>ero (0)
-			 nodes with text. </td> 
+			 attribute is NULL.</td>
+		</tr>
+		<tr>
+		  <td valign="top"><b>Z</b></td>
+		  <td valign="top">Word-processing attributes include <b>Z</b>ero (0)
+			 nodes with text.</td>
 		</tr> 
 		<tr> 
 		  <td valign="top"><b><a name="FIELD_ATTRIBUTES">ATTRIBUTES</a></b></td> 
@@ -98,7 +111,8 @@
 				<li>TITLE </li> 
 				<li>TYPE </li> 
 				<li>WRITE ACCESS</li> 
-				<li>XECUTABLE HELP<br><br>Alternatively, an "*" can be used in this Parameter to request ALL attributes.</li></ul> </td> 
+				<li>EXECUTABLE HELP</li></ul>
+			 <p>Alternatively, an &quot;*&quot; can be used in this parameter to request ALL attributes.</p> </td>
 		</tr> 
 		<tr> 
 		  <td valign="top"><b>TARGET_ROOT</b></td> 
@@ -113,25 +127,32 @@
 				pass error messages. If not passed, ^TMP("DIERR",$J) is used. </p> </td> 
 		</tr> 
 	 </tbody></table> 
-	 <h5>Output</h5> 
-	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
-		<tbody><tr> 
-		  <td valign="top"><b>TARGET_ROOT</b></td> 
-		  <td valign="top"> 
-			 <p>The array is subscripted by the attribute names. </p> </td> 
-		</tr> 
-	 </tbody></table> 
-	 <h5>Example</h5> 
+	 <h5>Output Parameters</h5>
+	 <table summary="This table is for formatting purposes only" border="1" width="100%">
+		<tbody><tr>
+		  <td valign="top"><b>TARGET_ROOT</b></td>
+		  <td valign="top">
+			 <p>The array is subscripted by the attribute names.</p> </td>
+		</tr>
+	 </tbody></table>
+	 <h5>Example</h5>
+	 <p align="center"><b>Figure 161: FIELD^DID API&mdash;Example: Input and Output</b></p>
 	 <pre>    &gt;<b>D FIELD^DID(999000,.01,"","LABEL;TYPE","TEST1")</b>
 
     &gt;<b>ZW TEST1</b>
     TEST1("LABEL")=NAME
     TEST1("TYPE")=FREE TEXT
-</pre> 
-	 <h5>Error Codes Returned</h5> 
-	 <table summary="This table is for formatting purposes only" border="1" width="100%"> 
-		<tbody><tr> 
-		  <td valign="top"><b><a href="err_200.htm" title="Error 200" class="bodylink">200</a></b></td> 
+</pre>
+	 <h5>Error Codes Returned</h5>
+	 <p>Table 50 lists the possible error codes returned with the FIELD^DID API:</p>
+	 <p align="center"><b>Table 50: FIELD^DID API&mdash;Error Codes Returned</b></p>
+	 <table summary="This table is for formatting purposes only" border="1" width="100%">
+		<tbody><tr>
+		  <th align="left">Code</th>
+		  <th align="left">Description</th>
+		</tr>
+		<tr>
+		  <td valign="top"><b><a href="err_200.htm" title="Error 200" class="bodylink">200</a></b></td>
 		  <td valign="top">There is an error in one of the variables passed.
 			 </td> 
 		</tr> 
@@ -191,7 +212,7 @@
 				<a href="http://vista.med.va.gov/iis/site_map.html" title="Information Infrastructure Service Site Map" class="bodylink" target="_top">IIS Site Map</a> /
 				<a href="http://vista.med.va.gov/termsofuse.htm" title="System Design and Development Terms of Use Page" class="bodylink" target="_top">Terms of Use</a> /
 				<a href="http://www.va.gov/privacy/" class="bodylink" target="_top" title="Department of Veterans Affairs Privacy Policy"><acronym title="Department of Veterans Affairs"> VA</acronym> Privacy Policy</a></p> <!--Date content was reviewed or updated-->
-			 <p align="center"> Reviewed/Updated: June 20, 2001 <br><br>If you
+			 <p align="center"> Reviewed/Updated: May 2026 <br><br>If you
 				have questions, need more information, or are having accessibility problems
 				with this website, please contact us by E-Mail:
 				<a href="mailto:VHAISFCVTECH@med.va.gov?subject=Web%20page%20comments%20from:%20/fileman/docs/pm/db_didf1.htm" title="Send mail to IIS Webmasters regarding this page" class="bodylink"><acronym title="Information Infrastructure Sevice">IIS</acronym> Webmasters</a>, Phone:
