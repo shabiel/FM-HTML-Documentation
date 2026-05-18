@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN" "hmpro6.dtd">
 <html><head><!--VHA OI Health Systems Design & Development (HSD&D)--><!--Oakland OIFO--><!--Authored by Thom Blom and Kyle Clarke, 12/31/99--><!--Revised by Thom Blom, 06/30/03--><!--Edited March 2007, Hardhats.org-->
 
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Programmer Manual: LIST^DIC( )</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>VA FileMan Programmer Manual: LIST^DIC()</title>
 
 <meta name="subject" content="VA FileMan V. 22.2 Programmer HTML Manual">
 <meta name="keywords" content="Information Infrastructure Service,IIS,Infrastructure and Security Services,Infrastructure Security Services,ISS,VISTA,FileMan,VA FileMan,programmer,developer,programmer manual,database server (dbs) calls,database server api,api,calls,dbs,dbs calls,database,server,list^dic(),dic">
 <link rel="StyleSheet" type="text/css" href="programmer.css"></head>
-<body onload="if">
+<body bgcolor="white" topmargin="0">
 <br>
 <img src="common/fileman_pm_heading.gif" alt="VA FileMan V. 22.2 Programmer Manual Banner" border="0" height="29" width="429"> <br>
 <hr align="left" color="blue" width="429"> <br>
@@ -26,23 +26,60 @@
 <!-- Content -->
 <h3><a name="navskip">Database Server (DBS) API</a></h3>
 <hr class="hrstyle">
-<h4>LIST^DIC( ): Lister</h4>
-<p>This procedure returns a sorted list of entries from a file.
-Callers must specify a file number. Callers can also specify the index
-to be used in sorting the output, a starting location, a number of
-records to retrieve and/or a partial match value. They can also pass
-screening logic. By default, the Lister returns the .01 field of the
-entries, along with the index value(s) used to retrieve them, and all
-identifiers for the entries. The developer can override the default
-output and return other information for the entries. </p>
-<p>This call is designed to populate a GUI Listbox gadget. It
-merely returns a list of entries from an index. Starting values must be
-in the same format as the index, unlike a lookup which allows search
-values to be in external format. The caller can make an initial call to
-the Lister to return a number of records "n" from the file and follow
-that by subsequent calls to return the next "n" records.</p>
+<h4>LIST^DIC(): Lister</h4>
+<table border="1" cellpadding="3" summary="API reference summary">
+  <tr>
+    <th align="left">Reference Type</th>
+    <th align="left">Category</th>
+    <th align="left">ICR #</th>
+  </tr>
+  <tr>
+    <td>Supported</td>
+    <td>Database Server (DBS)</td>
+    <td>2051</td>
+  </tr>
+</table>
+<h5>Description</h5>
+<p>The LIST^DIC API (aka Lister) returns a sorted list of entries from
+a file. Callers must specify a file number. Callers can also specify
+any of the following:</p>
+<ul>
+  <li>Index to be used in sorting the output.</li>
+  <li>Starting location.</li>
+  <li>Number of records to retrieve.</li>
+  <li>Partial match value.</li>
+</ul>
+<p>They can also pass screening logic. By default, the Lister returns
+the:</p>
+<ul>
+  <li>.01 field of the entries, along with the index values used to retrieve them.</li>
+  <li>All identifiers for the entries.</li>
+</ul>
+<p>The developer can override the default output and return other
+information for the entries.</p>
+<p>This call is designed to populate a GUI ListBox gadget. It merely
+returns a list of entries from an index. Starting values must be in
+the same format as the index, unlike a lookup that allows search
+values to be in external format. The caller can make an initial call
+to the Lister to return n records from the file and follow that by
+subsequent calls to return the next n records.</p>
+<p><b>NOTE:</b> The VA FileMan Database Server (DBS) APIs typically work
+like their VA FileMan Classic counterparts. However, the DBS APIs
+listed below do not perform numeric lookups the way the classic ^DIC
+API does:</p>
+<ul>
+  <li>FIND^DIC(): Finder</li>
+  <li>$$FIND1^DIC(): Finder (Single Record)</li>
+  <li>LIST^DIC(): Lister</li>
+</ul>
+<p>Rather, these three APIs perform numeric lookups the way ^DIC
+performs them when the lowercase n flag is set.</p>
+<p><b>REF:</b> For information on the use of the lowercase n flag in
+conjunction with the DIC(0) input variable, see the
+&ldquo;<a href="cl_dic.htm" title="^DIC" class="bodylink">^DIC: Lookup/Add</a>&rdquo;
+section in the &ldquo;Classic VA FileMan API&rdquo; section.</p>
 <h5>Format</h5>
-<pre>LIST^DIC(FILE,IENS,FIELDS,FLAGS,NUMBER,[.]FROM,[.]PART,INDEX,[.]SCREEN,<br>IDENTIFIER,TARGET_ROOT,MSG_ROOT)<br></pre>
+<pre>LIST^DIC(file[,iens][,fields][,flags][,number][,[.]from][,[.]part][,index][,[.]screen][,identifier][,target_root][,msg_root])</pre>
 <h5>Input Parameters</h5>
 <table summary="This table is for formatting purposes only" border="1" width="100%">
 <tbody>
@@ -67,12 +104,16 @@ parameters. </p>
 that identifies the parent record of the exact subfile to list. Since
 this parameter identifies the subfile under that record, and not the
 subrecord itself, the first comma-piece of the parameter should be
-empty. (For more information on the IENS, see the discussion in the <a href="db_how.htm" title="DBS Introduction" class="bodylink">DBS Introduction</a>.) </p>
-<p>For example, to specify the Menu Item subfile under
-option number 67, you must pass FILE=19.01 (the subfile number for the
-Menu subfile) and IENS=",67," (showing that record number 67 holds the
-Menu subfile you want to list). </p>
-<p>Defaults to empty string. </p>
+empty. If the first comma-piece of the IENS is not empty, that first
+comma-piece is ignored.</p>
+<p><b>REF:</b> For more information on the IENS, see the discussion in
+the DBS &ldquo;<a href="db_how.htm" title="DBS Introduction" class="bodylink">Introduction</a>&rdquo;
+and &ldquo;IENS: Identify Entries and Subentries&rdquo; sections.</p>
+<p>For example, to specify the MENU ITEM subfile under option number
+67, you must pass FILE = 19.01 (the subfile number for the MENU
+subfile) and IENS = &quot;,67,&quot; (showing that record number 67
+holds the MENU subfile you want to list).</p>
+<p>Defaults to empty string.</p>
 </td>
 </tr>
 <tr>
@@ -90,122 +131,107 @@ This gives the developer full control over exactly what will be
 returned in the output list and makes the call more self-documenting in
 the developer's code.&nbsp;</p>
 <ul>
-<li><b>Field Number:</b> This specifier makes
-the Lister return the value of the field for each record found. For
-example, specifying .01 returns the value of the .01 field. You can
-specify computed fields. You cannot specify word processing or multiple
-fields. By default, fields will be returned in external format. The <a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I"
-suffix</a> (described below) can be appended to the field number
-to get the internal format of the field.
-<p>If a field is listed multiple times in the FIELDS
-parameter, it is returned multiple times in packed output, but only
-once in unpacked output, since the field number is one of the
-subscripts of the unpacked output.</p>
+<li><b>Field Number:</b> This specifier makes the Lister return the
+value of the field for each record found. For example, specifying .01
+returns the value of the .01 field. You can specify COMPUTED fields.
+You cannot specify WORD-PROCESSING or Multiple fields. By default,
+fields are returned in external format. The
+<a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix</a>
+(described below) can be appended to the field number to get the
+VA FileMan internal format of the field.
+<p>If a field is listed multiple times in the FIELDS parameter, it is
+returned multiple times in packed output, but only once in unpacked
+output, since the field number is one of the subscripts of the
+unpacked output.</p>
 </li>
-<li><b>IX:&nbsp;</b> This returns, for
-each record, the value(s) from the index used in the call. If a
-subscript in the index is derived from a field, the external format of
-that field will be returned by default. Otherwise, the value will be
-returned directly as it appears in the index. The <a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix </a>(described
-below) can be appended to IX to get the internal index value(s). The
-index values are returned in the "ID" nodes as described in the <a href="#Output" title="Output">Output</a>
-section below.
-<p><b>NOTE:</b> For records located on a
-mnemonic index entry, the value from the index entry will always be
-returned, rather than its corresponding external field value.</p>
-<br>
-<br>
+<li><span class="badge">22.2</span>&nbsp;<b>Computed Expression:</b>&nbsp;
+This specifier causes the Lister to return the result of a computed
+expression.
+<p><b>REF:</b> For more information on computed expression syntax,
+see the &ldquo;Computed Expressions&rdquo; section in the VA FileMan
+Advanced User Manual.</p></li>
+<li><b>IX:</b>&nbsp; This returns, for each record, the values from the
+index used in the call. If a subscript in the index is derived from a
+field, the external format of that field is returned by default.
+Otherwise, the value is returned directly as it appears in the index.
+The <a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix</a>
+(described below) can be appended to IX to get the internal index
+values. The index values are returned in the "ID" nodes as described
+in the <a href="#Output" title="Output">Output</a> section.
+<p><b>NOTE:</b> For records located on a mnemonic index entry, the
+value from the index entry is always returned, rather than its
+corresponding external field value.</p>
 </li>
-<li><b>FID:</b>&nbsp; This returns the
-fields display identifiers (i.e., field identifiers). By default, the
-field values are returned in external format. The <a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix</a>
-(described below) can be appended to FID to get the internal format of
-the field identifiers.<br>
-<br>
+<li><b>FID:</b>&nbsp; This returns the fields display identifiers
+(i.e., field identifiers). By default, the field values are returned
+in external format. The
+<a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix</a>
+(described below) can be appended to FID to get the VA FileMan
+internal format of the field identifiers.</li>
+<li><b>WID:</b>&nbsp; This returns the fields WRITE (display only)
+identifiers. The Lister executes each WRITE identifier's M code and
+copies contents of ^TMP("DIMSG",$J) to the output. You must ensure
+that the WRITE identifier code issues no direct I/O but instead calls
+<a href="cl_ddiol.htm" title="EN^DDIOL" class="bodylink">EN^DDIOL</a>.
+<p><b>NOTE:</b> The
+<a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix</a>,
+described below, cannot be used with WID and generates an error.</p>
 </li>
-<li><b>WID:</b>&nbsp; This returns the
-fields WRITE (display only) identifiers. The Lister executes each WRITE
-identifier's M code and copies contents of ^TMP("DIMSG",$J) to the
-output. You must ensure that the WRITE identifier code issues no direct
-I/O, but instead calls <a href="cl_ddiol.htm" title="EN^DDIOL" class="bodylink">EN^DDIOL</a>.
-<p><b>NOTE:</b> The <a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix</a>,
-described below, cannot be used with "WID" and will generate an error. </p>
-<br>
-<br>
+<li><b>.E suffix:</b>&nbsp; You can append an E to a field number, the
+specifier IX, or the specifier FID to force the fields to be returned
+in external format. You can use both the E and I suffix together
+(e.g., .01EI) to return both the internal and external values of the
+field.</li>
+<li><b><a name="Isuffix">.I suffix</a>:</b>&nbsp; You can append an I
+to a field number, the specifier IX, or the specifier FID to force the
+fields to be returned in VA FileMan internal format. You can use both
+the E and I suffix together (e.g., .01IE) to return both the internal
+and external value of the field.</li>
+<li><b>- prefix:</b>&nbsp; A minus sign (-) prefixing one of the other
+field specifiers tells the Lister to exclude it from the returned
+list. This could be used, for example, in combination with the FID
+specifier to exclude one of the identifier fields. For example, if
+Field #2 was one of the field identifiers for a file, &quot;FID;-2&quot;
+would output all field identifiers except for Field #2.</li>
+<li><b><a name="@specifier">@</a>:</b>&nbsp; This suppresses all the
+default values normally returned by the Lister, except for the IEN
+and any fields and values specified in the FIELDS parameter. It is
+recommended that developers always use the @ specifier in their Lister
+calls. Use of the @ specifier allows the developer to control exactly
+what is returned in the output.
+<p><b>REF:</b> To see what is normally returned by the Lister, see the
+&ldquo;<a href="#DefaultValues" title="default values" class="bodylink">Default Values</a>&rdquo;
+section.</p>
 </li>
-<li><b>.E suffix:</b>&nbsp; You can
-append an "E" to a field number, the specifier "IX", or the specifier
-"FID" to force the fields to be returned in external format. You can
-use both the "E" and "I" suffix together (ex., .01EI) to return both
-the internal and external values of the field.<br>
-<br>
-</li>
-<li><b><a name="Isuffix">.I suffix</a>:</b>&nbsp;
-You can append an "I" to a field number, the specifier "IX", or the
-specifier "FID" to force the fields to be returned in internal format.
-You can use both the "E" and "I" suffix together (ex., .01IE) to return
-both the internal and external value of the field.<br>
-<br>
-</li>
-<li><b>- prefix:</b>&nbsp; A minus sign
-(-) prefixing one of the other field specifiers tells the Lister to
-exclude it from the returned list. This could be used, for example, in
-combination with the "FID" specifier to exclude one of the identifier
-fields. For example, if field 2 was one of the field identifiers for a
-file, "FID;-2" would output all of the field identifiers except for
-field 2.<br>
-<br>
-</li>
-<li><b><a name="@specifier">@</a>:</b>&nbsp;
-This suppresses all the default values normally returned by the Lister,
-except for the IEN and any fields and values specified in the FIELDS
-parameter. It is recommended that developers ALWAYS use the "@"
-specifier in their Lister calls. Use of the "@" specifier allows the
-developer to control exactly what will be returned in the output. See
-the <a href="#DefaultValues" title="default values" class="bodylink">default values</a> below to see what
-is normally returned by the Lister. &nbsp;<br>
-<br>
-</li>
-<li><span class="badge">22.2</span>&nbsp;<span style="font-weight: bold;">Computed
-expression:&nbsp;</span>Any computed expression valid
-in the context of the the File can be used to retrieve the value of
-that expression for the records found.</li>
 </ul>
-<p><b><a name="DefaultValues">Default
-Values</a></b></p>
-<p>If you DO NOT pass a FIELDS parameter, the Lister
-returns:</p>
-<ol>
-<li>The IEN</li>
-<li>The indexed field value, in external format (note
-that for mnemonic cross-referenced entries, this would be the mnemonic
-subscript, not a field value)</li>
-<li>The .01 field, in external format, if the indexed
-field value is not .01 </li>
-<li>Any field display identifiers</li>
-<li>Any WRITE (display-only) identifiers</li>
-<li>The results of executing the Lister's IDENTIFIER
-parameter </li>
-</ol>
-<p>If you DO pass a FIELDS parameter but it does not
-contain the @ specifier, the Lister returns:</p>
-<ol>
-<li>The IEN</li>
-<li>The indexed field value, in external format (note
-that for mnemonic cross-referenced entries, this would be the mnemonic
-subscript, not a field value)</li>
-<li>The .01 field, in external format, if the indexed
-field value is not .01 </li>
-<li>The fields and values specified by the FIELDS
-parameter</li>
-<li>Any WRITE (display-only) identifiers</li>
-<li>The results of executing the Lister's IDENTIFIER
-parameter</li>
-</ol>
+<p><b><a name="DefaultValues">Default Values:</a></b></p>
+<p>If you do not pass a FIELDS parameter, the Lister returns:</p>
+<ul>
+<li>IEN.</li>
+<li>Indexed field value, in external format.
+  <p><b>NOTE:</b> For mnemonic cross-referenced entries, this would be
+  the mnemonic subscript, not a field value.</p></li>
+<li>.01 field, in external format, if the indexed field value is not .01.</li>
+<li>Any field display identifiers.</li>
+<li>Any WRITE (display-only) identifiers.</li>
+<li>Results of executing the Lister's IDENTIFIER parameter.</li>
+</ul>
+<p>If you do pass a FIELDS parameter but it does not contain the @
+specifier, the Lister returns:</p>
+<ul>
+<li>IEN.</li>
+<li>Indexed field value, in external format.
+  <p><b>NOTE:</b> For mnemonic cross-referenced entries, this would be
+  the mnemonic subscript, not a field value.</p></li>
+<li>.01 field, in external format, if the indexed field value is not .01.</li>
+<li>Fields and values specified by the FIELDS parameter.</li>
+<li>Any WRITE (display-only) identifiers.</li>
+<li>Results of executing the Lister's IDENTIFIER parameter.</li>
+</ul>
 </td>
 </tr>
 <tr>
-<td rowspan="9" valign="top" width="20%"><b><a name="flags">FLAGS</a></b></td>
+<td rowspan="10" valign="top" width="20%"><b><a name="flags">FLAGS</a></b></td>
 <td colspan="2" valign="top" width="80%">
 <p>(Optional) Flags to control processing: </p>
 </td>
@@ -218,25 +244,35 @@ opposite direction of normal traversal. </p>
 </td>
 </tr>
 <tr>
-<td><span style="font-weight: bold;">E</span></td>
-<td><span class="badge">22.2</span>Complete
-list of matches is returned, even if <span style="font-weight: bold;">E</span>rrors
-are
-encountered during the generation of the results.<span style=""></span></td>
+<td valign="top"><b>E</b>&nbsp;<span class="badge">22.2</span></td>
+<td valign="top">
+<p><b>E</b>rrors are ignored. When returning external values without
+the E flag, results will be truncated if invalid data (e.g., an
+incorrect code in a SET OF CODES field) is encountered. An error will
+be produced. The E flag suppresses the error and continues the
+reporting of results. The data value for the entry with invalid data
+is set to NULL.</p>
+<p>If internal values for a field are being returned, the value stored
+in the database for the field will be returned even if that value is
+invalid whether the E flag is set.</p>
+<p>To assure that every entry is returned regardless of the validity
+of the data, set the E flag.</p>
+</td>
 </tr>
 <tr>
 <td valign="top"><b>I</b></td>
 <td valign="top">
-<p><b>I</b>nternal format is returned. All
-output values are returned in internal format (the default is
-external). Because the new <a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix</a>can
-be used in the FIELDS parameter to return information in internal
-format, using I in the FLAGS parameter is virtually obsolete. It
-greatly simplifies the call to use the <a href="#@specifier" title="&quot;@&quot; specifier" class="bodylink">"@" specifier</a>in
-the FIELDS parameter to suppress return of default values and to
-specify in the FIELDS parameter exactly what other data elements are to
-be returned. You can use the "I" suffix if you wish to have them
-returned in internal format. </p>
+<p><b>I</b>nternal format is returned. All output values are returned
+in VA FileMan internal format (the default is external). Because the
+<a href="#Isuffix" title="&quot;I&quot; suffix" class="bodylink">"I" suffix</a>
+can be used in the FIELDS parameter to return information in VA
+FileMan internal format, using I in the FLAGS parameter is virtually
+obsolete. It greatly simplifies the call to use the
+<a href="#@specifier" title="&quot;@&quot; specifier" class="bodylink">"@" specifier</a>
+in the FIELDS parameter to suppress return of default values, and to
+specify in the FIELDS parameter exactly what other data elements are
+to be returned. You can use the I suffix to have them returned in
+VA FileMan internal format.</p>
 </td>
 </tr>
 <tr>
@@ -256,74 +292,83 @@ index.</p>
 <tr>
 <td valign="top"><b><a name="P">P</a></b>&nbsp;</td>
 <td valign="top">
-<p><b>P</b>ack output. This flag changes the
-Lister's output format to pack the information returned for each record
-onto a single node per record. See the information in the "<a href="#Output" title="Output" class="bodylink">Output</a>,"
-the "<a href="#DetailsandFeatures" title="Details and Features" class="bodylink">Details
-and Features</a>," and the "<a href="#Examples" title="Examples" class="bodylink">Examples</a>"
-sections for more details.</p>
+<p><b>P</b>ack output. This flag changes the Lister's output format to
+pack the information returned for each record onto a single node per
+record.</p>
+<p><b>REF:</b> For more details, see the information in the
+&ldquo;<a href="#Output" title="Output" class="bodylink">Output</a>&rdquo;,
+&ldquo;<a href="#DetailsandFeatures" title="Details and Features" class="bodylink">Details and Features</a>,&rdquo;
+and &ldquo;<a href="#Examples" title="Examples" class="bodylink">Examples</a>&rdquo;
+sections.</p>
 </td>
 </tr>
 <tr>
 <td valign="top"><b><a name="Q">Q</a></b>&nbsp;</td>
 <td valign="top">
-<p><b>Q</b>uick List. If this flag is passed,
-the Lister will use the order of the index to return the output, rather
-than sorting the information into a more user-friendly order. This will
-make a difference when doing Lister calls where the index value is a
-pointer or variable pointer. The call will be more efficient but the
-output may not be in an intuitive order. </p>
-<p>When the Q flag is used, both the FROM and PART
-parameters must be in the same format as the subscripts found in the
-index whose name is passed in the INDEX parameter. In the case of a
-pointer, for example, the FROM and PART parameters would be an internal
-pointer value. See the description of the <a href="#FROM" title="FROM" class="bodylink">FROM</a>, <a href="#PART" title="PART" class="bodylink">PART</a>
-and <a href="#INDEX" title="INDEX" class="bodylink">INDEX</a>
-parameters.</p>
+<p><b>Q</b>uick List. If this flag is passed, the Lister uses the order
+of the index to return the output, rather than sorting the information
+into a more user-friendly order. This makes a difference when doing
+Lister calls where the index value is a POINTER or VARIABLE POINTER.
+The call is more efficient, but the output may not be in an intuitive
+order.</p>
+<p>When the Q flag is used, both the FROM and PART parameters must be
+in the same format as the subscripts found in the index whose name is
+passed in the INDEX parameter. In the case of a POINTER, for example,
+the FROM and PART parameters would be an internal POINTER value.</p>
+<p><b>REF:</b> For more information, see the description of the
+<a href="#FROM" title="FROM" class="bodylink">FROM</a>,
+<a href="#PART" title="PART" class="bodylink">PART</a>, and
+<a href="#INDEX" title="INDEX" class="bodylink">INDEX</a> parameters.</p>
 </td>
 </tr>
 <tr>
 <td valign="top"><b><a name="U">U</a></b>&nbsp;</td>
 <td valign="top">
-<p><b>U</b>nscreened lookup. This flag makes
-the Lister ignore any whole file screen (stored at ^DD(file#,0,"SCR"))
-on the file specified in the FILE parameter. <b>NOTE:</b>
-Passing this flag does NOT make the Lister ignore any code passed in
-the SCREEN parameter.</p>
+<p><b>U</b>nscreened lookup. This flag makes the Lister ignore any
+whole file screen [stored at ^DD(file#,0,&quot;SCR&quot;)] on the file
+specified in the FILE parameter.</p>
+<p><b>NOTE:</b> Passing this flag does not make the Lister ignore any
+code passed in the SCREEN parameter.</p>
 </td>
 </tr>
 <tr>
-<td></td>
-<td><span style="font-weight: bold;">X</span></td>
-<td><span class="badge">22.2</span>Eighth parameter (below) may be a SORT TEMPLATE or
-COMPUTED EXPRESSION.</td>
+<td valign="top"><b>X</b>&nbsp;<span class="badge">22.2</span></td>
+<td valign="top">
+<p>If X flag is used then the INDEX parameter can be any of the following:</p>
+<ul>
+  <li>Field</li>
+  <li>SORT Template</li>
+  <li>Computed Expression</li>
+</ul>
+</td>
 </tr>
 <tr>
 <td valign="top"><b><a name="NUMBER">NUMBER</a></b></td>
 <td colspan="2" valign="top">
-<p>(Optional) The number of entries to return. If the
-Lister reaches the end of its list, the number of entries output may be
-fewer than this parameter. A value of "*" or no value in this parameter
+<p>(Optional) The number of entries to return. If the Lister reaches
+the end of its list, the number of entries output can be fewer than
+this parameter. A value of asterisk (*) or no value in this parameter
 designates all entries. The developer has the option to make multiple
-calls to the Lister, in order to control the number of records
-returned. In that case, the FROM value (described below) must be passed
-by reference, and should not be altered between calls. The Lister will
-return -- in the <a href="#FROM" title="FROM" class="bodylink">FROM</a> parameter -- the values
-needed to find the next record on a subsequent call. </p>
-<p>Defaults to "*". </p>
+calls to the Lister, to control the number of records returned. In
+that case, the FROM value (described below) must be passed by
+reference and should not be altered between calls. The Lister
+returns, in the <a href="#FROM" title="FROM" class="bodylink">FROM</a>
+parameter, the values needed to find the next record on a subsequent
+call.</p>
+<p>Defaults to asterisk (*).</p>
 </td>
 </tr>
 <tr>
 <td valign="top"><b> <a name="FROM">[.]FROM</a></b></td>
 <td colspan="2" valign="top">
-<p>(Optional) The index entry from which to begin the list
-(e.g., a FROM value of "XQ" would list entries following XQ). The FROM
-values must be passed as they appear in the index, not in external
-value. The index entry for the FROM value itself is not included in the
+<p>(Optional) The index entries from which to begin the list (e.g., a
+FROM value of XQ would list entries following XQ). The FROM values
+must be passed as they appear in the index, not in external value.
+The index entry for the FROM value itself is not included in the
 returned list.</p>
-<p>If the INDEX parameter specifies a compound index (i.e.,
-one with more than one data-valued subscript), then the FROM parameter
-should be passed by reference as an array where FROM(n) represents the "<b>n</b><sup>th</sup>"
+<p>If the INDEX parameter specifies a compound index (i.e., one with
+more than one data-valued subscript), then the FROM parameter should
+be passed by reference as an array; where FROM(n) represents the nth
 subscript on the compound index. This array helps VA FileMan find a
 single entry in the index. Generally, the developer can set the FROM
 array to establish a starting point from which the Lister should
@@ -331,137 +376,134 @@ traverse the index. However, the FROM array is especially useful when
 making multiple calls to the Lister to return records in discrete
 chunks. The Lister sets the FROM array to information about the last
 record returned, so the developer can simply pass this array unchanged
-from one Lister call to the next to return the next set of
-records.&nbsp;</p>
-<p>This parameter can contain an array node FROM("IEN").
-This subscript can be set equal to a record number that identifies the
-specific entry from which to begin the list. This can alternately be
-passed as FROM(m) where "m" is equal to the number of data value
+from one Lister call to the next to return the next set of records.</p>
+<p>This parameter can contain an array node FROM(&quot;IEN&quot;).
+This subscript can be set equal to a record number that identifies
+the specific entry from which to begin the list. This can alternately
+be passed as FROM(m) where m is equal to the number of data value
 subscripts in the index plus 1. This array entry would be passed only
-when there is more than one entry in the index with the same values in
-all of the data value subscripts. For example, using a regular
-single-field index on a NAME field, if there were two "SMITH,JOHN"
-entries in the file with IENs of 30 and 43, then passing
-FROM(1)="SMITH,JOHN" and either FROM(2) or FROM("IEN")=30 would return
-a list of entries starting with name of SMITH,JOHN and IEN of 43. If
-the list is built using the upright file (INDEX parameter="#"), then
-FROM, FROM(1) and FROM("IEN") would all be the same and would represent
-the starting internal entry number for the list. </p>
-<p>When listing an index on a Pointer or Variable Pointer
-field, the FROM value should equal a value from the "B" index at the
-end of the pointer chain, NOT a pointer value. However, the FROM("IEN")
-should still equal the number of a record in the pointing file as it
-does for other Lister calls. For example, suppose you have listed
-entries from a simple index that points to the STATE file and the
-previous call finished with entry 12 which points to Utah (record 49 in
-the STATE file). Then FROM(1) would be set to "UTAH" and FROM("IEN") or
-FROM(2) would be set to 12. Again, you would only want to set FROM(2)
-if there were other entries in your file that pointed to Utah, with
-IENs that followed 12. </p>
-<p>This parameter lets the caller make multiple calls to
-the Lister to return a limited number of records with each call, rather
-than one large one. If the FROM parameter values are passed by
-reference, then the Lister will return -- in the FROM array --
-information that will tell it which record to start with on subsequent
-Lister calls. </p>
-<p>To start a new list, pass FROM undefined or equal to the
-empty string. This will start the list with the first entry in the
-index unless you're traversing the index backwards, in which case, it
-will start the list with the last entry in the index. </p>
-<p>See "<a href="#DetailsandFeatures" title="Details and Features" class="bodylink">Details
-and Features</a>" and the "<a href="#Examples" title="Examples" class="bodylink">Examples</a>"
-sections for more help on how to use this parameter.</p>
+when there is more than one entry in the index with the same values
+in all data value subscripts. For example, using a regular
+single-field index on a NAME field, if there were two
+&quot;FMUSER,ONE&quot; entries in the file with IENs of 30 and 43,
+then passing FROM(1)=&quot;FMUSER,ONE&quot; and either FROM(2) or
+FROM(&quot;IEN&quot;)=30 would return a list of entries starting with
+name of FMUSER,ONE and IEN of 43. If the list is built using the
+upright file (INDEX parameter=&quot;#&quot;), then FROM, FROM(1), and
+FROM(&quot;IEN&quot;) would all be the same and would represent the
+starting internal entry number for the list.</p>
+<p>When listing an index on a POINTER or VARIABLE POINTER field, the
+FROM value should equal a value from the &quot;B&quot; index at the
+end of the POINTER chain, not a POINTER value. However, the
+FROM(&quot;IEN&quot;) should still equal the number of a record in
+the pointing file as it does for other Lister calls. For example,
+suppose you have listed entries from a simple index that points to
+the STATE (#5) file and the previous call finished with entry 12 that
+points to Utah (record 49 in the STATE [#5] file). Then FROM(1) would
+be set to &quot;UTAH&quot; and FROM(&quot;IEN&quot;) or FROM(2) would
+be set to 12. Again, you would only want to set FROM(2) if there were
+other entries in your file that pointed to Utah, with IENs that
+followed 12.</p>
+<p>This parameter lets the caller make multiple calls to the Lister to
+return a limited number of records with each call, rather than one
+large one. If the FROM parameter values are passed by reference, then
+the Lister returns, in the FROM array, information that tells it
+which record to start with on subsequent Lister calls.</p>
+<p>To start a new list, pass the FROM parameter undefined or equal to
+the empty string. This starts the list with the first entry in the
+index unless you are traversing the index backwards; in which case,
+it starts the list with the last entry in the index.</p>
+<p><b>REF:</b> For more help on how to use this parameter, see the
+&ldquo;<a href="#DetailsandFeatures" title="Details and Features" class="bodylink">Details and Features</a>&rdquo;
+and &ldquo;<a href="#Examples" title="Examples" class="bodylink">Examples</a>&rdquo;
+sections.</p>
 </td>
 </tr>
 <tr>
 <td valign="top"><b>[.]<a name="PART">PART</a></b></td>
 <td colspan="2" valign="top">
-<p>(Optional) The partial match restriction. For example, a
-PART value of "DI" would restrict the list to those entries starting
-with the letters "DI". Again, this value must be a partial match to an
-index value, not the external value of a field. This can be passed by
-reference and subscripted the same as the FROM parameter so that PART
-values can be specified for any subscript in a compound index.</p>
-<p>PART is often a partial match to <a href="#FROM" title="FROM" class="bodylink">FROM</a>. For
-example, FROM(1)="ZTMMGR", and PART(1)="ZTM" would return only entries
-that began with "ZTM" and came after "ZTMMGR". It would not include
-"ZTZERO", even though it comes after "ZTMMGR". (If traversing the index
-backwards, it would find only entries that came before ZTMMGR). </p>
-<p>If FROM is passed and PART is not a partial match to
-FROM, then the Lister will return all the partial matches to PART that
-come after FROM. Thus if FROM(1)="DI" and PART(1)="ZTM", then the
-Lister returns all partial matches to "ZTM". If in this example we were
-traversing the index backwards, then the Lister would return nothing,
-because there would be nothing that came before "DI" and started with
-"ZTM".</p>
-<p>For indexes on pointers or variable pointers, PART
-should refer to values on the "B" index of the pointed-to file at the
-end of the pointer chain. For example if the index was on a field
-pointing to the STATE file, PART(1) could be set to "A" to find all
-states whose name begins with "A". </p>
+<p>(Optional) The partial match restriction. For example, a PART
+parameter value of DI would restrict the list to those entries
+starting with the letters DI. Again, this value must be a partial
+match to an index value, not the external value of a field. This can
+be passed by reference and subscripted the same as the FROM parameter
+so that the PART parameter values can be specified for any subscript
+in a compound index.</p>
+<p>The PART parameter is often a partial match to the
+<a href="#FROM" title="FROM" class="bodylink">FROM</a> parameter.
+For example, FROM(1)=&quot;ZTMMGR&quot;, and PART(1)=&quot;ZTM&quot;
+would return only entries that began with ZTM and came after ZTMMGR.
+It would not include ZTZERO, even though it comes after ZTMMGR. (If
+traversing the index backwards, it would find only entries that came
+before ZTMMGR).</p>
+<p>If the FROM parameter is passed and the PART parameter is not a
+partial match to FROM, then the Lister returns all partial matches to
+PART that come after FROM. Thus, if FROM(1)=&quot;DI&quot; and
+PART(1)=&quot;ZTM&quot;, then the Lister returns all partial matches
+to ZTM. If in this example you were traversing the index backwards,
+then the Lister would return nothing, because there would be nothing
+that came before DI and started with ZTM.</p>
+<p>For indexes on POINTERs or VARIABLE POINTERs, the PART parameter
+should refer to values on the &quot;B&quot; index of the pointed-to
+file at the end of the POINTER chain. For example, if the index was
+on a field pointing to the STATE (#5) file, PART(1) could be set to A
+to find all states whose name begins with A.</p>
 </td>
 </tr>
 <tr>
 <td valign="top"><b><a name="INDEX">INDEX</a></b></td>
 <td colspan="2" valign="top">
-<p>(Optional) one of the following:</p>
-<ul>
-<li>The name of the index from which to build the
-list. For example, setting this to "C" could refer to the Upper Case
-Menu Text index on the Option file. Whether the specified index is
-simple (single data-value subscript like the "B" index on most files)
-or compound (more than one data-value subscript) affects the <a href="#FROM" title="FROM" class="bodylink">FROM</a>
-and <a href="#PART" title="PART" class="bodylink">PART
-</a>parameters as previously described.</li>
-<li>If "#" is passed in the INDEX parameter, then the
-list
-will be built from the upright file (i.e., in order by internal entry
-number) rather than from an index. In that case, if a FROM value is
-passed, it should be an IEN and could be passed either as a literal or
-in FROM(1) or FROM("IEN"), all of which are equivalent (see <a href="db_dic_l.htm#FROM" title="FROM" class="bodylink">FROM</a>
-parameter above).</li>
-<li><span class="badge">22.2</span>The
-[bracketed] name of a SORT TEMPLATE. &nbsp; FLAGS (above) must
-include "<span style="font-weight: bold;">X</span>"</li>
-<li><span class="badge">22.2</span>A
-COMPUTED EXPRESSION (which might simply be the name
-of a Field). &nbsp;&nbsp;FLAGS (above) must include "<span style="font-weight: bold;">X</span>"</li>
-</ul>
-<p>If the index is not specified, the default will be "B"
-unless the FLAGS parameter contains a K, in which case, the default
-will be the Uniqueness Index defined for the Primary Key on the
-file.&nbsp;</p>
-<p>If there is no "B" index and either "B" is passed in the
+<p>(Optional) The name of the index from which to build the list. For
+example, setting this to C could refer to the Upper Case Menu Text
+index on the OPTION (#19) file. Whether the specified index is
+simple (single data-value subscript like the &quot;B&quot; index on
+most files) or compound (more than one data-value subscript) affects
+the <a href="#FROM" title="FROM" class="bodylink">FROM</a> and
+<a href="#PART" title="PART" class="bodylink">PART</a> parameters as
+previously described.</p>
+<p>If the index is not specified, the default is B unless the FLAGS
+parameter contains a K, in which case, the default is the Uniqueness
+Index defined for the Primary Key on the file.</p>
+<p>If there is no &quot;B&quot; index and either B is passed in the
 INDEX parameter or is the default index, then a temporary index is
 built on the file (which could take some time). The index is removed
-after the Lister call.<br>
-</p>
-<p>Unless the M flag is used to suppress them, mnemonic
-cross-references folded into the specified index are included in the
-output. </p>
+after the Lister call.</p>
+<p>If # is passed in the INDEX parameter, then the list is built from
+the upright file (i.e., in order by internal entry number) rather
+than from an index. In that case, if a FROM value is passed, it
+should be an IEN and could be passed either as a literal or in
+FROM(1) or FROM(&quot;IEN&quot;), all of which are equivalent (see
+<a href="#FROM" title="FROM" class="bodylink">FROM</a> parameter above).</p>
+<p>Unless the M flag is used to suppress them, mnemonic cross-references
+folded into the specified index are included in the output.</p>
+<p><b>NOTE:</b> <span class="badge">22.2</span> INDEX can also be a
+Field, SORT Template, or Computed Expression (FLAGS must include X).</p>
 </td>
 </tr>
 <tr>
 <td rowspan="9" valign="top"><b><a name="SCREEN">[.]SCREEN</a></b></td>
 <td colspan="2" valign="top">
-<p>(Optional) <b>Entry Screen.</b> The screen
-to apply to each potential entry in the returned list to decide whether
-or not to include it. This may be set to any valid M code that sets
-$TEST to 1 if the entry should be included, to 0 if not. This is
-exactly equivalent to the DIC("S") input variable to Classic FileMan
-lookup ^DIC. The Lister will execute this screen in addition to any SCR
-node (whole-file screen) defined for the file. Optionally, the screen
-can be defined in an array entry subscripted by "S" (for example,
-SCR("S")), allowing additional screen entries to be defined for
-variable pointer fields as described below. </p>
-<p>The Entry Screen code can rely upon the following: </p>
+<p>(Optional) <b>Entry Screen.</b> The screen to apply to each potential
+entry in the returned list to decide whether to include it. This can
+be set to any valid M code that sets $TEST to:</p>
+<ul>
+  <li>1&mdash;If the entry should be included.</li>
+  <li>0&mdash;If the entry should not be included.</li>
+</ul>
+<p>This is exactly equivalent to the DIC(&quot;S&quot;) input variable
+to Classic VA FileMan Lookup ^DIC. The Lister executes this screen in
+addition to any SCR node (whole-file screen) defined for the file.
+Optionally, the screen can be defined in an array entry subscripted
+by S [for example, SCR(&quot;S&quot;)], allowing additional screen
+entries to be defined for VARIABLE POINTER fields as described
+below.</p>
+<p>The Entry Screen code can rely upon the following:</p>
 </td>
 </tr>
 <tr>
-<td valign="top" width="15%"><b>Naked
-indicator</b></td>
+<td valign="top" width="15%"><b>Naked Indicator</b></td>
 <td valign="top" width="65%">
-<p>Zero-node of entry's record. </p>
+<p>Zero-node of entry's record.</p>
 </td>
 </tr>
 <tr>
@@ -491,9 +533,9 @@ indicator</b></td>
 <tr>
 <td valign="top"><b>Y() array</b></td>
 <td valign="top">
-<p>For subfiles, descendants give record numbers for all
-upper levels. Structure resembles the DA array as used in a call to the
-classic FileMan edit routine <a href="cl_die.htm" title="^DIE" class="bodylink">^DIE</a>. </p>
+<p>For subfiles, descendants give record numbers for all upper levels.
+Structure resembles the DA array as used in a call to the Classic VA
+FileMan edit routine <a href="cl_die.htm" title="^DIE" class="bodylink">^DIE</a>.</p>
 </td>
 </tr>
 <tr>
@@ -504,39 +546,43 @@ classic FileMan edit routine <a href="cl_die.htm" title="^DIE" class="bodylink">
 </tr>
 <tr>
 <td colspan="2" valign="top">
-<p>The SCREEN parameter can safely change any of these
-values. For example, suppose there is a set of codes field defined as
-the 5th piece of the 0 node on the file and you only want to find
-entries that have the value "Y" in that field. Then the code might look
-like "I $P(^(0),U,5)=""Y""". All other variables used, however, must be
-carefully namespaced. </p>
-<p>Defaults to no extra screening. </p>
-<p><b>Variable Pointer Screen.</b>If one of the
-fields indexed by the cross-reference passed in the INDEX parameter is
-a variable pointer, then additional screens equivalent to the DIC("V")
-input variable to Classic FileMan lookup <a href="cl_dic.htm" title="^DIC" class="bodylink">^DIC</a> can also
-be passed. Suppose the screens are being passed in the SCR array. Then
-for a simple index with just one data value field, the code can be
-passed in SCR("V"). For simple or compound indexes, screens can be
-passed for any indexed fields that are variable pointers in the format
-SCR("V",n) where "n" represents the subscript location of the variable
-pointer field on the index from the INDEX parameter. </p>
-<p>The Variable Pointer screen restricts the user's ability
-to see entries on one or more of the files pointed to by the variable
-pointer. The screen logic is set equal to a line of M code that will
-return a truth value when executed. If it evaluates TRUE, then entries
-that point to the file can be included in the output; if FALSE, then
-any entry pointing to the file is excluded. At the time the code is
-executed, the variable Y(0) is set equal to the information for that
-file from the data dictionary definition of the variable pointer field.
-You can use Y(0) in the code set into the DIC("V") variable. Y(0)
-contains:</p>
-<p></p>
+<p>The SCREEN parameter can safely change any of these values. For
+example, suppose there is a SET OF CODES field defined as the 5th
+piece of the 0 node on the file, and you only want to find entries
+that have the value Y in that field. Then the code might look like
+&quot;I $P(^(0),U,5)=&ldquo;&ldquo;Y&rdquo;&rdquo;&quot;. All other
+variables used, however, must be carefully namespaced.</p>
+<p>Defaults to no extra screening.</p>
+<p><b>Variable Pointer Screen.</b> If one of the fields indexed by the
+cross-reference passed in the INDEX parameter is a VARIABLE POINTER,
+then additional screens equivalent to the DIC(&quot;V&quot;) input
+variable to Classic VA FileMan Lookup
+<a href="cl_dic.htm" title="^DIC" class="bodylink">^DIC</a> can also
+be passed. Suppose the screens are being passed in the SCR array.
+Then for a simple index with just one data value field, the code can
+be passed in SCR(&quot;V&quot;). For simple or compound indexes,
+screens can be passed for any indexed fields that are VARIABLE
+POINTERs in the format SCR(&quot;V&quot;,n) where n represents the
+subscript location of the VARIABLE POINTER field on the index from
+the INDEX parameter.</p>
+<p>The Variable Pointer Screen restricts the user's ability to see
+entries on one or more of the files pointed to by the VARIABLE
+POINTER. The screen logic is set equal to a line of M code that
+returns a truth value when executed:</p>
+<ul>
+  <li>TRUE&mdash;If it evaluates TRUE, then entries that point to the file can be included in the output.</li>
+  <li>FALSE&mdash;If FALSE, then any entry pointing to the file is excluded.</li>
+</ul>
+<p>At the time the code is executed, the variable Y(0) is set equal
+to the information for that file from the data dictionary definition
+of the VARIABLE POINTER field. You can use Y(0) in the code set into
+the DIC(&quot;V&quot;) variable. Table 48 lists the contents of Y(0):</p>
+<p align="center"><b>Table 48: LIST^DIC API&mdash;Variable Pointer Screen&mdash;Y(0)</b></p>
 <table summary="This table is for formatting purposes only" border="1" width="100%">
 <tbody>
 <tr>
-<td width="60"><b>^-Piece</b></td>
-<td width="348"><b>Contents</b></td>
+<th align="left" width="60">^-Piece</th>
+<th align="left" width="348">Contents</th>
 </tr>
 <tr>
 <td width="60">Piece 1</td>
@@ -570,33 +616,35 @@ add new entries to the pointed to file. </td>
 </tr>
 </tbody>
 </table>
-<p>All of this information was defined when that file was
-entered as one of the possibilities for the variable pointer field. </p>
-<p>For example, suppose your .01 field is a variable
-pointer pointing to files 1000, 2000, and 3000. If you only want the
-user to be able to enter values from files 1000 or 3000, you could set
-up DIC("V") like this:</p>
-<pre> S DIC("V")="I +Y(0)=1000!(+Y(0)=3000)"<br></pre>
+<p>This information was defined when that file was entered as one of
+the possibilities for the VARIABLE POINTER field.</p>
+<p>For example, suppose your .01 field is a VARIABLE POINTER pointing
+to (fictitious) Files #1000, #2000, and #3000. If you only want the
+user to be able to enter values from (fictitious) Files #1000 or
+#3000, you could set up DIC(&quot;V&quot;) like this:</p>
+<pre> S DIC("V")="I +Y(0)=1000!(+Y(0)=3000)"</pre>
 </td>
 </tr>
 <tr>
 <td valign="top"><b>IDENTIFIER</b></td>
 <td colspan="2" valign="top">
-<p>(Optional) The text to accompany each potential entry in
-the returned list to help identify it to the end user. This may be set
-to any valid M code that calls the <a href="cl_ddiol.htm" title="EN^DDIOL" class="bodylink">EN^DDIOL</a>
-utility to load identification text. The Lister will list this text
-AFTER that generated by any M identifiers on the file itself. This
-parameter takes and can change the same input as the SCREEN parameter. </p>
-<p>For example, a value of "D EN^DDIOL(""KILROY WAS
-HERE!"")" would include that string with each entry returned as a
-separate node under the "ID","WRITE" nodes of the output array. </p>
-<p>This parameter should issue no READ or WRITE commands
-itself nor should it call utilities that issue READs or WRITEs (except
-for EN^DDIOL itself). </p>
-<p>Defaults to no extra identification text. </p>
-<p>See the description of <a href="cl_ddiol.htm" title="EN^DDIOL" class="bodylink">EN^DDIOL</a>
-for more information. </p>
+<p>(Optional) The text to accompany each potential entry in the
+returned list to help identify it to the end user. This can be set
+to any valid M code that calls the
+<a href="cl_ddiol.htm" title="EN^DDIOL" class="bodylink">EN^DDIOL</a>
+utility to load identification text. The Lister lists this text after
+that generated by any M identifiers on the file itself. This parameter
+takes and can change the same input as the SCREEN parameter.</p>
+<p>For example, a value of &quot;D EN^DDIOL(&ldquo;&ldquo;KILROY WAS
+HERE!&rdquo;&rdquo;)&quot; would include that string with each entry
+returned as a separate node under the &quot;ID&quot;,
+&quot;WRITE&quot; nodes of the output array.</p>
+<p>This parameter should issue no READ or WRITE commands itself, nor
+should it call utilities that issue READs or WRITEs (except for
+EN^DDIOL itself).</p>
+<p>Defaults to no extra identification text.</p>
+<p><b>REF:</b> For more information, see the description of
+<a href="cl_ddiol.htm" title="EN^DDIOL" class="bodylink">EN^DDIOL</a>.</p>
 </td>
 </tr>
 <tr>
@@ -904,65 +952,81 @@ OPTION file, if FIELDS=&gt; "3.6I;3.6;4", might look like this:</p>
 <p></p>
 <h5><a name="Examples">Examples</a></h5>
 <p><b>Example 1</b></p>
-<p>This is an example of a forward traversal of the "B" index on
-the Option file, limited to five entries that all begin with the
-characters "DIFG", but skipping any first entry that might equal "DIFG"
-(the FROM value is always skipped):</p>
+<p>Figure 156 is an example of a forward traversal of the &quot;B&quot;
+index on the OPTION (#19) file, limited to five entries that all
+begin with the characters &quot;DIFG&quot;, but skipping any first
+entry that might equal &quot;DIFG&quot; (the FROM parameter value is
+always skipped):</p>
+<p align="center"><b>Figure 156: LIST^DIC API&mdash;Example 1: Input and Output</b></p>
 <pre><b>&gt;D LIST^DIC(19,"","","",5,"DIFG","DIFG","","","","OUT")</b><br>OUT("DILIST",0)=5^5^1^<br>OUT("DILIST",0,"MAP")=FID(1)<br>OUT("DILIST",1,1)=DIFG CREATE<br>OUT("DILIST",1,2)=DIFG DISPLAY<br>OUT("DILIST",1,3)=DIFG GENERATE<br>OUT("DILIST",1,4)=DIFG INSTALL<br>OUT("DILIST",1,5)=DIFG SPECIFIERS<br>OUT("DILIST",2,1)=321<br>OUT("DILIST",2,2)=322<br>OUT("DILIST",2,3)=323<br>OUT("DILIST",2,4)=326<br>OUT("DILIST",2,5)=325<br>OUT("DILIST","ID",1,1)=Create/Edit Filegram Template<br>OUT("DILIST","ID",2,1)=Display Filegram Template<br>OUT("DILIST","ID",3,1)=Generate Filegram<br>OUT("DILIST","ID",4,1)=Install/Verify Filegram<br>OUT("DILIST","ID",5,1)=Specifiers<br></pre>
-<p><b>Example 2 </b> </p>
-<p>This related example reveals that there is a DIFG option. When
-we traverse backward, starting with the first entry from the previous
-example, DIFG is the only option that meets both the FROM and PART
-parameter criteria. The sequence number is 5. When we traverse an index
-backward to get a set number of records, the sequence number counts
-backward from that number in order to make the output come out in the
-same order as when we traverse forward. This type of Lister call is
-normally used in a GUI ListBox when the user is backing up on a list.</p>
+<p><b>Example 2</b></p>
+<p>Figure 157 is a related example revealing that there is a DIFG
+option (Filegrams option). When you traverse backward, starting with
+the first entry from the previous example, DIFG is the only option
+that meets both the FROM and PART parameter criteria. The sequence
+number is 5. When you traverse an index backward to get a set number
+of records, the sequence number counts backward from that number to
+make the output come out in the same order as when you traverse
+forward. This type of Lister call is normally used in a GUI ListBox
+when the user is backing up on a list.</p>
+<p align="center"><b>Figure 157: LIST^DIC API&mdash;Example 2: Input and Output</b></p>
 <pre><b>&gt;D LIST^DIC(19,"","","B",5,"DIFG<br>CREATE","DIFG","","","","OUT")</b><br>OUT("DILIST",0)=1^5^0^<br>OUT("DILIST",0,"MAP")=FID(1)<br>OUT("DILIST",1,5)=DIFG<br>OUT("DILIST",2,5)=327<br>OUT("DILIST","ID",5,1)=Filegrams<br></pre>
 <p><b>Example 3</b></p>
-<p>In this example we'll return just one entry from a file using
-a compound index. This index is on the .01 field (NAME) and field 1
-(DATE OF BIRTH). Note how the two index entries are returned in the 1
-nodes. Also note that this file has several field identifiers and WRITE
-identifiers. After the call, because there are two different entries in
-the file with a .01 equal to "ADDFIFTEEN", but different dates of
-birth, the DIFR array has been set up ready for a subsequent call. On
-this index, the DATE OF BIRTH field has a collation of "backwards", so
-we see the most current date first in the output.</p>
+<p>In this example (Figure 158), you return just one entry from a file
+using a compound index. This index is on the .01 field (NAME) and
+Field #1 (DATE OF BIRTH). Note how the two index entries are returned
+in the 1 nodes. Also, note that this file has several field
+identifiers and WRITE identifiers. After the call, because there are
+two different entries in the file with a .01 equal to
+&quot;ADDFIFTEEN&quot;, but different dates of birth, the DIFR array
+has been set up ready for a subsequent call. On this index, the DATE
+OF BIRTH field has a collation of &quot;backwards&quot;, so you see
+the most current date first in the output.</p>
+<p align="center"><b>Figure 158: LIST^DIC API&mdash;Example 3: Input and Output</b></p>
 <pre><b>&gt;K DIFR,DIPRT S DIPRT(1)="ADD"</b><br><b>&gt;D LIST^DIC(662001,"","","",1,.DIFR,.DIPRT,"BB","","","OUT")</b><br>OUT("DILIST",0)=1^1^1^<br>OUT("DILIST",0,"MAP")=FID(2)^FID(4)^FID(10)<br>OUT("DILIST",1,1,1)=ADDFIFTEEN<br>OUT("DILIST",1,1,2)=JAN 03, 1997<br>OUT("DILIST",2,1)=17<br>OUT("DILIST","ID",1,2)=SEVENTEEN*<br>OUT("DILIST","ID",1,4)=MITTY,WALTER<br>OUT("DILIST","ID",1,10)=MAY 02, 1997@09:00<br>OUT("DILIST","ID","WRITE",1,1)=2970103<br>OUT("DILIST","ID","WRITE",1,2)=<br>OUT("DILIST","ID","WRITE",1,3)= FIRST LINE<br>OUT("DILIST","ID","WRITE",1,4)=<br>OUT("DILIST","ID","WRITE",1,5)= SECOND LINETHIRD LINE<br>OUT("DILIST","ID","WRITE",1,6)=SIXTHCODE<br><b>&gt;ZW DIFR</b><br>DIFR=ADDFIFTEEN<br>DIFR(1)=ADDFIFTEEN<br>DIFR(2)=2970103<br>DIFR(3)=<br>DIFR("IEN")=<br></pre>
 <p><b>Example 4</b></p>
-<p>However, if we do another Lister call on the same file, using
-the DIFR array that was passed back from the previous call, this time
-we'll return two records. We get back the second record in the index
-with "ADDFIFTEEN" as the .01 field, and the next one that follows it
-alphabetically. In this call, we suppressed the normal default values
-returned by the call, and instead asked for the index field values
-"IX", the internal value of the field identifiers "FIDI", both the
-internal and external values of field 3 (a set-of-codes type field),
-and the external value of computed field 8. All of this was done with
-entries in the FIELDS parameter. As you see, field 4 is a pointer,
-field 10 is a variable pointer. Note how the MAP node describes what is
-found in the "ID" nodes.</p>
+<p>However, if you do another Lister call on the same file, using the
+DIFR array that was passed back from the previous call, this time it
+returns two records (Figure 159). You get back the second record in
+the index with &quot;ADDFIFTEEN&quot; as the .01 field, and the next
+one that follows it alphabetically. In this call, you suppressed the
+normal default values returned by the call, and instead asked for the
+index field values IX, the internal value of the field identifiers
+FIDI, both the internal and external values of Field #3 (a SET OF
+CODES type field), and the external value of COMPUTED Field #8. All
+of this was done with entries in the FIELDS parameter. As you see,
+Field #4 is a POINTER, Field #10 is a VARIABLE POINTER. Note how the
+MAP node describes what is found in the &quot;ID&quot; nodes.</p>
+<p align="center"><b>Figure 159: LIST^DIC API&mdash;Example 4: Input and Output</b></p>
 <pre><b>&gt;D LIST^DIC(662001,"","@;IX;FIDI;3IE;8","",2,.DIFR,.DIPRT,"BB","","","OUT")<br></b><br>OUT("DILIST",0)=2^2^1^<br>OUT("DILIST",0,"MAP")=IX(1)^IX(2)^FID(2)I^3^3I^FID(4)I^8^FID(10)I<br>OUT("DILIST",2,1)=15<br>OUT("DILIST",2,2)=14<br>OUT("DILIST","ID",1,0,1)=ADDFIFTEEN<br>OUT("DILIST","ID",1,0,2)=JAN 01, 1969<br>OUT("DILIST","ID",1,2)=FIFTEEN<br>OUT("DILIST","ID",1,3,"E")=SIXTHCODE<br>OUT("DILIST","ID",1,3,"I")=SIX<br>OUT("DILIST","ID",1,4)=1<br>OUT("DILIST","ID",1,8)=0<br>OUT("DILIST","ID",1,10)=327;DIC(19,<br>OUT("DILIST","ID",2,0,1)=ADDFOURTEEN<br>OUT("DILIST","ID",2,0,2)=JAN 01, 1949<br>OUT("DILIST","ID",2,2)=FOURTEEN<br>OUT("DILIST","ID",2,3,"E")=<br>OUT("DILIST","ID",2,3,"I")=<br>OUT("DILIST","ID",2,4)=<br>OUT("DILIST","ID",2,8)=32.6<br>OUT("DILIST","ID",2,10)=10;DIZ(662003,<br></pre>
 <p><b>Example 5</b></p>
-<p>In this example, we use the P flag to return the next two
-records in Packed output format. We revert to letting the Lister return
-default values, rather than controlling them with the FIELDS parameter,
-but we'll return additional output by using the IDENTIFIER parameter.
-Note that although we asked for two records, there was only one left
-that fit our PART criteria. The first piece of the header node tells us
-one record was returned; the second piece tells us that two records
-were requested; the third tells us there are no records left that meet
-the criteria.</p>
-<p>Here's what the FROM values are set to going into the call:</p>
+<p>In this example (Figure 160), you use the P flag to return the next
+two records in Packed output format. You revert to letting the Lister
+return default values, rather than controlling them with the FIELDS
+parameter, but it returns additional output by using the IDENTIFIER
+parameter. Note that although you asked for two records, there was
+only one left that fit the PART criteria:</p>
+<ul>
+  <li>First piece of the Header node tells you one record was returned.</li>
+  <li>Second piece tells you that two records were requested.</li>
+  <li>Third piece tells you there are no records left that meet the criteria.</li>
+</ul>
+<p>Figure 160 illustrates what the FROM parameter values are set to
+going into the call:</p>
+<p align="center"><b>Figure 160: LIST^DIC API&mdash;Example 5: Input and Output</b></p>
 <pre>DIFR=ADDFOURTEEN<br>DIFR(1)=ADDFOURTEEN<br>DIFR(2)=<br>DIFR(3)=<br>DIFR("IEN")=<br><br><b>&gt;D LIST^DIC(662001,"","","P",2,.DIFR,.DIPRT,"BB","","D<br>EN^DDIOL(""Hi there"")"," OUT")</b><br>OUT("DILIST",0)=1^2^0^<br>OUT("DILIST",0,"MAP")=IEN^IX(1)^IX(2)^FID(2)^FID(4)^FID(10)^WID(WRITE1)^WID(WRIT<br>E2)^WID(WRITE3)^WID(WRITE4)^IDP<br>OUT("DILIST",1,0)=16^ADDSIXTEEN^MAR 28, 1970^MA HERE TOO*^^DIFG^2700328^^ FIRST<br>LINE~~ SECOND LINETHIRD LINE^^Hi there<br></pre>
 <h5><a name="errors">Error Codes Returned</a></h5>
+<p>Table 49 lists the possible error codes returned with the LIST^DIC API:</p>
+<p align="center"><b>Table 49: LIST^DIC API&mdash;Error Codes Returned</b></p>
 <table summary="This table is for formatting purposes only" border="1" width="100%">
 <tbody>
 <tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+<tr>
 <td valign="top"><b><a href="err_120.htm" title="Error 120" class="bodylink">120</a></b></td>
-<td valign="top">Error occurred during execution of
-a VA FileMan hook. </td>
+<td valign="top">Error occurred during execution of a VA FileMan hook.</td>
 </tr>
 <tr>
 <td valign="top"><b><a href="err_202.htm" title="Error 202" class="bodylink">202</a></b></td>
@@ -1033,113 +1097,111 @@ processed by this utility. </td>
 </tbody>
 </table>
 <p></p>
-<p>The Lister may also return any error returned by
-$$EXTERNAL^DILFD. </p>
+<p>The Lister can also return any error returned by the $$EXTERNAL^DILFD API.</p>
 <h5><a name="DetailsandFeatures">Details and Features</a></h5>
 <table border="1">
 <tbody>
 <tr>
 <td valign="top"><b>Screens Applied</b></td>
 <td valign="top">
-<p>Aside from the optional screen parameter, the Lister
-applies one other screen to each index entry before adding it to the
-output list as follows: ^DD(file#,0,"SCR"). Other screens, such as the
-7.5 node and field-level screens on various data types, are not checked
-because they relate specifically to entry and editing, not selection. </p>
+<p>Aside from the optional screen parameter, the Lister applies one
+other screen to each index entry before adding it to the output list
+as follows: ^DD(file#,0,&quot;SCR&quot;). Other screens, such as the
+7.5 node and field-level screens on various data types, are not
+checked because they relate specifically to entry and editing, not
+selection.</p>
 </td>
 </tr>
 <tr>
 <td valign="top"><b>Output Transform</b></td>
 <td valign="top">
-<p>It is possible for any field with an output transform to
-sort differently than a user would expect. Although the value displayed
+<p>It is possible for any field with an OUTPUT transform to sort
+differently than a user would expect. Although the value displayed
 is the output value, the value that determines its order is its
-internal value. When the I flag is used, the output transform is never
-executed, and the output will always appear in the expected order.</p>
+internal value. When the I flag is used, the OUTPUT transform is
+never executed, and the output always appears in the expected order.</p>
 </td>
 </tr>
 <tr>
-<td valign="top"><b><a name="html">HTML
-Encoding</a></b>&nbsp;</td>
+<td valign="top"><b><a name="html">HTML Encoding</a></b>&nbsp;</td>
 <td>
-<p>Since the Lister uses the "^" character as its delimiter
-for packed output, it cannot let any of the data contain that
-character. If any does, it will encode all of the data using an HTML
-encoding scheme.</p>
-<p>In this scheme, all "&amp;" characters are replaced
-with the substring "&amp;amp;" and all "^" characters with the
-string "&amp;#94". This keeps the data properly parsable and
-decodable. The data for all records found, not just the ones with
-embedded ^s, will be encoded if embedded ^s are found in the data of
-any of the records. </p>
-<p>If the Lister has encoded the output, it will include an
-H flag in ^-piece four of the output header node. </p>
-<p>Data can be decoded using the VA FileMan library
-function call $$HTML^DILF(encoded string,-1). It can properly decode
-individual fields or complete packed data nodes.</p>
+<p>Since the Lister uses the ^ character as its delimiter for packed
+output, it cannot let any of the data contain that character. If any
+does, it will encode all data using an HTML encoding scheme.</p>
+<p>In this scheme:</p>
+<ul>
+  <li>All ampersand (&amp;) characters are replaced with the substring &ldquo;&amp;amp;&rdquo;.</li>
+  <li>All caret (^) characters with the string &ldquo;&amp;#94&rdquo;.</li>
+</ul>
+<p>This keeps the data properly parsable and decodable. The data for
+all records found, not just the ones with embedded carets (^), is
+encoded if embedded carets (^) are found in the data of any of the
+records.</p>
+<p>If the Lister has encoded the output, it includes an H flag in
+^-piece four of the output Header node.</p>
+<p>Data can be decoded using the VA FileMan library function call
+$$HTML^DILF(encoded string,-1). It can properly decode individual
+fields or complete packed data nodes.</p>
 </td>
 </tr>
 <tr>
-<td valign="top"><b>Pointers and Variable
-Pointers</b></td>
+<td valign="top"><b>POINTERs and VARIABLE POINTERs</b></td>
 <td valign="top">
-<p>The Lister treats indexes on fields of these two data
-types specially. For every other data type, the value of the indexed
-field is completely contained in the file indicated by the FILE
-parameter. For pointer and variable pointers, this is not the case. All
-index values come from the B index of the pointed-to file. The Lister
-uses the values in the pointed-to file, extending the search to the end
-of the pointer chain, to select records in the pointing file at the
-beginning of the chain. </p>
-<p>For example, suppose the FILE parameter picks file A,
-and the INDEX parameter picks the X index, a cross-reference on a
-pointer field. Suppose further that field points to file B, whose .01
-field points to file C, and file C's .01 is a set of codes. Then this
-Lister call will select records in file A (the pointing file) based on
-the index values it finds in file C (the pointed-to file). </p>
-<p>The FROM("IEN"), SCREEN, and IDENTIFIER parameters
-always apply to the pointing file, the one identified by the FILE
-parameter, because they deal with actual record selection. However, for
-pointers and variable pointers, the FROM and PART parameters apply to
-the "B" index on the pointed-to file, since they deal with index
-values. </p>
-<p>Variable pointers work similarly, except that their
-index values usually come from more than one pointed-to file. </p>
+<p>The Lister treats indexes on fields of these two data types
+specially. For every other data type, the value of the indexed field
+is completely contained in the file indicated by the FILE parameter.
+For POINTER and VARIABLE POINTERs, this is not the case. All index
+values come from the &quot;B&quot; index of the pointed-to file. The
+Lister uses the values in the pointed-to file, extending the search
+to the end of the POINTER chain, to select records in the pointing
+file at the beginning of the chain.</p>
+<p>For example, suppose the FILE parameter picks File A, and the
+INDEX parameter picks the X index, a cross-reference on a POINTER
+field. Suppose further that field points to File B, whose .01 field
+points to File C, and File C's .01 is a SET OF CODES. Then, this
+Lister call selects records in File A (the pointing file) based on
+the index values it finds in File C (the pointed-to file).</p>
+<p>The FROM(&quot;IEN&quot;), SCREEN, and IDENTIFIER parameters always
+apply to the pointing file, the one identified by the FILE parameter,
+because they deal with actual record selection. However, for POINTERs
+and VARIABLE POINTERs, the FROM and PART parameters apply to the
+&quot;B&quot; index on the pointed-to file, since they deal with
+index values.</p>
+<p>VARIABLE POINTERs work similarly, except that their index values
+usually come from more than one pointed-to file.</p>
 </td>
 </tr>
 <tr>
-<td valign="top"><b><a name="write">WRITE
-ID nodes</a></b>&nbsp;</td>
-<td valign="top">The Lister executes each individual
-WRITE ID node from the data dictionary. If an individual node results
-in creating multiple lines in the output from the EN^DDIOL call(s) it
-contains, then in Standard Output Format the results will appear on
-multiple lines in the output array. Thus there is not a direct
-correlation between the number of WRITE ID nodes and the number of
-nodes that will be returned in the output array of a Lister call for
-each record. In Packed output format, each WRITE ID node appears in a
-separate "^" piece and line feeds are designated with a tilde (<b>~</b>)
-character.</td>
+<td valign="top"><b><a name="write">WRITE ID Nodes</a></b>&nbsp;</td>
+<td valign="top">The Lister executes each individual WRITE ID node
+from the data dictionary. If an individual node results in creating
+multiple lines in the output from the EN^DDIOL calls it contains,
+then in Standard Output Format the results appear on multiple lines
+in the output array. Thus, there is not a direct correlation between
+the number of WRITE ID nodes and the number of nodes that are
+returned in the output array of a Lister call for each record. In
+Packed output format, each WRITE ID node appears in a separate ^
+piece and line feeds are designated with a tilde (<b>~</b>) character.</td>
 </tr>
 <tr>
-<td valign="top"><b><a name="from">FROM
-parameter with Compound Indexes</a></b>&nbsp;</td>
-<td valign="top">The FROM parameter designates only
-a starting point on the index defined in the INDEX parameter. For
-example, we have a compound index where the first subscript is a NAME
-and the second is a DATE OF BIRTH. Supposing that after a Lister call,
-FROM(1)="SMITH,JOHN" and FROM(2)="2690101. A subsequent Lister call
-assumes that there must be another entry with the name "SMITH,JOHN",
-but a date-of-birth that follows 1/1/69. Any other entries returned
-will have names that equal or follow SMITH,JOHN, but after processing
-all of the SMITH,JOHN entries, other output entries could have any
-date-of-birth. This is NOT like a sort where we say that we want only
-entries where the date-of-birth follows 1/1/69. </td>
+<td valign="top"><b><a name="from">The FROM Parameter with Compound Indexes</a></b>&nbsp;</td>
+<td valign="top">The FROM parameter designates only a starting point
+on the index defined in the INDEX parameter. For example, you have a
+compound index where the first subscript is a NAME and the second is
+a DATE OF BIRTH. Supposing that after a Lister call,
+FROM(1)=&quot;FMUSER,ONE&quot; and FROM(2)=&quot;2690101. A
+subsequent Lister call assumes that there must be another entry with
+the name &quot;FMUSER,ONE&quot;, but a date-of-birth that follows
+1/1/69. Any other entries returned will have names that equal or
+follow FMUSER,ONE, but after processing all FMUSER,ONE entries,
+other output entries could have any date-of-birth. This is not like
+a sort where you say that you want only entries where the
+date-of-birth follows 1/1/69.</td>
 </tr>
 </tbody>
 </table>
 <p>&nbsp;</p>
 <hr class="hrstyle"><!-- db_dic_l.htm -->
-<p align="center">Reviewed/Updated: October 2016</p>
+<p align="center">Reviewed/Updated: May 2026</p>
 <p>&nbsp;</p>
 </body></html>
